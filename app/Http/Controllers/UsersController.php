@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use Illuminate\Support\Facades\Input;
+use phpDocumentor\Reflection\Types\Null_;
 
 class UsersController extends Controller
 {
@@ -15,6 +16,61 @@ class UsersController extends Controller
         $userList  =  NewUser::all () ;
         return  response()->json($userList) ;
     }
+
+
+    public  function   login  ()   {
+
+        $response    =  array()   ;
+          $email       =     Input::get('emails') ;
+          $password    =     Input::get('password') ;
+
+           $intrest    =   Input::get('intrest') ;
+
+           if  ( $email == "" )
+           {
+
+               $response ['mesg'] = "your  account  is  not  active "  ;
+            $response ['erro'] = true ;
+
+           }
+
+           else{
+
+
+            $response ['msg'] =  "welocome" ;
+           $response ['erro'] = false ;
+           }
+
+           return  response()->json($response);
+//
+//        $NewUser  =  NewUser::where  ('email' , '=', $email)->get()  ;
+//
+//        if  (   $NewUser)
+//        {
+//
+//
+//            $response ['mesg'] = "your  account  is  not  active "  ;
+//            $response ['erro'] = true ;
+//        }
+//
+//         else {
+//             $response ['password'] = $NewUser->password  ;
+//             $response ['email'] = $NewUser->email  ;
+//             $response ['erro'] = false ;
+//         }
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 
     public  function   create  ()   {
@@ -29,6 +85,8 @@ class UsersController extends Controller
         $description_of_acces   =  Input::get('description_of_acces');
 
         $NewUser    =   new   NewUser  () ;
+        $NewUser->   active                 = 1;
+
         $NewUser->  name                 = $name ;
         $NewUser->  email                = $email ;
         $NewUser->  intrest              = $intrest;

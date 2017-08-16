@@ -26,7 +26,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
-
+    Route::post('login' ,  'UsersController@login');
 
 
 });
