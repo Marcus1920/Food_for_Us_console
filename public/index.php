@@ -1,4 +1,11 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept,Authorization,X-Csrf-Token,api_key,api_key_new");
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header("Content-type: text/javascript; charset: UTF-8");
+header("Cache-Control: public");
+header("Cache-Control: max-age=180");
+
 
 /**
  * Laravel - A PHP Framework For Web Artisans
