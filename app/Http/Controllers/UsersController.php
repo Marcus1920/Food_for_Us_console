@@ -37,8 +37,8 @@ class UsersController extends Controller
            else{
 
 
-            $response =  "welocome" ;
-           
+            $response =  "welcome" ;
+
            }
 
            return  response()->json($response);
