@@ -26,18 +26,26 @@ class UsersController extends Controller
 
            $intrest    =   Input::get('intrest') ;
 
-           if  ( $email == "" )
+        $NewUser  = NewUser::where('email'  , '=' , $email)->first();
+
+
+
+            if  ($email == "" )
            {
 
-               $response ['mesg'] = "your  account  is  not  active "  ;
-            $response ['erro'] = true ;
+               $response ['mesg'] = "your  account  is  not  active ";
+               $response ['erro'] = true ;
 
            }
 
            else{
 
 
-            $response =  true ;
+            $response ['msg']=  "successfully login";
+            $response ['email']=  $NewUser-> email;
+            $response ['password']=  $NewUser-> password;
+            $response ['Ative']= 2;
+               ;
 
            }
 
