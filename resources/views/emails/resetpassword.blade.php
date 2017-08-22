@@ -6,7 +6,7 @@
 
 <h2>{{ $name  }} </h2>
 
-    </n>
+    '/n'
 "your  new  password" is  <h2> {{ $passsword  }}  </h2>
 </p>
 
