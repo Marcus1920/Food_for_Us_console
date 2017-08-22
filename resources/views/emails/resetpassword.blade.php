@@ -4,9 +4,9 @@
 
 <p>
 
-{{ $name  }}}
+<h2>{{ $name  }} </h2>
 
-    <br>
-    "your  new  password" is  {{ $passsword  }}
+    </n>
+"your  new  password" is  <h2> {{ $passsword  }}  </h2>
 </p>
 
