@@ -106,11 +106,13 @@ class UsersController extends Controller
             $response['intrest'] = $data->intrest;
             $response['apiKey'] = $data->api_key;
             $response['createdAt'] = $data->created_at;
+			 $response['active'] =2;
            }
            else{
 
 
-               $response["error"] = false;
+               $response["error"] = true;
+			   $response['active'] =1;
                $response["msg"] =  "your  acount  is Not Acive";
          }
          //   \Log::info("Login Device:".$device.", User Cell:".$cell.", User Names:".$data->name);
