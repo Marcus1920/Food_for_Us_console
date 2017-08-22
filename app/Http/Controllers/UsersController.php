@@ -18,6 +18,53 @@ class UsersController extends Controller
     }
 
 
+
+    public function forgot()
+    {
+
+        $response = array();
+        $email     = Input::get('emails');
+
+        $userNew  = NewUser::where('email','=',$email)->first();
+
+
+        if (sizeof($userNew) > 0)
+        {
+
+            $userNew->password   = "newpassword";
+            $userNew->save();
+            $response["error"]   = false;
+            $response["message"] = "You have successfully changed your password check  your  email";
+            $data = array(
+
+                'name' => $userNew->name,
+
+                'content' => $request['message'],
+                'executor' => \Auth::user()->name . ' ' . \Auth::user()->surname,
+            );
+
+
+
+            \Mail::send('emails.resetpassword', $data, function ($message) use ($userNew) {
+                $message->from('info@siyaleader.net', 'Siyaleader');
+                $message->to($user->email)->subject("Siyaleader Notification - Case Referred: ");
+
+            });
+
+
+
+        }
+        else {
+            $response["error"]   = true;
+            $response["message"] = "Sorry, you have not registered yet";
+        }
+
+        return \Response::json($response);
+    }
+
+
+
+
     public  function   login  ()   {
 
         $response = array();
@@ -49,10 +96,9 @@ class UsersController extends Controller
             $key = "no key";
         }
 
-
         if (sizeof($data) > 0 ) {
 
-            if ($data->active == 1)
+            if ($data->active == 2)
             {
             $response["error"] = false;
             $response['name'] = $data->name;
@@ -79,6 +125,8 @@ class UsersController extends Controller
         }
 
         return \Response::json($response);
+
+
 
 
 
