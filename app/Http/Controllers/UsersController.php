@@ -20,54 +20,65 @@ class UsersController extends Controller
 
     public  function   login  ()   {
 
-        $response    =  array()   ;
-          $email       =     Input::get('emails') ;
-          $password    =     Input::get('password') ;
-
-           $intrest    =   Input::get('intrest') ;
-
-        $NewUser  = NewUser::where('email'  , '=' , $email)->first();
+        $response = array();
+          $email       =      Input::get('emails') ;
+          $password    =      Input::get('password') ;
 
 
+           if(Input::get('emails')  == Null || Input::get('password') == null   )
 
-            if  ($email == "" )
            {
 
-               $response ['mesg'] = "your  account  is  not  active ";
-               $response ['erro'] = true ;
-
+               return   $response['msg']   = "wrong  user name or  password" ;
            }
 
+        $data =   NewUser::where('email', $email)
+                 ->where('password', $password)
+
+                 ->first();
+
+
+        if (sizeof($data) > 0 ) {
+
+            $key = $data->api_key;
+
+
+        }
+        else {
+
+            $key = "no key";
+        }
+
+
+        if (sizeof($data) > 0 ) {
+
+            if ($data->active == 1)
+            {
+            $response["error"] = false;
+            $response['name'] = $data->name;
+            $response['email'] = $data->email;
+            $response['intrest'] = $data->intrest;
+            $response['apiKey'] = $data->api_key;
+            $response['createdAt'] = $data->created_at;
+           }
            else{
 
 
-            $response ['msg']=  "successfully login";
-            $response ['email']=  $NewUser-> email;
-            $response ['password']=  $NewUser-> password;
-            $response ['Ative']= 2;
-               ;
+               $response["error"] = false;
+               $response["msg"] =  "your  acount  is Not Acive";
+         }
+         //   \Log::info("Login Device:".$device.", User Cell:".$cell.", User Names:".$data->name);
 
-           }
+        }
+        else {
 
-           return  response()->json($response);
-//
-//        $NewUser  =  NewUser::where  ('email' , '=', $email)->get()  ;
-//
-//        if  (   $NewUser)
-//        {
-//
-//
-//            $response ['mesg'] = "your  account  is  not  active "  ;
-//            $response ['erro'] = true ;
-//        }
-//
-//         else {
-//             $response ['password'] = $NewUser->password  ;
-//             $response ['email'] = $NewUser->email  ;
-//             $response ['erro'] = false ;
-//         }
+            $response['error']   = true;
+            $response['message'] = 'Login failed. Incorrect credentials';
 
 
+        }
+
+        return \Response::json($response);
 
 
 
