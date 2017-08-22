@@ -33,24 +33,25 @@ class UsersController extends Controller
 
             $userNew->password   = "newpassword";
             $userNew->save();
+            $message  =  "your  new  password  is  ";
             $response["error"]   = false;
-            $response["message"] = "You have successfully changed your password check  your  email";
             $data = array(
 
                 'name' => $userNew->name,
+                'passsword' => $userNew -> password  ,
+                'content' =>  $message
 
-                'content' => $request['message'],
-                'executor' => \Auth::user()->name . ' ' . \Auth::user()->surname,
             );
 
 
 
             \Mail::send('emails.resetpassword', $data, function ($message) use ($userNew) {
-                $message->from('info@siyaleader.net', 'Siyaleader');
-                $message->to($user->email)->subject("Siyaleader Notification - Case Referred: ");
+                $message->from('info@foodorus', 'Food For us');
+                $message->to($userNew->email)->subject("Food  for  us ");
 
             });
 
+            $response["message"] = "You have successfully changed your password check  your  email";
 
 
         }
