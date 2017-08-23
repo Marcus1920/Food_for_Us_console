@@ -20,8 +20,10 @@ use  App\NewUser  ;
 Route::get('/' , 'HomeController@index') ;
 
 
-
-
+Route::get('create' , 'SellersController@create') ;
+Route::get('all' , 'SellersController@index') ;
+Route::get('up' , 'SellersController@update') ;
+Route::get('del' , 'SellersController@destroy') ;
 Route::group(array('prefix' => 'api/v1'), function() {
 
     Route::get('userList' ,  'UsersController@index');

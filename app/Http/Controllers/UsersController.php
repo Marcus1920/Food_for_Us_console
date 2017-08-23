@@ -153,9 +153,13 @@ class UsersController extends Controller
         $location               =  Input::get('location') ;
         $travel_radius          =  Input::get('travel_radius') ;
         $description_of_acces   =  Input::get('description_of_acces');
+        $gps_lat                =  Input::get('gps_lat');
+        $gps_long                =  Input::get('gps_long');
 
         $NewUser    =   new   NewUser  () ;
         $NewUser->   active                 = 1;
+        $NewUser->  gps_lat                 = $gps_lat ;
+        $NewUser->  gps_long                = $gps_long ;
 
         $NewUser->  name                 = $name ;
         $NewUser->  email                = $email ;
@@ -163,12 +167,31 @@ class UsersController extends Controller
         $NewUser->  surname              = $surname ;
         $NewUser->  location             = $location;
         $NewUser->  travel_radius        =  $travel_radius ;
-        $NewUser->  password        =   "1234" ;
+        $NewUser->  password             =  "1234" ;
+        $NewUser->  api_key                = "xdwq213432435434bb4yyyyyyyy4";
         $NewUser->  description_of_acces  = $description_of_acces ;
         $NewUser-> save() ;
 
+        $response["error"]   = false;
+        $message ="you  been  registered Sucfully ";
+        $data = array(
+
+            'name' => $NewUser->name,
+            'passsword' => $NewUser -> password  ,
+            'content' =>  $message
+
+        );
+
+
+//        \Mail::send('emails.resetpassword', $data, function ($message) use ($NewUser) {
+//            $message->from('info@foodorus', 'Food For us');
+//            $message->to($NewUser->email)->subject("Registration Notification ");
+//
+//        });
+
          $respose =  array() ;
-         $respose['mesg']   =  "successfully registered  wait  for  approval " ;
+         $respose['erro']= false;
+         $respose['mesg']   =  "successfully registered  please  wait  for  approval " ;
         return  response()->json($respose);
 
 
