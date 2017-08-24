@@ -12,14 +12,10 @@
 use  App\NewUser  ;
 
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-
-Route::get('/' , 'HomeController@index') ;
-
-
+Route::get('/', function () {
+    return view('auth.login');
+});
+Auth::routes();
 Route::get('create' , 'SellersController@create') ;
 Route::get('all' , 'SellersController@index') ;
 Route::get('up' , 'SellersController@update') ;
@@ -33,3 +29,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 });
+
+
+
+
+Route::get('/master' , 'HomeController@show')->name('master') ;
+Route::get('/users' , 'HomeController@users')->name('users') ;
+Route::get('/register' , 'HomeController@register')->name('register');

@@ -7,16 +7,28 @@ use App\NewUser  ;
 
 class HomeController extends Controller
 {
-    public  function   index ()
+    public  function   index()
 
     {
+        return view('auth.login');
+    }
+
+    public  function show()
+{
+    $NewUser  =  NewUser::all();
+    return  view ('master')->with(compact('NewUser'));
+}
 
 
-       $NewUser  =  NewUser::all() ;
 
+    public  function users()
+    {
+        $NewUser  =  NewUser::all();
+        return  view ('users.list')->with(compact('NewUser'));
+    }
 
-
-       return  view ('welcome')->with(compact('NewUser'));
-
+    public  function register()
+    {
+        return  view ('users.register');
     }
 }
