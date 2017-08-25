@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 Auth::routes();
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('create' , 'SellersController@create') ;
 Route::get('all' , 'SellersController@index') ;
 Route::get('up' , 'SellersController@update') ;
@@ -32,7 +33,22 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 
-
+Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
 Route::get('/master' , 'HomeController@show')->name('master') ;
 Route::get('/users' , 'HomeController@users')->name('users') ;
 Route::get('/register' , 'HomeController@register')->name('register');
+Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
+
+
+Route::get('/editUsers/{id}', function($id)
+{
+    $user =NewUser::where('id','=',$id)->first();
+    return view('users.edit',compact('user'));
+});
+
+Route::get('/createUser', function()
+{
+    return view('users.edit',compact('user'));
+});
+
+

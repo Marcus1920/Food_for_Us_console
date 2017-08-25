@@ -128,21 +128,7 @@ class UsersController extends Controller
         }
 
         return \Response::json($response);
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
     public  function   create  ()   {
 
 

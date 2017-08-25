@@ -14,12 +14,10 @@ class HomeController extends Controller
     }
 
     public  function show()
-{
-    $NewUser  =  NewUser::all();
-    return  view ('master')->with(compact('NewUser'));
-}
-
-
+        {
+            $NewUser  =  NewUser::all();
+            return  view ('master')->with(compact('NewUser'));
+        }
 
     public  function users()
     {
@@ -28,6 +26,12 @@ class HomeController extends Controller
     }
 
     public  function register()
+    {
+        return  view ('users.register');
+    }
+
+
+    public  function createUser()
     {
         return  view ('users.register');
     }

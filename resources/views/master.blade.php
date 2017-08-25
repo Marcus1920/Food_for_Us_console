@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('/img/favicon.ico?v1') }}">
 
 
-    <title>Siyaleader Ports</title>
+    <title>Food For Us</title>
 
 
     <!-- CSS -->
@@ -74,7 +74,7 @@
 
 
 </head>
-<body id="skin-blur-ocean" style="background-color: darkblue">
+<body id="skin-blur-ocean" style="background-color: #265a88">
 
 <header id="header" class="media">
     <a href="" id="menu-toggle"></a>
@@ -134,7 +134,7 @@
 
                 <ul class="dropdown-menu profile-menu">
                     {{--<li><a href="{{ url('all-messages') }}">Messages</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>--}}
-                    <li><a href="{{ url('user-profile') }}">Profile</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+                    {{--<li><a href="{{ url('user-profile') }}">Profile</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>--}}
                     <li><a href="{{ url('/auth/logout') }}">Sign Out</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
                 </ul>
                 @if (Auth::user())
@@ -172,7 +172,6 @@
                         <span class="menu-item">Settings</span>
                     </a>
                     <ul class="list-unstyled menu-item">
-
                         <li><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin</a></li>
 
 
@@ -181,28 +180,120 @@
 
 
             <li {{ (Request::is('reports') ? "class=active" : '') }}>
-                    <a class="sa-side-chart" href="{{ url('users') }}">
+                    <a class="sa-side-user" href="{{ url('users') }}">
                         <span class="menu-item">Users</span>
                     </a>
                 </li>
-
-                <li {{ (Request::is('calendar') ? "class=active" : '') }}>
-                    <a class="sa-side-calendar" href="{{ url('calendar/events') }}">
-                        <span class="menu-item">Calendar</span>
-                    </a>
-                </li>
-
-
-
         </ul>
     </aside>
 
 
     <!-- Content -->
     <section id="content" class="container">
+
         @yield('content')
     </section>
  </section>
 @yield('footer')
+<script src="{{ asset('/js/toggles.js') }}"></script>
+
+<script src="{{ asset('/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
+<script src="{{ asset('/js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+
+<!-- Bootstrap -->
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+
+
+
+
+<!--  Form Related -->
+<script src="{{ asset('/js/icheck.js') }}"></script> <!-- Custom Checkbox + Radio -->
+
+<!-- UX -->
+<script src="{{ asset('/js/scroll.min.js') }}"></script> <!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="{{ asset('/js/calendar.min.js') }}"></script> <!-- Calendar -->
+<script src="{{ asset('/js/feeds.min.js') }}"></script> <!-- News Feeds -->
+
+
+<!--  Form Related -->
+<script src="{{ asset('/js/validation/validate.min.js') }}"></script> <!-- jQuery Form Validation Library -->
+<script src="{{ asset('/js/validation/validationEngine.min.js') }}"></script> <!-- jQuery Form Validation Library - requirred with above js -->
+
+
+<!-- All JS functions -->
+<script src="{{ asset('/js/functions.js') }}"></script>
+
+
+<!-- Token Input -->
+<script src="{{ asset('/js/jquery.tokeninput.js') }}"></script> <!-- Token Input -->
+
+
+<!-- Noty JavaScript -->
+<script src="{{ asset('/bower_components/noty/js/noty/packaged/jquery.noty.packaged.js') }}"></script>
+
+<!-- DataTables JavaScript -->
+
+
+<script src="{{ asset('/bower_components/datatables/media/js/datatables-plugins/pagination/scrolling.js') }}"></script>
+<script src="{{ asset('/bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+
+
+
+<!-- Jquery Bootstrap Maxlength -->
+<script src="{{ asset('/bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+
+
+<!-- Media -->
+<script src="{{ asset('/js/media-player.min.js') }}"></script> <!-- Video Player -->
+<script src="{{ asset('/js/pirobox.min.js') }}"></script> <!-- Lightbox -->
+<script src="{{ asset('js/file-manager/elfinder.js') }}"></script> <!-- File Manager -->
+
+
+<script type="text/javascript" src="{{ asset('/incl/oms.min.js') }}"></script>
+
+
+
+<!-- File Upload -->
+<script src="{{ asset('/js/fileupload.min.js') }}"></script> <!-- File Upload -->
+
+<!-- Spinner -->
+<script src="{{ asset('/js/HoldOn.min.js') }}"></script> <!-- Spinner -->
+
+<!-- bootstrap-switch. -->
+<script src="{{ asset('/js/bootstrap-switch.js') }}"></script> <!-- bootstrap-switch. -->
+
+<!-- Date & Time Picker -->
+<script src="{{ asset('/js/datetimepicker.min.js') }}"></script> <!-- Date & Time Picker -->
+
+<!-- Buttons HTML5 -->
+<script src="{{ asset('/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('/js/jszip.min.js') }}"></script>
+<script src="{{ asset('/js/pdfmake.min.js') }}"></script>
+<script src="{{ asset('/js/vfs_fonts.js') }}"></script>
+<!--  Buttons HTML5 -->
+
+<script src="{{ asset('js/socket.io.js') }}"></script>
+
+<script src="{{ asset('js/calendar.min.js') }}"></script> <!-- Calendar -->
+
+<script src="{{ asset('js/raphael.js') }}"> </script>
+
+
+
+
+
+<!-- D3.js
+        <script src="{{ asset('js/d3/plugins.js') }}"></script>
+        <script src="{{ asset('js/d3/script.js') }}"></script>
+        <script src="{{ asset('js/d3/libs/coffee-script.js') }}"></script>
+        <script src="{{ asset('js/d3/libs/d3.v2.js') }}"></script>
+        <script src="{{ asset('js/d3/Tooltip.js') }}"></script>
+        <script src="{{ asset('js/d3/Tooltip.js') }}"></script>
+    -->
+
 </body>
 </html>
