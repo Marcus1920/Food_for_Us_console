@@ -51,4 +51,7 @@ Route::get('/createUser', function()
     return view('users.edit',compact('user'));
 });
 
+Route::post('addAdmin', 'MyRegisterController@createAdmin');
+Route::get('adminUser', 'MyRegisterController@adminUsers');
+
 

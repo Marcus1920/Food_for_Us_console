@@ -10,7 +10,7 @@
 <div class="block-area" id="basic">
     <h3 class="block-title">Registration Form</h3>
     <div class="tile p-15">
-        {!! Form::open(['url' => 'createUser', 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
+        {!! Form::open(['url' => 'addAdmin', 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
 
         <div class="form-group">
             {!! Form::label('Name', 'Name', array('class' => 'col-md-2 control-label')) !!}
@@ -38,7 +38,7 @@
         <div class="form-group">
             {!! Form::label('Gender', 'Gender', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                {!! Form::select('gender',['0' => 'Select/All','Male' => 'Male','Female' => 'Female'],0,['class' => 'form-control' ,'id' => 'gender']) !!}
+                {!! Form::select('gender',['0' => 'Select Gender','1' => 'Male','2' => 'Female'],0,['class' => 'form-control' ,'id' => 'gender']) !!}
                 @if ($errors->has('gender'))
                     <span class="help-block"><strong>{{ $errors->first('gender')}}</strong></span>
                 @endif

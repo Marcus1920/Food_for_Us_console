@@ -173,6 +173,7 @@
                     </a>
                     <ul class="list-unstyled menu-item">
                         <li><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin</a></li>
+                        <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Admin List</a></li>
 
 
                     </ul>
