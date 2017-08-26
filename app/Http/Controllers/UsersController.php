@@ -76,8 +76,9 @@ class UsersController extends Controller
            if(Input::get('emails')  == Null || Input::get('password') == null   )
 
            {
-
-               return   $response['msg']   = "wrong  user name or  password" ;
+ $response["error"] = true;
+               $response['msg']   = "wrong  user name or  password" ;
+			    return \Response::json($response);
            }
 
         $data =   NewUser::where('email', $email)
@@ -99,7 +100,7 @@ class UsersController extends Controller
 
         if (sizeof($data) > 0 ) {
 
-            if ($data->active == 2)
+            if ($data->active == 1)
             {
             $response["error"] = false;
             $response['name'] = $data->name;
@@ -108,13 +109,14 @@ class UsersController extends Controller
             $response['apiKey'] = $data->api_key;
             $response['createdAt'] = $data->created_at;
 			 $response['active'] =2;
+			  $response["msg"] =  "ok";
            }
            else{
 
 
-               $response["error"] = true;
+               $response["error"] = false;
 			   $response['active'] =1;
-               $response["msg"] =  "your  acount  is Not Acive";
+               $response["msg"] =  "notactive";
          }
          //   \Log::info("Login Device:".$device.", User Cell:".$cell.", User Names:".$data->name);
 
@@ -172,8 +174,6 @@ class UsersController extends Controller
         $NewUser->  description_of_acces  = $description_of_acces ;
         $NewUser-> save() ;
 
-        $response["error"]   = false;
-        $message ="you  been  registered Sucfully ";
         $data = array(
 
             'name' => $NewUser->name,
@@ -182,12 +182,10 @@ class UsersController extends Controller
 
         );
 
-
-//        \Mail::send('emails.resetpassword', $data, function ($message) use ($NewUser) {
-//            $message->from('info@foodorus', 'Food For us');
-//            $message->to($NewUser->email)->subject("Registration Notification ");
-//
-//        });
+      \Mail::send('emails.resetpassword', $data, function ($message) use ($NewUser) {
+             $message->from('info@foodorus', 'Food For us');
+           $message->to($NewUser->email)->subject("Registration Notification ");
+       });
 
          $respose =  array() ;
          $respose['erro']= false;

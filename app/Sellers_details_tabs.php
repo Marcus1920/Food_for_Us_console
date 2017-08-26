@@ -20,6 +20,9 @@ class Sellers_details_tabs extends Model
          'packaging',
          'available_hours',
          'payment_methods',
+		 'description',
+		 'country',
+		 'city',
          'transaction_rating'
 
         ];

@@ -25,7 +25,8 @@ class SellersController extends Controller
         {
             $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)->get();
 
-            return json_encode($sellers_tabs) ;
+          
+			  return response()->json($sellers_tabs);
         }
         else
         {
@@ -63,7 +64,7 @@ class SellersController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-        $sellersPost->product_picture = $destinationFolder.'/'.$name;
+        $sellersPost->product_picture =env('APP_URL').$destinationFolder.'/'.$name;
 
         $sellersPost->fill($input);
         $sellersPost->save();
