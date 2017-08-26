@@ -2,6 +2,7 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
     <li><a href="{{ url('/master') }}">Home</a></li>
+    <li><a href="{{ url('/postlist') }}">Home</a></li>
     <li class="active"><a>App Users List</a></li>
     </ol>
     <h4 class="page-title">USERS</h4>

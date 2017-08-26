@@ -3,6 +3,7 @@
 ![endif]-->
 <html class="ie9">
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="format-detection" content="telephone=no">
     <meta charset="UTF-8">
@@ -175,7 +176,7 @@
                         <li><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin</a></li>
                         <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Admin List</a></li>
 
-
+                        <li><a href="{{ url('postslist') }}"><span class="badge badge-r"></span>Post List</a></li>
                     </ul>
                 </li>
 

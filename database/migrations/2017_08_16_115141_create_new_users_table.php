@@ -19,6 +19,7 @@ class CreateNewUsersTable extends Migration
             $table->string('surname');
             $table->string('email');
             $table->string('intrest');
+            $table->integer('cellphone');
 
             $table->string('location');
             $table->string(  'travel_radius');

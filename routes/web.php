@@ -55,3 +55,7 @@ Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
 
 
+Route::get('postslist', 'PostViewController@index');
+Route::get('postview/{id}', 'PostViewController@show');
+
+
