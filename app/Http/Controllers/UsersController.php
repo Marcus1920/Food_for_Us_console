@@ -18,6 +18,14 @@ class UsersController extends Controller
     }
 
 
+    public function myProfile()
+    {
+        $api_key   = Input::get('api_key');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        return response()->json($user);
+    }
 
     public function forgot()
     {

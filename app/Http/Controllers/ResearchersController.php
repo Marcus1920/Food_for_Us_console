@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 use  App\NewUser ;
-use App\Sellers_details_tabs;
+use App\Reseachers_details_tabs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-class SellersController extends Controller
+class ResearchersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +23,9 @@ class SellersController extends Controller
 
         if($user!=NULL)
         {
-            $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)->get();
+            $sellers_tabs=Reseachers_details_tabs::where('new_user_id',$user->id)->get();
 
-            return json_encode($sellers_tabs) ;
+            return  response()->json($sellers_tabs) ;
         }
         else
         {
@@ -36,10 +36,11 @@ class SellersController extends Controller
             return response()->json($respond);
         }
     }
-    public function allSellersPosts()
+
+    public function allResearchs()
     {
-        $sellers_posts=Sellers_details_tabs::all();
-        return $sellers_posts;
+        $all_researchs=Reseachers_details_tabs::all();
+        return response()->json($all_researchs);
     }
 
     /**
@@ -53,8 +54,8 @@ class SellersController extends Controller
 
         $user  = NewUser::where('api_key',$input['api_key'])->first();
 
-        $sellersPost= new Sellers_details_tabs();
-        $sellersPost->new_user_id     = $user->id;
+        $researcherPost = new Reseachers_details_tabs();
+        $researcherPost->new_user_id = $user->id;
 
         $img=$request->file('file');
 
@@ -68,12 +69,12 @@ class SellersController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-        $sellersPost->product_picture = $destinationFolder.'/'.$name;
+        $researcherPost->img_url = env('APP_URL').$destinationFolder.'/'.$name;
 
-        $sellersPost->fill($input);
-        $sellersPost->save();
+        $researcherPost->fill($input);
+        $researcherPost->save();
 
-        return $sellersPost;
+        return response()->json($researcherPost);
     }
 
     /**
@@ -122,23 +123,7 @@ class SellersController extends Controller
      */
     public function update(Request $request)
     {
-        $user  = NewUser::where('api_key',$request['api_key'])->first();
 
-        $sellersPost=Sellers_details_tabs::where('new_user_id',$user->id)
-            ->where('id',$request['seller_post_id'])->get();
-
-        return $sellersPost;
-
-//        $user  = NewUser::findOrFail(1);
-//        $user->Sellers_details_tabss()->whereId(1)-> update([
-//            'product_picture'=> 'hommmmmme.png' , 'location' => 'Drban' ,'gps_lat' =>'32323',
-//            'gps_long'=>'12121232','product_type' => 'product_type' ,'quantity' => '12'  ,
-//            'cost_per_kg' => '12kg' , 'packaging' =>'packaging',
-//            'available_hours' =>'34','payment_methods'=>'FTP' , 'transaction_rating' => '10'
-//
-//        ]);
-//
-//        return "ok";
     }
 
     /**
@@ -149,9 +134,6 @@ class SellersController extends Controller
      */
     public function destroy()
     {
-        $user  = NewUser::findOrFail(1);
-        $user->Sellers_details_tabss()->whereId(2)->delete();
 
-        return "ok";
     }
 }
