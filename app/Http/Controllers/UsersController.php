@@ -21,6 +21,17 @@ class UsersController extends Controller
     }
 
 
+
+    public function myProfile()
+    {
+        $api_key   = Input::get('api_key');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        return response()->json($user);
+    }
+
+
     public function forgot()
     {
 
@@ -169,7 +180,7 @@ class UsersController extends Controller
 //        });
 
         $respose = array();
-        $respose['erro'] = false;
+        $respose['error'] = false;
         $respose['mesg'] = "successfully registered  please  wait  for  approval ";
         return response()->json($respose);
 
