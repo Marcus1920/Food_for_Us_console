@@ -1,53 +1,35 @@
 @extends('master')
 @section('content')
-    <ol class="breadcrumb hidden-xs">
-    <li><a href="{{ url('/master') }}">Home</a></li>
-    <li><a href="{{ url('/postlist') }}">Home</a></li>
-    <li class="active"><a>App Users List</a></li>
-    </ol>
-    <h4 class="page-title">USERS</h4>
-    <div class="row">
-        <div class="col-md-12" >
-            <div class="tab-pane" id="closure">
-                <!-- Responsive Table -->
-                <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
-                        <h3 class="block-title">User  List </h3>
-                        <table class="table tile table-striped" id="pendingreferralCasesTable">
-                            <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Surname</th>
-                                <th>Email</th>
-                                <th>Intrest </th>
-                                <th>Location</th>
-                                <th>Travel Radius</th>
-                                <th>Password</th>
-                                <th>Description</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            @foreach($NewUser  as $Newuser)
-                                <tr>
-                                    <td> {{$Newuser->id}} </td>
-                                    <td> {{$Newuser->name}}  </td>
-                                    <td> {{$Newuser->surname}}  </td>
-                                    <td> {{$Newuser->email}}  </td>
-                                    <td> {{$Newuser->intrest}} </td>
-                                    <td> {{$Newuser->location}} </td>
-                                    <td> {{$Newuser->travel_radius}} </td>
-                                    <td> {{$Newuser->password}} </td>
-                                    <td> {{$Newuser->description_of_acces}} </td>
-                                    <th><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></th>
 
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
+    <div id="tabs">
+        <ul class="nav nav-pills  navbar-right responsive" role="tablist">
+
+
+            <li class="active"><a href="#inactive"  data-toggle="tab">Inactive Users</a></li>
+            <li><a href="#active"  data-toggle="tab">Active Users</a></li>
+
+        </ul>
+        <h4 class="page-title">APP USERS LIST</h4>
+
+        <div class="container-fluid" style="margin-top: 2%; border-color: white; align-content: center">
+
+            <div class="tab-content responsive">
+
+                <!--Global Content Tab-->
+            @include('users.inactive')
+            <!--Private Content Tab-->
+                @include('users.active')
+
+
             </div>
-        </div>
 
+        </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        $( function() {
+            $( "#tabs" ).tabs();
+        } );
+    </script>
 @endsection

@@ -58,4 +58,12 @@ Route::get('adminUser', 'MyRegisterController@adminUsers');
 Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 
+//Route::post('activateUser/{id}',function ($id){
+//
+//    return $id;
+//});
+
+
+Route::post('activateUser/{id}' ,'UsersController@updateUser' );
+
 

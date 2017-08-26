@@ -2,7 +2,7 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/master') }}">Home</a></li>
-        <li><a class="active">Posts</a></li>
+        <li class="active">Posts</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
@@ -38,7 +38,7 @@
                                     <td> {{$posts->product_type}} </td>
                                     <td> {{$posts->quantity}} </td>
                                     <td> {{$posts->cost_per_kg}} </td>
-                                    <th><a href="{{url('/postview/'.$posts->id)}}"  value="click me" class="btn btn-secondary">View</a></th>
+                                    <td><a href="{{url('/postview/'.$posts->id)}}"  value="click me" class="btn btn-secondary">View</a></td>
 
                                 </tr>
                             @endforeach

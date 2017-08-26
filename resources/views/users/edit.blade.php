@@ -15,10 +15,11 @@
 
 
 
-            {!! Form::open(['url' => 'edit/', 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
+            {!! Form::open(['url' => 'activateUser/'.$user->id, 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
+            {!! Form::hidden('id') !!}
 
-            <div class="form-group">
-                {!! Form::label('Name', 'Name', array('class' => 'col-md-2 control-label')) !!}
+           <div class="form-group">
+               {!! Form::label('Name', 'Name', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
                     {!! Form::text('name',$user->name,['class' => 'form-control input-sm','id' => 'name', "onfocus"=>"geolocate()", 'required']) !!}
                     @if ($errors->has('name'))<span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>@endif
@@ -86,7 +87,7 @@
             <div class="form-group">
                 {!! Form::label(' Active', 'Active', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                       {!! Form::select('active',$selectUserStatuses,0,['class' => 'form-control input-sm' ,'id' => 'active']) !!}
+                       {!! Form::select('active',$selectUserStatuses,2,['class' => 'form-control input-sm' ,'id' => 'active']) !!}
                 </div>
             </div>
 

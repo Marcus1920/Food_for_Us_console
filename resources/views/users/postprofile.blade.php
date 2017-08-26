@@ -3,7 +3,7 @@
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/master') }}">Home</a></li>
         <li><a href="{{ url('/postslist') }}">Post Listing</a></li>
-        <li><a class="active">Posts</a></li>
+        <li class="active">Posts</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
