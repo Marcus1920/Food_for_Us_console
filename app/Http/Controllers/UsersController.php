@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\NewUser  ;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
@@ -177,20 +178,38 @@ class UsersController extends Controller
 
     public function updateUser($id)
     {
-//        $user = NewUser::where('id',$id)
-//                ->update(['active'=>2]);
-//        return Redirect::to('/users');
-        $user=NewUser::where('id',$id);
-        $user->name     =Input::get('name');
-        $user->surname   =Input::get('surname');
-        $user->interest  =Input::get('Interest');
-        $user->travel_radious       =Input::get('travel_radious ');
-        $user->description     =Input::get('description  ');
-        $user->location       =Input::get('location');
-        session::flash('successfull updated');
-        return view::make('users.edit')
-            ->update(['active'=>2])
-            ->with('user',$user);
+       $user = NewUser::where('id',$id)
+              ->update(['active'=>2]);
+
+       $userDetails = NewUser::find($id);
+
+       $data=array(
+           'name' =>$userDetails->name,
+           'message' =>"",
+           //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
+                    );
+
+        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
+
+            $message->from('info@siyaleader.net', 'Siyaleader');
+            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
+
+        });
+
+
+
+        return Redirect::to('/users');
+//        $user=NewUser::where('id',$id);
+//        $user->name     =Input::get('name');
+//        $user->surname   =Input::get('surname');
+//        $user->interest  =Input::get('Interest');
+//        $user->travel_radious       =Input::get('travel_radious ');
+//        $user->description     =Input::get('description  ');
+//        $user->location       =Input::get('location');
+//        session::flash('successfull updated');
+//        return view::make('users.edit')
+//            ->update(['active'=>2])
+//            ->with('user',$user);
 
     }
 }
