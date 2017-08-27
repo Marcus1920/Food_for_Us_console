@@ -69,7 +69,7 @@ class SellersController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-        $sellersPost->product_picture =env('APP_URL').$destinationFolder.'/'.$name;
+        $sellersPost->productPicture =env('APP_URL').$destinationFolder.'/'.$name;
 
         $sellersPost->fill($input);
         $sellersPost->save();

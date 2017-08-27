@@ -32,4 +32,10 @@ class Sellers_details_tabs extends Model
 
         return $this->directory .$value;
     }
+
+    public  function newuser()
+    {
+       return $this->belongsTo(NewUser::class,'new_user_id','id');
+
+    }
 }

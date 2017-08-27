@@ -15,7 +15,8 @@ class CreateSellersDetailsTabsTable extends Migration
     {
         Schema::create('sellers_details_tabs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('new_user_id')->unsigned()->nullable()->idex();
+            $table->integer('new_user_id')->unsigned();
+            $table->foreign('new_user_id')->references('id')->on('users');
             $table->string('product_picture');
             $table->string('location');
             $table->string('gps_lat');

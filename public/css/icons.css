@@ -33,12 +33,12 @@
 .sa-side-widget { background-image: url(../img/icon/widgets.png); }
 .sa-side-table { background-image: url(../img/icon/table.png); }
 .sa-side-form { background-image: url(../img/icon/form.png); }
-.sa-side-ui { background-image: url(../img/icon/ui.png); }
-.sa-side-ui { background-image: url(../img/icon/ui.png); }
+.sa-side-ui { background-image: url(../img/icon/setting.png); }
+.sa-side-ui { background-image: url(../img/icon/setting.png); }
 .sa-side-folder { background-image: url(../img/icon/folder.png); }
 .sa-side-calendar { background-image: url(../img/icon/calendar.png); }
 .sa-side-page { background-image: url(../img/icon/pages.png); }
-.sa-side-chart { background-image: url(../img/icon/chart.png); }
+.sa-side-user { background-image: url(../img/icon/user.png); }
 .sa-side-photos { background-image: url(../img/icon/photos.png); }
 .sa-side-list { background-image: url(../img/icon/list.png); }
 
@@ -131,7 +131,7 @@ only screen and (                min-resolution: 1.25dppx) {
     .sa-side-widget { background-image: url(../img/icon/widgets@2x.png); }
     .sa-side-table { background-image: url(../img/icon/table@2x.png); }
     .sa-side-form { background-image: url(../img/icon/form@2x.png); background-size: 19px 25px; }
-    .sa-side-ui { background-image: url(../img/icon/ui@2x.png);  }
+    .sa-side-ui { background-image: url(../img/icon/setting.png.png);  }
     .sa-side-folder { background-image: url(../img/icon/folder@2x.png); }
     .sa-side-calendar { background-image: url(../img/icon/calendar@2x.png); background-size: 23px 23px; }
     .sa-side-page { background-image: url(../img/icon/pages@2x.png); background-size: 25px 21px; }
