@@ -29,7 +29,6 @@ class Sellers_details_tabs extends Model
 
     public  function  getPathAttribute($value)
     {
-
         return $this->directory .$value;
     }
 
@@ -37,5 +36,9 @@ class Sellers_details_tabs extends Model
     {
        return $this->belongsTo(NewUser::class,'new_user_id','id');
 
+    }
+    public function sellerTransactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
