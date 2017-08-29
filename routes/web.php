@@ -46,7 +46,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('allResearchs','ResearchersController@allResearchs');
 
     //Sellers
-    Route::post('create' , 'SellersController@create') ;
+    Route::post('created' , 'SellersController@created') ;
     Route::get('update' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
