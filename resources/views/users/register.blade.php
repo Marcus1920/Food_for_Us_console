@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 <ol class="breadcrumb hidden-xs">
-    <li><a href="{{url('/master')}}">Home</a></li>
+    <li><a href="{{url('/users')}}">Home</a></li>
     <li class="active">Registration Form</li>
 </ol>
 <h4 class="page-title">USERS</h4>
@@ -38,7 +38,7 @@
         <div class="form-group">
             {!! Form::label('Gender', 'Gender', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                {!! Form::select('gender',['0' => 'Select Gender','1' => 'Male','2' => 'Female'],0,['class' => 'form-control' ,'id' => 'gender']) !!}
+                {!! Form::select('gender',['0' => 'Select Gender','Male' => 'Male','Female' => 'Female'],0,['class' => 'form-control' ,'id' => 'gender']) !!}
                 @if ($errors->has('gender'))
                     <span class="help-block"><strong>{{ $errors->first('gender')}}</strong></span>
                 @endif

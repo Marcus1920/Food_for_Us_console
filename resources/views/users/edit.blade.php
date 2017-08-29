@@ -2,8 +2,7 @@
 @section('content')
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
-        <li><a href="#">Administration</a></li>
-        <li><a href="{{ url('/master') }}"> Home</a></li>
+        <li><a href="{{ url('/users') }}"> Home</a></li>
         <li class="active">Upadate Form</li>
     </ol>
     <h4 class="page-title">USERS</h4>

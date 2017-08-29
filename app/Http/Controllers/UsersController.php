@@ -268,7 +268,7 @@ class UsersController extends Controller
 
             'name' => $NewUser->name,
             'passsword' => $NewUser -> password  ,
-            'content' =>  $message
+            'content' =>  $message,
 
         );
 

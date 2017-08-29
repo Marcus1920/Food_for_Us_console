@@ -64,8 +64,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
-Route::get('/master' , 'HomeController@show')->name('master') ;
-Route::get('/users' , 'HomeController@users')->name('users') ;
+Route::get('/users' , 'HomeController@show')->name('master') ;
+//Route::get('/users' , 'HomeController@users')->name('users') ;
 Route::get('/register' , 'HomeController@register')->name('register');
 Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
 
