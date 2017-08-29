@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+<<<<<<< HEAD
     protected  $table="transactions";
 
     public function sellers()
@@ -18,5 +19,31 @@ class Transaction extends Model
            return $this->belongsTo(BuyerDetail::class,'buyer_id','id');
 
         }
+=======
+
+
+
+    protected $table ='transactions';
+    protected $fillable=[
+
+        'seller_id',
+        'buyer_id',
+        'status',
+        'product_type',
+    ];
+
+
+    public  function sellers_details_tabs()
+    {
+        return $this->belongsTo(Sellers_details_tabs::class);
+
+    }
+
+    public  function buyer_details()
+    {
+        return $this->belongsTo(BuyerDetail::class);
+
+    }
+>>>>>>> 217fa44c87efea2d0c96db767cb65c25c6ca078c
 
 }
