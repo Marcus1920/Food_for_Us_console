@@ -12,4 +12,9 @@ class NewUser extends Model
     {
         return $this->hasMany(Sellers_details_tabs::class);
     }
+
+    public  function  publicwallpost()
+    {
+        return $this->hasMany(PublicWall::class);
+    }
 }

@@ -58,6 +58,13 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('resetpassword' ,'UsersController@forgot' );
     Route::get('myProfile','UsersController@myProfile');
 
+    //Recipes
+    Route::get('getRecipes','PublicWallController@index');
+    Route::post('createRecipe','PublicWallController@create');
+    Route::get('getRecipe/{id}','PublicWallController@getRecipe');
+    Route::post('editRecipe/{id}/{poster}','PublicWallController@editRecipe');
+
+
 
 });
 

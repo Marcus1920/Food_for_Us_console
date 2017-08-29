@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PublicWall;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
 
-        $userList = NewUser::all();
+        $userList = PublicWall::all();
         return response()->json($userList);
     }
 
