@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->integer('userId')->unsigned();
             $table->string('productName');
             $table->foreign('userId')->references('id')->on('new_users');
-            $table->foreign('productName')->references('productName')->on('sellers_details_tabs');
+            $table->foreign('productId')->references('id')->on('sellers_details_tabs');
             $table->integer('quantity');
             $table->timestamps();
         });
