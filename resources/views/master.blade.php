@@ -164,7 +164,11 @@
         <!-- Side Menu -->
         <ul class="list-unstyled side-menu">
 
-
+            <li {{ (Request::is('map') ? "class=active" : '') }}>
+                <a class="sa-side-home active" href="{{ url('getUsers') }}">
+                    <span class="menu-item">map</span>
+                </a>
+            </li>
 
 
                 <li {{ (Request::is('list-users') ? "class=active dropdown" : 'dropdown') }}>
@@ -186,6 +190,7 @@
                         <span class="menu-item">Users</span>
                     </a>
                 </li>
+
         </ul>
     </aside>
 
