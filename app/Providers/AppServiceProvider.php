@@ -18,7 +18,6 @@ class AppServiceProvider extends ServiceProvider
         {
             $userStatuses          = UserStatus::orderBy('name','ASC')->get();
             $selectUserStatuses    = array();
-            $selectUserStatuses[0] = "Select / All";
 
             foreach ($userStatuses as $userStatus) {
                 $selectUserStatuses[$userStatus->id] = $userStatus->name;
@@ -36,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }

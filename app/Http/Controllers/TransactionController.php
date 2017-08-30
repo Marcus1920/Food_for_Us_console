@@ -86,7 +86,12 @@ class TransactionController extends Controller
     {
         $buyerId        = Input::get('id');
         $cartItems       = Cart::with('products','buyers')->where('userId',$buyerId)->get();
-        return $cartItems;
+
+
+        foreach ($cartItems as $cartItem)
+        {
+            return "Hey ". $cartItem->buyers->name . " ". "you have". " " . $cartItem->products->quantity."  ". $cartItem->products->productName;
+        }
     }
 }
 

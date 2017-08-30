@@ -214,12 +214,12 @@ class UsersController extends Controller
     {
 		
 		
- $user = NewUser::where('id',$id)
+         $user = NewUser::where('id',$id)
               ->update(['active'=>2]);
 
-       $userDetails = NewUser::find($id);
+         $userDetails = NewUser::find($id);
 
-       $data=array(
+          $data=array(
            'name' =>$userDetails->name,
            'message' =>"",
            //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
@@ -236,6 +236,35 @@ class UsersController extends Controller
 
         return Redirect::to('/users');
 	}
+
+
+    public function inactivateUser($id)
+    {
+
+
+        $user = NewUser::where('id',$id)
+            ->update(['active'=>1]);
+
+        $userDetails = NewUser::find($id);
+
+        $data=array(
+            'name' =>$userDetails->name,
+            'message' =>"",
+            //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
+        );
+
+        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
+
+            $message->from('info@siyaleader.net', 'Siyaleader');
+            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
+
+        });
+
+
+
+        return Redirect::to('/users');
+    }
+
     public  function   create  ()   {
 
 

@@ -87,6 +87,12 @@ Route::get('/editUsers/{id}', function($id)
     return view('users.edit',compact('user'));
 });
 
+Route::get('/inactivateUsers/{id}', function($id)
+{
+    $user = NewUser::where('id','=',$id)->first();
+    return view('users.inactivateUsers',compact('user'));
+});
+
 Route::get('/createUser', function()
 {
     return view('users.edit',compact('user'));
@@ -97,6 +103,7 @@ Route::get('adminUser', 'MyRegisterController@adminUsers');
 Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
+Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
 Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 /*Transactions Routes*/

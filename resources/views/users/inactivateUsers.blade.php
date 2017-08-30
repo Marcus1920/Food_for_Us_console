@@ -3,22 +3,22 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}"> Home</a></li>
-        <li class="active">Update Form</li>
+        <li class="active">Inactivate Form</li>
     </ol>
     <h4 class="page-title">USERS</h4>
 
     <!-- Basic with panel-->
     <div class="block-area" id="basic">
-        <h3 class="block-title">Update Form</h3>
+        <h3 class="block-title">Inactivate Form</h3>
         <div class="tile p-15">
 
 
 
-            {!! Form::open(['url' => 'activateUser/'.$user->id, 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
+            {!! Form::open(['url' => 'InactivateUser/'.$user->id, 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
             {!! Form::hidden('id') !!}
 
-           <div class="form-group">
-               {!! Form::label('Name', 'Name', array('class' => 'col-md-2 control-label')) !!}
+            <div class="form-group">
+                {!! Form::label('Name', 'Name', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
                     {!! Form::text('name',$user->name,['class' => 'form-control input-sm','id' => 'name', "onfocus"=>"geolocate()", 'readonly']) !!}
                     @if ($errors->has('name'))<span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>@endif
@@ -39,11 +39,11 @@
             </div>
 
             {{--<div class="form-group">--}}
-                {{--{!! Form::label('Gender', 'Gender', array('class' => 'col-md-2 control-label')) !!}--}}
-                {{--<div class="col-md-6">--}}
-                    {{--{!! Form::text('gender',$user->gender,['class' => 'locality form-control input-sm','id' => 'gender' , 'required']) !!}--}}
-                    {{--@if ($errors->has('gender'))<span class="help-block"><strong>{{ $errors->first('gender') }}</strong></span>@endif--}}
-                {{--</div>--}}
+            {{--{!! Form::label('Gender', 'Gender', array('class' => 'col-md-2 control-label')) !!}--}}
+            {{--<div class="col-md-6">--}}
+            {{--{!! Form::text('gender',$user->gender,['class' => 'locality form-control input-sm','id' => 'gender' , 'required']) !!}--}}
+            {{--@if ($errors->has('gender'))<span class="help-block"><strong>{{ $errors->first('gender') }}</strong></span>@endif--}}
+            {{--</div>--}}
             {{--</div>--}}
 
             <div class="form-group">
@@ -86,7 +86,7 @@
             <div class="form-group">
                 {!! Form::label(' Active', 'Active', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                       {!! Form::select('active',$selectUserStatuses,2,['class' => 'form-control input-sm' ,'id' => 'active']) !!}
+                    {!! Form::select('active',$selectUserStatuses,1,['class' => 'form-control input-sm' ,'id' => 'active']) !!}
                 </div>
             </div>
 
