@@ -27,16 +27,7 @@ Route::get('up' , 'SellersController@update') ;
 
 
 Route::get('/' , 'HomeController@index') ;
-
-
-
-
-
-Route::get('del' , 'SellersController@destroy') ;
-
-
-
-
+Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
@@ -55,9 +46,12 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
-    Route::post('resetpassword' ,'UsersController@forgot' );
+    Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
 
+
+    // Cart
+    Route::get('/addToCart','');
 
 });
 
@@ -72,7 +66,7 @@ Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser'
 
 Route::get('/editUsers/{id}', function($id)
 {
-    $user =NewUser::where('id','=',$id)->first();
+    $user = NewUser::where('id','=',$id)->first();
     return view('users.edit',compact('user'));
 });
 
@@ -83,14 +77,10 @@ Route::get('/createUser', function()
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
-
-
 Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
-
-
-
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
+Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
 ?>
