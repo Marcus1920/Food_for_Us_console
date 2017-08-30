@@ -10,7 +10,10 @@ class Cart extends Model
 
     public function products()
   {
-      return $this->belongsTo(Sellers_details_tabs::class);
+      return $this->belongsTo(Sellers_details_tabs::class,'productId','id');
   }
-
+    public function buyers()
+    {
+        return $this->belongsTo(NewUser::class,'userId','id');
+    }
 }

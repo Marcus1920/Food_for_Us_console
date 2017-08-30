@@ -64,21 +64,19 @@ class TransactionController extends Controller
 
         $cartItemsObj               =new Cart();
         $cartItemsObj->userId       =$buyer->id;
-        $cartItemsObj->productName  =$productName->id;
+        $cartItemsObj->productId    =$productName->id;
         $cartItemsObj->quantity     =Input::get('quantity');
         $cartItemsObj->save();
 
-        $initialQuantity          =Sellers_details_tabs::select('quantity')
+        $initialQuantity           =Sellers_details_tabs::select('quantity')
                                     ->where('id',$productName->id)->first();
-        $remainingQuantity        =$initialQuantity->quantity - Input::get('quantity');
-        $updateFoodQuantity       =Sellers_details_tabs::where('id',$productName->id)
-                                                        ->update(['quantity'=>$remainingQuantity]);
+        $remainingQuantity         =$initialQuantity->quantity - Input::get('quantity');
+        $updateFoodQuantity        =Sellers_details_tabs::where('id',$productName->id)
+                                    ->update(['quantity'=>$remainingQuantity]);
 
-        $newFoodQuantity        =   Sellers_details_tabs::select('quantity')
-                                      ->where('id',$productName->id)->first();
-
-
-        return "   $newFoodQuantity->quantity  remaining Items ";
+        $newFoodQuantity           =Sellers_details_tabs::select('quantity')
+                                        ->where('id',$productName->id)->first();
+        return                      "   $newFoodQuantity->quantity  remaining Items";
 
 
     }
@@ -87,7 +85,7 @@ class TransactionController extends Controller
     public function getCartItem()
     {
         $buyerId        = Input::get('id');
-        $cartItems       = Cart::with('buyers','products')->select('productName')->where('userId',$buyerId)->get();
+        $cartItems       = Cart::with('products','buyers')->where('userId',$buyerId)->get();
         return $cartItems;
     }
 }

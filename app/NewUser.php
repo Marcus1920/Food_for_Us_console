@@ -19,4 +19,9 @@ class NewUser extends Model
         return $this->hasMany(PublicWall::class);
     }
 
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }
