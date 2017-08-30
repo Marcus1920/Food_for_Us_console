@@ -61,6 +61,14 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('addToCart','TransactionController@addToCart');
     Route::get('getCartItem','TransactionController@getCartItem');
 
+    //Recipes
+    Route::get('getRecipes','PublicWallController@getRecipes');
+    Route::post('createRecipe','PublicWallController@createRecipe');
+    Route::get('viewRecipe','PublicWallController@viewRecipe');
+    Route::post('editRecipe','PublicWallController@editRecipe');
+    Route::get('deleteRecipe','PublicWallController@deleteRecipe');
+
+
 
 });
 

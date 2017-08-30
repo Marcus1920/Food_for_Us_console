@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Cart;
 use App\NewUser;
 use App\Sellers_details_tabs;
