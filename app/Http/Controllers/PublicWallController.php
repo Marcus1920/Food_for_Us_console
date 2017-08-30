@@ -10,36 +10,38 @@ use Illuminate\Support\Facades\Input;
 class PublicWallController extends Controller
 {
 
-    public function index()
+    public function getRecipes()
     {
 
         $recipes = PublicWall::all();
         return response()->json($recipes);
     }
 
-    public function getRecipe($id)
+    public function viewRecipe()
     {
-        $recipe = PublicWall::with('newusers')->where('id',$id)->first();
-        return $recipe;
+        $id = Input::get('id');
+        $viewRecipe = PublicWall::with('newusers')->where('id',$id)->first();
+        return $viewRecipe;
     }
 
 
-    public function editRecipe($id, $poster)
+    public function editRecipe()
     {
 
-
+        $id =Input::get('id');
+        $poster= Input::get('poster');
 
         $recipe = PublicWall::where('poster',$poster)->where('id',$id)
             ->update(['name'=> Input::get('name'),'description'=> Input::get('description'),'ingredients'=> Input::get('ingredients'),'methods'=> Input::get('methods'),'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
 
 
 
-        $updatedrecipe=PublicWall::get()->where('poster',$poster)->where('id',$id);
+        $updatedRecipe=PublicWall::get()->where('poster',$poster)->where('id',$id);
 
-        return $updatedrecipe;
+        return $updatedRecipe;
     }
 
-    public function create()
+    public function createRecipe()
     {
 
         $recipe                     = new PublicWall();
@@ -51,6 +53,19 @@ class PublicWallController extends Controller
         $recipe->poster             = Input::get('poster');
         $recipe-> save() ;
         return $recipe;
+    }
+
+    public function deleteRecipe()
+    {
+        $id                 = Input::get('id');
+        $poster             = Input::get('poster');
+
+        $deleteRecipe       = PublicWall::where('id',$id)->where('poster', $poster);
+        $deleteRecipe->delete();
+         $myRecipes           = PublicWall::get()->where('poster', $poster);
+         return $myRecipes;
+
+
     }
 
 }

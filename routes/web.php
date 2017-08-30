@@ -65,10 +65,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('show/{id}','TransactionController@show');
 
     //Recipes
-    Route::get('getRecipes','PublicWallController@index');
-    Route::post('createRecipe','PublicWallController@create');
-    Route::get('getRecipe/{id}','PublicWallController@getRecipe');
-    Route::post('editRecipe/{id}/{poster}','PublicWallController@editRecipe');
+    Route::get('getRecipes','PublicWallController@getRecipes');
+    Route::post('createRecipe','PublicWallController@createRecipe');
+    Route::get('viewRecipe','PublicWallController@viewRecipe');
+    Route::post('editRecipe','PublicWallController@editRecipe');
+    Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 
 
