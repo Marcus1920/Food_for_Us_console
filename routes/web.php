@@ -58,7 +58,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
     // Cart
-    Route::get('/addToCart','');
+    Route::post('addToCart','TransactionController@addToCart');
+    Route::get('getCartItem','TransactionController@getCartItem');
+
 
 });
 

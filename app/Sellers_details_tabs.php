@@ -41,4 +41,8 @@ class Sellers_details_tabs extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+    public function cartItems()
+    {
+        return $this->belongsTo(Cart::class);
+    }
 }

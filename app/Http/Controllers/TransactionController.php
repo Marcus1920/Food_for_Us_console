@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
+use App\NewUser;
+use App\Sellers_details_tabs;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -49,6 +52,42 @@ class TransactionController extends Controller
             ->with('buyers')->get();
 
          return \Response::json($buyerTransaction);
+    }
+
+    public function addToCart()
+    {
+
+        $buyer           = NewUser::find(Input::get('id'));
+        $productName     = Sellers_details_tabs::select('id')->where('productName',Input::get('foodItem'))->first();
+
+
+        $cartItemsObj               =new Cart();
+        $cartItemsObj->userId       =$buyer->id;
+        $cartItemsObj->productName  =$productName->id;
+        $cartItemsObj->quantity     =Input::get('quantity');
+        $cartItemsObj->save();
+
+        $initialQuantity          =Sellers_details_tabs::select('quantity')
+                                    ->where('id',$productName->id)->first();
+        $remainingQuantity        =$initialQuantity->quantity - Input::get('quantity');
+        $updateFoodQuantity       =Sellers_details_tabs::where('id',$productName->id)
+                                                        ->update(['quantity'=>$remainingQuantity]);
+
+        $newFoodQuantity        =   Sellers_details_tabs::select('quantity')
+                                      ->where('id',$productName->id)->first();
+
+
+        return "   $newFoodQuantity->quantity  remaining Items ";
+
+
+    }
+
+
+    public function getCartItem()
+    {
+        $buyerId        = Input::get('id');
+        $cartItems       = Cart::with('buyers','products')->select('productName')->where('userId',$buyerId)->get();
+        return $cartItems;
     }
 }
 
