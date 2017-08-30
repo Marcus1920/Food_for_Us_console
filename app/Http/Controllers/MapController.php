@@ -118,6 +118,10 @@ class MapController extends Controller
 
             $content = "<div style='color:black'>
                       <tr>
+                      <td><img src=$user->profilePicture style='height: 250px;width: 300px;'></td>
+                      </tr>
+                      <br/>
+                      <tr>
                       <td><b>Name</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->name</td>
                       </tr>
                       <br/>
