@@ -64,7 +64,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
-Route::get('/master' , 'HomeController@show')->name('master') ;
+Route::get('/master' , 'MapController@getUsers')->name('master') ;
 Route::get('/users' , 'HomeController@users')->name('users') ;
 Route::get('/register' , 'HomeController@register')->name('register');
 Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
@@ -91,6 +91,11 @@ Route::get('postview/{id}', 'PostViewController@show');
 
 
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
+
+Route::get('getPosts','MapController@GetSellersPosts');
+Route::get('getUsers','MapController@GetUsers');
+Route::post('searchUserByType','MapController@GetUsersByType');
+Route::post('searchByProductType','MapController@searchByProductType');
 
 
 ?>
