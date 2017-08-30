@@ -41,6 +41,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('update' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
+    Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
+
+    //Buyers
+    Route::get('buyerTransaction/{id}','TransactionController@buyerTransaction');
 
     //Users
     Route::get('userList' ,  'UsersController@index');
@@ -48,6 +52,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
+    //Transaction
+    Route::post('buy','TransactionController@store');
+    Route::post('show/{id}','TransactionController@show');
 
 
     // Cart
@@ -81,6 +88,10 @@ Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
+
+/*Transactions Routes*/
+
+
 
 
 ?>
