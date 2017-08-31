@@ -6,20 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-<<<<<<< HEAD
+
     protected  $table="transactions";
 
-    public function sellers()
-        {
-           return $this->belongsTo(Sellers_details_tabs::class,'seller_id','id');
-
-        }
-    public function buyers()
-        {
-           return $this->belongsTo(BuyerDetail::class,'buyer_id','id');
-
-        }
-=======
 
 
 
@@ -44,6 +33,19 @@ class Transaction extends Model
         return $this->belongsTo(BuyerDetail::class);
 
     }
->>>>>>> 217fa44c87efea2d0c96db767cb65c25c6ca078c
+
+
+
+    public function sellers()
+        {
+           return $this->belongsTo(Sellers_details_tabs::class,'seller_id','id');
+
+        }
+    public function buyers()
+        {
+           return $this->belongsTo(BuyerDetail::class,'buyer_id','id');
+
+        }
+
 
 }
