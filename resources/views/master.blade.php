@@ -164,15 +164,13 @@
         <!-- Side Menu -->
         <ul class="list-unstyled side-menu">
 
-<<<<<<< HEAD
-            <li {{ (Request::is('map') ? "class=active" : '') }}>
-                <a class="sa-side-home active" href="{{ url('getUsers') }}">
-                    <span class="menu-item">map</span>
-=======
+
+            
+
             <li {{ (Request::is('reports') ? "class=active" : '') }}>
                 <a class="sa-side-user" href="{{ url('users') }}">
                     <span class="menu-item">App Users</span>
->>>>>>> 2366d3e2ffbc965ebe19f9dd95995bd81e1c20ae
+
                 </a>
             </li>
 
@@ -191,14 +189,7 @@
                 </li>
 
 
-<<<<<<< HEAD
-            <li {{ (Request::is('reports') ? "class=active" : '') }}>
-                    <a class="sa-side-user" href="{{ url('users') }}">
-                        <span class="menu-item">Users</span>
-                    </a>
-                </li>
-=======
->>>>>>> 2366d3e2ffbc965ebe19f9dd95995bd81e1c20ae
+           
 
         </ul>
     </aside>
