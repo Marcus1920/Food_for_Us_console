@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Reseachers_details_tabs extends Model
+class Reseachers_details_tabs extends Eloquent
 {
     protected $fillable=[
 
@@ -13,4 +13,9 @@ class Reseachers_details_tabs extends Model
         'summary_box',
         'research_notes',
     ];
+
+    public  function User(){
+
+        return $this->belongsTo(NewUser::class,'new_user_id','id');
+    }
 }

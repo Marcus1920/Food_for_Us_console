@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
 
-        $userList = NewUser::all();
+        $userList = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
         return response()->json($userList);
     }
 

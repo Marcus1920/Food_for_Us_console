@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Sellers_details_tabs extends Model
+class Sellers_details_tabs extends Eloquent
 {
     public  $directory   = "/images/";
 
@@ -37,5 +37,19 @@ class Sellers_details_tabs extends Model
     {
        return $this->belongsTo(NewUser::class,'new_user_id','id');
 
+    }
+
+    public  function User(){
+
+        return $this->belongsTo(NewUser::class,'new_user_id','id');
+    }
+    public  function Products(){
+
+        return $this->belongsTo(ProductType::class,'product_type','id');
+    }
+
+    public  function Packaging(){
+
+        return $this->belongsTo(ProductType::class,'packaging','id');
     }
 }

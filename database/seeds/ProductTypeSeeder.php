@@ -12,7 +12,7 @@ class ProductTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('product_types')->truncate();
+        //DB::table('product_types')->truncate();
         ProductType::create(['id' => '1','name' => 'Apples','slug' => 'Apples','type'=>'fruit','marker_url'=>'img/Markers/1.png']);
         ProductType::create(['id' => '2','name' => 'Oranges','slug' => 'Oranges','type'=>'fruit','marker_url'=>'img/Markers/2.png']);
         ProductType::create(['id' => '3','name' => 'Babanas','slug' => 'Babanas','type'=>'fruit','marker_url'=>'img/Markers/3.png']);

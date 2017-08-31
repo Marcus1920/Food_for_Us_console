@@ -28,9 +28,9 @@
                                     <td> {{$Newuser->name}}  </td>
                                     <td> {{$Newuser->surname}}  </td>
                                     <td> {{$Newuser->email}}  </td>
-                                    <td> {{$Newuser->intrest}} </td>
+                                    <td> {{$Newuser->UserRole->name}} </td>
                                     <td> {{$Newuser->location}} </td>
-                                    <td> {{$Newuser->travel_radius}} </td>
+                                    <td> {{$Newuser->UserTravelRadius->kilometres}} </td>
                                     <td> {{$Newuser->password}} </td>
                                     <td> {{$Newuser->description_of_acces}} </td>
                                     <th><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></th>

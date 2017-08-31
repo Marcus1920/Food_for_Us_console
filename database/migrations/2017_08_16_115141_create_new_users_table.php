@@ -19,13 +19,19 @@ class CreateNewUsersTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email');
-            $table->string('intrest');
+            $table->integer('intrest')->unsigned();
             $table->integer('cellphone');
-
             $table->string('location');
-            $table->string(  'travel_radius');
+            $table->integer(  'travel_radius')->unsigned();
             $table->string('description_of_acces');
             $table->string('password');
+            $table->foreign('intrest')->references('id')->on('user_roles');
+            $table->integer('active')->unsigned();
+            $table->foreign('active')->references('id')->on('user_statuses');
+            $table->foreign('travel_radius')->references('id')->on('user_travel_radii');
+            $table->string('api_key');
+            $table->string('gps_lat');
+            $table->string('gps_long');
             $table->timestamps();
         });
     }
