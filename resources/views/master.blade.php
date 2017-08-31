@@ -130,7 +130,7 @@
             <!-- Profile Menu -->
             <div class="text-center s-widget m-b-25 dropdown" id="profile-menu">
                 <a href="#" data-toggle="dropdown">
-                    <img class="profile-pic animated" src="{{ asset('/img/food.jpg') }}" alt="lomnin">
+                    <img class="profile-pic animated" src="{{ asset('/img/foodforus.png') }}" alt="lomnin">
                 </a>
 
                 <ul class="dropdown-menu profile-menu">
@@ -143,7 +143,7 @@
                         {{ Auth::user()->name }}  {{ Auth::user()->surname }}
                     </h4>
                     {{--{{ $systemRole->name }}<br>--}}
-                    {{--{{ Auth::user()->email }}--}}
+                    {{ Auth::user()->email }}
                 @endif
 
 
@@ -164,16 +164,22 @@
         <!-- Side Menu -->
         <ul class="list-unstyled side-menu">
 
+<<<<<<< HEAD
             <li {{ (Request::is('map') ? "class=active" : '') }}>
                 <a class="sa-side-home active" href="{{ url('getUsers') }}">
                     <span class="menu-item">map</span>
+=======
+            <li {{ (Request::is('reports') ? "class=active" : '') }}>
+                <a class="sa-side-user" href="{{ url('users') }}">
+                    <span class="menu-item">App Users</span>
+>>>>>>> 2366d3e2ffbc965ebe19f9dd95995bd81e1c20ae
                 </a>
             </li>
 
 
                 <li {{ (Request::is('list-users') ? "class=active dropdown" : 'dropdown') }}>
 
-                    <a class="sa-side-ui" href="">
+                    <a class="sa-side-ui"href="#">
                         <span class="menu-item">Settings</span>
                     </a>
                     <ul class="list-unstyled menu-item">
@@ -185,11 +191,14 @@
                 </li>
 
 
+<<<<<<< HEAD
             <li {{ (Request::is('reports') ? "class=active" : '') }}>
                     <a class="sa-side-user" href="{{ url('users') }}">
                         <span class="menu-item">Users</span>
                     </a>
                 </li>
+=======
+>>>>>>> 2366d3e2ffbc965ebe19f9dd95995bd81e1c20ae
 
         </ul>
     </aside>

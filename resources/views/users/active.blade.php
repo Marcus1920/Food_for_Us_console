@@ -32,12 +32,13 @@
                                     <td> {{$Newuser->travel_radius}} </td>
                                     <td> {{$Newuser->password}} </td>
                                     <td> {{$Newuser->description_of_acces}} </td>
-                                    <th><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></th>
+                                    <th><a href="{{url('/inactivateUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></th>
 
                                 </tr>
                             @endforeach
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

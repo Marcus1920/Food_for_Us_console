@@ -26,16 +26,7 @@ Route::get('up' , 'SellersController@update') ;
 
 
 Route::get('/' , 'HomeController@index') ;
-
-
-
-
-
-Route::get('del' , 'SellersController@destroy') ;
-
-
-
-
+Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
@@ -58,11 +49,16 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
-    Route::post('resetpassword' ,'UsersController@forgot' );
+    Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
     //Transaction
     Route::post('buy','TransactionController@store');
     Route::post('show/{id}','TransactionController@show');
+
+
+    // Cart
+    Route::post('addToCart','TransactionController@addToCart');
+    Route::get('getCartItem','TransactionController@getCartItem');
 
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
@@ -78,16 +74,27 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
+<<<<<<< HEAD
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
 Route::get('/users' , 'HomeController@users')->name('users') ;
+=======
+Route::get('/users' , 'HomeController@show')->name('master') ;
+//Route::get('/users' , 'HomeController@users')->name('users') ;
+>>>>>>> 2366d3e2ffbc965ebe19f9dd95995bd81e1c20ae
 Route::get('/register' , 'HomeController@register')->name('register');
 Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
 
 
 Route::get('/editUsers/{id}', function($id)
 {
-    $user =NewUser::where('id','=',$id)->first();
+    $user = NewUser::where('id','=',$id)->first();
     return view('users.edit',compact('user'));
+});
+
+Route::get('/inactivateUsers/{id}', function($id)
+{
+    $user = NewUser::where('id','=',$id)->first();
+    return view('users.inactivateUsers',compact('user'));
 });
 
 Route::get('/createUser', function()
@@ -97,14 +104,11 @@ Route::get('/createUser', function()
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
-
-
 Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
-
-
-
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
+Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
+Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
 /*Transactions Routes*/

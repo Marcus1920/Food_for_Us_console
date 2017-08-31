@@ -19,7 +19,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
 //    protected function validator(array $data)
 //    {
 //        return Validator::make($data, [
@@ -34,9 +33,6 @@ class RegisterController extends Controller
 
     protected function create(Request $request)
     {
-
-
-
 
 //        return User::create([
 //            'name' => $data['name'],
