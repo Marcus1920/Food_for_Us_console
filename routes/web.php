@@ -74,13 +74,13 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
-<<<<<<< HEAD
+
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
 Route::get('/users' , 'HomeController@users')->name('users') ;
-=======
+
 Route::get('/users' , 'HomeController@show')->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
->>>>>>> 2366d3e2ffbc965ebe19f9dd95995bd81e1c20ae
+
 Route::get('/register' , 'HomeController@register')->name('register');
 Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
 
