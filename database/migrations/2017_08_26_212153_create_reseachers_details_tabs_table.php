@@ -15,11 +15,12 @@ class CreateReseachersDetailsTabsTable extends Migration
     {
         Schema::create('reseachers_details_tabs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('new_user_id');
+            $table->integer('new_user_id')->unsigned();
+            $table->foreign('new_user_id')->references('id')->on('new_users');
             $table->string('img_url');
-            $table->string('nature_of_business');
-            $table->string('summary_box');
-            $table->string('research_notes');
+            $table->string('natureOfBusiness');
+            $table->string('summaryBox');
+            $table->string('researchNotes');
             $table->timestamps();
         });
     }

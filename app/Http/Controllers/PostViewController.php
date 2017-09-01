@@ -11,7 +11,7 @@ class PostViewController extends Controller
 
     public function index()
     {
-       $post = Sellers_details_tabs::with('newuser')->get();
+       $post = Sellers_details_tabs::with('newuser')->with('User')->with('Products')->with('Packaging')->get();
 
 //
       return view('users.postslist', compact('post'));

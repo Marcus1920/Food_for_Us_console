@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class NewUser extends Model
+class NewUser extends Eloquent
 {
     //
 
@@ -12,6 +12,7 @@ class NewUser extends Model
     {
         return $this->hasMany(Sellers_details_tabs::class);
     }
+
 
 
     public  function  publicwallpost()
@@ -23,5 +24,19 @@ class NewUser extends Model
     public function cart()
     {
         return $this->hasMany(Cart::class);
+	}
+    public  function UserStatuses(){
+
+        return $this->belongsTo(UserStatus::class,'active','id');
+    }
+    public  function UserRole()
+    {
+
+        return $this->belongsTo(UserRoles::class,'intrest','id');
+    }
+    public  function UserTravelRadius(){
+
+        return $this->belongsTo(UserTravelRadius::class,'travelRadius','id');
+
     }
 }

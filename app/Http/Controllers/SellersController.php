@@ -58,6 +58,8 @@ class SellersController extends Controller
 
         $user  = NewUser::where('api_key',$input['api_key'])->first();
 
+	
+		
         $sellersPost= new Sellers_details_tabs();
 		 $name =$user->name;
         $surname=$user->name; 		

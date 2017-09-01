@@ -17,7 +17,11 @@ class UsersController extends Controller
     public function index()
     {
 
+
         $userList = PublicWall::all();
+
+        $userList = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+
         return response()->json($userList);
     }
 
@@ -283,7 +287,7 @@ class UsersController extends Controller
         $NewUser->   active                 = 1;
         $NewUser->  gps_lat                 = $gps_lat ;
         $NewUser->  gps_long                = $gps_long ;
-
+        $NewUser->profilePicture           ="http://154.0.164.72:8080/Foods/images/default.jpg";
         $NewUser->  name                 = $name ;
         $NewUser->  email                = $email ;
         $NewUser->  intrest              = $intrest;
