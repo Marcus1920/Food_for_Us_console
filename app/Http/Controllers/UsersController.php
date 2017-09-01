@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\PublicWall;
 use Illuminate\Http\Request;
 use App\NewUser  ;
+use App\UserRoles;
+use App\UserTravelRadius;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use phpDocumentor\Reflection\Types\Null_;
@@ -130,7 +132,10 @@ class UsersController extends Controller
                 $response["error"] = false;
                 $response['name'] = $data->name;
                 $response['email'] = $data->email;
-                $response['intrest'] = $data->intrest;
+
+                $interest=UserRoles::where('id',$data->intrest)->first();
+
+                $response['intrest'] = $interest->name;
                 $response['apiKey'] = $data->api_key;
                 $response['createdAt'] = $data->created_at;
                 $response['active'] = 2;
@@ -272,9 +277,17 @@ class UsersController extends Controller
         $name                   =  Input::get('name') ;
         $surname                =  Input::get('surname') ;
         $email                  =  Input::get('emails') ;
-        $intrest                =  Input::get('intrest') ;
+
+        $userRoleId             = UserRoles::where('name',Input::get('intrest'))->first();
+        $intrest                =  $userRoleId['id'] ;
+
+        $cellphone              = Input::get('cellphone');
+        $idNumber               = Input::get('idNumber');
         $location               =  Input::get('location') ;
-        $travel_radius          =  Input::get('travel_radius') ;
+
+        $userTravelRadId        = UserTravelRadius::where('kilometres',Input::get('travel_radius'))->first();
+        $travel_radius          =  $userTravelRadId['id'] ;
+
         $description_of_acces   =  Input::get('description_of_acces');
         $gps_lat                =  Input::get('gps_lat');
         $gps_long                =  Input::get('gps_long');
@@ -288,11 +301,13 @@ class UsersController extends Controller
         $NewUser->  email                = $email ;
         $NewUser->  intrest              = $intrest;
         $NewUser->  surname              = $surname ;
+        $NewUser-> cellphone             = $cellphone;
+        $NewUser->idNumber               = $idNumber;
         $NewUser->  location             = $location;
-        $NewUser->  travel_radius        =  $travel_radius ;
+        $NewUser->  travelRadius        =  $travel_radius ;
         $NewUser->  password             =  "1234" ;
         $NewUser->  api_key                = "xdwq213432435434bb4yyyyyyyy4";
-        $NewUser->  description_of_acces  = $description_of_acces ;
+        $NewUser->  descriptionOfAcces  = $description_of_acces ;
         $NewUser-> save() ;
         $message= "Food For us";
         $data = array(

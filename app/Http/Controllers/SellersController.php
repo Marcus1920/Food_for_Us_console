@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use  App\NewUser ;
 use App\Sellers_details_tabs;
+use App\ProductType;
+use App\Packaging;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -24,10 +26,34 @@ class SellersController extends Controller
         if($user!=NULL)
         {
             $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)
-		
+                ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+                ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+                ->select(
+                    \DB::raw(
+                        "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at
+                        "
+                    )
+                )
 			->orderBy('created_at' ,'desc')	->get();
 
-          
 			  return response()->json($sellers_tabs);
         }
         else
@@ -41,7 +67,35 @@ class SellersController extends Controller
     }
     public function allSellersPosts()
     {
-        $sellers_posts=Sellers_details_tabs::all();
+        $sellers_posts=\DB::table('sellers_details_tabs')
+            ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+            ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+            ->select(
+                \DB::raw(
+                    "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at
+                        "
+                )
+            )
+            ->orderBy('created_at' ,'desc')	->get();
+
         return $sellers_posts;
     }
 
@@ -59,18 +113,42 @@ class SellersController extends Controller
         $user  = NewUser::where('api_key',$input['api_key'])->first();
 
         $sellersPost= new Sellers_details_tabs();
+        $name =$user->name;
+        $surname=$user->surname;
+        $id=$user->id;
         $sellersPost->new_user_id     = $user->id;
-		
-	      
-  $sellersPost->productPicture  = Input::get('productPicture'); 
-  $sellersPost->productName  = Input::get('productName'); 
-  $sellersPost->costPerKg  = Input::get('costPerKg');
-  $sellersPost->rating  = Input::get('rating'); 
-  $sellersPost->city  = Input::get('city'); 
-   $sellersPost->country  = Input::get('country'); 
-    $sellersPost->description  = Input::get('description'); 
+        $img=$request->file('file');
+        $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
-        
+        if(!\File::exists($destinationFolder)) {
+            \File::makeDirectory($destinationFolder,0777,true);
+        }
+
+        $name =    $img->getClientOriginalName();
+
+        $img->move($destinationFolder,$name) ;
+
+        $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;
+
+        $productTypeID = ProductType::where('name',Input::get('productName'))->first();
+        $sellersPost->productType  = $productTypeID['id'];
+
+        $packagingID = Packaging::where('name',Input::get('packaging'))->first();
+        $sellersPost->packaging = $packagingID['id'];
+
+        $sellersPost->costPerKg  = Input::get('costPerKg');
+        $sellersPost->transactionRating  = Input::get('rating');
+        $sellersPost->city  = Input::get('city');
+        $sellersPost->country  = Input::get('country');
+        $sellersPost->location = Input::get('country').', '.Input::get('city');
+        $sellersPost->description  = Input::get('description');
+        $sellersPost->quantity = Input::get('quantity');
+        $sellersPost->gps_lat    = Input::get('gps_lat');
+        $sellersPost->gps_long = Input::get('gps_long');
+        $sellersPost->availableHours = Input::get('availableHours');
+        $sellersPost->paymentMethods = Input::get('paymentMethods');
+        $sellersPost->transactionRating = Input::get('transactionRating');
+
         $sellersPost->save();
 
         return $sellersPost;
