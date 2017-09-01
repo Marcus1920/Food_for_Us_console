@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\ProductType;
+use App\User;
 use Illuminate\Http\Request;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use App\Sellers_details_tabs;
 use App\NewUser;
+use App\UserRoles;
 
 class MapController extends Controller
 {
@@ -17,54 +19,7 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $sellersPosts=Sellers_details_tabs::with('Packaging')->get();
-
-        $productTypes=ProductType::all();
-
-        foreach ($sellersPosts as $sellersPost) {
-
-            $content = "<div style='color:black'>
-                      <tr>
-                      <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
-                      </tr>
-                      <br/>
-                      <tr>
-                      <td><img src=$sellersPost->product_picture style='height: 250px;width: 300px;'></td>
-                      </tr>
-                      <br/>
-                      <tr>
-                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->cost_per_kg</td>
-                      </tr>
-                      <br/>
-                      <tr>
-                      <td><b>Description : </b></td><td>$sellersPost->description</td>
-                      </tr>
-                      <br/>
-                      <tr>
-                      <td><b>Packaging :</b>&nbsp; </td><td>{$sellersPost->Packaging->name}</td>
-                      </tr>
-                      <br/>
-                       <tr>
-                      <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
-                      </tr>
-                      </div>";
-
-            $images='img/Markers/'.$sellersPost->product_type.'.png';
-
-            $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
-        }
-
-        return   view  ('map.map1',compact('latitude','longitude','productTypes'));
-    }
-
-    public  function   searchByProductType(Request $request)
-    {
-        $latitude=-29;
-        $longitude=24;
-
-        $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
-
-        $sellersPosts=Sellers_details_tabs::where('productName',$request['productTypeId'])->get();
+        $sellersPosts=Sellers_details_tabs::with('Packaging')->with('Products')->get();
 
         $productTypes=ProductType::all();
 
@@ -80,6 +35,10 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
+                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
+                      </tr>
+                      <br/>
+                      <tr>
                       <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->costPerKg</td>
                       </tr>
                       <br/>
@@ -88,11 +47,62 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Packaging :</b>&nbsp; </td><td>$sellersPost->packaging</td>
+                      <td><b>Packaging :</b>&nbsp; </td><td>{$sellersPost->Packaging->name}</td>
+                      </tr>
+                      <br/>
+                       <tr>
+                      <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
                       </tr>
                       </div>";
 
-            $images='img/Markers/'.$sellersPost->productName.'.png';
+            $images=$sellersPost->Products->marker_url;
+
+            $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
+        }
+
+        return   view  ('map.map1',compact('latitude','longitude','productTypes'));
+    }
+
+    public  function   searchByProductType(Request $request)
+    {
+        $latitude=-29;
+        $longitude=24;
+
+        $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
+
+        $sellersPosts=Sellers_details_tabs::where('productType',$request['productTypeId'])->with('Products')->with('Packaging')->get();
+
+        $productTypes=ProductType::all();
+
+        foreach ($sellersPosts as $sellersPost) {
+
+            $content = "<div style='color:black'>
+                      <tr>
+                      <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><img src=$sellersPost->productPicture style='height: 250px;width: 300px;'></td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->costPerKg</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Description : </b></td><td>$sellersPost->description</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Packaging :</b>&nbsp; </td><td>{$sellersPost->Packaging->name}</td>
+                      </tr>
+                      </div>";
+
+            $images=$sellersPost->Products->marker_url;
 
             $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
@@ -107,7 +117,9 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $users=NewUser::all();
+        $users = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+
+        $userRoles=UserRoles::all();
 
         $suppliers=NewUser::where('intrest','Supplier')->get();
         $sellers=NewUser::where('intrest','Seller')->get();
@@ -122,6 +134,10 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
+                      <td><b>Interest </b>&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>{$user->UserRole->name}</td>
+                      </tr>
+                      <br/>
+                      <tr>
                       <td><b>Name</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->name</td>
                       </tr>
                       <br/>
@@ -136,27 +152,12 @@ class MapController extends Controller
                       <td><b>Location </b>:</td><td>$user->location</td>
                       </div>";
 
-            if($user->intrest==1)
-            {
-                $images='img/Markers/27.png';
-            }
-            else if($user->intrest==2)
-            {
-                $images='img/Markers/28.png';
-            }
-            else if($user->intrest==3)
-            {
-                $images='img/Markers/29.png';
-            }
-            else if($user->intrest==4)
-            {
-                $images='img/Markers/30.png';
-            }
+            $images=$user->UserRole->marker_url;
 
             $map->informationWindow($user->gps_lat, $user->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
 
-        return   view  ('map.map',compact('latitude','longitude','suppliers','sellers','buyers','reseachers'));
+        return   view  ('map.map',compact('latitude','longitude','userRoles','suppliers','sellers','buyers','reseachers'));
     }
 
     public  function   GetUsersByType(Request $request)
@@ -166,7 +167,10 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $users=NewUser::where('intrest',$request['intrest'])->get();
+        $userRoles=UserRoles::all();
+
+        $users = NewUser::where('intrest',$request['intrest'])->with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+
 
         $suppliers=NewUser::where('intrest',1)->get();
         $sellers=NewUser::where('intrest',2)->get();
@@ -177,6 +181,14 @@ class MapController extends Controller
 
             $content = "<div style='color:black'>
                       <tr>
+                      <td><img src=$user->profilePicture style='height: 250px;width: 300px;'></td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Interest </b>&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>{$user->UserRole->name}</td>
+                      </tr>
+                      <br/>
+                      <tr>
                       <td><b>Name</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->name</td>
                       </tr>
                       <br/>
@@ -191,27 +203,12 @@ class MapController extends Controller
                       <td><b>Location </b>:</td><td>$user->location</td>
                       </div>";
 
-            if($user->intrest==1)
-            {
-                $images='img/Markers/27.png';
-            }
-            else if($user->intrest==2)
-            {
-                $images='img/Markers/28.png';
-            }
-            else if($user->intrest==3)
-            {
-                $images='img/Markers/29.png';
-            }
-            else if($user->intrest==4)
-            {
-                $images='img/Markers/30.png';
-            }
+            $images=$user->UserRole->marker_url;
 
             $map->informationWindow($user->gps_lat, $user->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
 
-        return   view  ('map.map',compact('latitude','longitude','suppliers','sellers','buyers','reseachers'));
+        return   view  ('map.map',compact('latitude','longitude','userRoles','suppliers','sellers','buyers','reseachers'));
     }
 
 }

@@ -17,10 +17,10 @@
 
             <div class="col-md-6">
                 <div class="block-area" style="background-color: rgba(0, 0, 0, 0.35);">
-                    <div class="row" style="margin-left: 40%">
+                    <div class="row" style="margin-left: 0%">
                         <h3 class="block-title">Product Details</h3>
-                        <div class="col-md-12" style="align-content: center">
-                            <img alt="Loading Product picture" src="{{asset('/img/food.jpg')}}" class="img-circle">
+                        <div class="col-md-12">
+                            <img alt="Loading Product picture" src="{{$data->productPicture}}" style="width: 450px;height: 300px">
                         </div>
                     </div><br/><br/>
                     <form class="form-horizontal" role="form">
@@ -49,7 +49,7 @@
                                 Cost per kg
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->cost_per_kg}}" id="cost_per_kg" readonly>
+                                <input type="text" class="form-control" value="{{$data->costPerKg}}" id="cost_per_kg" readonly>
                             </div>
                         </div>
 
@@ -69,7 +69,7 @@
                                 Payment Type
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->payment_methods}}" id="payment" readonly>
+                                <input type="text" class="form-control" value="{{$data->paymentMethods}}" id="payment" readonly>
                             </div>
                         </div>
                     </form>
@@ -78,10 +78,10 @@
             </div>
             <div class="col-md-6">
                 <div class="block-area" style="background-color: rgba(0, 0, 0, 0.35);">
-                    <div class="row" style="margin-left: 40%">
+                    <div class="row" style="margin-left: 0%">
                         <h3 class="block-title">Sellers Details</h3>
                         <div class="col-md-12" >
-                            <img alt="Loading sellers picture" src="{{asset('/img/food.jpg')}}" class="img-circle">
+                            <img alt="Loading sellers picture" src="{{$data->newuser->profilePicture}}" style="width: 350px;height: 300px" class="img-circle">
                         </div>
                     </div><br/><br/>
                     <form class="form-horizontal" role="form">

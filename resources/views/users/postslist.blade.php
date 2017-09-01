@@ -37,7 +37,7 @@
                                     <td> {{$posts->newuser->email}}  </td>
                                     <td> {{$posts->Products->name}} </td>
                                     <td> {{$posts->quantity}} </td>
-                                    <td> {{$posts->cost_per_kg}} </td>
+                                    <td> {{$posts->costPerKg}} </td>
                                     <td><a href="{{url('/postview/'.$posts->id)}}"  value="click me" class="btn btn-secondary">View</a></td>
 
                                 </tr>

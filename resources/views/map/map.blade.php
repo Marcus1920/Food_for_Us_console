@@ -105,63 +105,22 @@
                         </h2>
                         <br/>
                         <br/>
+
+                        @foreach($userRoles as $userRole)
+                            <div class="row">
+                                <form  class="form-horizontal"  method="post" action="searchUserByType">
+
+                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                    <input type="hidden" name="intrest" value="{{$userRole->id}}">
+
+                                    <div class="col-sm-4"><button type="submit" title="Search for {{$userRole->name}} cases" class="btn"><img src="{{$userRole->marker_url}}" alt=""></button></div>
+
+                                    <div class="col-sm-8" style="color: white;">{{$userRole->name}}</div>
+                                </form>
+                            </div>
+                            &nbsp;
+                        @endforeach
                         &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Seller">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Sellers" class="btn"><img src="img/Markers/28.png" alt=""></button></div>\
-                                <div class="pull-left">
-                                        {{--<i class="n-count animated" style="color: white;">{{ count($sellers,0) }}</i>--}}
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Seller</div>
-                            </form>
-                        </div>
-                        &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Buyers">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Buyers" class="btn"><img src="img/Markers/29.png" alt=""></button></div>
-                                <div class="pull-left">
-                                        {{--<i class="n-count animated" style="color: white;">{{ count($buyers,0) }}</i>--}}
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Buyer</div>
-                            </form>
-                        </div>
-                        &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Researcher">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Researchers" class="btn"><img src="img/Markers/30.png" alt=""></button></div>
-                                <div class="pull-left">
-                                        {{--<i class="n-count animated" style="color: white;">{{ count($reseachers,0) }}</i>--}}
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Researcher</div>
-                            </form>
-                        </div>
-                        &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Supplier">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Suppliers" class="btn"><img src="img/Markers/27.png" alt=""></button></div>
-                                <div class="pull-left">
-                                    {{--<i class="n-count animated" style="color: white;">{{ count($suppliers,0) }}</i>--}}
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Supplier</div>
-
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
