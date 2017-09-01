@@ -146,7 +146,10 @@ class UsersController extends Controller
 
         } else {
 
+
             $response['error']   = true;
+            $response['error'] = true;
+            $response['msg'] = "faild";
             $response['message'] = 'Login failed. Incorrect credentials';
 
 
@@ -288,7 +291,7 @@ class UsersController extends Controller
         $NewUser->  api_key              = "xdwq213432435434bb4yyyyyyyy4";
         $NewUser->  description_of_acces = $description_of_acces ;
         $NewUser-> save() ;
-
+        $message= "Food For us";
         $data = array(
 
             'name'      =>      $NewUser->name,
@@ -301,12 +304,13 @@ class UsersController extends Controller
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 
-        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
+       /* \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
             $message->from('info@siyaleader.net', 'Siyaleader');
             $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
 
         });
+
         return Redirect::to('/users');
 
 //        $user=NewUser::where('id',$id);
@@ -320,6 +324,14 @@ class UsersController extends Controller
 //        return view::make('users.edit')
 //            ->update(['active'=>2])
 //            ->with('user',$user);
+
+*/
+
+        $respose = array();
+        $respose['error'] ="ok";
+        $respose['mesg'] = "successfully registered  please  wait  for  approval ";
+        return response()->json($respose);
+
 
     }
 

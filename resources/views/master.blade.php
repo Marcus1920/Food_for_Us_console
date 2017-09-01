@@ -164,9 +164,13 @@
         <!-- Side Menu -->
         <ul class="list-unstyled side-menu">
 
+
+            
+
             <li {{ (Request::is('reports') ? "class=active" : '') }}>
                 <a class="sa-side-user" href="{{ url('users') }}">
                     <span class="menu-item">App Users</span>
+
                 </a>
             </li>
 
@@ -185,6 +189,7 @@
                 </li>
 
 
+           
 
         </ul>
     </aside>

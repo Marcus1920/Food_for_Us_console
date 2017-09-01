@@ -73,10 +73,13 @@ class TransactionController extends Controller
 
     public function getCartItem()
     {
-        $api_key         =Input::get('api_key');
+        $api_key        =Input::get('api_key');
         $buyerId        = NewUser::where('api_key',$api_key)->first();
-        $cartItems       = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
+        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
 
+        $api_key        =Input::get('api_key');
+        $buyerId        = NewUser::where('api_key',$api_key)->first();
+        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
         return \Response::json($cartItems);
     }
 }

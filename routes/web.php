@@ -11,7 +11,6 @@
 */
 use  App\NewUser  ;
 
-
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -37,7 +36,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('allResearchs','ResearchersController@allResearchs');
 
     //Sellers
-    Route::post('create' , 'SellersController@create') ;
+    Route::post('created' , 'SellersController@created') ;
     Route::get('update' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
@@ -75,8 +74,13 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
+
+Route::get('/master' , 'MapController@getUsers')->name('master') ;
+Route::get('/users' , 'HomeController@users')->name('users') ;
+
 Route::get('/users' , 'HomeController@show')->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
+
 Route::get('/register' , 'HomeController@register')->name('register');
 Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
 
@@ -104,9 +108,18 @@ Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
+Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
-/*PasswordReset*/
+
+
+
 
 Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
+Route::get('getPosts','MapController@GetSellersPosts');
+Route::get('getUsers','MapController@GetUsers');
+Route::post('searchUserByType','MapController@GetUsersByType');
+Route::post('searchByProductType','MapController@searchByProductType');
+
+
 
 ?>

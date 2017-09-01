@@ -23,7 +23,9 @@ class SellersController extends Controller
 
         if($user!=NULL)
         {
-            $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)->get();
+            $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)
+		
+			->orderBy('created_at' ,'desc')	->get();
 
           
 			  return response()->json($sellers_tabs);
@@ -48,6 +50,33 @@ class SellersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+	 
+	 
+	  public function created(Request $request)
+    {
+        $input  =  $request->all();
+
+        $user  = NewUser::where('api_key',$input['api_key'])->first();
+
+        $sellersPost= new Sellers_details_tabs();
+        $sellersPost->new_user_id     = $user->id;
+		
+	      
+  $sellersPost->productPicture  = Input::get('productPicture'); 
+  $sellersPost->productName  = Input::get('productName'); 
+  $sellersPost->costPerKg  = Input::get('costPerKg');
+  $sellersPost->rating  = Input::get('rating'); 
+  $sellersPost->city  = Input::get('city'); 
+   $sellersPost->country  = Input::get('country'); 
+    $sellersPost->description  = Input::get('description'); 
+
+        
+        $sellersPost->save();
+
+        return $sellersPost;
+    }
+	 
+	 
     public function create(Request $request)
     {
         $input  =  $request->all();
