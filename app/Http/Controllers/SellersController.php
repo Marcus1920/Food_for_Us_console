@@ -59,10 +59,25 @@ class SellersController extends Controller
         $user  = NewUser::where('api_key',$input['api_key'])->first();
 
         $sellersPost= new Sellers_details_tabs();
+		 $name =$user->name;
+        $surname=$user->name; 		
+		$id=$user->id;
         $sellersPost->new_user_id     = $user->id;
-		
+		$img=$request->file('file');
+        $destinationFolder = "images/".$name."_".$surname."_".$id."/";
+
+        if(!\File::exists($destinationFolder)) {
+            \File::makeDirectory($destinationFolder,0777,true);
+        }
+
+        $name =    $img->getClientOriginalName();
+
+        $img->move($destinationFolder,$name) ;
+
+       
+
 	      
-  $sellersPost->productPicture  = Input::get('productPicture'); 
+  $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;
   $sellersPost->productName  = Input::get('productName'); 
   $sellersPost->costPerKg  = Input::get('costPerKg');
   $sellersPost->rating  = Input::get('rating'); 
