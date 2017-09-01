@@ -9,9 +9,9 @@ class Reseachers_details_tabs extends Eloquent
     protected $fillable=[
 
         'img_url',
-        'nature_of_business',
-        'summary_box',
-        'research_notes',
+        'natureOfBusiness',
+        'summaryBox',
+        'researchNotes',
     ];
 
     public  function User(){

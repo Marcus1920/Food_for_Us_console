@@ -13,23 +13,26 @@ class CreateSellersDetailsTabsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('sellers_details_tabs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('new_user_id')->unsigned();
             $table->foreign('new_user_id')->references('id')->on('new_users');
-            $table->string('product_picture');
+            $table->string('productPicture');
             $table->string('location');
             $table->string('gps_lat');
             $table->string('gps_long');
-            $table->integer('product_type')->unsigned();
-            $table->foreign('product_type')->references('id')->on('product_types');
+            $table->integer('productType')->unsigned();
+            $table->foreign('productType')->references('id')->on('product_types');
             $table->string('quantity');
-            $table->string('cost_per_kg');
+            $table->string('costPerKg');
+            $table->string('description');
+            $table->string('country');
+            $table->string('city');
             $table->integer('packaging')->unsigned();
             $table->foreign('packaging')->references('id')->on('packagings');
-            $table->string('available_hours');
-            $table->string('payment_methods');
-            $table->string('transaction_rating');
+            $table->string('availableHours');
+            $table->string('paymentMethods');
+            $table->string('transactionRating');
             $table->timestamps();
         });
     }

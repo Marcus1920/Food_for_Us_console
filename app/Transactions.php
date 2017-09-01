@@ -18,6 +18,6 @@ class Transactions extends Eloquent
 
     public  function Products(){
 
-        return $this->belongsTo(ProductType::class,'product','id');
+        return $this->belongsTo(Sellers_details_tabs::class,'product','id');
     }
 }

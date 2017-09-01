@@ -14,16 +14,16 @@ class Sellers_details_tabs extends Eloquent
          'location',
          'gps_lat',
          'gps_long',
-         'product_type',
+         'productType',
          'quantity',
-         'cost_per_kg',
+         'costPerKg',
          'packaging',
-         'available_hours',
-         'payment_methods',
+         'availableHours',
+         'paymentMethods',
 		 'description',
 		 'country',
 		 'city',
-         'transaction_rating'
+         'transactionRating'
 
         ];
 
@@ -45,11 +45,11 @@ class Sellers_details_tabs extends Eloquent
     }
     public  function Products(){
 
-        return $this->belongsTo(ProductType::class,'product_type','id');
+        return $this->belongsTo(ProductType::class,'productType','id');
     }
 
     public  function Packaging(){
 
-        return $this->belongsTo(ProductType::class,'packaging','id');
+        return $this->belongsTo(Packaging::class,'packaging','id');
     }
 }

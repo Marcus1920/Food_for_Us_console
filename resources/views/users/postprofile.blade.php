@@ -30,7 +30,7 @@
                                 Product Type
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->product_type}}" id="product_type" readonly>
+                                <input type="text" class="form-control" value="{{$data->Products->name}}" id="product_type" readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,7 +59,7 @@
                                 Packaging
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->packaging}}" id="packaging" readonly>
+                                <input type="text" class="form-control" value="{{$data->Packaging->name}}" id="packaging" readonly>
                             </div>
                         </div>
 

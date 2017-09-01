@@ -23,6 +23,6 @@ class NewUser extends Eloquent
     }
     public  function UserTravelRadius(){
 
-        return $this->belongsTo(UserTravelRadius::class,'travel_radius','id');
+        return $this->belongsTo(UserTravelRadius::class,'travelRadius','id');
     }
 }

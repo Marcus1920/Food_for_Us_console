@@ -114,7 +114,7 @@
 
                                 <div class="col-sm-4"><button type="submit" title="Search for Sellers" class="btn"><img src="img/Markers/28.png" alt=""></button></div>\
                                 <div class="pull-left">
-                                        <i class="n-count animated" style="color: white;">{{ count($sellers,0) }}</i>
+                                        {{--<i class="n-count animated" style="color: white;">{{ count($sellers,0) }}</i>--}}
                                 </div>
                                 <div class="col-sm-8" style="color: white;">Seller</div>
                             </form>
@@ -128,7 +128,7 @@
 
                                 <div class="col-sm-4"><button type="submit" title="Search for Buyers" class="btn"><img src="img/Markers/29.png" alt=""></button></div>
                                 <div class="pull-left">
-                                        <i class="n-count animated" style="color: white;">{{ count($buyers,0) }}</i>
+                                        {{--<i class="n-count animated" style="color: white;">{{ count($buyers,0) }}</i>--}}
                                 </div>
                                 <div class="col-sm-8" style="color: white;">Buyer</div>
                             </form>
@@ -142,7 +142,7 @@
 
                                 <div class="col-sm-4"><button type="submit" title="Search for Researchers" class="btn"><img src="img/Markers/30.png" alt=""></button></div>
                                 <div class="pull-left">
-                                        <i class="n-count animated" style="color: white;">{{ count($reseachers,0) }}</i>
+                                        {{--<i class="n-count animated" style="color: white;">{{ count($reseachers,0) }}</i>--}}
                                 </div>
                                 <div class="col-sm-8" style="color: white;">Researcher</div>
                             </form>
@@ -156,7 +156,7 @@
 
                                 <div class="col-sm-4"><button type="submit" title="Search for Suppliers" class="btn"><img src="img/Markers/27.png" alt=""></button></div>
                                 <div class="pull-left">
-                                    <i class="n-count animated" style="color: white;">{{ count($suppliers,0) }}</i>
+                                    {{--<i class="n-count animated" style="color: white;">{{ count($suppliers,0) }}</i>--}}
                                 </div>
                                 <div class="col-sm-8" style="color: white;">Supplier</div>
 

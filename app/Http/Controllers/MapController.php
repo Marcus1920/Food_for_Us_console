@@ -17,7 +17,7 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $sellersPosts=Sellers_details_tabs::all();
+        $sellersPosts=Sellers_details_tabs::with('Packaging')->get();
 
         $productTypes=ProductType::all();
 
@@ -29,11 +29,11 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><img src=$sellersPost->productPicture style='height: 250px;width: 300px;'></td>
+                      <td><img src=$sellersPost->product_picture style='height: 250px;width: 300px;'></td>
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->costPerKg</td>
+                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->cost_per_kg</td>
                       </tr>
                       <br/>
                       <tr>
@@ -41,7 +41,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Packaging :</b>&nbsp; </td><td>$sellersPost->packaging</td>
+                      <td><b>Packaging :</b>&nbsp; </td><td>{$sellersPost->Packaging->name}</td>
                       </tr>
                       <br/>
                        <tr>
@@ -49,7 +49,7 @@ class MapController extends Controller
                       </tr>
                       </div>";
 
-            $images='img/Markers/'.$sellersPost->productName.'.png';
+            $images='img/Markers/'.$sellersPost->product_type.'.png';
 
             $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
@@ -133,26 +133,22 @@ class MapController extends Controller
                       <td><b>Email</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->email</td>
                       </tr>
                       <br/>
-                      <tr>
-                      <td><b>Interest</b>&nbsp;&nbsp; : </td><td>$user->intrest</td>
-                      </tr>
-                      <br/>
                       <td><b>Location </b>:</td><td>$user->location</td>
                       </div>";
 
-            if($user->intrest=="Supplier")
+            if($user->intrest==1)
             {
                 $images='img/Markers/27.png';
             }
-            else if($user->intrest=="Seller")
+            else if($user->intrest==2)
             {
                 $images='img/Markers/28.png';
             }
-            else if($user->intrest=="Buyers")
+            else if($user->intrest==3)
             {
                 $images='img/Markers/29.png';
             }
-            else if($user->intrest=="Researcher")
+            else if($user->intrest==4)
             {
                 $images='img/Markers/30.png';
             }
@@ -172,10 +168,10 @@ class MapController extends Controller
 
         $users=NewUser::where('intrest',$request['intrest'])->get();
 
-        $suppliers=NewUser::where('intrest','Supplier')->get();
-        $sellers=NewUser::where('intrest','Seller')->get();
-        $buyers=NewUser::where('intrest','Buyers')->get();
-        $reseachers=NewUser::where('intrest','Researcher')->get();
+        $suppliers=NewUser::where('intrest',1)->get();
+        $sellers=NewUser::where('intrest',2)->get();
+        $buyers=NewUser::where('intrest',3)->get();
+        $reseachers=NewUser::where('intrest',4)->get();
 
         foreach ($users as $user) {
 
@@ -192,26 +188,22 @@ class MapController extends Controller
                       <td><b>Email</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->email</td>
                       </tr>
                       <br/>
-                      <tr>
-                      <td><b>Interest</b>&nbsp;&nbsp; : </td><td>$user->intrest</td>
-                      </tr>
-                      <br/>
                       <td><b>Location </b>:</td><td>$user->location</td>
                       </div>";
 
-            if($user->intrest=="Supplier")
+            if($user->intrest==1)
             {
                 $images='img/Markers/27.png';
             }
-            else if($user->intrest=="Seller")
+            else if($user->intrest==2)
             {
                 $images='img/Markers/28.png';
             }
-            else if($user->intrest=="Buyers")
+            else if($user->intrest==3)
             {
                 $images='img/Markers/29.png';
             }
-            else if($user->intrest=="Researcher")
+            else if($user->intrest==4)
             {
                 $images='img/Markers/30.png';
             }

@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('quantity');
             $table->foreign('buyer_id')->references('id')->on('new_users');
             $table->foreign('seller_id')->references('id')->on('new_users');
-            $table->foreign('product')->references('id')->on('products');
+            $table->foreign('product')->references('id')->on('sellers_details_tabs');
             $table->timestamps();
         });
     }
