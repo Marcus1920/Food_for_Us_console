@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 
@@ -43,7 +42,7 @@
                             </tr>
                             <tr><!-- title -->
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: 0px; text-align: center; color:#0DB6BE;">
-                                    <strong>REGISTRATION </strong> NOTIFICATION!
+                                    <strong>ACCOUNT ACTIVATED</strong> NOTIFICATION!
                                 </td>
                             </tr>
                             <tr>
@@ -71,15 +70,13 @@
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hi {{$name}}</h3>
+                                    <h3 style="padding-left: 10px":>Hi</h3>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulation you've successfully registered to the Food For Us Application. A notification for your account activation will follow once it has been activated</p>
-                                    <p>kind Regards Food For Us </p>
-
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify"> This is a message send from the System's Information Team  and it is to inform you that your account has been activated , For more info on how to use this application ,you can check on</p>
                                 </td>
                             </tr>
                             <tr><!-- spacing bottom -->

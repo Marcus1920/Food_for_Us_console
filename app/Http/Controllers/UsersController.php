@@ -108,21 +108,21 @@ class UsersController extends Controller
 
             if ($data->active == 2)
             {
-            $response["error"] = false;
-            $response['name'] = $data->name;
-            $response['email'] = $data->email;
-            $response['intrest'] = $data->intrest;
-            $response['apiKey'] = $data->api_key;
-            $response['createdAt'] = $data->created_at;
-			 $response['active'] =2;
-			  $response["msg"] =  "ok";
+              $response["error"]       = false;
+              $response['name']        = $data->name;
+              $response['email']       = $data->email;
+              $response['intrest']     = $data->intrest;
+              $response['apiKey']      = $data->api_key;
+              $response['createdAt']   = $data->created_at;
+			  $response['active']      = 2;
+			  $response["msg"]         = "ok";
            }
            else{
 
 
-               $response["error"] = false;
-			   $response['active'] =2;
-               $response["msg"] =  "notactive";
+               $response["error"]    = false;
+			   $response['active']   = 2;
+               $response["msg"]      ="notactive";
          }
          //   \Log::info("Login Device:".$device.", User Cell:".$cell.", User Names:".$data->name);
 
@@ -138,15 +138,15 @@ class UsersController extends Controller
 
 
 
-                $response["error"] = true;
+                $response["error"]  = true;
                 $response['active'] = 1;
-                $response["msg"] = "your  acount  is Not Acive";
+                $response["msg"]    = "your  acount  is Not Acive";
             }
             //   \Log::info("Login Device:".$device.", User Cell:".$cell.", User Names:".$data->name);
 
         } else {
 
-            $response['error'] = true;
+            $response['error']   = true;
             $response['message'] = 'Login failed. Incorrect credentials';
 
 
@@ -225,7 +225,7 @@ class UsersController extends Controller
            //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
                     );
 
-        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
+        \Mail::send('emails.transactions', $data, function ($message) use ($userDetails) {
 
             $message->from('info@siyaleader.net', 'Siyaleader');
             $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
@@ -240,8 +240,6 @@ class UsersController extends Controller
 
     public function inactivateUser($id)
     {
-
-
         $user = NewUser::where('id',$id)
             ->update(['active'=>1]);
 
@@ -251,17 +249,14 @@ class UsersController extends Controller
             'name' =>$userDetails->name,
             'message' =>"",
             //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
-        );
+                 );
 
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
             $message->from('info@siyaleader.net', 'Siyaleader');
             $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
 
-        });
-
-
-
+                   });
         return Redirect::to('/users');
     }
 
@@ -276,7 +271,7 @@ class UsersController extends Controller
         $travel_radius          =  Input::get('travel_radius') ;
         $description_of_acces   =  Input::get('description_of_acces');
         $gps_lat                =  Input::get('gps_lat');
-        $gps_long                =  Input::get('gps_long');
+        $gps_long               =  Input::get('gps_long');
 
         $NewUser    =   new   NewUser  () ;
         $NewUser->   active                 = 1;
@@ -290,17 +285,16 @@ class UsersController extends Controller
         $NewUser->  location             = $location;
         $NewUser->  travel_radius        =  $travel_radius ;
         $NewUser->  password             =  "1234" ;
-        $NewUser->  api_key                = "xdwq213432435434bb4yyyyyyyy4";
-        $NewUser->  description_of_acces  = $description_of_acces ;
+        $NewUser->  api_key              = "xdwq213432435434bb4yyyyyyyy4";
+        $NewUser->  description_of_acces = $description_of_acces ;
         $NewUser-> save() ;
 
         $data = array(
 
-            'name' => $NewUser->name,
-            'passsword' => $NewUser -> password  ,
-            'content' =>  $message,
-
-        );
+            'name'      =>      $NewUser->name,
+            'passsword' =>      $NewUser->password,
+            'content'   =>      $message,
+                     );
 
       \Mail::send('emails.resetpassword', $data, function ($message) use ($NewUser) {
              $message->from('info@foodorus', 'Food For us');
@@ -313,11 +307,8 @@ class UsersController extends Controller
             $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
 
         });
-
-
-
-
         return Redirect::to('/users');
+
 //        $user=NewUser::where('id',$id);
 //        $user->name     =Input::get('name');
 //        $user->surname   =Input::get('surname');

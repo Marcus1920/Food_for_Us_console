@@ -16,7 +16,7 @@ class TransactionController extends Controller
 
     public function index()
     {
-        //
+
     }
     public function create()
     {
@@ -58,40 +58,26 @@ class TransactionController extends Controller
     public function addToCart()
     {
 
-        $buyer           = NewUser::find(Input::get('id'));
+        $api_key         =Input::get('api_key');
+        $buyer           = NewUser::where('api_key',$api_key)->first();
         $productName     = Sellers_details_tabs::select('id')->where('productName',Input::get('foodItem'))->first();
-
 
         $cartItemsObj               =new Cart();
         $cartItemsObj->userId       =$buyer->id;
         $cartItemsObj->productId    =$productName->id;
         $cartItemsObj->quantity     =Input::get('quantity');
         $cartItemsObj->save();
-
-        $initialQuantity           =Sellers_details_tabs::select('quantity')
-                                    ->where('id',$productName->id)->first();
-        $remainingQuantity         =$initialQuantity->quantity - Input::get('quantity');
-        $updateFoodQuantity        =Sellers_details_tabs::where('id',$productName->id)
-                                    ->update(['quantity'=>$remainingQuantity]);
-
-        $newFoodQuantity           =Sellers_details_tabs::select('quantity')
-                                        ->where('id',$productName->id)->first();
-        return                      "   $newFoodQuantity->quantity  remaining Items";
-
-
+        return "okay items Added";
     }
 
 
     public function getCartItem()
     {
-        $buyerId        = Input::get('id');
-        $cartItems       = Cart::with('products','buyers')->where('userId',$buyerId)->get();
+        $api_key         =Input::get('api_key');
+        $buyerId        = NewUser::where('api_key',$api_key)->first();
+        $cartItems       = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
 
-
-        foreach ($cartItems as $cartItem)
-        {
-            return "Hey ". $cartItem->buyers->name . " ". "you have". " " . $cartItem->products->quantity."  ". $cartItem->products->productName;
-        }
+        return \Response::json($cartItems);
     }
 }
 

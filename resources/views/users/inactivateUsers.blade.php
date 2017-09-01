@@ -11,9 +11,6 @@
     <div class="block-area" id="basic">
         <h3 class="block-title">Inactivate Form</h3>
         <div class="tile p-15">
-
-
-
             {!! Form::open(['url' => 'InactivateUser/'.$user->id, 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
             {!! Form::hidden('id') !!}
 

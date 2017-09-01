@@ -104,11 +104,9 @@ Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
-Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
-/*Transactions Routes*/
+/*PasswordReset*/
 
-
-
+Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
 
 ?>

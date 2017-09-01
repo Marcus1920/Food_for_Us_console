@@ -43,7 +43,7 @@
                             </tr>
                             <tr><!-- title -->
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: 0px; text-align: center; color:#0DB6BE;">
-                                    <strong>REGISTRATION </strong> NOTIFICATION!
+                                    <strong>TRANSACTION </strong> NOTIFICATION!
                                 </td>
                             </tr>
                             <tr>
@@ -71,13 +71,13 @@
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hi {{$name}}</h3>
+                                    <h3 style="padding-left: 10px":>Hello {{$name}}</h3>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulation you've successfully registered to the Food For Us Application. A notification for your account activation will follow once it has been activated</p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Your transaction has been closed,you can log in again</p>
                                     <p>kind Regards Food For Us </p>
 
                                 </td>
@@ -194,3 +194,4 @@
 
 </body>
 </html>
+*/
