@@ -13,6 +13,16 @@ class NewUser extends Eloquent
         return $this->hasMany(Sellers_details_tabs::class);
     }
 
+    public  function  publicwallpost()
+    {
+        return $this->hasMany(PublicWall::class);
+    }
+
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+	}
     public  function UserStatuses(){
 
         return $this->belongsTo(UserStatus::class,'active','id');
@@ -24,19 +34,6 @@ class NewUser extends Eloquent
     }
     public  function UserTravelRadius()
     {
-
         return $this->belongsTo(UserTravelRadius::class, 'travelRadius', 'id');
-    }
-
-
-    public  function  publicwallpost()
-    {
-        return $this->hasMany(PublicWall::class);
-    }
-
-
-    public function cart()
-    {
-        return $this->hasMany(Cart::class);
     }
 }

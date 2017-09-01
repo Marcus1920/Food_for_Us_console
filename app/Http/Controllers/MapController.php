@@ -54,7 +54,6 @@ class MapController extends Controller
                       <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
                       </tr>
                       </div>";
-
             $images=$sellersPost->Products->marker_url;
 
             $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);

@@ -20,6 +20,7 @@ class UsersController extends Controller
     {
 
         $userList = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+
         return response()->json($userList);
     }
 

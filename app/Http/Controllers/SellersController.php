@@ -112,12 +112,14 @@ class SellersController extends Controller
 
         $user  = NewUser::where('api_key',$input['api_key'])->first();
 
+	
+		
         $sellersPost= new Sellers_details_tabs();
         $name =$user->name;
-        $surname=$user->surname;
-        $id=$user->id;
+        $surname=$user->name; 		
+		$id=$user->id;
         $sellersPost->new_user_id     = $user->id;
-        $img=$request->file('file');
+		$img=$request->file('file');
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
@@ -148,7 +150,6 @@ class SellersController extends Controller
         $sellersPost->availableHours = Input::get('availableHours');
         $sellersPost->paymentMethods = Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
-
         $sellersPost->save();
 
         return $sellersPost;

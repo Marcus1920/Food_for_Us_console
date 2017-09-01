@@ -38,6 +38,15 @@ class Sellers_details_tabs extends Eloquent
 
     }
 
+    public function sellerTransactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+    public function cartItems()
+    {
+        return $this->hasOne(Cart::class);
+	}
+
     public  function User(){
 
         return $this->belongsTo(NewUser::class,'new_user_id','id');
@@ -49,15 +58,6 @@ class Sellers_details_tabs extends Eloquent
 
     public  function Packaging()
     {
-
         return $this->belongsTo(Packaging::class, 'packaging', 'id');
-    }
-    public function sellerTransactions()
-    {
-        return $this->hasMany(Transaction::class);
-    }
-    public function cartItems()
-    {
-        return $this->hasOne(Cart::class);
     }
 }
