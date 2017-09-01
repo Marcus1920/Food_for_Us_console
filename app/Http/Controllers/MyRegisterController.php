@@ -31,7 +31,7 @@ class MyRegisterController extends Controller
         $adminUsers->password  = $request['password'];
         $adminUsers->created_by  = \Auth::user()->name. ' ' .$adminUsers->surname;
         $adminUsers->save();
-        return Redirect::to('/master');
+        return Redirect::to('/users');
 
 
     }

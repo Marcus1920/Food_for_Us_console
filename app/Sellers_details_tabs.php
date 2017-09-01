@@ -29,7 +29,6 @@ class Sellers_details_tabs extends Eloquent
 
     public  function  getPathAttribute($value)
     {
-
         return $this->directory .$value;
     }
 
@@ -48,8 +47,17 @@ class Sellers_details_tabs extends Eloquent
         return $this->belongsTo(ProductType::class,'productType','id');
     }
 
-    public  function Packaging(){
+    public  function Packaging()
+    {
 
-        return $this->belongsTo(Packaging::class,'packaging','id');
+        return $this->belongsTo(Packaging::class, 'packaging', 'id');
+    }
+    public function sellerTransactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+    public function cartItems()
+    {
+        return $this->hasOne(Cart::class);
     }
 }

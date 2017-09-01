@@ -1,8 +1,8 @@
 @extends('master')
 @section('content')
     <ol class="breadcrumb hidden-xs">
-        <li><a href="{{ url('/master') }}">Home</a></li>
-        <li class="active"><a>App Users List</a></li>
+        <li><a href="{{ url('/users') }}">Home</a></li>
+        <li class="active"><a>Admin Users List</a></li>
     </ol>
     <h4 class="page-title">Admin Users</h4>
     <div class="row">
@@ -33,7 +33,7 @@
                                     <td> {{$adminUser->email}}  </td>
                                     <td> {{$adminUser->cellphone}} </td>
                                     <td> {{$adminUser->created_by}} </td>
-                                    <th><a href="{{url('/editUsers/'.$adminUser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></th>
+                                    <td><a href="{{url('/editUsers/'.$adminUser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></td>
 
                                 </tr>
                             @endforeach

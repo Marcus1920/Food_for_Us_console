@@ -11,7 +11,6 @@
 */
 use  App\NewUser  ;
 
-
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -27,16 +26,7 @@ Route::get('up' , 'SellersController@update') ;
 
 
 Route::get('/' , 'HomeController@index') ;
-
-
-
-
-
-Route::get('del' , 'SellersController@destroy') ;
-
-
-
-
+Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
@@ -46,17 +36,37 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('allResearchs','ResearchersController@allResearchs');
 
     //Sellers
-    Route::post('create' , 'SellersController@create') ;
+    Route::post('created' , 'SellersController@created') ;
     Route::get('update' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
+    Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
+
+    //Buyers
+    Route::get('buyerTransaction/{id}','TransactionController@buyerTransaction');
 
     //Users
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
-    Route::post('resetpassword' ,'UsersController@forgot' );
+    Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
+    //Transaction
+    Route::post('buy','TransactionController@store');
+    Route::post('show/{id}','TransactionController@show');
+
+
+    // Cart
+    Route::post('addToCart','TransactionController@addToCart');
+    Route::get('getCartItem','TransactionController@getCartItem');
+
+    //Recipes
+    Route::get('getRecipes','PublicWallController@getRecipes');
+    Route::post('createRecipe','PublicWallController@createRecipe');
+    Route::get('viewRecipe','PublicWallController@viewRecipe');
+    Route::post('editRecipe','PublicWallController@editRecipe');
+    Route::get('deleteRecipe','PublicWallController@deleteRecipe');
+
 
 
 });
@@ -64,16 +74,27 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
+
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
 Route::get('/users' , 'HomeController@users')->name('users') ;
+
+Route::get('/users' , 'HomeController@show')->name('master') ;
+//Route::get('/users' , 'HomeController@users')->name('users') ;
+
 Route::get('/register' , 'HomeController@register')->name('register');
 Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
 
 
 Route::get('/editUsers/{id}', function($id)
 {
-    $user =NewUser::where('id','=',$id)->first();
+    $user = NewUser::where('id','=',$id)->first();
     return view('users.edit',compact('user'));
+});
+
+Route::get('/inactivateUsers/{id}', function($id)
+{
+    $user = NewUser::where('id','=',$id)->first();
+    return view('users.inactivateUsers',compact('user'));
 });
 
 Route::get('/createUser', function()
@@ -83,14 +104,16 @@ Route::get('/createUser', function()
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
-
-
 Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
-
-
-
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
+Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
+Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
+
+
+/*Transactions Routes*/
+
+
 
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
@@ -103,6 +126,7 @@ Route::get('productlist', 'ProductsController@index');
 Route::get('packaginglist', 'PackagingController@index');
 Route::get('createPackaging', 'PackagingController@create');
 Route::get('storePackaging', 'PackagingController@store');
+
 
 
 ?>

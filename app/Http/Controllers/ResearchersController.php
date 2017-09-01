@@ -50,16 +50,21 @@ class ResearchersController extends Controller
      */
     public function create(Request $request)
     {
-        $input  =  $request->all();
+	///	$file=$request->file('file');
+		///return $file->getClientOriginalName();
+	//	$file=$request->file;
+		
 
-        $user  = NewUser::where('api_key',$input['api_key'])->first();
-
+        $user  = NewUser::where('api_key',$request->api_key)->first();
+    
         $researcherPost = new Reseachers_details_tabs();
         $researcherPost->new_user_id = $user->id;
-
+        $name =$user->name;
+        $surname=$user->name; 		
+		$id=$user->id;
+		
         $img=$request->file('file');
-
-        $destinationFolder = 'images/'.$user['name'].'_'.$user['surname'].'_'.$user['id'];
+        $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
             \File::makeDirectory($destinationFolder,0777,true);
@@ -69,10 +74,16 @@ class ResearchersController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-        $researcherPost->img_url = env('APP_URL').$destinationFolder.'/'.$name;
+        $researcherPost->imageUrl = env('APP_URL').$destinationFolder.'/'.$name;
 
-        $researcherPost->fill($input);
+		$researcherPost->gps_long= $request->gps_long;
+		$researcherPost->gps_lat= $request->gps_lat;
+        $researcherPost->researchNotes=  $request->researchNotes;
+		$researcherPost->summaryBox= $request->summaryBox;
+		$researcherPost->summaryBox= $request->summaryBox;
+		$researcherPost->natureOfBusiness = $request->natureOfBusiness;
         $researcherPost->save();
+   
 
         return response()->json($researcherPost);
     }

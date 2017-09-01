@@ -2,9 +2,8 @@
 @section('content')
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
-        <li><a href="#">Administration</a></li>
-        <li><a href="{{ url('/master') }}"> Home</a></li>
-        <li class="active">Upadate Form</li>
+        <li><a href="{{ url('/users') }}"> Home</a></li>
+        <li class="active">Update Form</li>
     </ol>
     <h4 class="page-title">USERS</h4>
 
@@ -21,7 +20,7 @@
            <div class="form-group">
                {!! Form::label('Name', 'Name', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('name',$user->name,['class' => 'form-control input-sm','id' => 'name', "onfocus"=>"geolocate()", 'required']) !!}
+                    {!! Form::text('name',$user->name,['class' => 'form-control input-sm','id' => 'name', "onfocus"=>"geolocate()", 'readonly']) !!}
                     @if ($errors->has('name'))<span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>@endif
                 </div>
             </div>
@@ -30,7 +29,7 @@
             <div class="form-group">
                 {!! Form::label('Surname', 'Surname', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('surname',$user->surname,['class' => 'street_number form-control input-sm','id' => 'surname' , 'required']) !!}
+                    {!! Form::text('surname',$user->surname,['class' => 'street_number form-control input-sm','id' => 'surname' , 'readonly']) !!}
                     @if ($errors->has('surname'))
                         <span class="help-block">
                                         <strong>{{ $errors->first('surname') }}</strong>
@@ -50,7 +49,7 @@
             <div class="form-group">
                 {!! Form::label('Interest', 'Interest', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('intrest',$user->intrest,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required']) !!}
+                    {!! Form::text('intrest',$user->intrest,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'readonly']) !!}
                     @if ($errors->has('cellphone'))<span class="help-block"><strong>{{ $errors->first('cellphone') }}</strong></span>@endif
                 </div>
             </div>
@@ -59,7 +58,7 @@
             <div class="form-group">
                 {!! Form::label('Travel Radius', 'Travel Radius', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('travel_radius ',$user->travel_radius,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'email', 'required']) !!}
+                    {!! Form::text('travel_radius ',$user->travel_radius,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'email', 'readonly']) !!}
                     @if ($errors->has('email'))
                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -72,7 +71,7 @@
             <div class="form-group">
                 {!! Form::label('Description', 'Description', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('description',$user->description_of_acces ,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'description','type'=>"password", 'required']) !!}
+                    {!! Form::text('description',$user->description_of_acces ,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'description','type'=>"password", 'readonly']) !!}
                     @if ($errors->has('password'))<span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>@endif
                 </div>
             </div>
@@ -80,7 +79,7 @@
             <div class="form-group">
                 {!! Form::label(' Location', 'Location', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('location',$user->location,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'location',  'type'=>"password",'required']) !!}
+                    {!! Form::text('location',$user->location,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'location',  'type'=>"password",'readonly']) !!}
                 </div>
             </div>
 
