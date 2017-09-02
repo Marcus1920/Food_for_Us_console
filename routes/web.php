@@ -54,7 +54,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Transaction
     Route::post('buy','TransactionController@store');
     Route::get('show','TransactionController@show');
-    Route::get('buyerTransaction','TransactionController@buyerTransaction');
+    Route::get('transactionDetails','TransactionController@transactionDetails');
     Route::get('sellerTransaction','TransactionController@sellerTransaction');
 
 

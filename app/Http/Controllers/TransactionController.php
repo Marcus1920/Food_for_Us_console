@@ -68,16 +68,81 @@ class TransactionController extends Controller
         return \Response::json($sellerTransaction);
     }
 
-    public function buyerTransaction()
+    public function transactionDetails()
     {
 
         $api_key            = Input::get('api_key');
         $userDetails        = NewUser::where('api_key',$api_key)->first();
-        $buyerTransaction   = Transaction::with('sellers','product')
-                             ->where('buyer_id',$userDetails->id)
-                             ->get();
 
-         return \Response::json($buyerTransaction);
+        if($userDetails->intrest ==1 )
+            {
+
+                $sellerTransactionsDetails =\DB::table('transactions')
+                    ->join('new_users', 'transactions.buyer_id','=','new_users.id')
+                    ->join('carts','transactions.product','=','carts.productId')
+                    ->join('sellers_details_tabs','carts.productId','=','sellers_details_tabs.id')
+                    ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
+                    ->where('transactions.seller_id',$userDetails->id)
+                    ->select(
+                        \DB::raw(
+                            "                        
+                      new_users.name,  
+                      new_users.surname,   
+                      new_users.profilePicture,   
+                      new_users.email,  
+                      new_users.cellphone,   
+                      new_users.location,   
+                      new_users.travelRadius,   
+                      new_users.descriptionOfAcces,                        
+                      transactions.buyer_id,                        
+                      transactions.product, 
+                      transactions.quantity,
+                      transactions.status,
+                      product_types.name as productName
+                                                            
+                   "
+                        )
+                    )
+                    ->get();
+                return \Response::json($sellerTransactionsDetails);
+
+            }
+        elseif($userDetails->intrest ==2)
+            {
+
+                $buyerTransactionsDetails =\DB::table('transactions')
+                    ->join('new_users', 'transactions.seller_id','=','new_users.id')
+                    ->join('carts','transactions.product','=','carts.productId')
+                    ->join('sellers_details_tabs','carts.productId','=','sellers_details_tabs.id')
+                    ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
+                    ->where('transactions.buyer_id',$userDetails->id)
+                    ->select(
+                        \DB::raw(
+                            "                        
+                      new_users.name,  
+                      new_users.surname,   
+                      new_users.profilePicture,   
+                      new_users.email,  
+                      new_users.cellphone,   
+                      new_users.location,   
+                      new_users.travelRadius,   
+                      new_users.descriptionOfAcces,                        
+                      transactions.seller_id,                        
+                      transactions.product, 
+                      transactions.quantity,
+                      transactions.status,
+                       product_types.name as productName
+                                                            
+                   "
+                        )
+                    )
+                    ->get();
+                return \Response::json($buyerTransactionsDetails);
+            }
+        else
+            {
+            return "no transaction";
+            }
     }
 
     public function addToCart()
@@ -99,13 +164,29 @@ class TransactionController extends Controller
     public function getCartItem()
     {
         $api_key        =Input::get('api_key');
-        $buyerId        = NewUser::where('api_key',$api_key)->first();
-        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->where('active',0)->get();
+        $buyerId       = NewUser::where('api_key',$api_key)->first();
+        $cartItems     =\DB::table('carts')
+                       ->join('new_users', 'carts.userId', '=', 'new_users.id')
+                       ->join('sellers_details_tabs', 'carts.productId', '=', 'sellers_details_tabs.id')
+                       ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
+                       ->select(
+                                \DB::raw(
+                                        "                        
+                                        carts.userId,                        
+                                        carts.productId,                        
+                                        carts.quantity,                        
+                                        new_users.name, 
+                                        product_types.name as productName,
+                                        sellers_details_tabs.productPicture
+                                                                                
+                                       "
+                                        )
+                                )
+                        ->where('carts.active','=',0)
+                        ->where('userId',$buyerId->id)
+                        ->get();
+        return $cartItems;
 
-//        $api_key        =Input::get('api_key');
-//        $buyerId        = NewUser::where('api_key',$api_key)->first();
-//        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
-        return \Response::json($cartItems);
     }
 
     public function removeFromCart()
