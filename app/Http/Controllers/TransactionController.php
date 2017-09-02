@@ -100,12 +100,29 @@ class TransactionController extends Controller
     {
         $api_key        =Input::get('api_key');
         $buyerId        = NewUser::where('api_key',$api_key)->first();
-        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
+        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->where('active',0)->get();
 
-        $api_key        =Input::get('api_key');
-        $buyerId        = NewUser::where('api_key',$api_key)->first();
-        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
+//        $api_key        =Input::get('api_key');
+//        $buyerId        = NewUser::where('api_key',$api_key)->first();
+//        $cartItems      = Cart::with('products','buyers')->where('userId',$buyerId->id)->get();
         return \Response::json($cartItems);
+    }
+
+    public function removeFromCart()
+    {
+        $api_key          =Input::get('api_key');
+        $product_id       =Input::get('productType');
+        $sellerDetails    = Sellers_details_tabs::where('productType',$product_id)->first();
+        $buyerId          = NewUser::where('api_key',$api_key)->first();
+        $removeCartItems  = Cart::with('products','buyers')
+                                  ->where('userId',$buyerId->id)
+                                  ->where('productId',$sellerDetails->id)
+                                  ->where('active',0)->delete();
+
+        $remainingCartItems =Cart::with('products','buyers')->where('userId',$buyerId->id)->where('active',0)->get();
+        return $remainingCartItems;
+
+
     }
 }
 
