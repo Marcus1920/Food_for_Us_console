@@ -274,7 +274,13 @@ class UsersController extends Controller
 
     public  function   create  ()   {
 
+	
+	
 
+    
+function generateRandomString($length = 24) {
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
         $name                   =  Input::get('name') ;
         $surname                =  Input::get('surname') ;
         $email                  =  Input::get('emails') ;
@@ -282,8 +288,9 @@ class UsersController extends Controller
         $userRoleId             = UserRoles::where('name',Input::get('intrest'))->first();
         $intrest                =  $userRoleId['id'] ;
 
-        $cellphone              = Input::get('cellphone');
-        $idNumber               = Input::get('idNumber');
+          
+        $cellphone              = Input::get('cell');
+        $idNumber               = Input::get('IdNumber');
         $location               =  Input::get('location') ;
 
         $userTravelRadId        = UserTravelRadius::where('kilometres',Input::get('travel_radius'))->first();
@@ -306,8 +313,8 @@ class UsersController extends Controller
         $NewUser->idNumber               = $idNumber;
         $NewUser->  location             = $location;
         $NewUser->  travelRadius        =  $travel_radius ;
-        $NewUser->  password             =  "1234" ;
-        $NewUser->  api_key                = "xdwq213432435434bb4yyyyyyyy4";
+        $NewUser->  password             =  rand(1,9999);
+        $NewUser->  api_key                =  generateRandomString() ;
         $NewUser->  descriptionOfAcces  = $description_of_acces ;
         $NewUser-> save() ;
         $message= "Food For us";
