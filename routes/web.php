@@ -40,10 +40,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('update' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
-    Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
 
-    //Buyers
-    Route::get('buyerTransaction/{id}','TransactionController@buyerTransaction');
+
+
+
 
     //Users
     Route::get('userList' ,  'UsersController@index');
@@ -54,6 +54,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Transaction
     Route::post('buy','TransactionController@store');
     Route::get('show','TransactionController@show');
+    Route::get('buyerTransaction','TransactionController@buyerTransaction');
+    Route::get('sellerTransaction','TransactionController@sellerTransaction');
 
 
     // Cart

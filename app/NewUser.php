@@ -36,4 +36,9 @@ class NewUser extends Eloquent
     {
         return $this->belongsTo(UserTravelRadius::class, 'travelRadius', 'id');
     }
+
+    public  function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
