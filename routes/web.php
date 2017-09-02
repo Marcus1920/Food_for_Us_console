@@ -30,6 +30,10 @@ Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
+// Produrct  type   
+ Route::get ('packagingList' , 'packagingListController@index');
+ Route::get ('producttype' , 'ProductTypeController@index');
+
     //Researchers
     Route::get('myResearchs','ResearchersController@index');
     Route::post('createResearch','ResearchersController@create');
