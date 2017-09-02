@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
 
+
     protected  $table="transactions";
     protected $fillable =
         [
@@ -14,5 +15,6 @@ class Transaction extends Model
             'buyer_id',
             'status',
             'productName',];
+
 
 }

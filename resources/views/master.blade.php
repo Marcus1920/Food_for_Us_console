@@ -164,8 +164,11 @@
         <!-- Side Menu -->
         <ul class="list-unstyled side-menu">
 
-
-            
+            <li {{ (Request::is('map') ? "class=active" : '') }}>
+                <a class="sa-side-home" href="{{ url('getUsers') }}">
+                    <span class="menu-item">map</span>
+                </a>
+            </li>
 
             <li {{ (Request::is('reports') ? "class=active" : '') }}>
                 <a class="sa-side-user" href="{{ url('users') }}">
@@ -173,7 +176,6 @@
 
                 </a>
             </li>
-
 
                 <li {{ (Request::is('list-users') ? "class=active dropdown" : 'dropdown') }}>
 
@@ -185,11 +187,15 @@
                         <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Admin List</a></li>
 
                         <li><a href="{{ url('postslist') }}"><span class="badge badge-r"></span>Post List</a></li>
+                        <li><a href="{{ url('userroleslist') }}"><span class="badge badge-r"></span>User Roles List</a></li>
+                        <li><a href="{{ url('productlist') }}"><span class="badge badge-r"></span>Product List</a></li>
+                        <li><a href="{{ url('packaginglist') }}"><span class="badge badge-r"></span>Packaging List</a></li>
                     </ul>
                 </li>
 
 
-           
+          
+
 
         </ul>
     </aside>

@@ -1,12 +1,12 @@
 @extends('master')
 @section('content')
     <ol class="breadcrumb hidden-xs">
-        <li><a href="{{ url('/users') }}">Home</a></li>
-        <li class="active">Posts</li>
+        <li><a href="{{ url('/master') }}">Home</a></li>
+        <li class="active">Products</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
-    <h4 class="page-title">Seller Post Listing</h4>
+    <h4 class="page-title">Products Listing</h4>
 
 
     <div class="row">
@@ -15,31 +15,23 @@
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
-                        <h3 class="block-title">Post </h3>
+                        <h3 class="block-title">Products</h3>
+                        {{--<a href="{{ url('tasks/create') }}" class="btn btn-sm">--}}
+                            {{--<i class="fa fa-plus" aria-hidden="true" title="Add new product" data-toggle="tooltip"></i>--}}
+                        {{--</a>--}}
                         <table class="table tile table-striped" id="pendingreferralCasesTable">
                             <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Surname</th>
-                                <th>Email</th>
-                                <th>Product Type </th>
-                                <th>Quantity</th>
-                                <th>Cost Per KG</th>
-                                <th>Action</th>
+                                <th>Category</th>
                             </tr>
                             </thead>
-                            @foreach($post  as $posts)
+                            @foreach($products  as $product)
                                 <tr>
-                                    <td> {{$posts->id}} </td>
-                                    <td> {{$posts->newuser->name}}</td>
-                                    <td> {{$posts->newuser->surname}}</td>
-                                    <td> {{$posts->newuser->email}}  </td>
-                                    <td> {{$posts->Products->name}} </td>
-                                    <td> {{$posts->quantity}} </td>
-                                    <td> {{$posts->costPerKg}} </td>
-                                    <td><a href="{{url('/postview/'.$posts->id)}}"  value="click me" class="btn btn-secondary">View</a></td>
-
+                                    <td> {{$product->id}} </td>
+                                    <td> {{$product->name}}</td>
+                                    <td> {{$product->type}}</td>
                                 </tr>
                             @endforeach
                         </table>
@@ -52,7 +44,7 @@
 
 
 
-    @endsection
+@endsection
 @section('footer')
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

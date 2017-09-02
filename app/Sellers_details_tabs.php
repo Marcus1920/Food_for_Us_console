@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Sellers_details_tabs extends Model
+class Sellers_details_tabs extends Eloquent
 {
     public  $directory   = "/images/";
 
@@ -14,16 +14,16 @@ class Sellers_details_tabs extends Model
          'location',
          'gps_lat',
          'gps_long',
-         'product_type',
+         'productType',
          'quantity',
-         'cost_per_kg',
+         'costPerKg',
          'packaging',
-         'available_hours',
-         'payment_methods',
+         'availableHours',
+         'paymentMethods',
 		 'description',
 		 'country',
 		 'city',
-         'transaction_rating'
+         'transactionRating'
 
         ];
 
@@ -37,6 +37,7 @@ class Sellers_details_tabs extends Model
        return $this->belongsTo(NewUser::class,'new_user_id','id');
 
     }
+
     public function sellerTransactions()
     {
         return $this->hasMany(Transaction::class);
@@ -44,5 +45,19 @@ class Sellers_details_tabs extends Model
     public function cartItems()
     {
         return $this->hasOne(Cart::class);
+	}
+
+    public  function User(){
+
+        return $this->belongsTo(NewUser::class,'new_user_id','id');
+    }
+    public  function Products(){
+
+        return $this->belongsTo(ProductType::class,'productType','id');
+    }
+
+    public  function Packaging()
+    {
+        return $this->belongsTo(Packaging::class, 'packaging', 'id');
     }
 }

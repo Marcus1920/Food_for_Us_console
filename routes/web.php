@@ -120,6 +120,13 @@ Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
 Route::post('searchByProductType','MapController@searchByProductType');
 
+Route::get('userroleslist', 'UserRolesController@index');
+Route::get('productlist', 'ProductsController@index');
+
+Route::get('packaginglist', 'PackagingController@index');
+Route::get('createPackaging', 'PackagingController@create');
+Route::get('storePackaging', 'PackagingController@store');
+
 
 
 ?>

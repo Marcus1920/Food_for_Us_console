@@ -16,16 +16,23 @@ class CreateNewUsersTable extends Migration
         Schema::create('new_users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('profilePicture');
+            $table->bigInteger('idNumber');
             $table->string('name');
             $table->string('surname');
             $table->string('email');
-            $table->string('intrest');
+            $table->integer('intrest')->unsigned();
             $table->integer('cellphone');
-
             $table->string('location');
-            $table->string(  'travel_radius');
-            $table->string('description_of_acces');
+            $table->integer(  'travelRadius')->unsigned();
+            $table->string('descriptionOfAcces');
             $table->string('password');
+            $table->foreign('intrest')->references('id')->on('user_roles');
+            $table->integer('active')->unsigned();
+            $table->foreign('active')->references('id')->on('user_statuses');
+            $table->foreign('travelRadius')->references('id')->on('user_travel_radii');
+            $table->string('api_key');
+            $table->string('gps_lat');
+            $table->string('gps_long');
             $table->timestamps();
         });
     }

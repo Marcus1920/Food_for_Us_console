@@ -60,7 +60,7 @@ class ResearchersController extends Controller
         $researcherPost = new Reseachers_details_tabs();
         $researcherPost->new_user_id = $user->id;
         $name =$user->name;
-        $surname=$user->name; 		
+        $surname=$user->surname;
 		$id=$user->id;
 		
         $img=$request->file('file');
@@ -74,12 +74,11 @@ class ResearchersController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-        $researcherPost->imageUrl = env('APP_URL').$destinationFolder.'/'.$name;
+        $researcherPost->img_url = env('APP_URL').$destinationFolder.'/'.$name;
 
 		$researcherPost->gps_long= $request->gps_long;
 		$researcherPost->gps_lat= $request->gps_lat;
         $researcherPost->researchNotes=  $request->researchNotes;
-		$researcherPost->summaryBox= $request->summaryBox;
 		$researcherPost->summaryBox= $request->summaryBox;
 		$researcherPost->natureOfBusiness = $request->natureOfBusiness;
         $researcherPost->save();
