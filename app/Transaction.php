@@ -16,5 +16,4 @@ class Transaction extends Model
             'status',
             'productName',];
 
-
 }
