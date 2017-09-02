@@ -24,18 +24,35 @@ class TransactionController extends Controller
     }
     public function store()
     {
+
+        $api_key                        = Input::get('api_key');
+        $product_id                     = Input::get('productId');
+        $buyer                          = NewUser::where('api_key',$api_key)->first();
+        $sellerDetails                  = Sellers_details_tabs::where('productName',$product_id)->first();
+        $productDetails                 = Cart::where('productId',$sellerDetails->id ,'=')->where('userId',$buyer->id)->first();
+
+
         $transactionObj                 = new Transaction();
-        $transactionObj->buyer_id       = Input::get('buyer_id');
-        $transactionObj->seller_id      = Input::get('seller_id');
+        $transactionObj->buyer_id       = $buyer->id;
+        $transactionObj->seller_id      = $sellerDetails->new_user_id;
         $transactionObj->status         = 1;
-        $transactionObj->product        = Input::get('product');
+        $transactionObj->productName    = $productDetails->productId;
+        $transactionObj->quantity       = $productDetails->quantity;
         $transactionObj->save();
+
+
+        $removeFromCart                 = Cart::where('productId',$productDetails->productId)
+                                               ->where('userId',$buyer->id)
+                                               ->update(['active'=>1]);
+
         return \Response::json($transactionObj);
     }
-    public function show($id)
+    public function show()
     {
-        $transaction        =Transaction::where('',$id)
-                            ->with('buyers','sellers')->first();
+
+        $api_key            = Input::get('api_key');
+        $userDetails        = NewUser::where('api_key',$api_key)->first();
+        $transaction        = Transaction::where('buyer_id',$userDetails->id)->get();
         return \Response::json($transaction);
     }
 
@@ -58,7 +75,7 @@ class TransactionController extends Controller
     public function addToCart()
     {
 
-        $api_key         =Input::get('api_key');
+        $api_key         = Input::get('api_key');
         $buyer           = NewUser::where('api_key',$api_key)->first();
         $productName     = Sellers_details_tabs::select('id')->where('productName',Input::get('foodItem'))->first();
 

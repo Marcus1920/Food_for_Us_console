@@ -53,7 +53,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('myProfile','UsersController@myProfile');
     //Transaction
     Route::post('buy','TransactionController@store');
-    Route::post('show/{id}','TransactionController@show');
+    Route::get('show','TransactionController@show');
 
 
     // Cart
