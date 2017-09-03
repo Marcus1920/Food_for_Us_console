@@ -38,7 +38,7 @@ class Sellers_details_tabs extends Eloquent
 
     }
 
-    public function sellerTransactions()
+    public function productTransacted()
     {
         return $this->hasMany(Transaction::class);
     }
@@ -60,4 +60,5 @@ class Sellers_details_tabs extends Eloquent
     {
         return $this->belongsTo(Packaging::class, 'packaging', 'id');
     }
+
 }

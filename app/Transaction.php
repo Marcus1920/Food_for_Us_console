@@ -13,32 +13,25 @@ class Transaction extends Model
         'seller_id',
         'buyer_id',
         'status',
-        'product_type',
+        'product',
+        'quantity',
     ];
 
 
-    public  function sellers_details_tabs()
-    {
-        return $this->belongsTo(Sellers_details_tabs::class);
-
-    }
-
-    public  function buyer_details()
-    {
-        return $this->belongsTo(BuyerDetail::class);
-
-    }
-
     public function sellers()
     {
-       return $this->belongsTo(Sellers_details_tabs::class,'seller_id','id');
+        return $this->belongsTo(NewUser::class,'seller_id','id');
 
     }
     public function buyers()
     {
-       return $this->belongsTo(BuyerDetail::class,'buyer_id','id');
+        return $this->belongsTo(NewUser::class,'buyer_id','id');
 
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Sellers_details_tabs::class,'product','id');
 
+    }
 }

@@ -30,6 +30,10 @@ Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
+// Produrct  type   
+ Route::get ('packagingList' , 'packagingListController@index');
+ Route::get ('producttype' , 'ProductTypeController@index');
+
     //Researchers
     Route::get('myResearchs','ResearchersController@index');
     Route::post('createResearch','ResearchersController@create');
@@ -40,11 +44,14 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('updateSeller' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
+
     Route::post('deletePost' , 'SellersController@destroy') ;
     Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
 
-    //Buyers
-    Route::get('buyerTransaction/{id}','TransactionController@buyerTransaction');
+
+
+
+
 
     //Users
     Route::get('userList' ,  'UsersController@index');
@@ -54,12 +61,15 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('myProfile','UsersController@myProfile');
     //Transaction
     Route::post('buy','TransactionController@store');
-    Route::post('show/{id}','TransactionController@show');
+    Route::get('show','TransactionController@show');
+    Route::get('buyerTransaction','TransactionController@buyerTransaction');
+    Route::get('sellerTransaction','TransactionController@sellerTransaction');
 
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
     Route::get('getCartItem','TransactionController@getCartItem');
+    Route::post('removeFromCart','TransactionController@removeFromCart');
 
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
@@ -126,10 +136,10 @@ Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
 Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
-/*Transactions Routes*/
 
 
 
+Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');

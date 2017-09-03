@@ -20,7 +20,8 @@ class SellersController extends Controller
         $respond=array();
 
         $api_key   = Input::get('api_key');
-
+		
+		
         $user  = NewUser::where('api_key',$api_key)->first();
 
         if($user!=NULL)
@@ -38,6 +39,7 @@ class SellersController extends Controller
                         sellers_details_tabs.gps_lat,
                         sellers_details_tabs.gps_long,
                         product_types.name as productType,
+						
                         sellers_details_tabs.quantity,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
@@ -80,6 +82,7 @@ class SellersController extends Controller
                         sellers_details_tabs.gps_lat,
                         sellers_details_tabs.gps_long,
                         product_types.name as productType,
+						sellers_details_tabs.productType,
                         sellers_details_tabs.quantity,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
@@ -111,16 +114,18 @@ class SellersController extends Controller
         $surname=$user->name; 		
 		$id=$user->id;
         $sellersPost->new_user_id     = $user->id;
-		$img=$request->file('file');
+		
+    	$img=$request->file('file');
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
             \File::makeDirectory($destinationFolder,0777,true);
+			move_uploaded_file($img,$destinationFolder); 
         }
 
         $name =    $img->getClientOriginalName();
 
-        $img->move($destinationFolder,$name) ;
+         $img->move($destinationFolder,$name) ;
 
         $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;
 
