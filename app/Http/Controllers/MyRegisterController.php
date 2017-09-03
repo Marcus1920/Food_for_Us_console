@@ -29,7 +29,7 @@ class MyRegisterController extends Controller
         $adminUsers->cellphone = $request['cellphone'];
         $adminUsers->email     = $request['email'];
         $adminUsers->password  = $request['password'];
-        $adminUsers->created_by  = \Auth::user()->name. ' ' .$adminUsers->surname;
+        $adminUsers->created_by  = \Auth::user()->name. ' ' . \Auth::user()->surname;
         $adminUsers->save();
         return Redirect::to('/users');
 

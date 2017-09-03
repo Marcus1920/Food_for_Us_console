@@ -33,7 +33,7 @@
                                     <td> {{$Newuser->UserTravelRadius->kilometres}} </td>
                                     <td> {{$Newuser->password}} </td>
                                     <td> {{$Newuser->description_of_acces}} </td>
-                                    <th><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></th>
+                                    <td><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></td>
 
                                 </tr>
                             @endforeach

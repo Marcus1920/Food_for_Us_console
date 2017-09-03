@@ -339,5 +339,12 @@ class UsersController extends Controller
 
     }
 
+//    public function getTravelRadius()
+//    {
+//
+//        $radius     = UserTravelRadius::select('','kilometres')->get();
+//        return response()->json($radius);
+//    }
+
 
 }

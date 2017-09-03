@@ -12,4 +12,13 @@ class ProductsController extends Controller
         $products=ProductType::all();
         return view ('Products.index', compact('products'));
     }
+
+    public function getProductType()
+    {
+
+        $productType    =ProductType::select('id','name')->get();
+        return response()->json($productType);
+    }
+
+
 }
