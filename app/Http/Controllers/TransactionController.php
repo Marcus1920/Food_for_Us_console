@@ -99,6 +99,7 @@ class TransactionController extends Controller
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
+                      sellers_details_tabs.productPicture,
                       product_types.name as productName,
                       transactions.created_at 
                                                             
@@ -134,6 +135,7 @@ class TransactionController extends Controller
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
+                      sellers_details_tabs.productPicture,
                       product_types.name as productName,
                       transactions.created_at
                                                             
