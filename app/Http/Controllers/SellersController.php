@@ -101,14 +101,6 @@ class SellersController extends Controller
 
         return $sellers_posts;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-	 
-	 
 	  public function created(Request $request)
     {
         $input  =  $request->all();
@@ -190,82 +182,119 @@ class SellersController extends Controller
         return $sellersPost;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     *
-     * App\Flight::where('active', 1)
-    ->where('destination', 'San Diego')
-    ->update(['delayed' => 1]);
-     */
     public function update(Request $request)
     {
-        $user  = NewUser::where('api_key',$request['api_key'])->first();
-
-        $sellersPost=Sellers_details_tabs::where('new_user_id',$user->id)
-            ->where('id',$request['seller_post_id'])->get();
-
-        return $sellersPost;
-
-//        $user  = NewUser::findOrFail(1);
-//        $user->Sellers_details_tabss()->whereId(1)-> update([
-//            'product_picture'=> 'hommmmmme.png' , 'location' => 'Drban' ,'gps_lat' =>'32323',
-//            'gps_long'=>'12121232','product_type' => 'product_type' ,'quantity' => '12'  ,
-//            'cost_per_kg' => '12kg' , 'packaging' =>'packaging',
-//            'available_hours' =>'34','payment_methods'=>'FTP' , 'transaction_rating' => '10'
+//        $user  = NewUser::where('api_key',$request['api_key'])->first();
+//      $remove =  $user->productPicture;
+//        unlink($filename);
+//        if (file_exists($filename)) {
+//            unlink($filename);
+//           // echo 'File '.$filename.' has been deleted';
+//        } else {
+//           // echo 'Could not delete '.$filename.', file does not exist';
+//        }
 //
-//        ]);
+//        $sellersPost=Sellers_details_tabs::where('new_user_id',$user->id)
+//            ->where('id',$request['id'])
 //
-//        return "ok";
+//
+//            /*$img=$request->file('file');
+//        $destinationFolder = "images/".$name."_".$surname."_".$id."/";
+//
+//        if(!\File::exists($destinationFolder)) {
+//            \File::makeDirectory($destinationFolder,0777,true);
+//        }
+//
+//        $name =    $img->getClientOriginalName();
+//
+//        $img->move($destinationFolder,$name) ;
+//
+//        $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;*/
+//
+//
+//            ->update(['productPicture'=> Input::get('productPicture'),
+//                'location'=> Input::get('location'),
+//                'gps_lat'=> Input::get('gps_lat'),
+//                'gps_long'=> Input::get('gps_long'),
+//                'productType'=> Input::get('productType'),
+//                'quantity'=> Input::get('quantity'),
+//                'costPerKg'=> Input::get('costPerKg'),
+//                'description'=> Input::get('description'),
+//                'country'=> Input::get('country'),
+//                'city'=> Input::get('city'),
+//                'packaging'=> Input::get('packaging'),
+//                'availableHours'=> Input::get('availableHours'),
+//                'paymentMethods'=> Input::get('paymentMethods'),
+//                'transactionRating'=> Input::get('transactionRating'),
+//                'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
+//
+//        $sellersPost     = Sellers_details_tabs::where('new_user_id',$user->id)->get();
+//        return  response()->json($sellersPost);
+//
+////        $user  = NewUser::findOrFail(1);
+////        $user->Sellers_details_tabss()->whereId(1)-> update([
+////            'product_picture'=> 'hommmmmme.png' , 'location' => 'Drban' ,'gps_lat' =>'32323',
+////            'gps_long'=>'12121232','product_type' => 'product_type' ,'quantity' => '12'  ,
+////            'cost_per_kg' => '12kg' , 'packaging' =>'packaging',
+////            'available_hours' =>'34','payment_methods'=>'FTP' , 'transaction_rating' => '10'
+////
+////        ]);
+////
+////        return "ok";
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy()
     {
-        $user  = NewUser::findOrFail(1);
-        $user->Sellers_details_tabss()->whereId(2)->delete();
+        $apiKey         = Input::get('apiKey');
+        $id             = Input::get('id');
 
-        return "ok";
+        $user           = NewUser::where('api_key',$apiKey)->first();
+        $deletePost     = Sellers_details_tabs::where('id', $id)
+                             ->where('new_user_id', $user->id)
+                             ->delete();
+
+        $sellesPosts      = Sellers_details_tabs::where('new_user_id',$user->id)->get();
+        return response()->json($sellesPosts);
+
+    }
+
+
+    public function updating()
+    {
+        $apiKey         = Input::get('apiKey');
+        $user           = NewUser::where('api_key',$apiKey)->first();
+        $id             = Input::get('id');
+        $deletePost     =  Sellers_details_tabs::where('id', $id)->where('new_user_id', $user)
+            ->update(['productPicture'=> Input::get('name'),
+                'location'=> Input::get('description'),
+                'gps_lat'=> Input::get('ingredients'),
+                'gps_long'=> Input::get('methods'),
+                'productType'=> Input::get('methods'),
+                'quantity'=> Input::get('methods'),
+                'costPerKg'=> Input::get('methods'),
+                'description'=> Input::get('methods'),
+                'country'=> Input::get('methods'),
+                'city'=> Input::get('methods'),
+                'packaging'=> Input::get('methods'),
+                'availableHours'=> Input::get('methods'),
+                'paymentMethods'=> Input::get('methods'),
+                'transactionRating'=> Input::get('methods'),
+                'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
+        $posts          =   Sellers_details_tabs::where('new_user_id',$user);
     }
 }

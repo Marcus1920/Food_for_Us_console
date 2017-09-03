@@ -365,5 +365,12 @@ function generateRandomString($length = 24) {
 
     }
 
+//    public function getTravelRadius()
+//    {
+//
+//        $radius     = UserTravelRadius::select('','kilometres')->get();
+//        return response()->json($radius);
+//    }
+
 
 }

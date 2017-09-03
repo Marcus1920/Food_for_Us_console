@@ -41,9 +41,13 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Sellers
     Route::post('created' , 'SellersController@created') ;
-    Route::get('update' , 'SellersController@update') ;
+    Route::post('updateSeller' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
+
+    Route::post('deletePost' , 'SellersController@destroy') ;
+    Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
+
 
 
 
@@ -74,6 +78,20 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('editRecipe','PublicWallController@editRecipe');
     Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
+    //User Roles
+    Route::get('getUserRoles','UserRolesController@getUserRoles');
+
+    //Travel Radius
+    Route::get('getTravelRadius','UserTravelRadiusController@getTravelRadius');
+
+    //Packaging
+    Route::get('getPackaging','PackagingController@getPackaging');
+
+    //Packaging
+    Route::get('getProductType','ProductsController@getProductType');
+
+    //Transport
+    Route::get('getTransportType','TransportController@getTransportType');
 
 
 });
@@ -127,13 +145,20 @@ Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
 Route::post('searchByProductType','MapController@searchByProductType');
 
-Route::get('userroleslist', 'UserRolesController@index');
+
 Route::get('productlist', 'ProductsController@index');
 
 Route::get('packaginglist', 'PackagingController@index');
 Route::get('createPackaging', 'PackagingController@create');
 Route::get('storePackaging', 'PackagingController@store');
 
+//User Role
+Route::get('userroleslist', 'UserRolesController@index');
+Route::post('addUserRole', function (){
 
+    return view('UserRoles.add');
+});
+
+//End User role
 
 ?>

@@ -23,4 +23,11 @@ class PackagingController extends Controller
         $newPackaging->slug = $request['name'];
         $newPackaging->save();
     }
+
+    public function getPackaging()
+    {
+
+        $packaging = Packaging::select('id','name')->get();
+        return response()->json($packaging);
+    }
 }
