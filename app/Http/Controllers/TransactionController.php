@@ -29,6 +29,7 @@ class TransactionController extends Controller
         $product_id                     = Input::get('productType');
         $buyer                          = NewUser::where('api_key',$api_key)->first();
         $sellerDetails                  = Sellers_details_tabs::where('productType',$product_id)->first();
+
         $productDetails                 = Cart::where('productId',$sellerDetails->id)->where('userId',$buyer->id)->first();
 
 
@@ -98,11 +99,13 @@ class TransactionController extends Controller
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
-                      product_types.name as productName
+                      product_types.name as productName,
+                      transactions.created_at 
                                                             
                    "
                         )
                     )
+                    ->orderBy('transactions.created_at','DESC')
                     ->get();
                 return \Response::json($sellerTransactionsDetails);
 
@@ -131,11 +134,13 @@ class TransactionController extends Controller
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
-                       product_types.name as productName
+                      product_types.name as productName,
+                      transactions.created_at
                                                             
                    "
                         )
                     )
+                    ->orderBy('transactions.created_at','DESC')
                     ->get();
                 return \Response::json($buyerTransactionsDetails);
             }
@@ -152,10 +157,10 @@ class TransactionController extends Controller
         $buyer                      = NewUser::where('api_key',$api_key)->first();
         $productName                = Sellers_details_tabs::select('id')->where('productType',Input::get('foodItem'))->first();
 
-        $cartItemsObj               =new Cart();
-        $cartItemsObj->userId       =$buyer->id;
-        $cartItemsObj->productId    =$productName->id;
-        $cartItemsObj->quantity     =Input::get('quantity');
+        $cartItemsObj               = new Cart();
+        $cartItemsObj->userId       = $buyer->id;
+        $cartItemsObj->productId    = $productName->id;
+        $cartItemsObj->quantity     = Input::get('quantity');
         $cartItemsObj->save();
         return "okay items Added";
     }
@@ -166,24 +171,26 @@ class TransactionController extends Controller
         $api_key        =Input::get('api_key');
         $buyerId       = NewUser::where('api_key',$api_key)->first();
         $cartItems     =\DB::table('carts')
-                       ->join('new_users', 'carts.userId', '=', 'new_users.id')
                        ->join('sellers_details_tabs', 'carts.productId', '=', 'sellers_details_tabs.id')
+                       ->join('new_users', 'sellers_details_tabs.new_user_id', '=', 'new_users.id')
                        ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
                        ->select(
                                 \DB::raw(
                                         "                        
                                         carts.userId,                        
                                         carts.productId,                        
-                                        carts.quantity,                        
+                                        carts.quantity,
+                                        sellers_details_tabs.new_user_id,                        
                                         new_users.name, 
                                         product_types.name as productName,
                                         sellers_details_tabs.productPicture
-                                                                                
-                                       "
+                                        
+                                     "
                                         )
                                 )
                         ->where('carts.active','=',0)
                         ->where('userId',$buyerId->id)
+                        ->orderBy('carts.created_at','DESC')
                         ->get();
         return $cartItems;
 
