@@ -47,7 +47,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Packaging :</b>&nbsp; </td><td>{$sellersPost->Packaging->name}</td>
+                     
                       </tr>
                       <br/>
                        <tr>
@@ -97,7 +97,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Packaging :</b>&nbsp; </td><td>{$sellersPost->Packaging->name}</td>
+                    
                       </tr>
                       </div>";
 

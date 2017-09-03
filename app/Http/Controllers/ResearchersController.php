@@ -52,9 +52,10 @@ class ResearchersController extends Controller
     {
 	///	$file=$request->file('file');
 		///return $file->getClientOriginalName();
-	//	$file=$request->file;
+	//	;
 		
-
+		
+\Log::info($file=$request->file);
         $user  = NewUser::where('api_key',$request->api_key)->first();
     
         $researcherPost = new Reseachers_details_tabs();
@@ -64,13 +65,16 @@ class ResearchersController extends Controller
 		$id=$user->id;
 		
         $img=$request->file('file');
+	
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
             \File::makeDirectory($destinationFolder,0777,true);
         }
 
-        $name =    $img->getClientOriginalName();
+         $name =    $img->getClientOriginalName();
+		
+
 
         $img->move($destinationFolder,$name) ;
 

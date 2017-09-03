@@ -118,7 +118,7 @@ class SellersController extends Controller
     	$img=$request->file('file');
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
-        if(!\File::exists($destinationFolder)) {
+       /* if(!\File::exists($destinationFolder)) {
             \File::makeDirectory($destinationFolder,0777,true);
 			move_uploaded_file($img,$destinationFolder); 
         }
@@ -128,7 +128,7 @@ class SellersController extends Controller
          $img->move($destinationFolder,$name) ;
 
         $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;
-
+		**/
         $productTypeID = ProductType::where('name',Input::get('productName'))->first();
         $sellersPost->productType  = $productTypeID['id'];
 
@@ -182,81 +182,6 @@ class SellersController extends Controller
         return $sellersPost;
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-
-    }
-
-    public function update(Request $request)
-    {
-//        $user  = NewUser::where('api_key',$request['api_key'])->first();
-//      $remove =  $user->productPicture;
-//        unlink($filename);
-//        if (file_exists($filename)) {
-//            unlink($filename);
-//           // echo 'File '.$filename.' has been deleted';
-//        } else {
-//           // echo 'Could not delete '.$filename.', file does not exist';
-//        }
-//
-//        $sellersPost=Sellers_details_tabs::where('new_user_id',$user->id)
-//            ->where('id',$request['id'])
-//
-//
-//            /*$img=$request->file('file');
-//        $destinationFolder = "images/".$name."_".$surname."_".$id."/";
-//
-//        if(!\File::exists($destinationFolder)) {
-//            \File::makeDirectory($destinationFolder,0777,true);
-//        }
-//
-//        $name =    $img->getClientOriginalName();
-//
-//        $img->move($destinationFolder,$name) ;
-//
-//        $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;*/
-//
-//
-//            ->update(['productPicture'=> Input::get('productPicture'),
-//                'location'=> Input::get('location'),
-//                'gps_lat'=> Input::get('gps_lat'),
-//                'gps_long'=> Input::get('gps_long'),
-//                'productType'=> Input::get('productType'),
-//                'quantity'=> Input::get('quantity'),
-//                'costPerKg'=> Input::get('costPerKg'),
-//                'description'=> Input::get('description'),
-//                'country'=> Input::get('country'),
-//                'city'=> Input::get('city'),
-//                'packaging'=> Input::get('packaging'),
-//                'availableHours'=> Input::get('availableHours'),
-//                'paymentMethods'=> Input::get('paymentMethods'),
-//                'transactionRating'=> Input::get('transactionRating'),
-//                'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
-//
-//        $sellersPost     = Sellers_details_tabs::where('new_user_id',$user->id)->get();
-//        return  response()->json($sellersPost);
-//
-////        $user  = NewUser::findOrFail(1);
-////        $user->Sellers_details_tabss()->whereId(1)-> update([
-////            'product_picture'=> 'hommmmmme.png' , 'location' => 'Drban' ,'gps_lat' =>'32323',
-////            'gps_long'=>'12121232','product_type' => 'product_type' ,'quantity' => '12'  ,
-////            'cost_per_kg' => '12kg' , 'packaging' =>'packaging',
-////            'available_hours' =>'34','payment_methods'=>'FTP' , 'transaction_rating' => '10'
-////
-////        ]);
-////
-////        return "ok";
-    }
 
     public function destroy()
     {
