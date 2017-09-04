@@ -180,12 +180,14 @@ class TransactionController extends Controller
                                 \DB::raw(
                                         "                        
                                         carts.userId,                        
-                                        carts.productId,                        
+                                        carts.productId,  
+                                        sellers_details_tabs.productType,                      
                                         carts.quantity,
                                         sellers_details_tabs.new_user_id,                        
                                         new_users.name, 
                                         product_types.name as productName,
-                                        sellers_details_tabs.productPicture
+                                        sellers_details_tabs.productPicture,
+                                         carts.created_at
                                         
                                      "
                                         )
