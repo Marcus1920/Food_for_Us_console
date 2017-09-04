@@ -129,6 +129,7 @@ Route::get('/createUser', function()
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
+
 Route::get('postslist', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
@@ -158,6 +159,10 @@ Route::post('addUserRole', function (){
 
     return view('UserRoles.add');
 });
+Route::get('viewAdmin/{id}', 'UsersController@viewAdmin');
+
+Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
+
 
 //End User role
 

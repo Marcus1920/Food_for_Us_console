@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PublicWall;
+use App\User;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use App\UserRoles;
@@ -371,6 +372,32 @@ function generateRandomString($length = 24) {
 //        $radius     = UserTravelRadius::select('','kilometres')->get();
 //        return response()->json($radius);
 //    }
+
+        public function viewAdmin($id)
+        {
+            $admin  = User::where('id',$id)->first();
+
+
+
+       return view('admin.editAdmin', compact('admin'));
+
+        }
+
+    public function updateAdmin($id)
+    {
+        $user                              = User::where('id',$id)->first();
+//        $user                              = User::where('id',$request['userID'])->first();
+        $admin                             = User::where('id',$user->id)->first();
+        $admin->name                        =Input::get('name');
+        $admin->surname                     = Input::get('surname');
+        $admin->email                       =Input::get('email');
+        $admin->cellphone                   = Input::get('cellphone');
+        $admin->updated_at                  = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
+        $admin->save();
+
+        return view('admin.editAdmin', compact('admin'));
+
+    }
 
 
 }

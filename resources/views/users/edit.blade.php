@@ -58,7 +58,7 @@
             <div class="form-group">
                 {!! Form::label('Travel Radius', 'Travel Radius', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('travel_radius ',$user->travel_radius,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'email', 'readonly']) !!}
+                    {!! Form::text('travelRadius ',$user->travelRadius,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'email', 'readonly']) !!}
                     @if ($errors->has('email'))
                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -71,7 +71,7 @@
             <div class="form-group">
                 {!! Form::label('Description', 'Description', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('description',$user->description_of_acces ,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'description','type'=>"password", 'readonly']) !!}
+                    {!! Form::text('descriptionOfAcces',$user->descriptionOfAcces ,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'description','type'=>"password", 'readonly']) !!}
                     @if ($errors->has('password'))<span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>@endif
                 </div>
             </div>

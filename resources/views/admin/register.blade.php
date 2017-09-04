@@ -4,7 +4,7 @@
     <li><a href="{{url('/users')}}">Home</a></li>
     <li class="active">Registration Form</li>
 </ol>
-<h4 class="page-title">USERS</h4>
+<h4 class="page-title">Register Admin</h4>
 
 <!-- Basic with panel-->
 <div class="block-area" id="basic">
@@ -93,6 +93,8 @@
                 <button type="submit" id='submitMemberForm' class="btn btn-info btn-sm m-t-10">SUBMIT FORM</button>
             </div>
         </div>
+
+        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
         {!! Form::close() !!}
     </div>
 </div>
