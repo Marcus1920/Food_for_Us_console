@@ -22,7 +22,7 @@
 
 
 </head>
-<body id="skin-blur-ocean" style="background-color: #265a88">
+<body id="skin-blur-ocean"  style="background-color:#265a88" >
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -44,10 +44,14 @@
         <p></p>
     </header>
 
-    <div class="row">
-        <div class="col-lg-4">
+    <div class="row" >
+        <div class="col-md-6" style="background-color:#265a88; height: 600px; ">
 
             <form class="box tile animated active" id="box-login" role="form" method="POST" action="{{ url('login') }}">
+                <center>
+                <img src="{{ asset('/img/FFU_Words.png') }}" alt="lomnin">
+                </center>
+                <br/>
                 <h2 class="m-t-0 m-b-15">Login</h2>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="text" class="login-control m-b-10" placeholder="Email" name="email">
@@ -77,8 +81,13 @@
                 <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
             </form>
         </div>
+        <div class="col-md-6" style="background-image: url(img/login_illustration.png); height: 600px">
 
-        <div id="login_img"></div>
+
+        </div>
+
+        <div id="login_img" class="col-lg-6"></div>
+
     </div>
 
     <div class="clearfix"></div>

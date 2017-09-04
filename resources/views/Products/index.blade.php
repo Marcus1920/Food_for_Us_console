@@ -10,15 +10,17 @@
 
 
     <div class="row">
-        <div class="col-md-12" >
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8" >
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
                         <h3 class="block-title">Products</h3>
-                        {{--<a href="{{ url('tasks/create') }}" class="btn btn-sm">--}}
-                            {{--<i class="fa fa-plus" aria-hidden="true" title="Add new product" data-toggle="tooltip"></i>--}}
-                        {{--</a>--}}
+                        <a href="{{ url('CreateProduct') }}" class="btn btn-sm">
+                            <i class="fa fa-plus" aria-hidden="true" title="Add new product" data-toggle="tooltip"></i>
+                        </a>
                         <table class="table tile table-striped" id="pendingreferralCasesTable">
                             <thead>
                             <tr>

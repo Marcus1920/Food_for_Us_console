@@ -223,8 +223,7 @@ class UsersController extends Controller
     public function updateUser($id)
     {
 		
-		
-         $user = NewUser::where('id',$id)
+		$user = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->where('id',$id)
               ->update(['active'=>2]);
 
          $userDetails = NewUser::find($id);
