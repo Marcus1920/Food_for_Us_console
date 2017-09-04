@@ -232,7 +232,7 @@ return [
 
         'Input' => Illuminate\Support\Facades\Input::class,
 
-        'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
 
     ],
 

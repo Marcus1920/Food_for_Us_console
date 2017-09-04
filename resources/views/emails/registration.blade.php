@@ -64,14 +64,14 @@
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hi {{$name}} </h3>
+                                    <h3 style="padding-left: 10px":>Hi{{$name}} </h3>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulation you've successfully registered to the Food For Us Application. A notification for your account activation will follow once it has been activated</p>
-                                    <p style="padding:0px 0px 10px 0px;">kind Regards Food For Us </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulation you've successfully registered to the Food For Us Application. A notification for your account activation will follow once it has been activated.</p>
+                                    <p style="padding:0px 0px 10px 0px; text-align: left">kind Regards Food For Us </p>
 
                                 </td>
                             </tr>

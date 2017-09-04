@@ -122,6 +122,7 @@ Route::get('/inactivateUsers/{id}', function($id)
    return view('users.inactivateUsers',compact('user'));
 });
 
+
 Route::get('/createUser', function()
 {
     return view('users.edit',compact('user'));
@@ -138,7 +139,20 @@ Route::get('/registration', function()
     return view('emails.registration',compact('registration'));
 });
 
+Route::get('/inactivation',function()
+{
+    return view('emails.inactivation',compact('inactivation'));
+});
 
+Route::get('/resetpassword',function()
+{
+    return view('emails.resetpassword',compact('resetpassword'));
+});
+
+Route::get('/reset',function()
+{
+    return view('auth.reset',compact('reset'));
+});
 
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
@@ -155,6 +169,7 @@ Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
 Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
+Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');

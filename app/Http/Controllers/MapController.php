@@ -133,7 +133,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Interest </b>&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>{$user->UserRole->name}</td>
+                      <td><b>Interest  : </td><td>{$user->UserRole->name}</td>
                       </tr>
                       <br/>
                       <tr>
