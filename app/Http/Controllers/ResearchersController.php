@@ -63,7 +63,7 @@ class ResearchersController extends Controller
         $name =$user->name;
         $surname=$user->surname;
 		$id=$user->id;
-		
+	
         $img=$request->file('file');
 	
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
