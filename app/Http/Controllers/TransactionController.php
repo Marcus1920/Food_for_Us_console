@@ -14,14 +14,7 @@ use Response;
 class TransactionController extends Controller
 {
 
-    public function index()
-    {
 
-    }
-    public function create()
-    {
-
-    }
     public function store()
     {
 
@@ -48,26 +41,6 @@ class TransactionController extends Controller
 
         return \Response::json($transactionObj);
     }
-    public function show()
-    {
-
-        $api_key            = Input::get('api_key');
-        $userDetails        = NewUser::where('api_key',$api_key)->first();
-        $transaction        = Transaction::where('buyer_id',$userDetails->id)->get();
-        return \Response::json($transaction);
-    }
-
-    public function sellerTransaction()
-    {
-        $api_key            = Input::get('api_key');
-        $userDetails        = NewUser::where('api_key',$api_key)->first();
-        $sellerTransaction  = Transaction::with('buyers','product')
-                            ->where('seller_id',$userDetails->id)
-                            ->get();
-
-
-        return \Response::json($sellerTransaction);
-    }
 
     public function transactionDetails()
     {
@@ -83,7 +56,6 @@ class TransactionController extends Controller
                     ->join('carts','transactions.product','=','carts.productId')
                     ->join('sellers_details_tabs','carts.productId','=','sellers_details_tabs.id')
                     ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
-                    ->where('transactions.seller_id',$userDetails->id)
                     ->select(
                         \DB::raw(
                             "                        
@@ -106,8 +78,10 @@ class TransactionController extends Controller
                    "
                         )
                     )
+                    ->where('transactions.seller_id',$userDetails->id,'=')
                     ->orderBy('transactions.created_at','DESC')
                     ->get();
+
                 return \Response::json($sellerTransactionsDetails);
 
             }
@@ -119,7 +93,7 @@ class TransactionController extends Controller
                     ->join('carts','transactions.product','=','carts.productId')
                     ->join('sellers_details_tabs','carts.productId','=','sellers_details_tabs.id')
                     ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
-                    ->where('transactions.buyer_id',$userDetails->id)
+                    ->where('transactions.buyer_id',$userDetails->id,'=')
                     ->select(
                         \DB::raw(
                             "                        
@@ -144,6 +118,7 @@ class TransactionController extends Controller
                     )
                     ->orderBy('transactions.created_at','DESC')
                     ->get();
+
                 return \Response::json($buyerTransactionsDetails);
             }
         else
@@ -164,6 +139,7 @@ class TransactionController extends Controller
         $cartItemsObj->productId    = $productName->id;
         $cartItemsObj->quantity     = Input::get('quantity');
         $cartItemsObj->save();
+
         return "okay items Added";
     }
 

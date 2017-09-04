@@ -7,14 +7,17 @@ use App\ProductType;
 use App\Packaging;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Services\EmailService;
 
 class SellersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $emailService;
+
+    public  function __construct(EmailService $emailService)
+    {
+      $this->emailService = $emailService;
+    }
+
     public function index()
     {
         $respond=array();
@@ -101,6 +104,7 @@ class SellersController extends Controller
 
         return $sellers_posts;
     }
+
 	  public function created(Request $request)
     {
         $input  =  $request->all();
@@ -149,7 +153,25 @@ class SellersController extends Controller
         $sellersPost->transactionRating = Input::get('transactionRating');
         $sellersPost->save();
 
+        $buyerEmails =$this->emailService->Buyers();
+        var_dump($buyerEmails);
+        die();
+        foreach($buyerEmails as $buyerEmail)
+        {
+            $data = array(
+
+                'name'      =>      $buyerEmail->name,
+                'content'   =>      $sellersPost->productType,
+                         );
+
+            \Mail::send('emails.newProduct', $data, function ($message) use ($buyerEmail) {
+                $message->from('info@foodorus', 'Food For us');
+                $message->to($buyerEmail->email)->subject("New Product Notification");
+            });
+        }
+
         return $sellersPost;
+
     }
 	 
 	 
