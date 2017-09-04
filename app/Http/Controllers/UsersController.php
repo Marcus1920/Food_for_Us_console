@@ -235,10 +235,10 @@ class UsersController extends Controller
            //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
                     );
 
-        \Mail::send('emails.transactions', $data, function ($message) use ($userDetails) {
+        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
-            $message->from('info@siyaleader.net', 'Siyaleader');
-            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
+            $message->from('info@siyaleader.net', 'Food For Us');
+            $message->to($userDetails->email)->subject("Food For Us Notification!");
 
         });
 
@@ -261,10 +261,10 @@ class UsersController extends Controller
             //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
                  );
 
-        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
+        \Mail::send('emails.inactivation', $data, function ($message) use ($userDetails) {
 
-            $message->from('info@siyaleader.net', 'Siyaleader');
-            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
+            $message->from('info@siyaleader.net', 'Food For Us');
+            $message->to($userDetails->email)->subject("Food For Us Notification !");
 
                    });
         return Redirect::to('/users');
@@ -330,8 +330,8 @@ function generateRandomString($length = 24) {
             'content'   =>      $message,
                      );
 
-      \Mail::send('emails.resetpassword', $data, function ($message) use ($NewUser) {
-             $message->from('info@foodorus', 'Food For us');
+      \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
+             $message->from('info@foodforus', 'Food For us');
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 
