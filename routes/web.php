@@ -127,6 +127,22 @@ Route::get('/createUser', function()
     return view('users.edit',compact('user'));
 });
 
+
+
+
+Route::get('/activation', function()
+{
+    return view('emails.activation',compact('activation'));
+});
+
+
+Route::get('/registration', function ()
+{
+    return view('emails.registration',compact('registration'));
+});
+
+
+
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
 
