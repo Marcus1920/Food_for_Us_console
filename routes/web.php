@@ -141,6 +141,11 @@ Route::get('/registration', function ()
 });
 
 
+Route::get('/transaction', function ()
+{
+    return view('emails.transaction',compact('transaction'));
+});
+
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
