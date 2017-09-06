@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Email</title>
 
- <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
- <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
- <title>Email</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Email</title>
 
 </head>
 
@@ -40,7 +40,7 @@
                             </tr>
                             <tr><!-- title -->
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: 0px; text-align: center; color:#0DB6BE;">
-                                    <strong>ACCOUNT ACTIVATED</strong> NOTIFICATION!
+                                    <strong>CHANGE PASSWORD</strong> NOTIFICATION!
                                 </td>
                             </tr>
                             <tr>
@@ -69,7 +69,7 @@
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hello{{$email}} </h3>
+                                    <h3 style="padding-left: 10px":>Hi {{$name}}</h3>
 
 
                                 </td>
@@ -77,21 +77,22 @@
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulations! You have been approved. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulations! You have successfuly changed your password. </p>
 
                                 </td>
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>your  username is :{{$email}} </h3>
-                                    <h3 style="padding-left: 10px":>your password is: {{$password}} </h3>
+                                    <h3 style="padding-left: 10px":>your  username is : {{$email}} </h3>
+                                    <h3 style="padding-left: 10px":>your password is : {{$password}} </h3>
+
 
                                 </td>
                             </tr>
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Once logged in you can change your password to something easier to remember under your profile. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Once logged in you can change your password under your profile. </p>
                                 </td>
                             </tr>
                             <tr><!-- spacing bottom -->
@@ -127,16 +128,12 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0px; text-align: left; color:#2E363F;">
                                     <p style="padding:0px 0px 10px 10px;"> Enjoy The Application,<br>
-                                       The FoodForUs Team</p>
+                                     The FoodForUs Team</p>
                                 </td>
                                 <td width="100%" height="6"></td>
                             </tr>
 
-                            <tr>
-                                <td width="100%" style="font-family:helvetica, Arial, sans-serif; font-size: 14px; text-align: left; color:#87919F; line-height: 24px;">
 
-                                </td>
-                            </tr>
                             {{-- <tr><!-- spacing bottom -->
                                  <td class="m_5210098864014348207mcnDividerBlockInner" style="min-width:100%;padding:2px" height="8">
                                      <table class="m_5210098864014348207mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;border-top-color:#eaeaea;border-top-style:solid;border-top-width:2px;min-width:100%">
@@ -174,6 +171,60 @@
     </tbody>
 </table>
 <!-- /ROW 2 IMGS -->
+
+<!-- Space -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tbody>
+    <tr>
+        <td width="100%" height="30"></td>
+    </tr>
+    </tbody>
+
+    <tbody>
+    <tr>
+        <td align="center" style="border-collapse: collapse;">
+
+            <!-- /Space -->
+
+
+            <!-- ROW 2 IMGS -->
+
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- /Headline Header -->
+
+
+
+            <!-- Space -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                <tbody>
+                <tr>
+                    <td width="100%" height="20">
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- /Space -->
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- /ROW 2 IMGS -->
+
+<!-- Space -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tbody>
+    <tr>
+        <td width="100%" height="30"></td>
+    </tr>
+    </tbody>
 
 </table>
 <!-- /Space -->

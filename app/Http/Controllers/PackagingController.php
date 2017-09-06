@@ -18,6 +18,12 @@ class PackagingController extends Controller
     }
     public function store(Request $request)
     {
+        $this->validate($request,[
+
+           'name'=>'required|alpha',
+
+        ]);
+
         $newPackaging=new Packaging();
         $newPackaging->name = $request['name'];
         $newPackaging->slug = $request['name'];
