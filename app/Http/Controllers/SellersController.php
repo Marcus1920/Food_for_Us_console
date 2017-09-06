@@ -39,7 +39,7 @@ class SellersController extends Controller
                         sellers_details_tabs.gps_lat,
                         sellers_details_tabs.gps_long,
                         product_types.name as productType,
-						
+				
                         sellers_details_tabs.quantity,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
@@ -82,7 +82,6 @@ class SellersController extends Controller
                         sellers_details_tabs.gps_lat,
                         sellers_details_tabs.gps_long,
                         product_types.name as productType,
-						sellers_details_tabs.productType,
                         sellers_details_tabs.quantity,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
@@ -118,7 +117,7 @@ class SellersController extends Controller
     	$img=$request->file('file');
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
-       /* if(!\File::exists($destinationFolder)) {
+        if(!\File::exists($destinationFolder)) {
             \File::makeDirectory($destinationFolder,0777,true);
 			move_uploaded_file($img,$destinationFolder); 
         }
@@ -128,7 +127,7 @@ class SellersController extends Controller
          $img->move($destinationFolder,$name) ;
 
         $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;
-		**/
+	
         $productTypeID = ProductType::where('name',Input::get('productName'))->first();
         $sellersPost->productType  = $productTypeID['id'];
 
@@ -144,8 +143,8 @@ class SellersController extends Controller
         $sellersPost->quantity = Input::get('quantity');
         $sellersPost->gps_lat    = Input::get('gps_lat');
         $sellersPost->gps_long = Input::get('gps_long');
-        $sellersPost->availableHours = Input::get('availableHours');
-        $sellersPost->paymentMethods = Input::get('paymentMethods');
+        $sellersPost->availableHours =  "08:00-17:00" ; // Input::get('availableHours');
+        $sellersPost->paymentMethods = "Cash and bank deposit" ; // Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
         $sellersPost->save();
 
