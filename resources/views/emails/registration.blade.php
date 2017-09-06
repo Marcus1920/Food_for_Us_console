@@ -70,11 +70,7 @@
                                     <h3 style="padding-left: 10px":>{{ $surname  }}</h3>
 
 
-                                    <h3 style="padding-left: 10px":> Your password is : {{ $email  }}</h3>
-
-
-
-
+                                    <h3 style="padding-left: 10px":> Your password is : {{ $password }}</h3>
 
 
 

@@ -69,7 +69,7 @@
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hi{{$name}} </h3>
+                                    <h3 style="padding-left: 10px":>Hello{{$email}} </h3>
 
 
                                 </td>
@@ -91,7 +91,7 @@
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulations! You have been approved. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Once logged in you can change your password to something easier to remember under your profile. </p>
                                 </td>
                             </tr>
                             <tr><!-- spacing bottom -->
