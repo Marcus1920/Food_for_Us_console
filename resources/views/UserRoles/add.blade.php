@@ -20,6 +20,14 @@
                     <label for="">Name</label>
                         <input type="text" name="name" id="" class="form-control" placeholder="name">
 
+
+                   @if ($errors->has('name'))
+
+                <span class="text text-danger">
+                             {{$errors->first()}}
+                    </span>
+
+                       @endif
                 </div>
 
                 <input type="submit" value="Save" class="btn btn-primary">

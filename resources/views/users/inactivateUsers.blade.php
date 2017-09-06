@@ -1,5 +1,6 @@
 @extends('master')
 @section('content')
+
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}"> Home</a></li>

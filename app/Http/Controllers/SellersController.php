@@ -1,21 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\NewPosts;
 use  App\NewUser ;
 use App\Sellers_details_tabs;
 use App\ProductType;
 use App\Packaging;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Services\EmailService;
+use Mail;
 
 class SellersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
+    private $emailService;
+
+    public  function __construct(EmailService $emailService)
+    {
+      $this->emailService = $emailService;
+    }
 
 
     public function index()
@@ -85,6 +89,7 @@ class SellersController extends Controller
                         sellers_details_tabs.gps_lat,
                         sellers_details_tabs.gps_long,
                         product_types.name as productType,
+                        product_types.id as productTypeId,
                         sellers_details_tabs.quantity,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
@@ -103,6 +108,7 @@ class SellersController extends Controller
 
         return $sellers_posts;
     }
+
 	  public function created(Request $request)
     {
         $input  =  $request->all();
@@ -137,8 +143,20 @@ class SellersController extends Controller
         $packagingID = Packaging::where('name',Input::get('packaging'))->first();
         $sellersPost->packaging = $packagingID['id'];
 
-        $sellersPost->costPerKg  = Input::get('costPerKg');
+        $sellersPost->costPerKg          = Input::get('costPerKg');
         $sellersPost->transactionRating  = Input::get('rating');
+
+        $sellersPost->city               = Input::get('city');
+        $sellersPost->country            = Input::get('country');
+        $sellersPost->location           = Input::get('country').', '.Input::get('city');
+        $sellersPost->description        = Input::get('description');
+        $sellersPost->quantity           = Input::get('quantity');
+        $sellersPost->gps_lat            = Input::get('gps_lat');
+        $sellersPost->gps_long           = Input::get('gps_long');
+        $sellersPost->availableHours     = Input::get('availableHours');
+        $sellersPost->paymentMethods     = Input::get('paymentMethods');
+        $sellersPost->transactionRating  = Input::get('transactionRating');
+
         $sellersPost->city  = Input::get('city');
         $sellersPost->country  = Input::get('country');
         $sellersPost->location = Input::get('country').', '.Input::get('city');
@@ -151,7 +169,14 @@ class SellersController extends Controller
         $sellersPost->transactionRating = Input::get('transactionRating');
         $sellersPost->save();
 
+//        $buyerEmails =$this->emailService->Buyers();
+//        foreach($buyerEmails as $buyerEmail)
+//        {
+//            \Mail::to($buyerEmail->email)->send(new NewPosts());
+//        }
+
         return $sellersPost;
+
     }
 	 
 	 

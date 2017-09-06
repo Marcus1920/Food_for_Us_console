@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -7,9 +8,12 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class foods extends Mailable
+
+
+class NewPosts  extends Mailable
 {
     use Queueable, SerializesModels;
+
 
 
     public function __construct()
@@ -17,10 +21,9 @@ class foods extends Mailable
 
     }
 
-
     public function build()
     {
-        return $this->from('')
-            ->view('view.name');
+        return $this->view('emails.NewPost');
     }
+
 }

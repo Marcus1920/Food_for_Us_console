@@ -20,7 +20,7 @@
                     <div class="row" style="margin-left: 0%">
                         <h3 class="block-title">Product Details</h3>
                         <div class="col-md-12">
-                            <img alt="Loading Product picture" src="{{$data->productPicture}}" style="width: 450px;height: 300px">
+                            <img alt="Loading Product picture" src="{{$data->productPicture}}">
                         </div>
                     </div><br/><br/>
                     <form class="form-horizontal" role="form">
