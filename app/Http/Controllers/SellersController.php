@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\NewPosts;
 use  App\NewUser ;
 use App\Sellers_details_tabs;
 use App\ProductType;
@@ -8,6 +9,7 @@ use App\Packaging;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Services\EmailService;
+use Mail;
 
 class SellersController extends Controller
 {
@@ -139,35 +141,24 @@ class SellersController extends Controller
         $packagingID = Packaging::where('name',Input::get('packaging'))->first();
         $sellersPost->packaging = $packagingID['id'];
 
-        $sellersPost->costPerKg  = Input::get('costPerKg');
+        $sellersPost->costPerKg          = Input::get('costPerKg');
         $sellersPost->transactionRating  = Input::get('rating');
-        $sellersPost->city  = Input::get('city');
-        $sellersPost->country  = Input::get('country');
-        $sellersPost->location = Input::get('country').', '.Input::get('city');
-        $sellersPost->description  = Input::get('description');
-        $sellersPost->quantity = Input::get('quantity');
-        $sellersPost->gps_lat    = Input::get('gps_lat');
-        $sellersPost->gps_long = Input::get('gps_long');
-        $sellersPost->availableHours = Input::get('availableHours');
-        $sellersPost->paymentMethods = Input::get('paymentMethods');
-        $sellersPost->transactionRating = Input::get('transactionRating');
+        $sellersPost->city               = Input::get('city');
+        $sellersPost->country            = Input::get('country');
+        $sellersPost->location           = Input::get('country').', '.Input::get('city');
+        $sellersPost->description        = Input::get('description');
+        $sellersPost->quantity           = Input::get('quantity');
+        $sellersPost->gps_lat            = Input::get('gps_lat');
+        $sellersPost->gps_long           = Input::get('gps_long');
+        $sellersPost->availableHours     = Input::get('availableHours');
+        $sellersPost->paymentMethods     = Input::get('paymentMethods');
+        $sellersPost->transactionRating  = Input::get('transactionRating');
         $sellersPost->save();
 
         $buyerEmails =$this->emailService->Buyers();
-        var_dump($buyerEmails);
-        die();
         foreach($buyerEmails as $buyerEmail)
         {
-            $data = array(
-
-                'name'      =>      $buyerEmail->name,
-                'content'   =>      $sellersPost->productType,
-                         );
-
-            \Mail::send('emails.newProduct', $data, function ($message) use ($buyerEmail) {
-                $message->from('info@foodorus', 'Food For us');
-                $message->to($buyerEmail->email)->subject("New Product Notification");
-            });
+            \Mail::to($buyerEmail->email)->send(new NewPosts());
         }
 
         return $sellersPost;
