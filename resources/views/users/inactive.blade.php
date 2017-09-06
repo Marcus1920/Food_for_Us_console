@@ -32,9 +32,9 @@
                                     <td> {{$Newuser->UserTravelRadius->kilometres}} </td>
                                     <td> {{$Newuser->descriptionOfAcces}} </td>
                                     <td><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></td>
-
                                 </tr>
                             @endforeach
+
                         </table>
                     </div>
 

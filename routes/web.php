@@ -77,6 +77,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('viewRecipe','PublicWallController@viewRecipe');
     Route::post('editRecipe','PublicWallController@editRecipe');
     Route::get('deleteRecipe','PublicWallController@deleteRecipe');
+
+
+
 /*
     //User Roles
     Route::get('getUserRoles','UserRolesController@getUserRoles');
@@ -93,6 +96,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Transport
     Route::get('getTransportType','TransportController@getTransportType');
 */
+
+    Route::get('distance','SellersController@getDistance');
+
 
 });
 

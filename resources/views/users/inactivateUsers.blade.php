@@ -46,7 +46,7 @@
             <div class="form-group">
                 {!! Form::label('Interest', 'Interest', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('intrest',$user->intrest,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'readonly']) !!}
+                    {!! Form::text('intrest',$user->UserRole->name,['class' => 'locality form-control input-sm','id' => 'intrest' , 'readonly']) !!}
                     @if ($errors->has('cellphone'))<span class="help-block"><strong>{{ $errors->first('cellphone') }}</strong></span>@endif
                 </div>
             </div>
@@ -55,7 +55,7 @@
             <div class="form-group">
                 {!! Form::label('Travel Radius', 'Travel Radius', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::text('travelRadius ',$user->travelRadius,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'email', 'readonly']) !!}
+                    {!! Form::text('travelRadius ',$user->UserTravelRadius->kilometres,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'email', 'readonly']) !!}
                     @if ($errors->has('email'))
                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>

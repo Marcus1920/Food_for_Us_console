@@ -92,7 +92,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-6">
-                    <button type="submit" id='submitMemberForm' class="btn btn-info btn-sm m-t-10">SUBMIT FORM</button>
+                    <button type="submit" id='submitMemberForm' class="btn btn-info btn-sm m-t-10">APPROVE USER</button>
                 </div>
             </div>
             {!! Form::close() !!}

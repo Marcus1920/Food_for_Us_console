@@ -12,15 +12,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
+use Illuminate\Pagination\Paginator;
 
 class UsersController extends Controller
 {
 
-
     public function index()
     {
-
-        $userList = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+        $userList = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius');
 
         return response()->json($userList);
     }
