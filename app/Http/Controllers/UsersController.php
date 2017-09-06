@@ -36,6 +36,34 @@ class UsersController extends Controller
         return response()->json($user);
     }
 
+    public function changePassword()
+    {
+        $api_key   = Input::get('api_key');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        if($user->password==Input::get('OldPassword'))
+        {
+            if(Input::get('NewPassword')==Input::get('CornfirmPasswod'))
+            {
+                $user  = NewUser::where('api_key',$api_key)
+                    ->update(['password'=>Input::get('CornfirmPasswod')]);
+
+                //email
+
+                return "Password successfuly changed";
+            }
+            else
+            {
+                return "New passwords didn't match";
+            }
+        }
+        else
+        {
+            return "Incorrect old password";
+        }
+    }
+
 
     public function forgot()
     {

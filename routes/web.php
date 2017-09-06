@@ -59,6 +59,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
+    Route::post('changepassword' ,'UsersController@changePassword');
+
     //Transaction
     Route::post('buy','TransactionController@store');
     Route::get('show','TransactionController@show');

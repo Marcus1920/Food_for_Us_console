@@ -18,15 +18,33 @@
                 <div class="form-group">
                     <label for="product">Product Name</label>
                     <input type="text" name="productName" class="form-control" placeholder="Product name">
+
+                    @if ($errors->has('productName'))
+
+                        <span class="text text-danger">
+                             {{$errors->first()}}
+                        </span>
+
+                    @endif
+
+
                 </div>
                 <div class="form-group">
                     <label for="product">Product Type</label>
 
 
                     <select name="productType" class="form-control">
-                        <option value="" selected>Select product type</option>
+                        <option value="0" >Select product type</option>
                         <option value="fruit">Fruit</option>
                         <option value="vegetable">Vegetable</option>
+
+                        @if ($errors->has('productType'))
+
+                            <span class="text text-danger">
+                             {{$errors->first()}}
+                        </span>
+
+                        @endif
 
                     </select>
                 </div>
