@@ -7,6 +7,7 @@ use App\Cart;
 use App\NewUser;
 use App\Sellers_details_tabs;
 use App\Transaction;
+use App\TransactionStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Response;
@@ -53,9 +54,9 @@ class TransactionController extends Controller
 
                 $sellerTransactionsDetails =\DB::table('transactions')
                     ->join('new_users', 'transactions.buyer_id','=','new_users.id')
-                    ->join('carts','transactions.product','=','carts.productId')
-                    ->join('sellers_details_tabs','carts.productId','=','sellers_details_tabs.id')
-                    ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
+                    ->join('transaction_statuses','transactions.status','=','transaction_statuses.id')
+                    ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+                    ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
                     ->select(
                         \DB::raw(
                             "                        
@@ -71,6 +72,7 @@ class TransactionController extends Controller
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
+                      transaction_statuses.name as transactionName,
                       sellers_details_tabs.productPicture,
                       product_types.name as productName,
                       transactions.created_at 
@@ -90,10 +92,9 @@ class TransactionController extends Controller
 
                 $buyerTransactionsDetails =\DB::table('transactions')
                     ->join('new_users', 'transactions.seller_id','=','new_users.id')
-                    ->join('carts','transactions.product','=','carts.productId')
-                    ->join('sellers_details_tabs','carts.productId','=','sellers_details_tabs.id')
-                    ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
-                    ->where('transactions.buyer_id',$userDetails->id,'=')
+                    ->join('transaction_statuses','transactions.status','=','transaction_statuses.id')
+                    ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+                    ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
                     ->select(
                         \DB::raw(
                             "                        
@@ -109,6 +110,7 @@ class TransactionController extends Controller
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
+                      transaction_statuses.name as transactionName,
                       sellers_details_tabs.productPicture,
                       product_types.name as productName,
                       transactions.created_at
@@ -116,6 +118,7 @@ class TransactionController extends Controller
                    "
                         )
                     )
+                    ->where('transactions.buyer_id',$userDetails->id,'=')
                     ->orderBy('transactions.created_at','DESC')
                     ->get();
 
@@ -189,6 +192,44 @@ class TransactionController extends Controller
 
         $remainingCartItems =Cart::with('products','buyers')->where('userId',$buyerId->id)->where('active',0)->get();
         return $remainingCartItems;
+
+
+    }
+
+
+    public function approveTransaction()
+    {
+        $api_key                     =Input::get('api_key');
+        $transactionId               =Input::get('transactionId');
+        $transactionStatusName       =Input::get('statusName');
+        $userDetails                 =NewUser::where('api_key',$api_key)->first();
+        $transactionStatusDetails    =TransactionStatus::where('slug',$transactionStatusName)->first();
+
+        if($userDetails->intrest ==1)
+
+        {
+            $sellerTransactionsUpdates     =Transaction::where('id','=',$transactionId)
+                                                       ->where('seller_id','=',$userDetails->id)
+                                                       ->update(['status'=>$transactionStatusDetails->id]);
+            return \Response::json($sellerTransactionsUpdates);
+        }
+        elseif($userDetails->intrest ==2)
+        {
+
+            $buyerTransactionsUpdates      =Transaction::where('id','=',$transactionId)
+                                                         ->where('buyer_id','=',$userDetails->id)
+                                                          ->update(['status'=>$transactionStatusDetails->id]);
+            return \Response::json($buyerTransactionsUpdates);
+        }
+        else
+        {
+            return "No updates made";
+        }
+
+    }
+
+    public function removeTransaction()
+    {
 
 
     }

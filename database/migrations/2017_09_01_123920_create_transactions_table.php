@@ -20,8 +20,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('status');
             $table->integer('product')->unsigned();
             $table->integer('quantity');
+            $table->foreign('status')->references('id')->on('transaction_statuses');
             $table->foreign('buyer_id')->references('id')->on('new_users');
-            $table->foreign('seller_id')->references('id')->on('new_users');
             $table->foreign('product')->references('id')->on('sellers_details_tabs');
             $table->timestamps();
         });

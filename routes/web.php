@@ -63,6 +63,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('buy','TransactionController@store');
     Route::get('show','TransactionController@show');
     Route::get('transactionDetails','TransactionController@transactionDetails');
+    Route::post('approveTransaction','TransactionController@approveTransaction');
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
