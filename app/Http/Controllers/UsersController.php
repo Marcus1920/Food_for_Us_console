@@ -156,7 +156,7 @@ class UsersController extends Controller
 
             $response['error']   = true;
             $response['error'] = true;
-            $response['msg'] = "faild";
+            $response['msg'] = "failed";
             $response['message'] = 'Login failed. Incorrect credentials';
 
 
@@ -263,7 +263,7 @@ class UsersController extends Controller
             'content'   =>      $message,
                      );
 
-        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
+        \Mail::send('emails.inactivation', $data, function ($message) use ($userDetails) {
 
             $message->from('info@Food  For  Us  ',  'Food  For  Us');
             $message->to($userDetails->email)->subject("Food  For  Us   Notification ");
