@@ -49,9 +49,27 @@ class UsersController extends Controller
                 $user  = NewUser::where('api_key',$api_key)
                     ->update(['password'=>Input::get('CornfirmPasswod')]);
 
-                //email
+                $userUpdated =NewUser::find($user);
+                $message = "your  new  password  is  ";
 
-                return "Password successfuly changed";
+                //email
+                $data = array(
+
+                    'name' => $userUpdated->name,
+                    'email'=>$userUpdated->email,
+                    'password' => $userUpdated->password,
+                    'content' => $message
+
+                );
+
+
+                \Mail::send('emails.changePassword', $data, function ($message) use ($userUpdated) {
+                    $message->from('info@foodforus', 'Food For us');
+                    $message->to($userUpdated->email)->subject("Food  for  us Notification! ");
+
+                });
+
+                return "Password successfuly changed to $userUpdated->password";
             }
             else
             {

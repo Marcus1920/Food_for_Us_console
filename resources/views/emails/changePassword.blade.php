@@ -77,14 +77,14 @@
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulations! You have been approved. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulations! You have successfuly changed your password. </p>
 
                                 </td>
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>your  username is :{{$email}} </h3>
-                                    <h3 style="padding-left: 10px":>your password is: {{$password}} </h3>
+                                    <h3 style="padding-left: 10px":>your  username is : {{$email}} </h3>
+                                    <h3 style="padding-left: 10px":>your password is : {{$password}} </h3>
 
 
                                 </td>
@@ -92,7 +92,7 @@
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Once logged in you can change your password to something easier to remember under your profile. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Once logged in you can change your password under your profile. </p>
                                 </td>
                             </tr>
                             <tr><!-- spacing bottom -->
