@@ -120,15 +120,15 @@ Route::get('/editUsers/{id}', function($id)
 
 Route::get('/inactivateUsers/{id}', function($id)
 {
-    $user = NewUser::where('id','=',$id)->first();
-    return view('users.inactivateUsers',compact('user'));
+   $user = NewUser::where('id','=',$id)->first();
+   return view('users.inactivateUsers',compact('user'));
 });
+
 
 Route::get('/createUser', function()
 {
     return view('users.edit',compact('user'));
 });
-
 
 
 
@@ -138,10 +138,40 @@ Route::get('/activation', function()
 });
 
 
+Route::get('/registration', function()
+{
+    return view('emails.registration',compact('registration'));
+});
+
+Route::get('/inactivation',function()
+{
+    return view('emails.inactivation',compact('inactivation'));
+});
+
+Route::get('/resetpassword',function()
+{
+    return view('emails.resetpassword',compact('resetpassword'));
+});
+
+Route::get('/reset',function()
+{
+    return view('passwords.reset',compact('reset'));
+});
+
+
 Route::get('/registration', function ()
 {
     return view('emails.registration',compact('registration'));
 });
+
+
+Route::get('/changePassword', function ()
+{
+    return view('emails.changePassword',compact('changePassword'));
+});
+
+
+
 
 
 
@@ -159,6 +189,7 @@ Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
 Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
+Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');

@@ -3,25 +3,19 @@
 <html lang="en">
 
 <head>
-
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Email</title>
-
- <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
- <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
- <title>Email</title>
-
 </head>
 
 <body style="margin:0; margin-top:30px; margin-bottom:30px; padding:0; width:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; background-color: #F4F5F7;">
 
 
 <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background-color: #F4F5F7;">
-
     <tbody>
     <tr>
         <td align="center" style="border-collapse: collapse;">
+
 
             <!-- /Space -->
 
@@ -30,7 +24,7 @@
             <table cellpadding="0" cellspacing="5" border="0" width="560" style="border:0; border-collapse:collapse; background-color:#ffffff; border-radius:6px;">
                 <tbody>
                 <tr>
-                    <td style="border-collapse:collapse; vertical-align:middle; text-align center; padding:20px;">
+                    <td style="border-collapse:collapse; vertical-align:middle; text-align:center; padding:20px;">
 
                         <!-- Headline Header -->
                         <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
@@ -40,7 +34,7 @@
                             </tr>
                             <tr><!-- title -->
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: 0px; text-align: center; color:#0DB6BE;">
-                                    <strong>ACCOUNT ACTIVATED</strong> NOTIFICATION!
+                                    <strong>INACTIVATION </strong> NOTIFICATION!
                                 </td>
                             </tr>
                             <tr>
@@ -66,32 +60,25 @@
                                 <td width="100%">
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hello{{$email}} </h3>
-
-
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Congratulations! You have been approved. </p>
-
-                                </td>
-                            </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>your  username is :{{$email}} </h3>
-                                    <h3 style="padding-left: 10px":>your password is: {{$password}} </h3>
-
+                                    <h3 style="padding-left: 10px":>Hi {{$name}} </h3>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Once logged in you can change your password to something easier to remember under your profile. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">Your account has been Suspended!!! </p>
+
+
+
+
+                                    <p style="padding:0px 0px 10px 10px; text-align: left" > Kind Regard,<br>
+                                        FoodForUs </p>
+                                </td>
+                                <td width="100%" height="6"></td>
+
+
                                 </td>
                             </tr>
                             <tr><!-- spacing bottom -->
@@ -117,8 +104,8 @@
                             <tr>
 
                                 <td width="100%" style="font-family:helvetica, Arial, sans-serif; font-size: 13px; text-align: center; color:#0DBE80; line-height: 24px;">
-
-                                    <a href=" https://foodforus.cloud/"><strong>Visit the App Website</strong></a>
+                                    <a class="m_-793990190380337986mcnButton" title="Join 30 Days of Code!" href="http://email.postmaster.hackerrankmail.com/c/eJyFUcuK4zAQ_BrnliC1nj74MJD4N4zcasfGljXIMpn8_crJMAwLy4JA6qqu7qLkm1prB6epAcYNs6CYEEyKixBSm8tNfLRgzA2kMuJmbSXZZ9xycFumdBkdzpSSW-fgpuWCMZzGZuDMMU3c215qp3oPFg2SHED2XBo8Lc2Y82clPipoy3k8Hr8GHUMK6PY8luuNd4n8lAhzJVqMa6av8roKdvbuuZ3jcMboqaPDQwX6WzP50gO14Uzzgs70LDXVaEgbpgUfgPPBW-G1ZNZq1M7zmqxSxOq-CPIUaMsuFKNXXkKxNWcSDiIWpAIFLY5uWWi90_Yqi6GRliWeHzEtvkCiHbt03Ndvbwr0vi4R5y7HmdYXZWum0QllmUQg5CC5YB4HPSihevQAUtYO1VudQ4fFk5vub7Vg3RFCF4fuFcIRz7Tucd9--kMJbw9_2yjEFveE9CJ8wZ8l5jCtntIpNX0ep_s4xKNBsvvP9-bm3xsPnP2v4_eeP5T0zEU" style="color:#ffffff;display:block;font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;word-wrap:break-word" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en-GB&amp;q=http://email.postmaster.hackerrankmail.com/c/eJyFUcuK4zAQ_BrnliC1nj74MJD4N4zcasfGljXIMpn8_crJMAwLy4JA6qqu7qLkm1prB6epAcYNs6CYEEyKixBSm8tNfLRgzA2kMuJmbSXZZ9xycFumdBkdzpSSW-fgpuWCMZzGZuDMMU3c215qp3oPFg2SHED2XBo8Lc2Y82clPipoy3k8Hr8GHUMK6PY8luuNd4n8lAhzJVqMa6av8roKdvbuuZ3jcMboqaPDQwX6WzP50gO14Uzzgs70LDXVaEgbpgUfgPPBW-G1ZNZq1M7zmqxSxOq-CPIUaMsuFKNXXkKxNWcSDiIWpAIFLY5uWWi90_Yqi6GRliWeHzEtvkCiHbt03Ndvbwr0vi4R5y7HmdYXZWum0QllmUQg5CC5YB4HPSihevQAUtYO1VudQ4fFk5vub7Vg3RFCF4fuFcIRz7Tucd9--kMJbw9_2yjEFveE9CJ8wZ8l5jCtntIpNX0ep_s4xKNBsvvP9-bm3xsPnP2v4_eeP5T0zEU&amp;source=gmail&amp;ust=1504014713557000&amp;usg=AFQjCNGi7j6Y2ENmiCOta1PV0jayRBwbtw">Start Day 0 Now</a>
+                                    <a href="https://foodforus.cloud/"><strong>Visit the App Website</strong></a>
 
                                 </td>
                             </tr>
@@ -127,7 +114,7 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0px; text-align: left; color:#2E363F;">
                                     <p style="padding:0px 0px 10px 10px;"> Enjoy The Application,<br>
-                                       The FoodForUs Team</p>
+                                        The FoodForUs Team</p>
                                 </td>
                                 <td width="100%" height="6"></td>
                             </tr>
@@ -175,6 +162,13 @@
 </table>
 <!-- /ROW 2 IMGS -->
 
+<!-- Space -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tbody>
+    <tr>
+        <td width="100%" height="30"></td>
+    </tr>
+    </tbody>
 </table>
 <!-- /Space -->
 
