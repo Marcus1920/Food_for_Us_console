@@ -17,7 +17,6 @@
                                 <th>Intrest </th>
                                 <th>Location</th>
                                 <th>Travel Radius</th>
-                                <th>Password</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
@@ -31,8 +30,7 @@
                                     <td> {{$Newuser->UserRole->name}} </td>
                                     <td> {{$Newuser->location}} </td>
                                     <td> {{$Newuser->UserTravelRadius->kilometres}} </td>
-                                    <td> {{$Newuser->password}} </td>
-                                    <td> {{$Newuser->description_of_acces}} </td>
+                                    <td> {{$Newuser->descriptionOfAcces}} </td>
                                     <td><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></td>
 
                                 </tr>

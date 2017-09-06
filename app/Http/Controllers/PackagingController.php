@@ -22,6 +22,8 @@ class PackagingController extends Controller
         $newPackaging->name = $request['name'];
         $newPackaging->slug = $request['name'];
         $newPackaging->save();
+
+        return Redirect('/packaginglist');
     }
 
     public function getPackaging()

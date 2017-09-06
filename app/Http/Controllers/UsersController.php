@@ -223,8 +223,7 @@ class UsersController extends Controller
     public function updateUser($id)
     {
 		
-		
-         $user = NewUser::where('id',$id)
+		$user = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->where('id',$id)
               ->update(['active'=>2]);
 
          $userDetails = NewUser::find($id);
@@ -235,10 +234,10 @@ class UsersController extends Controller
            //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
                     );
 
-        \Mail::send('emails.transactions', $data, function ($message) use ($userDetails) {
+        \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
-            $message->from('info@siyaleader.net', 'Siyaleader');
-            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
+            $message->from('info@fooforus.net', 'Food  For Us ');
+            $message->to($userDetails->email)->subject( " Food  For Us Notification ");
 
         });
 
@@ -254,17 +253,20 @@ class UsersController extends Controller
             ->update(['active'=>1]);
 
         $userDetails = NewUser::find($id);
+ 
+            
+        $message= "Food For us";
+        $data = array(
 
-        $data=array(
-            'name' =>$userDetails->name,
-            'message' =>"",
-            //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
-                 );
+            'name'      =>      $userDetails->name,
+            'passsword' =>      $userDetails->password,
+            'content'   =>      $message,
+                     );
 
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
-            $message->from('info@siyaleader.net', 'Siyaleader');
-            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
+            $message->from('info@Food  For  Us  ',  'Food  For  Us');
+            $message->to($userDetails->email)->subject("Food  For  Us   Notification ");
 
                    });
         return Redirect::to('/users');
@@ -311,10 +313,8 @@ function generateRandomString($length = 24) {
         $NewUser->idNumber               = $idNumber;
         $NewUser->  location             = $location;
 
-        $NewUser->  travel_radius        =  $travel_radius ;
-        $NewUser->  password             =  "1234" ;
-        $NewUser->  api_key              = "xdwq213432435434bb4yyyyyyyy4";
-        $NewUser->  description_of_acces = $description_of_acces ;
+      
+        $NewUser->  descriptionOfAcces = $description_of_acces ;
 
         $NewUser->  travelRadius        =  $travel_radius ;
         $NewUser->  password             =  rand(1,9999);
@@ -330,33 +330,12 @@ function generateRandomString($length = 24) {
             'content'   =>      $message,
                      );
 
-      \Mail::send('emails.resetpassword', $data, function ($message) use ($NewUser) {
+      \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
              $message->from('info@foodorus', 'Food For us');
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 
-       /* \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
-
-            $message->from('info@siyaleader.net', 'Siyaleader');
-            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
-
-        });
-
-        return Redirect::to('/users');
-
-//        $user=NewUser::where('id',$id);
-//        $user->name     =Input::get('name');
-//        $user->surname   =Input::get('surname');
-//        $user->interest  =Input::get('Interest');
-//        $user->travel_radious       =Input::get('travel_radious ');
-//        $user->description     =Input::get('description  ');
-//        $user->location       =Input::get('location');
-//        session::flash('successfull updated');
-//        return view::make('users.edit')
-//            ->update(['active'=>2])
-//            ->with('user',$user);
-
-*/
+      
 
         $respose = array();
         $respose['error'] ="ok";

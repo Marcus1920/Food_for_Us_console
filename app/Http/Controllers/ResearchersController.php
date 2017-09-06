@@ -63,7 +63,7 @@ class ResearchersController extends Controller
         $name =$user->name;
         $surname=$user->surname;
 		$id=$user->id;
-		
+	
         $img=$request->file('file');
 	
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
@@ -72,11 +72,11 @@ class ResearchersController extends Controller
             \File::makeDirectory($destinationFolder,0777,true);
         }
 
-         $name =    $img->getClientOriginalName();
+        $name =    $img->getClientOriginalName();
 		
 
 
-        $img->move($destinationFolder,$name) ;
+         $img->move($destinationFolder,$name) ;
 
         $researcherPost->img_url = env('APP_URL').$destinationFolder.'/'.$name;
 

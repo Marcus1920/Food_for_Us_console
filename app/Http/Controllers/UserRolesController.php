@@ -13,12 +13,18 @@ class UserRolesController extends Controller
         $userRoles=UserRoles::all();
         return view('UserRoles.index', compact('userRoles'));
     }
-    public function create(Request $request)
+    public function store(Request $request)
     {
+        $lastUserRole=UserRoles::all()->last();
+        $markerNum = $lastUserRole->id + 1;
+
         $newRole = new UserRoles();
         $newRole->name = $request['name'];
         $newRole->slug = $request['name'];
+        $newRole->marker_url = "img/Markers/$markerNum.png";
         $newRole->save();
+
+        return Redirect('/userroleslist');
     }
 
 

@@ -125,6 +125,22 @@ Route::get('/createUser', function()
     return view('users.edit',compact('user'));
 });
 
+
+
+
+Route::get('/activation', function()
+{
+    return view('emails.activation',compact('activation'));
+});
+
+
+Route::get('/registration', function ()
+{
+    return view('emails.registration',compact('registration'));
+});
+
+
+
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
 
@@ -144,19 +160,24 @@ Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
 Route::post('searchByProductType','MapController@searchByProductType');
 
+Route::get('CreateProduct','ProductTypeController@create');
+Route::post('AddProduct','ProductTypeController@store');
+
 
 Route::get('productlist', 'ProductsController@index');
 
 Route::get('packaginglist', 'PackagingController@index');
 Route::get('createPackaging', 'PackagingController@create');
-Route::get('storePackaging', 'PackagingController@store');
+Route::post('storePackaging', 'PackagingController@store');
 
 //User Role
 Route::get('userroleslist', 'UserRolesController@index');
-Route::post('addUserRole', function (){
+Route::get('addUserRole', function (){
 
     return view('UserRoles.add');
 });
+Route::post('storeUserRole','UserRolesController@store');
+
 Route::get('viewAdmin/{id}', 'UsersController@viewAdmin');
 
 Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
