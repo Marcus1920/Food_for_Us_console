@@ -163,6 +163,14 @@ Route::get('/registration', function ()
 });
 
 
+Route::get('/changePassword', function ()
+{
+    return view('emails.changePassword',compact('changePassword'));
+});
+
+
+
+
 
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');

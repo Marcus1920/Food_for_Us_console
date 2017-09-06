@@ -61,7 +61,7 @@
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hi </h3>
+                                    <h3 style="padding-left: 10px":>Hi{{$name}} </h3>
                                 </td>
                             </tr>
 
@@ -98,7 +98,6 @@
                             <tr>
 
                                 <td width="100%" style="font-family:helvetica, Arial, sans-serif; font-size: 13px; text-align: center; color:#0DBE80; line-height: 24px;">
-                                    <a class="m_-793990190380337986mcnButton" title="Join 30 Days of Code!" href="http://email.postmaster.hackerrankmail.com/c/eJyFUcuK4zAQ_BrnliC1nj74MJD4N4zcasfGljXIMpn8_crJMAwLy4JA6qqu7qLkm1prB6epAcYNs6CYEEyKixBSm8tNfLRgzA2kMuJmbSXZZ9xycFumdBkdzpSSW-fgpuWCMZzGZuDMMU3c215qp3oPFg2SHED2XBo8Lc2Y82clPipoy3k8Hr8GHUMK6PY8luuNd4n8lAhzJVqMa6av8roKdvbuuZ3jcMboqaPDQwX6WzP50gO14Uzzgs70LDXVaEgbpgUfgPPBW-G1ZNZq1M7zmqxSxOq-CPIUaMsuFKNXXkKxNWcSDiIWpAIFLY5uWWi90_Yqi6GRliWeHzEtvkCiHbt03Ndvbwr0vi4R5y7HmdYXZWum0QllmUQg5CC5YB4HPSihevQAUtYO1VudQ4fFk5vub7Vg3RFCF4fuFcIRz7Tucd9--kMJbw9_2yjEFveE9CJ8wZ8l5jCtntIpNX0ep_s4xKNBsvvP9-bm3xsPnP2v4_eeP5T0zEU" style="color:#ffffff;display:block;font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;word-wrap:break-word" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en-GB&amp;q=http://email.postmaster.hackerrankmail.com/c/eJyFUcuK4zAQ_BrnliC1nj74MJD4N4zcasfGljXIMpn8_crJMAwLy4JA6qqu7qLkm1prB6epAcYNs6CYEEyKixBSm8tNfLRgzA2kMuJmbSXZZ9xycFumdBkdzpSSW-fgpuWCMZzGZuDMMU3c215qp3oPFg2SHED2XBo8Lc2Y82clPipoy3k8Hr8GHUMK6PY8luuNd4n8lAhzJVqMa6av8roKdvbuuZ3jcMboqaPDQwX6WzP50gO14Uzzgs70LDXVaEgbpgUfgPPBW-G1ZNZq1M7zmqxSxOq-CPIUaMsuFKNXXkKxNWcSDiIWpAIFLY5uWWi90_Yqi6GRliWeHzEtvkCiHbt03Ndvbwr0vi4R5y7HmdYXZWum0QllmUQg5CC5YB4HPSihevQAUtYO1VudQ4fFk5vub7Vg3RFCF4fuFcIRz7Tucd9--kMJbw9_2yjEFveE9CJ8wZ8l5jCtntIpNX0ep_s4xKNBsvvP9-bm3xsPnP2v4_eeP5T0zEU&amp;source=gmail&amp;ust=1504014713557000&amp;usg=AFQjCNGi7j6Y2ENmiCOta1PV0jayRBwbtw">Start Day 0 Now</a>
                                     <a href="https://foodforus.cloud/"><strong>Visit the App Website</strong></a>
 
                                 </td>

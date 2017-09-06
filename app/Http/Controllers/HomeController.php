@@ -38,30 +38,10 @@ class HomeController extends Controller
         return view('admin.register');
     }
 
-
-    public function updateUser($id)
+    public function changePassword()
     {
-
-
-        $user = NewUser::where('id', $id)
-            ->update(['active' => 2]);
-
-        $userDetails = NewUser::find($id);
-
-        $data = array(
-            'name' => $userDetails->name,
-            'message' => "",
-            //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
-        );
-
-        \Mail::send('emails.registration', $data, function ($message) use ($userDetails) {
-
-            $message->from('info@siyaleader.net', 'Siyaleader');
-            $message->to($userDetails->email)->subject("Siyaleader Notification - Request for Case Closure: ");
-
-        });
+        return view('emails.changePassword');
     }
-
 
 }
 

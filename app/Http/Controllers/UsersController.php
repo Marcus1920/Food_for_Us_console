@@ -183,9 +183,6 @@ class UsersController extends Controller
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
 
-            $message->from('info@siyaleader.net', 'Food For Us');
-            $message->to($userDetails->email)->subject("Food For Us Notification!");
-
             $message->from('info@fooforus.net', 'Food  For Us ');
             $message->to($userDetails->email)->subject( " Food  For Us Notification ");
 
