@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 
@@ -64,7 +61,7 @@
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hi {{$name}}</h3>
+                                    <h3 style="padding-left: 10px":>Hi </h3>
                                 </td>
                             </tr>
 
@@ -73,7 +70,7 @@
                                     <p  style="padding: 0px 10px 0 10px; text-align: justify"> Reset your password, and we'll get you on your way.
                                         To change your Foodforus password, click here :</p>
                                     <p style="padding:0px 0px 10px 0px; text-align: left">kind Regards Food For Us </p>
-                                    <a href="reset">Reset Password</a>
+                                    <a href={{ asset('/auth/passwords.reset') }}"">Reset Password</a>
 
 
                                 </td>

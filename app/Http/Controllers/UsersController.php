@@ -284,7 +284,7 @@ function generateRandomString($length = 24) {
 
         $respose = array();
         $respose['error'] ="ok";
-        $respose['mesg'] = "successfully registered  please  wait  for  approval ";
+        $respose['mesg'] = "successfully registered  please  wait   or  approval ";
         return response()->json($respose);
 
 

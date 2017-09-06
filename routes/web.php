@@ -151,7 +151,7 @@ Route::get('/resetpassword',function()
 
 Route::get('/reset',function()
 {
-    return view('auth.reset',compact('reset'));
+    return view('passwords.reset',compact('reset'));
 });
 
 
