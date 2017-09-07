@@ -190,7 +190,8 @@ Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
 Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
-
+Route::get('researchList','ResearchersController@researchList');
+Route::get('researchProfile/{id}','ResearchersController@researchProfile');
 
 
 Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
