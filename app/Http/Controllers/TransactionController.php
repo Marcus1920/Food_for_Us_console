@@ -21,9 +21,12 @@ class TransactionController extends Controller
 
         $api_key                        = Input::get('api_key');
         $product_id                     = Input::get('productType');
+        $sellerId                       = Input::get('new_user_id');
+        $cartId                         = Input::get('cartId');
         $buyer                          = NewUser::where('api_key',$api_key)->first();
-        $sellerDetails                  = Sellers_details_tabs::where('productType',$product_id)->first();
+        $sellerEmail                    = NewUser::where('id',$sellerId)->first();
 
+        $sellerDetails                  = Sellers_details_tabs::where('productType',$product_id)->first();
         $productDetails                 = Cart::where('productId',$sellerDetails->id)->where('userId',$buyer->id)->first();
 
 
@@ -35,10 +38,42 @@ class TransactionController extends Controller
         $transactionObj->quantity       = $productDetails->quantity;
         $transactionObj->save();
 
-
         $removeFromCart                 = Cart::where('productId',$productDetails->productId)
                                                ->where('userId',$buyer->id)
                                                ->update(['active'=>1]);
+
+
+        $productName                    = \DB::table('carts')
+                                            ->join('sellers_details_tabs','carts.productId','=','sellers_details_tabs.id')
+                                            ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
+                                            ->select(
+                                                \DB::raw
+                                                (
+                                                    "
+                                                    product_types.name as productName
+                                                    "
+                                                )
+
+                                                )
+                                            ->where('carts.productId',$productDetails->productId)
+                                            ->where('carts.id', $cartId )
+                                            ->first();
+
+
+        $messageBody= " Hey am interested in buying this .' ' .$productDetails->quantity. ' ' .  of  . ' ' . $productName->productName   ";
+        $data = array(
+
+            'name'      =>      $buyer->name . ' ' . $buyer->surname,
+            'content'   =>      $messageBody,
+        );
+
+        \Mail::send('emails.transaction', $data, function ($message) use ($sellerEmail) {
+            $message->from('info@foodorus', 'Food For us');
+            $message->to($sellerEmail->email)->subject("Registration Notification ");
+        });
+
+
+
 
         return \Response::json($transactionObj);
     }
@@ -157,7 +192,8 @@ class TransactionController extends Controller
                        ->join('product_types','sellers_details_tabs.productType','=','product_types.id')
                        ->select(
                                 \DB::raw(
-                                        "                        
+                                        "     
+                                        carts.id,                    
                                         carts.userId,                        
                                         carts.productId,  
                                         sellers_details_tabs.productType,                      

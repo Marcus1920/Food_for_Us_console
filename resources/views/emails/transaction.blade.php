@@ -72,7 +72,7 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
 
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">The customer {{$name}} ordered the {{$quantity}} for {{$productType}} please reply on. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">{{$message}}. </p>
 
 
                                     <p style="padding:0px 10px 0px 10px; text-align: left">Thanks kind Regards <br>
