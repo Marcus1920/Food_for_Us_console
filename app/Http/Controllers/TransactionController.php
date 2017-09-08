@@ -7,6 +7,7 @@ use App\Cart;
 use App\NewUser;
 use App\Sellers_details_tabs;
 use App\Transaction;
+use App\TransactionRating;
 use App\TransactionStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -26,8 +27,12 @@ class TransactionController extends Controller
         $buyer                          = NewUser::where('api_key',$api_key)->first();
         $sellerEmail                    = NewUser::where('id',$sellerId)->first();
 
-        $sellerDetails                  = Sellers_details_tabs::where('productType',$product_id)->first();
-        $productDetails                 = Cart::where('productId',$sellerDetails->id)->where('userId',$buyer->id)->first();
+        $sellerDetails                  = Sellers_details_tabs::where('productType',$product_id)
+                                                                ->where('id',Input::get('productId'))
+                                                                ->first();
+        $productDetails                 = Cart::where('productId',$sellerDetails->id)
+                                                     ->where('id',$cartId)
+                                                     ->where('userId',$buyer->id)->first();
 
 
         $transactionObj                 = new Transaction();
@@ -60,7 +65,11 @@ class TransactionController extends Controller
                                             ->first();
 
 
-        $messageBody= " Hey am interested in buying this .' ' .$productDetails->quantity. ' ' .  of  . ' ' . $productName->productName   ";
+        $messageBody= "  I am interested in buying  " .' ' . " $transactionObj->quantity kg "  . ' ' .  " of  "  . ' ' .  "$productName->productName " . ' ' . ",you can contact me  using the following contact details.
+        
+        
+         Email: " .' '. "  $buyer->email & 
+         ". ''.  " Cellphone : " . ''. "$buyer->cellphone";
         $data = array(
 
             'name'      =>      $buyer->name . ' ' . $buyer->surname,
@@ -69,11 +78,8 @@ class TransactionController extends Controller
 
         \Mail::send('emails.transaction', $data, function ($message) use ($sellerEmail) {
             $message->from('info@foodorus', 'Food For us');
-            $message->to($sellerEmail->email)->subject("Registration Notification ");
+            $message->to($sellerEmail->email)->subject("Transaction Notification ");
         });
-
-
-
 
         return \Response::json($transactionObj);
     }
@@ -103,7 +109,8 @@ class TransactionController extends Controller
                       new_users.location,   
                       new_users.travelRadius,   
                       new_users.descriptionOfAcces,                        
-                      transactions.buyer_id,                        
+                      transactions.buyer_id,  
+                      transactions.id as transactionId,                      
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
@@ -141,7 +148,8 @@ class TransactionController extends Controller
                       new_users.location,   
                       new_users.travelRadius,   
                       new_users.descriptionOfAcces,                        
-                      transactions.seller_id,                        
+                      transactions.seller_id,
+                      transactions.id as transactionId,                        
                       transactions.product, 
                       transactions.quantity,
                       transactions.status,
@@ -167,10 +175,9 @@ class TransactionController extends Controller
 
     public function addToCart()
     {
-
-        $api_key                    = Input::get('api_key');
-        $buyer                      = NewUser::where('api_key',$api_key)->first();
-        $productName                = Sellers_details_tabs::select('id')->where('productType',Input::get('foodItem'))->first();
+        $buyer                      = NewUser::where('api_key',Input::get('api_key'))->first();
+        $productName                = Sellers_details_tabs::select('id')
+                                                   ->where('id',Input::get('id')) ->where('productType',Input::get('foodItem'))->first();
 
         $cartItemsObj               = new Cart();
         $cartItemsObj->userId       = $buyer->id;
@@ -178,7 +185,7 @@ class TransactionController extends Controller
         $cartItemsObj->quantity     = Input::get('quantity');
         $cartItemsObj->save();
 
-        return "okay items Added";
+       return "okay items Added";
     }
 
 
@@ -202,7 +209,7 @@ class TransactionController extends Controller
                                         new_users.name, 
                                         product_types.name as productName,
                                         sellers_details_tabs.productPicture,
-                                         carts.created_at
+                                        carts.created_at
                                         
                                      "
                                         )
@@ -235,27 +242,68 @@ class TransactionController extends Controller
 
     public function approveTransaction()
     {
-        $api_key                     =Input::get('api_key');
-        $transactionId               =Input::get('transactionId');
-        $transactionStatusName       =Input::get('statusName');
-        $userDetails                 =NewUser::where('api_key',$api_key)->first();
-        $transactionStatusDetails    =TransactionStatus::where('slug',$transactionStatusName)->first();
+
+        $transactionId               = Input::get('transactionId');
+        $transactionStatusName       = Input::get('statusName');
+        $userDetails                 = NewUser::where('api_key',Input::get('api_key'))->first();
+        $transactionStatusDetails    = TransactionStatus::where('slug',$transactionStatusName)->first();
 
         if($userDetails->intrest ==1)
 
         {
-            $sellerTransactionsUpdates     =Transaction::where('id','=',$transactionId)
+            $sellerTransactionsUpdates   = Transaction::where('id','=',$transactionId)
                                                        ->where('seller_id','=',$userDetails->id)
                                                        ->update(['status'=>$transactionStatusDetails->id]);
-            return \Response::json($sellerTransactionsUpdates);
+
+
+            $transactionDetails             = Transaction::where('id','=',$transactionId)
+                                                           ->where('seller_id','=',$userDetails->id)
+                                                           ->first();
+            $transactionCounterPartDetails  = NewUser::where('id',$transactionDetails->buyer_id)->first();
+
+            $messageBody  = 'This is meant to inform you that ' . "  " .  "$userDetails->name" . " ". "$userDetails->surname" ." " . 'has '. " $transactionStatusName". ' the Transaction.';
+
+             $data = array  (
+
+                 'name'      =>      $transactionCounterPartDetails->name  . ' ' . $transactionCounterPartDetails->surname,
+                 'content'   =>      $messageBody,
+                             );
+
+                  \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails)
+                             {
+                                $message->from('info@foodorus', 'Food For us');
+                                $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
+                             });
+
+        return \Response::json($sellerTransactionsUpdates);
         }
         elseif($userDetails->intrest ==2)
         {
 
-            $buyerTransactionsUpdates      =Transaction::where('id','=',$transactionId)
+            $buyerTransactionsUpdates      = Transaction::where('id','=',$transactionId)
                                                          ->where('buyer_id','=',$userDetails->id)
-                                                          ->update(['status'=>$transactionStatusDetails->id]);
-            return \Response::json($buyerTransactionsUpdates);
+                                                         ->update(['status'=>$transactionStatusDetails->id]);
+
+            $transactionDetails            = Transaction::where('id','=',$transactionId)
+                                                         ->where('buyer_id','=',$userDetails->id)
+                                                         ->first();
+
+            $transactionCounterPartDetails  = NewUser::where('id',$transactionDetails->seller_id)->first();
+
+             $messageBody  = 'This is meant to inform you that ' . "  " .  "$userDetails->name" . " ". "$userDetails->surname" ." " . 'has '. " $transactionStatusName". ' the Transaction.';
+                  $data = array  (
+
+                      'name'      =>      $transactionCounterPartDetails->name  . ' ' . $transactionCounterPartDetails->surname,
+                      'content'   =>      $messageBody,
+                                  );
+
+              \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails)
+                        {
+                          $message->from('info@foodorus', 'Food For us');
+                          $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
+                         });
+
+             return \Response::json($buyerTransactionsUpdates);
         }
         else
         {
@@ -264,10 +312,19 @@ class TransactionController extends Controller
 
     }
 
-    public function removeTransaction()
+    public function transactionRating()
     {
+                $userDetails      =  NewUser::where('api_key',Input::get('apiKey'))->first();
+                $transactionId    =  Transaction::where('id',Input::get('transactionId'))->first();
 
+                $transactionRatingObj                  =  new TransactionRating();
+                $transactionRatingObj->userId          =  $userDetails->id;
+                $transactionRatingObj->transactionId   =  $transactionId->id;
+                $transactionRatingObj->rating          =  Input::get('rating');
+                $transactionRatingObj->comment         =  Input::get('comment');
+                $transactionRatingObj->save();
 
+                return \Response::json($transactionRatingObj);
     }
 }
 

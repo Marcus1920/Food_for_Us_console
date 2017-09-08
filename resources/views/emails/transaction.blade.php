@@ -19,6 +19,16 @@
 
             <!-- /Space -->
 
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                <tbody>
+                <tr>
+                    <td width="100%" height="20">
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
 
             <!-- ROW 2 IMGS -->
             <table cellpadding="0" cellspacing="5" border="0" width="560" style="border:0; border-collapse:collapse; background-color:#ffffff; border-radius:6px;">
@@ -63,7 +73,7 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
 
-                                    <h3 style="padding-left: 10px":>Hello my name is:{{$name}} </h3>
+                                    <h3 style="padding-left: 10px":>Hello my name is {{$name}} </h3>
 
 
                                 </td>
@@ -72,11 +82,11 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
 
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">{{$message}}. </p>
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify"> {{$content}}. </p>
 
 
-                                    <p style="padding:0px 10px 0px 10px; text-align: left">Thanks kind Regards <br>
-                                     FoodForUs Team</p>
+                                    {{--<p style="padding:0px 10px 0px 10px; text-align: left">Thanks kind Regards <br>--}}
+                                     {{--FoodForUs Team</p>--}}
 
 
 
@@ -84,11 +94,18 @@
                             </tr>
 
 
+
+                                <tr>
+                                    <td width="100%" height="20">
+
+                                    </td>
+                                </tr>
+
                             <tr>
 
                                 <td width="100%" style="font-family:helvetica, Arial, sans-serif; font-size: 13px; text-align: center; color:#0DBE80; line-height: 24px;">
 
-                                    <a href="https://foodforus.cloud/"><strong>Visit the App Website</strong></a>
+                                    {{--<a href="https://foodforus.cloud/"><strong>Visit the App Website</strong></a>--}}
 
                                 </td>
                             </tr>
@@ -96,7 +113,10 @@
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0px; text-align: left; color:#2E363F;">
-                                    <p style="padding:0px 0px 10px 10px;"> Enjoy The Application,<br>
+                                    <p style="padding:0px 0px 10px 10px;"> Thanks kind Regards <br>
+                                        FoodForUs Team, <br>
+
+                                      Enjoy The Application<br>
                                         </p>
                                 </td>
                                 <td width="100%" height="6"></td>

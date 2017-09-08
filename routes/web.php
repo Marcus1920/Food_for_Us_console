@@ -49,21 +49,20 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
 
 
-
-
-
-
     //Users
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
+
     //Transaction
     Route::post('buy','TransactionController@store');
     Route::get('show','TransactionController@show');
     Route::get('transactionDetails','TransactionController@transactionDetails');
     Route::post('approveTransaction','TransactionController@approveTransaction');
+    Route::post('transactionRating','TransactionController@transactionRating');
+
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
