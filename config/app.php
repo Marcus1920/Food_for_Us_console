@@ -165,6 +165,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
 
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -232,6 +234,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
 
         'Mapper'     => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
    
 

@@ -9,7 +9,9 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
-        "cornford/googlmapper": "2.*"
+        "cornford/googlmapper": "2.*",
+
+        "consoletvs/charts": "5.*"
 
     },
     "require-dev": {

@@ -16,12 +16,12 @@ return [
         'element_label' => 'Element', // The default chart element label.
         'empty_dataset_label' => 'No Data Set',
         'empty_dataset_value' => 0,
-        'title' => 'My Cool Chart', // Default chart title.
+//        'title' => 'My Cool Chart', // Default chart title.
         'height' => 400, // 0 Means it will take 100% of the division height.
         'width' => 0, // 0 Means it will take 100% of the division width.
         'responsive' => false, // Not recommended since all libraries have diferent sizes.
         'background_color' => 'inherit', // The chart division background color.
-        'colors' => [], // Default chart colors if using no template is set.
+        'colors' => ['red','lightblue','black','orange','yellow','green','brown','silver',''], // Default chart colors if using no template is set.
         'one_color' => false, // Only use the first color in all values.
         'template' => 'material', // The default chart color template.
         'legend' => true, // Whether to enable the chart legend (where applicable).
@@ -30,7 +30,7 @@ return [
         'loader' => [
             'active' => true, // Determines the if loader is active by default.
             'duration' => 500, // In milliseconds.
-            'color' => '#000000', // Determines the default loader color.
+            'color' => 'red', // Determines the default loader color.
         ],
     ],
 
