@@ -228,4 +228,6 @@ Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
 
 //End User role
 
+Route::get('reports','ReportsController@index');
+
 ?>

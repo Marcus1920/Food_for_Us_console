@@ -90,7 +90,7 @@ class ResearchersController extends Controller
 
          $img->move($destinationFolder,$name) ;
 
-        $researcherPost->img_url = env('APP_URL').$destinationFolder.'/'.$name;
+        $researcherPost->imageUrl = env('APP_URL').$destinationFolder.'/'.$name;
 
 		$researcherPost->gps_long= $request->gps_long;
 		$researcherPost->gps_lat= $request->gps_lat;
