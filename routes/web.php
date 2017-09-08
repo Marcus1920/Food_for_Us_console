@@ -56,6 +56,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
 
+
+    Route::post('changepassword' ,'UsersController@changePassword');
+
+
     //Transaction
     Route::post('buy','TransactionController@store');
     Route::get('show','TransactionController@show');
@@ -75,6 +79,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('viewRecipe','PublicWallController@viewRecipe');
     Route::post('editRecipe','PublicWallController@editRecipe');
     Route::get('deleteRecipe','PublicWallController@deleteRecipe');
+
+
+
 /*
     //User Roles
     Route::get('getUserRoles','UserRolesController@getUserRoles');
@@ -91,6 +98,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Transport
     Route::get('getTransportType','TransportController@getTransportType');
 */
+
+    Route::get('distance','SellersController@getDistance');
+
 
 });
 
@@ -116,9 +126,10 @@ Route::get('/editUsers/{id}', function($id)
 
 Route::get('/inactivateUsers/{id}', function($id)
 {
-    $user = NewUser::where('id','=',$id)->first();
-    return view('users.inactivateUsers',compact('user'));
+   $user = NewUser::where('id','=',$id)->first();
+   return view('users.inactivateUsers',compact('user'));
 });
+
 
 Route::get('/createUser', function()
 {
@@ -127,10 +138,30 @@ Route::get('/createUser', function()
 
 
 
-
 Route::get('/activation', function()
 {
     return view('emails.activation',compact('activation'));
+});
+
+
+Route::get('/registration', function()
+{
+    return view('emails.registration',compact('registration'));
+});
+
+Route::get('/inactivation',function()
+{
+    return view('emails.inactivation',compact('inactivation'));
+});
+
+Route::get('/resetpassword',function()
+{
+    return view('emails.resetpassword',compact('resetpassword'));
+});
+
+Route::get('/reset',function()
+{
+    return view('passwords.reset',compact('reset'));
 });
 
 
@@ -145,6 +176,11 @@ Route::get('/transaction', function ()
     return view('emails.transaction',compact('transaction'));
 });
 
+Route::get('/changePassword', function ()
+{
+    return view('emails.changePassword',compact('changePassword'));
+});
+
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
@@ -156,10 +192,12 @@ Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
 Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
-
+Route::get('researchList','ResearchersController@researchList');
+Route::get('researchProfile/{id}','ResearchersController@researchProfile');
 
 
 Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
+Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');

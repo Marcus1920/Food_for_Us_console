@@ -43,6 +43,18 @@ class ResearchersController extends Controller
         return response()->json($all_researchs);
     }
 
+    public function researchList()
+    {
+        $all_researchs=Reseachers_details_tabs::all();
+        return view('Researchers.index',compact('all_researchs'));
+    }
+
+    public function researchProfile($id)
+    {
+        $research = Reseachers_details_tabs::find($id);
+        return view('Researchers.profile',compact('research'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

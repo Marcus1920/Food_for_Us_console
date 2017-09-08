@@ -12,15 +12,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
+use Illuminate\Pagination\Paginator;
 
 class UsersController extends Controller
 {
 
-
     public function index()
     {
-
-        $userList = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+        $userList = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius');
 
         return response()->json($userList);
     }
@@ -34,6 +33,52 @@ class UsersController extends Controller
         $user  = NewUser::where('api_key',$api_key)->first();
 
         return response()->json($user);
+    }
+
+    public function changePassword()
+    {
+        $api_key   = Input::get('api_key');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        if($user->password==Input::get('OldPassword'))
+        {
+            if(Input::get('NewPassword')==Input::get('CornfirmPasswod'))
+            {
+                $user  = NewUser::where('api_key',$api_key)
+                    ->update(['password'=>Input::get('CornfirmPasswod')]);
+
+                $userUpdated =NewUser::find($user);
+                $message = "your  new  password  is  ";
+
+                //email
+                $data = array(
+
+                    'name' => $userUpdated->name,
+                    'email'=>$userUpdated->email,
+                    'password' => $userUpdated->password,
+                    'content' => $message
+
+                );
+
+
+                \Mail::send('emails.changePassword', $data, function ($message) use ($userUpdated) {
+                    $message->from('info@foodforus', 'Food For us');
+                    $message->to($userUpdated->email)->subject("Food  for  us Notification! ");
+
+                });
+
+                return "Password successfuly changed to $userUpdated->password";
+            }
+            else
+            {
+                return "New passwords didn't match";
+            }
+        }
+        else
+        {
+            return "Incorrect old password";
+        }
     }
 
 
@@ -62,8 +107,8 @@ class UsersController extends Controller
 
 
             \Mail::send('emails.resetpassword', $data, function ($message) use ($userNew) {
-                $message->from('info@foodorus', 'Food For us');
-                $message->to($userNew->email)->subject("Food  for  us ");
+                $message->from('info@foodforus', 'Food For us');
+                $message->to($userNew->email)->subject("Food  for  us Notification! ");
 
             });
 
@@ -164,61 +209,7 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-/*
-    public function create()
-    {
 
-
-        $name = Input::get('name');
-        $surname = Input::get('surname');
-        $email = Input::get('emails');
-        $intrest = Input::get('intrest');
-        $location = Input::get('location');
-        $travel_radius = Input::get('travel_radius');
-        $description_of_acces = Input::get('description_of_acces');
-        $gps_lat = Input::get('gps_lat');
-        $gps_long = Input::get('gps_long');
-
-        $NewUser = new   NewUser  ();
-        $NewUser->active = 1;
-        $NewUser->gps_lat = $gps_lat;
-        $NewUser->gps_long = $gps_long;
-
-        $NewUser->name = $name;
-        $NewUser->email = $email;
-        $NewUser->intrest = $intrest;
-        $NewUser->surname = $surname;
-        $NewUser->location = $location;
-        $NewUser->travel_radius = $travel_radius;
-        $NewUser->password = "1234";
-        $NewUser->api_key = "xdwq213432435434bb4yyyyyyyy4";
-        $NewUser->description_of_acces = $description_of_acces;
-        $NewUser->save();
-
-        $response["error"] = false;
-        $message = "you  been  registered Sucfully ";
-        $data = array(
-
-            'name' => $NewUser->name,
-            'passsword' => $NewUser->password,
-            'content' => $message
-
-        );
-
-
-//        \Mail::send('emails.resetpassword', $data, function ($message) use ($NewUser) {
-//            $message->from('info@foodorus', 'Food For us');
-//            $message->to($NewUser->email)->subject("Registration Notification ");
-//
-//        });
-
-        $respose = array();
-        $respose['error'] = false;
-        $respose['mesg'] = "successfully registered  please  wait  for  approval ";
-        return response()->json($respose);
-
-
-    }*/
 
     public function updateUser($id)
     {
@@ -236,8 +227,10 @@ class UsersController extends Controller
 
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
+
             $message->from('info@fooforus.net', 'Food  For Us ');
             $message->to($userDetails->email)->subject( " Food  For Us Notification ");
+
 
         });
 
@@ -265,8 +258,15 @@ class UsersController extends Controller
 
         \Mail::send('emails.inactivation', $data, function ($message) use ($userDetails) {
 
+
+
+            $message->from('info@siyaleader.net', 'Food For Us');
+            $message->to($userDetails->email)->subject("Food For Us Notification !");
+
+
             $message->from('info@Food  For  Us  ',  'Food  For  Us');
             $message->to($userDetails->email)->subject("Food  For  Us   Notification ");
+
 
                    });
         return Redirect::to('/users');
@@ -331,15 +331,15 @@ function generateRandomString($length = 24) {
                      );
 
       \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
-             $message->from('info@foodorus', 'Food For us');
+
+             $message->from('info@foodforus', 'Food For us');
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 
-      
 
         $respose = array();
         $respose['error'] ="ok";
-        $respose['mesg'] = "successfully registered  please  wait  for  approval ";
+        $respose['mesg'] = "successfully registered  please  wait   or  approval ";
         return response()->json($respose);
 
 

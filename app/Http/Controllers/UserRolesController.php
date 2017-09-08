@@ -15,6 +15,13 @@ class UserRolesController extends Controller
     }
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+
+            'name'=>'required|alpha',
+
+            ]);
+
         $lastUserRole=UserRoles::all()->last();
         $markerNum = $lastUserRole->id + 1;
 

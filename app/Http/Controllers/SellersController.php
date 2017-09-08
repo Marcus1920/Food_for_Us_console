@@ -13,12 +13,14 @@ use Mail;
 
 class SellersController extends Controller
 {
+
     private $emailService;
 
     public  function __construct(EmailService $emailService)
     {
       $this->emailService = $emailService;
     }
+
 
     public function index()
     {

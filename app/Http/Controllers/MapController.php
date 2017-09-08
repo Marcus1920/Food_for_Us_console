@@ -31,7 +31,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><img src=$sellersPost->productPicture style='height: 250px;width: 300px;'></td>
+                      <td><img src=$sellersPost->productPicture></td>
                       </tr>
                       <br/>
                       <tr>
@@ -81,7 +81,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><img src=$sellersPost->productPicture style='height: 250px;width: 300px;'></td>
+                      <td><img src=$sellersPost->productPicture></td>
                       </tr>
                       <br/>
                       <tr>
@@ -133,7 +133,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Interest </b>&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>{$user->UserRole->name}</td>
+                      <td><b>Interest  : </td><td>{$user->UserRole->name}</td>
                       </tr>
                       <br/>
                       <tr>

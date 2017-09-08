@@ -19,6 +19,15 @@ class ProductTypeController extends Controller
      }
      public function store(Request $request)
      {
+
+
+         $this->validate($request,[
+
+             'productName'=>'required|alpha',
+             'productType'=>'required|not_in:0',
+
+         ]);
+
          $lastProduct = ProductType::all()->last();
          $markerNum= $lastProduct->id + 1;
 

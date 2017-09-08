@@ -18,6 +18,18 @@
                 <div class="form-group">
                     <label for="product">Packaging Name</label>
                     <input type="text" name="name" class="form-control" placeholder="Packaging name">
+
+                    @if($errors->has('name'))
+
+                        <span class="text text-danger">
+
+                        {{$errors->first()}}
+
+                        </span>
+
+                    @endif
+
+
                 </div>
 
                 <div class="form-group">
