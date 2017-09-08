@@ -177,6 +177,20 @@
                 </a>
             </li>
 
+            <li {{ (Request::is('posts') ? "class=active" : '') }}>
+                <a class="" href="{{ url('postslist') }}">
+                    <span class="menu-item">Post List</span>
+
+                </a>
+            </li>
+
+            <li {{ (Request::is('reports') ? "class=active" : '') }}>
+                <a class="" href="{{ url('researchList') }}">
+                    <span class="menu-item">Researchers List</span>
+
+                </a>
+            </li>
+
                 <li {{ (Request::is('list-users') ? "class=active dropdown" : 'dropdown') }}>
 
                     <a class="sa-side-ui"href="#">
