@@ -15,6 +15,43 @@ class SellersController extends Controller
 {
 
     private $emailService;
+    public function getDistance()
+    {
+
+        $api_key   = Input::get('apiKey');
+        $cord1  = NewUser::where('api_key',$api_key)->first();
+        $cord1->gps_lat;
+        $cord1->gps_long;
+        $cord1->travelRadius;
+
+
+        $nearSellers = array();
+        foreach ( $seller = Sellers_details_tabs::all() as $cord2) {
+            $cord2->gps_lat;
+            $cord2->gps_long;
+            $cord2->id;
+
+            $earth_radius = 6371;
+            $dLat = deg2rad($cord2->gps_lat - $cord1->gps_lat);
+            $dLon = deg2rad($cord2->gps_long - $cord1->gps_long);
+
+            $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($cord1->gps_lat)) * cos(deg2rad($cord2->gps_lat)) * sin($dLon / 2) * sin($dLon / 2);
+            $c = 2 * asin(sqrt($a));
+            $d = $earth_radius * $c;
+            $radius = $cord1->travelRadius * 10;
+
+            if ($radius > $d) {
+                $sellers = Sellers_details_tabs::where('id', $cord2->id)->get();
+                for ($i = 0; $i < count($sellers); $i++) {
+                    array_push($nearSellers, $sellers[$i]);
+                }
+
+            }
+
+
+        }
+        return $nearSellers;
+    }
 
     public  function __construct(EmailService $emailService)
     {
