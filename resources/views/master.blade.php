@@ -178,14 +178,14 @@
             </li>
 
             <li {{ (Request::is('posts') ? "class=active" : '') }}>
-                <a class="" href="{{ url('postslist') }}">
+                <a class="sa-side-list" href="{{ url('postslist') }}">
                     <span class="menu-item">Post List</span>
 
                 </a>
             </li>
 
-            <li {{ (Request::is('reports') ? "class=active" : '') }}>
-                <a class="" href="{{ url('researchList') }}">
+            <li {{ (Request::is('research') ? "class=active" : '') }}>
+                <a class="sa-side-research" href="{{ url('researchList') }}">
                     <span class="menu-item">Researchers List</span>
 
                 </a>

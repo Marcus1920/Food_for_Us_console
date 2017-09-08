@@ -26,6 +26,7 @@
     width: 44px;
     height: 44px;
 }
+.sa-side-list1 { background-image: url(../img/icon/map-marker-24.png); }
 .sa-side-map { background-image: url(../img/icon/map-marker-24.png); }
 .sa-side-home { background-image: url(../img/icon/map-marker-24.png); }
 .sa-side-homepage {background-image: url("../img/icon/home.png")}
@@ -40,8 +41,6 @@
 .sa-side-page { background-image: url(../img/icon/pages.png); }
 .sa-side-chart { background-image: url(../img/icon/chart.png); }
 .sa-side-photos { background-image: url(../img/icon/photos.png); }
-.sa-side-list { background-image: url(../img/icon/list.png); }
-
 
 /* Top Menu */
 [class*="sa-top-"] {
