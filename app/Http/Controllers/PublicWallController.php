@@ -12,15 +12,38 @@ class PublicWallController extends Controller
 
     public function getRecipes()
     {
+        $recipes=\DB::table('public_wall')
+            ->join('users', 'public_wall.poster', '=', 'users.id')
+            ->select(
+                \DB::raw(
+                    "
+                                public_wall.id,
+                             
+                                public_wall.name,
+                              
+                                public_wall.description,
+                                public_wall.recipe_picture,
+                                public_wall.ingredients,
+                                public_wall.methods,
+                                public_wall.poster,
+                                public_wall.created_at as createdAt,
+                              
+                                users.name as Name,
+                                users.surname as surname   
+                                "
+                )
+            )
+            ->get();
 
-        $recipes = PublicWall::all();
-        return response()->json($recipes);
+        return $recipes;
     }
 
     public function viewRecipe()
     {
         $id = Input::get('id');
-        $viewRecipe = PublicWall::with('newusers')->where('id',$id)->first();
+
+
+        $viewRecipe = PublicWall::with('users')->where('id',$id)->first();
         return $viewRecipe;
     }
 
@@ -32,7 +55,11 @@ class PublicWallController extends Controller
         $poster= Input::get('poster');
 
         $recipe = PublicWall::where('poster',$poster)->where('id',$id)
-            ->update(['name'=> Input::get('name'),'description'=> Input::get('description'),'ingredients'=> Input::get('ingredients'),'methods'=> Input::get('methods'),'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
+            ->update(['name'=> Input::get('name'),
+                'description'=> Input::get('description'),
+                'ingredients'=> Input::get('ingredients'),
+                'methods'=> Input::get('methods'),
+                'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
 
 
 

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class PublicWall extends Model
 {
     protected $table='public_wall';
-    public  function  newusers()
+    public  function users()
     {
-        return $this->belongsTo(NewUser::class,'poster','id');
+        return $this->belongsTo(User::class,'poster','id');
     }
 }
