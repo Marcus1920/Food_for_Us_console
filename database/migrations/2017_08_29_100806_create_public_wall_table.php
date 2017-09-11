@@ -15,12 +15,14 @@ class CreatePublicWallTable extends Migration
     {
         Schema::create('public_wall', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
+            $table->string('RecipePicture');
             $table->string('name');
             $table->string('description');
             $table->string('ingredients');
             $table->string('methods');
             $table->integer('poster')->unsigned();
-            $table->foreign('poster')->references('id')->on('new_users');
+            $table->foreign('poster')->references('id')->on('users');
             $table->timestamps();
         });
     }

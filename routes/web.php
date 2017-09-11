@@ -75,10 +75,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
-    Route::post('createRecipe','PublicWallController@createRecipe');
-    Route::get('viewRecipe','PublicWallController@viewRecipe');
-    Route::post('editRecipe','PublicWallController@editRecipe');
-    Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 
 
@@ -229,5 +225,15 @@ Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
 //End User role
 
 Route::get('reports','ReportsController@index');
+
+//Public Wall
+Route::get('addRecipe', function (){
+   return view('PublicWall.create');
+});
+
+Route::post('createRecipe','PublicWallController@createRecipe');
+Route::get('viewRecipe','PublicWallController@viewRecipe');
+Route::post('editRecipe','PublicWallController@editRecipe');
+Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 ?>
