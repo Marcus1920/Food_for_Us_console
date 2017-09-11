@@ -165,7 +165,11 @@
         <ul class="list-unstyled side-menu">
 
 
-            
+
+            <li {{ (Request::is('map') ? "class=active" : '') }}>
+                <a class="sa-side-home active" href="{{ url('getUsers') }}">
+                    <span class="menu-item">map</span>
+
 
             <li {{ (Request::is('reports') ? "class=active" : '') }}>
                 <a class="sa-side-user" href="{{ url('users') }}">
@@ -189,7 +193,14 @@
                 </li>
 
 
-           
+
+
+            <li {{ (Request::is('reports') ? "class=active" : '') }}>
+                    <a class="sa-side-user" href="{{ url('users') }}">
+                        <span class="menu-item">Users</span>
+                    </a>
+                </li>
+
 
         </ul>
     </aside>
