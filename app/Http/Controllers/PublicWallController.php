@@ -44,7 +44,6 @@ class PublicWallController extends Controller
         return $viewRecipe;
     }
 
-
     public function editRecipe()
     {
 

@@ -25,7 +25,6 @@ class UsersController extends Controller
     }
 
 
-
     public function myProfile()
     {
         $api_key   = Input::get('api_key');
