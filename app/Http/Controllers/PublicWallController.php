@@ -17,17 +17,14 @@ class PublicWallController extends Controller
             ->select(
                 \DB::raw(
                     "
-                                public_wall.id,
-                             
-                                public_wall.name,
-                              
+                                public_wall.id,             
+                                public_wall.name,                       
                                 public_wall.description,
                                 public_wall.recipe_picture,
                                 public_wall.ingredients,
                                 public_wall.methods,
                                 public_wall.poster,
                                 public_wall.created_at as createdAt,
-                              
                                 users.name as Name,
                                 users.surname as surname   
                                 "
