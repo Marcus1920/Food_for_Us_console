@@ -142,7 +142,6 @@ class SellersController extends Controller
                 )
             )
             ->orderBy('created_at' ,'desc')	->get();
-
         return $sellers_posts;
     }
 
@@ -152,8 +151,6 @@ class SellersController extends Controller
 
         $user  = NewUser::where('api_key',$input['api_key'])->first();
 
-	
-		
         $sellersPost= new Sellers_details_tabs();
         $name =$user->name;
         $surname=$user->name; 		
@@ -172,7 +169,7 @@ class SellersController extends Controller
 
          $img->move($destinationFolder,$name) ;
 
-        $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;
+        $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
 	
         $productTypeID = ProductType::where('name',Input::get('productName'))->first();
         $sellersPost->productType  = $productTypeID['id'];

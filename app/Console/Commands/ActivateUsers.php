@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\NewUser;
-
 use App\Services\InactiveUsersService;
 use Illuminate\Console\Command;
+
 
 class ActivateUsers extends Command
 {
@@ -21,12 +20,10 @@ class ActivateUsers extends Command
     {
         parent::__construct();
         $this->inactiveUsers =$InactiveUserService;
-
     }
 
     public function handle()
     {
-        //get all inactive users
-         return $this->inactiveUsers->inactiveUsers();
+        $this->inactiveUsers->inactiveUsers();
     }
 }

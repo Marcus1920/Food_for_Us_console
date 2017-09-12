@@ -12,11 +12,14 @@ use App\NewUser;
 
 class EmailService
 {
-
     public  function Buyers()
     {
-        $buyerDetails   = NewUser::where('intrest','=',1)->get();
-        return  $buyerDetails;
+        $buyerDetails     = NewUser::where('intrest','=',1)->get();
+        foreach($buyerDetails as $buyerDetail)
+        {
+            return  $buyerDetail->email;
+        }
+
     }
 
 }

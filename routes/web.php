@@ -30,9 +30,9 @@ Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
-// Produrct  type   
- Route::get ('packagingList' , 'packagingListController@index');
- Route::get ('producttype' , 'ProductTypeController@index');
+    // Produrct  type
+     Route::get ('packagingList' , 'packagingListController@index');
+     Route::get ('producttype' , 'ProductTypeController@index');
 
     //Researchers
     Route::get('myResearchs','ResearchersController@index');
@@ -54,11 +54,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
-    Route::get('myProfile','UsersController@myProfile');
-
+    Route::get('myProfile', 'UsersController@myProfile');
+    Route::post('updateProfile', 'UsersController@updateProfile');
 
     Route::post('changepassword' ,'UsersController@changePassword');
-
 
     //Transaction
     Route::post('buy','TransactionController@store');
@@ -66,7 +65,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('transactionDetails','TransactionController@transactionDetails');
     Route::post('approveTransaction','TransactionController@approveTransaction');
     Route::post('transactionRating','TransactionController@transactionRating');
-
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
