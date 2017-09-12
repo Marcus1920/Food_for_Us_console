@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Input;
 class PublicWallController extends Controller
 {
 
+    public function index()
+    {
+        $recipes=PublicWall::all();
+        return view('PublicWall.index',compact('recipes'));
+    }
+
     public function getRecipes()
     {
 
@@ -22,6 +28,12 @@ class PublicWallController extends Controller
         $id = Input::get('id');
         $viewRecipe = PublicWall::where('id',$id)->first();
         return $viewRecipe;
+    }
+
+    public function RecipeProfile($id)
+    {
+        $recipe=PublicWall::find($id);
+        return view ('PublicWall.profile',compact('recipe'));
     }
 
 
@@ -59,14 +71,15 @@ class PublicWallController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-        $recipe->RecipePicture      = $destinationFolder.'/'.$name;
+        $recipe->RecipePicture      = env('APP_URL').$destinationFolder.'/'.$name;
         $recipe->name               = Input::get('name');
         $recipe->description        = Input::get('description');
         $recipe->ingredients        = Input::get('ingredients');
         $recipe->methods            = Input::get('methods');
+        $recipe->poster             = Auth::user()->id;
         $recipe-> save() ;
 
-        return $recipe;
+        return Redirect('/publicWall');
     }
 
     public function deleteRecipe()

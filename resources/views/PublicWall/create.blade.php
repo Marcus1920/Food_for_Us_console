@@ -39,7 +39,7 @@
             <div class="form-group">
                 {!! Form::label('Recipe Type', 'Recipe Type', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-10">
-                    {!! Form::select('type',['0' => 'Select/All','1' => 'Recipe','2' => 'Trick'],0,['class' => 'form-control' ,'id' => 'gender']) !!}
+                    {!! Form::select('type',['0' => 'Select/All','Recipe' => 'Recipe','Trick' => 'Trick'],0,['class' => 'form-control' ,'id' => 'type']) !!}
                 </div>
             </div>
 

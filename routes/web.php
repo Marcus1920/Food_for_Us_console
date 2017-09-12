@@ -75,6 +75,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
+    Route::get('viewRecipe','PublicWallController@viewRecipe');
 
 
 
@@ -231,8 +232,10 @@ Route::get('addRecipe', function (){
    return view('PublicWall.create');
 });
 
+Route::get('publicWall','PublicWallController@index');
+Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile');
 Route::post('createRecipe','PublicWallController@createRecipe');
-Route::get('viewRecipe','PublicWallController@viewRecipe');
+
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
