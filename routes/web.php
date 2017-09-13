@@ -193,7 +193,8 @@ Route::get('/changePassword', function ()
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
 
-Route::get('postslist', 'PostViewController@index');
+Route::get('postslist', 'PostViewController@showList');
+Route::get('sellersPostList', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
