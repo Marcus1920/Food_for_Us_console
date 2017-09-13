@@ -33,6 +33,8 @@ class SellersController extends Controller
 
             $earth_radius = 6371;
             $dLat = deg2rad($cord2->gps_lat - $cord1->gps_lat);
+			
+			echo($dLat); 
             $dLon = deg2rad($cord2->gps_long - $cord1->gps_long);
 
             $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($cord1->gps_lat)) * cos(deg2rad($cord2->gps_lat)) * sin($dLon / 2) * sin($dLon / 2);

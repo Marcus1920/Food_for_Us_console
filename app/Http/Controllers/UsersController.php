@@ -326,7 +326,8 @@ function generateRandomString($length = 24) {
         $data = array(
 
             'name'      =>      $NewUser->name,
-            'passsword' =>      $NewUser->password,
+            'password' =>      $NewUser->password,
+			'surname' =>        $NewUser->surname,
             'content'   =>      $message,
                      );
 

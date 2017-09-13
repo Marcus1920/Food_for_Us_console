@@ -70,7 +70,8 @@
                     <textarea rows="3" id="methods" name="methods" class="sms form-control" maxlength="500" placeholder="Enter recipe methods"></textarea>
                 </div>
             </div>
-
+			
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <button type="submit" class="btn btn-sm">Add Recipe</button>
