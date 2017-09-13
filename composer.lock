@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9aabcb96c335f63f39cb7eeb8eb46c9",
+    "content-hash": "72ed910a8a129c298e5291d6ac990507",
     "packages": [
         {
             "name": "consoletvs/charts",
@@ -2379,16 +2379,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v8.0.2",
+            "version": "v8.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "b1fcc9be3403394791541ec839e1d89f3196e337"
+                "reference": "ae30aebeb2206d2975748f1568e3e9df9bc6c681"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/b1fcc9be3403394791541ec839e1d89f3196e337",
-                "reference": "b1fcc9be3403394791541ec839e1d89f3196e337",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/ae30aebeb2206d2975748f1568e3e9df9bc6c681",
+                "reference": "ae30aebeb2206d2975748f1568e3e9df9bc6c681",
                 "shasum": ""
             },
             "require": {
@@ -2445,7 +2445,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2017-09-06T00:36:58+00:00"
+            "time": "2017-09-12T05:24:50+00:00"
         }
     ],
     "packages-dev": [
