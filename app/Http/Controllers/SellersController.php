@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\NewPosts;
+
+use App\Jobs\SendEmailsToBuyers;
 use  App\NewUser ;
 use App\Sellers_details_tabs;
 use App\ProductType;
 use App\Packaging;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Services\EmailService;
 use Mail;
+use Carbon\Carbon;
 
 class SellersController extends Controller
 {
 
-    private $emailService;
+
+
     public function getDistance()
     {
 
@@ -47,17 +49,9 @@ class SellersController extends Controller
                 }
 
             }
-
-
         }
         return $nearSellers;
     }
-
-    public  function __construct(EmailService $emailService)
-    {
-      $this->emailService = $emailService;
-    }
-
 
     public function index()
     {
@@ -111,7 +105,10 @@ class SellersController extends Controller
             return response()->json($respond);
         }
     }
+
+
     public function allSellersPosts()
+
     {
         $sellers_posts=\DB::table('sellers_details_tabs')
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
@@ -146,6 +143,7 @@ class SellersController extends Controller
     }
 
 	  public function created(Request $request)
+
     {
         $input  =  $request->all();
 
@@ -191,29 +189,23 @@ class SellersController extends Controller
         $sellersPost->paymentMethods     = Input::get('paymentMethods');
         $sellersPost->transactionRating  = Input::get('transactionRating');
 
-        $sellersPost->city  = Input::get('city');
-        $sellersPost->country  = Input::get('country');
-        $sellersPost->location = Input::get('country').', '.Input::get('city');
-        $sellersPost->description  = Input::get('description');
-        $sellersPost->quantity = Input::get('quantity');
-        $sellersPost->gps_lat    = Input::get('gps_lat');
-        $sellersPost->gps_long = Input::get('gps_long');
-        $sellersPost->availableHours =  "08:00-17:00" ; // Input::get('availableHours');
-        $sellersPost->paymentMethods = "Cash and bank deposit" ; // Input::get('paymentMethods');
+        $sellersPost->city              = Input::get('city');
+        $sellersPost->country           = Input::get('country');
+        $sellersPost->location          = Input::get('country').', '.Input::get('city');
+        $sellersPost->description       = Input::get('description');
+        $sellersPost->quantity          = Input::get('quantity');
+        $sellersPost->gps_lat           = Input::get('gps_lat');
+        $sellersPost->gps_long          = Input::get('gps_long');
+        $sellersPost->availableHours    =  "08:00-17:00" ; // Input::get('availableHours');
+        $sellersPost->paymentMethods    = "Cash and bank deposit" ; // Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
         $sellersPost->save();
 
-//        $buyerEmails =$this->emailService->Buyers();
-//        foreach($buyerEmails as $buyerEmail)
-//        {
-//            \Mail::to($buyerEmail->email)->send(new NewPosts());
-//        }
-
-        return $sellersPost;
-
+        $job = (new SendEmailsToBuyers())
+               ->delay(Carbon::now()->addSeconds(5));
+                dispatch($job);
+             return $sellersPost;
     }
-	 
-	 
     public function create(Request $request)
     {
         $input  =  $request->all();

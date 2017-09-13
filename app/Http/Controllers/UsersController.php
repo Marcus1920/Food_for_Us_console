@@ -386,7 +386,7 @@ function generateRandomString($length = 24) {
           if($request->hasFile('profilePicture'))
           {
               $img                =  $request->file('profilePicture');
-              $destinationFolder = 'profilePictures/'.$user['name'].'_'.$user['surname'].'_'.$user['id'];
+              $destinationFolder  = 'profilePictures/'.$user['name'].'_'.$user['surname'].'_'.$user['id'];
 
               if(!\File::exists($destinationFolder))
               {
