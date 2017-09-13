@@ -55,6 +55,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile','UsersController@myProfile');
+    Route::post('updateProfilePic','UsersController@updateAppUserProfile');
 
 
     Route::post('changepassword' ,'UsersController@changePassword');
@@ -106,7 +107,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
 
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
-Route::get('/users' , 'HomeController@users')->name('users') ;
+//Route::get('/users' , 'HomeController@users')->name('users') ;
 
 Route::get('/users' , 'HomeController@show')->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
@@ -121,11 +122,19 @@ Route::get('/editUsers/{id}', function($id)
     return view('users.edit',compact('user'));
 });
 
+Route::get('inactive' , 'HomeController@InactiveusersLis') ;
+
 Route::get('/inactivateUsers/{id}', function($id)
 {
-   $user = NewUser::where('id','=',$id)->first();
-   return view('users.inactivateUsers',compact('user'));
+    $user = NewUser::where('id','=',$id)->first();
+    return view('users.inactivateUsers',compact('user'));
 });
+
+//Route::get('/inactivateUsers/{id}', function($id)
+//{
+//   $user = NewUser::where('id','=',$id)->first();
+//   return view('users.inactivateUsers',compact('user'));
+//});
 
 
 Route::get('/createUser', function()
