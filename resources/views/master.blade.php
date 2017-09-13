@@ -38,7 +38,16 @@
     <link href="{{ asset('/css/toggles.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('/css/toggles.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="{{ asset('/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+{{--<link href="{{ asset('/bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">--}}
+<!-- jQuery Library -->
+    <script src="{{ asset('/js/jquery.min.js') }}"></script>
 
     <!-- jQuery Library -->
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
