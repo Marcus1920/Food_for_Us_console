@@ -407,7 +407,7 @@ function generateRandomString($length = 24) {
     public function updateAppUserProfile()
     {
 
-        $api_key = Input::get('apiKey');
+        $api_key = Input::get('api_key');
 
         $user  = NewUser::where('api_key',$api_key)->first();
 
