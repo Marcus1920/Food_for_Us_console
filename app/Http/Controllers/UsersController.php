@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PublicWall;
+use App\Sellers_details_tabs;
 use App\User;
 use Illuminate\Http\Request;
 use App\NewUser  ;
@@ -25,13 +26,34 @@ class UsersController extends Controller
     }
 
 
-
     public function myProfile()
     {
-        $api_key   = Input::get('api_key');
+		
+		
+		
+		
+		
 
-        $user  = NewUser::where('api_key',$api_key)->first();
-
+       // $api_key   = Input::get('apiKey');
+        $user  = NewUser::where('api_key',Input::get('api_key'))
+            ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+            ->select(
+                \DB::raw(
+                    "
+                        new_users.id,
+                        new_users.profilePicture,
+                        new_users.idNumber,
+                        new_users.name,
+                        new_users.surname,
+                        new_users.email,
+                        new_users.cellphone,
+                        new_users.location,
+                        new_users.descriptionOfAcces,
+                        user_roles.name as interest 
+                       "
+                )
+            )
+            ->first();
         return response()->json($user);
     }
 
@@ -214,8 +236,11 @@ class UsersController extends Controller
     public function updateUser($id)
     {
 		
-		$user = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->where('id',$id)
-              ->update(['active'=>2]);
+		$user = NewUser::with('UserStatuses')
+                                ->with('UserRole')
+                                ->with('UserTravelRadius')
+                                ->where('id',$id)
+                                ->update(['active'=>2]);
 
          $userDetails = NewUser::find($id);
 
@@ -326,7 +351,8 @@ function generateRandomString($length = 24) {
         $data = array(
 
             'name'      =>      $NewUser->name,
-            'passsword' =>      $NewUser->password,
+            'password' =>      $NewUser->password,
+			'surname' =>        $NewUser->surname,
             'content'   =>      $message,
                      );
 
@@ -378,5 +404,34 @@ function generateRandomString($length = 24) {
 
     }
 
+    public function updateAppUserProfile()
+    {
+
+        $api_key = Input::get('api_key');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        $file = Input::file('file');
+
+        $destinationFolder = "images/".$user->name."_".$user->surname."_".$user->id."/";
+
+        if(!\File::exists($destinationFolder))
+        {
+            \File::makeDirectory($destinationFolder,0777,true);
+        }
+
+        $name=$file->getClientOriginalName();
+
+        $file->move($destinationFolder,$name) ;
+
+            $user = NewUser::where('api_key', $api_key)
+                ->update(['profilePicture' => env('APP_URL').$destinationFolder.'/'.$name,
+                    'updated_at' => \Carbon\Carbon::now('Africa/Johannesburg')
+                        ->toDateTimeString()]);
+
+        $userPost = NewUser::where('api_key', $api_key)->first();
+        return  response()->json($userPost);
+
+    }
 
 }
