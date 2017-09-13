@@ -148,37 +148,37 @@ class SellersController extends Controller
 
 	  public function created(Request $request)
     {
-        $input  =  $request->all();
+        $input                          =  $request->all();
 
-        $user  = NewUser::where('api_key',$input['api_key'])->first();
+        $user                           = NewUser::where('api_key',$input['api_key'])->first();
 
 	
 		
-        $sellersPost= new Sellers_details_tabs();
-        $name =$user->name;
-        $surname=$user->name; 		
-		$id=$user->id;
-        $sellersPost->new_user_id     = $user->id;
+        $sellersPost                    = new Sellers_details_tabs();
+        $name                           =$user->name;
+        $surname                        =$user->name;
+		$id                             =$user->id;
+        $sellersPost->new_user_id       = $user->id;
 		
-    	$img=$request->file('file');
-        $destinationFolder = "images/".$name."_".$surname."_".$id."/";
+    	$img                            =$request->file('file');
+        $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
             \File::makeDirectory($destinationFolder,0777,true);
 			move_uploaded_file($img,$destinationFolder); 
         }
 
-        $name =    $img->getClientOriginalName();
+        $name                            =    $img->getClientOriginalName();
 
-         $img->move($destinationFolder,$name) ;
+        $img->move($destinationFolder,$name) ;
 
-        $sellersPost->productPicture  =env('APP_URL').$destinationFolder.'/'.$name;
+        $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
 	
-        $productTypeID = ProductType::where('name',Input::get('productName'))->first();
-        $sellersPost->productType  = $productTypeID['id'];
+        $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
+        $sellersPost->productType        = $productTypeID['id'];
 
-        $packagingID = Packaging::where('name',Input::get('packaging'))->first();
-        $sellersPost->packaging = $packagingID['id'];
+        $packagingID                     = Packaging::where('name',Input::get('packaging'))->first();
+        $sellersPost->packaging          = $packagingID['id'];
 
         $sellersPost->costPerKg          = Input::get('costPerKg');
         $sellersPost->transactionRating  = Input::get('rating');
@@ -194,16 +194,16 @@ class SellersController extends Controller
         $sellersPost->paymentMethods     = Input::get('paymentMethods');
         $sellersPost->transactionRating  = Input::get('transactionRating');
 
-        $sellersPost->city  = Input::get('city');
-        $sellersPost->country  = Input::get('country');
-        $sellersPost->location = Input::get('country').', '.Input::get('city');
-        $sellersPost->description  = Input::get('description');
-        $sellersPost->quantity = Input::get('quantity');
-        $sellersPost->gps_lat    = Input::get('gps_lat');
-        $sellersPost->gps_long = Input::get('gps_long');
-        $sellersPost->availableHours =  "08:00-17:00" ; // Input::get('availableHours');
-        $sellersPost->paymentMethods = "Cash and bank deposit" ; // Input::get('paymentMethods');
-        $sellersPost->transactionRating = Input::get('transactionRating');
+        $sellersPost->city               = Input::get('city');
+        $sellersPost->country            = Input::get('country');
+        $sellersPost->location           = Input::get('country').', '.Input::get('city');
+        $sellersPost->description        = Input::get('description');
+        $sellersPost->quantity           = Input::get('quantity');
+        $sellersPost->gps_lat            = Input::get('gps_lat');
+        $sellersPost->gps_long           = Input::get('gps_long');
+        $sellersPost->availableHours     =  "08:00-17:00" ; // Input::get('availableHours');
+        $sellersPost->paymentMethods     = "Cash and bank deposit" ; // Input::get('paymentMethods');
+        $sellersPost->transactionRating  = Input::get('transactionRating');
         $sellersPost->save();
 
 //        $buyerEmails =$this->emailService->Buyers();
@@ -269,21 +269,21 @@ class SellersController extends Controller
         $user           = NewUser::where('api_key',$apiKey)->first();
         $id             = Input::get('id');
         $deletePost     =  Sellers_details_tabs::where('id', $id)->where('new_user_id', $user)
-            ->update(['productPicture'=> Input::get('name'),
-                'location'=> Input::get('description'),
-                'gps_lat'=> Input::get('ingredients'),
-                'gps_long'=> Input::get('methods'),
-                'productType'=> Input::get('methods'),
-                'quantity'=> Input::get('methods'),
-                'costPerKg'=> Input::get('methods'),
-                'description'=> Input::get('methods'),
-                'country'=> Input::get('methods'),
-                'city'=> Input::get('methods'),
-                'packaging'=> Input::get('methods'),
-                'availableHours'=> Input::get('methods'),
-                'paymentMethods'=> Input::get('methods'),
-                'transactionRating'=> Input::get('methods'),
-                'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
+            ->update(['productPicture'          => Input::get('name'),
+                        'location'              => Input::get('description'),
+                        'gps_lat'               => Input::get('ingredients'),
+                        'gps_long'              => Input::get('gps_long'),
+                        'productType'           => Input::get('productType'),
+                        'quantity'              => Input::get('quantity'),
+                        'costPerKg'             => Input::get('costPerKg'),
+                        'description'           => Input::get('description'),
+                        'country'               => Input::get('country'),
+                        'city'                  => Input::get('city'),
+                        'packaging'             => Input::get('packaging'),
+                        'availableHours'        => Input::get('availableHours'),
+                        'paymentMethods'        => Input::get('paymentMethods'),
+                        'transactionRating'     => Input::get('transactionRating'),
+                        'updated_at'            =>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
         $posts          =   Sellers_details_tabs::where('new_user_id',$user);
     }
 }

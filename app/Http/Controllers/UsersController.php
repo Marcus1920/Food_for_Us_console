@@ -213,8 +213,11 @@ class UsersController extends Controller
     public function updateUser($id)
     {
 		
-		$user = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->where('id',$id)
-              ->update(['active'=>2]);
+		$user = NewUser::with('UserStatuses')
+                                ->with('UserRole')
+                                ->with('UserTravelRadius')
+                                ->where('id',$id)
+                                ->update(['active'=>2]);
 
          $userDetails = NewUser::find($id);
 
@@ -377,5 +380,51 @@ function generateRandomString($length = 24) {
 
     }
 
+    public function updateAppUserProfile()
+    {
+
+
+
+//
+//        $institution = $this->institution->find($id);
+//        $filename  = public_path('uploads/institutions/').$institution->avatar;
+//        if(File::exists($filename)) {
+//
+//            $avatar = $request->file('avatar');
+//            $filename_new = time() . '.' . $avatar->getClientOriginalExtension();
+//            Image::make($avatar)->resize(250, 205)->save( public_path('uploads/institutions/' . $filename_new ) );
+//
+//            //update filename to database
+//            $institution->avatar = $filename_new;
+//            $institution->save();
+//            //Found existing file then delete
+//            File::delete($filename);
+        $api_key = Input::get('apiKey');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+            $file = Input::file('file');
+
+        $destinationFolder = "images/".$user->name."_".$user->surname."_".$user->id."/";
+
+        if(!\File::exists($destinationFolder)) {
+            \File::makeDirectory($destinationFolder,0777,true);
+        }
+
+        $name=$file->getClientOriginalName();
+
+        $file->move($destinationFolder,$name) ;
+
+            $user = NewUser::where('api_key', $api_key)
+                ->update(['profilePicture' => env('APP_URL').$destinationFolder.'/'.$name,
+                    'updated_at' => \Carbon\Carbon::now('Africa/Johannesburg')
+                        ->toDateTimeString()]);
+
+
+
+        $userPost = NewUser::where('api_key', $api_key)->first();
+        return  response()->json($userPost);
+
+    }
 
 }
