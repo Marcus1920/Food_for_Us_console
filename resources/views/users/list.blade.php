@@ -28,6 +28,61 @@
 @endsection
 @section('footer')
     <script>
+
+        jQuery(document).ready(function($){
+
+
+            var InactiveUserTable     = $('#InactiveUserTable').DataTable({
+                "autoWidth": false,
+
+                "processing": true,
+                speed: 500,
+                "dom": 'T<"clear">lfrtip',
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                "order" :[[0,"desc"]],
+                "ajax": "{!! url('/inactive/')!!}","processing": true,
+                "serverSide": true,
+                "dom": 'T<"clear">lfrtip',
+                "order" :[[0,"desc"]],
+
+
+
+
+                "columns": [
+                    {data: 'id', name: 'new_users.id'},
+                    {data: 'name', name: 'new_users.name'},
+                    {data: 'surname', name: 'new_users.surname'},
+                   {data: 'email', name: 'new_users.email'},
+                   {data: 'intrest', name: ' user_roles.intrest'},
+                {data: 'location', name: 'new_users.location'},
+                {data: 'travelRadius', name: 'new_users.travelRadius'},
+                    {data: function(d){
+
+                        return d.descriptionOfAcces;
+
+                    },"name" : 'new_users.descriptionOfAcces',"width" :"25%"},
+
+                    {data: 'actions',  name: 'actions'},
+                ],
+
+                "aoColumnDefs": [
+                    { "bSearchable": false, "aTargets": [ 4] },
+                    { "bSortable": false, "aTargets": [ 4] }
+                ]
+
+            });
+
+
+        });
+
+
+
         $( function() {
             $( "#tabs" ).tabs();
         } );

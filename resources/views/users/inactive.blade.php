@@ -1,3 +1,5 @@
+
+
 <div class="tab-pane" id="inactive">
 
     <div class="row">
@@ -7,7 +9,7 @@
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
                         <h3 class="block-title"> Inactive User  List </h3><i class="n-count animated"> {{count($NewUser,0)}}</i>
-                        <table class="table tile table-striped" id="pendingreferralCasesTable">
+                        <table class="table tile table-striped" id="InactiveUserTable">
                             <thead>
                             <tr>
                                 <th>Id</th>
@@ -21,19 +23,9 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            @foreach($NewUser  as $Newuser)
-                                <tr>
-                                    <td> {{$Newuser->id}} </td>
-                                    <td> {{$Newuser->name}}  </td>
-                                    <td> {{$Newuser->surname}}  </td>
-                                    <td> {{$Newuser->email}}  </td>
-                                    <td> {{$Newuser->UserRole->name}} </td>
-                                    <td> {{$Newuser->location}} </td>
-                                    <td> {{$Newuser->UserTravelRadius->kilometres}} </td>
-                                    <td> {{$Newuser->descriptionOfAcces}} </td>
-                                    <td><a href="{{url('/editUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></td>
-                                </tr>
-                            @endforeach
+
+
+
 
                         </table>
                     </div>
@@ -44,3 +36,9 @@
 
     </div>
 </div>
+
+
+<script>
+
+
+</script>

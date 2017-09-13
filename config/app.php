@@ -166,6 +166,7 @@ return [
         Cornford\Googlmapper\MapperServiceProvider::class,
 
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -235,6 +236,7 @@ return [
 
         'Mapper'     => Cornford\Googlmapper\Facades\MapperFacade::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
    
 
