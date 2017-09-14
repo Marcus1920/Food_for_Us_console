@@ -5,6 +5,7 @@ use  App\NewUser ;
 use App\Reseachers_details_tabs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Yajra\DataTables\DataTables;
 
 class ResearchersController extends Controller
 {
@@ -45,8 +46,27 @@ class ResearchersController extends Controller
 
     public function researchList()
     {
-        $all_researchs=Reseachers_details_tabs::all();
-        return view('Researchers.index',compact('all_researchs'));
+        return view('Researchers.index');
+    }
+    public function allResearchList()
+    {
+        $all_research=Reseachers_details_tabs::all();
+//        $all_research=\DB::table('reseachers_details_tabs')
+//            ->select(
+//                \DB::raw(
+//                    "
+//                        reseachers_details_tabs.id,
+//                        reseachers_details_tabs.natureOfBusiness,
+//                        reseachers_details_tabs.summaryBox,
+//                        reseachers_details_tabs.researchNotes,
+//                        reseachers_details_tabs.created_at,
+//                        "
+//                )
+//            )
+//            ->orderBy('created_at' ,'desc')	->get();
+
+        return Datatables::of($all_research)
+            ->make(true);
     }
 
     public function researchProfile($id)

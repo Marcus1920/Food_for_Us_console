@@ -224,15 +224,15 @@
                         <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Admin List</a></li>
 
                         <li><a href="{{ url('postslist') }}"><span class="badge badge-r"></span>Post List</a></li>
-                        <li><a href="{{ url('userroleslist') }}"><span class="badge badge-r"></span>User Roles List</a></li>
+                        <li><a href="{{ url('userroleslist')}}"><span class="badge badge-r"></span>User Roles List</a></li>
                         <li><a href="{{ url('productlist') }}"><span class="badge badge-r"></span>Product List</a></li>
+
                         <li><a href="{{ url('packaginglist') }}"><span class="badge badge-r"></span>Packaging List</a></li>
                     </ul>
                 </li>
 
 
           
-
 
         </ul>
     </aside>
@@ -397,6 +397,112 @@
                 {data: function(d)
                 {
                     return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                }},
+            ],
+
+            "aoColumnDefs": [
+                { "bSearchable": false, "aTargets": [ 4] },
+                { "bSortable": false, "aTargets": [ 4] }
+            ]
+
+        });
+
+        var reseachersTable     = $('#reseachersTable').DataTable({
+            "autoWidth": false,
+
+            "processing": true,
+            speed: 500,
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                ,{
+
+                    extend : 'pdfHtml5',
+                    title  : 'Siyaleader_Report',
+                    header : 'I am text in',
+                },
+
+            ],
+
+
+            "order" :[[0,"desc"]],
+            "ajax": "{!! url('/getResearchList/')!!}",
+            "processing": true,
+            "serverSide": true,
+            "order" :[[0,"desc"]],
+
+            "buttons": [
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+
+
+            "columns": [
+                {data: 'id', name: 'id'},
+                {data: 'natureOfBusiness', name: 'natureOfBusiness'},
+                {data: 'summaryBox', name: 'summaryBox'},
+                {data: 'researchNotes', name: 'researchNotes'},
+                {data: 'created_at', name: 'created_at'},
+
+                {data: function(d)
+                {
+                    return "<a href='{!! url('researchProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                }},
+            ],
+
+            "aoColumnDefs": [
+                { "bSearchable": false, "aTargets": [ 4] },
+                { "bSortable": false, "aTargets": [ 4] }
+            ]
+
+        });
+
+        var publicWallTable     = $('#publicWallTable').DataTable({
+            "autoWidth": false,
+
+            "processing": true,
+            speed: 500,
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                ,{
+
+                    extend : 'pdfHtml5',
+                    title  : 'Siyaleader_Report',
+                    header : 'I am text in',
+                },
+
+            ],
+
+
+            "order" :[[0,"desc"]],
+            "ajax": "{!! url('/allRecipes/')!!}",
+            "processing": true,
+            "serverSide": true,
+            "order" :[[0,"desc"]],
+
+            "buttons": [
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+
+
+            "columns": [
+                {data: 'id', name: 'id'},
+                {data: 'type', name: 'type'},
+                {data: 'name', name: 'name'},
+                {data: 'description', name: 'description'},
+                {data: 'ingredients', name: 'ingredients'},
+                {data: 'methods', name: 'methods'},
+                {data: 'created_at', name: 'created_at'},
+
+                {data: function(d)
+                {
+                    return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
                 }},
             ],
 
