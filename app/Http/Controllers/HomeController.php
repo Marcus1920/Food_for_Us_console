@@ -22,8 +22,7 @@ class HomeController extends Controller
         return view('users.list')->with(compact('NewUser', 'activeUsers'));
     }
 
-<<<<<<< HEAD
-=======
+
 //    public  function users()
 //    {
 //        $NewUser     =  NewUser::where('active',1)->get();// inactive users
@@ -39,8 +38,9 @@ public function  InactiveusersLis()
     $NewUser = \DB::table('new_users')
         ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
      //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
-        ->select(\DB::raw(
-            "
+        ->select(\DB::raw
+                           (
+                                   "
                                     new_users.id,
                                     new_users.name,
                                     new_users.surname,
@@ -52,7 +52,7 @@ public function  InactiveusersLis()
                                     new_users.descriptionOfAcces
                                     
                                     "
-        )
+     )
         )->where('active',1);
 
 
@@ -63,7 +63,7 @@ public function  InactiveusersLis()
 
 }
 
->>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
+
     public function register()
     {
         return view('admin.register');

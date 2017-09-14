@@ -237,16 +237,16 @@ class UsersController extends Controller
     public function updateUser($id)
     {
 		
-<<<<<<< HEAD
+
 		$user = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->where('id',$id)
               ->update(['active'=>1]);
-=======
+
 		$user = NewUser::with('UserStatuses')
                                 ->with('UserRole')
                                 ->with('UserTravelRadius')
                                 ->where('id',$id)
                                 ->update(['active'=>2]);
->>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
+
 
          $userDetails = NewUser::find($id);
 
@@ -408,7 +408,7 @@ function generateRandomString($length = 24) {
 
     }
 
-<<<<<<< HEAD
+
       public function updateProfile(Request $request)
       {
 
@@ -433,7 +433,7 @@ function generateRandomString($length = 24) {
           }
           return $user;
       }
-=======
+
     public function updateAppUserProfile()
     {
 
@@ -463,6 +463,6 @@ function generateRandomString($length = 24) {
         return  response()->json($userPost);
 
     }
->>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
+
 
 }

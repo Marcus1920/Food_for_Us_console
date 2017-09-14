@@ -151,13 +151,13 @@ class SellersController extends Controller
 
         $user                           = NewUser::where('api_key',$input['api_key'])->first();
 
-<<<<<<< HEAD
+
         $sellersPost= new Sellers_details_tabs();
         $name =$user->name;
         $surname=$user->name; 		
 		$id=$user->id;
         $sellersPost->new_user_id     = $user->id;
-=======
+
 	
 		
         $sellersPost                    = new Sellers_details_tabs();
@@ -165,7 +165,7 @@ class SellersController extends Controller
         $surname                        =$user->name;
 		$id                             =$user->id;
         $sellersPost->new_user_id       = $user->id;
->>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
+
 		
     	$img                            =$request->file('file');
         $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
@@ -179,11 +179,11 @@ class SellersController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-<<<<<<< HEAD
+
         $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
-=======
+
         $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
->>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
+
 	
         $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
         $sellersPost->productType        = $productTypeID['id'];
@@ -205,7 +205,7 @@ class SellersController extends Controller
         $sellersPost->paymentMethods     = Input::get('paymentMethods');
         $sellersPost->transactionRating  = Input::get('transactionRating');
 
-<<<<<<< HEAD
+
         $sellersPost->city              = Input::get('city');
         $sellersPost->country           = Input::get('country');
         $sellersPost->location          = Input::get('country').', '.Input::get('city');
@@ -216,7 +216,7 @@ class SellersController extends Controller
         $sellersPost->availableHours    =  "08:00-17:00" ; // Input::get('availableHours');
         $sellersPost->paymentMethods    = "Cash and bank deposit" ; // Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
-=======
+
         $sellersPost->city               = Input::get('city');
         $sellersPost->country            = Input::get('country');
         $sellersPost->location           = Input::get('country').', '.Input::get('city');
@@ -227,7 +227,7 @@ class SellersController extends Controller
         $sellersPost->availableHours     =  "08:00-17:00" ; // Input::get('availableHours');
         $sellersPost->paymentMethods     = "Cash and bank deposit" ; // Input::get('paymentMethods');
         $sellersPost->transactionRating  = Input::get('transactionRating');
->>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
+
         $sellersPost->save();
 
         $job = (new SendEmailsToBuyers())
