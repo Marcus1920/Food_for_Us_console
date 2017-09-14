@@ -192,6 +192,7 @@ Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
 Route::get('researchList','ResearchersController@researchList');
+Route::get('getResearchList','ResearchersController@allResearchList');
 Route::get('researchProfile/{id}','ResearchersController@researchProfile');
 
 
@@ -233,6 +234,7 @@ Route::get('addRecipe', function (){
 });
 
 Route::get('publicWall','PublicWallController@index');
+Route::get('allRecipes','PublicWallController@getAllRecipes');
 Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile');
 Route::post('createRecipe','PublicWallController@createRecipe');
 

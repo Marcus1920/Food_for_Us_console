@@ -16,7 +16,7 @@
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
                         <h3 class="block-title">RESEARCHES </h3>
-                        <table class="table tile table-striped" id="pendingreferralCasesTable">
+                        <table class="table tile table-striped" id="reseachersTable">
                             <thead>
                             <tr>
                                 <th>Id</th>
@@ -27,18 +27,6 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            @foreach($all_researchs  as $all_research)
-                                <tr>
-                                    <td> {{$all_research->id}} </td>
-                                    <td> {{$all_research->natureOfBusiness}} </td>
-                                    <td> {{$all_research->summaryBox}} </td>
-                                    <td> {{$all_research->researchNotes}} </td>
-                                    <td> {{$all_research->created_at->diffForHumans()}}</td>
-
-                                    <td><a href="{{url('/researchProfile/'.$all_research->id)}}"  value="click me" class="btn btn-secondary">View</a></td>
-
-                                </tr>
-                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -48,13 +36,5 @@
     </div>
 
 
-
-@endsection
-@section('footer')
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
 @endsection
