@@ -15,19 +15,7 @@ use Carbon\Carbon;
 class SellersController extends Controller
 {
 
-
-    private $emailService;
-
-    public  function __construct(EmailService $emailService)
-
-
-
-    public function getDistance()
-
-    {
-        $this->emailService = $emailService;
-    }
-
+ 
 
     public function getDistance()
     {

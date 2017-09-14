@@ -296,9 +296,6 @@ class UsersController extends Controller
 
     public  function   create  ()   {
 
-	
-	
-
     
 function generateRandomString($length = 24) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
@@ -456,10 +453,7 @@ function generateRandomString($length = 24) {
         return  response()->json($userPost);
 
     }
-<<<<<<< HEAD
-}
-=======
 
 
 }
->>>>>>> fa8299709d1dba64520b8136279d42fd828a67d6
+
