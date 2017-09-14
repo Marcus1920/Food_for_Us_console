@@ -4,9 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+
+
+
 class NewUser extends Eloquent
 {
     //
+    protected $table = 'new_users';
+    protected $fillable = [
+                            'idNumber',
+                            'profilePicture',
+                             'name',
+                             'surname',
+                             'email',
+                             'intrest',
+                             'cellphone',
+                             'location',
+                             'travelRadius'
+                          ];
 
     public  function  Sellers_details_tabss()
     {
@@ -17,7 +32,6 @@ class NewUser extends Eloquent
     {
         return $this->hasMany(PublicWall::class);
     }
-
 
     public function cart()
     {

@@ -26,7 +26,7 @@ class PublicWallController extends Controller
                                 public_wall.id,             
                                 public_wall.name,                       
                                 public_wall.description,
-                                public_wall.recipe_picture,
+                                public_wall.imgurl,
                                 public_wall.ingredients,
                                 public_wall.methods,
                                 public_wall.poster,

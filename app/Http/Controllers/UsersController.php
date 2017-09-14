@@ -11,6 +11,7 @@ use App\UserRoles;
 use App\UserTravelRadius;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rules\In;
 use phpDocumentor\Reflection\Types\Null_;
 use Redirect;
 use Illuminate\Pagination\Paginator;
@@ -28,13 +29,6 @@ class UsersController extends Controller
 
     public function myProfile()
     {
-		
-		
-		
-		
-		
-
-       // $api_key   = Input::get('apiKey');
         $user  = NewUser::where('api_key',Input::get('api_key'))
             ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
             ->select(
@@ -236,11 +230,16 @@ class UsersController extends Controller
     public function updateUser($id)
     {
 		
+
+		$user = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->where('id',$id)
+              ->update(['active'=>1]);
+
 		$user = NewUser::with('UserStatuses')
                                 ->with('UserRole')
                                 ->with('UserTravelRadius')
                                 ->where('id',$id)
                                 ->update(['active'=>2]);
+
 
          $userDetails = NewUser::find($id);
 
@@ -268,7 +267,7 @@ class UsersController extends Controller
     public function inactivateUser($id)
     {
         $user = NewUser::where('id',$id)
-            ->update(['active'=>1]);
+            ->update(['active'=>3]);
 
         $userDetails = NewUser::find($id);
  
@@ -288,12 +287,10 @@ class UsersController extends Controller
             $message->from('info@siyaleader.net', 'Food For Us');
             $message->to($userDetails->email)->subject("Food For Us Notification !");
 
-
-            $message->from('info@Food  For  Us  ',  'Food  For  Us');
-            $message->to($userDetails->email)->subject("Food  For  Us   Notification ");
-
-
-                   });
+//
+//            $message->from('info@Food  For  Us  ',  'Food  For  Us');
+//            $message->to($userDetails->email)->subject("Food  For  Us   Notification ");
+                            });
         return Redirect::to('/users');
     }
 
@@ -404,6 +401,32 @@ function generateRandomString($length = 24) {
 
     }
 
+
+      public function updateProfile(Request $request)
+      {
+
+          $input           =  $request->all();
+          $user            =  NewUser::where('api_key',$input['api_key'])->first();
+
+          if($request->hasFile('profilePicture'))
+          {
+              $img                =  $request->file('profilePicture');
+              $destinationFolder  = 'profilePictures/'.$user['name'].'_'.$user['surname'].'_'.$user['id'];
+
+              if(!\File::exists($destinationFolder))
+              {
+                  \File::makeDirectory($destinationFolder,0777,true);
+              }
+
+              $name      = $img->getClientOriginalName();
+                           $img->move($destinationFolder,$name);
+
+              $newProPicture  =  env('APP_URL').$destinationFolder.'/'.$name;
+              $user->update(['profilePicture'=>$newProPicture]);
+          }
+          return $user;
+      }
+
     public function updateAppUserProfile()
     {
 
@@ -433,5 +456,10 @@ function generateRandomString($length = 24) {
         return  response()->json($userPost);
 
     }
+<<<<<<< HEAD
+}
+=======
+
 
 }
+>>>>>>> fa8299709d1dba64520b8136279d42fd828a67d6

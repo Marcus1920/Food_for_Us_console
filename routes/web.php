@@ -30,9 +30,9 @@ Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
-// Produrct  type   
- Route::get ('packagingList' , 'packagingListController@index');
- Route::get ('producttype' , 'ProductTypeController@index');
+    // Produrct  type
+     Route::get ('packagingList' , 'packagingListController@index');
+     Route::get ('producttype' , 'ProductTypeController@index');
 
     //Researchers
     Route::get('myResearchs','ResearchersController@index');
@@ -54,12 +54,12 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
+
+    Route::get('myProfile', 'UsersController@myProfile');
+    Route::post('updateProfile', 'UsersController@updateProfile');
     Route::get('myProfile','UsersController@myProfile');
     Route::post('updateProfilePic','UsersController@updateAppUserProfile');
-
-
     Route::post('changepassword' ,'UsersController@changePassword');
-
 
     //Transaction
     Route::post('buy','TransactionController@store');
@@ -67,7 +67,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('transactionDetails','TransactionController@transactionDetails');
     Route::post('approveTransaction','TransactionController@approveTransaction');
     Route::post('transactionRating','TransactionController@transactionRating');
-
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
@@ -144,13 +143,10 @@ Route::get('/createUser', function()
     return view('users.edit',compact('user'));
 });
 
-
-
 Route::get('/activation', function()
 {
     return view('emails.activation',compact('activation'));
 });
-
 
 Route::get('/registration', function()
 {
@@ -161,34 +157,28 @@ Route::get('/inactivation',function()
 {
     return view('emails.inactivation',compact('inactivation'));
 });
-
 Route::get('/resetpassword',function()
 {
     return view('emails.resetpassword',compact('resetpassword'));
 });
-
 Route::get('/reset',function()
 {
     return view('passwords.reset',compact('reset'));
 });
-
 
 Route::get('/registration', function ()
 {
     return view('emails.registration',compact('registration'));
 });
 
-
 Route::get('/transaction', function ()
 {
     return view('emails.transaction',compact('transaction'));
 });
-
 Route::get('/changePassword', function ()
 {
     return view('emails.changePassword',compact('changePassword'));
 });
-
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
@@ -234,9 +224,7 @@ Route::get('viewAdmin/{id}', 'UsersController@viewAdmin');
 
 Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
 
-
 //End User role
-
 Route::get('reports','ReportsController@index');
 
 //Public Wall

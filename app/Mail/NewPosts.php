@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 
 
+
 class NewPosts  extends Mailable
 {
     use Queueable, SerializesModels;

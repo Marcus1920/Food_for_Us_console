@@ -1,30 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\NewPosts;
+
+use App\Jobs\SendEmailsToBuyers;
 use  App\NewUser ;
 use App\Sellers_details_tabs;
 use App\ProductType;
 use App\Packaging;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Services\EmailService;
 use Mail;
+use Carbon\Carbon;
 
 class SellersController extends Controller
 {
 
+
     private $emailService;
+
+    public  function __construct(EmailService $emailService)
+
+
+
+    public function getDistance()
+
+    {
+        $this->emailService = $emailService;
+    }
+
+
     public function getDistance()
     {
-
-        $api_key   = Input::get('apiKey');
+        
         $radius   = Input::get('radius');
-        $cord1  = NewUser::where('api_key',$api_key)->first();
+        $cord1  = NewUser::where('api_key',Input::get('api_key'))->first();
         $cord1->gps_lat;
         $cord1->gps_long;
-
-
 
         $nearSellers = array();
         foreach ( $seller = Sellers_details_tabs::all() as $cord2) {
@@ -49,16 +60,13 @@ class SellersController extends Controller
                 }
 
             }
-
-
         }
         return $nearSellers;
     }
 
-    public  function __construct(EmailService $emailService)
-    {
-      $this->emailService = $emailService;
-    }
+
+
+
 
 
     public function index()
@@ -113,7 +121,10 @@ class SellersController extends Controller
             return response()->json($respond);
         }
     }
+
+
     public function allSellersPosts()
+
     {
         $sellers_posts=\DB::table('sellers_details_tabs')
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
@@ -144,15 +155,22 @@ class SellersController extends Controller
                 )
             )
             ->orderBy('created_at' ,'desc')	->get();
-
         return $sellers_posts;
     }
 
 	  public function created(Request $request)
+
     {
         $input                          =  $request->all();
 
         $user                           = NewUser::where('api_key',$input['api_key'])->first();
+
+
+        $sellersPost= new Sellers_details_tabs();
+        $name =$user->name;
+        $surname=$user->name; 		
+		$id=$user->id;
+        $sellersPost->new_user_id     = $user->id;
 
 	
 		
@@ -161,6 +179,7 @@ class SellersController extends Controller
         $surname                        =$user->name;
 		$id                             =$user->id;
         $sellersPost->new_user_id       = $user->id;
+
 		
     	$img                            =$request->file('file');
         $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
@@ -174,7 +193,11 @@ class SellersController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
+
+        $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
+
         $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
+
 	
         $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
         $sellersPost->productType        = $productTypeID['id'];
@@ -184,7 +207,7 @@ class SellersController extends Controller
 
         $sellersPost->costPerKg          = Input::get('costPerKg');
         $sellersPost->transactionRating  = Input::get('rating');
-
+/*
         $sellersPost->city               = Input::get('city');
         $sellersPost->country            = Input::get('country');
         $sellersPost->location           = Input::get('country').', '.Input::get('city');
@@ -195,30 +218,28 @@ class SellersController extends Controller
         $sellersPost->availableHours     = Input::get('availableHours');
         $sellersPost->paymentMethods     = Input::get('paymentMethods');
         $sellersPost->transactionRating  = Input::get('transactionRating');
+*/
 
-        $sellersPost->city               = Input::get('city');
-        $sellersPost->country            = Input::get('country');
-        $sellersPost->location           = Input::get('country').', '.Input::get('city');
-        $sellersPost->description        = Input::get('description');
-        $sellersPost->quantity           = Input::get('quantity');
-        $sellersPost->gps_lat            = Input::get('gps_lat');
-        $sellersPost->gps_long           = Input::get('gps_long');
-        $sellersPost->availableHours     =  "08:00-17:00" ; // Input::get('availableHours');
-        $sellersPost->paymentMethods     = "Cash and bank deposit" ; // Input::get('paymentMethods');
-        $sellersPost->transactionRating  = Input::get('transactionRating');
+        $sellersPost->city              = Input::get('city');
+        $sellersPost->country           = Input::get('country');
+        $sellersPost->location          = Input::get('country').', '.Input::get('city');
+        $sellersPost->description       = Input::get('description');
+        $sellersPost->quantity          = Input::get('quantity');
+        $sellersPost->gps_lat           = Input::get('gps_lat');
+        $sellersPost->gps_long          = Input::get('gps_long');
+        $sellersPost->availableHours    =  "08:00-17:00" ; // Input::get('availableHours');
+        $sellersPost->paymentMethods    = "Cash and bank deposit" ; // Input::get('paymentMethods');
+        $sellersPost->transactionRating = Input::get('transactionRating');
+
+       
+
         $sellersPost->save();
 
-//        $buyerEmails =$this->emailService->Buyers();
-//        foreach($buyerEmails as $buyerEmail)
-//        {
-//            \Mail::to($buyerEmail->email)->send(new NewPosts());
-//        }
-
-        return $sellersPost;
-
+        $job = (new SendEmailsToBuyers())
+               ->delay(Carbon::now()->addSeconds(5));
+                dispatch($job);
+             return $sellersPost;
     }
-	 
-	 
     public function create(Request $request)
     {
         $input  =  $request->all();
@@ -251,7 +272,7 @@ class SellersController extends Controller
 
     public function destroy()
     {
-        $apiKey         = Input::get('apiKey');
+        $apiKey         = Input::get('api_key');
         $id             = Input::get('id');
 
         $user           = NewUser::where('api_key',$apiKey)->first();
@@ -267,7 +288,7 @@ class SellersController extends Controller
 
     public function updating()
     {
-        $apiKey         = Input::get('apiKey');
+        $apiKey         = Input::get('api_key');//change  apiKey to   api_key  
         $user           = NewUser::where('api_key',$apiKey)->first();
         $id             = Input::get('id');
         $deletePost     =  Sellers_details_tabs::where('id', $id)->where('new_user_id', $user)
