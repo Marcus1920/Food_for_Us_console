@@ -103,7 +103,7 @@ class PublicWallController extends Controller
 
         $img->move($destinationFolder,$name) ;
 
-        $recipe->imgurl      = env('APP_URL').$destinationFolder.'/'.$name;
+        $recipe->imgurl             = env('APP_URL').$destinationFolder.'/'.$name;
         $recipe->name               = Input::get('name');
         $recipe->description        = Input::get('description');
         $recipe->ingredients        = Input::get('ingredients');

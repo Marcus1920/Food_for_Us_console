@@ -21,7 +21,7 @@
             <div class="row" style="margin-left: 0%">
                 <center>
                 <div class="col-md-12">
-                    <img alt="" src="{{$recipe->RecipePicture}}" style="width: 400px;height: 300px;">
+                    <img alt="" src="{{$recipe->imgurl}}" style="width: 400px;height: 300px;">
                 </div>
                 </center>
             </div><br/><br/>

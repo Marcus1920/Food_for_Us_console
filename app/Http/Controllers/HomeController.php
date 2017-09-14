@@ -36,9 +36,9 @@ public function  InactiveusersLis()
     //$NewUser = NewUser::where('active', 1)->get();// inactive users
 
     $NewUser = \DB::table('new_users')
+        ->where('new_users.active','=',1)
         ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
         ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
-     //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
         ->select(\DB::raw
                            (
                                    "
@@ -54,7 +54,7 @@ public function  InactiveusersLis()
                                     
                                     "
      )
-        )->where('active',1);
+        );
 
 
     return Datatables::of($NewUser)
@@ -67,9 +67,9 @@ public function  InactiveusersLis()
     {
 
         $activeUsers = \DB::table('new_users')
+            ->where('new_users.active','=',2)
             ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
             ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
-            //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
             ->select(\DB::raw(
                 "
                                     new_users.id,
@@ -84,7 +84,7 @@ public function  InactiveusersLis()
                                     
                                     "
             )
-            )->where('active',2);
+            );
 
 
         return Datatables::of($activeUsers)
