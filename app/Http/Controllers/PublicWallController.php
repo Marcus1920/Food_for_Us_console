@@ -6,14 +6,22 @@ use App\PublicWall;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Yajra\DataTables\DataTables;
 
 class PublicWallController extends Controller
 {
 
     public function index()
     {
-        $recipes=PublicWall::all();
-        return view('PublicWall.index',compact('recipes'));
+        return view('PublicWall.index');
+    }
+
+    public function getAllRecipes()
+    {
+        $allRecipes=PublicWall::all();
+
+        return Datatables::of($allRecipes)
+            ->make(true);
     }
 
     public function getRecipes()
