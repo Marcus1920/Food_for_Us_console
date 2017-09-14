@@ -54,15 +54,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
-<<<<<<< HEAD
+
     Route::get('myProfile', 'UsersController@myProfile');
     Route::post('updateProfile', 'UsersController@updateProfile');
-=======
     Route::get('myProfile','UsersController@myProfile');
     Route::post('updateProfilePic','UsersController@updateAppUserProfile');
-
->>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
-
     Route::post('changepassword' ,'UsersController@changePassword');
 
     //Transaction
