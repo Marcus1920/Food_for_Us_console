@@ -29,7 +29,7 @@ class UsersController extends Controller
     public function myProfile()
     {
         //$api_key   = Input::get('apiKey');
-        $user  = NewUser::where('api_key',Input::get('apiKey'))
+        $user  = NewUser::where('api_key',Input::get('api_key'))
             ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
             ->select(
                 \DB::raw(
@@ -400,7 +400,7 @@ function generateRandomString($length = 24) {
     public function updateAppUserProfile()
     {
 
-        $api_key = Input::get('apiKey');
+        $api_key = Input::get('api_key');
 
         $user  = NewUser::where('api_key',$api_key)->first();
 
