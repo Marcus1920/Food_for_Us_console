@@ -54,8 +54,14 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
+<<<<<<< HEAD
     Route::get('myProfile', 'UsersController@myProfile');
     Route::post('updateProfile', 'UsersController@updateProfile');
+=======
+    Route::get('myProfile','UsersController@myProfile');
+    Route::post('updateProfilePic','UsersController@updateAppUserProfile');
+
+>>>>>>> 2bb35f9997927e3a25b0de8dd1aea79d6fc3f647
 
     Route::post('changepassword' ,'UsersController@changePassword');
 
@@ -73,10 +79,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
-    Route::post('createRecipe','PublicWallController@createRecipe');
     Route::get('viewRecipe','PublicWallController@viewRecipe');
-    Route::post('editRecipe','PublicWallController@editRecipe');
-    Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 
 
@@ -107,7 +110,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
 
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
-Route::get('/users' , 'HomeController@users')->name('users') ;
+//Route::get('/users' , 'HomeController@users')->name('users') ;
 
 Route::get('/users' , 'HomeController@show')->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
@@ -122,11 +125,19 @@ Route::get('/editUsers/{id}', function($id)
     return view('users.edit',compact('user'));
 });
 
+Route::get('inactive' , 'HomeController@InactiveusersLis') ;
+
 Route::get('/inactivateUsers/{id}', function($id)
 {
-   $user = NewUser::where('id','=',$id)->first();
-   return view('users.inactivateUsers',compact('user'));
+    $user = NewUser::where('id','=',$id)->first();
+    return view('users.inactivateUsers',compact('user'));
 });
+
+//Route::get('/inactivateUsers/{id}', function($id)
+//{
+//   $user = NewUser::where('id','=',$id)->first();
+//   return view('users.inactivateUsers',compact('user'));
+//});
 
 
 Route::get('/createUser', function()
@@ -216,5 +227,17 @@ Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
 
 //End User role
 Route::get('reports','ReportsController@index');
+
+//Public Wall
+Route::get('addRecipe', function (){
+   return view('PublicWall.create');
+});
+
+Route::get('publicWall','PublicWallController@index');
+Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile');
+Route::post('createRecipe','PublicWallController@createRecipe');
+
+Route::post('editRecipe','PublicWallController@editRecipe');
+Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 ?>

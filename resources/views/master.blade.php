@@ -38,7 +38,16 @@
     <link href="{{ asset('/css/toggles.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('/css/toggles.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="{{ asset('/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+{{--<link href="{{ asset('/bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">--}}
+<!-- jQuery Library -->
+    <script src="{{ asset('/js/jquery.min.js') }}"></script>
 
     <!-- jQuery Library -->
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
@@ -170,7 +179,7 @@
                 </a>
             </li>
 
-            <li {{ (Request::is('reports') ? "class=active" : '') }}>
+            <li {{ (Request::is('') ? "class=active" : '') }}>
                 <a class="sa-side-user" href="{{ url('users') }}">
                     <span class="menu-item">App Users</span>
 
@@ -187,6 +196,13 @@
             <li {{ (Request::is('research') ? "class=active" : '') }}>
                 <a class="sa-side-research" href="{{ url('researchList') }}">
                     <span class="menu-item">Researchers List</span>
+
+                </a>
+            </li>
+
+            <li {{ (Request::is('public_wall') ? "class=active" : '') }}>
+                <a class="sa-side-public_wall" href="{{ url('publicWall') }}">
+                    <span class="menu-item">Public Wall</span>
 
                 </a>
             </li>
