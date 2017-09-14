@@ -15,16 +15,20 @@ class SellersController extends Controller
 {
 
     private $emailService;
+
+    public  function __construct(EmailService $emailService)
+    {
+        $this->emailService = $emailService;
+    }
+
+
     public function getDistance()
     {
-
-        $api_key   = Input::get('apiKey');
+        
         $radius   = Input::get('radius');
-        $cord1  = NewUser::where('api_key',$api_key)->first();
+        $cord1  = NewUser::where('api_key',Input::get('api_key'))->first();
         $cord1->gps_lat;
         $cord1->gps_long;
-
-
 
         $nearSellers = array();
         foreach ( $seller = Sellers_details_tabs::all() as $cord2) {
@@ -55,10 +59,7 @@ class SellersController extends Controller
         return $nearSellers;
     }
 
-    public  function __construct(EmailService $emailService)
-    {
-      $this->emailService = $emailService;
-    }
+
 
 
     public function index()
