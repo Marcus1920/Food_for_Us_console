@@ -16,10 +16,12 @@ class HomeController extends Controller
 
     public function show()
     {
-        $NewUser = NewUser::where('active', 1)->get();// inactive users
-        $activeUsers = NewUser::where('active', 2)->get(); //active users
+
+        $NewUser = NewUser::where('active', 2)->get();// inactive users
+        $activeUsers = NewUser::where('active', 1)->get(); //active users
         return view('users.list')->with(compact('NewUser', 'activeUsers'));
     }
+
 
 //    public  function users()
 //    {
@@ -36,8 +38,9 @@ public function  InactiveusersLis()
     $NewUser = \DB::table('new_users')
         ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
      //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
-        ->select(\DB::raw(
-            "
+        ->select(\DB::raw
+                           (
+                                   "
                                     new_users.id,
                                     new_users.name,
                                     new_users.surname,
@@ -49,7 +52,7 @@ public function  InactiveusersLis()
                                     new_users.descriptionOfAcces
                                     
                                     "
-        )
+     )
         )->where('active',1);
 
 
@@ -59,6 +62,7 @@ public function  InactiveusersLis()
 
 
 }
+
 
     public function register()
     {
