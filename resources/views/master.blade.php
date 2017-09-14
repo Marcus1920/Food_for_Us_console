@@ -179,7 +179,7 @@
                 </a>
             </li>
 
-            <li {{ (Request::is('reports') ? "class=active" : '') }}>
+            <li {{ (Request::is('') ? "class=active" : '') }}>
                 <a class="sa-side-user" href="{{ url('users') }}">
                     <span class="menu-item">App Users</span>
 
@@ -196,6 +196,13 @@
             <li {{ (Request::is('research') ? "class=active" : '') }}>
                 <a class="sa-side-research" href="{{ url('researchList') }}">
                     <span class="menu-item">Researchers List</span>
+
+                </a>
+            </li>
+
+            <li {{ (Request::is('public_wall') ? "class=active" : '') }}>
+                <a class="sa-side-public_wall" href="{{ url('publicWall') }}">
+                    <span class="menu-item">Public Wall</span>
 
                 </a>
             </li>
@@ -340,3 +347,65 @@
 
 </body>
 </html>
+
+<script>
+    jQuery(document).ready(function($){
+
+
+        var sellersPostTable     = $('#sellersPostTable').DataTable({
+            "autoWidth": false,
+
+            "processing": true,
+            speed: 500,
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                ,{
+
+                    extend : 'pdfHtml5',
+                    title  : 'Siyaleader_Report',
+                    header : 'I am text in',
+                },
+
+            ],
+
+
+            "order" :[[0,"desc"]],
+            "ajax": "{!! url('/sellersPostList/')!!}",
+            "processing": true,
+            "serverSide": true,
+            "order" :[[0,"desc"]],
+
+            "buttons": [
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+
+
+            "columns": [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'surname', name: 'surname'},
+                {data: 'email', name: 'email'},
+                {data: 'packaging', name: 'packaging'},
+                {data: 'productType', name: 'productType'},
+                {data: 'costPerKg', name: 'costPerKg'},
+                {data: 'quantity', name: 'quantity'},
+                {data: 'created_at', name: 'created_at'},
+
+                {data: 'actions',  name: 'actions'},
+            ],
+
+            "aoColumnDefs": [
+                { "bSearchable": false, "aTargets": [ 4] },
+                { "bSortable": false, "aTargets": [ 4] }
+            ]
+
+        });
+
+
+    });
+
+</script>

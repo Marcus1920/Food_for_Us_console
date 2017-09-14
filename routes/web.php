@@ -76,10 +76,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
-    Route::post('createRecipe','PublicWallController@createRecipe');
     Route::get('viewRecipe','PublicWallController@viewRecipe');
-    Route::post('editRecipe','PublicWallController@editRecipe');
-    Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 
 
@@ -194,7 +191,8 @@ Route::get('/changePassword', function ()
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers');
 
-Route::get('postslist', 'PostViewController@index');
+Route::get('postslist', 'PostViewController@showList');
+Route::get('sellersPostList', 'PostViewController@index');
 Route::get('postview/{id}', 'PostViewController@show');
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
@@ -238,5 +236,17 @@ Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
 //End User role
 
 Route::get('reports','ReportsController@index');
+
+//Public Wall
+Route::get('addRecipe', function (){
+   return view('PublicWall.create');
+});
+
+Route::get('publicWall','PublicWallController@index');
+Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile');
+Route::post('createRecipe','PublicWallController@createRecipe');
+
+Route::post('editRecipe','PublicWallController@editRecipe');
+Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 ?>

@@ -28,7 +28,6 @@ class UsersController extends Controller
 
     public function myProfile()
     {
-        //$api_key   = Input::get('apiKey');
         $user  = NewUser::where('api_key',Input::get('api_key'))
             ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
             ->select(
@@ -345,7 +344,8 @@ function generateRandomString($length = 24) {
         $data = array(
 
             'name'      =>      $NewUser->name,
-            'passsword' =>      $NewUser->password,
+            'password' =>      $NewUser->password,
+			'surname' =>        $NewUser->surname,
             'content'   =>      $message,
                      );
 
@@ -426,5 +426,4 @@ function generateRandomString($length = 24) {
         return  response()->json($userPost);
 
     }
-
 }

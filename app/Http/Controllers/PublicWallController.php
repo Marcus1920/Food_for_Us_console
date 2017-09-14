@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Input;
 class PublicWallController extends Controller
 {
 
+    public function index()
+    {
+        $recipes=PublicWall::all();
+        return view('PublicWall.index',compact('recipes'));
+    }
+
     public function getRecipes()
     {
         $recipes=\DB::table('public_wall')
@@ -34,7 +40,11 @@ class PublicWallController extends Controller
 
         return $recipes;
     }
-
+ public function RecipeProfile($id)
+    {
+        $recipe=PublicWall::find($id);
+        return view ('PublicWall.profile',compact('recipe'));
+    }
     public function viewRecipe()
     {
         $id = Input::get('id');
@@ -44,12 +54,13 @@ class PublicWallController extends Controller
         return $viewRecipe;
     }
 
+
     public function editRecipe()
     {
 
         $id =Input::get('id');
-        $poster= Input::get('poster');
 
+       
         $recipe = PublicWall::where('poster',$poster)->where('id',$id)
             ->update(['name'=> Input::get('name'),
                 'description'=> Input::get('description'),
@@ -59,34 +70,50 @@ class PublicWallController extends Controller
 
 
 
-        $updatedRecipe=PublicWall::get()->where('poster',$poster)->where('id',$id);
+
+        $updatedRecipe=PublicWall::get()->where('id',$id);
 
         return $updatedRecipe;
     }
 
-    public function createRecipe()
+    public function createRecipe(Request $request)
     {
 
         $recipe                     = new PublicWall();
+        $recipe->type               = Input::get('type');
 
+
+        $img=$request->file('file');
+
+        $destinationFolder = "images/Recipes/";
+
+        if(!\File::exists($destinationFolder)) {
+            \File::makeDirectory($destinationFolder,0777,true);
+        }
+
+        $name =    $img->getClientOriginalName();
+
+        $img->move($destinationFolder,$name) ;
+
+        $recipe->imgurl      = env('APP_URL').$destinationFolder.'/'.$name;
         $recipe->name               = Input::get('name');
         $recipe->description        = Input::get('description');
         $recipe->ingredients        = Input::get('ingredients');
         $recipe->methods            = Input::get('methods');
-        $recipe->poster             = Input::get('poster');
+        $recipe->poster             = Auth::user()->id;
         $recipe-> save() ;
-        return $recipe;
+
+        return Redirect('/publicWall');
     }
 
     public function deleteRecipe()
     {
         $id                 = Input::get('id');
-        $poster             = Input::get('poster');
 
-        $deleteRecipe       = PublicWall::where('id',$id)->where('poster', $poster);
+        $deleteRecipe       = PublicWall::where('id',$id);
         $deleteRecipe->delete();
-         $myRecipes           = PublicWall::get()->where('poster', $poster);
-         return $myRecipes;
+         $Recipes           = PublicWall::all();
+         return $Recipes;
 
 
     }
