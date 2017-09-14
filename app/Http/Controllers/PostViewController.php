@@ -55,7 +55,6 @@ class PostViewController extends Controller
 //
 //      return view('users.postslist', compact('post'));
         return Datatables::of($post)
-            ->addColumn('actions','View')
             ->make(true);
     }
 

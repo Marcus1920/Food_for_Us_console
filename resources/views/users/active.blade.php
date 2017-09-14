@@ -6,7 +6,7 @@
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
                         <h3 class="block-title"> Active User  List</h3><h16>&nbsp</h16> <i class="n-count animated"> {{count($activeUsers,0)}}</i>
-                        <table class="table tile table-striped" id="pendingreferralCasesTable">
+                        <table class="table tile table-striped" id="activeUsersTable">
                             <thead>
                             <tr>
                                 <th>Id</th>

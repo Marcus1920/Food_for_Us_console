@@ -394,8 +394,10 @@
                 {data: 'costPerKg', name: 'costPerKg'},
                 {data: 'quantity', name: 'quantity'},
                 {data: 'created_at', name: 'created_at'},
-
-                {data: 'actions',  name: 'actions'},
+                {data: function(d)
+                {
+                    return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                }},
             ],
 
             "aoColumnDefs": [

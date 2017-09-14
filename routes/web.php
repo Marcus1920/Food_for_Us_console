@@ -124,6 +124,8 @@ Route::get('/editUsers/{id}', function($id)
 
 Route::get('inactive' , 'HomeController@InactiveusersLis') ;
 
+Route::get('active' , 'HomeController@activeusersLis') ;
+
 Route::get('/inactivateUsers/{id}', function($id)
 {
     $user = NewUser::where('id','=',$id)->first();

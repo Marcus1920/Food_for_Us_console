@@ -35,6 +35,7 @@ public function  InactiveusersLis()
 
     $NewUser = \DB::table('new_users')
         ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+        ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
      //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
         ->select(\DB::raw(
             "
@@ -44,7 +45,7 @@ public function  InactiveusersLis()
                                     new_users.email,
                                     user_roles.name  as intrest,
                                     new_users.location,
-                                    new_users.travelRadius,
+                                    user_travel_radii.kilometres as travelRadius,
                                     new_users.cellphone,
                                     new_users.descriptionOfAcces
                                     
@@ -54,11 +55,41 @@ public function  InactiveusersLis()
 
 
     return Datatables::of($NewUser)
-        ->addColumn('actions','Edit')
         ->make(true);
 
 
 }
+
+    public function  activeusersLis()
+    {
+        //$NewUser = NewUser::where('active', 1)->get();// inactive users
+
+        $activeUsers = \DB::table('new_users')
+            ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+            ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
+            //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+            ->select(\DB::raw(
+                "
+                                    new_users.id,
+                                    new_users.name,
+                                    new_users.surname,
+                                    new_users.email,
+                                    user_roles.name  as intrest,
+                                    new_users.location,
+                                    user_travel_radii.kilometres as travelRadius,
+                                    new_users.cellphone,
+                                    new_users.descriptionOfAcces
+                                    
+                                    "
+            )
+            )->where('active',2);
+
+
+        return Datatables::of($activeUsers)
+            ->make(true);
+
+
+    }
 
     public function register()
     {

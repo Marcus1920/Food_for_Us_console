@@ -78,8 +78,69 @@
                         return d.descriptionOfAcces;
 
                     },"name" : 'new_users.descriptionOfAcces',"width" :"25%"},
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('editUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                    }},
+                ],
 
-                    {data: 'actions',  name: 'actions'},
+                "aoColumnDefs": [
+                    { "bSearchable": false, "aTargets": [ 4] },
+                    { "bSortable": false, "aTargets": [ 4] }
+                ]
+
+            });
+
+            var activeUsersTable     = $('#activeUsersTable').DataTable({
+                "autoWidth": false,
+
+                "processing": true,
+                speed: 500,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    ,{
+
+                        extend : 'pdfHtml5',
+                        title  : 'Siyaleader_Report',
+                        header : 'I am text in',
+                    },
+
+                ],
+
+
+                "order" :[[0,"desc"]],
+                "ajax": "{!! url('/active/')!!}","processing": true,
+                "serverSide": true,
+                "dom": 'Bfrtip',
+                "order" :[[0,"desc"]],
+
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+
+
+                "columns": [
+                    {data: 'id', name: 'new_users.id'},
+                    {data: 'name', name: 'new_users.name'},
+                    {data: 'surname', name: 'new_users.surname'},
+                    {data: 'email', name: 'new_users.email'},
+                    {data: 'intrest', name: ' user_roles.intrest'},
+                    {data: 'location', name: 'new_users.location'},
+                    {data: 'travelRadius', name: 'new_users.travelRadius'},
+                    {data: function(d){
+
+                        return d.descriptionOfAcces;
+
+                    },"name" : 'new_users.descriptionOfAcces',"width" :"25%"},
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('inactivateUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                    }},
                 ],
 
                 "aoColumnDefs": [

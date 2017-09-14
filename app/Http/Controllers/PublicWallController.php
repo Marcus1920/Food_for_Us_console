@@ -61,7 +61,7 @@ class PublicWallController extends Controller
         $id =Input::get('id');
 
        
-        $recipe = PublicWall::where('poster',$poster)->where('id',$id)
+        $recipe = PublicWall::where('id',$id)
             ->update(['name'=> Input::get('name'),
                 'description'=> Input::get('description'),
                 'ingredients'=> Input::get('ingredients'),
