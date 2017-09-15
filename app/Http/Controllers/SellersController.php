@@ -97,10 +97,10 @@ class SellersController extends Controller
                         sellers_details_tabs.created_at,
                         sellers_details_tabs.updated_at,
                         product_pickup_details.sellByDate,
-                        product_pickup_details.PickUpAddress,
-                        product_pickup_details.MonToFridayHours,
-                        product_pickup_details.SaturdayHours,
-                        product_pickup_details.SundayHours
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours
                         
                         "
                     )
@@ -150,10 +150,10 @@ class SellersController extends Controller
                         sellers_details_tabs.created_at,
                         sellers_details_tabs.updated_at,
                         product_pickup_details.sellByDate,
-                        product_pickup_details.PickUpAddress,
-                        product_pickup_details.MonToFridayHours,
-                        product_pickup_details.SaturdayHours,
-                        product_pickup_details.SundayHours
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours
                         
                         "
                 )

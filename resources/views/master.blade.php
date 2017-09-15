@@ -187,16 +187,20 @@
                 </ul>
             </li>
 
+            <li {{ (Request::is('') ? "class=active dropdown" : 'dropdown') }}>
+                <a class="sa-side-user" href="#">
+                    {{--<span class="menu-item">App Users</span>--}}
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <h6><b>APP USERS</b></h6>
+                    <li><a href="{{ url('register') }}"><span class="badge badge-r"></span>Inactive Users</a></li>
+                    <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Active Users</a></li>
+                </ul>
+            </li>
+
             <li {{ (Request::is('map') ? "class=active" : '') }}>
                 <a class="sa-side-home" href="{{ url('getUsers') }}">
                     <span class="menu-item">map</span>
-                </a>
-            </li>
-
-            <li {{ (Request::is('') ? "class=active" : '') }}>
-                <a class="sa-side-user" href="{{ url('users') }}">
-                    <span class="menu-item">App Users</span>
-
                 </a>
             </li>
 
