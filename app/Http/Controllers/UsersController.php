@@ -245,9 +245,8 @@ class UsersController extends Controller
 
           $data=array(
            'name' =>$userDetails->name,
-           'message' =>"",
-           //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
-                    );
+           'email' =>$userDetails->email,
+                 );
 
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
