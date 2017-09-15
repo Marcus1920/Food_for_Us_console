@@ -11,10 +11,10 @@ class Kernel extends ConsoleKernel
     protected $commands =
         [
             \App\Console\Commands\ActivateUsers::class
-
         ];
 
     protected function schedule(Schedule $schedule)
+
     {
         $schedule->command('command:activateUsers')
                  ->everyMinute();

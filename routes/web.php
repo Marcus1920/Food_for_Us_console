@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-Route::get('create' , 'SellersController@create') ;
-Route::get('all' , 'SellersController@index') ;
+Route::get('create' , 'SellersController@create')
+                ->middleware('auth');
+Route::get('all' , 'SellersController@index')
+                       ->middleware('auth');
 Route::get('up' , 'SellersController@update') ;
 
 //Route::get('/', function () {
@@ -77,6 +79,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('getRecipes','PublicWallController@getRecipes');
     Route::get('viewRecipe','PublicWallController@viewRecipe');
 
+    Route::get('distance','SellersController@getDistance');
+
 
 
 /*
@@ -96,23 +100,29 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('getTransportType','TransportController@getTransportType');
 */
 
-    Route::get('distance','SellersController@getDistance');
 
-
-});
+                      });
 
 
 
-Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')->name('userEdit');
+Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
+               ->name('userEdit')
+               ->middleware('auth');
 
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
 
-Route::get('/users' , 'HomeController@show')->name('master') ;
-//Route::get('/users' , 'HomeController@users')->name('users') ;
+Route::get('/users' , 'HomeController@show')
+           ->name('users')
+           ->middleware('auth');
 
-Route::get('/register' , 'HomeController@register')->name('register');
-Route::post('/createUser' , 'Auth\RegisterController@create')->name('createUser');
+Route::get('/register' , 'HomeController@register')
+          ->name('register')
+          ->middleware('auth');
+
+Route::post('/createUser' , 'Auth\RegisterController@create')
+    ->name('createUser')
+    ->middleware('auth');
 
 
 Route::get('/editUsers/{id}', function($id)
@@ -138,13 +148,6 @@ Route::get('/inactivateUsers/{id}', function($id)
     $user = NewUser::where('id','=',$id)->first();
     return view('users.inactivateUsers',compact('user'));
 });
-
-//Route::get('/inactivateUsers/{id}', function($id)
-//{
-//   $user = NewUser::where('id','=',$id)->first();
-//   return view('users.inactivateUsers',compact('user'));
-//});
-
 
 Route::get('/createUser', function()
 {
