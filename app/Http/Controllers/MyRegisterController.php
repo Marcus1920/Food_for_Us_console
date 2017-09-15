@@ -31,8 +31,8 @@ class MyRegisterController extends Controller
         $adminUsers->gender         = $request['gender'];
         $adminUsers->cellphone      = $request['cellphone'];
         $adminUsers->email          = $request['email'];
-        $adminUsers->password       =  bcrypt($request['password']);
-//       $adminUsers->created_by   =  \Auth::user()->name;
+        $adminUsers->password       = bcrypt($request['password']);
+        $adminUsers->created_by     = Auth::user()->name . ' ' . Auth::user()->surname  ;
         $adminUsers->remember_token = $request['_token'];
         $adminUsers->save();
         return Redirect::to('/users');
