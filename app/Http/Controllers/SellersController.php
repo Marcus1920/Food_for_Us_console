@@ -49,8 +49,16 @@ class SellersController extends Controller
 
             }
         }
-        return json_encode(array($nearSellers));
-		// ->header('Content-Type', 'application/json');
+       // return json_encode(array($nearSellers));
+		return  response()->json($nearSellers)
+		 ->withHeaders([
+        'Content-Type' => 'text/xml',
+        'X-Header-One' => 'Header Value'
+    ]);
+		 //->headers->set('Content-Type','application/json' )
+		//$response->headers->set('key','value');
+		//->header('Content-Type','text/html; charset=ISO-8859-1');
+		//  ->header('Content-Type', 'application/json');
     }
 
 
