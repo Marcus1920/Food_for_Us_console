@@ -130,6 +130,13 @@ Route::get('inactiveUsers', function (){
 });
 
 Route::get('inactive' , 'HomeController@InactiveusersLis') ;
+Route::get('deactivated' ,'HomeController@deactivatedusersList') ;
+
+Route::get('deactivatedUser' , function ()
+{
+
+    return view('users.deactivated');
+}) ;
 
 Route::get('active' , 'HomeController@activeusersLis') ;
 
