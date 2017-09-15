@@ -53,15 +53,8 @@ class SellersController extends Controller
 
         return response()->json($nearSellers);
 
-	
 
     }
-
-
-
-
-
-
     public function index()
     {
         $respond=array();

@@ -216,6 +216,11 @@ Route::post('AddProduct','ProductTypeController@store');
 
 
 Route::get('productlist', 'ProductsController@index');
+Route::get('allProduct', function ()
+{
+    return view('Products.index');
+
+});
 
 Route::get('packaginglist', 'PackagingController@index');
 Route::get('createPackaging', 'PackagingController@create');
