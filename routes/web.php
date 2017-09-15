@@ -38,6 +38,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('myResearchs','ResearchersController@index');
     Route::post('createResearch','ResearchersController@create');
     Route::get('allResearchs','ResearchersController@allResearchs');
+    Route::get('viewResearch','ResearchersController@viewResearch');
 
     //Sellers
     Route::post('created' , 'SellersController@created') ;

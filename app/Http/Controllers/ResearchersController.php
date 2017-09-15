@@ -75,6 +75,14 @@ class ResearchersController extends Controller
         return view('Researchers.profile',compact('research'));
     }
 
+    public function viewResearch()
+    {
+        $id = Input::get('id');
+
+        $research = Reseachers_details_tabs::find($id);
+        return $research;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
