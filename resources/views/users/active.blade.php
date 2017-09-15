@@ -1,3 +1,14 @@
+@extends('master')
+@section('content')
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="{{ url('/users') }}">Home</a></li>
+        <li><a href="{{ url('/inactiveUsers') }}">Inactive Users</a></li>
+        <li class="active">Active App Users</li>
+        {{--<li class="active"><a>  </a></li>--}}
+        {{--<li class="active"><a>Posts</a></li>--}}
+    </ol>
+    <h4 class="page-title">Active App Users</h4>
+
 <div class="tab-pane" id="active">
     <div class="row">
         <div class="col-md-12" >
@@ -5,7 +16,7 @@
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
-                        <h3 class="block-title"> Active User  List</h3><h16>&nbsp</h16> <i class="n-count animated"> {{count($activeUsers,0)}}</i>
+                        <h3 class="block-title"> Active User  List</h3><h16>&nbsp</h16>
                         <table class="table tile table-striped" id="activeUsersTable">
                             <thead>
                             <tr>
@@ -20,20 +31,6 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            @foreach($activeUsers  as $Newuser)
-                                <tr>
-                                    <td> {{$Newuser->id}} </td>
-                                    <td> {{$Newuser->name}}  </td>
-                                    <td> {{$Newuser->surname}}  </td>
-                                    <td> {{$Newuser->email}}  </td>
-                                    <td> {{$Newuser->UserRole->name}} </td>
-                                    <td> {{$Newuser->location}} </td>
-                                    <td> {{$Newuser->UserTravelRadius->kilometres}} </td>
-                                    <td> {{$Newuser->descriptionOfAcces}} </td>
-                                    <td><a href="{{url('/inactivateUsers/'.$Newuser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></td>
-
-                                </tr>
-                            @endforeach
                         </table>
                     </div>
 
@@ -42,3 +39,4 @@
         </div>
     </div>
 </div>
+@endsection

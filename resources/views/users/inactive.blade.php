@@ -1,4 +1,14 @@
+@extends('master')
+@section('content')
 
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="{{ url('/users') }}">Home</a></li>
+        <li><a href="{{ url('/activeUsers') }}">Active Users</a></li>
+        <li class="active">Inactive App Users</li>
+        {{--<li class="active"><a>  </a></li>--}}
+        {{--<li class="active"><a>Posts</a></li>--}}
+    </ol>
+    <h4 class="page-title">Inactive App Users</h4>
 
 <div class="tab-pane" id="inactive">
 
@@ -8,7 +18,7 @@
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
-                        <h3 class="block-title"> Inactive User  List </h3><i class="n-count animated"> {{count($NewUser,0)}}</i>
+                        <h3 class="block-title"> Inactive User  List </h3>
                         <table class="table tile table-striped" id="InactiveUserTable">
                             <thead>
                             <tr>
@@ -23,10 +33,6 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-
-
-
-
                         </table>
                     </div>
 
@@ -36,9 +42,4 @@
 
     </div>
 </div>
-
-
-<script>
-
-
-</script>
+@endsection
