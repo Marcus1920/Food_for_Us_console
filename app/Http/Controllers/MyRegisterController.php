@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
 
 class MyRegisterController extends Controller
 {
@@ -22,15 +23,17 @@ class MyRegisterController extends Controller
     {
 
 
+
+
         $adminUsers                 = new User();
         $adminUsers->name           = $request['name'];
         $adminUsers->surname        = $request['surname'];
         $adminUsers->gender         = $request['gender'];
         $adminUsers->cellphone      = $request['cellphone'];
         $adminUsers->email          = $request['email'];
-        $adminUsers->password       = bcrypt($request['password']);
-        $adminUsers->created_by     = \Auth::user()->name. ' ' . \Auth::user()->surname;
-        $adminUsers->remember_token =   $request['_token'];
+        $adminUsers->password       =  bcrypt($request['password']);
+//       $adminUsers->created_by   =  \Auth::user()->name;
+        $adminUsers->remember_token = $request['_token'];
         $adminUsers->save();
         return Redirect::to('/users');
 
