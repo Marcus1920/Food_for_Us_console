@@ -121,6 +121,14 @@ Route::get('/editUsers/{id}', function($id)
     return view('users.edit',compact('user'));
 });
 
+Route::get('activeUsers', function (){
+   return view('users.active');
+});
+
+Route::get('inactiveUsers', function (){
+    return view('users.inactive');
+});
+
 Route::get('inactive' , 'HomeController@InactiveusersLis') ;
 
 Route::get('active' , 'HomeController@activeusersLis') ;

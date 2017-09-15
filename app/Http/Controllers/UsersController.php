@@ -432,6 +432,7 @@ function generateRandomString($length = 24) {
 
         $file = Input::file('file');
 
+
         $destinationFolder = "images/".$user->name."_".$user->surname."_".$user->id."/";
 
         if(!\File::exists($destinationFolder))
@@ -439,7 +440,8 @@ function generateRandomString($length = 24) {
             \File::makeDirectory($destinationFolder,0777,true);
         }
 
-        $name=$file->getClientOriginalName();
+        $nameor=$file->getClientOriginalName();
+        $name=str_replace(' ','_',$nameor);
 
         $file->move($destinationFolder,$name) ;
 
