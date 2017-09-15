@@ -4,6 +4,7 @@
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}">Home</a></li>
         <li><a href="{{ url('/activeUsers') }}">Active Users</a></li>
+        <li><a href="{{ url('/deactivatedUser') }}">De-activated App Users</a></li>
         <li class="active">Inactive App Users</li>
     </ol>
     <h4 class="page-title">Inactive App Users</h4>
@@ -24,7 +25,7 @@
                                 <th>Name</th>
                                 <th>Surname</th>
                                 <th>Email</th>
-                                <th>Intrest </th>
+                                <th>Interest </th>
                                 <th>Location</th>
                                 <th>Travel Radius</th>
                                 <th>Description</th>
