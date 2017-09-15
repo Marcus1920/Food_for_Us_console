@@ -29,13 +29,6 @@ class UsersController extends Controller
 
     public function myProfile()
     {
-		
-		
-		
-		
-		
-
-       // $api_key   = Input::get('apiKey');
         $user  = NewUser::where('api_key',Input::get('api_key'))
             ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
             ->select(
@@ -303,9 +296,6 @@ class UsersController extends Controller
 
     public  function   create  ()   {
 
-	
-	
-
     
 function generateRandomString($length = 24) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
@@ -466,3 +456,4 @@ function generateRandomString($length = 24) {
 
 
 }
+

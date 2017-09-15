@@ -58,7 +58,6 @@
                 "order" :[[0,"desc"]],
 
                 "buttons": [
-                    'copyHtml5',
                     'excelHtml5',
                     'csvHtml5',
                     'pdfHtml5'
@@ -66,20 +65,18 @@
 
 
                 "columns": [
-                    {data: 'id', name: 'new_users.id'},
-                    {data: 'name', name: 'new_users.name'},
-                    {data: 'surname', name: 'new_users.surname'},
-                    {data: 'email', name: 'new_users.email'},
-                    {data: 'intrest', name: ' user_roles.intrest'},
-                    {data: 'location', name: 'new_users.location'},
-                    {data: 'travelRadius', name: 'new_users.travelRadius'},
-                    {data: function(d){
-
-                        return d.descriptionOfAcces;
-
-                    },"name" : 'new_users.descriptionOfAcces',"width" :"25%"},
-
-                    {data: 'actions',  name: 'actions'},
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'surname', name: 'surname'},
+                    {data: 'email', name: 'email'},
+                    {data: 'intrest', name: 'intrest'},
+                    {data: 'location', name: 'location'},
+                    {data: 'travelRadius', name: 'travelRadius'},
+                    {data: 'descriptionOfAcces', name: 'descriptionOfAcces'},
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('editUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                    },"name" : 'name'},
                 ],
 
                 "aoColumnDefs": [
@@ -88,11 +85,7 @@
                 ]
 
             });
-
-
         });
-
-
 
         $( function() {
             $( "#tabs" ).tabs();

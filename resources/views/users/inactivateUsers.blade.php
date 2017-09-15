@@ -4,6 +4,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}"> Home</a></li>
+        <li><a href="{{ url('/users') }}"> Users List</a></li>
         <li class="active">Inactivate Form</li>
     </ol>
     <h4 class="page-title">USERS</h4>

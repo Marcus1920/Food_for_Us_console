@@ -65,10 +65,9 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
 
-                                    <h3 style="padding-left: 10px":>Hi{{$name}} </h3>
+                                    <h3 style="padding-left: 10px":>Hi {{$name}}   {{ $surname  }} </h3>
 
-                                    <h3 style="padding-left: 10px":>{{ $surname  }}</h3>
-
+                               
 
                                     <h3 style="padding-left: 10px":> Your password is : {{ $password }}</h3>
 

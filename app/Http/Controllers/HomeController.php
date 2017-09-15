@@ -36,8 +36,9 @@ public function  InactiveusersLis()
     //$NewUser = NewUser::where('active', 1)->get();// inactive users
 
     $NewUser = \DB::table('new_users')
+        ->where('new_users.active','=',1)
         ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
-     //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+        ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
         ->select(\DB::raw
                            (
                                    "
@@ -47,22 +48,50 @@ public function  InactiveusersLis()
                                     new_users.email,
                                     user_roles.name  as intrest,
                                     new_users.location,
-                                    new_users.travelRadius,
+                                    user_travel_radii.kilometres as travelRadius,
                                     new_users.cellphone,
                                     new_users.descriptionOfAcces
                                     
                                     "
      )
-        )->where('active',1);
+        );
 
 
     return Datatables::of($NewUser)
-        ->addColumn('actions','Edit')
         ->make(true);
 
 
 }
 
+    public function  activeusersLis()
+    {
+
+        $activeUsers = \DB::table('new_users')
+            ->where('new_users.active','=',2)
+            ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+            ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
+            ->select(\DB::raw(
+                "
+                                    new_users.id,
+                                    new_users.name,
+                                    new_users.surname,
+                                    new_users.email,
+                                    user_roles.name  as intrest,
+                                    new_users.location,
+                                    user_travel_radii.kilometres as travelRadius,
+                                    new_users.cellphone,
+                                    new_users.descriptionOfAcces
+                                    
+                                    "
+            )
+            );
+
+
+        return Datatables::of($activeUsers)
+            ->make(true);
+
+
+    }
 
     public function register()
     {

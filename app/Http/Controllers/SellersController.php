@@ -15,18 +15,15 @@ use Carbon\Carbon;
 class SellersController extends Controller
 {
 
-
+ 
 
     public function getDistance()
     {
-
-        $api_key   = Input::get('apiKey');
+        
         $radius   = Input::get('radius');
-        $cord1  = NewUser::where('api_key',$api_key)->first();
+        $cord1  = NewUser::where('api_key',Input::get('api_key'))->first();
         $cord1->gps_lat;
         $cord1->gps_long;
-
-
 
         $nearSellers = array();
         foreach ( $seller = Sellers_details_tabs::all() as $cord2) {
@@ -52,8 +49,14 @@ class SellersController extends Controller
 
             }
         }
-        return $nearSellers;
+        return json_encode(array($nearSellers));
+		// ->header('Content-Type', 'application/json');
     }
+
+
+
+
+
 
     public function index()
     {
@@ -193,7 +196,7 @@ class SellersController extends Controller
 
         $sellersPost->costPerKg          = Input::get('costPerKg');
         $sellersPost->transactionRating  = Input::get('rating');
-
+/*
         $sellersPost->city               = Input::get('city');
         $sellersPost->country            = Input::get('country');
         $sellersPost->location           = Input::get('country').', '.Input::get('city');
@@ -204,7 +207,7 @@ class SellersController extends Controller
         $sellersPost->availableHours     = Input::get('availableHours');
         $sellersPost->paymentMethods     = Input::get('paymentMethods');
         $sellersPost->transactionRating  = Input::get('transactionRating');
-
+*/
 
         $sellersPost->city              = Input::get('city');
         $sellersPost->country           = Input::get('country');
@@ -217,16 +220,7 @@ class SellersController extends Controller
         $sellersPost->paymentMethods    = "Cash and bank deposit" ; // Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
 
-        $sellersPost->city               = Input::get('city');
-        $sellersPost->country            = Input::get('country');
-        $sellersPost->location           = Input::get('country').', '.Input::get('city');
-        $sellersPost->description        = Input::get('description');
-        $sellersPost->quantity           = Input::get('quantity');
-        $sellersPost->gps_lat            = Input::get('gps_lat');
-        $sellersPost->gps_long           = Input::get('gps_long');
-        $sellersPost->availableHours     =  "08:00-17:00" ; // Input::get('availableHours');
-        $sellersPost->paymentMethods     = "Cash and bank deposit" ; // Input::get('paymentMethods');
-        $sellersPost->transactionRating  = Input::get('transactionRating');
+       
 
         $sellersPost->save();
 
@@ -267,7 +261,7 @@ class SellersController extends Controller
 
     public function destroy()
     {
-        $apiKey         = Input::get('apiKey');
+        $apiKey         = Input::get('api_key');
         $id             = Input::get('id');
 
         $user           = NewUser::where('api_key',$apiKey)->first();
@@ -283,7 +277,7 @@ class SellersController extends Controller
 
     public function updating()
     {
-        $apiKey         = Input::get('apiKey');
+        $apiKey         = Input::get('api_key');//change  apiKey to   api_key  
         $user           = NewUser::where('api_key',$apiKey)->first();
         $id             = Input::get('id');
         $deletePost     =  Sellers_details_tabs::where('id', $id)->where('new_user_id', $user)
