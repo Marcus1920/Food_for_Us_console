@@ -21,10 +21,6 @@ class MyRegisterController extends Controller
 
     public function createAdmin(Request $request)
     {
-
-
-
-
         $adminUsers                 = new User();
         $adminUsers->name           = $request['name'];
         $adminUsers->surname        = $request['surname'];
@@ -36,14 +32,11 @@ class MyRegisterController extends Controller
         $adminUsers->remember_token = $request['_token'];
         $adminUsers->save();
         return Redirect::to('/users');
-
-
     }
 
     public function  adminUsers()
     {
         $adminUsers  =  User::all () ;
         return view('users.adminUsers', compact('adminUsers'));
-        //return  response()->json($adminUsers);
     }
 }
