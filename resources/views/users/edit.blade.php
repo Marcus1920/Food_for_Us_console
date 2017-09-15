@@ -39,14 +39,6 @@
                 </div>
             </div>
 
-            {{--<div class="form-group">--}}
-                {{--{!! Form::label('Gender', 'Gender', array('class' => 'col-md-2 control-label')) !!}--}}
-                {{--<div class="col-md-6">--}}
-                    {{--{!! Form::text('gender',$user->gender,['class' => 'locality form-control input-sm','id' => 'gender' , 'required']) !!}--}}
-                    {{--@if ($errors->has('gender'))<span class="help-block"><strong>{{ $errors->first('gender') }}</strong></span>@endif--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
             <div class="form-group">
                 {!! Form::label('Interest', 'Interest', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">

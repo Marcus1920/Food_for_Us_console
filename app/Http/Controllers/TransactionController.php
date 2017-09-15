@@ -236,7 +236,6 @@ class TransactionController extends Controller
         $remainingCartItems =Cart::with('products','buyers')->where('userId',$buyerId->id)->where('active',0)->get();
         return $remainingCartItems;
 
-
     }
 
 
@@ -248,20 +247,38 @@ class TransactionController extends Controller
         $userDetails                 = NewUser::where('api_key',Input::get('api_key'))->first();
         $transactionStatusDetails    = TransactionStatus::where('slug',$transactionStatusName)->first();
 
-        if($userDetails->intrest ==1)
+        if($userDetails->intrest == 1)
 
         {
-            $sellerTransactionsUpdates   = Transaction::where('id','=',$transactionId)
-                                                       ->where('seller_id','=',$userDetails->id)
+            $sellerTransactionsUpdates      = Transaction::where('id',$transactionId)
+                                                       ->where('seller_id',$userDetails->id)
                                                        ->update(['status'=>$transactionStatusDetails->id]);
-
-
-            $transactionDetails             = Transaction::where('id','=',$transactionId)
-                                                           ->where('seller_id','=',$userDetails->id)
+            $transactionDetails             = Transaction::where('id',$transactionId)
+                                                           ->where('seller_id',$userDetails->id)
                                                            ->first();
             $transactionCounterPartDetails  = NewUser::where('id',$transactionDetails->buyer_id)->first();
 
-            $messageBody  = 'This is meant to inform you that ' . "  " .  "$userDetails->name" . " ". "$userDetails->surname" ." " . 'has '. " $transactionStatusName". ' the Transaction.';
+            $messageStatus = '';
+            switch($transactionStatusName)
+            {
+                case 'Active':
+                    $messageStatus = 'accepted';
+                    break;
+
+                case 'Declined':
+                    $messageStatus = 'rejected';
+                    break;
+
+                case 'Completed':
+                    $messageStatus = 'closed';
+                    break;
+
+                case 'Cancelled':
+                    $messageStatus = 'cancelled';
+                    break;
+            }
+
+            $messageBody  = 'This is meant to inform you that ' . "  " .  "$userDetails->name" . " ". "$userDetails->surname" ." " . 'has '. " $messageStatus". ' the Transaction.';
 
              $data = array  (
 
@@ -275,9 +292,10 @@ class TransactionController extends Controller
                                 $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
                              });
 
-        return \Response::json($sellerTransactionsUpdates);
+                return \Response::json($sellerTransactionsUpdates);
         }
-        elseif($userDetails->intrest ==2)
+
+        elseif($userDetails->intrest == 2)
         {
 
             $buyerTransactionsUpdates      = Transaction::where('id','=',$transactionId)
@@ -290,7 +308,28 @@ class TransactionController extends Controller
 
             $transactionCounterPartDetails  = NewUser::where('id',$transactionDetails->seller_id)->first();
 
-             $messageBody  = 'This is meant to inform you that ' . "  " .  "$userDetails->name" . " ". "$userDetails->surname" ." " . 'has '. " $transactionStatusName". ' the Transaction.';
+
+            $messageStatus = '';
+            switch($transactionStatusName)
+            {
+                case 'Active':
+                    $messageStatus = 'accepted';
+                    break;
+
+                case 'Declined':
+                    $messageStatus = 'rejected';
+                    break;
+
+                case 'Completed':
+                    $messageStatus = 'closed';
+                    break;
+
+                case 'Cancelled':
+                    $messageStatus = 'cancelled';
+                    break;
+            }
+
+            $messageBody  = 'This is meant to inform you that ' . "  " .  "$userDetails->name" . " ". "$userDetails->surname" ." " . 'has '. " $messageStatus". ' the Transaction.';
                   $data = array  (
 
                       'name'      =>      $transactionCounterPartDetails->name  . ' ' . $transactionCounterPartDetails->surname,

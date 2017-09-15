@@ -5,8 +5,6 @@
         <li><a href="{{ url('/users') }}">Home</a></li>
         <li><a href="{{ url('/activeUsers') }}">Active Users</a></li>
         <li class="active">Inactive App Users</li>
-        {{--<li class="active"><a>  </a></li>--}}
-        {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
     <h4 class="page-title">Inactive App Users</h4>
 

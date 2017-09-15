@@ -20,17 +20,10 @@ class HomeController extends Controller
     }
 
 
-//    public  function users()
-//    {
-//        $NewUser     =  NewUser::where('active',1)->get();// inactive users
-//        $activeUsers =  NewUser::where('active',2)->get(); //active users
-//        return  view ('users.list')->with(compact('NewUser','activeUsers'));
-//    }
 
 
 public function  InactiveusersLis()
 {
-    //$NewUser = NewUser::where('active', 1)->get();// inactive users
 
     $NewUser = \DB::table('new_users')
         ->where('new_users.active','=',1)
@@ -57,9 +50,7 @@ public function  InactiveusersLis()
     return Datatables::of($NewUser)
         ->make(true);
 
-
-}
-
+       }
     public function  activeusersLis()
     {
 
