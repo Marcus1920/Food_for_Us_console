@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
 
 class MyRegisterController extends Controller
 {
@@ -20,8 +21,6 @@ class MyRegisterController extends Controller
 
     public function createAdmin(Request $request)
     {
-
-
         $adminUsers                 = new User();
         $adminUsers->name           = $request['name'];
         $adminUsers->surname        = $request['surname'];
@@ -29,18 +28,15 @@ class MyRegisterController extends Controller
         $adminUsers->cellphone      = $request['cellphone'];
         $adminUsers->email          = $request['email'];
         $adminUsers->password       = bcrypt($request['password']);
-        $adminUsers->created_by     = \Auth::user()->name. ' ' . \Auth::user()->surname;
-        $adminUsers->remember_token =   $request['_token'];
+        $adminUsers->created_by     = Auth::user()->name . ' ' . Auth::user()->surname  ;
+        $adminUsers->remember_token = $request['_token'];
         $adminUsers->save();
         return Redirect::to('/users');
-
-
     }
 
     public function  adminUsers()
     {
         $adminUsers  =  User::all () ;
         return view('users.adminUsers', compact('adminUsers'));
-        //return  response()->json($adminUsers);
     }
 }
