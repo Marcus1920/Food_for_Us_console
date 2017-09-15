@@ -7,6 +7,7 @@ use  App\NewUser ;
 use App\Sellers_details_tabs;
 use App\ProductType;
 use App\Packaging;
+use App\ProductPickupDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
@@ -80,6 +81,7 @@ class SellersController extends Controller
             $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)
                 ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
                 ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+                ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
                 ->select(
                     \DB::raw(
                         "
@@ -101,7 +103,13 @@ class SellersController extends Controller
                         sellers_details_tabs.paymentMethods,
                         sellers_details_tabs.transactionRating,
                         sellers_details_tabs.created_at,
-                        sellers_details_tabs.updated_at
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress,
+                        product_pickup_details.MonToFridayHours,
+                        product_pickup_details.SaturdayHours,
+                        product_pickup_details.SundayHours
+                        
                         "
                     )
                 )
@@ -126,6 +134,7 @@ class SellersController extends Controller
         $sellers_posts=\DB::table('sellers_details_tabs')
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+            ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
             ->select(
                 \DB::raw(
                     "
@@ -147,7 +156,13 @@ class SellersController extends Controller
                         sellers_details_tabs.paymentMethods,
                         sellers_details_tabs.transactionRating,
                         sellers_details_tabs.created_at,
-                        sellers_details_tabs.updated_at
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress,
+                        product_pickup_details.MonToFridayHours,
+                        product_pickup_details.SaturdayHours,
+                        product_pickup_details.SundayHours
+                        
                         "
                 )
             )
@@ -227,10 +242,18 @@ class SellersController extends Controller
         $sellersPost->availableHours    =  "08:00-17:00" ; // Input::get('availableHours');
         $sellersPost->paymentMethods    = "Cash and bank deposit" ; // Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
-
-       
-
         $sellersPost->save();
+
+        $productPickupDetails                      = new ProductPickupDetails();
+        $productPickupDetails->SellersPostId       = $sellersPost->id;
+        $productPickupDetails->sellByDate          = Input::get('sellByDate');
+        $productPickupDetails->PickUpAddress       = Input::get('PickUpAddress');
+        $productPickupDetails->MonToFridayHours    = Input::get('MonToFridayHours');
+        $productPickupDetails->SaturdayHours       = Input::get('SaturdayHours');
+        $productPickupDetails->SundayHours         = Input::get('SundayHours');
+        $productPickupDetails->gps_lat             = "0";
+        $productPickupDetails->gps_long            = "0";
+        $productPickupDetails->save();
 
         $job = (new SendEmailsToBuyers())
                ->delay(Carbon::now()->addSeconds(5));
