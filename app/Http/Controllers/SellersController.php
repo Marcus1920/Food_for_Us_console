@@ -225,10 +225,10 @@ class SellersController extends Controller
         $sellersPost->location          = Input::get('country').', '.Input::get('city');
         $sellersPost->description       = Input::get('description');
         $sellersPost->quantity          = Input::get('quantity');
-        $sellersPost->gps_lat           = Input::get('gps_lat');
-        $sellersPost->gps_long          = Input::get('gps_long');
-        $sellersPost->availableHours    =  "08:00-17:00" ; // Input::get('availableHours');
-        $sellersPost->paymentMethods    = "Cash and bank deposit" ; // Input::get('paymentMethods');
+       // $sellersPost->gps_lat           = Input::get('gps_lat');
+       // $sellersPost->gps_long          = Input::get('gps_long');
+        $sellersPost->availableHours    =  Input::get('availableHours');
+        $sellersPost->paymentMethods    =  Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
         $sellersPost->save();
 
@@ -239,8 +239,8 @@ class SellersController extends Controller
         $productPickupDetails->MonToFridayHours    = Input::get('MonToFridayHours');
         $productPickupDetails->SaturdayHours       = Input::get('SaturdayHours');
         $productPickupDetails->SundayHours         = Input::get('SundayHours');
-        $productPickupDetails->gps_lat             = "0";
-        $productPickupDetails->gps_long            = "0";
+          $productPickupDetails->gps_lat             = "0";
+         $productPickupDetails->gps_long            = "0";
         $productPickupDetails->save();
 
         $job = (new SendEmailsToBuyers())
