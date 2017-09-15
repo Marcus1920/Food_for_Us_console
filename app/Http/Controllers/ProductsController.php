@@ -9,7 +9,7 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $products=ProductType::all();
+        $products = ProductType::orderBy('name')->get();
         return view ('Products.index', compact('products'));
     }
 
