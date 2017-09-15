@@ -49,7 +49,8 @@ class SellersController extends Controller
 
             }
         }
-        return array($nearSellers);
+        return response()->json($nearSellers);
+      
 		// ->header('Content-Type', 'application/json');
     }
 
