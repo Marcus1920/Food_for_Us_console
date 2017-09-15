@@ -193,8 +193,8 @@
                 </a>
                 <ul class="list-unstyled menu-item">
                     <h6><b>APP USERS</b></h6>
-                    <li><a href="{{ url('register') }}"><span class="badge badge-r"></span>Inactive Users</a></li>
-                    <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Active Users</a></li>
+                    <li><a href="{{ url('inactiveUsers') }}"><span class="badge badge-r"></span>Inactive Users</a></li>
+                    <li><a href="{{ url('activeUsers') }}"><span class="badge badge-r"></span>Active Users</a></li>
                 </ul>
             </li>
 
@@ -348,6 +348,60 @@
 <script>
     jQuery(document).ready(function($){
 
+        var InactiveUserTable     = $('#InactiveUserTable').DataTable({
+            "autoWidth": false,
+
+            "processing": true,
+            speed: 500,
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                ,{
+
+                    extend : 'pdfHtml5',
+                    title  : 'Siyaleader_Report',
+                    header : 'I am text in',
+                },
+
+            ],
+
+
+            "order" :[[0,"desc"]],
+            "ajax": "{!! url('/inactive/')!!}","processing": true,
+            "serverSide": true,
+            "dom": 'Bfrtip',
+            "order" :[[0,"desc"]],
+
+            "buttons": [
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+
+
+            "columns": [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'surname', name: 'surname'},
+                {data: 'email', name: 'email'},
+                {data: 'intrest', name: 'intrest'},
+                {data: 'location', name: 'location'},
+                {data: 'travelRadius', name: 'travelRadius'},
+                {data: 'descriptionOfAcces', name: 'descriptionOfAcces'},
+                {data: function(d)
+                {
+                    return "<a href='{!! url('editUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'Activate' + "</a>";
+                },"name" : 'name'},
+            ],
+
+            "aoColumnDefs": [
+                { "bSearchable": false, "aTargets": [ 4] },
+                { "bSortable": false, "aTargets": [ 4] }
+            ]
+
+        });
+
         var activeUsersTable     = $('#activeUsersTable').DataTable({
             "autoWidth": false,
 
@@ -391,7 +445,7 @@
                 {data: 'descriptionOfAcces', name: 'descriptionOfAcces'},
                 {data: function(d)
                 {
-                    return "<a href='{!! url('inactivateUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                    return "<a href='{!! url('inactivateUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
                 },"name" : 'name'},
             ],
 
