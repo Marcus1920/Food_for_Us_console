@@ -2,15 +2,30 @@
 
 namespace App\Http\Controllers;
 use App\ProductType;
-
+use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
-
 class ProductsController extends Controller
 {
     public function index()
     {
-        $products = ProductType::orderBy('name')->get();
-        return view ('Products.index', compact('products'));
+        $products = \DB::table('product_types')->orderBy('name')
+            ->select(\DB::raw
+            (
+                "
+                    product_types.id,
+                    product_types.name,
+                    product_types.type
+                                   
+                                    
+                "
+            )
+            );
+
+        return Datatables::of($products)
+            ->make(true);
+
+
+
     }
 
     public function getProductType()

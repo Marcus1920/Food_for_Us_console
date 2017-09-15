@@ -51,7 +51,7 @@ class SellersController extends Controller
         }
         return response()->json($nearSellers);
 
-	
+
     }
 
 

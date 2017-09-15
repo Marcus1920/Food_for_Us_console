@@ -182,7 +182,7 @@
                     <li><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin</a></li>
                     <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Admin List</a></li>
                     <li><a href="{{ url('userroleslist')}}"><span class="badge badge-r"></span>User Roles List</a></li>
-                    <li><a href="{{ url('productlist') }}"><span class="badge badge-r"></span>Product List</a></li>
+                    <li><a href="{{ url('allProduct') }}"><span class="badge badge-r"></span>Product List</a></li>
                     <li><a href="{{ url('packaginglist') }}"><span class="badge badge-r"></span>Packaging List</a></li>
                 </ul>
             </li>

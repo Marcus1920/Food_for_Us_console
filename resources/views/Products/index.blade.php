@@ -29,13 +29,6 @@
                                 <th>Category</th>
                             </tr>
                             </thead>
-                            @foreach($products  as $product)
-                                <tr>
-                                    <td> {{$product->id}} </td>
-                                    <td> {{$product->name}}</td>
-                                    <td> {{$product->type}}</td>
-                                </tr>
-                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -48,10 +41,62 @@
 
 @endsection
 @section('footer')
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    {{--<script src="js/jquery.min.js"></script>--}}
+    {{--<script src="js/bootstrap.min.js"></script>--}}
+    {{--<script src="js/scripts.js"></script>--}}
+    {{--<link href="css/bootstrap.min.css" rel="stylesheet">--}}
+    {{--<link href="css/style.css" rel="stylesheet">--}}
+<script>
 
+    jQuery(document).ready(function($){
+
+
+        var pendingreferralCasesTable     = $('#pendingreferralCasesTable').DataTable({
+            "autoWidth": false,
+
+            "processing": true,
+            speed: 500,
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                ,{
+
+                    extend : 'pdfHtml5',
+                    title  : 'Siyaleader_Report',
+                    header : 'I am text in',
+                },
+
+            ],
+
+
+            "order" :[[0,"desc"]],
+            "ajax": "{!! url('/productlist/')!!}","processing": true,
+            "serverSide": true,
+            "dom": 'Bfrtip',
+            "order" :[[0,"desc"]],
+
+            "buttons": [
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+
+
+            "columns": [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'type', name: 'type'},
+
+
+            ],
+
+            "aoColumnDefs": [
+                { "bSearchable": false, "aTargets": [ 4] },
+                { "bSortable": false, "aTargets": [ 4] }
+            ]
+
+        });
+    });
+</script>
 @endsection
