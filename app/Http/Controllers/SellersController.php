@@ -19,10 +19,10 @@ class SellersController extends Controller
 {
     protected  $newPost;
 
-    public function __construct(SellerService $sellerService)
+  /*  public function __construct(SellerService $sellerService)
     {
         $this->newPost =$sellerService;
-    }
+    }*/
 
     public function getDistance()
     {

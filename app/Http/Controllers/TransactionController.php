@@ -17,12 +17,12 @@ use Response;
 class TransactionController extends Controller
 {
     protected $transactionStatusesService;
-
+/*
     public function __construct(transactionService $service)
     {
         $this->transactionStatusesService = $service;
     }
-
+*/
     public function store()
     {
 
