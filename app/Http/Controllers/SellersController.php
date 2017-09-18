@@ -12,6 +12,7 @@ use App\Services\SellerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
+
 use Carbon\Carbon;
 
 class SellersController extends Controller
@@ -169,8 +170,7 @@ class SellersController extends Controller
           $job = (new SendEmailsToBuyers())
                ->delay(Carbon::now()->addSeconds(5));
                 dispatch($job);
-        }
-
+      }
 
     public function create(Request $request)
     {
