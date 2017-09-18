@@ -36,4 +36,29 @@ class ProductsController extends Controller
     }
 
 
+    public function retriveProduct($id)
+    {
+
+        $product=ProductType::find($id);
+        return view('Products.edit',compact('product'));
+
+    }
+
+    public function update(Request $request)
+    {
+        ProductType::where('id',$request['id'])
+            ->update(['name'=>$request['productName'],
+                'slug'=>$request['productName'],
+                'type'=>$request['productType']]);
+
+        return Redirect('/allProduct');
+    }
+
+    public function delete($id)
+    {
+        $product = ProductType::where('id',$id);
+        $product->delete();
+
+        return Redirect('/allProduct');
+    }
 }

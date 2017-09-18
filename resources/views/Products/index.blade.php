@@ -24,9 +24,10 @@
                         <table class="table tile table-striped" id="pendingreferralCasesTable">
                             <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Category</th>
+                                <th>Edit</th>
+                                {{--<th>Delete</th>--}}
                             </tr>
                             </thead>
                         </table>
@@ -84,16 +85,19 @@
 
 
             "columns": [
-                {data: 'id', name: 'id'},
                 {data: 'name', name: 'name'},
                 {data: 'type', name: 'type'},
+                {data: function(d)
+                {
+                    return "<a href='{!! url('editproduct/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                },"name" : 'name'},
 
 
             ],
 
             "aoColumnDefs": [
-                { "bSearchable": false, "aTargets": [ 1] },
-                { "bSortable": false, "aTargets": [ 1] }
+                { "bSearchable": false, "aTargets": [ 2] }
+//                { "bSortable": false, "aTargets": [ 1] }
             ]
 
         });
