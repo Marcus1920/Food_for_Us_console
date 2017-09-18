@@ -224,6 +224,11 @@ Route::post('AddProduct','ProductTypeController@store');
 
 
 Route::get('productlist', 'ProductsController@index');
+Route::get('editproduct/{id}','ProductsController@retriveProduct');
+Route::post('editproduct/updateproduct','ProductsController@update');
+
+Route::get('deleteProduct/{id}','ProductsController@delete');
+
 Route::get('allProduct', function ()
 {
     return view('Products.index');

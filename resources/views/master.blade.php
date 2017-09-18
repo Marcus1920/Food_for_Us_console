@@ -601,14 +601,14 @@
                 {data: 'id', name: 'id'},
                 {data: 'type', name: 'type'},
                 {data: 'name', name: 'name'},
-                {data: 'description', name: 'description'},
-                {data: 'ingredients', name: 'ingredients'},
+
+
                 {data: 'methods', name: 'methods'},
                 {data: 'created_at', name: 'created_at'},
 
                 {data: function(d)
                 {
-                    return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                    return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'Read more' + "</a>";
                 }},
             ],
 

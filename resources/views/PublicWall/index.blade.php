@@ -25,8 +25,6 @@
                                 <th>Id</th>
                                 <th>Type</th>
                                 <th>Title </th>
-                                <th>Description</th>
-                                <th>Ingredients</th>
                                 <th>Methods</th>
                                 <th>Created</th>
                                 <th>Action</th>
