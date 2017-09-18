@@ -11,6 +11,7 @@ use App\ProductPickupDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
+
 use Carbon\Carbon;
 
 class SellersController extends Controller
@@ -225,16 +226,23 @@ class SellersController extends Controller
         $sellersPost->location          = Input::get('country').', '.Input::get('city');
         $sellersPost->description       = Input::get('description');
         $sellersPost->quantity          = Input::get('quantity');
-       // $sellersPost->gps_lat           = Input::get('gps_lat');
-       // $sellersPost->gps_long          = Input::get('gps_long');
+        $sellersPost->gps_lat           = Input::get('gps_lat');
+        $sellersPost->gps_long          = Input::get('gps_long');
         $sellersPost->availableHours    =  Input::get('availableHours');
         $sellersPost->paymentMethods    =  Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
         $sellersPost->save();
 
         $productPickupDetails                      = new ProductPickupDetails();
+	//	$date = date_create_from_format('d-M-Y:H:i:s', );
+		
+		/*$s =
+$date = strtotime($s);
+//echo date('d-M-Y H:i:s', $date);8*/
+         
+		
         $productPickupDetails->SellersPostId       = $sellersPost->id;
-        $productPickupDetails->sellByDate          = Input::get('sellByDate');
+        $productPickupDetails->sellByDate          =  Input::get('sellByDate');
         $productPickupDetails->PickUpAddress       = Input::get('PickUpAddress');
         $productPickupDetails->MonToFridayHours    = Input::get('MonToFridayHours');
         $productPickupDetails->SaturdayHours       = Input::get('SaturdayHours');

@@ -109,8 +109,7 @@ class UsersController extends Controller
 
         if (sizeof($userNew) > 0) {
 
-            $userNew->password = "newpassword";
-            $userNew->save();
+           
             $message = "your  new  password  is  ";
             $response["error"] = false;
             $data = array(
