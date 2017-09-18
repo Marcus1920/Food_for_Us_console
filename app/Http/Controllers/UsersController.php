@@ -343,9 +343,10 @@ function generateRandomString($length = 24) {
         $data = array(
 
             'name'      =>      $NewUser->name,
-            'password' =>      $NewUser->password,
+			'email'     =>      $NewUser->email,
+            'password' =>       $NewUser->password,
 			'surname' =>        $NewUser->surname,
-            'content'   =>      $message,
+            'content'   =>      $message
                      );
 
       \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
