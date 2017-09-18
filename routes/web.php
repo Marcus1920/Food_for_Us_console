@@ -40,6 +40,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('myResearchs','ResearchersController@index');
     Route::post('createResearch','ResearchersController@create');
     Route::get('allResearchs','ResearchersController@allResearchs');
+    Route::get('viewResearch','ResearchersController@viewResearch');
 
     //Sellers
     Route::post('created' , 'SellersController@created') ;
@@ -136,6 +137,13 @@ Route::get('inactiveUsers', function (){
 });
 
 Route::get('inactive' , 'HomeController@InactiveusersLis') ;
+Route::get('deactivated' ,'HomeController@deactivatedusersList') ;
+
+Route::get('deactivatedUser' , function ()
+{
+
+    return view('users.deactivated');
+}) ;
 
 Route::get('active' , 'HomeController@activeusersLis') ;
 
