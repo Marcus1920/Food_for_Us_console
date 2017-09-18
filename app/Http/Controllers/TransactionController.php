@@ -12,7 +12,6 @@ use App\TransactionRating;
 use App\TransactionStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Response;
 
 class TransactionController extends Controller
 {
