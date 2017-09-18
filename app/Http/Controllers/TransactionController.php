@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\NewUser;
 use App\Sellers_details_tabs;
+use App\Services\transactionService;
 use App\Transaction;
 use App\TransactionRating;
 use App\TransactionStatus;
@@ -15,9 +16,12 @@ use Response;
 
 class TransactionController extends Controller
 {
+    protected $transactionStatusesService;
 
-
-
+    public function __construct(transactionService $service)
+    {
+        $this->transactionStatusesService = $service;
+    }
 
     public function store()
     {
@@ -190,7 +194,6 @@ class TransactionController extends Controller
        return "okay items Added";
     }
 
-
     public function getCartItem()
     {
         $api_key        =Input::get('api_key');
@@ -239,7 +242,6 @@ class TransactionController extends Controller
         return $remainingCartItems;
 
     }
-
 
     public function approveTransaction()
     {
@@ -367,5 +369,10 @@ class TransactionController extends Controller
 
                 return \Response::json($transactionRatingObj);
     }
+
+    public function transactionStatuses()
+    {
+         return $this->transactionStatusesService->transactionStatuses();
+}
 }
 

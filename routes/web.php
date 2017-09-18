@@ -70,6 +70,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('transactionDetails','TransactionController@transactionDetails');
     Route::post('approveTransaction','TransactionController@approveTransaction');
     Route::post('transactionRating','TransactionController@transactionRating');
+    Route::get('transactionStatuses','TransactionController@transactionStatuses');
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
