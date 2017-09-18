@@ -183,6 +183,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SendEmailsServiceProvider::class,
         App\Providers\SellersServiceProvider::class,
+        App\Providers\TransactionServiceProvider::class,
 
     ],
 
