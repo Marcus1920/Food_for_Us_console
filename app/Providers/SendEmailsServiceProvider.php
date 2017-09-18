@@ -11,8 +11,7 @@ class SendEmailsServiceProvider extends ServiceProvider
     public function boot()
     {
     }
-
-
+    
     public function register()
     {
         $this->app->bind(EmailService::class,function($app){

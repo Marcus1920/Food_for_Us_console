@@ -7,11 +7,7 @@ use App\UserStatus;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
+
     public function boot()
     {
         if (\Schema::hasTable('user_statuses'))
@@ -29,11 +25,6 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
 
