@@ -106,8 +106,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
-               ->name('userEdit')
-               ->middleware('auth');
+               ->name('userEdit');
 
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
@@ -117,13 +116,10 @@ Route::get('/users' , 'HomeController@show')
            ->middleware('auth');
 
 Route::get('/register' , 'HomeController@register')
-          ->name('register')
-          ->middleware('auth');
+          ->name('register');
 
 Route::post('/createUser' , 'Auth\RegisterController@create')
-    ->name('createUser')
-    ->middleware('auth');
-
+    ->name('createUser');
 
 Route::get('/editUsers/{id}', function($id)
 {
