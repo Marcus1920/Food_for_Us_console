@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\NewUser;
 use App\Sellers_details_tabs;
-use App\Services\transactionService;
 use App\Transaction;
 use App\TransactionRating;
 use App\TransactionStatus;
@@ -15,12 +14,6 @@ use Illuminate\Support\Facades\Input;
 
 class TransactionController extends Controller
 {
-    protected $transactionStatusesService;
-
-    public function __construct(transactionService $service)
-    {
-        $this->transactionStatusesService = $service;
-    }
 
     public function store()
     {
@@ -371,7 +364,8 @@ class TransactionController extends Controller
 
     public function transactionStatuses()
     {
-         return $this->transactionStatusesService->transactionStatuses();
-}
+         $statuses = TransactionStatus::all();
+         return \Response::json($statuses);
+    }
 }
 
