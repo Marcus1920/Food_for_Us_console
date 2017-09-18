@@ -9,7 +9,25 @@
 namespace App\Providers;
 
 
-class SellersServiceProvider
+use App\Services\SellerService;
+use Illuminate\Support\ServiceProvider;
+
+
+class SellersServiceProvider extends ServiceProvider
 {
+
+    public function boot()
+    {
+    }
+
+
+    public function register()
+    {
+        $this->app->bind(SellerService::class,function($app){
+            return new SellerService(
+                $app->make('App\Services\SellerService')
+            );
+        });
+    }
 
 }
