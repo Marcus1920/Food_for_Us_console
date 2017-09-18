@@ -17,7 +17,6 @@ use Carbon\Carbon;
 class SellersController extends Controller
 {
 
-
     public function getDistance()
     {
         

@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Input;
 
 class TransactionController extends Controller
 {
-
     public function store()
     {
 
