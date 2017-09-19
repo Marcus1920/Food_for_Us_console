@@ -190,7 +190,7 @@ class SellersController extends Controller
 
         $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
 
-        $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
+      //  $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
 
 
         $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
@@ -237,7 +237,7 @@ class SellersController extends Controller
         $productPickupDetails->gps_long            = "0";
         $productPickupDetails->save();
 
-        event(new newPostEvent($sellersPost));
+       event(new newPostEvent($sellersPost));
         return $sellersPost;
       }
 
