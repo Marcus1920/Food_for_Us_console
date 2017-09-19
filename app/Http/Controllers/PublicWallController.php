@@ -39,7 +39,7 @@ class PublicWallController extends Controller
                                 public_wall.methods,
                                 public_wall.poster,
                                 public_wall.created_at as createdAt,
-                                users.name as Name,
+                                users.name as firstName,
                                 users.surname as surname   
                                 "
                 )
