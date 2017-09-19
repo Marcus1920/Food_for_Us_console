@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\newPostEvent;
 use App\Jobs\SendEmailsToBuyers;
 use  App\NewUser ;
 use App\Sellers_details_tabs;
@@ -11,7 +12,6 @@ use App\ProductPickupDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
-
 use Carbon\Carbon;
 
 class SellersController extends Controller
@@ -54,6 +54,7 @@ class SellersController extends Controller
 
 
     }
+
     public function index()
     {
         $respond=array();
@@ -114,7 +115,6 @@ class SellersController extends Controller
         }
     }
 
-
     public function allSellersPosts()
 
     {
@@ -157,7 +157,7 @@ class SellersController extends Controller
         return $sellers_posts;
     }
 
-	  public function created(Request $request)
+    public function created(Request $request)
       {
           $input                          = $request->all();
           $user                           = NewUser::where('api_key',$input['api_key'])->first();
@@ -168,79 +168,77 @@ class SellersController extends Controller
 //          $surname=$user->name;
 //          $id=$user->id;
 //          $sellersPost->new_user_id     = $user->id;
-          $sellersPost                    = new Sellers_details_tabs();
-          $name                           =$user->name;
-          $surname                        =$user->name;
-          $id                             =$user->id;
-          $sellersPost->new_user_id       = $user->id;
+        $sellersPost                    = new Sellers_details_tabs();
+        $name                           =$user->name;
+        $surname                        =$user->name;
+        $id                             =$user->id;
+        $sellersPost->new_user_id       = $user->id;
 
 
-          $img                            =$request->file('file');
-          $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
+        $img                            =$request->file('file');
+        $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
 
-          if(!\File::exists($destinationFolder)) {
-              \File::makeDirectory($destinationFolder,0777,true);
-              move_uploaded_file($img,$destinationFolder);
-          }
+        if(!\File::exists($destinationFolder)) {
+            \File::makeDirectory($destinationFolder,0777,true);
+            move_uploaded_file($img,$destinationFolder);
+        }
 
-          $name                            =    $img->getClientOriginalName();
+        $name                            =    $img->getClientOriginalName();
 
-          $img->move($destinationFolder,$name) ;
-
-
-          $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
-
-          $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
+        $img->move($destinationFolder,$name) ;
 
 
-          $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
-          $sellersPost->productType        = $productTypeID['id'];
+        $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
 
-          $packagingID                     = Packaging::where('name',Input::get('packaging'))->first();
-          $sellersPost->packaging          = $packagingID['id'];
+        $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
 
-          $sellersPost->costPerKg          = Input::get('costPerKg');
-          $sellersPost->transactionRating  = Input::get('rating');
-          /*
-                  $sellersPost->city               = Input::get('city');
-                  $sellersPost->country            = Input::get('country');
-                  $sellersPost->location           = Input::get('country').', '.Input::get('city');
-                  $sellersPost->description        = Input::get('description');
-                  $sellersPost->quantity           = Input::get('quantity');
-                  $sellersPost->gps_lat            = Input::get('gps_lat');
-                  $sellersPost->gps_long           = Input::get('gps_long');
-                  $sellersPost->availableHours     = Input::get('availableHours');
-                  $sellersPost->paymentMethods     = Input::get('paymentMethods');
-                  $sellersPost->transactionRating  = Input::get('transactionRating');
-          */
 
-          $sellersPost->city              = Input::get('city');
-          $sellersPost->country           = Input::get('country');
-          $sellersPost->location          = Input::get('country').', '.Input::get('city');
-          $sellersPost->description       = Input::get('description');
-          $sellersPost->quantity          = Input::get('quantity');
-          // $sellersPost->gps_lat           = Input::get('gps_lat');
-          // $sellersPost->gps_long          = Input::get('gps_long');
-          $sellersPost->availableHours    =  Input::get('availableHours');
-          $sellersPost->paymentMethods    =  Input::get('paymentMethods');
-          $sellersPost->transactionRating = Input::get('transactionRating');
-          $sellersPost->save();
+        $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
+        $sellersPost->productType        = $productTypeID['id'];
 
-          $productPickupDetails                      = new ProductPickupDetails();
-          $productPickupDetails->SellersPostId       = $sellersPost->id;
-          $productPickupDetails->sellByDate          = Input::get('sellByDate');
-          $productPickupDetails->PickUpAddress       = Input::get('PickUpAddress');
-          $productPickupDetails->MonToFridayHours    = Input::get('MonToFridayHours');
-          $productPickupDetails->SaturdayHours       = Input::get('SaturdayHours');
-          $productPickupDetails->SundayHours         = Input::get('SundayHours');
-          $productPickupDetails->gps_lat            = "0";
-          $productPickupDetails->gps_long            = "0";
-          $productPickupDetails->save();
+        $packagingID                     = Packaging::where('name',Input::get('packaging'))->first();
+        $sellersPost->packaging          = $packagingID['id'];
 
-          $job = (new SendEmailsToBuyers())
-                 ->delay(Carbon::now()->addSeconds(5));
-                  dispatch($job);
-          return $sellersPost;
+        $sellersPost->costPerKg          = Input::get('costPerKg');
+        $sellersPost->transactionRating  = Input::get('rating');
+        /*
+                $sellersPost->city               = Input::get('city');
+                $sellersPost->country            = Input::get('country');
+                $sellersPost->location           = Input::get('country').', '.Input::get('city');
+                $sellersPost->description        = Input::get('description');
+                $sellersPost->quantity           = Input::get('quantity');
+                $sellersPost->gps_lat            = Input::get('gps_lat');
+                $sellersPost->gps_long           = Input::get('gps_long');
+                $sellersPost->availableHours     = Input::get('availableHours');
+                $sellersPost->paymentMethods     = Input::get('paymentMethods');
+                $sellersPost->transactionRating  = Input::get('transactionRating');
+        */
+
+        $sellersPost->city              = Input::get('city');
+        $sellersPost->country           = Input::get('country');
+        $sellersPost->location          = Input::get('country').', '.Input::get('city');
+        $sellersPost->description       = Input::get('description');
+        $sellersPost->quantity          = Input::get('quantity');
+        // $sellersPost->gps_lat           = Input::get('gps_lat');
+        // $sellersPost->gps_long          = Input::get('gps_long');
+        $sellersPost->availableHours    =  Input::get('availableHours');
+        $sellersPost->paymentMethods    =  Input::get('paymentMethods');
+        $sellersPost->transactionRating = Input::get('transactionRating');
+        $sellersPost->save();
+
+        $productPickupDetails                      = new ProductPickupDetails();
+        $productPickupDetails->SellersPostId       = $sellersPost->id;
+        $productPickupDetails->sellByDate          = Input::get('sellByDate');
+        $productPickupDetails->PickUpAddress       = Input::get('PickUpAddress');
+        $productPickupDetails->MonToFridayHours    = Input::get('MonToFridayHours');
+        $productPickupDetails->SaturdayHours       = Input::get('SaturdayHours');
+        $productPickupDetails->SundayHours         = Input::get('SundayHours');
+        $productPickupDetails->gps_lat             = "0";
+        $productPickupDetails->gps_long            = "0";
+        $productPickupDetails->save();
+
+        event(new newPostEvent($sellersPost));
+        return $sellersPost;
       }
 
     public function create(Request $request)
@@ -272,7 +270,6 @@ class SellersController extends Controller
         return $sellersPost;
     }
 
-
     public function destroy()
     {
         $apiKey         = Input::get('api_key');
@@ -287,7 +284,6 @@ class SellersController extends Controller
         return response()->json($sellesPosts);
 
     }
-
 
     public function updating()
     {

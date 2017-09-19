@@ -72,7 +72,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('transactionRating','TransactionController@transactionRating');
     Route::get('transactionStatuses','TransactionController@transactionStatuses');
 
-
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
     Route::get('getCartItem','TransactionController@getCartItem');
@@ -83,7 +82,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('viewRecipe','PublicWallController@viewRecipe');
 
     Route::get('distance','SellersController@getDistance');
-
 
 
 /*
@@ -102,9 +100,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Transport
     Route::get('getTransportType','TransportController@getTransportType');
 */
-
-
-                      });
+});
 
 
 

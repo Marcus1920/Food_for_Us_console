@@ -89,9 +89,58 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
+                                <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: left; color:#2E363F;">
+                                    <p style="padding: 0px 10px 0 10px; text-align: justify">
+                                    <table class="table"style="padding: 0px 15px 0 15px; text-align: justify" >
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">Name</th>
+                                            <th>{{$productName}} </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Packaging</th>
+                                            <td>{{$packaging}} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cost per Kg</th>
+                                            <td>{{$costPerKg}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"> Rating  </th>
+                                            <td> {{$rating}} </td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Location  </th>
+                                            <td>{{$location}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Description  </th>
+                                            <td>{{$description}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Quantity  </th>
+                                            <td> {{$quantity}} </td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Available Hours  </th>
+                                            <td>{{$availableHours}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Payment Methods  </th>
+                                            <td>{{$paymentMethods}}</td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
+
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
