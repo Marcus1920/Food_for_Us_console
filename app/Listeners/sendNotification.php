@@ -20,10 +20,12 @@ class sendNotification implements ShouldQueue
     public function handle(newPostEvent $event)
 
     {
-        
-        $buyerEmails = NewUser::where('intrest','=',2)->get();
 
+        $buyerEmails = NewUser::where('intrest','=',2)->get();
         $details     = $event->sellersPost;
+        
+
+
 
         foreach($buyerEmails as $buyerEmail)
         {
@@ -32,7 +34,7 @@ class sendNotification implements ShouldQueue
             $data = array (
                 'name'      =>      $buyerEmail->name  . '  ' . $buyerEmail->surname,
                 'content'   =>      $messageBody,
-                'productName'     =>     $details->productType,
+                'productName'     =>   $details->productType,
                 'packaging'          =>  $details->packaging,
                 'costPerKg'         =>   $details->costPerKg,
                 'rating'              =>   $details->rating,
