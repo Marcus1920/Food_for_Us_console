@@ -8,7 +8,7 @@ class ProductTypeController extends Controller
 {
      public   function index () 
 	 {
-		 $ProductType = ProductType::select('name' , 'id')-> get() ;
+		 $ProductType = ProductType::select('name' , 'id')->orderBy('name','ASC')-> get() ;
 		 
 		 return   $ProductType  ;   
 	 }
