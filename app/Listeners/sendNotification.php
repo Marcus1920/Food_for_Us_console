@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\newPostEvent;
+use App\Packaging;
+use App\ProductType;
 use App\Sellers_details_tabs;
 use App\Services\SellerPostsService;
 use Illuminate\Queue\InteractsWithQueue;
@@ -14,18 +16,16 @@ class sendNotification implements ShouldQueue
 {
     public function __construct()
     {
-
     }
 
     public function handle(newPostEvent $event)
-
     {
 
         $buyerEmails = NewUser::where('intrest','=',2)->get();
         $details     = $event->sellersPost;
-        
 
-
+        $productName =ProductType::where('id',$details->productType)->first();
+        $packagingName =Packaging::where('id',$details->packaging)->first();
 
         foreach($buyerEmails as $buyerEmail)
         {
@@ -34,9 +34,9 @@ class sendNotification implements ShouldQueue
             $data = array (
                 'name'      =>      $buyerEmail->name  . '  ' . $buyerEmail->surname,
                 'content'   =>      $messageBody,
-                'productName'     =>   $details->productType,
-                'packaging'          =>  $details->packaging,
-                'costPerKg'         =>   $details->costPerKg,
+                'productName'        =>  $productName->name,
+                'packaging'          => $packagingName->name,
+                'costPerKg'           =>   $details->costPerKg,
                 'rating'              =>   $details->rating,
                 'location'              =>$details->location,
                 'description'       =>   $details->description,
