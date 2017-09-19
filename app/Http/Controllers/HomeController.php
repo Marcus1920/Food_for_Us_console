@@ -79,7 +79,35 @@ class HomeController extends Controller
 
 
     }
+    public function  deactivatedusersList()
+    {
 
+        $deactivated = \DB::table('new_users')
+            ->where('new_users.active','=',3)
+            ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+            ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
+            ->select(\DB::raw
+            (
+                "
+                                    new_users.id,
+                                    new_users.name,
+                                    new_users.surname,
+                                    new_users.email,
+                                    user_roles.name  as intrest,
+                                    new_users.location,
+                                    user_travel_radii.kilometres as travelRadius,
+                                    new_users.cellphone,
+                                    new_users.descriptionOfAcces
+                                    
+                                    "
+            )
+            );
+
+
+        return Datatables::of($deactivated)
+            ->make(true);
+
+    }
     public function register()
     {
         return view('admin.register');

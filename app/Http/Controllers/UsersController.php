@@ -109,8 +109,7 @@ class UsersController extends Controller
 
         if (sizeof($userNew) > 0) {
 
-            $userNew->password = "newpassword";
-            $userNew->save();
+           
             $message = "your  new  password  is  ";
             $response["error"] = false;
             $data = array(
@@ -344,9 +343,10 @@ function generateRandomString($length = 24) {
         $data = array(
 
             'name'      =>      $NewUser->name,
-            'password' =>      $NewUser->password,
+			'email'     =>      $NewUser->email,
+            'password' =>       $NewUser->password,
 			'surname' =>        $NewUser->surname,
-            'content'   =>      $message,
+            'content'   =>      $message
                      );
 
       \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {

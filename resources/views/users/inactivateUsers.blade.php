@@ -5,6 +5,7 @@
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}"> Home</a></li>
         <li><a href="{{ url('/activeUsers') }}"> Active App Users</a></li>
+        <li><a href="{{ url('/') }}">De-activated App Users</a></li>
         <li class="active">De-Activate Form</li>
     </ol>
     <h4 class="page-title">De-Activate {{$user->name}} {{$user->surname}}</h4>

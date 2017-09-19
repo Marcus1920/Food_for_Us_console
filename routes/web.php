@@ -40,6 +40,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('myResearchs','ResearchersController@index');
     Route::post('createResearch','ResearchersController@create');
     Route::get('allResearchs','ResearchersController@allResearchs');
+    Route::get('viewResearch','ResearchersController@viewResearch');
 
     //Sellers
     Route::post('created' , 'SellersController@created') ;
@@ -69,6 +70,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('transactionDetails','TransactionController@transactionDetails');
     Route::post('approveTransaction','TransactionController@approveTransaction');
     Route::post('transactionRating','TransactionController@transactionRating');
+    Route::get('transactionStatuses','TransactionController@transactionStatuses');
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
@@ -101,13 +103,12 @@ Route::group(array('prefix' => 'api/v1'), function() {
 */
 
 
-                      });
+    });
 
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
-               ->name('userEdit')
-               ->middleware('auth');
+               ->name('userEdit');
 
 Route::get('/master' , 'MapController@getUsers')->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
@@ -118,12 +119,10 @@ Route::get('/users' , 'HomeController@show')
 
 Route::get('/register' , 'HomeController@register')
           ->name('register')
-          ->middleware('auth');
+           ->middleware('auth') ;
 
 Route::post('/createUser' , 'Auth\RegisterController@create')
-    ->name('createUser')
-    ->middleware('auth');
-
+    ->name('createUser');
 
 Route::get('/editUsers/{id}',['middleware'=>'auth', function($id)
 {
@@ -145,6 +144,16 @@ Route::get('inactive' , 'HomeController@InactiveusersLis')
     ->name('inactive')
     ->middleware('auth')
  ;
+
+Route::get('inactive' , 'HomeController@InactiveusersLis') ;
+Route::get('deactivated' ,'HomeController@deactivatedusersList') ;
+
+Route::get('deactivatedUser' , function ()
+{
+
+    return view('users.deactivated');
+}) ;
+
 
 Route::get('active' , 'HomeController@activeusersLis') ;
 
@@ -239,7 +248,16 @@ Route::get('productlist', 'ProductsController@index')
           ->name('productlist')
           ->middleware('auth');
 
+
+
+Route::get('productlist', 'ProductsController@index');
+Route::get('editproduct/{id}','ProductsController@retriveProduct');
+Route::post('editproduct/updateproduct','ProductsController@update');
+
+Route::get('deleteProduct/{id}','ProductsController@delete');
+
 Route::get('allProduct',['middleware'=>'auth', function ()
+
 {
     return view('Products.index');
 

@@ -123,9 +123,10 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0px; text-align: left; color:#2E363F;">
                                     <p style="padding:0px 0px 10px 10px;">
-                                        Thanks kind Regards, <br>
-                                        FoodForUs Team,<br>
-                                        Enjoy The Application</p>
+                                        Enjoy The Application <br>
+                                        Kind Regards <br>
+                                        FoodForUs Team<br>
+                                       </p>
                                 </td>
                                 <td width="100%" height="6"></td>
                             </tr>

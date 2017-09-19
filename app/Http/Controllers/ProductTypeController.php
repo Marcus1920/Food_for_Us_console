@@ -39,6 +39,6 @@ class ProductTypeController extends Controller
          $product->save();
 
 //         return redirect()->route("productlist");
-         return Redirect('/productlist');
+         return Redirect('/allProduct');
      }
 }
