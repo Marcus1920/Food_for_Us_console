@@ -1,22 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
 
 use App\Cart;
 use App\NewUser;
+use App\ProductType;
 use App\Sellers_details_tabs;
 use App\Transaction;
 use App\TransactionRating;
 use App\TransactionStatus;
 use Illuminate\Http\Request;
+use App\Services\OverDueCartItemService;
 use Illuminate\Support\Facades\Input;
 
 class TransactionController extends Controller
 {
+
+    protected $overDueItems;
+     public function __construct(OverDueCartItemService $OverDueCartItemService)
+     {
+         $this->overDueItems =$OverDueCartItemService;
+     }
+
     public function store()
     {
-
         $api_key                        = Input::get('api_key');
         $product_id                     = Input::get('productType');
         $sellerId                       = Input::get('new_user_id');
@@ -27,10 +35,10 @@ class TransactionController extends Controller
         $sellerDetails                  = Sellers_details_tabs::where('productType',$product_id)
                                                                 ->where('id',Input::get('productId'))
                                                                 ->first();
+
         $productDetails                 = Cart::where('productId',$sellerDetails->id)
                                                      ->where('id',$cartId)
                                                      ->where('userId',$buyer->id)->first();
-
 
         $transactionObj                 = new Transaction();
         $transactionObj->buyer_id       = $buyer->id;
@@ -55,23 +63,19 @@ class TransactionController extends Controller
                                                     product_types.name as productName
                                                     "
                                                 )
-
-                                                )
+                                                    )
                                             ->where('carts.productId',$productDetails->productId)
                                             ->where('carts.id', $cartId )
                                             ->first();
 
-
         $messageBody= "  I am interested in buying  " .' ' . " $transactionObj->quantity kg "  . ' ' .  " of  "  . ' ' .  "$productName->productName " . ' ' . ",you can contact me  using the following contact details.
-        
-        
-         Email: " .' '. "  $buyer->email & 
+        Email: " .' '. "  $buyer->email & 
          ". ''.  " Cellphone : " . ''. "$buyer->cellphone";
-        $data = array(
 
+        $data = array(
             'name'      =>      $buyer->name . ' ' . $buyer->surname,
             'content'   =>      $messageBody,
-        );
+                 );
 
         \Mail::send('emails.transaction', $data, function ($message) use ($sellerEmail) {
             $message->from('info@foodorus', 'Food For us');
@@ -174,15 +178,32 @@ class TransactionController extends Controller
     {
         $buyer                      = NewUser::where('api_key',Input::get('api_key'))->first();
         $productName                = Sellers_details_tabs::select('id')
-                                                   ->where('id',Input::get('id')) ->where('productType',Input::get('foodItem'))->first();
+                                                   ->where('id',Input::get('id'))
+                                                   ->where('productType',Input::get('foodItem'))->first();
 
-        $cartItemsObj               = new Cart();
-        $cartItemsObj->userId       = $buyer->id;
-        $cartItemsObj->productId    = $productName->id;
-        $cartItemsObj->quantity     = Input::get('quantity');
-        $cartItemsObj->save();
+        $initialQuantity            = Sellers_details_tabs::select('quantity')
+                                            ->where('id',Input::get('id'))
+                                            ->first();
 
-       return "okay items Added";
+        if($initialQuantity->quantity >= Input::get('quantity'))
+        {
+            $availableQuantity          = $initialQuantity->quantity -Input::get('quantity');
+            $newQuantity                = Sellers_details_tabs::where('id',Input::get('id'))
+                                                             ->update(['quantity' => $availableQuantity]);
+
+            $cartItemsObj               = new Cart();
+            $cartItemsObj->userId       = $buyer->id;
+            $cartItemsObj->productId    = $productName->id;
+            $cartItemsObj->quantity     = Input::get('quantity');
+            $cartItemsObj->save();
+
+            return $newQuantity;
+        }
+
+        else
+            {
+            return "cant buy more than the available item quantity";
+            }
     }
 
     public function getCartItem()
@@ -224,6 +245,7 @@ class TransactionController extends Controller
         $product_id       =Input::get('productType');
         $sellerDetails    = Sellers_details_tabs::where('productType',$product_id)->first();
         $buyerId          = NewUser::where('api_key',$api_key)->first();
+
         $removeCartItems  = Cart::with('products','buyers')
                                   ->where('userId',$buyerId->id)
                                   ->where('productId',$sellerDetails->id)
@@ -366,5 +388,8 @@ class TransactionController extends Controller
          $statuses = TransactionStatus::all();
          return \Response::json($statuses);
     }
+
+
+
 }
 
