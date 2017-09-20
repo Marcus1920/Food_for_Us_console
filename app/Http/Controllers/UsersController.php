@@ -207,7 +207,7 @@ class UsersController extends Controller
 
                 $response["error"]  = true;
                 $response['active'] = 1;
-                $response["msg"]    = "your  acount  is Not Acive";
+                $response["msg"]    = "your  account  is Not Acive";
             }
             //   \Log::info("Login Device:".$device.", User Cell:".$cell.", User Names:".$data->name);
 
