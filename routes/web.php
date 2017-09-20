@@ -108,9 +108,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
-               ->name('userEdit');
+               ->name('userEdit')
+                ->middleware('auth');
 
-Route::get('/master' , 'MapController@getUsers')->name('master') ;
+Route::get('/master' , 'MapController@getUsers')
+           ->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
 
 Route::get('/users' , 'HomeController@show')
@@ -122,7 +124,8 @@ Route::get('/register' , 'HomeController@register')
            ->middleware('auth') ;
 
 Route::post('/createUser' , 'Auth\RegisterController@create')
-    ->name('createUser');
+    ->name('createUser')
+    ->middleware('auth');
 
 Route::get('/editUsers/{id}',['middleware'=>'auth', function($id)
 {
@@ -148,14 +151,16 @@ Route::get('inactive' , 'HomeController@InactiveusersLis')
 Route::get('inactive' , 'HomeController@InactiveusersLis') ;
 Route::get('deactivated' ,'HomeController@deactivatedusersList') ;
 
-Route::get('deactivatedUser' , function ()
+Route::get('deactivatedUser' ,['middleware'=>'auth', function ()
 {
 
     return view('users.deactivated');
-}) ;
+}]) ;
 
 
-Route::get('active' , 'HomeController@activeusersLis') ;
+Route::get('active' , 'HomeController@activeusersLis')
+    ->name('active')
+    ->middleware('auth');;
 
 Route::get('/inactivateUsers/{id}',['middleware'=>'auth', function($id)
 {
@@ -164,44 +169,46 @@ Route::get('/inactivateUsers/{id}',['middleware'=>'auth', function($id)
     return view('users.inactivateUsers',compact('user'));
 }]);
 
-Route::get('/createUser', function()
+Route::get('/createUser',['middleware'=>'auth', function()
 {
     return view('users.edit',compact('user'));
-});
+}]);
 
-Route::get('/activation', function()
+Route::get('/activation',['middleware'=>'auth', function()
 {
     return view('emails.activation',compact('activation'));
-});
+}]);
 
-Route::get('/registration', function()
+Route::get('/registration',['middleware'=>'auth', function()
 {
     return view('emails.registration',compact('registration'));
-});
+}]);
 
-Route::get('/inactivation',function()
+Route::get('/inactivation',['middleware'=>'auth',function()
 {
     return view('emails.inactivation',compact('inactivation'));
-});
-Route::get('/resetpassword',function()
+}]);
+Route::get('/resetpassword',['middleware'=>'auth',function()
 {
     return view('emails.resetpassword',compact('resetpassword'));
-});
-Route::get('/reset',function()
+}]);
+Route::get('/reset',['middleware'=>'auth',function()
 {
     return view('passwords.reset',compact('reset'));
-});
+}]);
 
-Route::get('/transaction', function ()
+Route::get('/transaction',['middleware'=>'auth', function ()
 {
     return view('emails.transaction',compact('transaction'));
-});
-Route::get('/changePassword', function ()
+}]);
+Route::get('/changePassword',['middleware'=>'auth', function ()
 {
     return view('emails.changePassword',compact('changePassword'));
-});
+}]);
 
-Route::post('addAdmin', 'MyRegisterController@createAdmin');
+Route::post('addAdmin', 'MyRegisterController@createAdmin')
+    ->name('addAdmin')
+    ->middleware('auth');
 Route::get('adminUser', 'MyRegisterController@adminUsers')
               ->name('adminUser')
               ->middleware('auth');
@@ -215,8 +222,9 @@ Route::get('sellersPostList', 'PostViewController@index')
       ->middleware('auth');
 
 
-Route::get('postview/{id}', 'PostViewController@show')->name('postview/{id}')
-  ->middleware('auth');
+Route::get('postview/{id}', 'PostViewController@show')
+    ->name('postview/{id}')
+    ->middleware('auth');
 
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser');
@@ -250,12 +258,17 @@ Route::get('productlist', 'ProductsController@index')
 
 
 
-Route::get('productlist', 'ProductsController@index');
-Route::get('editproduct/{id}','ProductsController@retriveProduct');
+Route::get('productlist', 'ProductsController@index')
+    ->name('productlist')
+    ->middleware('auth');
+Route::get('editproduct/{id}','ProductsController@retriveProduct')
+    ->name('editproduct/{id}')
+    ->middleware('auth');
 Route::post('editproduct/updateproduct','ProductsController@update');
 
-Route::get('deleteProduct/{id}','ProductsController@delete');
-
+Route::get('deleteProduct/{id}','ProductsController@delete')
+             ->name('deleteProduct/{id}')
+             ->middleware('auth');
 Route::get('allProduct',['middleware'=>'auth', function ()
 
 {
@@ -287,6 +300,9 @@ Route::get('viewAdmin/{id}', 'UsersController@viewAdmin')
     ->middleware('auth');
 
 Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
+
+
+
 
 //End User role
 Route::get('reports','ReportsController@index')
