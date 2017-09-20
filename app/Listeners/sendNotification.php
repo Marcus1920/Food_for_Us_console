@@ -24,7 +24,7 @@ class sendNotification implements ShouldQueue
         $buyerEmails = NewUser::where('intrest','=',2)->get();
         $details     = $event->sellersPost;
 
-        $productName =ProductType::where('id',$details->productType)->first();
+        $productName   =ProductType::where('id',$details->productType)->first();
         $packagingName =Packaging::where('id',$details->packaging)->first();
 
         foreach($buyerEmails as $buyerEmail)
