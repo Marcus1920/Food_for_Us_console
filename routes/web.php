@@ -84,7 +84,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('distance','SellersController@getDistance');
 
 
-
 /*
     //User Roles
     Route::get('getUserRoles','UserRolesController@getUserRoles');
@@ -103,12 +102,15 @@ Route::group(array('prefix' => 'api/v1'), function() {
 */
 
 
-    });
+
+
+});
+
 
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
-               ->name('userEdit')
+               ->name('userEdit/{id}')
                 ->middleware('auth');
 
 Route::get('/master' , 'MapController@getUsers')

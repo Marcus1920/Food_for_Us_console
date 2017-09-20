@@ -84,7 +84,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img  alt="recipe" src="{{$recipe->RecipePicture}}" style="width: 400px;height: 300px;">
+                <img src="{{$recipe->imgurl}}" style="width: 400px;height: 300px;">
             </div>
             <div class="col-md-8">
 
