@@ -30,7 +30,7 @@ class sendNotification implements ShouldQueue
         foreach($buyerEmails as $buyerEmail)
         {
 
-            $messageBody  = 'A new product  has just been posted,check details below;';
+            $messageBody  = 'A new product  has just been posted,check on the  details below;';
             $data = array (
                 'name'      =>      $buyerEmail->name  . '  ' . $buyerEmail->surname,
                 'content'   =>      $messageBody,
