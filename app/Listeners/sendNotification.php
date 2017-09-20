@@ -37,7 +37,7 @@ class sendNotification implements ShouldQueue
                 'productName'        =>  $productName->name,
                 'packaging'          => $packagingName->name,
                 'costPerKg'           =>   $details->costPerKg,
-                'rating'              =>   $details->rating,
+                'rating'              =>   $details->transactionRating,
                 'location'              =>$details->location,
                 'description'       =>   $details->description,
                 'quantity'          =>   $details->quantity,
