@@ -21,19 +21,15 @@
                         <a href="{{ url('addUserRole') }}" class="btn btn-sm">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new user role" data-toggle="tooltip"></i>
                         </a>
-                        <table class="table tile table-striped" id="pendingreferralCasesTable">
+                        <table class="table tile table-striped" id="userRolesTable">
                             <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
+                                <th>View Users</th>
+                                {{--<th>Edit</th>--}}
                             </tr>
                             </thead>
-                            @foreach($userRoles  as $userRole)
-                                <tr>
-                                    <td> {{$userRole->id}} </td>
-                                    <td> {{$userRole->name}}</td>
-                                </tr>
-                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -43,13 +39,5 @@
     </div>
 
 
-
-@endsection
-@section('footer')
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
 @endsection

@@ -243,6 +243,9 @@ Route::get('addUserRole', function (){
     return view('UserRoles.add');
 });
 Route::post('storeUserRole','UserRolesController@store');
+Route::get('allUserRole','UserRolesController@getAllUserRoles');
+Route::get('getUsersPerGroup/{id}','UserRolesController@getUsersView');
+Route::get('allUsersByRole/{id}','UserRolesController@getUserByUserRole');
 
 Route::get('viewAdmin/{id}', 'UsersController@viewAdmin');
 

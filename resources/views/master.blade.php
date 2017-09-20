@@ -513,6 +513,57 @@
 
         });
 
+        var userRolesTable     = $('#userRolesTable').DataTable({
+            "autoWidth": false,
+
+            "processing": true,
+            speed: 500,
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                ,{
+
+                    extend : 'pdfHtml5',
+                    title  : 'Siyaleader_Report',
+                    header : 'I am text in',
+                },
+
+            ],
+
+
+            "order" :[[0,"desc"]],
+            "ajax": "{!! url('/allUserRole/')!!}",
+            "processing": true,
+            "serverSide": true,
+            "order" :[[0,"desc"]],
+
+            "buttons": [
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+
+
+            "columns": [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: function(d)
+                {
+                    return "<a href='{!! url('getUsersPerGroup/" + d.id + "') !!}' class='btn btn-sm'>" + 'View users' + "</a>";
+                },"name" : 'name'},
+                {{--{data: function(d)--}}
+                {{--{--}}
+                    {{--return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";--}}
+                {{--},"name" : 'name'},--}}
+            ],
+
+            "aoColumnDefs": [
+                { "bSearchable": false, "aTargets": [ 1] },
+            ]
+
+        });
+
         var reseachersTable     = $('#reseachersTable').DataTable({
             "autoWidth": false,
 
