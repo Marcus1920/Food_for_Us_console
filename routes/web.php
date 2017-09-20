@@ -32,7 +32,7 @@ Route::get('del' , 'SellersController@destroy');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
-    // Produrct  type
+    // Product  type
      Route::get ('packagingList' , 'packagingListController@index');
      Route::get ('producttype' , 'ProductTypeController@index');
 
@@ -47,17 +47,14 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('updateSeller' , 'SellersController@update') ;
     Route::get('all' , 'SellersController@index') ;
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
-
     Route::post('deletePost' , 'SellersController@destroy') ;
     Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
-
 
     //Users
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
-
     Route::get('myProfile', 'UsersController@myProfile');
     Route::post('updateProfile', 'UsersController@updateProfile');
     Route::get('myProfile','UsersController@myProfile');
@@ -333,5 +330,6 @@ Route::get('deleteRecipe','PublicWallController@deleteRecipe')
 
      ->name('deleteRecipe')
     ->middleware('auth');
+
 
 ?>

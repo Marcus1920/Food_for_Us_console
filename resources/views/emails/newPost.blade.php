@@ -16,7 +16,6 @@
 
 <body style="margin:0; margin-top:30px; margin-bottom:30px; padding:0; width:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; background-color: #F4F5F7;">
 
-
 <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background-color: #F4F5F7;">
 
     <tbody>
@@ -215,6 +214,5 @@
     </tbody>
 </table>
 <!-- /ROW 2 IMGS -->
-
 </body>
 </html>
