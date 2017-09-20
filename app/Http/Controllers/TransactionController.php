@@ -87,7 +87,7 @@ class TransactionController extends Controller
         $api_key            = Input::get('api_key');
         $userDetails        = NewUser::where('api_key',$api_key)->first();
 
-        if($userDetails->intrest ==1 )
+        if($userDetails->intrest == 1 )
             {
 
                 $sellerTransactionsDetails =\DB::table('transactions')
