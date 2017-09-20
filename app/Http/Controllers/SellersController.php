@@ -122,6 +122,7 @@ class SellersController extends Controller
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
             ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+            ->where('sellers_details_tabs.quantity','>',0)
             ->select(
                 \DB::raw(
                     "

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\NewUser;
+use App\ProductType;
 use App\Sellers_details_tabs;
 use App\Transaction;
 use App\TransactionRating;
@@ -180,27 +181,29 @@ class TransactionController extends Controller
                                                    ->where('id',Input::get('id'))
                                                    ->where('productType',Input::get('foodItem'))->first();
 
-        $cartItemsObj               = new Cart();
-        $cartItemsObj->userId       = $buyer->id;
-        $cartItemsObj->productId    = $productName->id;
-        $cartItemsObj->quantity     = Input::get('quantity');
-        $cartItemsObj->save();
-
         $initialQuantity            = Sellers_details_tabs::select('quantity')
-                                                            ->where('id',Input::get('id'))
-                                                            ->first();
+                                            ->where('id',Input::get('id'))
+                                            ->first();
 
-        if($initialQuantity->quantity > $cartItemsObj->quantity)
+        if($initialQuantity->quantity >= Input::get('quantity'))
         {
-            $availableQuantity          = $initialQuantity->quantity  - $cartItemsObj->quantity;
+            $availableQuantity          = $initialQuantity->quantity -Input::get('quantity');
             $newQuantity                = Sellers_details_tabs::where('id',Input::get('id'))
-                                                                ->update(['quantity' => $availableQuantity]);
+                                                             ->update(['quantity' => $availableQuantity]);
+
+            $cartItemsObj               = new Cart();
+            $cartItemsObj->userId       = $buyer->id;
+            $cartItemsObj->productId    = $productName->id;
+            $cartItemsObj->quantity     = Input::get('quantity');
+            $cartItemsObj->save();
+
             return $newQuantity;
         }
-        else{
-            return "cant buy more than the available item quantity";
-        }
 
+        else
+            {
+            return "cant buy more than the available item quantity";
+            }
     }
 
     public function getCartItem()
@@ -385,6 +388,8 @@ class TransactionController extends Controller
          $statuses = TransactionStatus::all();
          return \Response::json($statuses);
     }
+
+
 
 }
 
