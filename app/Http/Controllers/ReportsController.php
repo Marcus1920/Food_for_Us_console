@@ -61,7 +61,7 @@ class ReportsController extends Controller
                 )
             )
 
-            ->get(), 'pie', 'highcharts')
+            ->get(), 'donut', 'highcharts')
             ->title('Sellers Posts By Quantity Available')
             ->elementLabel("Total")
             ->dimensions(1000, 500)
