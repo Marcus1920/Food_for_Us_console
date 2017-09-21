@@ -18,6 +18,9 @@
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
                         <h3 class="block-title"> Inactive User  List </h3>
+                        <a href="{{ url('userroleslist') }}" class="btn btn-sm">
+                            <i aria-hidden="true" title="Filter Users By User Group" data-toggle="tooltip">Filter By User Group</i>
+                        </a>
                         <table class="table tile table-striped" id="InactiveUserTable">
                             <thead>
                             <tr>
