@@ -281,6 +281,7 @@ Route::get('addUserRole',['middleware'=>'auth', function (){
     return view('UserRoles.add');
 }]);
 Route::post('storeUserRole','UserRolesController@store');
+
 Route::get('allUserRole','UserRolesController@getAllUserRoles')
     ->name('allUserRole')
     ->middleware('auth');
@@ -290,6 +291,12 @@ Route::get('getUsersPerGroup/{id}','UserRolesController@getUsersView')
 Route::get('allUsersByRole/{id}','UserRolesController@getUserByUserRole')
     ->name('allUsersByRole/{id}')
     ->middleware('auth')  ;
+
+Route::get('allUserRole','UserRolesController@getAllUserRoles');
+Route::get('getUsersPerGroup/{id}','UserRolesController@getUsersView');
+Route::get('allUsersByRole/{id}','UserRolesController@getUserByUserRole');
+Route::get('editUserRole/{id}','UserRolesController@editUserRole');
+Route::post('editUserRole/updateUserRole','UserRolesController@update');
 
 Route::get('viewAdmin/{id}', 'UsersController@viewAdmin')
          ->name('viewAdmin/{id}')
