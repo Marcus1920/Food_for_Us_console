@@ -94,4 +94,21 @@ class UserRolesController extends Controller
         return response()->json($userRoles);
 
     }
+    public function editUserRole($id)
+    {
+        $userRole = UserRoles::find($id);
+
+        return view('UserRoles.edit',compact('userRole'));
+
+//        return Redirect('/userroleslist');
+    }
+    public function update(Request $request)
+    {
+        UserRoles::where('id',$request['id'])
+            ->update(['name'=>$request['userRoleName'],
+                'slug'=>$request['userRoleName']]);
+
+        return Redirect('/userroleslist');
+    }
+
 }
