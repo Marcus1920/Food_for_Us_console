@@ -16,7 +16,7 @@ class OverDueCartItemService
 
         $cartItems  = Cart::where('active','=',0)->get();
 
-        $newArray   =array();
+        $newArray   = array();
         for($i=0;$i<count($cartItems) ;$i++)
         {
             $created_at = $cartItems[$i]->created_at;
