@@ -108,7 +108,6 @@
                 <div class="pull-left tm-icon">
 
                     <a href="" data-toggle="modal" onClick="launchAddress();" data-target=".modalAddress" >
-                        <i class="fa fa-book fa-2x"></i>
                     </a>
                 </div>
 
@@ -191,7 +190,7 @@
                 <a class="sa-side-user" href="#">
                     {{--<span class="menu-item">App Users</span>--}}
                 </a>
-                <ul class=" ">
+                <ul class="list-unstyled menu-item">
                     <h6><b>APP USERS</b></h6>
                     <li><a href="{{ url('inactiveUsers') }}"><span class="badge badge-r"></span>Inactive Users</a></li>
                     <li><a href="{{ url('activeUsers') }}"><span class="badge badge-r"></span>Active Users</a></li>
