@@ -108,7 +108,6 @@
                 <div class="pull-left tm-icon">
 
                     <a href="" data-toggle="modal" onClick="launchAddress();" data-target=".modalAddress" >
-                        <i class="fa fa-book fa-2x"></i>
                     </a>
                 </div>
 
