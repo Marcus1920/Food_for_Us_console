@@ -551,9 +551,13 @@
                 {
                     return "<a href='{!! url('getUsersPerGroup/" + d.id + "') !!}' class='btn btn-sm'>" + 'View users' + "</a>";
                 },"name" : 'name'},
+                {data: function(d)
+                {
+                    return "<a href='{!! url('editUserRole/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit '+d.name + "</a>";
+                },"name" : 'name'},
                 {{--{data: function(d)--}}
                 {{--{--}}
-                    {{--return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";--}}
+                    {{--return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'Delete' + "</a>";--}}
                 {{--},"name" : 'name'},--}}
             ],
 

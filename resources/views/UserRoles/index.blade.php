@@ -27,7 +27,8 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>View Users</th>
-                                {{--<th>Edit</th>--}}
+                                <th>Edit</th>
+                                {{--<th>Delete</th>--}}
                             </tr>
                             </thead>
                         </table>
