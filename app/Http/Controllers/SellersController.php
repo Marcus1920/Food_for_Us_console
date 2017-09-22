@@ -123,6 +123,7 @@ class SellersController extends Controller
             ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
             ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
             ->where('sellers_details_tabs.quantity','>',0)
+            ->where('sellers_details_tabs.post_status','=',1)
             ->select(
                 \DB::raw(
                     "
@@ -154,6 +155,7 @@ class SellersController extends Controller
                         "
                 )
             )
+            ->where('sellers_details_tabs.quantity','>',0)
             ->orderBy('created_at' ,'desc')	->get();
         return $sellers_posts;
     }
@@ -216,6 +218,7 @@ class SellersController extends Controller
         */
 
         $sellersPost->city              = Input::get('city');
+
         $sellersPost->country           = Input::get('country');
         $sellersPost->location          = Input::get('country').', '.Input::get('city');
         $sellersPost->description       = Input::get('description');
@@ -225,6 +228,7 @@ class SellersController extends Controller
         $sellersPost->availableHours    =  Input::get('availableHours');
         $sellersPost->paymentMethods    =  Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
+
         $sellersPost->save();
 
         $productPickupDetails                      = new ProductPickupDetails();
@@ -238,7 +242,7 @@ class SellersController extends Controller
         $productPickupDetails->gps_long            = "0";
         $productPickupDetails->save();
 
-       event(new newPostEvent($sellersPost));
+//       event(new newPostEvent($sellersPost));
         return $sellersPost;
       }
 
@@ -273,15 +277,12 @@ class SellersController extends Controller
 
     public function destroy()
     {
-        $apiKey         = Input::get('api_key');
         $id             = Input::get('id');
-
-        $user           = NewUser::where('api_key',$apiKey)->first();
+        $user           = NewUser::where('api_key',Input::get('api_key'))->first();
         $deletePost     = Sellers_details_tabs::where('id', $id)
                              ->where('new_user_id', $user->id)
-                             ->delete();
-
-        $sellesPosts      = Sellers_details_tabs::where('new_user_id',$user->id)->get();
+            ->update(['post_status'=> 2]);
+        $sellesPosts      = Sellers_details_tabs::where('new_user_id',$user->id)->where('post_status',1)->get();
         return response()->json($sellesPosts);
 
     }
