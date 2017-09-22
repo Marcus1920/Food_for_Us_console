@@ -65,19 +65,19 @@
                 <button class="btn btn-default btn-sm m-r-5" type="submit">Log in</button>
 
                 <small>
-
-                    <a class="box-switcher" data-switch="box-reset" href="">Forgot/Change Password?</a>
+                    <a class="btn btn-default btn-sm m-r-5" href="{{ route('password.request') }}">
+                        Forgot/Change Your Password?
+                    </a>
                 </small>
             </form>
 
-            <form class="box animated tile" id="box-reset" method="POST" action="{{ url('/password/reset') }}">
+            <form class="box animated tile" id="box-reset" method="POST" action="{{ route('password.request') }}">
                 {!! csrf_field() !!}
                 <h2 class="m-t-0 m-b-15">Reset Password</h2>
                 <p></p>
+
                 <input type="email" class="login-control m-b-20" name="email" placeholder="Email Address">
-
                 <button class="btn btn-default btn-sm m-r-5" type="submit">Send Password Reset Link</button>
-
                 <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
             </form>
         </div>
@@ -91,22 +91,10 @@
     </div>
 
     <div class="clearfix"></div>
-
-    <!-- Login -->
-
 </section>
 
-<!-- Javascript Libraries -->
-<!-- jQuery -->
-<script src="{{ asset('js/jquery.min.js') }}"></script> <!-- jQuery Library -->
-
-<!-- Bootstrap -->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-<!--  Form Related -->
-{{--<script src="{{ asset('js/icheck.js') }}"></script> <!-- Custom Checkbox + Radio -->--}}
-
-<!-- All JS functions -->
 <script src="{{ asset('js/functions.js') }}"></script>
 </body>
 </html>
