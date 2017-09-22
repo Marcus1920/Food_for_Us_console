@@ -62,7 +62,7 @@
                         Remember Me
                     </label>
                 </div>
-                <button class="btn btn-default btn-sm m-r-5" type="submit">Sign In</button>
+                <button class="btn btn-default btn-sm m-r-5" type="submit">Log in</button>
 
                 <small>
 
