@@ -22,7 +22,7 @@ class CreateSellersDetailsTabsTable extends Migration
             $table->string('gps_lat');
             $table->string('gps_long');
             $table->integer('productType')->unsigned();
-            $table->foreign('productType')->references('id')->on('product_types');
+            $table->foreign('productType')->references('id')->on('product_types')->onDelete('cascade');
             $table->string('quantity');
             $table->string('costPerKg');
             $table->string('description');
@@ -33,6 +33,8 @@ class CreateSellersDetailsTabsTable extends Migration
             $table->string('availableHours');
             $table->string('paymentMethods');
             $table->string('transactionRating');
+            $table->integer('post_status')->unsigned();
+            $table->foreign('post_status')->references('id')->on('seller_post_statuses');
             $table->timestamps();
         });
     }
