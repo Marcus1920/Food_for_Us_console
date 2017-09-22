@@ -100,7 +100,7 @@ class SellersController extends Controller
                         
                         "
                     )
-                )
+                )->where('sellers_details_tabs.post_status',1)
 			->orderBy('created_at' ,'desc')	->get();
 
 			  return response()->json($sellers_tabs);
@@ -281,7 +281,7 @@ class SellersController extends Controller
         $user           = NewUser::where('api_key',Input::get('api_key'))->first();
         $deletePost     = Sellers_details_tabs::where('id', $id)
                              ->where('new_user_id', $user->id)
-            ->update(['post_status'=> 2]);
+                              ->update(['post_status'=> 2]);
         $sellesPosts      = Sellers_details_tabs::where('new_user_id',$user->id)->where('post_status',1)->get();
         return response()->json($sellesPosts);
 
