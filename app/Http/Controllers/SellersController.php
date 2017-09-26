@@ -246,6 +246,41 @@ class SellersController extends Controller
         return $sellersPost;
       }
 
+    public function changeDefaultLocation()
+    {
+        $newUserDetails         = NewUser::select('id','gps_lat','gps_long')
+                                    ->where('api_key',Input::get('apiKey'))
+                                    ->first();
+
+        $sellerDetails           = Sellers_details_tabs::select('id')
+                                                ->where('new_user_id',$newUserDetails->id)
+                                                ->first();
+        if(Input::get('default') == 0)
+        {
+
+            $changeDefaultLocation  = ProductPickupDetails::where('SellersPostId',$newUserDetails->id)
+                ->update([
+                    'gps_lat'  =>$newUserDetails->gps_lat,
+                    'gps_long' =>$newUserDetails->gps_long,
+                ]);
+
+            return " default pickup location selected";
+        }
+        elseif(Input::get('default') == 1)
+            {
+                $changeDefaultLocation  = ProductPickupDetails::where('SellersPostId',$newUserDetails->id)
+                ->update([
+                    'gps_lat'  =>Input::get('gpsLat'),
+                    'gps_long' =>Input::get('gpsLong'),
+                ]);
+
+            return " new pickup location updated";
+
+        }else{
+            return 'error';
+        }
+    }
+
     public function create(Request $request)
     {
         $input  =  $request->all();

@@ -44,6 +44,9 @@
     <div class="row" >
         <div class="col-md-6" style="background-color:#265a88; height: 600px; ">
 
+
+
+
             <form class="box tile animated active" id="box-login" role="form" method="POST" action="{{ route('password.email') }}">
                 <center>
                 </center>

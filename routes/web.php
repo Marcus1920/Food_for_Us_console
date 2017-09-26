@@ -49,6 +49,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
     Route::post('deletePost' , 'SellersController@destroy') ;
     Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
+    Route::post('changeDefaultLocation','SellersController@changeDefaultLocation');
+
 
     //Users
     Route::get('userList' ,  'UsersController@index');
