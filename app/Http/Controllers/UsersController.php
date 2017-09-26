@@ -79,7 +79,7 @@ class UsersController extends Controller
 
 
                 \Mail::send('emails.changePassword', $data, function ($message) use ($userUpdated) {
-                    $message->from('info@foodforus', 'Food For us');
+                    $message->from('Info@FoodForUs.cloud', 'Food For us');
                     $message->to($userUpdated->email)->subject("Food  for  us Notification! ");
 
                 });
@@ -251,7 +251,7 @@ class UsersController extends Controller
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
 
-            $message->from('info@fooforus.net', 'Food  For Us ');
+            $message->from('Info@FoodForUs.cloud', 'Food  For Us ');
             $message->to($userDetails->email)->subject( " Food  For Us Notification ");
 
 
@@ -283,7 +283,7 @@ class UsersController extends Controller
 
 
 
-            $message->from('info@siyaleader.net', 'Food For Us');
+            $message->from('Info@FoodForUs.cloud', 'Food For Us');
             $message->to($userDetails->email)->subject("Food For Us Notification !");
 
 //
@@ -352,7 +352,7 @@ function generateRandomString($length = 24) {
 
       \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
 
-             $message->from('info@foodforus', 'Food For us');
+             $message->from('Info@FoodForUs.cloud', 'Food For us');
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 
