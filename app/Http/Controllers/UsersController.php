@@ -106,7 +106,8 @@ class UsersController extends Controller
 
         $userNew = NewUser::where('email', '=', $email)->first();
 
-
+        $userNew->password = rand(1,9999);
+        $userNew->save();
         if (sizeof($userNew) > 0) {
 
            
@@ -122,12 +123,12 @@ class UsersController extends Controller
 
 
             \Mail::send('emails.resetpassword', $data, function ($message) use ($userNew) {
-                $message->from('info@foodforus', 'Food For us');
+                $message->from('Info@FoodForUs.cloud', 'Food For us');
                 $message->to($userNew->email)->subject("Food  for  us Notification! ");
 
             });
 
-            $response["message"] = "You have successfully changed your password check  your  email";
+            $response["message"] = "You have successfully resetted your password check  your  email for a new password";
 
 
         } else {
