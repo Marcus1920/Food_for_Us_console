@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Auth;
+use Yajra\DataTables\DataTables;
 
 class MyRegisterController extends Controller
 {
@@ -36,7 +37,14 @@ class MyRegisterController extends Controller
 
     public function  adminUsers()
     {
-        $adminUsers  =  User::all () ;
-        return view('users.adminUsers', compact('adminUsers'));
+        return view('users.adminUsers');
+    }
+
+    public function getAdminUsers()
+    {
+        $adminUsers = User::all();
+
+        return Datatables::of($adminUsers)
+            ->make(true);
     }
 }
