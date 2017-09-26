@@ -52,7 +52,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Users
     Route::get('userList' ,  'UsersController@index');
+
     Route::post('register' ,  'UsersController@create');
+
+
+
     Route::post('login' ,  'UsersController@login');
     Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile', 'UsersController@myProfile');
@@ -102,166 +106,226 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
-               ->name('userEdit');
+               ->name('userEdit')
+               ->middleware('auth');
 
-Route::get('/master' , 'MapController@getUsers')->name('master') ;
+Route::get('/master' , 'MapController@getUsers')
+             ->name('master') ;
 //Route::get('/users' , 'HomeController@users')->name('users') ;
 
 Route::get('/users' , 'HomeController@show')
-           ->name('users')
-           ->middleware('auth');
+          ->name('users');
+           //->middleware('auth');
 
 Route::get('/register' , 'HomeController@register')
-          ->name('register');
+          ->name('register')
+          ->middleware('auth');
 
-Route::post('/createUser' , 'Auth\RegisterController@create')
-    ->name('createUser');
+Route::post('/createUser' , 'Auth\RegisterController@create');
+            // ->name('createUser')
+             //->midlleware('auth');
 
-Route::get('/editUsers/{id}', function($id)
+Route::get('/editUsers/{id}',['middleware'=>'auth', function($id)
 {
     $user = NewUser::where('id','=',$id)->first();
     return view('users.edit',compact('user'));
-});
+}]);
 
-Route::get('activeUsers', function (){
+Route::get('activeUsers',['middleware'=>'auth', function (){
    return view('users.active');
-});
+}]);
 
-Route::get('inactiveUsers', function (){
+Route::get('inactiveUsers',['middleware'=>'auth', function (){
     return view('users.inactive');
-});
+}]);
 
-Route::get('inactive' , 'HomeController@InactiveusersLis') ;
-Route::get('deactivated' ,'HomeController@deactivatedusersList') ;
+Route::get('inactive' , 'HomeController@InactiveusersLis')
+              ->name('inactive')
+               ->middleware('auth');
+Route::get('deactivated' ,'HomeController@deactivatedusersList')
+                ->name('inactive')
+                ->middleware('auth');
 
-Route::get('deactivatedUser' , function ()
+Route::get('deactivatedUser' ,['middleware'=>'auth', function ()
 {
 
     return view('users.deactivated');
-}) ;
+}]) ;
 
-Route::get('active' , 'HomeController@activeusersLis') ;
+Route::get('active' , 'HomeController@activeusersLis')
+        ->name('active')
+        ->middleware('auth');
 
-Route::get('/inactivateUsers/{id}', function($id)
+Route::get('/inactivateUsers/{id}',['middleware'=>'auth', function($id)
 {
     $user = NewUser::where('id','=',$id)->first();
     return view('users.inactivateUsers',compact('user'));
-});
+}]);
 
-Route::get('/createUser', function()
+Route::get('/createUser',['middleware'=>'auth', function()
 {
     return view('users.edit',compact('user'));
-});
+}]);
 
-Route::get('/activation', function()
+Route::get('/activation',['middleware'=>'auth' ,function()
 {
     return view('emails.activation',compact('activation'));
-});
+}]);
 
-Route::get('/registration', function()
+Route::get('/registration',['middleware'=>'auth', function()
 {
     return view('emails.registration',compact('registration'));
-});
+}]);
 
 Route::get('/inactivation',function()
 {
     return view('emails.inactivation',compact('inactivation'));
 });
-Route::get('/resetpassword',function()
+Route::get('/resetpassword',['middleware'=>'auth',function()
 {
     return view('emails.resetpassword',compact('resetpassword'));
-});
+}]);
 Route::get('/reset',function()
 {
     return view('passwords.reset',compact('reset'));
 });
 
-Route::get('/registration', function ()
-{
-    return view('emails.registration',compact('registration'));
-});
-
-Route::get('/transaction', function ()
+Route::get('/transaction',['middleware'=>'auth', function ()
 {
     return view('emails.transaction',compact('transaction'));
-});
-Route::get('/changePassword', function ()
+}]);
+Route::get('/changePassword',['middleware'=>'auth' ,function ()
 {
     return view('emails.changePassword',compact('changePassword'));
-});
+}]);
 
 Route::post('addAdmin', 'MyRegisterController@createAdmin');
-Route::get('adminUser', 'MyRegisterController@adminUsers');
+Route::get('adminUser', 'MyRegisterController@adminUsers')
+                 ->name('adminUser')
+                 ->middleware('auth');
 
-Route::get('postslist', 'PostViewController@showList');
-Route::get('sellersPostList', 'PostViewController@index');
-Route::get('postview/{id}', 'PostViewController@show');
+Route::get('postslist', 'PostViewController@showList')
+                 ->name('postslist')
+                 ->middleware('auth') ;
+Route::get('sellersPostList', 'PostViewController@index')
+                ->name('sellersPostList')
+                ->middleware('auth');
+Route::get('postview/{id}', 'PostViewController@show')
+    ->name('postview/{id}')
+    ->middleware('auth');
+
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
+
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
 Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 
 
-Route::get('researchList','ResearchersController@researchList');
-Route::get('getResearchList','ResearchersController@allResearchList');
-Route::get('researchProfile/{id}','ResearchersController@researchProfile');
-
-
-Route::get('password/reset', 'Auth\ResetPasswordController@getReset');
+Route::get('researchList','ResearchersController@researchList')
+            ->name('researchList')
+            ->middleware('auth');
+Route::get('getResearchList','ResearchersController@allResearchList')
+            ->name('getResearchList')
+            ->middleware('auth');
+Route::get('researchProfile/{id}','ResearchersController@researchProfile')
+                  ->name('researchProfile/{id}')
+                  ->middleware('auth');
+Route::get('password/reset', 'Auth\ResetPasswordController@getReset')
+                  ->name('password/reset')
+                   ->middleware('auth');
 Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
 Route::post('searchByProductType','MapController@searchByProductType');
 
-Route::get('CreateProduct','ProductTypeController@create');
+Route::get('CreateProduct','ProductTypeController@create')
+    ->name('CreateProduct')
+    ->middleware('auth');
 Route::post('AddProduct','ProductTypeController@store');
 
 
-Route::get('productlist', 'ProductsController@index');
-Route::get('editproduct/{id}','ProductsController@retriveProduct');
-Route::post('editproduct/updateproduct','ProductsController@update');
+Route::get('productlist', 'ProductsController@index')
+       ->name('productlist')
+       ->middleware('auth');
+Route::get('editproduct/{id}','ProductsController@retriveProduct')
+       ->name('editproduct/{id}')
+       ->middleware('auth');
+Route::post('editproduct/updateproduct','ProductsController@update')
+    ->name('editproduct/updateproduct')
+    ->middleware('auth') ;
 
-Route::get('deleteProduct/{id}','ProductsController@delete');
+Route::get('deleteProduct/{id}','ProductsController@delete')
+    ->name('deleteProduct/{id}')
+    ->middleware('auth')   ;
 
-Route::get('allProduct', function ()
+Route::get('allProduct',['middleware'=>'auth', function ()
 {
     return view('Products.index');
 
-});
+}]);
 
-Route::get('packaginglist', 'PackagingController@index');
-Route::get('createPackaging', 'PackagingController@create');
+Route::get('packaginglist', 'PackagingController@index')
+    ->name('packaginglist')
+    ->middleware('auth');
+Route::get('createPackaging', 'PackagingController@create')
+            ->name('createPackaging')
+             ->middleware('auth') ;
 Route::post('storePackaging', 'PackagingController@store');
 
 //User Role
-Route::get('userroleslist', 'UserRolesController@index');
-Route::get('addUserRole', function (){
+Route::get('userroleslist', 'UserRolesController@index')
+    ->name('userroleslist')
+    ->middleware('auth');
+Route::get('addUserRole',['middleware'=>'auth', function (){
 
     return view('UserRoles.add');
-});
+}]);
 Route::post('storeUserRole','UserRolesController@store');
+
+Route::get('allUserRole','UserRolesController@getAllUserRoles')
+    ->name('allUserRole')
+    ->middleware('auth');
+Route::get('getUsersPerGroup/{id}','UserRolesController@getUsersView')
+           ->name('getUsersPerGroup/{id}')
+           ->middleware('auth');
+Route::get('allUsersByRole/{id}','UserRolesController@getUserByUserRole')
+    ->name('allUsersByRole/{id}')
+    ->middleware('auth')  ;
+
 Route::get('allUserRole','UserRolesController@getAllUserRoles');
 Route::get('getUsersPerGroup/{id}','UserRolesController@getUsersView');
 Route::get('allUsersByRole/{id}','UserRolesController@getUserByUserRole');
 Route::get('editUserRole/{id}','UserRolesController@editUserRole');
 Route::post('editUserRole/updateUserRole','UserRolesController@update');
 
-Route::get('viewAdmin/{id}', 'UsersController@viewAdmin');
+Route::get('viewAdmin/{id}', 'UsersController@viewAdmin')
+         ->name('viewAdmin/{id}')
+         ->middleware('auth');
 
 Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
 
 //End User role
-Route::get('reports','ReportsController@index');
+Route::get('reports','ReportsController@index')
+      ->name('reports')
+      ->middleware('auth');
 
 //Public Wall
-Route::get('addRecipe', function (){
-   return view('PublicWall.create');
-});
+Route::get('addRecipe',['middleware'=>'auth',function (){
 
-Route::get('publicWall','PublicWallController@index');
-Route::get('allRecipes','PublicWallController@getAllRecipes');
-Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile');
+   return view('PublicWall.create');
+}]);
+
+Route::get('publicWall','PublicWallController@index')
+            ->name('publicWall')
+            ->middleware('auth');
+Route::get('allRecipes','PublicWallController@getAllRecipes')
+            ->name('allRecipes')
+            ->middleware('auth');
+Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile')
+            ->name('RecipeProfile/{id}')
+            ->middleware('auth');
 Route::post('createRecipe','PublicWallController@createRecipe');
+
 
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');

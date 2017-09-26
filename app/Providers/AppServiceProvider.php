@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\UserStatus;
-
+use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
 {
 
@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
             \View::share('selectUserStatuses',$selectUserStatuses);
 
         }
+        Schema::defaultStringLength(191);
     }
 
     public function register()
