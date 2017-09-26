@@ -228,6 +228,7 @@ class SellersController extends Controller
         $sellersPost->availableHours    =  Input::get('availableHours');
         $sellersPost->paymentMethods    =  Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
+		 $sellersPost->post_status = 1;
 
         $sellersPost->save();
 
