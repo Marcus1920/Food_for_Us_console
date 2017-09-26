@@ -9,6 +9,7 @@ use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use App\Sellers_details_tabs;
 use App\NewUser;
 use App\UserRoles;
+use App\Transaction;
 
 class MapController extends Controller
 {
@@ -30,7 +31,16 @@ class MapController extends Controller
 
         foreach ($sellersPosts as $sellersPost) {
 
-            $content = "<div style='color:black'>
+            $transaction = Transaction::with('sellers')->with('status')->with('buyers')->with('product')->where('product',$sellersPost->id)->first();
+
+//            return $transaction;
+
+
+            if ($transaction==null || $transaction=='')
+            {
+
+
+                $content = "<div style='color:black'>
                       <tr>
                       <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
                       </tr>
@@ -51,17 +61,118 @@ class MapController extends Controller
                       <td><b>Description : </b></td><td>$sellersPost->description</td>
                       </tr>
                       <br/>
+                       <tr>
+                      <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
+                      </tr>
+                      <br/>
                       <tr>
-                     
+                      </tr>
+                      <br/>
+                      <tr>
+                      <th>
+                      <td><center><b>Transaction</b></center></td>
+                      </th>
+                       </tr>
+                       <tr>
+                       <td>-There is no transaction...</td>
+                       </tr>
+                      </div>";
+                $images=$sellersPost->Products->marker_url;
+
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
+
+//                return "null";
+            }else{
+
+                $content = "<div style='color:black'>
+                      <tr>
+                      <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><img src=$sellersPost->productPicture></td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->costPerKg</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Description : </b></td><td>$sellersPost->description</td>
                       </tr>
                       <br/>
                        <tr>
                       <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
                       </tr>
+                      <br/>
+                      <tr>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <th>
+                      <td><center><b>Transaction</b></center></td>
+                      </th>
+                       </tr>
+                       <tr>
+                       <td><b>Seller :</b>&nbsp; </td><td>{$transaction->sellers->name} {$transaction->sellers->surname}</td>
+                       </tr>
+                       <br/>
+                       <tr>
+                       <td><b>Buyer :</b>&nbsp; </td><td>{$transaction->buyers->name} {$transaction->sellers->surname}</td>
+                       </tr>
+                       <br/>
+                       <tr>
+                       <td><b>Quantity :</b>&nbsp; </td><td>$transaction->quantity</td>
+                       </tr>
                       </div>";
-            $images=$sellersPost->Products->marker_url;
+                $images=$sellersPost->Products->marker_url;
 
-            $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
+
+
+//                return "something";
+            }
+//            $content = "<div style='color:black'>
+//                      <tr>
+//                      <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><img src=$sellersPost->productPicture></td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->costPerKg</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><b>Description : </b></td><td>$sellersPost->description</td>
+//                      </tr>
+//                      <br/>
+//                       <tr>
+//                      <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <th>
+//                      <td>null</td>
+//                      </th>
+//                       </tr>
+//                      </div>";
+//            $images=$sellersPost->Products->marker_url;
+//
+//            $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
 
         return   view  ('map.map1',compact('latitude','longitude','productTypes'));
@@ -216,3 +327,4 @@ class MapController extends Controller
     }
 
 }
+

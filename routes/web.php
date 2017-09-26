@@ -206,6 +206,7 @@ Route::post('addAdmin', 'MyRegisterController@createAdmin');
 Route::get('adminUser', 'MyRegisterController@adminUsers')
                  ->name('adminUser')
                  ->middleware('auth');
+Route::get('getAdminUsers','MyRegisterController@getAdminUsers');
 
 Route::get('postslist', 'PostViewController@showList')
                  ->name('postslist')
