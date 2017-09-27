@@ -392,8 +392,8 @@ function generateRandomString($length = 24) {
         $admin->cellphone                   = Input::get('cellphone');
         $admin->updated_at                  = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
         $admin->save();
-
-        return view('admin.editAdmin', compact('admin'));
+        
+        return Redirect('/adminUser');
 
     }
 

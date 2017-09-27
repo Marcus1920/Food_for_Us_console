@@ -268,10 +268,18 @@ Route::get('allProduct',['middleware'=>'auth', function ()
 Route::get('packaginglist', 'PackagingController@index')
     ->name('packaginglist')
     ->middleware('auth');
+Route::get('getPackagingList','PackagingController@getPackagingList');
 Route::get('createPackaging', 'PackagingController@create')
             ->name('createPackaging')
              ->middleware('auth') ;
 Route::post('storePackaging', 'PackagingController@store');
+Route::get('editPackaging/{id}','PackagingController@retrivePackaging')
+    ->name('editPackaging/{id}')
+    ->middleware('auth') ;
+
+Route::post('editPackaging/updatepackaging','PackagingController@update')
+    ->name('editPackaging/updateproduct')
+    ->middleware('auth') ;
 
 //User Role
 Route::get('userroleslist', 'UserRolesController@index')

@@ -12,139 +12,103 @@
 
 
     <div class="container-fluid" style="margin-top: 2%">
-        <div class="block-area" style="background-color: rgba(0, 0, 0, 0.35);">
+
         <div class="row">
 
-            <div class="col-md-6">
-                <div class="block-area" style="background-color: rgba(0, 0, 0, 0.35);">
-                    <div class="row" style="margin-left: 0%">
-                        <h3 class="block-title">Product Details</h3>
-                        <div class="col-md-12">
-                            <img alt="Loading Product picture" src="{{$data->productPicture}}">
-                        </div>
-                    </div><br/><br/>
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-
-                            <label class="col-sm-2 control-label">
-                                Product Type
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->Products->name}}" id="product_type" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <label  class="col-sm-2 control-label">
-                                Quantity
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->quantity}}" id="quantity" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label  class="col-sm-2 control-label">
-                                Cost per kg
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->costPerKg}}" id="cost_per_kg" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-sm-2 control-label">
-                                Packaging
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->Packaging->name}}" id="packaging" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label  class="col-sm-2 control-label">
-                                Payment Type
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->paymentMethods}}" id="payment" readonly>
-                            </div>
-                        </div>
-                    </form>
-                    <br/>
+            <div class="col-md-4">
+                <h3 class="block-title">Product Image</h3>
+                <div class="col-md-12">
+                    <img class="img" alt="Loading Product picture" src="{{$data->productPicture}}" >
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="block-area" style="background-color: rgba(0, 0, 0, 0.35);">
-                    <div class="row" style="margin-left: 0%">
+
+                <div class="col-md-4">
+                            <h3 class="block-title">Product Details</h3>
+
+
+                        <table class="table table-condensed">
+
+                            <tr>
+                                <td>Product Type</td>
+                                <td>{{$data->Products->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity</td>
+                                <td>{{$data->quantity}}</td>
+                            </tr>
+                            <tr>
+                                <td>Cost per kg</td>
+                                <td>{{$data->costPerKg}}</td>
+                            </tr>
+                            <tr>
+                                <td>Packaging</td>
+                                <td>{{$data->Packaging->name}}</td>
+                            </tr>
+
+
+                            <tr>
+                                <td>Payment Type</td>
+                                <td>{{$data->paymentMethods}}</td>
+                            </tr>
+                            <tr>
+                                <td>Posted </td>
+                                <td>{{$data->Packaging->created_at->diffForHumans()}}</td>
+
+                                <td>{{$data->lat}}</td>
+                            </tr>
+
+
+                        </table>
+<div  id="map" style="height: 300px;">
+this is
+</div>
+                </div>
+
+
+            <div class="col-md-4">
+
+
                         <h3 class="block-title">Sellers Details</h3>
                         <div class="col-md-12" >
-                            <img alt="Loading sellers picture" src="{{$data->newuser->profilePicture}}" style="width: 350px;height: 300px" class="img-circle">
-                        </div>
-                    </div><br/><br/>
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-
-                            <label  class="col-sm-2 control-label">
-                                Name
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->newuser->name}}" id="name" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <label  class="col-sm-2 control-label">
-                                Surname
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->newuser->surname}}" id="surname" readonly>
-                            </div>
+                            <img alt="Loading sellers picture" src="{{$data->newuser->profilePicture}}" style="width: 350px;height: 300px" >
                         </div>
 
-                        <div class="form-group">
+<table class="table">
+    <tr>
+    <td>Name</td>
+    <td>{{$data->newuser->name}}</td>
+    </tr>
+    <tr>
+        <td> Surname</td>
+        <td>{{$data->newuser->surname}}</td>
+    </tr>
+    <tr>
+        <td> Cellphone</td>
+        <td>{{$data->newuser->cellphone}}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{$data->newuser->email}}</td>
+    </tr>
+    <tr>
+        <td>Location</td>
+        <td>{{$data->newuser->location}}</td>
+    </tr>
 
-                            <label class="col-sm-2 control-label">
-                                Cellphone
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->newuser->cellphone}}" id="cellphone" readonly>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
+</table>
 
-                            <label  class="col-sm-2 control-label">
-                                Email
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->newuser->email}}" id="email" readonly>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-
-                            <label  class="col-sm-2 control-label">
-                                Location
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{$data->newuser->location}}" id="location" readonly>
-                            </div>
-                        </div>
-                    </form>
-                    <br/>
-                </div>
             </div>
 
 
         </div>
-            <br/>
+
         </div>
-    </div>
 
 
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwXS96_uM6y-6ZJZhSJGE87pO-qxpDp-Q&libraries=geometry,places"></script>
 
 @endsection
 @section('footer')
@@ -154,4 +118,61 @@
 
     {{--<link href="css/bootstrap.min.css" rel="stylesheet">--}}
     {{--<link href="css/style.css" rel="stylesheet">--}}
-    @endsection
+
+    <script>
+
+            // Create a map object and specify the DOM element for display.
+            var lat = {!! $data->gps_lat !!};
+            var long = {!! $data->gps_long !!};
+
+            var pos = {
+                lat: lat,
+                lng: long,
+
+            };
+
+//            alert(long);
+
+//            var latlng = new google.maps.LatLng(lat,long);
+
+            var map=new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: -30.559482,
+                    lng: 22.937505999999985
+                }, zoom: 8,
+
+            });
+
+            {{--var lat =  {!! $data->lat !!}--}}
+            {{--var long = {!! $data->long !!}--}}
+            //get a marker
+            var marker=new google.maps.Marker({
+                position: {
+                    lat: lat,
+                    lng: long,
+                    zoom:10
+                }, map: map,
+                draggable: false,
+                visible:true,
+
+//                icon:"C:/Users/Thandekah/Desktop/Food for us/public/img/Markers/icons8-Map.png"
+                icon:"http://154.0.164.72:8080/Foods/img/Markers/icons8-Map.png"
+//                icon:"public/img/markers/1.png"
+
+//            icon:'https://d30y9cdsu7xlg0.cloudfront.net/png/2955-200.png'
+                //http://www.iconsdb.com/icons/preview/soylent-red/map-marker-2-xl.png
+            });
+
+            map.setCenter(pos);
+
+
+            //            var marker = new google.maps.Marker({
+//                position: latlng,
+//                map: map,
+//                title:"location : Dublin"
+//            });
+
+
+    </script>
+
+@endsection
