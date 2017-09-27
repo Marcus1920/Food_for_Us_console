@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PublicWall;
 use App\Sellers_details_tabs;
 use App\User;
+use App\UserDefaultLocation;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use App\UserRoles;
@@ -96,8 +97,6 @@ class UsersController extends Controller
             return "Incorrect old password";
         }
     }
-
-
     public function forgot()
     {
 
@@ -137,8 +136,6 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function login()
     {
 
@@ -224,8 +221,6 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function updateUser($id)
     {
 		
@@ -260,8 +255,6 @@ class UsersController extends Controller
 
         return Redirect::to('/users');
 	}
-
-
     public function inactivateUser($id)
     {
         $user = NewUser::where('id',$id)
@@ -291,7 +284,6 @@ class UsersController extends Controller
                             });
         return Redirect::to('/users');
     }
-
     public  function   create  ()   {
 
     
@@ -339,6 +331,13 @@ function generateRandomString($length = 24) {
         $NewUser->  descriptionOfAcces  = $description_of_acces ;
 
         $NewUser-> save() ;
+
+        $defaultLocation               = new UserDefaultLocation();
+        $defaultLocation->userId       = $NewUser->id;
+        $defaultLocation->gps_lat      = $gps_lat;
+        $defaultLocation->gps_long     = $gps_long;
+        $defaultLocation->save();
+
         $message= "Food For us";
         $data = array(
 

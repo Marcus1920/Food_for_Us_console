@@ -9,6 +9,7 @@ use App\Sellers_details_tabs;
 use App\ProductType;
 use App\Packaging;
 use App\ProductPickupDetails;
+use App\UserDefaultLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
@@ -249,37 +250,20 @@ class SellersController extends Controller
 
     public function changeDefaultLocation()
     {
-        $newUserDetails         = NewUser::select('id','gps_lat','gps_long')
+        $newUserDetails         = NewUser::select('id')
                                     ->where('api_key',Input::get('apiKey'))
                                     ->first();
 
         $sellerDetails           = Sellers_details_tabs::select('id')
-                                                ->where('new_user_id',$newUserDetails->id)
+                                                ->where('id',$newUserDetails->id)
                                                 ->first();
-        if(Input::get('default') == 0)
-        {
 
-            $changeDefaultLocation  = ProductPickupDetails::where('SellersPostId',$newUserDetails->id)
+        $changeDefaultLocation = UserDefaultLocation::where('userId',$newUserDetails->id)
                 ->update([
-                    'gps_lat'  =>$newUserDetails->gps_lat,
-                    'gps_long' =>$newUserDetails->gps_long,
-                ]);
-
-            return " default pickup location selected";
-        }
-        elseif(Input::get('default') == 1)
-            {
-                $changeDefaultLocation  = ProductPickupDetails::where('SellersPostId',$newUserDetails->id)
-                ->update([
-                    'gps_lat'  =>Input::get('gpsLat'),
-                    'gps_long' =>Input::get('gpsLong'),
-                ]);
-
-            return " new pickup location updated";
-
-        }else{
-            return 'error';
-        }
+                    'gps_lat'  =>Input::get('gps_lat'),
+                    'gps_long' =>Input::get('gps_long'),
+                         ]);
+        return " default  location updated";
     }
 
     public function create(Request $request)
@@ -346,4 +330,5 @@ class SellersController extends Controller
                         'updated_at'            =>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
         $posts          =   Sellers_details_tabs::where('new_user_id',$user);
     }
+
 }
