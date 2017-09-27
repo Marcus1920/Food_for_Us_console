@@ -78,7 +78,7 @@ class TransactionController extends Controller
                  );
 
         \Mail::send('emails.transaction', $data, function ($message) use ($sellerEmail) {
-            $message->from('info@foodorus', 'Food For us');
+            $message->from('Info@FoodForUs.cloud', 'Food For us');
             $message->to($sellerEmail->email)->subject("Transaction Notification ");
         });
 
@@ -319,7 +319,7 @@ class TransactionController extends Controller
 
                   \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails)
                              {
-                                $message->from('info@foodorus', 'Food For us');
+                                $message->from('Info@FoodForUs.cloud', 'Food For us');
                                 $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
                              });
 
@@ -369,7 +369,7 @@ class TransactionController extends Controller
 
               \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails)
                         {
-                          $message->from('info@foodorus', 'Food For us');
+                          $message->from('Info@FoodForUs.cloud', 'Food For us');
                           $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
                          });
 

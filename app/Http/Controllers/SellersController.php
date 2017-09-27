@@ -9,6 +9,7 @@ use App\Sellers_details_tabs;
 use App\ProductType;
 use App\Packaging;
 use App\ProductPickupDetails;
+use App\UserDefaultLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
@@ -247,6 +248,24 @@ class SellersController extends Controller
         return $sellersPost;
       }
 
+    public function changeDefaultLocation()
+    {
+        $newUserDetails         = NewUser::select('id')
+                                    ->where('api_key',Input::get('apiKey'))
+                                    ->first();
+
+        $sellerDetails           = Sellers_details_tabs::select('id')
+                                                ->where('id',$newUserDetails->id)
+                                                ->first();
+
+        $changeDefaultLocation = UserDefaultLocation::where('userId',$newUserDetails->id)
+                ->update([
+                    'gps_lat'  =>Input::get('gps_lat'),
+                    'gps_long' =>Input::get('gps_long'),
+                         ]);
+        return " default  location updated";
+    }
+
     public function create(Request $request)
     {
         $input  =  $request->all();
@@ -311,4 +330,5 @@ class SellersController extends Controller
                         'updated_at'            =>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
         $posts          =   Sellers_details_tabs::where('new_user_id',$user);
     }
+
 }

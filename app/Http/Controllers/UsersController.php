@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PublicWall;
 use App\Sellers_details_tabs;
 use App\User;
+use App\UserDefaultLocation;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use App\UserRoles;
@@ -79,7 +80,7 @@ class UsersController extends Controller
 
 
                 \Mail::send('emails.changePassword', $data, function ($message) use ($userUpdated) {
-                    $message->from('info@foodforus', 'Food For us');
+                    $message->from('Info@FoodForUs.cloud', 'Food For us');
                     $message->to($userUpdated->email)->subject("Food  for  us Notification! ");
 
                 });
@@ -96,8 +97,6 @@ class UsersController extends Controller
             return "Incorrect old password";
         }
     }
-
-
     public function forgot()
     {
 
@@ -106,7 +105,8 @@ class UsersController extends Controller
 
         $userNew = NewUser::where('email', '=', $email)->first();
 
-
+        $userNew->password = rand(1,9999);
+        $userNew->save();
         if (sizeof($userNew) > 0) {
 
            
@@ -122,12 +122,12 @@ class UsersController extends Controller
 
 
             \Mail::send('emails.resetpassword', $data, function ($message) use ($userNew) {
-                $message->from('info@foodforus', 'Food For us');
+                $message->from('Info@FoodForUs.cloud', 'Food For us');
                 $message->to($userNew->email)->subject("Food  for  us Notification! ");
 
             });
 
-            $response["message"] = "You have successfully changed your password check  your  email";
+            $response["message"] = "You have successfully resetted your password check  your  email for a new password";
 
 
         } else {
@@ -137,8 +137,6 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function login()
     {
 
@@ -224,8 +222,6 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function updateUser($id)
     {
 		
@@ -250,7 +246,7 @@ class UsersController extends Controller
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
 
-            $message->from('info@fooforus.net', 'Food  For Us ');
+            $message->from('Info@FoodForUs.cloud', 'Food  For Us ');
             $message->to($userDetails->email)->subject( " Food  For Us Notification ");
 
 
@@ -260,8 +256,6 @@ class UsersController extends Controller
 
         return Redirect::to('/users');
 	}
-
-
     public function inactivateUser($id)
     {
         $user = NewUser::where('id',$id)
@@ -282,7 +276,7 @@ class UsersController extends Controller
 
 
 
-            $message->from('info@siyaleader.net', 'Food For Us');
+            $message->from('Info@FoodForUs.cloud', 'Food For Us');
             $message->to($userDetails->email)->subject("Food For Us Notification !");
 
 //
@@ -291,7 +285,6 @@ class UsersController extends Controller
                             });
         return Redirect::to('/users');
     }
-
     public  function   create  ()   {
 
     
@@ -339,6 +332,13 @@ function generateRandomString($length = 24) {
         $NewUser->  descriptionOfAcces  = $description_of_acces ;
 
         $NewUser-> save() ;
+
+        $defaultLocation               = new UserDefaultLocation();
+        $defaultLocation->userId       = $NewUser->id;
+        $defaultLocation->gps_lat      = $gps_lat;
+        $defaultLocation->gps_long     = $gps_long;
+        $defaultLocation->save();
+
         $message= "Food For us";
         $data = array(
 
@@ -351,7 +351,7 @@ function generateRandomString($length = 24) {
 
       \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
 
-             $message->from('info@foodforus', 'Food For us');
+             $message->from('Info@FoodForUs.cloud', 'Food For us');
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 

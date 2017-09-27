@@ -4,15 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePackagingsTable extends Migration
+class CreateCountryCodesTable extends Migration
 {
-
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('packagings', function (Blueprint $table) {
+        Schema::create('country_code', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('slug');
+            $table->string('internet');
+            $table->string('dial_code');
             $table->timestamps();
         });
     }
@@ -20,6 +25,6 @@ class CreatePackagingsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('packagings');
+        Schema::dropIfExists('country_code');
     }
 }

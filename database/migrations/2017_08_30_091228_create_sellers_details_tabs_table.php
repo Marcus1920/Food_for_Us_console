@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateSellersDetailsTabsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('sellers_details_tabs', function (Blueprint $table) {
@@ -39,11 +35,6 @@ class CreateSellersDetailsTabsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('sellers_details_tabs');

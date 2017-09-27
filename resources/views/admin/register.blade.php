@@ -72,7 +72,7 @@
         <div class="form-group">
             {!! Form::label('Password', 'Password', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                {!! Form::text('password',NULL,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'password','type'=>"password", 'required']) !!}
+                <input type="password" class="administrative_area_level_1 form-control input-sm" id ="password" placeholder="Password" name="password">
                 @if ($errors->has('password'))
                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -84,7 +84,7 @@
         <div class="form-group">
             {!! Form::label(' Confirm Password', 'Confirm Password', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                {!! Form::text('confirm_password',NULL,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'confirm_password',  'type'=>"password",'required']) !!}
+                <input type="password" class="administrative_area_level_1 form-control input-sm"  id = "confirm_password" placeholder=" Confirm Password" name="password">
             </div>
         </div>
 
