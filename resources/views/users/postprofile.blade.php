@@ -60,7 +60,7 @@
 
                         </table>
 <div  id="map" style="height: 300px;">
-this is
+
 </div>
                 </div>
 
