@@ -178,6 +178,8 @@ class SellersController extends Controller
 
 
         $img                            =$request->file('file');
+		
+		
         $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
@@ -252,11 +254,12 @@ class SellersController extends Controller
                                     ->where('api_key',Input::get('apiKey'))
                                     ->first();
 
-        $sellerDetails           = Sellers_details_tabs::select('id')
+        $sellerDetails          = Sellers_details_tabs::select('id')
                                                 ->where('id',$newUserDetails->id)
                                                 ->first();
 
-        $changeDefaultLocation = UserDefaultLocation::where('userId',$newUserDetails->id)
+        $changeDefaultLocation  = UserDefaultLocation::where('userId',$newUserDetails->id)
+
                 ->update([
                     'gps_lat'  =>Input::get('gps_lat'),
                     'gps_long' =>Input::get('gps_long'),
