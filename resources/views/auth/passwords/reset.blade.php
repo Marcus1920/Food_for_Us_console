@@ -49,7 +49,6 @@
             <form class="box tile animated active" id="box-login" role="form" method="POST" action="{{ route('password.request')}}">
                 {{ csrf_field() }}
                 <input type="hidden" name="token" value="{{ $token }}">
-
                 <center>
                     <img src="{{ asset('/img/FFU_Words.png') }}" alt="lomnin">
                 </center>

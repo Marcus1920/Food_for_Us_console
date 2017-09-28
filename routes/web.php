@@ -233,11 +233,6 @@ Route::get('getResearchList','ResearchersController@allResearchList')
 Route::get('researchProfile/{id}','ResearchersController@researchProfile')
                   ->name('researchProfile/{id}')
                   ->middleware('auth');
-
-//Route::post('password/reset', 'Auth\ResetPasswordController@getReset')
-//                  ->name('password/reset');
-
-//Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
@@ -343,6 +338,6 @@ Route::post('createRecipe','PublicWallController@createRecipe');
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
-Route::get('test','TransactionController@OverDue');
+Route::get('test','TransactionController@sellerTransactionDetails');
 
 ?>

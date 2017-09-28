@@ -17,7 +17,6 @@ use Carbon\Carbon;
 
 class SellersController extends Controller
 {
-
     public function getDistance()
     {
         
@@ -55,7 +54,6 @@ class SellersController extends Controller
 
 
     }
-
     public function index()
     {
         $respond=array();
@@ -115,7 +113,6 @@ class SellersController extends Controller
             return response()->json($respond);
         }
     }
-
     public function allSellersPosts()
 
     {
@@ -160,7 +157,6 @@ class SellersController extends Controller
             ->orderBy('created_at' ,'desc')	->get();
         return $sellers_posts;
     }
-
     public function created(Request $request)
       {
           $input                          = $request->all();
@@ -247,7 +243,6 @@ class SellersController extends Controller
 //       event(new newPostEvent($sellersPost));
         return $sellersPost;
       }
-
     public function changeDefaultLocation()
     {
         $newUserDetails         = NewUser::select('id')
@@ -266,7 +261,6 @@ class SellersController extends Controller
                          ]);
         return " default  location updated";
     }
-
     public function create(Request $request)
     {
         $input  =  $request->all();
@@ -295,7 +289,6 @@ class SellersController extends Controller
 
         return $sellersPost;
     }
-
     public function destroy()
     {
         $id             = Input::get('id');
@@ -307,7 +300,6 @@ class SellersController extends Controller
         return response()->json($sellesPosts);
 
     }
-
     public function updating()
     {
         $apiKey         = Input::get('api_key');//change  apiKey to   api_key  
@@ -331,5 +323,4 @@ class SellersController extends Controller
                         'updated_at'            =>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
         $posts          =   Sellers_details_tabs::where('new_user_id',$user);
     }
-
 }
