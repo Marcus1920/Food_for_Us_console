@@ -39,7 +39,8 @@ class HomeController extends Controller
                                             new_users.location,
                                             user_travel_radii.kilometres as travelRadius,
                                             new_users.cellphone,
-                                            new_users.descriptionOfAcces
+                                            new_users.descriptionOfAcces,
+                                            new_users.created_at
                                             
                                             "
              )
@@ -67,7 +68,8 @@ class HomeController extends Controller
                                     new_users.location,
                                     user_travel_radii.kilometres as travelRadius,
                                     new_users.cellphone,
-                                    new_users.descriptionOfAcces
+                                    new_users.descriptionOfAcces,
+                                    new_users.created_at
                                     
                                     "
             )
@@ -97,7 +99,8 @@ class HomeController extends Controller
                                     new_users.location,
                                     user_travel_radii.kilometres as travelRadius,
                                     new_users.cellphone,
-                                    new_users.descriptionOfAcces
+                                    new_users.descriptionOfAcces,
+                                    new_users.created_at
                                     
                                     "
             )
