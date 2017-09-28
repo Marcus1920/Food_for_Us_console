@@ -180,6 +180,8 @@ class SellersController extends Controller
 
 
         $img                            =$request->file('file');
+		
+		
         $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
