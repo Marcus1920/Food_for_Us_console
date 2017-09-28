@@ -309,11 +309,34 @@ function generateRandomString($length = 24) {
         $description_of_acces   =  Input::get('description_of_acces');
         $gps_lat                =  Input::get('gps_lat');
         $gps_long               =  Input::get('gps_long');
+		$lat   = null  ; 
+		$long  =null ; 
+	    if ($gps_lat==null)
+		{
+		 $lat   = "-937538943";
+		}
+		else 
+		{
+			
+		$lat = Input::get('gps_lat'); 	
+		}	
+		
+		if ($gps_long==null)
+		{
+			$long = "937538943";
+			
+		}
+		else 
+			
+			{
+				$long  = Input::get('gps_long');
+				
+			}
 
         $NewUser    =   new   NewUser  () ;
         $NewUser->   active                 = 1;
-        $NewUser->  gps_lat                 = $gps_lat ;
-        $NewUser->  gps_long                = $gps_long ;
+        $NewUser->  gps_lat                 = $lat ;
+        $NewUser->  gps_long                = $long;
         $NewUser->profilePicture           ="http://154.0.164.72:8080/Foods/images/default.jpg";
         $NewUser->  name                 = $name ;
         $NewUser->  email                = $email ;
@@ -335,8 +358,8 @@ function generateRandomString($length = 24) {
 
         $defaultLocation               = new UserDefaultLocation();
         $defaultLocation->userId       = $NewUser->id;
-        $defaultLocation->gps_lat      = $gps_lat;
-        $defaultLocation->gps_long     = $gps_long;
+        $defaultLocation->gps_lat      = $lat;
+        $defaultLocation->gps_long     = $long;
         $defaultLocation->save();
 
         $message= "Food For us";
