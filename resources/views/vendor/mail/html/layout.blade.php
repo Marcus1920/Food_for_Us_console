@@ -1,54 +1,186 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Email</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Email</title>
+
 </head>
-<body>
-    <style>
-        @media only screen and (max-width: 600px) {
-            .inner-body {
-                width: 100% !important;
-            }
 
-            .footer {
-                width: 100% !important;
-            }
-        }
+<body style="margin:0; margin-top:30px; margin-bottom:30px; padding:0; width:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; background-color: #F4F5F7;">
 
-        @media only screen and (max-width: 500px) {
-            .button {
-                width: 100% !important;
-            }
-        }
-    </style>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tbody>
+    <tr>
+        <td width="100%" height="30"></td>
+    </tr>
+    </tbody>
 
-    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center">
-                <table class="content" width="100%" cellpadding="0" cellspacing="0">
-                    {{ $header or '' }}
+</table>
 
-                    <!-- Email Body -->
-                    <tr>
-                        <td class="body" width="100%" cellpadding="0" cellspacing="0">
-                            <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
-                                <!-- Body content -->
-                                <tr>
-                                    <td class="content-cell">
-                                        {{ Illuminate\Mail\Markdown::parse($slot) }}
 
-                                        {{ $subcopy or '' }}
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
 
-                    {{ $footer or '' }}
-                </table>
-            </td>
-        </tr>
-    </table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background-color: #F4F5F7;">
+
+    <tbody>
+    <tr>
+        <td align="center" style="border-collapse: collapse;">
+
+            <!-- /Space -->
+
+
+            <!-- ROW 2 IMGS -->
+            <table cellpadding="0" cellspacing="5" border="0" width="560" style="border:0; border-collapse:collapse; background-color:#ffffff; border-radius:6px;">
+                <tbody>
+                <tr>
+                    <td style="border-collapse:collapse; vertical-align:middle; text-align center; padding:20px;">
+
+                        <!-- Headline Header -->
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                            <tbody>
+                            <tr><!-- spacing top -->
+                                <td width="100%" height="20"></td>
+                            </tr>
+                            <tr><!-- title -->
+                                <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: 0px; text-align: center; color:#0DB6BE;">
+                                    <strong>RESET PASSWORD</strong> NOTIFICATION!
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" height="8">
+
+                                </td>
+                            </tr>
+                            <tr><!-- spacing bottom -->
+                                <td class="m_5210098864014348207mcnDividerBlockInner" style="min-width:100%;padding:2px" height="8">
+                                    <table class="m_5210098864014348207mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;border-top-color:#eaeaea;border-top-style:solid;border-top-width:2px;min-width:100%">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <span></span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: left; color:#2E363F;">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
+                                    {{ Illuminate\Mail\Markdown::parse($slot) }}
+
+                                    {{ $subcopy or '' }}
+                                </td>
+                            </tr>
+
+
+                            <tr><!-- spacing bottom -->
+                                <td width="100%" >
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" style="font-family:helvetica, Arial, sans-serif; font-size: 13px; text-align: left; color:#2E363F; line-height: 24px;">
+                                    <strong></strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="100%" style="font-family:helvetica, Arial, sans-serif; font-size: 14px; text-align: left; color:#87919F; line-height: 24px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" ></td>
+                            </tr>
+
+
+                            <tr>
+
+                                <td width="100%" style="font-family:helvetica, Arial, sans-serif; font-size: 13px; text-align: center; color:#0DBE80; line-height: 24px;">
+
+
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td width="100%" height="6"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- /Headline Header -->
+
+            <!-- Space -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                <tbody>
+                <tr>
+                    <td width="100%" height="20">
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- /Space -->
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tbody>
+    <tr>
+        <td width="100%" height="30"></td>
+    </tr>
+    </tbody>
+
+    <tbody>
+    <tr>
+        <td align="center" style="border-collapse: collapse;">
+
+
+
+    </tbody>
+</table>
+
+
+
+<!-- Space -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tbody>
+    <tr>
+        <td width="100%" height="20">
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
 </body>
 </html>
+
+
