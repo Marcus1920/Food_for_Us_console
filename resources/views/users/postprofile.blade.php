@@ -23,8 +23,11 @@
             </div>
 
                 <div class="col-md-4">
-                            <h3 class="block-title">Product Details</h3>
 
+                            <h3 class="block-title">Product Details</h3>
+                    <div  id="map" style="height: 300px;">
+
+                    </div>
 
                         <table class="table table-condensed">
 
@@ -59,9 +62,6 @@
 
 
                         </table>
-<div  id="map" style="height: 300px;">
-
-</div>
                 </div>
 
 
@@ -154,14 +154,26 @@
                 }, map: map,
                 draggable: false,
                 visible:true,
-
+                title: 'Post location',
+                animation: google.maps.Animation.BOUNCE,
 //                icon:"C:/Users/Thandekah/Desktop/Food for us/public/img/Markers/icons8-Map.png"
-                icon:"http://154.0.164.72:8080/Foods/img/Markers/icons8-Map.png"
+                icon:"http://154.0.164.72:8080/Foods/img/Markers/icons8-Map-1.png"
 //                icon:"public/img/markers/1.png"
 
 //            icon:'https://d30y9cdsu7xlg0.cloudfront.net/png/2955-200.png'
                 //http://www.iconsdb.com/icons/preview/soylent-red/map-marker-2-xl.png
             });
+
+            var circle = new google.maps.Circle({
+                map: map,
+                radius: 40000,    // 10 miles in metres
+                strokeColor: '#67ff9f',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#baffff',
+                fillOpacity: 0.35,
+            });
+            circle.bindTo('center', marker, 'position');
 
             map.setCenter(pos);
 
