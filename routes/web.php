@@ -75,6 +75,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('transactionStatuses','TransactionController@transactionStatuses');
     Route::post('deleteTransaction','TransactionController@deleteTransaction');
 
+    Route::get('test','TransactionController@sellerTransactionDetails');
+
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
     Route::get('getCartItem','TransactionController@getCartItem');
@@ -337,6 +339,6 @@ Route::post('createRecipe','PublicWallController@createRecipe');
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
-Route::post('test','TransactionController@deleteTransaction');
+Route::get('get','TransactionController@sellerTransactionDetails');
 
 ?>

@@ -41,19 +41,19 @@ class TransactionController extends Controller
             ->where('id', $cartId)
             ->where('userId', $buyer->id)->first();
 
-        $transactionObj = new Transaction();
-        $transactionObj->buyer_id = $buyer->id;
-        $transactionObj->seller_id = $sellerDetails->new_user_id;
-        $transactionObj->status = $transactionStatusId->id;
-        $transactionObj->product = $productDetails->productId;
-        $transactionObj->quantity = $productDetails->quantity;
+        $transactionObj                = new Transaction();
+        $transactionObj->buyer_id      = $buyer->id;
+        $transactionObj->seller_id     = $sellerDetails->new_user_id;
+        $transactionObj->status        = $transactionStatusId->id;
+        $transactionObj->product       = $productDetails->productId;
+        $transactionObj->quantity      = $productDetails->quantity;
         $transactionObj->save();
 
 
-        $userTransactionActivity = new TransactionActivity();
-        $userTransactionActivity->userId = $buyer->id;
-        $userTransactionActivity->transactionId = $transactionObj->id;
-        $userTransactionActivity->status = $transactionStatusId->id;
+        $userTransactionActivity                     = new TransactionActivity();
+        $userTransactionActivity->userId             = $buyer->id;
+        $userTransactionActivity->transactionId      = $transactionObj->id;
+        $userTransactionActivity->status             = $transactionStatusId->id;
         $userTransactionActivity->save();
 
 
@@ -61,15 +61,14 @@ class TransactionController extends Controller
             ->where('userId', $buyer->id)
             ->update(['active' => 1]);
 
-
         $productName = \DB::table('carts')
             ->join('sellers_details_tabs', 'carts.productId', '=', 'sellers_details_tabs.id')
             ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->select(
                 \DB::raw
                 (
-                    "
-                                                    product_types.name as productName
+                                                    "
+                                                   product_types.name as productName
                                                     "
                 )
             )
@@ -93,11 +92,9 @@ class TransactionController extends Controller
 
         return \Response::json($transactionObj);
     }
-    public function transactionDetails()
+    public function testTransactionDetails()
     {
-
-        $api_key = Input::get('api_key');
-        $userDetails = NewUser::where('api_key', $api_key)->first();
+        $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
 
         if ($userDetails->intrest == 1) {
 
@@ -394,12 +391,13 @@ class TransactionController extends Controller
     public function transactionStatuses()
     {
         $statuses = TransactionStatus::all();
-        return \Response::json($statuses);
+        return response::json($statuses);
     }
+
+
     public function deleteTransaction()
         {
-
-                $deletedStatus                           = TransactionStatus::find(6);
+                $deletedStatus                            = TransactionStatus::find(6);
 
                 $userTransactionActivity                  = new TransactionActivity();
                 $userTransactionActivity->userId          = $this->userDetails()->id;
@@ -407,21 +405,101 @@ class TransactionController extends Controller
                 $userTransactionActivity->status          = $deletedStatus->id;
                 $userTransactionActivity->save();
                 return "transaction deleted";
-
-         }
+        }
     public function userDetails()
         {
             $userDetailsID   = NewUser::where('api_key',  Input::get('api_key'))->first();
             return $userDetailsID;
         }
-    public function sellerTransactionDetails()
+
+    public function transactionDetails()
         {
-            $transactionDetails   =  Transaction::where('seller_id', $this->userDetails()->id)->orWhere('buyer_id',$this->userDetails()->id)->get();
-            return $transactionDetails;
+            $deletedStatus = TransactionStatus::find(6);
+
+            if ($this->userDetails()->intrest == 1) {
+
+                $sellerTransactionsDetails = \DB::table('transactions')
+                    ->join('new_users', 'transactions.buyer_id', '=', 'new_users.id')
+                    ->join('transaction_statuses', 'transactions.status', '=', 'transaction_statuses.id')
+                    ->join('sellers_details_tabs', 'transactions.product', '=', 'sellers_details_tabs.id')
+                    ->join('transaction_activities', 'transactions.id', '=', 'transaction_activities.transactionId')
+                    ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+                    ->select(
+                        \DB::raw(
+                            "                        
+                      new_users.name,  
+                      new_users.surname,   
+                      new_users.profilePicture,   
+                      new_users.email,  
+                      new_users.cellphone,   
+                      new_users.location,   
+                      new_users.travelRadius,   
+                      new_users.descriptionOfAcces,                        
+                      transactions.buyer_id,  
+                      transactions.id as transactionId,                      
+                      transactions.product, 
+                      transactions.quantity,
+                      transactions.status,
+                      transaction_statuses.name as transactionName,
+                      sellers_details_tabs.productPicture,
+                      product_types.name as productName,
+                      transactions.created_at 
+                                                            
+                   "
+                        )
+                    )
+                    ->where('transactions.seller_id', $this->userDetails()->id, '=')
+                    ->where('transaction_activities.userId',$this->userDetails()->id, '=')
+                    ->where('transaction_activities.status','!=' ,$deletedStatus->id)
+                    ->orderBy('transactions.created_at', 'DESC')
+                    ->get();
+
+                return \Response::json($sellerTransactionsDetails);
+
+            } elseif ($this->userDetails()->intrest == 2) {
+
+                $buyerTransactionsDetails = \DB::table('transactions')
+                    ->join('new_users', 'transactions.seller_id', '=', 'new_users.id')
+                    ->join('transaction_statuses', 'transactions.status', '=', 'transaction_statuses.id')
+                    ->join('sellers_details_tabs', 'transactions.product', '=', 'sellers_details_tabs.id')
+                    ->join('transaction_activities', 'transactions.id', '=', 'transaction_activities.transactionId')
+                    ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+                    ->select(
+                        \DB::raw(
+                            "                        
+                      new_users.name,  
+                      new_users.surname,   
+                      new_users.profilePicture,   
+                      new_users.email,  
+                      new_users.cellphone,   
+                      new_users.location,   
+                      new_users.travelRadius,   
+                      new_users.descriptionOfAcces,                        
+                      transactions.seller_id,
+                      transactions.id as transactionId,                        
+                      transactions.product, 
+                      transactions.quantity,
+                      transactions.status,
+                      transaction_statuses.name as transactionName,
+                      sellers_details_tabs.productPicture,
+                      product_types.name as productName,
+                      transactions.created_at
+                                       "
+                        )
+                    )
+                    ->where('transactions.buyer_id', $this->userDetails()->id, '=')
+                    ->where('transaction_activities.userId',$this->userDetails()->id, '=')
+                    ->where('transaction_activities.status', '!=',$deletedStatus->id)
+                    ->orderBy('transactions.created_at', 'DESC')
+                    ->get();
+                return \Response::json($buyerTransactionsDetails);
+            }
+            else
+                {
+                return "no transaction";
+            }
+
         }
-    public function test()
-        {
-            return $this->userDetails()->name;
-        }
+
 }
 
