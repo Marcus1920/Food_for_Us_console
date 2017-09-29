@@ -237,147 +237,146 @@ class TransactionController extends Controller
 
     }
     public function removeFromCart()
-    {
-        $sellerDetails = Sellers_details_tabs::where('productType', Input::get('productType'))
-            ->where('id', Input::get('sellerDetailsId'))
-            ->first();
-
-        $buyerId = NewUser::where('api_key', Input::get('api_key'))
-            ->first();
-
-        $CartItems = Cart::with('products', 'buyers')
-            ->where('id', Input::get('cartId'))
-            ->where('userId', $buyerId->id)
-            ->where('productId', $sellerDetails->id)
-            ->where('active', 0)
-            ->first();
-
-        $addBackProduct = $sellerDetails->quantity + $CartItems->quantity;
-        $restoreProduct = $sellerDetails->update(['quantity' => $addBackProduct]);
-
-        $CartItems->delete();
-
-        $remainingCartItems = Cart::with('products', 'buyers')
-            ->where('userId', $buyerId->id)
-            ->where('active', 0)
-            ->orderBy('carts.created_at', 'DESC')
-            ->get();
-        return $remainingCartItems;
-
-    }
-    public function approveTransaction()
-    {
-        $transactionId = Input::get('transactionId');
-        $transactionStatusName = Input::get('statusName');
-        $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
-        $transactionStatusDetails = TransactionStatus::where('slug', $transactionStatusName)->first();
-        if ($userDetails->intrest == 1) {
-            $sellerTransactionsUpdates = Transaction::where('id', $transactionId)
-                ->where('seller_id', $userDetails->id)
-                ->update(['status' => $transactionStatusDetails->id]);
-
-            $transactionDetails = Transaction::where('id', $transactionId)
-                ->where('seller_id', $userDetails->id)
-                ->first();
-            $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->buyer_id)->first();
-
-
-            $sellerTransactionsActivity = new TransactionActivity();
-            $sellerTransactionsActivity->userId = $userDetails->id;
-            $sellerTransactionsActivity->transactionId = $transactionId;
-            $sellerTransactionsActivity->status = $transactionStatusDetails->id;
-            $sellerTransactionsActivity->save();
-
-
-            $messageStatus = '';
-            switch ($transactionStatusName) {
-                case 'Active':
-                    $messageStatus = 'accepted';
-                    break;
-
-                case 'Declined':
-                    $messageStatus = 'rejected';
-                    break;
-
-                case 'Completed':
-                    $messageStatus = 'closed';
-                    break;
-
-                case 'Cancelled':
-                    $messageStatus = 'cancelled';
-                    break;
-            }
-
-            $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
-
-            $data = array(
-
-                'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
-                'content' => $messageBody,
-            );
-
-            \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails) {
-                $message->from('Info@FoodForUs.cloud', 'Food For us');
-                $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
-            });
-
-            return \Response::json($sellerTransactionsUpdates);
-        } elseif ($userDetails->intrest == 2) {
-
-            $buyerTransactionsUpdates = Transaction::where('id', '=', $transactionId)
-                ->where('buyer_id', '=', $userDetails->id)
-                ->update(['status' => $transactionStatusDetails->id]);
-
-            $transactionDetails = Transaction::where('id', '=', $transactionId)
-                ->where('buyer_id', '=', $userDetails->id)
+        {
+            $sellerDetails = Sellers_details_tabs::where('productType', Input::get('productType'))
+                ->where('id', Input::get('sellerDetailsId'))
                 ->first();
 
-            $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->seller_id)->first();
+            $buyerId = NewUser::where('api_key', Input::get('api_key'))
+                ->first();
 
-            $buyerTransactionsActivity = new TransactionActivity();
-            $buyerTransactionsActivity->userId = $userDetails->id;
-            $buyerTransactionsActivity->transactionId = $transactionId;
-            $buyerTransactionsActivity->status = $transactionStatusDetails->id;
-            $buyerTransactionsActivity->save();
+            $CartItems = Cart::with('products', 'buyers')
+                ->where('id', Input::get('cartId'))
+                ->where('userId', $buyerId->id)
+                ->where('productId', $sellerDetails->id)
+                ->where('active', 0)
+                ->first();
 
+            $addBackProduct = $sellerDetails->quantity + $CartItems->quantity;
+            $restoreProduct = $sellerDetails->update(['quantity' => $addBackProduct]);
 
-            $messageStatus = '';
-            switch ($transactionStatusName) {
-                case 'Active':
-                    $messageStatus = 'accepted';
-                    break;
+            $CartItems->delete();
 
-                case 'Declined':
-                    $messageStatus = 'rejected';
-                    break;
-
-                case 'Completed':
-                    $messageStatus = 'closed';
-                    break;
-
-                case 'Cancelled':
-                    $messageStatus = 'cancelled';
-                    break;
-            }
-
-
-            $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
-            $data = array(
-
-                'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
-                'content' => $messageBody,
-            );
-
-            \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails) {
-                $message->from('Info@FoodForUs.cloud', 'Food For us');
-                $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
-            });
-
-            return \Response::json($buyerTransactionsUpdates);
-        } else {
-            return "No updates made";
+            $remainingCartItems = Cart::with('products', 'buyers')
+                ->where('userId', $buyerId->id)
+                ->where('active', 0)
+                ->orderBy('carts.created_at', 'DESC')
+                ->get();
+            return $remainingCartItems;
         }
-    }
+    public function approveTransaction()
+        {
+            $transactionId = Input::get('transactionId');
+            $transactionStatusName = Input::get('statusName');
+            $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
+            $transactionStatusDetails = TransactionStatus::where('slug', $transactionStatusName)->first();
+            if ($userDetails->intrest == 1) {
+                $sellerTransactionsUpdates = Transaction::where('id', $transactionId)
+                    ->where('seller_id', $userDetails->id)
+                    ->update(['status' => $transactionStatusDetails->id]);
+
+                $transactionDetails = Transaction::where('id', $transactionId)
+                    ->where('seller_id', $userDetails->id)
+                    ->first();
+                $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->buyer_id)->first();
+
+
+                $sellerTransactionsActivity = new TransactionActivity();
+                $sellerTransactionsActivity->userId = $userDetails->id;
+                $sellerTransactionsActivity->transactionId = $transactionId;
+                $sellerTransactionsActivity->status = $transactionStatusDetails->id;
+                $sellerTransactionsActivity->save();
+
+
+                $messageStatus = '';
+                switch ($transactionStatusName) {
+                    case 'Active':
+                        $messageStatus = 'accepted';
+                        break;
+
+                    case 'Declined':
+                        $messageStatus = 'rejected';
+                        break;
+
+                    case 'Completed':
+                        $messageStatus = 'closed';
+                        break;
+
+                    case 'Cancelled':
+                        $messageStatus = 'cancelled';
+                        break;
+                }
+
+                $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
+
+                $data = array(
+
+                    'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
+                    'content' => $messageBody,
+                );
+
+                \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails) {
+                    $message->from('Info@FoodForUs.cloud', 'Food For us');
+                    $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
+                });
+
+                return \Response::json($sellerTransactionsUpdates);
+            } elseif ($userDetails->intrest == 2) {
+
+                $buyerTransactionsUpdates = Transaction::where('id', '=', $transactionId)
+                    ->where('buyer_id', '=', $userDetails->id)
+                    ->update(['status' => $transactionStatusDetails->id]);
+
+                $transactionDetails = Transaction::where('id', '=', $transactionId)
+                    ->where('buyer_id', '=', $userDetails->id)
+                    ->first();
+
+                $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->seller_id)->first();
+
+                $buyerTransactionsActivity = new TransactionActivity();
+                $buyerTransactionsActivity->userId = $userDetails->id;
+                $buyerTransactionsActivity->transactionId = $transactionId;
+                $buyerTransactionsActivity->status = $transactionStatusDetails->id;
+                $buyerTransactionsActivity->save();
+
+
+                $messageStatus = '';
+                switch ($transactionStatusName) {
+                    case 'Active':
+                        $messageStatus = 'accepted';
+                        break;
+
+                    case 'Declined':
+                        $messageStatus = 'rejected';
+                        break;
+
+                    case 'Completed':
+                        $messageStatus = 'closed';
+                        break;
+
+                    case 'Cancelled':
+                        $messageStatus = 'cancelled';
+                        break;
+                }
+
+
+                $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
+                $data = array(
+
+                    'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
+                    'content' => $messageBody,
+                );
+
+                \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails) {
+                    $message->from('Info@FoodForUs.cloud', 'Food For us');
+                    $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
+                });
+
+                return \Response::json($buyerTransactionsUpdates);
+            } else {
+                return "No updates made";
+            }
+        }
     public function transactionRating()
     {
         $userDetails = NewUser::where('api_key', Input::get('apiKey'))->first();
@@ -397,35 +396,32 @@ class TransactionController extends Controller
         $statuses = TransactionStatus::all();
         return \Response::json($statuses);
     }
-
     public function deleteTransaction()
-    {
+        {
 
-        $userDetails = NewUser::where('api_key',Input::get('apiKey'))->first();
+                $deletedStatus                           = TransactionStatus::find(6);
 
-        $userTransactionActivity                  = new TransactionActivity();
-        $userTransactionActivity->userId          = $this->userDetails()->id;
-        $userTransactionActivity->transactionId   =
-        $userTransactionActivity->status          =
-        $userTransactionActivity->save();
+                $userTransactionActivity                  = new TransactionActivity();
+                $userTransactionActivity->userId          = $this->userDetails()->id;
+                $userTransactionActivity->transactionId   = Input::get('transactionId');
+                $userTransactionActivity->status          = $deletedStatus->id;
+                $userTransactionActivity->save();
+                return "transaction deleted";
 
-    }
-
+         }
     public function userDetails()
         {
             $userDetailsID   = NewUser::where('api_key',  Input::get('api_key'))->first();
             return $userDetailsID;
         }
-
     public function sellerTransactionDetails()
-    {
-        $transactionDetails   =  Transaction::where('seller_id', $this->userDetails()->id)->orWhere('buyer_id',$this->userDetails()->id)->get();
-        return $transactionDetails;
-    }
-
+        {
+            $transactionDetails   =  Transaction::where('seller_id', $this->userDetails()->id)->orWhere('buyer_id',$this->userDetails()->id)->get();
+            return $transactionDetails;
+        }
     public function test()
-    {
-        return $this->userDetails()->name;
-    }
+        {
+            return $this->userDetails()->name;
+        }
 }
 
