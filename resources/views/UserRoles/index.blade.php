@@ -10,9 +10,7 @@
 
 
     <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8" >
+        <div class="col-md-12" >
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
@@ -38,7 +36,63 @@
         </div>
 
     </div>
+@endsection
+@section('footer')
+    <script>
+
+        jQuery(document).ready(function($){
 
 
+            var userRolesTable     = $('#userRolesTable').DataTable({
+                "autoWidth": false,
 
+                "processing": true,
+                speed: 500,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    ,{
+
+                        extend : 'pdfHtml5',
+                        title  : 'Siyaleader_Report',
+                        header : 'I am text in',
+                    },
+
+                ],
+
+
+                "order" :[[0,"desc"]],
+                "ajax": "{!! url('/allUserRole/')!!}",
+                "processing": true,
+                "serverSide": true,
+                "order" :[[0,"desc"]],
+
+                "buttons": [
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+
+
+                "columns": [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('getUsersPerGroup/" + d.id + "') !!}' class='btn btn-sm'>" + 'View users' + "</a>";
+                    },"name" : 'name'},
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('editUserRole/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit '+d.name + "</a>";
+                    },"name" : 'name'},
+                ],
+
+                "aoColumnDefs": [
+                    { "bSearchable": false, "aTargets": [ 1] },
+                ]
+
+            });
+        });
+    </script>
 @endsection

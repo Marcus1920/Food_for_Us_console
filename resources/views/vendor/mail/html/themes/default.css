@@ -49,7 +49,7 @@ h1 {
 
 h2 {
     color: #2F3133;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     margin-top: 0;
     text-align: left;
@@ -65,14 +65,14 @@ h3 {
 
 p {
     color: #74787E;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.5em;
     margin-top: 0;
     text-align: left;
 }
 
 p.sub {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 img {
@@ -109,7 +109,7 @@ img {
 
 .header a {
     color: #bbbfc3;
-    font-size: 19px;
+    font-size: 12px;
     font-weight: bold;
     text-decoration: none;
     text-shadow: 0 1px 0 white;

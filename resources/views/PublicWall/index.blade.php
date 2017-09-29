@@ -38,3 +38,65 @@
 
     </div>
 @endsection
+@section('footer')
+    <script>
+
+        jQuery(document).ready(function($){
+
+
+            var publicWallTable     = $('#publicWallTable').DataTable({
+                "autoWidth": false,
+
+                "processing": true,
+                speed: 500,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    ,{
+
+                        extend : 'pdfHtml5',
+                        title  : 'Siyaleader_Report',
+                        header : 'I am text in',
+                    },
+
+                ],
+
+
+                "order" :[[0,"desc"]],
+                "ajax": "{!! url('/allRecipes/')!!}",
+                "processing": true,
+                "serverSide": true,
+                "order" :[[0,"desc"]],
+
+                "buttons": [
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+
+
+                "columns": [
+                    {data: 'id', name: 'id'},
+                    {data: 'type', name: 'type'},
+                    {data: 'name', name: 'name'},
+
+
+                    {data: 'methods', name: 'methods'},
+                    {data: 'created_at', name: 'created_at'},
+
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'Read more' + "</a>";
+                    }},
+                ],
+
+                "aoColumnDefs": [
+                    { "bSearchable": false, "aTargets": [ 4] },
+                    { "bSortable": false, "aTargets": [ 4] }
+                ]
+
+            });
+        });
+    </script>
+@endsection

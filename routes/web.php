@@ -49,6 +49,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
     Route::post('deletePost' , 'SellersController@destroy') ;
     Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');
+    Route::post('changeDefaultLocation','SellersController@changeDefaultLocation');
+
 
     //Users
     Route::get('userList' ,  'UsersController@index');
@@ -130,6 +132,11 @@ Route::get('/editUsers/{id}',['middleware'=>'auth', function($id)
     $user = NewUser::where('id','=',$id)->first();
     return view('users.edit',compact('user'));
 }]);
+Route::get('/inactivateUsers/{id}',['middleware'=>'auth', function($id)
+{
+    $user = NewUser::where('id','=',$id)->first();
+    return view('users.inactivateUsers',compact('user'));
+}]);
 
 Route::get('activeUsers',['middleware'=>'auth', function (){
    return view('users.active');
@@ -156,11 +163,7 @@ Route::get('active' , 'HomeController@activeusersLis')
         ->name('active')
         ->middleware('auth');
 
-Route::get('/inactivateUsers/{id}',['middleware'=>'auth', function($id)
-{
-    $user = NewUser::where('id','=',$id)->first();
-    return view('users.inactivateUsers',compact('user'));
-}]);
+
 
 Route::get('/createUser',['middleware'=>'auth', function()
 {
@@ -181,14 +184,14 @@ Route::get('/inactivation',function()
 {
     return view('emails.inactivation',compact('inactivation'));
 });
-Route::get('/resetpassword',['middleware'=>'auth',function()
-{
-    return view('emails.resetpassword',compact('resetpassword'));
-}]);
-Route::get('/reset',function()
-{
-    return view('passwords.reset',compact('reset'));
-});
+//Route::get('/resetpassword',['middleware'=>'auth',function()
+//{
+//    return view('emails.resetpassword',compact('resetpassword'));
+//}]);
+//Route::get('/reset',function()
+//{
+//    return view('passwords.reset',compact('reset'));
+//});
 
 Route::get('/transaction',['middleware'=>'auth', function ()
 {
@@ -218,7 +221,7 @@ Route::get('postview/{id}', 'PostViewController@show')
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
-Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
+
 
 
 Route::get('researchList','ResearchersController@researchList')
@@ -230,10 +233,11 @@ Route::get('getResearchList','ResearchersController@allResearchList')
 Route::get('researchProfile/{id}','ResearchersController@researchProfile')
                   ->name('researchProfile/{id}')
                   ->middleware('auth');
-Route::get('password/reset', 'Auth\ResetPasswordController@getReset')
-                  ->name('password/reset')
-                   ->middleware('auth');
-Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
+
+//Route::post('password/reset', 'Auth\ResetPasswordController@getReset')
+//                  ->name('password/reset');
+
+//Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
@@ -268,10 +272,18 @@ Route::get('allProduct',['middleware'=>'auth', function ()
 Route::get('packaginglist', 'PackagingController@index')
     ->name('packaginglist')
     ->middleware('auth');
+Route::get('getPackagingList','PackagingController@getPackagingList');
 Route::get('createPackaging', 'PackagingController@create')
             ->name('createPackaging')
              ->middleware('auth') ;
 Route::post('storePackaging', 'PackagingController@store');
+Route::get('editPackaging/{id}','PackagingController@retrivePackaging')
+    ->name('editPackaging/{id}')
+    ->middleware('auth') ;
+
+Route::post('editPackaging/updatepackaging','PackagingController@update')
+    ->name('editPackaging/updateproduct')
+    ->middleware('auth') ;
 
 //User Role
 Route::get('userroleslist', 'UserRolesController@index')

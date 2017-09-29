@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PublicWall;
 use App\Sellers_details_tabs;
 use App\User;
+use App\UserDefaultLocation;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use App\UserRoles;
@@ -96,8 +97,6 @@ class UsersController extends Controller
             return "Incorrect old password";
         }
     }
-
-
     public function forgot()
     {
 
@@ -138,8 +137,6 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function login()
     {
 
@@ -225,8 +222,6 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function updateUser($id)
     {
 		
@@ -261,8 +256,6 @@ class UsersController extends Controller
 
         return Redirect::to('/users');
 	}
-
-
     public function inactivateUser($id)
     {
         $user = NewUser::where('id',$id)
@@ -292,7 +285,6 @@ class UsersController extends Controller
                             });
         return Redirect::to('/users');
     }
-
     public  function   create  ()   {
 
     
@@ -317,11 +309,34 @@ function generateRandomString($length = 24) {
         $description_of_acces   =  Input::get('description_of_acces');
         $gps_lat                =  Input::get('gps_lat');
         $gps_long               =  Input::get('gps_long');
+		$lat   = null  ; 
+		$long  =null ; 
+	    if ($gps_lat==null)
+		{
+		 $lat   = "-937538943";
+		}
+		else 
+		{
+			
+		$lat = Input::get('gps_lat'); 	
+		}	
+		
+		if ($gps_long==null)
+		{
+			$long = "937538943";
+			
+		}
+		else 
+			
+			{
+				$long  = Input::get('gps_long');
+				
+			}
 
         $NewUser    =   new   NewUser  () ;
         $NewUser->   active                 = 1;
-        $NewUser->  gps_lat                 = $gps_lat ;
-        $NewUser->  gps_long                = $gps_long ;
+        $NewUser->  gps_lat                 = $lat ;
+        $NewUser->  gps_long                = $long;
         $NewUser->profilePicture           ="http://154.0.164.72:8080/Foods/images/default.jpg";
         $NewUser->  name                 = $name ;
         $NewUser->  email                = $email ;
@@ -340,6 +355,13 @@ function generateRandomString($length = 24) {
         $NewUser->  descriptionOfAcces  = $description_of_acces ;
 
         $NewUser-> save() ;
+
+        $defaultLocation               = new UserDefaultLocation();
+        $defaultLocation->userId       = $NewUser->id;
+        $defaultLocation->gps_lat      = $lat;
+        $defaultLocation->gps_long     = $long;
+        $defaultLocation->save();
+
         $message= "Food For us";
         $data = array(
 
@@ -393,8 +415,8 @@ function generateRandomString($length = 24) {
         $admin->cellphone                   = Input::get('cellphone');
         $admin->updated_at                  = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
         $admin->save();
-
-        return view('admin.editAdmin', compact('admin'));
+        
+        return Redirect('/adminUser');
 
     }
 
