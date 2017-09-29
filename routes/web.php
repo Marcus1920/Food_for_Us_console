@@ -108,6 +108,14 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 
+
+// Transaction
+
+Route::get('/userTransaction' ,'TransactionController@userTransactionsActivity')
+    ->name('user.transactions')
+    ->middleware('auth');
+
+
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
                ->name('userEdit')
                ->middleware('auth');
@@ -334,11 +342,7 @@ Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile')
             ->name('RecipeProfile/{id}')
             ->middleware('auth');
 Route::post('createRecipe','PublicWallController@createRecipe');
-
-
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');
-
-Route::get('get','TransactionController@sellerTransactionDetails');
 
 ?>
