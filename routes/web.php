@@ -105,8 +105,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
 */
 });
 
-
-
+Route::get('countrylist','CountryCodeController@allCountries4Console');
+Route::get('countrylistView','CountryCodeController@countryView');
+Route::get('editCountryCode/{id}','CountryCodeController@editCountry')
+    ->name('editCountryCode/{id}');
+Route::post('updateCountry','CountryCodeController@update');
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
                ->name('userEdit')
                ->middleware('auth');

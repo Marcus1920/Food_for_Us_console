@@ -183,6 +183,7 @@
                     <li><a href="{{ url('userroleslist')}}"><span class="badge badge-r"></span>User Roles List</a></li>
                     <li><a href="{{ url('allProduct') }}"><span class="badge badge-r"></span>Product List</a></li>
                     <li><a href="{{ url('packaginglist') }}"><span class="badge badge-r"></span>Packaging List</a></li>
+                    <li><a href="{{ url('countrylistView') }}"><span class="badge badge-r"></span>Countries</a></li>
                 </ul>
             </li>
 
