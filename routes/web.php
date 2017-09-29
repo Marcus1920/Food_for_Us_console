@@ -83,7 +83,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('viewRecipe','PublicWallController@viewRecipe');
 
     Route::get('distance','SellersController@getDistance');
-
+    Route::get('country', 'CountryCodeController@index');
 
 /*
     //User Roles
