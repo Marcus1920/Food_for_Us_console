@@ -54,7 +54,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Users
     Route::get('userList' ,  'UsersController@index');
-
     Route::post('register' ,  'UsersController@create');
 
 
@@ -74,6 +73,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('approveTransaction','TransactionController@approveTransaction');
     Route::post('transactionRating','TransactionController@transactionRating');
     Route::get('transactionStatuses','TransactionController@transactionStatuses');
+    Route::post('deleteTransaction','TransactionController@deleteTransaction');
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
@@ -83,7 +83,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
     Route::get('viewRecipe','PublicWallController@viewRecipe');
-
     Route::get('distance','SellersController@getDistance');
     Route::get('country', 'CountryCodeController@index');
 
@@ -236,11 +235,6 @@ Route::get('getResearchList','ResearchersController@allResearchList')
 Route::get('researchProfile/{id}','ResearchersController@researchProfile')
                   ->name('researchProfile/{id}')
                   ->middleware('auth');
-
-//Route::post('password/reset', 'Auth\ResetPasswordController@getReset')
-//                  ->name('password/reset');
-
-//Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
@@ -346,6 +340,6 @@ Route::post('createRecipe','PublicWallController@createRecipe');
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
-Route::get('test','TransactionController@OverDue');
+Route::post('test','TransactionController@deleteTransaction');
 
 ?>

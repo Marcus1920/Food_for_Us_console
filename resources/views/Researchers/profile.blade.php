@@ -8,59 +8,57 @@
         {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
 
-    <div class="container">
+    <div class="container-fluid">
     <div class="row">
 
-        <div class="col-md-12">
+
+<div class="col-md-6">
+    <br/><br/><br/>
+    <center>
+    <img src="{{$research->imageUrl}}">
+    </center>
+</div>
 
 
+        <div class="col-sm-12 col-md-6">
 
+            <div class="panel panel-default">
 
+                <div class="panel-body">
 
-
-
-                    {{--{{$research->img_url publi}}--}}
-
-
-
-
-                    <table class="table" style="width: 90%">
-
-                        <tr colspan="2">
-
-                            <td><center><img src="{{$research->img_url}}" class="img-rounded" width="304" height="236"></center></td>
-
-                        </tr>
-
-                        <tr>
-                            <th>Created</th>
-                            <td class="alert alert-info"> {{$research->created_at->diffForHumans()}}</td>
-                        </tr>
-
-                        <tr>
-                            <th  style="width: 1%">Buniness Nature</th>
-                            <td  style="width: 1%" class="alert alert-info">{{$research->natureOfBusiness}}</td>
-                        </tr>
-
-                         <tr>
-                            <th>Summary box</th>
-                            <td class="alert alert-info"> {{$research->summaryBox}}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Research Note</th>
-                            <td class="alert alert-info"> {{$research->researchNotes}}</td>
-                        </tr>
-
-                    </table>
-
+                    <h2 class="alert alert-success">Created</h2>
+                    <p>{{$research->created_at->diffForHumans()}}</p>
                 </div>
 
 
 
+
+                <div class="panel-body">
+                    <h2 class="alert alert-success">Buniness Nature</h2>
+                    <p>{{$research->natureOfBusiness}}</p>
+
+                </div>
+
+                <div class="panel-body">
+                    <h2 class="alert alert-success">Summary box</h2>
+                    <p>{{$research->summaryBox}}</p>
+                </div>
+
+
+                <div class="panel-body">
+                    <h2 class="alert alert-success">Research Note</h2>
+                    <p>{{$research->researchNotes}}</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
     </div>
     </div>
+
 @endsection
 @section('footer')
 
-@endsection

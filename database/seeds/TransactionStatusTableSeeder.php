@@ -14,6 +14,7 @@ class TransactionStatusTableSeeder extends Seeder
         TransactionStatus::create(['id' => '3','name' => 'Completed' ,'slug' => 'Completed']);
         TransactionStatus::create(['id' => '4','name' => 'Cancelled' ,'slug' => 'Cancelled']);
         TransactionStatus::create(['id' => '5','name' => 'Declined' ,'slug' => 'Declined']);
+        TransactionStatus::create(['id' => '6','name' => 'Deleted' ,'slug' => 'Deleted']);
 
     }
 }

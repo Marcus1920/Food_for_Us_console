@@ -69,10 +69,14 @@
                         Forgot/Change Your Password?
                     </a>
                 </small>
+
             </form>
 
             <form class="box animated tile" id="box-reset" method="POST" action="{{ route('password.request') }}">
                 {!! csrf_field() !!}
+                <center>
+                    <img src="{{ asset('/img/FFU_Words.png') }}" alt="lomnin">
+                </center>
                 <h2 class="m-t-0 m-b-15">Reset Password</h2>
                 <p></p>
 
