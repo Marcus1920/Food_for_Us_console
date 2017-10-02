@@ -14,7 +14,7 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">RECIPES </h3>
                         <a href="{{ url('addRecipe') }}" class="btn btn-sm">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new recipe" data-toggle="tooltip"></i>

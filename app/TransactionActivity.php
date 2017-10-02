@@ -21,11 +21,9 @@ class TransactionActivity extends Model
     {
         return $this->belongsTo(TransactionStatus::class,'status','id');
     }
-
     public function appUsers()
     {
         return $this->belongsTo(NewUser::class,'userId','id');
     }
-
 
 }

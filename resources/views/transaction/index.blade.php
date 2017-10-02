@@ -14,7 +14,7 @@
                 <div class="tab-pane" id="closure">
                     <!-- Responsive Table -->
                     <div class="block-area" id="responsiveTable">
-                        <div class="table-responsive overflow">
+                        <div class="table-responsive">
                             <h3 class="block-title"> Transaction List</h3>
                             {{--<a href="{{ url('userroleslist') }}" class="btn btn-sm">--}}
                             {{--</a>--}}
