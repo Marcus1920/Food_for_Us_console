@@ -40,4 +40,10 @@ class Transaction extends Model
         return $this->belongsTo(TransactionStatus::class,'status','id');
 
     }
+
+    public function transactionActivities()
+    {
+        return $this->hasMany(TransactionActivity::class,'TransactionId','id');
+
+    }
 }

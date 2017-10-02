@@ -55,4 +55,9 @@ class NewUser extends Eloquent
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public  function transactionActivity()
+    {
+        return $this->hasMany(TransactionActivity::class);
+    }
 }

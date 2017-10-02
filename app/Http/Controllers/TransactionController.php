@@ -14,6 +14,7 @@ use App\TransactionStatus;
 use Illuminate\Http\Request;
 use App\Services\OverDueCartItemService;
 use Illuminate\Support\Facades\Input;
+use Yajra\DataTables\DataTables;
 
 class TransactionController extends Controller
 {
@@ -585,8 +586,17 @@ class TransactionController extends Controller
         }
 
     }
-
-
+    public function UsersTransacionList()
+    {
+        return view('transaction.index');
+    }
+    public function transactionHistory()
+    {
+        $transactionHistory = TransactionActivity::with('transactions','transactionStatuses','appUsers')
+            ->orderBy('id','desc')->get();
+        return Datatables::of($transactionHistory)
+            ->make(true);
+    }
 
 }
 

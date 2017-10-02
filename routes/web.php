@@ -110,6 +110,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 // Transaction
+Route::get('transactionList','TransactionController@UsersTransacionList');
+Route::get('transactionHistory','TransactionController@transactionHistory');
 
 Route::get('/userTransaction' ,'TransactionController@userTransactionsActivity')
     ->name('user.transactions')
