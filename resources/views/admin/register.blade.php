@@ -44,15 +44,32 @@
                 @endif
             </div>
         </div>
-        
+
+        <div class="form-group">
+            {!! Form::label('Country', 'Country', array('class' => 'col-md-2 control-label')) !!}
+            <div class="col-md-6">
+                {!! Form::text('country',NULL,['class' => 'locality form-control input-sm','id' => 'country' , 'required',' placeholder="Search Country"']) !!}
+                @if ($errors->has('country'))
+                    <span class="help-block"><strong>{{ $errors->first('country')}}</strong></span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group">
             {!! Form::label('Cellphone', 'Cellphone', array('class' => 'col-md-2 control-label')) !!}
-            <div class="col-md-6">
-                {!! Form::text('cellphone',NULL,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required']) !!}
+            <div class="col-md-1">
+                {!! Form::text('code',NULL,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required','readonly', ' placeholder="Dial Code"']) !!}
                 @if ($errors->has('cellphone'))
                     <span class="help-block"><strong>{{ $errors->first('cellphone')}}</strong></span>
                 @endif
             </div>
+            <div class="col-md-5">
+                {!! Form::text('cellphone',NULL,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required',' placeholder="Digits"']) !!}
+                @if ($errors->has('cellphone'))
+                    <span class="help-block"><strong>{{ $errors->first('cellphone')}}</strong></span>
+                @endif
+            </div>
+
         </div>
 
 
@@ -99,4 +116,5 @@
     </div>
 </div>
     @endsection
+
 
