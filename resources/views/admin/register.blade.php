@@ -38,19 +38,24 @@
         <div class="form-group">
             {!! Form::label('Gender', 'Gender', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                {!! Form::select('gender',['0' => 'Select Gender','Male' => 'Male','Female' => 'Female'],0,['class' => 'form-control' ,'id' => 'gender']) !!}
+                {!! Form::select('gender',['' => 'Select Gender','Male' => 'Male','Female' => 'Female'],0,['class' => 'form-control' ,'id' => 'gender']) !!}
                 @if ($errors->has('gender'))
-                    <span class="help-block"><strong>{{ $errors->first('gender')}}</strong></span>
+                    <span class="help-block alert alert-danger"><strong>{{ $errors->first('gender')}}</strong></span>
                 @endif
             </div>
         </div>
 
+
+
+
         <div class="form-group">
             {!! Form::label('Country', 'Country', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                {!! Form::text('country',NULL,['class' => 'locality form-control input-sm','id' => 'country' , 'required']) !!}
+                <input type="password" class="administrative_area_level_1 form-control input-sm"  id = "country" placeholder=" Country" name="country">
                 @if ($errors->has('country'))
-                    <span class="help-block"><strong>{{ $errors->first('country')}}</strong></span>
+                    <span class="help-block alert alert-danger">
+                                        <strong>{{ $errors->first('country') }}</strong>
+                                    </span>
                 @endif
             </div>
         </div>

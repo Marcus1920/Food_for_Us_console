@@ -30,7 +30,7 @@ class CreateValidationRequest extends FormRequest
           'country'             => 'required',
           'cellphone'           => 'required|numeric|unique:users',
           'email'               => 'required|email|unique:users',
-          'password'            => 'required',
+          'password'            => 'required|min:6',
           'confirm_password'    => 'required|same:password',
         ];
     }
