@@ -16,6 +16,7 @@
 
 
     <!-- CSS -->
+    <link href="{{ asset('/css/token-input.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -78,10 +79,6 @@
         };
 
     </script>
-
-
-
-
 
 </head>
 <body id="skin-blur-ocean" style="background-color: #265a88">
@@ -285,6 +282,7 @@
 <script src="{{ asset('/js/jquery.tokeninput.js') }}"></script> <!-- Token Input -->
 
 
+
 <!-- Noty JavaScript -->
 <script src="{{ asset('/bower_components/noty/js/noty/packaged/jquery.noty.packaged.js') }}"></script>
 
@@ -349,6 +347,28 @@
         <script src="{{ asset('js/d3/Tooltip.js') }}"></script>
         <script src="{{ asset('js/d3/Tooltip.js') }}"></script>
     -->
+
+<script>
+    $("#country").tokenInput("{!! url('/getCountries')!!}",
+        {tokenLimit: 1,
+        animateDropdown: false,
+            onAdd: function (results) {
+
+                if(results.name)
+                {
+                    $("#code").val(results.dial_code);
+                }
+                else
+                    {
+
+            }
+            return results;
+    },
+        });
+
+
+
+</script>
 
 </body>
 </html>

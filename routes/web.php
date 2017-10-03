@@ -121,6 +121,8 @@ Route::get('countrylistView','CountryCodeController@countryView');
 Route::get('editCountryCode/{id}','CountryCodeController@editCountry')
     ->name('editCountryCode/{id}');
 Route::post('updateCountry','CountryCodeController@update');
+Route::get('getCountries', ['middleware' => 'auth', 'uses' => 'CountryCodeController@getCountries']);
+
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
                ->name('userEdit')
                ->middleware('auth');
