@@ -342,7 +342,22 @@
     -->
 
 <script>
-    $("#country").tokenInput("{!! url('/getCountries')!!}",{tokenLimit:1});
+    $("#country").tokenInput("{!! url('/getCountries')!!}",
+        {tokenLimit: 1,
+        animateDropdown: false,
+            onAdd: function (results) {
+
+                if(results.name)
+                {
+                    $("#code").val(results.dial_code);
+                }
+                else
+                    {
+
+            }
+            return results;
+    },
+        });
 
 </script>
 

@@ -58,13 +58,13 @@
         <div class="form-group">
             {!! Form::label('Cellphone', 'Cellphone', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-1">
-                {!! Form::text('code',NULL,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required','readonly', ' placeholder="Dial Code"']) !!}
+                {!! Form::text('code',NULL,['class' => 'locality form-control input-sm','id' => 'code' , 'required','readonly', ' placeholder="Dial Code"']) !!}
                 @if ($errors->has('cellphone'))
-                    <span class="help-block"><strong>{{ $errors->first('cellphone')}}</strong></span>
+                    <span class="help-block"><strong>{{ $errors->first('code')}}</strong></span>
                 @endif
             </div>
             <div class="col-md-5">
-                {!! Form::text('cellphone',NULL,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required',' placeholder="Digits"']) !!}
+                {!! Form::text('cellphone',NULL,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required',' placeholder="711159509"']) !!}
                 @if ($errors->has('cellphone'))
                     <span class="help-block"><strong>{{ $errors->first('cellphone')}}</strong></span>
                 @endif
