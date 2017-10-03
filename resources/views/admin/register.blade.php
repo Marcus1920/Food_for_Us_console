@@ -48,7 +48,7 @@
         <div class="form-group">
             {!! Form::label('Country', 'Country', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                {!! Form::text('country',NULL,['class' => 'locality form-control input-sm','id' => 'country' , 'required',' placeholder="Search Country"']) !!}
+                {!! Form::text('country',NULL,['class' => 'locality form-control input-sm','id' => 'country' , 'required']) !!}
                 @if ($errors->has('country'))
                     <span class="help-block"><strong>{{ $errors->first('country')}}</strong></span>
                 @endif
@@ -59,14 +59,14 @@
             {!! Form::label('Cellphone', 'Cellphone', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-1">
                 {!! Form::text('code',NULL,['class' => 'locality form-control input-sm','id' => 'code' , 'required','readonly', ' placeholder="Dial Code"']) !!}
-                @if ($errors->has('cellphone'))
+                @if ($errors->has('code'))
                     <span class="help-block"><strong>{{ $errors->first('code')}}</strong></span>
                 @endif
             </div>
             <div class="col-md-5">
                 {!! Form::text('cellphone',NULL,['class' => 'locality form-control input-sm','id' => 'cellphone' , 'required',' placeholder="711159509"']) !!}
                 @if ($errors->has('cellphone'))
-                    <span class="help-block"><strong>{{ $errors->first('cellphone')}}</strong></span>
+                    <span class="help-block alert alert-danger"><strong>{{ $errors->first('cellphone')}}</strong></span>
                 @endif
             </div>
 
@@ -78,7 +78,7 @@
             <div class="col-md-6">
                 {!! Form::text('email',NULL,['class' => 'administrative_area_level_1 form-control input-sm','id' => 'email', 'required']) !!}
                 @if ($errors->has('email'))
-                    <span class="help-block">
+                    <span class="help-block alert alert-danger">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                 @endif
@@ -91,7 +91,7 @@
             <div class="col-md-6">
                 <input type="password" class="administrative_area_level_1 form-control input-sm" id ="password" placeholder="Password" name="password">
                 @if ($errors->has('password'))
-                    <span class="help-block">
+                    <span class="help-block alert alert-danger">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                 @endif
@@ -101,7 +101,12 @@
         <div class="form-group">
             {!! Form::label(' Confirm Password', 'Confirm Password', array('class' => 'col-md-2 control-label')) !!}
             <div class="col-md-6">
-                <input type="password" class="administrative_area_level_1 form-control input-sm"  id = "confirm_password" placeholder=" Confirm Password" name="password">
+                <input type="password" class="administrative_area_level_1 form-control input-sm"  id = "confirm_password" placeholder=" Confirm Password" name="confirm_password">
+                @if ($errors->has('confirm_password'))
+                    <span class="help-block alert alert-danger">
+                                        <strong>{{ $errors->first('confirm_password') }}</strong>
+                                    </span>
+                @endif
             </div>
         </div>
 

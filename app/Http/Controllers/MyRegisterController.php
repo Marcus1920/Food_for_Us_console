@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateValidationRequest;
 use Illuminate\Http\Request;
 
 use App\User;
@@ -20,8 +21,11 @@ class MyRegisterController extends Controller
 
 
 
-    public function createAdmin(Request $request)
+    public function createAdmin(CreateValidationRequest $request)
     {
+
+
+
         $adminUsers                 = new User();
         $adminUsers->name           = $request['name'];
         $adminUsers->surname        = $request['surname'];

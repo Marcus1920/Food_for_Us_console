@@ -24,13 +24,14 @@ class CreateValidationRequest extends FormRequest
     public function rules()
     {
         return [
-//          'name' => 'required',
-//          'surname' => 'required',
-//          'gender' => 'required',
-//          'cellphone' => 'required|regex:/(+27)[0-9]{9}/',
-//          'email' => 'required|email',
-//          'password' => 'required',
-//          'confirm_password' => 'required',
+          'name'                => 'required',
+          'surname'             => 'required',
+          'gender'              => 'required',
+          'country'             => 'required',
+          'cellphone'           => 'required|numeric|unique:users',
+          'email'               => 'required|email|unique:users',
+          'password'            => 'required',
+          'confirm_password'    => 'required|same:password',
         ];
     }
 }
