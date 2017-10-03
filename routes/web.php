@@ -26,10 +26,8 @@ Route::get('up' , 'SellersController@update') ;
 //    return view('welcome');
 //});
 
-
 Route::get('/' , 'HomeController@index') ;
 Route::get('del' , 'SellersController@destroy');
-
 Route::group(array('prefix' => 'api/v1'), function() {
 
     // Product  type
@@ -178,8 +176,6 @@ Route::get('deactivatedUser' ,['middleware'=>'auth', function ()
 Route::get('active' , 'HomeController@activeusersLis')
         ->name('active')
         ->middleware('auth');
-
-
 
 Route::get('/createUser',['middleware'=>'auth', function()
 {

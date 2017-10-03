@@ -74,8 +74,6 @@
                     'csvHtml5',
                     'pdfHtml5'
                 ],
-
-
                 "columns": [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
@@ -83,10 +81,7 @@
                     {
                         return "<a href='{!! url('editPackaging/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
                     },"name" : 'name'},
-
-
                 ],
-
                 "aoColumnDefs": [
                     { "bSearchable": false, "aTargets": [ 2] }
 //                { "bSortable": false, "aTargets": [ 1] }

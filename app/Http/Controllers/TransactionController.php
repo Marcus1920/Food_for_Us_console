@@ -93,7 +93,7 @@ class TransactionController extends Controller
 
         return \Response::json($transactionObj);
     }
-    public function testTransactionDetails()
+    public function transactionDetails()
     {
         $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
 
@@ -410,7 +410,7 @@ class TransactionController extends Controller
             $userDetailsID   = NewUser::where('api_key',  Input::get('api_key'))->first();
             return $userDetailsID;
         }
-    public function transactionDetails()
+    public function testTransactionDetails()
         {
             $deletedStatus = TransactionStatus::find(6);
 

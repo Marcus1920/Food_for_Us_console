@@ -15,25 +15,17 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-
             <form action="updateUserRole" method="post">
-
                 {{ csrf_field() }}
-
                 <input type="hidden" value="{{$userRole->id}}" class="form-control" name="id">
-
                 <div class="form-group">
                     <label for="product">User Role Name</label>
                     <input type="text" name="userRoleName" value=" {{$userRole->name}}" class="form-control" placeholder="User Role name">
-
                 </div>
-
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-primary">
                 </div>
             </form>
-
         </div>
-
     </div>
 @endsection

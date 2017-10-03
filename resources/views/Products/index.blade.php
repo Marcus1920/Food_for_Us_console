@@ -8,7 +8,6 @@
     </ol>
     <h4 class="page-title">Products Listing</h4>
 
-
     <div class="row">
         <div class="col-md-12" >
             <div class="tab-pane" id="closure">
@@ -33,11 +32,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
 @endsection
 @section('footer')
 <script>
