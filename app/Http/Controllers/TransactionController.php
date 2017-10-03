@@ -597,6 +597,5 @@ class TransactionController extends Controller
         return Datatables::of($transactionHistory)
             ->make(true);
     }
-
 }
 

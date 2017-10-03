@@ -86,7 +86,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('getRecipes','PublicWallController@getRecipes');
     Route::get('viewRecipe','PublicWallController@viewRecipe');
     Route::get('distance','SellersController@getDistance');
-
+    Route::get('country', 'CountryCodeController@index');
 
 /*
     //User Roles
@@ -109,6 +109,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 
 
+
 // Transaction
 Route::get('transactionList','TransactionController@UsersTransacionList');
 Route::get('transactionHistory','TransactionController@transactionHistory');
@@ -117,7 +118,11 @@ Route::get('/userTransaction' ,'TransactionController@userTransactionsActivity')
     ->name('user.transactions')
     ->middleware('auth');
 
-
+Route::get('countrylist','CountryCodeController@allCountries4Console');
+Route::get('countrylistView','CountryCodeController@countryView');
+Route::get('editCountryCode/{id}','CountryCodeController@editCountry')
+    ->name('editCountryCode/{id}');
+Route::post('updateCountry','CountryCodeController@update');
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
                ->name('userEdit')
                ->middleware('auth');
