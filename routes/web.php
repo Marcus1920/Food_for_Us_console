@@ -345,4 +345,7 @@ Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 
 Route::get('test','TransactionController@OverDue');
 
+//manage logins
+Route::get('logins/{id}','UsersController@viewLogins');
+
 ?>
