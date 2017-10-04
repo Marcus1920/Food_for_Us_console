@@ -26,10 +26,8 @@ Route::get('up' , 'SellersController@update') ;
 //    return view('welcome');
 //});
 
-
 Route::get('/' , 'HomeController@index') ;
 Route::get('del' , 'SellersController@destroy');
-
 Route::group(array('prefix' => 'api/v1'), function() {
 
     // Product  type
@@ -54,7 +52,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     //Users
     Route::get('userList' ,  'UsersController@index');
-
     Route::post('register' ,  'UsersController@create');
 
 
@@ -74,6 +71,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('approveTransaction','TransactionController@approveTransaction');
     Route::post('transactionRating','TransactionController@transactionRating');
     Route::get('transactionStatuses','TransactionController@transactionStatuses');
+    Route::post('deleteTransaction','TransactionController@deleteTransaction');
+
+    Route::get('test','TransactionController@sellerTransactionDetails');
 
     // Cart
     Route::post('addToCart','TransactionController@addToCart');
@@ -83,9 +83,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Recipes
     Route::get('getRecipes','PublicWallController@getRecipes');
     Route::get('viewRecipe','PublicWallController@viewRecipe');
-
     Route::get('distance','SellersController@getDistance');
-
+    Route::get('country', 'CountryCodeController@index');
 
 /*
     //User Roles
@@ -106,6 +105,23 @@ Route::group(array('prefix' => 'api/v1'), function() {
 });
 
 
+
+
+
+// Transaction
+Route::get('transactionList','TransactionController@UsersTransacionList');
+Route::get('transactionHistory','TransactionController@transactionHistory');
+
+Route::get('/userTransaction' ,'TransactionController@userTransactionsActivity')
+    ->name('user.transactions')
+    ->middleware('auth');
+
+Route::get('countrylist','CountryCodeController@allCountries4Console');
+Route::get('countrylistView','CountryCodeController@countryView');
+Route::get('editCountryCode/{id}','CountryCodeController@editCountry')
+    ->name('editCountryCode/{id}');
+Route::post('updateCountry','CountryCodeController@update');
+Route::get('getCountries', ['middleware' => 'auth', 'uses' => 'CountryCodeController@getCountries']);
 
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
                ->name('userEdit')
@@ -162,8 +178,6 @@ Route::get('deactivatedUser' ,['middleware'=>'auth', function ()
 Route::get('active' , 'HomeController@activeusersLis')
         ->name('active')
         ->middleware('auth');
-
-
 
 Route::get('/createUser',['middleware'=>'auth', function()
 {
@@ -233,11 +247,6 @@ Route::get('getResearchList','ResearchersController@allResearchList')
 Route::get('researchProfile/{id}','ResearchersController@researchProfile')
                   ->name('researchProfile/{id}')
                   ->middleware('auth');
-
-//Route::post('password/reset', 'Auth\ResetPasswordController@getReset')
-//                  ->name('password/reset');
-
-//Route::get('resetPassword' ,'Auth\ResetPasswordController@resetPassword');
 Route::get('getPosts','MapController@GetSellersPosts');
 Route::get('getUsers','MapController@GetUsers');
 Route::post('searchUserByType','MapController@GetUsersByType');
@@ -338,8 +347,6 @@ Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile')
             ->name('RecipeProfile/{id}')
             ->middleware('auth');
 Route::post('createRecipe','PublicWallController@createRecipe');
-
-
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');
 

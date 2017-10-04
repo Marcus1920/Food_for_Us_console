@@ -14,7 +14,7 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">RESEARCHES </h3>
                         <table class="table tile table-striped" id="reseachersTable">
                             <thead>

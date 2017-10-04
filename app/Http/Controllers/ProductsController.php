@@ -15,12 +15,9 @@ class ProductsController extends Controller
                     product_types.id,
                     product_types.name,
                     product_types.type
-                                   
-                                    
                 "
             )
             );
-
         return Datatables::of($products)
             ->make(true);
 

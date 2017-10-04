@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateValidationRequest;
 use Illuminate\Http\Request;
 
 use App\User;
@@ -20,13 +21,16 @@ class MyRegisterController extends Controller
 
 
 
-    public function createAdmin(Request $request)
+    public function createAdmin(CreateValidationRequest $request)
     {
+
+
+
         $adminUsers                 = new User();
         $adminUsers->name           = $request['name'];
         $adminUsers->surname        = $request['surname'];
         $adminUsers->gender         = $request['gender'];
-        $adminUsers->cellphone      = $request['cellphone'];
+        $adminUsers->cellphone      = $request['code'].$request['cellphone'];
         $adminUsers->email          = $request['email'];
         $adminUsers->password       = bcrypt($request['password']);
         $adminUsers->created_by     = Auth::user()->name . ' ' . Auth::user()->surname  ;

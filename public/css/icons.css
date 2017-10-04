@@ -42,6 +42,7 @@
 .sa-side-photos { background-image: url(../img/icon/photos.png); }
 .sa-side-list { background-image: url(../img/icon/form.png); }
 .sa-side-research { background-image: url(../img/icon/search.png); }
+.sa-side-transaction { background-image: url(../img/icon/transaction.png); }
 .sa-side-reports { background-image: url(../img/icon/chart.png); }
 .sa-side-public_wall { background-image: url(../img/icon/list-view.png); }
 
@@ -83,7 +84,8 @@
 .editor-heading { background-image: url(../img/editor/heading.png); }
 
 /* List Icons */
-[class*="sa-list-"] {
+[class*="sa-list-"]
+{
     display: inline-block;
     height: 21px;
     width: 25px;

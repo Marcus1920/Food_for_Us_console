@@ -26,18 +26,21 @@ class Transaction extends Model
     public function buyers()
     {
         return $this->belongsTo(NewUser::class,'buyer_id','id');
-
     }
 
     public function product()
     {
         return $this->belongsTo(Sellers_details_tabs::class,'product','id');
-
     }
 
     public function status()
     {
         return $this->belongsTo(TransactionStatus::class,'status','id');
+    }
+
+    public function transactionActivities()
+    {
+        return $this->hasMany(TransactionActivity::class,'TransactionId','id');
 
     }
 }

@@ -16,6 +16,7 @@
 
 
     <!-- CSS -->
+    <link href="{{ asset('/css/token-input.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -79,10 +80,6 @@
 
     </script>
 
-
-
-
-
 </head>
 <body id="skin-blur-ocean" style="background-color: #265a88">
 
@@ -141,18 +138,24 @@
                     <img class="profile-pic animated" src="{{ asset('/img/food_for_us_logo.png') }}" alt="lomnin">
                 </a>
 
-                <ul class="dropdown-menu profile-menu">
+                <ul class="profile-menu">
                     {{--<li><a href="{{ url('all-messages') }}">Messages</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>--}}
                     {{--<li><a href="{{ url('user-profile') }}">Profile</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>--}}
-                    <li><a href="{{ url('/auth/logout') }}">Sign Out</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+
                 </ul>
-                @if (Auth::user())
+
+
+            @if (Auth::user())
                     <h4 class="m-0">
                         {{ Auth::user()->name }}  {{ Auth::user()->surname }}
                     </h4>
                     {{--{{ $systemRole->name }}<br>--}}
                     {{ Auth::user()->email }}
                 @endif
+                <span style="margin-top:20px"></span>
+                 <br/>
+                 <br/>
+                <a href="{{ url('/auth/logout') }}">Log Out</a>
 
 
             </div>
@@ -183,6 +186,7 @@
                     <li><a href="{{ url('userroleslist')}}"><span class="badge badge-r"></span>User Roles List</a></li>
                     <li><a href="{{ url('allProduct') }}"><span class="badge badge-r"></span>Product List</a></li>
                     <li><a href="{{ url('packaginglist') }}"><span class="badge badge-r"></span>Packaging List</a></li>
+                    <li><a href="{{ url('countrylistView') }}"><span class="badge badge-r"></span>Countries</a></li>
                 </ul>
             </li>
 
@@ -231,6 +235,13 @@
 
                 </a>
             </li>
+
+            <li {{ (Request::is('transaction') ? "class=active" : '') }}>
+                <a class="sa-side-transaction" href="{{ url('transactionList') }}">
+                    <span class="menu-item">Transaction history</span>
+                </a>
+            </li>
+
         </ul>
     </aside>
 
@@ -275,6 +286,7 @@
 
 <!-- Token Input -->
 <script src="{{ asset('/js/jquery.tokeninput.js') }}"></script> <!-- Token Input -->
+
 
 
 <!-- Noty JavaScript -->
@@ -341,6 +353,28 @@
         <script src="{{ asset('js/d3/Tooltip.js') }}"></script>
         <script src="{{ asset('js/d3/Tooltip.js') }}"></script>
     -->
+
+<script>
+    $("#country").tokenInput("{!! url('/getCountries')!!}",
+        {tokenLimit: 1,
+        animateDropdown: false,
+            onAdd: function (results) {
+
+                if(results.name)
+                {
+                    $("#code").val(results.dial_code);
+                }
+                else
+                    {
+
+            }
+            return results;
+    },
+        });
+
+
+
+</script>
 
 </body>
 </html>

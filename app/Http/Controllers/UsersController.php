@@ -18,6 +18,7 @@ use Psr\Log\NullLogger;
 use Redirect;
 use Illuminate\Pagination\Paginator;
 use App\ManageLogin;
+use App\Http\Requests\EditAdminRequest;
 
 class UsersController extends Controller
 {
@@ -28,8 +29,6 @@ class UsersController extends Controller
 
         return response()->json($userList);
     }
-
-
     public function myProfile()
     {
         $user  = NewUser::where('api_key',Input::get('api_key'))
@@ -53,7 +52,6 @@ class UsersController extends Controller
             ->first();
         return response()->json($user);
     }
-
     public function changePassword()
     {
         $api_key   = Input::get('api_key');
@@ -291,10 +289,9 @@ class UsersController extends Controller
                             });
         return Redirect::to('/users');
     }
-    public  function   create  ()   {
+    public  function  create  ()   {
 
-    
-function generateRandomString($length = 24) {
+        function generateRandomString($length = 24) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
         $name                   =  Input::get('name') ;
@@ -400,17 +397,13 @@ function generateRandomString($length = 24) {
 //        return response()->json($radius);
 //    }
 
-        public function viewAdmin($id)
+    public function viewAdmin($id)
         {
             $admin  = User::where('id',$id)->first();
-
-
-
-       return view('admin.editAdmin', compact('admin'));
+            return view('admin.editAdmin', compact('admin'));
 
         }
-
-    public function updateAdmin($id)
+    public function updateAdmin(EditAdminRequest $id)
     {
         $user                              = User::where('id',$id)->first();
 //        $user                              = User::where('id',$request['userID'])->first();
@@ -425,9 +418,7 @@ function generateRandomString($length = 24) {
         return Redirect('/adminUser');
 
     }
-
-
-      public function updateProfile(Request $request)
+    public function updateProfile(Request $request)
       {
 
           $input           =  $request->all();
@@ -451,7 +442,6 @@ function generateRandomString($length = 24) {
           }
           return $user;
       }
-
     public function updateAppUserProfile()
     {
 

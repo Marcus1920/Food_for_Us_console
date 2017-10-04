@@ -14,7 +14,7 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">Packaging Types</h3>
                         <a href="{{ url('createPackaging') }}" class="btn btn-sm">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new packaging" data-toggle="tooltip"></i>
@@ -74,8 +74,6 @@
                     'csvHtml5',
                     'pdfHtml5'
                 ],
-
-
                 "columns": [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
@@ -83,10 +81,7 @@
                     {
                         return "<a href='{!! url('editPackaging/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
                     },"name" : 'name'},
-
-
                 ],
-
                 "aoColumnDefs": [
                     { "bSearchable": false, "aTargets": [ 2] }
 //                { "bSortable": false, "aTargets": [ 1] }
