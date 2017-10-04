@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rules\In;
 use phpDocumentor\Reflection\Types\Null_;
+use Psr\Log\NullLogger;
 use Redirect;
 use Illuminate\Pagination\Paginator;
 use App\ManageLogin;
@@ -486,11 +487,20 @@ function generateRandomString($length = 24) {
     public function viewLogins($id)
     {
         $allLogins = ManageLogin::where('new_user_id',$id)->with('User')->orderBy('created_at','ASC')->get();
-        $showLogins = ManageLogin::with('User')->where('new_user_id',$id)->get()->last();
-        $user       = NewUser::find($showLogins->new_user_id);
-//        return $user;
 
-        return view('ManageLogins.viewLogins',compact('allLogins','showLogins','user'));
+        if($allLogins->count()==0)
+        {
+            $user = NewUser::find($id);
+
+            return view('ManageLogins.loginsNotFound', compact('user'));
+//            return "not found";
+        }
+        else {
+            $showLogins = ManageLogin::with('User')->where('new_user_id', $id)->get()->last();
+            $user = NewUser::find($showLogins->new_user_id);
+
+            return view('ManageLogins.viewLogins', compact('allLogins', 'showLogins', 'user'));
+        }
     }
 
 
