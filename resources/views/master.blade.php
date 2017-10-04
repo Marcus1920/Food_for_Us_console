@@ -138,18 +138,24 @@
                     <img class="profile-pic animated" src="{{ asset('/img/food_for_us_logo.png') }}" alt="lomnin">
                 </a>
 
-                <ul class="dropdown-menu profile-menu">
+                <ul class="profile-menu">
                     {{--<li><a href="{{ url('all-messages') }}">Messages</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>--}}
                     {{--<li><a href="{{ url('user-profile') }}">Profile</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>--}}
-                    <li><a href="{{ url('/auth/logout') }}">Sign Out</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+
                 </ul>
-                @if (Auth::user())
+
+
+            @if (Auth::user())
                     <h4 class="m-0">
                         {{ Auth::user()->name }}  {{ Auth::user()->surname }}
                     </h4>
                     {{--{{ $systemRole->name }}<br>--}}
                     {{ Auth::user()->email }}
                 @endif
+                <span style="margin-top:20px"></span>
+                 <br/>
+                 <br/>
+                <a href="{{ url('/auth/logout') }}">Log Out</a>
 
 
             </div>
