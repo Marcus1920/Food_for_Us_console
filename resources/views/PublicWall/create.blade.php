@@ -67,7 +67,7 @@
             <div class="form-group">
                 {!! Form::label('methods', 'methods', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-10">
-                    <textarea rows="3" id="methods" name="methods" class="sms form-control" maxlength="500" placeholder="Enter recipe methods"></textarea>
+                    <textarea rows="5" id="methods" name="methods" class="sms form-control" maxlength="500" placeholder="Enter recipe methods"></textarea>
                 </div>
             </div>
 			
