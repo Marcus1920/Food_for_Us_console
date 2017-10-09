@@ -85,7 +85,7 @@ select:not([multiple]){
    background-image: url(../img/select-bg.png);
    background-repeat: no-repeat;
    background-position: right center;
-   color:
+   color:#fff;
 }
 
 .ie9 select:not([multiple]){
