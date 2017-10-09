@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
     <ol class="breadcrumb hidden-xs">
-        <li><a href="{{ url('/home') }}">Home</a></li>
+        <li><a href="{{ url('/users') }}">Home</a></li>
         <li class="active">Country Code</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
@@ -15,10 +15,10 @@
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive overflow">
-                        <h3 class="block-title">Products</h3>
-                        <a href="{{ url('CreateProduct') }}" class="btn btn-sm">
-                            <i class="fa fa-plus" aria-hidden="true" title="Add new product" data-toggle="tooltip"></i>
-                        </a>
+                        <h3 class="block-title">Countries</h3>
+                        {{--<a href="{{ url('CreateProduct') }}" class="btn btn-sm">--}}
+                            {{--<i class="fa fa-plus" aria-hidden="true" title="Add new product" data-toggle="tooltip"></i>--}}
+                        {{--</a>--}}
                         <table class="table tile table-striped" id="pendingreferralCasesTable">
                             <thead>
                             <tr>

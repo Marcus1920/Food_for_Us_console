@@ -61,7 +61,40 @@ class CountryCodeController extends Controller
 
       return Redirect('/countrylistView');
     }
+    public function getCountries()
+    {
+        $searchString   = \Input::get('q');
+        $countries      = \DB::table('country_code')
 
+            ->whereRaw(
+                "CONCAT(`country_code`.`dial_code`, ' ', `country_code`.`name`) LIKE '%{$searchString}%'")
+            ->select(
+                array
+                (
+                    'country_code.id as id',
+                    'country_code.name',
+                    'country_code.internet',
+                    'country_code.dial_code'
+                )
+            )
+            ->get();
+
+        $data = array();
+
+        foreach ($countries as $country) {
+
+            $data[] = array(
+                "name"              => "{$country->name}",
+                "dial_code"         => "{$country->dial_code}",
+                "id"                => "{$country->id}",
+
+
+            );
+        }
+
+
+        return $data;
+    }
 
 
 }
