@@ -94,6 +94,10 @@
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
+                        return "<a href='{!! url('logins/" + d.id + "') !!}' class='btn btn-sm'>" + 'Logins' + "</a>";
+                    },"name" : 'name'},
+                    {data: function(d)
+                    {
                         return "<a href='{!! url('inactivateUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
                     },"name" : 'name'},
                 ],

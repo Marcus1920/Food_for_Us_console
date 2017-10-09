@@ -61,7 +61,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('resetpassword' ,'UsersController@forgot');
     Route::get('myProfile', 'UsersController@myProfile');
     Route::post('updateProfile', 'UsersController@updateProfile');
-    Route::get('myProfile','UsersController@myProfile');
+    Route::get('myProfile','UsereController@myProfile');
     Route::post('updateProfilePic','UsersController@updateAppUserProfile');
     Route::post('changepassword' ,'UsersController@changePassword');
 
@@ -346,5 +346,10 @@ Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile')
 Route::post('createRecipe','PublicWallController@createRecipe');
 Route::post('editRecipe','PublicWallController@editRecipe');
 Route::get('deleteRecipe','PublicWallController@deleteRecipe');
+
+Route::get('test','TransactionController@OverDue');
+
+//manage logins
+Route::get('logins/{id}','UsersController@viewLogins');
 
 ?>

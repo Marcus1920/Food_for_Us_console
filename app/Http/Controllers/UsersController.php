@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rules\In;
 use phpDocumentor\Reflection\Types\Null_;
+use Psr\Log\NullLogger;
 use Redirect;
 use Illuminate\Pagination\Paginator;
+use App\ManageLogin;
 use App\Http\Requests\EditAdminRequest;
 
 class UsersController extends Controller
@@ -176,6 +178,10 @@ class UsersController extends Controller
               $response['createdAt']   = $data->created_at;
 			  $response['active']      = 2;
 			  $response["msg"]         = "ok";
+
+			  $addLogin = new ManageLogin();
+			  $addLogin->new_user_id = $data->id;
+			  $addLogin->save();
            }
            else{
 
@@ -466,6 +472,25 @@ class UsersController extends Controller
         $userPost = NewUser::where('api_key', $api_key)->first();
         return  response()->json($userPost);
 
+    }
+
+    public function viewLogins($id)
+    {
+        $allLogins = ManageLogin::where('new_user_id',$id)->with('User')->orderBy('created_at','ASC')->get();
+
+        if($allLogins->count()==0)
+        {
+            $user = NewUser::find($id);
+
+            return view('ManageLogins.loginsNotFound', compact('user'));
+//            return "not found";
+        }
+        else {
+            $showLogins = ManageLogin::with('User')->where('new_user_id', $id)->get()->last();
+            $user = NewUser::find($showLogins->new_user_id);
+
+            return view('ManageLogins.viewLogins', compact('allLogins', 'showLogins', 'user'));
+        }
     }
 
 
