@@ -21,19 +21,19 @@ class SellersController extends Controller
     {
         
         $radius   = Input::get('radius');
+
         $cord1  = NewUser::where('api_key',Input::get('api_key'))->first();
         $cord1->gps_lat;
         $cord1->gps_long;
 
         $nearSellers = array();
-        foreach ( $seller = Sellers_details_tabs::all() as $cord2) {
+        foreach ( $seller = ProductPickupDetails::all() as $cord2) {
             $cord2->gps_lat;
             $cord2->gps_long;
-            $cord2->id;
-
+            $cord2->i;
             $earth_radius = 6371;
             $dLat = deg2rad($cord2->gps_lat - $cord1->gps_lat);
-			
+
 
             $dLon = deg2rad($cord2->gps_long - $cord1->gps_long);
 
@@ -42,7 +42,7 @@ class SellersController extends Controller
             $d = $earth_radius * $c;
 
             if ($radius > $d) {
-                $sellers = Sellers_details_tabs::where('id', $cord2->id)->get();
+                $sellers = ProductPickupDetails::where('id', $cord2->id)->get();
                 for ($i = 0; $i < count($sellers); $i++) {
                     array_push($nearSellers, $sellers[$i]);
                 }
