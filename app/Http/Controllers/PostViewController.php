@@ -28,6 +28,7 @@ class PostViewController extends Controller
                         new_users.name as name,
                         new_users.surname as surname,
                         new_users.email as email,
+                        new_users.idNumber as idNumber,
                         sellers_details_tabs.new_user_id,
                         sellers_details_tabs.productPicture,
                         sellers_details_tabs.location,

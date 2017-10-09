@@ -396,7 +396,6 @@ class UsersController extends Controller
 //        $radius     = UserTravelRadius::select('','kilometres')->get();
 //        return response()->json($radius);
 //    }
-
     public function viewAdmin($id)
         {
             $admin  = User::where('id',$id)->first();
@@ -473,7 +472,6 @@ class UsersController extends Controller
         return  response()->json($userPost);
 
     }
-
     public function viewLogins($id)
     {
         $allLogins = ManageLogin::where('new_user_id',$id)->with('User')->orderBy('created_at','ASC')->get();
