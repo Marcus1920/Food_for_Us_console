@@ -6,6 +6,8 @@ use App\PublicWall;
 use App\Sellers_details_tabs;
 use App\User;
 use App\UserDefaultLocation;
+//use Dotenv\Validator;
+use Validator;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use App\UserRoles;
@@ -16,6 +18,7 @@ use Illuminate\Validation\Rules\In;
 use phpDocumentor\Reflection\Types\Null_;
 use Psr\Log\NullLogger;
 use Redirect;
+
 use Illuminate\Pagination\Paginator;
 use App\ManageLogin;
 use App\Http\Requests\EditAdminRequest;
@@ -290,6 +293,64 @@ class UsersController extends Controller
         return Redirect::to('/users');
     }
     public  function  create  ()   {
+
+
+        $validator=Validator::make(
+            array(
+                'name'          =>Input::get('name'),
+                'surname'       =>Input::get('surname'),
+                'emails'        =>Input::get('emails'),
+                'cell'          =>Input::get('cell'),
+                'intrest'       =>Input::get('intrest'),
+                'IdNumber'      =>Input::get('IdNumber'),
+                'location'      =>Input::get('location'),
+                'travel_radius' =>Input::get('travel_radius'),
+                'description_of_acces'=> Input::get('description_of_acces'),
+            ),
+
+            array(
+                'name'          =>array('required','alpha','min:3'),
+                'surname'       =>array('required','alpha','min:3'),
+                'emails'        =>array('required','email','unique:new_users,email'),
+                'intrest'       =>array('required','alpha'),
+                'cell'          =>array('required','unique:new_users,cellphone'),
+                'IdNumber'      =>array('required','unique:new_users,idNumber'),
+                'location'      =>array('required'),
+                'travel_radius' =>array('required'),
+                'description_of_acces'=>array('required'),
+            ),array(
+
+                'name.required'         =>'The Name field is required',
+                'surname.required'      =>'The Surname field is required',
+                'intrest.required'      =>'Please select group',
+                'cell.required'         =>'The Phone Number field is required',
+                'cell.unique'           =>'This Phone Number is allready taken',
+                'emails.required'       =>'The Email field is required',
+                'emails.unique'         =>'This Email is allready taken',
+                'travel_radius.required'=>'Please select Notification Radius',
+                'IdNumber.required'     =>'The Identity Number field is required',
+                'IdNumber.unique'       =>'This Identity Number is allready taken',
+                'description_of_acces.required'=>'Please select mode of transport',
+
+            )
+        );
+
+
+        if ( $validator->fails() ) {
+
+
+            $errors=$validator->messages();
+
+            foreach ( $errors->all() as $error ) {
+                return response()->json($error);
+            }
+
+        }
+
+
+//        if ( ! empty( $errors ) ) {
+//
+//        }
 
         function generateRandomString($length = 24) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
