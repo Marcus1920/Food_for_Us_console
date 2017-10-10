@@ -3,8 +3,6 @@
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}">Home</a></li>
         <li class="active">Recipes List</li>
-        {{--<li class="active"><a>  </a></li>--}}
-        {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
     <h4 class="page-title">Recipes Listing</h4>
 
@@ -21,7 +19,7 @@
                         <table class="table tile table-striped" id="publicWallTable">
                             <thead>
                             <tr>
-                                <th>Id</th>
+                                {{--<th>Id</th>--}}
                                 <th>Type</th>
                                 <th>Title </th>
                                 <th>Methods</th>
@@ -70,7 +68,7 @@
 
 
                 "columns": [
-                    {data: 'id', name: 'id'},
+//                    {data: 'id', name: 'id'},
                     {data: 'type', name: 'type'},
                     {data: 'name', name: 'name'},
 

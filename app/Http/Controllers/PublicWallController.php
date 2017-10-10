@@ -118,7 +118,6 @@ class PublicWallController extends Controller
     public function deleteRecipe()
     {
         $id                 = Input::get('id');
-
         $deleteRecipe       = PublicWall::where('id',$id);
         $deleteRecipe->delete();
          $Recipes           = PublicWall::all();
