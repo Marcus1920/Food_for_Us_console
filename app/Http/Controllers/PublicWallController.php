@@ -120,7 +120,7 @@ class PublicWallController extends Controller
         $deleteRecipe               = PublicWall::where('id',$id);
         $deleteRecipe->delete();
         $Recipes                    = PublicWall::all();
-        return $Recipes;
+        return view('PublicWall.index');
 
 
     }
