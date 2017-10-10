@@ -307,6 +307,16 @@ class TransactionController extends Controller
 
                     case 'Completed':
                         $messageStatus = 'closed';
+
+                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+                        $originalQuantitySold                   = Sellers_details_tabs::select('quantitySold')
+                                                                    ->where('id',$transactionDetails->product)
+                                                                    ->where('new_user_id',$userDetails->id)
+                                                                    ->first();
+                        $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
+                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$transactionDetails->product)
+                                                                        ->update(['quantitySold'=>$QtySold]);
+
                         break;
 
                     case 'Cancelled':

@@ -37,6 +37,7 @@ class PostViewController extends Controller
                         product_types.name as productType,
                         product_types.id as productTypeId,
                         sellers_details_tabs.quantityPosted,
+                        sellers_details_tabs.quantitySold,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
                         sellers_details_tabs.country,

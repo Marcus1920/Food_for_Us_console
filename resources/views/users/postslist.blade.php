@@ -85,6 +85,7 @@
                     {data: 'productType', name: 'productType'},
                     {data: 'costPerKg', name: 'costPerKg'},
                     {data: 'quantityPosted', name: 'quantityPosted'},
+                    {data: 'quantitySold', name: 'quantitySold'},
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
