@@ -363,12 +363,12 @@ class TransactionController extends Controller
                         $messageStatus = 'cancelled';
 
                         $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+
                         $originalQuantity                       = Sellers_details_tabs::select('quantity')
-                                                                        ->where('id',$transactionDetails->product)
-                                                                        ->where('new_user_id',$userDetails->id)->first();
+                                                                        ->where('id',$transactionDetails->product)->first();
                         $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
                         $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
-                            ->update(['quantity'=>$totalQty]);
+                                                                    ->update(['quantity'=>$totalQty]);
                         break;
                 }
 

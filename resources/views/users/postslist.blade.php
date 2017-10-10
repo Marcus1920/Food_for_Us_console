@@ -25,10 +25,13 @@
                                 <th>Surname</th>
                                 <th>Email</th>
                                 <th>ID Number</th>
+                                <th>gps Lat</th>
+                                <th>gps long</th>
                                 <th>Packaging</th>
                                 <th>Product Type</th>
                                 <th>Cost Per KG</th>
                                 <th>Quantity Posted</th>
+                                <th>Quantity Sold</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -76,10 +79,12 @@
                     {data: 'surname', name: 'surname'},
                     {data: 'email', name: 'email'},
                     {data: 'idNumber', name: 'idNumber'},
+                    {data: 'gps_lat', name: 'gps_lat'},
+                    {data: 'gps_long', name: 'gps_long'},
                     {data: 'packaging', name: 'packaging'},
                     {data: 'productType', name: 'productType'},
                     {data: 'costPerKg', name: 'costPerKg'},
-                    {data: 'quantity', name: 'quantity'},
+                    {data: 'quantityPosted', name: 'quantityPosted'},
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
