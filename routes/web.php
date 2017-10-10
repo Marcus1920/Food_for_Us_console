@@ -28,6 +28,7 @@ Route::get('up' , 'SellersController@update') ;
 
 Route::get('/' , 'HomeController@index') ;
 Route::get('del' , 'SellersController@destroy');
+
 Route::group(array('prefix' => 'api/v1'), function() {
 
     // Product  type
@@ -103,10 +104,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('getTransportType','TransportController@getTransportType');
 */
 });
-
-
-
-
 
 // Transaction
 Route::get('transactionList','TransactionController@UsersTransacionList');

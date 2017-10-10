@@ -2,6 +2,7 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/master') }}">Home</a></li>
+        <li><a href="{{ url('/publicWall') }}">Recipe Listing</a></li>
         <li class="active">Add Recipe</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
@@ -60,14 +61,14 @@
             <div class="form-group">
                 {!! Form::label('ingredients', 'ingredients', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-10">
-                    <textarea rows="4" id="ingredients" name="ingredients" class="sms form-control" maxlength="500" placeholder="Enter recipe ingredients"></textarea>
+                    <textarea rows="4" id="ingredients" name="ingredients" class="sms form-control" maxlength="10000" placeholder="Enter recipe ingredients"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 {!! Form::label('methods', 'methods', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-10">
-                    <textarea rows="5" id="methods" name="methods" class="sms form-control" maxlength="500" placeholder="Enter recipe methods"></textarea>
+                    <textarea rows="8" id="methods" name="methods" class="sms form-control" maxlength="10000" placeholder="Enter recipe methods"></textarea>
                 </div>
             </div>
 			

@@ -16,7 +16,7 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title"> Active User  List</h3><h16>&nbsp</h16>
                         <a href="{{ url('userroleslist') }}" class="btn btn-sm">
                             <i aria-hidden="true" title="Filter Users By User Group" data-toggle="tooltip">Filter By User Group</i>
@@ -50,9 +50,8 @@
 
         jQuery(document).ready(function($){
 
-
             var activeUsersTable     = $('#activeUsersTable').DataTable({
-                "autoWidth": false,
+                "autoWidth": true,
 
                 "processing": true,
                 speed: 500,

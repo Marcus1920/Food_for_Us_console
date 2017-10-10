@@ -51,6 +51,7 @@ class PublicWallController extends Controller
  public function RecipeProfile($id)
     {
         $recipe=PublicWall::find($id);
+
         return view ('PublicWall.profile',compact('recipe'));
     }
     public function viewRecipe()
