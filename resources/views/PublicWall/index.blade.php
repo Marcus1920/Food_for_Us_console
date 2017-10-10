@@ -78,7 +78,9 @@
 
                     {data: function(d)
                     {
-                        return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'Read more' + "</a>";
+                        return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'Read more' + "</a>" +
+                       "<a href='{!! url('deleteRecipe/" + d.id + "') !!}' class='btn btn-sm'>" + 'Delete' + "</a>";
+
                     }},
                 ],
 

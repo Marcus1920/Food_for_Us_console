@@ -348,7 +348,7 @@ Route::get('RecipeProfile/{id}','PublicWallController@RecipeProfile')
             ->middleware('auth');
 Route::post('createRecipe','PublicWallController@createRecipe');
 Route::post('editRecipe','PublicWallController@editRecipe');
-Route::get('deleteRecipe','PublicWallController@deleteRecipe');
+Route::get('deleteRecipe/{id}','PublicWallController@deleteRecipe');
 
 Route::get('test','TransactionController@OverDue');
 

@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class CreatePublicWallTable extends Migration
 {
 
@@ -18,6 +18,7 @@ class CreatePublicWallTable extends Migration
             $table->string('type');
             $table->integer('poster')->unsigned();
             $table->foreign('poster')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ class CreatePublicWallTable extends Migration
 
     public function down()
     {
-
+        Schema::dropIfExists('public_wall');
     }
 }
