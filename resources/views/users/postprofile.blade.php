@@ -54,6 +54,14 @@
                                 <td>{{$data->paymentMethods}}</td>
                             </tr>
                             <tr>
+                                <td>Quantity Posted</td>
+                                <td>{{$data->quantityPosted}}</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity Sold</td>
+                                <td>{{$data->quantitySold}}</td>
+                            </tr>
+                            <tr>
                                 <td>Posted </td>
                                 <td>{{$data->Packaging->created_at->diffForHumans()}}</td>
 
@@ -93,6 +101,10 @@
     <tr>
         <td>Location</td>
         <td>{{$data->newuser->location}}</td>
+    </tr>
+    <tr>
+        <td>Id Number</td>
+        <td>{{$data->newuser->idNumber}}</td>
     </tr>
 
 

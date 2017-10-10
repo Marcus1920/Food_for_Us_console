@@ -23,6 +23,8 @@ class CreateSellersDetailsTabsTable extends Migration
             $table->string('costPerKg');
             $table->string('description');
             $table->string('country');
+            $table->string('quantitySold')->default(0);
+            $table->string('quantityPosted');
             $table->string('city');
             $table->integer('packaging')->unsigned();
             $table->foreign('packaging')->references('id')->on('packagings');

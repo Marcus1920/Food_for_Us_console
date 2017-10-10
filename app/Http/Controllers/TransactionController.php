@@ -308,7 +308,8 @@ class TransactionController extends Controller
                     case 'Completed':
                         $messageStatus = 'closed';
 
-                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+                        $getTransactionQuantity                 = Transaction::select('quantity')
+                                                                        ->where('id',$transactionId)->first();
                         $originalQuantitySold                   = Sellers_details_tabs::select('quantitySold')
                                                                     ->where('id',$transactionDetails->product)
                                                                     ->where('new_user_id',$userDetails->id)
@@ -617,10 +618,36 @@ class TransactionController extends Controller
     }
     public function transactionHistory()
     {
-        $transactionHistory = TransactionActivity::with('transactions','transactionStatuses','appUsers')
-            ->orderBy('id','desc')->get();
-        return Datatables::of($transactionHistory)
-            ->make(true);
+        $transactionHistory      =\DB::table('transaction_activities')
+                                        ->join('transactions','transaction_activities.transactionId','=','transactions.id')
+                                        ->join('new_users','transaction_activities.userId','=','new_users.id')
+                                        ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+                                        ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
+                                        ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
+                                        ->select(
+                                            \DB::raw
+                                            (
+                                                "
+                                                  transaction_activities.id,
+                                                  transactions.id as transactionId,
+                                                  transactions.quantity,
+                                                  product_types.name as productName,
+                                                  transaction_ratings.comment,
+                                                  transaction_ratings.rating,
+                                                  new_users.name,
+                                                  new_users.surname,
+                                                  new_users.idNumber,
+                                                  new_users.gps_lat,
+                                                  new_users.gps_long,
+                                                  transaction_ratings.created_at
+                                             
+                                                 "
+                                            )
+                                        )
+                                        ->get();
+                                return Datatables::of($transactionHistory)
+                                    ->make(true);
+
     }
 }
 
