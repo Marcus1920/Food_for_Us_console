@@ -325,6 +325,7 @@ Route::get('viewAdmin/{id}', 'UsersController@viewAdmin')
          ->middleware('auth');
 
 Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
+Route::get('userProfile/{id}', 'UsersController@userProfile');
 
 //End User role
 Route::get('reports','ReportsController@index')

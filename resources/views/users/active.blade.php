@@ -32,6 +32,8 @@
                                 <th>Location</th>
                                 <th>Travel Radius</th>
                                 <th>Description</th>
+                                <th>Gps Lat</th>
+                                <th>Gps Long</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -92,10 +94,12 @@
                     {data: 'location', name: 'location'},
                     {data: 'travelRadius', name: 'travelRadius'},
                     {data: 'descriptionOfAcces', name: 'descriptionOfAcces'},
+                    {data: 'gps_lat', name: 'gps_lat'},
+                    {data: 'gps_long', name: 'gps_long'},
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
-                        return "<a href='{!! url('logins/" + d.id + "') !!}' class='btn btn-sm'>" + 'Logins' + "</a>";
+                        return "<a href='{!! url('logins/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
                     },"name" : 'name'},
                     {data: function(d)
                     {

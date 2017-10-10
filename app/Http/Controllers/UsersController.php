@@ -554,6 +554,13 @@ class UsersController extends Controller
         }
     }
 
+    public function userProfile($id)
+    {
+        $user = NewUser::find($id);
+
+        return view('users.userProfile', compact('user'));
+    }
+
 
 }
 

@@ -69,7 +69,9 @@ class HomeController extends Controller
                                     user_travel_radii.kilometres as travelRadius,
                                     new_users.cellphone,
                                     new_users.descriptionOfAcces,
-                                    new_users.created_at
+                                    new_users.created_at,
+                                    new_users.gps_lat,
+                                    new_users.gps_long
                                     
                                     "
             )

@@ -96,6 +96,10 @@
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
+                        return "<a href='{!! url('userProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                    },"name" : 'name'},
+                    {data: function(d)
+                    {
                         return "<a href='{!! url('editUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'Activate' + "</a>";
                     },"name" : 'name'},
                 ],
