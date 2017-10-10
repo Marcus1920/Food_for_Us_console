@@ -10,7 +10,7 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">Admin User  List </h3>
 
                         <a href="{{url('register')}}"> <button type="submit" id='addingAdmin' class="btn btn-info btn-sm m-t-10" style="margin-bottom: 1%">Add Admin</button></a>

@@ -14,7 +14,7 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">Countries</h3>
                         {{--<a href="{{ url('CreateProduct') }}" class="btn btn-sm">--}}
                             {{--<i class="fa fa-plus" aria-hidden="true" title="Add new product" data-toggle="tooltip"></i>--}}
@@ -42,13 +42,9 @@
 @endsection
 @section('footer')
     <script>
-
         jQuery(document).ready(function($){
-
-
             var pendingreferralCasesTable     = $('#pendingreferralCasesTable').DataTable({
                 "autoWidth": false,
-
                 "processing": true,
                 speed: 500,
                 "dom": 'Bfrtip',
