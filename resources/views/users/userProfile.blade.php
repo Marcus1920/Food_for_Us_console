@@ -2,7 +2,7 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}">Home</a></li>
-        <li><a href="{{ url('/activeUsers') }}">Active Users</a></li>
+        <li><a href="{{ url('/inactiveUsers') }}">Inactive Users</a></li>
         <li class="active">User Details</li>
 
     </ol>
@@ -12,74 +12,60 @@
     <br/>
 
     <div class="col-md-12">
-            <div class="col-md-4">
+        <div class="col-md-4">
 
 
-                <h3 class="block-title">User Details</h3>
+            <h3 class="block-title">User Details</h3>
 
 
 
-                <div class="col-md-12" >
-                    <img alt="Loading sellers picture" src="{{$user->profilePicture}}" style="width: 350px;height: 300px" >
-                </div>
-
-                <table class="table">
-                    <tr>
-                        <td>Name</td>
-                        <td>{{$user->name}}</td>
-                    </tr>
-                    <tr>
-                        <td> Surname</td>
-                        <td>{{$user->surname}}</td>
-                    </tr>
-                    <tr>
-                        <td> Cellphone</td>
-                        <td>{{$user->cellphone}}</td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>{{$user->email}}</td>
-                    </tr>
-                    <tr>
-                        <td>Location</td>
-                        <td>{{$user->location}}</td>
-                    </tr>
-
-
-                </table>
-
-
+            <div class="col-md-12" >
+                <img alt="Loading sellers picture" src="{{$user->profilePicture}}" style="width: 350px;height: 300px" >
             </div>
-            <div class="col-md-8">
 
-                <div class="panel panel-default">
-                    <br/>
-                    <div class="panel-body">
-                        <h2 class="alert alert-success">Last Login</h2>
+            <table class="table">
+                <tr>
+                    <td>Name</td>
+                    <td>{{$user->name}}</td>
+                </tr>
+                <tr>
+                    <td> Surname</td>
+                    <td>{{$user->surname}}</td>
+                </tr>
+                <tr>
+                    <td> Cellphone</td>
+                    <td>{{$user->cellphone}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{$user->email}}</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>{{$user->location}}</td>
+                </tr>
 
-                        <p class="text-left">{{$showLogins->created_at->diffForHumans() }}</p>
 
-                    </div>
+            </table>
 
 
-                    <div class="panel-body">
-                        <h2 class="alert alert-success">Number Of Logins</h2>
-
-                        <p class="text-left">{{count($allLogins,0)}}</p>
-
-                    </div>
-
-                    <div class="panel-body">
-                        <h2 class="alert alert-success">User Location</h2>
-                         <div  id="map" style="height: 350px;">
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
         </div>
+        <div class="col-md-8">
+
+            <div class="panel panel-default">
+                <br/>
+
+                <div class="panel-body">
+                    <h2 class="alert alert-success">User Location</h2>
+                    <div  id="map" style="height: 500px;">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
     </div>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwXS96_uM6y-6ZJZhSJGE87pO-qxpDp-Q&libraries=geometry,places"></script>

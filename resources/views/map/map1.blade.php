@@ -63,20 +63,20 @@
                         <br/>
                         <br/>
                         &nbsp;
-                        @foreach($productTypes as $productType)
-                            <div class="row">
-                                <form  class="form-horizontal"  method="post" action="searchByProductType">
+                        {{--@foreach($productTypes as $productType)--}}
+                            {{--<div class="row">--}}
+                                {{--<form  class="form-horizontal"  method="post" action="searchByProductType">--}}
 
-                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                    <input type="hidden" name="productTypeId" value="{{$productType->id}}">
+                                    {{--<input type="hidden" name="_token" value="{!! csrf_token() !!}">--}}
+                                    {{--<input type="hidden" name="productTypeId" value="{{$productType->id}}">--}}
 
-                                    <div class="col-sm-4"><button type="submit" title="Search for {{$productType->name}} cases" class="btn"><img src="{{$productType->marker_url}}" alt=""></button></div>
+                                    {{--<div class="col-sm-4"><button type="submit" title="Search for {{$productType->name}} cases" class="btn"><img src="{{$productType->marker_url}}" alt=""></button></div>--}}
 
-                                    <div class="col-sm-8" style="color: white;">{{$productType->name}}</div>
-                                </form>
-                            </div>
-                            &nbsp;
-                        @endforeach
+                                    {{--<div class="col-sm-8" style="color: white;">{{$productType->name}}</div>--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
+                            {{--&nbsp;--}}
+                        {{--@endforeach--}}
 
                     </div>
                 </div>
