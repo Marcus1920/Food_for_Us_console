@@ -77,9 +77,9 @@ class MapController extends Controller
                        <td>-There is no transaction...</td>
                        </tr>
                       </div>";
-                $images=$sellersPost->Products->marker_url;
+//                $images=$sellersPost->Products->marker_url;
 
-                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','label'=>$sellersPost->id]);
 
 //                return "null";
             }else{
@@ -129,9 +129,9 @@ class MapController extends Controller
                        <td><b>Quantity :</b>&nbsp; </td><td>$transaction->quantity</td>
                        </tr>
                       </div>";
-                $images=$sellersPost->Products->marker_url;
+//                $images=$sellersPost->Products->marker_url;
 
-                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','label'=>$sellersPost->id]);
 
 
 //                return "something";

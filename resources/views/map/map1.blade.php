@@ -34,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div style=" height:600px ;">
                             @if(Session::has('success'))
                                 <div class="alert alert-success alert-icon">
@@ -51,17 +51,17 @@
 
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    {{--<div class="col-md-2">--}}
 
-                        <h2 class="tile-title" style="color: white;"><i class="glyphicon glyphicon-map-marker"></i> Marker Labels
-                            <div class="pull-right">
-                                <a href="{{ url('tasks') }}" >
+                        {{--<h2 class="tile-title" style="color: white;"><i class="glyphicon glyphicon-map-marker"></i> Marker Labels--}}
+                            {{--<div class="pull-right">--}}
+                                {{--<a href="{{ url('tasks') }}" >--}}
                                     {{--Total.....<i class="n-count animated">{{ count($allTasks,0) }}</i>--}}
-                                </a>
-                            </div>
-                        </h2>
-                        <br/>
-                        <br/>
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</h2>--}}
+                        {{--<br/>--}}
+                        {{--<br/>--}}
                         &nbsp;
                         {{--@foreach($productTypes as $productType)--}}
                             {{--<div class="row">--}}
@@ -78,7 +78,7 @@
                             {{--&nbsp;--}}
                         {{--@endforeach--}}
 
-                    </div>
+                    {{--</div>--}}
                 </div>
             </div>
         </nav>
