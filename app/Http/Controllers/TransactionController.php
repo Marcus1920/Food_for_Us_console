@@ -124,8 +124,7 @@ class TransactionController extends Controller
                       sellers_details_tabs.productPicture,
                       product_types.name as productName,
                       transactions.created_at 
-                                                            
-                   "
+                         "
                     )
                 )
                 ->where('transactions.seller_id', $userDetails->id, '=')
@@ -179,7 +178,8 @@ class TransactionController extends Controller
         $buyer = NewUser::where('api_key', Input::get('api_key'))->first();
         $productName = Sellers_details_tabs::select('id')
             ->where('id', Input::get('id'))
-            ->where('productType', Input::get('foodItem'))->first();
+            ->where('productType', Input::get('foodItem'))
+            ->first();
 
         $initialQuantity = Sellers_details_tabs::select('quantity')
             ->where('id', Input::get('id'))
@@ -268,7 +268,8 @@ class TransactionController extends Controller
             $transactionStatusName = Input::get('statusName');
             $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
             $transactionStatusDetails = TransactionStatus::where('slug', $transactionStatusName)->first();
-            if ($userDetails->intrest == 1) {
+            if ($userDetails->intrest == 1)
+            {
                 $sellerTransactionsUpdates = Transaction::where('id', $transactionId)
                     ->where('seller_id', $userDetails->id)
                     ->update(['status' => $transactionStatusDetails->id]);
@@ -279,10 +280,10 @@ class TransactionController extends Controller
                 $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->buyer_id)->first();
 
 
-                $sellerTransactionsActivity = new TransactionActivity();
-                $sellerTransactionsActivity->userId = $userDetails->id;
-                $sellerTransactionsActivity->transactionId = $transactionId;
-                $sellerTransactionsActivity->status = $transactionStatusDetails->id;
+                $sellerTransactionsActivity                   = new TransactionActivity();
+                $sellerTransactionsActivity->userId           = $userDetails->id;
+                $sellerTransactionsActivity->transactionId    = $transactionId;
+                $sellerTransactionsActivity->status           = $transactionStatusDetails->id;
                 $sellerTransactionsActivity->save();
 
 
@@ -294,26 +295,42 @@ class TransactionController extends Controller
 
                     case 'Declined':
                         $messageStatus = 'rejected';
+
+                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+                        $originalQuantity                       = Sellers_details_tabs::select('quantity')
+                                                                ->where('id',$transactionDetails->product)
+                                                                ->where('new_user_id',$userDetails->id)->first();
+                        $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
+                        $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
+                                                                ->update(['quantity'=>$totalQty]);
                         break;
 
                     case 'Completed':
                         $messageStatus = 'closed';
+
+                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+                        $originalQuantitySold                   = Sellers_details_tabs::select('quantitySold')
+                                                                    ->where('id',$transactionDetails->product)
+                                                                    ->where('new_user_id',$userDetails->id)
+                                                                    ->first();
+                        $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
+                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$transactionDetails->product)
+                                                                        ->update(['quantitySold'=>$QtySold]);
+
                         break;
 
                     case 'Cancelled':
                         $messageStatus = 'cancelled';
                         break;
                 }
-
                 $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
-
                 $data = array(
 
                     'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
                     'content' => $messageBody,
                 );
-
-                \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails) {
+                \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails)
+                {
                     $message->from('Info@FoodForUs.cloud', 'Food For us');
                     $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
                 });
@@ -354,6 +371,14 @@ class TransactionController extends Controller
 
                     case 'Cancelled':
                         $messageStatus = 'cancelled';
+
+                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+
+                        $originalQuantity                       = Sellers_details_tabs::select('quantity')
+                                                                        ->where('id',$transactionDetails->product)->first();
+                        $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
+                        $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
+                                                                    ->update(['quantity'=>$totalQty]);
                         break;
                 }
 

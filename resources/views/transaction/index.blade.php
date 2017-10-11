@@ -1,6 +1,5 @@
 @extends('master')
 @section('content')
-
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}">Home</a></li>
         <li class="active">Transaction List</li>
@@ -8,7 +7,6 @@
     <h4 class="page-title">Transaction List</h4>
 
     <div class="tab-pane" id="inactive">
-
         <div class="row">
             <div class="col-md-12" >
                 <div class="tab-pane" id="closure">
@@ -35,7 +33,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     @endsection

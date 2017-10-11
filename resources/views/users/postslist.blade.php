@@ -15,7 +15,7 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">Post </h3>
                         <table class="table tile table-striped" id="sellersPostTable">
                             <thead>
@@ -24,10 +24,14 @@
                                 <th>Name</th>
                                 <th>Surname</th>
                                 <th>Email</th>
+                                <th>ID Number</th>
+                                <th>gps Lat</th>
+                                <th>gps long</th>
                                 <th>Packaging</th>
                                 <th>Product Type</th>
                                 <th>Cost Per KG</th>
-                                <th>Quantity</th>
+                                <th>Quantity Posted</th>
+                                <th>Quantity Sold</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -45,11 +49,8 @@
     <script>
 
         jQuery(document).ready(function($){
-
-
             var sellersPostTable     = $('#sellersPostTable').DataTable({
                 "autoWidth": false,
-
                 "processing": true,
                 speed: 500,
                 "dom": 'Bfrtip',
@@ -57,44 +58,40 @@
                     'copyHtml5',
                     'excelHtml5',
                     ,{
-
                         extend : 'pdfHtml5',
                         title  : 'Siyaleader_Report',
                         header : 'I am text in',
                     },
-
                 ],
-
-
                 "order" :[[0,"desc"]],
                 "ajax": "{!! url('/sellersPostList/')!!}",
                 "processing": true,
                 "serverSide": true,
                 "order" :[[0,"desc"]],
-
                 "buttons": [
                     'excelHtml5',
                     'csvHtml5',
                     'pdfHtml5'
                 ],
-
-
                 "columns": [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
                     {data: 'surname', name: 'surname'},
                     {data: 'email', name: 'email'},
+                    {data: 'idNumber', name: 'idNumber'},
+                    {data: 'gps_lat', name: 'gps_lat'},
+                    {data: 'gps_long', name: 'gps_long'},
                     {data: 'packaging', name: 'packaging'},
                     {data: 'productType', name: 'productType'},
                     {data: 'costPerKg', name: 'costPerKg'},
-                    {data: 'quantity', name: 'quantity'},
+                    {data: 'quantityPosted', name: 'quantityPosted'},
+                    {data: 'quantitySold', name: 'quantitySold'},
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
                         return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
                     }},
                 ],
-
                 "aoColumnDefs": [
                     { "bSearchable": false, "aTargets": [ 4] },
                     { "bSortable": false, "aTargets": [ 4] }

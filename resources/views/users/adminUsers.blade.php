@@ -53,24 +53,20 @@
     <script>
 
         jQuery(document).ready(function($){
-
-
             var adminTable     = $('#adminTable').DataTable({
                 "autoWidth": false,
-
                 "processing": true,
+                "sorting":true,
                 speed: 500,
                 "dom": 'Bfrtip',
                 "buttons": [
                     'copyHtml5',
                     'excelHtml5',
                     ,{
-
                         extend : 'pdfHtml5',
                         title  : 'Siyaleader_Report',
                         header : 'I am text in',
                     },
-
                 ],
 
 
@@ -103,8 +99,8 @@
                 ],
 
                 "aoColumnDefs": [
-                    { "bSearchable": false, "aTargets": [ 5] }
-//                { "bSortable": false, "aTargets": [ 1] }
+                    { "bSearchable": false, "aTargets": [ 5] },
+                   { "bSortable": false, "aTargets": [ 1] }
                 ]
 
             });

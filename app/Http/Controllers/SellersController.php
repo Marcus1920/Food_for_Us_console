@@ -220,6 +220,7 @@ class SellersController extends Controller
         $sellersPost->location          = Input::get('country').', '.Input::get('city');
         $sellersPost->description       = Input::get('description');
         $sellersPost->quantity          = Input::get('quantity');
+        $sellersPost->quantityPosted    = Input::get('quantity');
         // $sellersPost->gps_lat           = Input::get('gps_lat');
         // $sellersPost->gps_long          = Input::get('gps_long');
         $sellersPost->availableHours    =  Input::get('availableHours');
