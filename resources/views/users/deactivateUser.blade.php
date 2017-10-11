@@ -79,7 +79,7 @@
             <div class="form-group">
                 {!! Form::label(' Active', 'Active', array('class' => 'col-md-2 control-label')) !!}
                 <div class="col-md-6">
-                    {!! Form::select('active',$selectUserStatuses,2,['class' => 'form-control input-sm' ,'id' => 'active']) !!}
+                    {!! Form::select('active',$selectUserStatuses,3,['class' => 'form-control input-sm' ,'id' => 'active']) !!}
                 </div>
             </div>
 

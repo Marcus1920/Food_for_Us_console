@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
         {
             $userStatuses          = UserStatus::orderBy('name','ASC')->get();
             $selectUserStatuses    = array();
-            $selectUserStatuses[0] = "Select Status";
+           // $selectUserStatuses[0] = "Select Status";
 
             foreach ($userStatuses as $userStatus) {
                 $selectUserStatuses[$userStatus->id] = $userStatus->name;
