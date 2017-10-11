@@ -41,6 +41,14 @@
                         <td>{{$user->email}}</td>
                     </tr>
                     <tr>
+                        <td> Gps Lattitude</td>
+                        <td>{{$user->gps_lat}}</td>
+                    </tr>
+                    <tr>
+                        <td>Gps Longitude</td>
+                        <td>{{$user->gps_long}}</td>
+                    </tr>
+                    <tr>
                         <td>Location</td>
                         <td>{{$user->location}}</td>
                     </tr>

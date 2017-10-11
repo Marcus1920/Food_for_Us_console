@@ -50,8 +50,9 @@
 
         jQuery(document).ready(function($){
 
+
             var activeUsersTable     = $('#activeUsersTable').DataTable({
-                "autoWidth": true,
+                "autoWidth": false,
 
                 "processing": true,
                 speed: 500,
@@ -94,11 +95,11 @@
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
-                        return "<a href='{!! url('logins/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                    return "<a href='{!! url('logins/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
                     },"name" : 'name'},
                     {data: function(d)
                     {
-                        return "<a href='{!! url('inactivateUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
+                    return "<a href='{!! url('inactivateUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
                     },"name" : 'name'},
                 ],
 
