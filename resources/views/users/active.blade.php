@@ -46,69 +46,65 @@
 </div>
 @endsection
 @section('footer')
+    {{--<script src="jquery-1.11.2.js"></script>--}}
+    {{--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">--}}
     <script>
 
-        jQuery(document).ready(function($){
+        $(document).ready(function () {
 
 
-            var activeUsersTable     = $('#activeUsersTable').DataTable({
-                "autoWidth": false,
 
-                "processing": true,
-                speed: 500,
-                "dom": 'Bfrtip',
-                "buttons": [
-                    'copyHtml5',
-                    'excelHtml5',
-                    ,{
+            $('#activeUsersTable').dataTable({
 
-                        extend : 'pdfHtml5',
-                        title  : 'Siyaleader_Report',
-                        header : 'I am text in',
+                ajax:"{!! url('/active/')!!}","processing": true,
+                columns: [
+                    { data: 'id' },
+                    { data: 'name' },
+                    { data: 'surname' },
+                    { data: 'email' },
+                    { data: 'intrest' },
+                    { data: 'location' },
+                    { data: 'travelRadius' },
+                    { data: 'descriptionOfAcces' },
+                    { data: 'created_at' },
+                    { data: function (data, type, row) {
+                        return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>"+
+                            "<a href='{!! url('inactivateUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
+
+                        data.replace( /[$,]/g, '' )
+                            data;
+                    } }
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+
+                    {
+                        extend: 'copyHtml5',
+                        orientation: 'landscape',
+                        exportOptions: { orthogonal: 'export',
+                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                        }
                     },
-
-                ],
-
-
-                "order" :[[0,"desc"]],
-                "ajax": "{!! url('/active/')!!}","processing": true,
-                "serverSide": true,
-                "dom": 'Bfrtip',
-                "order" :[[0,"desc"]],
-
-                "buttons": [
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
-                ],
-
-
-                "columns": [
-                    {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
-                    {data: 'surname', name: 'surname'},
-                    {data: 'email', name: 'email'},
-                    {data: 'intrest', name: 'intrest'},
-                    {data: 'location', name: 'location'},
-                    {data: 'travelRadius', name: 'travelRadius'},
-                    {data: 'descriptionOfAcces', name: 'descriptionOfAcces'},
-                    {data: 'created_at', name: 'created_at'},
-                    {data: function(d)
                     {
-                    return "<a href='{!! url('logins/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
-                    },"name" : 'name'},
-                    {data: function(d)
+                        extend: 'excelHtml5',
+                        orientation: 'landscape',
+                        exportOptions: { orthogonal: 'export',
+                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                        }
+                    },
                     {
-                    return "<a href='{!! url('inactivateUsers/" + d.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
-                    },"name" : 'name'},
-                ],
-
-                "aoColumnDefs": [
-                    { "bSearchable": false, "aTargets": [ 4] },
-                    { "bSortable": false, "aTargets": [ 4] }
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        exportOptions: { orthogonal: 'export',
+                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                        }
+                    }
                 ]
-
             });
-        });
+
+        })
     </script>
+    
+
+
 @endsection
