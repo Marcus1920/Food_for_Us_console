@@ -16,6 +16,7 @@
 
 
     <!-- CSS -->
+
     <link href="{{ asset('/css/token-input.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/animate.min.css') }}" rel="stylesheet">
@@ -291,6 +292,7 @@
 
 <!-- Noty JavaScript -->
 <script src="{{ asset('/bower_components/noty/js/noty/packaged/jquery.noty.packaged.js') }}"></script>
+
 
 <!-- DataTables JavaScript -->
 
