@@ -31,6 +31,7 @@
                                     <th>Transaction rating</th>
                                     <th>Transaction Comment</th>
                                     <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -87,7 +88,7 @@
                         {data: 'created_at', name: 'created_at'},
                         {data: function(d)
                         {
-                            return "<a href='{!! url('viewUserTransaction/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                            return "<a href='{!! url('viewUserTransaction/" + d.id + "/" + d.idNumber + " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";
                         }},
 
                 ],

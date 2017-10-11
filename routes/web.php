@@ -22,10 +22,6 @@ Route::get('all' , 'SellersController@index')
                        ->middleware('auth');
 Route::get('up' , 'SellersController@update') ;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('/' , 'HomeController@index') ;
 Route::get('del' , 'SellersController@destroy');
 
@@ -73,9 +69,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('transactionRating','TransactionController@transactionRating');
     Route::get('transactionStatuses','TransactionController@transactionStatuses');
     Route::post('deleteTransaction','TransactionController@deleteTransaction');
-    Route::post('viewUserTransaction','TransactionController@viewUserTransaction');
-
-
     Route::get('test','TransactionController@sellerTransactionDetails');
 
     // Cart
@@ -107,14 +100,18 @@ Route::group(array('prefix' => 'api/v1'), function() {
 */
 });
 
-// Transaction
+//BACKEND ROUTING
+
+// Transaction Routing
 Route::get('transactionList','TransactionController@UsersTransacionList');
 Route::get('transactionHistory','TransactionController@transactionHistory');
-
+Route::get('viewUserTransaction/{id}/{idNumber}','TransactionController@viewUserTransaction');
 Route::get('/userTransaction' ,'TransactionController@userTransactionsActivity')
     ->name('user.transactions')
     ->middleware('auth');
 
+
+//Country Routing
 Route::get('countrylist','CountryCodeController@allCountries4Console');
 Route::get('countrylistView','CountryCodeController@countryView');
 Route::get('editCountryCode/{id}','CountryCodeController@editCountry')
@@ -122,26 +119,19 @@ Route::get('editCountryCode/{id}','CountryCodeController@editCountry')
 Route::post('updateCountry','CountryCodeController@update');
 Route::get('getCountries', ['middleware' => 'auth', 'uses' => 'CountryCodeController@getCountries']);
 
+//Admin User Routing
 Route::get('/userEdit/{id}' , 'Auth\RegisterController@edit')
                ->name('userEdit')
                ->middleware('auth');
-
 Route::get('/master' , 'MapController@getUsers')
              ->name('master') ;
-//Route::get('/users' , 'HomeController@users')->name('users') ;
 
 Route::get('/users' , 'HomeController@show')
           ->name('users');
-           //->middleware('auth');
-
 Route::get('/register' , 'HomeController@register')
           ->name('register')
           ->middleware('auth');
-
 Route::post('/createUser' , 'Auth\RegisterController@create');
-            // ->name('createUser')
-             //->midlleware('auth');
-
 Route::get('/editUsers/{id}',['middleware'=>'auth', function($id)
 {
     $user = NewUser::where('id','=',$id)->first();
@@ -156,28 +146,22 @@ Route::get('/inactivateUsers/{id}',['middleware'=>'auth', function($id)
 Route::get('activeUsers',['middleware'=>'auth', function (){
    return view('users.active');
 }]);
-
 Route::get('inactiveUsers',['middleware'=>'auth', function (){
     return view('users.inactive');
 }]);
-
 Route::get('inactive' , 'HomeController@InactiveusersLis')
               ->name('inactive')
                ->middleware('auth');
 Route::get('deactivated' ,'HomeController@deactivatedusersList')
                 ->name('inactive')
                 ->middleware('auth');
-
 Route::get('deactivatedUser' ,['middleware'=>'auth', function ()
 {
-
     return view('users.deactivated');
 }]) ;
-
 Route::get('active' , 'HomeController@activeusersLis')
         ->name('active')
         ->middleware('auth');
-
 Route::get('/createUser',['middleware'=>'auth', function()
 {
     return view('users.edit',compact('user'));
@@ -197,14 +181,6 @@ Route::get('/inactivation',function()
 {
     return view('emails.inactivation',compact('inactivation'));
 });
-//Route::get('/resetpassword',['middleware'=>'auth',function()
-//{
-//    return view('emails.resetpassword',compact('resetpassword'));
-//}]);
-//Route::get('/reset',function()
-//{
-//    return view('passwords.reset',compact('reset'));
-//});
 
 Route::get('/transaction',['middleware'=>'auth', function ()
 {
