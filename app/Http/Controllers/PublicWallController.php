@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Yajra\DataTables\DataTables;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class PublicWallController extends Controller
 {
 
@@ -26,7 +26,7 @@ class PublicWallController extends Controller
 
     public function getRecipes()
     {
-        $recipes=\DB::table('public_wall')
+        $recipes=\DB::table('public_wall')->where('deleted_at', '=', null)
             ->join('users', 'public_wall.poster', '=', 'users.id')
             ->select(
                 \DB::raw(
@@ -48,7 +48,7 @@ class PublicWallController extends Controller
 
         return $recipes;
     }
- public function RecipeProfile($id)
+    public function RecipeProfile($id)
     {
         $recipe=PublicWall::find($id);
 
@@ -64,10 +64,10 @@ class PublicWallController extends Controller
     }
 
 
-    public function editRecipe()
+    public function editRecipe($id)
     {
 
-        $id =Input::get('id');
+
 
        
         $recipe = PublicWall::where('id',$id)
@@ -80,7 +80,7 @@ class PublicWallController extends Controller
 
 
 
-        $updatedRecipe=PublicWall::get()->where('id',$id);
+        $updatedRecipe=PublicWall::all();
 
         return $updatedRecipe;
     }
@@ -115,14 +115,12 @@ class PublicWallController extends Controller
         return Redirect('/publicWall');
     }
 
-    public function deleteRecipe()
+    public function deleteRecipe($id)
     {
-        $id                 = Input::get('id');
-
-        $deleteRecipe       = PublicWall::where('id',$id);
+        $deleteRecipe               = PublicWall::where('id',$id);
         $deleteRecipe->delete();
-         $Recipes           = PublicWall::all();
-         return $Recipes;
+        $Recipes                    = PublicWall::all();
+        return view('PublicWall.index');
 
 
     }
