@@ -675,6 +675,7 @@ class TransactionController extends Controller
                                                   new_users.idNumber,
                                                   new_users.gps_lat,
                                                   new_users.gps_long,
+                                                  new_users.profilePicture,
                                                   transaction_ratings.created_at
                                              
                                                  "

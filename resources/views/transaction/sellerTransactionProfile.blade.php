@@ -1,9 +1,9 @@
 @extends('master')
 @section('content')
-    <ol class="breadcrumb hidden-xs">
+    <ol class="breadcrumb hidden-xs" xmlns="http://www.w3.org/1999/html">
         <li><a href="{{ url('/users') }}">Home</a></li>
         <li><a href="{{ url('/transactionList') }}">Transaction Listing</a></li>
-        <li class="active">Posts</li>
+        <li class="active">Transaction Details</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
@@ -16,60 +16,47 @@
         <div class="row">
 
             <div class="col-md-4">
-                <h3 class="block-title">User Profile</h3>
-                <div class="col-md-12">
-                    <img class="img" alt="Loading Product picture">
-                    <table class="table table-condensed">
-                        <tr>
-                            <td>NAME</td>
-                            <td>{{$userTransactionDetails->name}}</td>
-                        </tr>
-                        <tr>
-                            <td>SURNAME</td>
-                            <td>{{$userTransactionDetails->surname}}</td>
-                        </tr>
-                        <tr>
-                        <tr>
-                            <td>GPS LATITUDE</td>
-                            <td>{{$userTransactionDetails->gps_lat}}</td>
-                        </tr>
-                        <tr>
-                            <td>GPS LONGITUDE</td>
-                            <td>{{$userTransactionDetails->gps_long}}</td>
-                        </tr>
-
-
-                            <tr>
-                                <td>TRANSACTION ID</td>
-                                <td>{{$userTransactionDetails->transactionId}}</td>
-                            </tr>
-
-                            <tr >
-                            <td>TRANSACTION QUANTITY</td>
-                            <td>{{$userTransactionDetails->quantity}}</td>
-                        </tr>
-                            <tr >
-                            <td>TRANSACTION COMMENT</td>
-                            <td>{{$userTransactionDetails->comment}}</td>
-                        </tr>
-                            <tr >
-                            <td>TRANSACTION RATING</td>
-                            <td>{{$userTransactionDetails->rating}}</td>
-                        </tr>
-
-                    </table>
+                <div class="container">
+                    <div class="panel panel-default">
+                        <div>
+                            <div  class="center-block" id ="-imgContainer" style="max-width: 200px;max-height: 200px; display:block; margin-right: auto; margin-left:auto;">
+                                <img class="img" alt="Loading Product picture" src="{{$userTransactionDetails->profilePicture}}">
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p class="text-center">
+                               <strong>{{$userTransactionDetails->name}} {{$userTransactionDetails->surname}}</strong>
+                           </p>
+                            <p class="text-center"> GPS LAT : {{$userTransactionDetails->gps_lat}}  GPS LONG : {{$userTransactionDetails->gps_long}}</p>
+                            <div class="divider"></div>
+                            <span class="text-center">
+                                <dl class="dl-horizontal">
+                                    <dt>TRANSACTION ID</dt>
+                                    <dd>{{$userTransactionDetails->transactionId}} </dd>
+                                    <dt>TRANSACTION QUANTITY</dt>
+                                    <dd>{{$userTransactionDetails->quantity}} </dd>
+                                    <dt>TRANSACTION COMMENT</dt>
+                                    <dd>{{$userTransactionDetails->comment}}</dd>
+                                    <dt>TRANSACTION RATING</dt>
+                                    <dd>{{$userTransactionDetails->rating}}</dd>
+                                </dl>
+                                </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-8">
                 <div class="tile">
-                    <h1 class="tile-title">{{strtoupper($userTransactionDetails->name)}} {{strtoupper($userTransactionDetails->surname)}}'s Transaction History</h1>
+                    <h1 class="tile-title">{{strtoupper($userTransactionDetails->name)}} {{strtoupper($userTransactionDetails->surname)}} Transaction History</h1>
 
                     <div class="listview narrow">
                         @foreach($sellerTransactionSide as $item)
                             <div class="media p-l-5">
                                 <div class="pull-left">
-
+                                    <div class="pull-left">
+                                        <img src="{{$item->buyers->profilePicture}}" class="media-object" style="width:60px">
+                                    </div>
                                 </div>
                                 <div class="media-body">
                                     <span class="t-overflow" href="">{{strtoupper($item->buyers->name)}} {{strtoupper($item->buyers->surname)}}</span><br>
