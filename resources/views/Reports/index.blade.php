@@ -35,14 +35,11 @@
         <br/>
     </div>
     <div class="col-md-12">
-        {{--<div class="col-md-3">--}}
-
+        {{--<div class="col-md-6">--}}
+           {!! $chart2->html() !!}
         {{--</div>--}}
         {{--<div class="col-md-6">--}}
-            {!! $chart2->html() !!}
-        {{--</div>--}}
-        {{--<div class="col-md-3">--}}
-
+{{--            {!! $chart2->html() !!}--}}
         {{--</div>--}}
 </div>
 <!-- Main Application (Can be VueJS or other JS framework) -->
