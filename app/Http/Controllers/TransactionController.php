@@ -97,7 +97,7 @@ class TransactionController extends Controller
     {
         $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
 
-        if ($userDetails->intrest == 1) {
+        if ($userDetails->intrest == 1   ) {
 
             $sellerTransactionsDetails = \DB::table('transactions')
                 ->join('new_users', 'transactions.buyer_id', '=', 'new_users.id')

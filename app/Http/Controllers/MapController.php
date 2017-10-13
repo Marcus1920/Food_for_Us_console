@@ -50,7 +50,7 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
+                      <td><b>Product Name :</b></td><td>{$sellersPost->Product}</td>
                       </tr>
                       <br/>
                       <tr>
@@ -77,9 +77,15 @@ class MapController extends Controller
                        <td>-There is no transaction...</td>
                        </tr>
                       </div>";
+
+                //$images=$sellersPost->Products->marker_url;
+
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true',]);
+
 //                $images=$sellersPost->Products->marker_url;
 
                 $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','label'=>$sellersPost->id]);
+
 
 //                return "null";
             }else{
