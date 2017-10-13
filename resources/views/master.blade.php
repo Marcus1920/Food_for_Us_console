@@ -16,7 +16,7 @@
       nutritious food. Food for Us provides an innovative mobile phone application that brings together producers and
       consumers of food. The vision is to reduce food waste and enhance food security be providing a convenient platform
       for connecting interested peopl">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('/img/food_for_us_logo.png') }}">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('public/img/food_for_us_logo.png') }}">
 
 
     <title>Food For Us</title>

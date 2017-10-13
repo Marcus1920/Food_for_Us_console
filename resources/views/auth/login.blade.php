@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Siyaleader Durban University of Technology">
     <meta name="keywords" content="Siyaleader,Durban University of Technology, HIV/AIDS">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('/img/food_for_us_logo.png') }}">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('public/img/food_for_us_logo.png') }}">
 
 
     <title>Food For Us</title>
