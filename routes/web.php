@@ -129,8 +129,8 @@ Route::get('/master' , 'MapController@getUsers')
 //Route::get('/users' , 'HomeController@users')->name('users') ;
 
 Route::get('/users' , 'HomeController@show')
-          ->name('users');
-           //->middleware('auth');
+          //->name('users');
+          ->middleware('auth');
 
 Route::get('/register' , 'HomeController@register')
           ->name('register')
