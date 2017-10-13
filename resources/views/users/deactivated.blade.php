@@ -9,15 +9,14 @@
     </ol>
     <h4 class="page-title">De-activated App Users</h4>
 
-    <div class="tab-pane" id="inactive">
-
+    <div class="tab-pane" id="active">
         <div class="row">
             <div class="col-md-12" >
                 <div class="tab-pane" id="closure">
                     <!-- Responsive Table -->
                     <div class="block-area" id="responsiveTable">
                         <div class="table-responsive">
-                            <h3 class="block-title"> De-activated User  List </h3>
+                            <h3 class="block-title">  De-activated User  List </h3><h16>&nbsp</h16>
                             <a href="{{ url('userroleslist') }}" class="btn btn-sm">
                                 <i aria-hidden="true" title="Filter Users By User Group" data-toggle="tooltip">Filter By User Group</i>
                             </a>
@@ -32,6 +31,7 @@
                                     <th>Location</th>
                                     <th>Travel Radius</th>
                                     <th>Description</th>
+                                    <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -41,17 +41,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
 @section('footer')
+    <script>
 
-
-        {{--<script src="jquery-1.11.2.js"></script>--}}
-        {{--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">--}}
-        <script>
         $(document).ready(function () {
+
+
+
             $('#deactivated').dataTable({
 
                 ajax:"{!! url('/deactivated/')!!}","processing": true,
@@ -66,8 +65,8 @@
                     { data: 'descriptionOfAcces' },
                     { data: 'created_at' },
                     { data: function (data, type, row) {
-                        return "<a href='{!! url('editUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'Activate' + "</a>"+
-
+                        return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>"+
+                            "<a href='{!! url('inactivateUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
 
                         data.replace( /[$,]/g, '' )
                         data;
