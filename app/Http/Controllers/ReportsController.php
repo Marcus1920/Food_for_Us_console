@@ -20,20 +20,9 @@ class ReportsController extends Controller
                 \DB::raw(
                     "
                         product_types.name,
-                        sum(sellers_details_tabs.quantity) as QuantitySum
-                    "
-                )
-            )
-            ->groupBy('product_types.name')
-            ->get();
-
-        $sellers_posts_sold=\DB::table('sellers_details_tabs')
-            ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
-            ->select(
-                \DB::raw(
-                    "
-                        product_types.name,
-                        sum(sellers_details_tabs.quantitySold) as QuantitySoldSum
+                        sum(sellers_details_tabs.quantity) as QuantitySum,
+                        sum(sellers_details_tabs.quantitySold) as QuantitySoldSum,
+                        sum(sellers_details_tabs.quantity)-sum(sellers_details_tabs.quantitySold) as QuantityAvailable
                     "
                 )
             )
@@ -43,6 +32,7 @@ class ReportsController extends Controller
         $labels=null;
         $QuantitySum=null;
         $QuantitySoldSum=null;
+        $QuantityAvailable=null;
 
         for($i=0; $i < sizeof($sellers_posts); $i++){
             $labels.=(string)$sellers_posts[$i]->name.',';
@@ -52,25 +42,22 @@ class ReportsController extends Controller
             $QuantitySum.=$sellers_posts[$i]->QuantitySum.',';
         }
 
-        for($i=0; $i < sizeof($sellers_posts_sold); $i++){
-            $QuantitySoldSum.=$sellers_posts_sold[$i]->QuantitySoldSum.',';
+        for($i=0; $i < sizeof($sellers_posts); $i++){
+            $QuantitySoldSum.=$sellers_posts[$i]->QuantitySoldSum.',';
         }
 
-//        $chart2 = Charts::create('line', 'highcharts')
-//            ->title('Total quantities posted')
-//            ->elementLabel("Total")
-//            ->labels(explode(',',chop($labels,',')))
-//            ->values( explode(',',chop($QuantitySum,',')))
-//            ->dimensions(1000, 500)
-//            ->responsive(true);
+        for($i=0; $i < sizeof($sellers_posts); $i++){
+            $QuantityAvailable.=$sellers_posts[$i]->QuantityAvailable.',';
+        }
 
         $chart2=Charts::multi('areaspline', 'highcharts')
-            ->title('Quantity Posted and Sold')
+            ->title('Quantity Posted, Sold and Available')
             ->elementLabel("Total")
-            ->colors(['#ff0000', '#ada9e3'])
+            ->colors(['#ff0000', '#07F0F7','#F5E70E'])
             ->labels(explode(',',chop($labels,',')))
             ->dataset('Quantity Posted', explode(',',chop($QuantitySum,',')))
-            ->dataset('Quantity Sold', explode(',',chop($QuantitySoldSum,',')));
+            ->dataset('Quantity Sold', explode(',',chop($QuantitySoldSum,',')))
+            ->dataset('Quantity Available', explode(',',chop($QuantityAvailable,',')));
 
         $chart = Charts::database(\DB::table('new_users')
             ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
@@ -97,7 +84,6 @@ class ReportsController extends Controller
                     "
                         sellers_details_tabs.id,
                         product_types.name as productName
-  
                         "
                 )
             )
@@ -109,7 +95,5 @@ class ReportsController extends Controller
             ->groupBy('productName');
 
         return view('Reports.index', ['chart' => $chart , 'chart1' => $chart1 , 'chart2' => $chart2]);
-
-
     }
 }
