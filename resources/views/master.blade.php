@@ -7,9 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="format-detection" content="telephone=no">
     <meta charset="UTF-8">
-    <meta name="description" content="Siyaleader Ethekwini Case Console Management">
-    <meta name="keywords" content="Siyaleader, Ethekwini, Ethekwini,Ethekwini Management System,Incidents Management System">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('/img/favicon.ico?v1') }}">
+    <meta name="description" content="Food For Us">
+    <meta name="keywords" content="Food for Us is funded through the 10YFP Trust Fund established by UNEP.
+    The project was selected through an open 10YFP Trust Fund Call for Proposals for Sustainable Lifestyles and
+    Education Programme with the financial support of the Government of Japan.
+    In a country that produces more than enough food to feed everybody how is it that just under 50% are nutritionally poor.
+     Two key factors in this crisis are challenges related to finding markets for produce and accessing affordable
+      nutritious food. Food for Us provides an innovative mobile phone application that brings together producers and
+      consumers of food. The vision is to reduce food waste and enhance food security be providing a convenient platform
+      for connecting interested peopl">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('/img/food_for_us_logo.png') }}">
 
 
     <title>Food For Us</title>
