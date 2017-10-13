@@ -93,24 +93,25 @@ class HomeController extends Controller
             ->select(\DB::raw
             (
                 "
-                                    new_users.id,
-                                    new_users.name,
-                                    new_users.surname,
-                                    new_users.email,
-                                    user_roles.name  as intrest,
-                                    new_users.location,
-                                    user_travel_radii.kilometres as travelRadius,
-                                    new_users.cellphone,
-                                    new_users.descriptionOfAcces,
-                                    new_users.created_at
-                                    
-                                    "
+                                            new_users.id,
+                                            new_users.name,
+                                            new_users.surname,
+                                            new_users.email,
+                                            user_roles.name  as intrest,
+                                            new_users.location,
+                                            user_travel_radii.kilometres as travelRadius,
+                                            new_users.cellphone,
+                                            new_users.descriptionOfAcces,
+                                            new_users.created_at
+                                            
+                                            "
             )
             );
 
 
         return Datatables::of($deactivated)
             ->make(true);
+
 
     }
     public function register()
