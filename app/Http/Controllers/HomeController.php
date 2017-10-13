@@ -90,23 +90,26 @@ class HomeController extends Controller
             ->where('new_users.active','=',3)
             ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
             ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
-            ->select(\DB::raw
-            (
+            ->select(\DB::raw(
                 "
-                                            new_users.id,
-                                            new_users.name,
-                                            new_users.surname,
-                                            new_users.email,
-                                            user_roles.name  as intrest,
-                                            new_users.location,
-                                            user_travel_radii.kilometres as travelRadius,
-                                            new_users.cellphone,
-                                            new_users.descriptionOfAcces,
-                                            new_users.created_at
-                                            
-                                            "
+                                    new_users.id,
+                                    new_users.name,
+                                    new_users.surname,
+                                    new_users.email,
+                                    user_roles.name  as intrest,
+                                    new_users.location,
+                                    user_travel_radii.kilometres as travelRadius,
+                                    new_users.cellphone,
+                                    new_users.descriptionOfAcces,
+                                    new_users.created_at,
+                                    new_users.gps_lat,
+                                    new_users.gps_long
+                                    
+                                    "
             )
             );
+
+//        return $deactivated;
 
 
         return Datatables::of($deactivated)

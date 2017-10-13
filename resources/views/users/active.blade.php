@@ -46,8 +46,6 @@
 </div>
 @endsection
 @section('footer')
-    {{--<script src="jquery-1.11.2.js"></script>--}}
-    {{--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">--}}
     <script>
 
         $(document).ready(function () {
