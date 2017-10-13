@@ -31,7 +31,7 @@
                                     <th>Transaction rating</th>
                                     <th>Transaction Comment</th>
                                     <th>Created At</th>
-                                    <th>Action</th>
+                                    {{--<th>Action</th>--}}
                                 </tr>
                                 </thead>
                             </table>
@@ -86,10 +86,10 @@
                         {data: 'rating', name: 'rating'},
                         {data: 'comment', name: 'comment'},
                         {data: 'created_at', name: 'created_at'},
-                        {data: function(d)
-                        {
-                            return "<a href='{!! url('viewUserTransaction/" + d.id + "/" + d.idNumber + " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";
-                        }},
+                        {{--{data: function(d)--}}
+                        {{--{--}}
+                            {{--return "<a href='{!! url('viewUserTransaction/" + d.id + "/" + d.idNumber + " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";--}}
+                        {{--}},--}}
 
                 ],
 

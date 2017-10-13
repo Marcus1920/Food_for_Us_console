@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <span class="t-overflow" href="">{{strtoupper($item->buyers->name)}} {{strtoupper($item->buyers->surname)}}</span><br>
+                                    <span class="t-overflow" href="">{{strtoupper($item->buyers->name)}} {{strtoupper($item->buyers->surname)}} ( TRANSACTION ID {{$item->id}})</span><br>
                                     From {{strtoupper($item->buyers->location)}}
                                     <br/>
                                     <small class="text-muted">{{ $item->created_at->diffForHumans() }} </small>
