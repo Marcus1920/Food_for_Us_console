@@ -71,7 +71,7 @@ class ResearchersController extends Controller
 
     public function researchProfile($id)
     {
-        $research = Reseachers_details_tabs::find($id);
+        $research = Reseachers_details_tabs::with('User')->find($id);
         return view('Researchers.profile',compact('research'));
     }
 

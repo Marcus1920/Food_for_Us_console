@@ -13,10 +13,21 @@
 
 
 <div class="col-md-6">
-    <br/><br/><br/>
+    <br/><br/>
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <h4 class="alert alert-success">
+               Posted by :
+            </h4>
+            {{$research->User->name}} {{$research->User->surname}}
+        </div>
+    </div>
     <center>
     <img src="{{$research->imageUrl}}">
     </center>
+
 </div>
 
 
@@ -29,8 +40,6 @@
                     <h2 class="alert alert-success">Created</h2>
                     <p>{{$research->created_at->diffForHumans()}}</p>
                 </div>
-
-
 
 
                 <div class="panel-body">
