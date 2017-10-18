@@ -22,9 +22,16 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Surname</th>
-                                    <th>Status </th>
+                                    <th>ID Number</th>
+                                    <th>Gps Lat</th>
+                                    <th>Gps Long</th>
                                     <th>Transaction Id</th>
+                                    <th>Product name</th>
+                                    <th>Quantity Purchased</th>
+                                    <th>Transaction rating</th>
+                                    <th>Transaction Comment</th>
                                     <th>Created At</th>
+                                    {{--<th>Action</th>--}}
                                 </tr>
                                 </thead>
                             </table>
@@ -68,18 +75,21 @@
                 "columns":
                     [
                     {data: 'id', name: 'id'},
-                        {data: 'app_users.name', name: 'app_users.name'},
-                        {data: 'app_users.surname', name: 'app_users.surname'},
-//                        {
-//                            data: function (d) {
-//
-//                                return d.name  + " " +  d.surname;
-//
-//                            }, "name": 'fullName'
-//                        },
-                    {data: 'transaction_statuses.name', name: 'transaction_statuses.name'},
-                    {data: 'transactionId', name: 'transactionId'},
-                    {data: 'created_at', name: 'created_at'},
+                        {data: 'name', name: 'name'},
+                        {data: 'surname', name: 'surname'},
+                        {data: 'idNumber', name: 'idNumber'},
+                        {data: 'gps_lat', name: 'gps_lat'},
+                        {data: 'gps_long', name: 'gps_long'},
+                        {data: 'transactionId', name: 'transactionId'},
+                        {data: 'productName', name: 'productName'},
+                        {data: 'quantity', name: 'quantity'},
+                        {data: 'rating', name: 'rating'},
+                        {data: 'comment', name: 'comment'},
+                        {data: 'created_at', name: 'created_at'},
+                        {{--{data: function(d)--}}
+                        {{--{--}}
+                            {{--return "<a href='{!! url('viewUserTransaction/" + d.id + "/" + d.idNumber + " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";--}}
+                        {{--}},--}}
 
                 ],
 

@@ -14,7 +14,6 @@ class PostViewController extends Controller
     {
         return view('users.postslist');
     }
-
     public function index()
     {
         $post=\DB::table('sellers_details_tabs')
@@ -59,54 +58,27 @@ class PostViewController extends Controller
         return Datatables::of($post)
             ->make(true);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
 
 
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
 
         $data = Sellers_details_tabs::with('newuser')->where('id', $id)->first();
-
-//
+        //return \Response::json($data);
+        //die();
         return view('users.postprofile', compact('data'));
 //        return view('users.postprofile');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+
     }
 
 }

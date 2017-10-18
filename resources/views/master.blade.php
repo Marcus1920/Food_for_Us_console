@@ -260,10 +260,18 @@
     </section>
  </section>
 @yield('footer')
+
 <script src="{{ asset('public/js/toggles.js') }}"></script>
 
 <script src="{{ asset('public/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
 <script src="{{ asset('public/js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+
+<script src="{{ asset('/js/toggles.js') }}"></script>
+<script src="{{ asset('/js/pagination.js') }}"></script>
+<script src="{{ asset('/js/pagination.min.js') }}"></script>
+<script src="{{ asset('/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
+<script src="{{ asset('/js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+
 
 <!-- Bootstrap -->
 <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>

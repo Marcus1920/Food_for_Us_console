@@ -337,12 +337,13 @@ class UsersController extends Controller
 
 
         if ( $validator->fails() ) {
-
+   $resposse = array();
 
             $errors=$validator->messages();
 
             foreach ( $errors->all() as $error ) {
-                return response()->json($error);
+               $resposse["Erro"] =  $error;
+                return response()->json($resposse);
             }
 
         }
@@ -444,8 +445,8 @@ class UsersController extends Controller
 
 
         $respose = array();
-        $respose['error'] ="ok";
-        $respose['mesg'] = "successfully registered  please  wait   or  approval ";
+        $respose ['mesg']="Ok";
+        //$respose['mesg'] = "successfully registered  please  wait   or  approval ";
         return response()->json($respose);
 
 

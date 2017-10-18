@@ -11,6 +11,7 @@ use App\Transaction;
 use App\TransactionActivity;
 use App\TransactionRating;
 use App\TransactionStatus;
+use App\UserRoles;
 use Illuminate\Http\Request;
 use App\Services\OverDueCartItemService;
 use Illuminate\Support\Facades\Input;
@@ -308,7 +309,8 @@ class TransactionController extends Controller
                     case 'Completed':
                         $messageStatus = 'closed';
 
-                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+                        $getTransactionQuantity                 = Transaction::select('quantity')
+                                                                        ->where('id',$transactionId)->first();
                         $originalQuantitySold                   = Sellers_details_tabs::select('quantitySold')
                                                                     ->where('id',$transactionDetails->product)
                                                                     ->where('new_user_id',$userDetails->id)
@@ -523,6 +525,7 @@ class TransactionController extends Controller
             }
 
         }
+        //BACKEND FUNCTIONS
     public function userTransactionsActivity()
     {
         $deletedStatus = TransactionStatus::find(6);
@@ -617,10 +620,108 @@ class TransactionController extends Controller
     }
     public function transactionHistory()
     {
-        $transactionHistory = TransactionActivity::with('transactions','transactionStatuses','appUsers')
-            ->orderBy('id','desc')->get();
-        return Datatables::of($transactionHistory)
-            ->make(true);
+        $transactionHistory      =\DB::table('transaction_activities')
+                                        ->join('transactions','transaction_activities.transactionId','=','transactions.id')
+                                        ->join('new_users','transaction_activities.userId','=','new_users.id')
+                                        ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+                                        ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
+                                        ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
+                                        ->select(
+                                            \DB::raw
+                                            (
+                                                "
+                                                  transaction_activities.id,
+                                                  transactions.id as transactionId,
+                                                  transactions.quantity,
+                                                  product_types.name as productName,
+                                                  transaction_ratings.comment,
+                                                  transaction_ratings.rating,
+                                                  new_users.name,
+                                                  new_users.surname,
+                                                  new_users.idNumber,
+                                                  new_users.gps_lat,
+                                                  new_users.gps_long,
+                                                  transaction_ratings.created_at
+                                             
+                                                 "
+                                            )
+                                        )
+                                        ->get();
+                                return Datatables::of($transactionHistory)
+                                    ->make(true);
+
+    }
+    public function viewUserTransaction($id,$idNumber)
+    {
+        $userTransactionDetails =\DB::table('transaction_activities')
+            ->join('transactions','transaction_activities.transactionId','=','transactions.id')
+            ->join('new_users','transaction_activities.userId','=','new_users.id')
+            ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+            ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
+            ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
+            ->where('transaction_activities.id', $id)
+            ->select(
+                \DB::raw
+                (
+                    "
+                                                  transaction_activities.id,
+                                                  transactions.id as transactionId,
+                                                  transactions.quantity,
+                                                  product_types.name as productName,
+                                                  transaction_ratings.comment,
+                                                  transaction_ratings.rating,
+                                                  new_users.name,
+                                                  new_users.surname,
+                                                  new_users.idNumber,
+                                                  new_users.gps_lat,
+                                                  new_users.gps_long,
+                                                  new_users.profilePicture,
+                                                  transaction_ratings.created_at
+                                             
+                                                 "
+                )
+            )
+            ->first();
+
+
+
+
+        $userDetails                = NewUser::where('idNumber',$idNumber)
+                                       ->first();
+        if($userDetails->intrest == 1)
+        {
+            $transactionActivitiesData  = TransactionActivity::with('transactions','transactionStatuses','appUsers')
+                                                                ->where('userId', $userDetails->id)
+                                                                ->get();
+            $sellerTransactionSide      = Transaction::with('buyers')
+                                            ->where('seller_id',$userDetails->id)
+                                            ->get();
+
+            return view('transaction.sellerTransactionProfile', ['transactionActivitiesData'=>$transactionActivitiesData ,
+                                                                        'sellerTransactionSide' => $sellerTransactionSide,
+                                                                        'userTransactionDetails'=>$userTransactionDetails
+                                                                        ]);
+
+        }
+        elseif($userDetails->intrest == 2)
+        {
+            $transactionActivitiesData  = TransactionActivity::with('transactions','transactionStatuses','appUsers')
+                                           ->select('transactionId','status','created_at')
+                                            ->where('userId', $userDetails->id)->get();
+            $buyerTransactionSide      = Transaction::with('sellers')
+                                                        ->where('buyer_id',$userDetails->id)
+                                                        ->get();
+
+            return view('transaction.buyerTransactionProfile', ['transactionActivitiesData'=>$transactionActivitiesData ,
+                                                                            'buyerTransactionSide' => $buyerTransactionSide,
+                                                                            'userTransactionDetails'  =>$userTransactionDetails
+                                                                        ]);
+
+
+        }else{
+            return"not known";
+        }
+
     }
 }
 
