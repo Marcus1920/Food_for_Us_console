@@ -88,7 +88,7 @@ class UsersController extends Controller
 
                 });
 
-                return "Password successfuly changed to $userUpdated->password";
+                return "Password successfuly changed ";
             }
             else
             {
@@ -108,8 +108,8 @@ class UsersController extends Controller
 
         $userNew = NewUser::where('email', '=', $email)->first();
 
-        $userNew->password = rand(1,9999);
-        $userNew->save();
+      ///  $userNew->password = rand(1,9999);
+       // $userNew->save();
         if (sizeof($userNew) > 0) {
 
            

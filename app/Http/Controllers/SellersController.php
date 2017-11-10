@@ -159,6 +159,29 @@ class SellersController extends Controller
       {
           $input                          = $request->all();
           $user                           = NewUser::where('api_key',$input['api_key'])->first();
+          
+          
+          $lattitude    = null   ;
+          
+          $longitude    = null   ;  
+          
+           if  (Input::get('gps_lat')=="" || Input::get('gps_long')=="")
+           
+           
+           {
+               $lattitude  = $user->gps_lat;
+               
+               $longitude =  $user->gps_long ;
+               
+               
+           }
+           else 
+           {
+               
+            $lattitude  =Input::get('gps_lat');
+               
+            $longitude =  Input::get('gps_long');
+           }
 
 //
 //          $sellersPost= new Sellers_details_tabs();
@@ -191,7 +214,7 @@ class SellersController extends Controller
         $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
 
       //  $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
-
+          
 
         $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
         $sellersPost->productType        = $productTypeID['id'];
@@ -221,8 +244,8 @@ class SellersController extends Controller
         $sellersPost->description       = Input::get('description');
         $sellersPost->quantity          = Input::get('quantity');
         $sellersPost->quantityPosted    = Input::get('quantity');
-        // $sellersPost->gps_lat           = Input::get('gps_lat');
-        // $sellersPost->gps_long          = Input::get('gps_long');
+         $sellersPost->gps_lat           = $lattitude;
+         $sellersPost->gps_long          = $longitude;
         $sellersPost->availableHours    =  Input::get('availableHours');
         $sellersPost->paymentMethods    =  Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
@@ -237,8 +260,8 @@ class SellersController extends Controller
         $productPickupDetails->MonToFridayHours    = Input::get('MonToFridayHours');
         $productPickupDetails->SaturdayHours       = Input::get('SaturdayHours');
         $productPickupDetails->SundayHours         = Input::get('SundayHours');
-        $productPickupDetails->gps_lat             = "0";
-        $productPickupDetails->gps_long            = "0";
+        $productPickupDetails->gps_lat             = $lattitude;
+        $productPickupDetails->gps_long            = $longitude;
         $productPickupDetails->save();
 
 //       event(new newPostEvent($sellersPost));
