@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Siyaleader Durban University of Technology">
     <meta name="keywords" content="Siyaleader,Durban University of Technology, HIV/AIDS">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('/img/favicon.ico?v1') }}">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('/img/food_for_us_logo.png') }}">
 
 
     <title>Food For Us</title>
@@ -69,6 +69,9 @@
 
             <form class="box animated tile" id="box-reset" method="POST" action="{{ url('/password/reset') }}">
                 {!! csrf_field() !!}
+                <center>
+                    <img src="{{ asset('/img/FFU_Words.png') }}" alt="lomnin">
+                </center>
                 <h2 class="m-t-0 m-b-15">Reset Password</h2>
                 <p></p>
                 <input type="email" class="login-control m-b-20" name="email" placeholder="Email Address">

@@ -4,13 +4,15 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}"> Home</a></li>
-        <li class="active">Inactivate Form</li>
+        <li><a href="{{ url('/activeUsers') }}"> Active App Users</a></li>
+        <li><a href="{{ url('/') }}">De-activated App Users</a></li>
+        <li class="active">De-Activate Form</li>
     </ol>
-    <h4 class="page-title">USERS</h4>
+    <h4 class="page-title">De-Activate {{$user->name}} {{$user->surname}}</h4>
 
     <!-- Basic with panel-->
     <div class="block-area" id="basic">
-        <h3 class="block-title">Inactivate Form</h3>
+        <h3 class="block-title">De-Activate Form</h3>
         <div class="tile p-15">
             {!! Form::open(['url' => 'InactivateUser/'.$user->id, 'method' => 'post', 'class' => 'form-horizontal', 'id'=>"registrationForm" ]) !!}
             {!! Form::hidden('id') !!}
@@ -90,7 +92,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-6">
-                    <button type="submit" id='submitMemberForm' class="btn btn-info btn-sm m-t-10">SUBMIT FORM</button>
+                    <button type="submit" id='submitMemberForm' class="btn btn-info btn-sm m-t-10">DEACTIVATE USER</button>
                 </div>
             </div>
             {!! Form::close() !!}

@@ -7,6 +7,7 @@ use App\NewUser;
 use Yajra\DataTables\DataTables;
 
 class HomeController extends Controller
+
 {
     public function index()
 
@@ -16,49 +17,108 @@ class HomeController extends Controller
 
     public function show()
     {
-        $NewUser = NewUser::where('active', 1)->get();// inactive users
-        $activeUsers = NewUser::where('active', 2)->get(); //active users
-        return view('users.list')->with(compact('NewUser', 'activeUsers'));
+        return view('users.active');
     }
 
-//    public  function users()
-//    {
-//        $NewUser     =  NewUser::where('active',1)->get();// inactive users
-//        $activeUsers =  NewUser::where('active',2)->get(); //active users
-//        return  view ('users.list')->with(compact('NewUser','activeUsers'));
-//    }
+
+    public function  InactiveusersLis()
+        {
+
+            $NewUser = \DB::table('new_users')
+                ->where('new_users.active','=',1)
+                ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+                ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
+                ->select(\DB::raw
+                                   (
+                                           "
+                                            new_users.id,
+                                            new_users.name,
+                                            new_users.surname,
+                                            new_users.email,
+                                            user_roles.name  as intrest,
+                                            new_users.location,
+                                            user_travel_radii.kilometres as travelRadius,
+                                            new_users.cellphone,
+                                            new_users.descriptionOfAcces,
+                                            new_users.created_at
+                                            
+                                            "
+             )
+                );
 
 
-public function  InactiveusersLis()
-{
-    //$NewUser = NewUser::where('active', 1)->get();// inactive users
+            return Datatables::of($NewUser)
+                ->make(true);
 
-    $NewUser = \DB::table('new_users')
-        ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
-        ->select(\DB::raw(
-            "
+               }
+    public function  activeusersLis()
+    {
+
+        $activeUsers = \DB::table('new_users')
+            ->where('new_users.active','=',2)
+            ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+            ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
+            ->select(\DB::raw(
+                "
                                     new_users.id,
                                     new_users.name,
                                     new_users.surname,
                                     new_users.email,
                                     user_roles.name  as intrest,
                                     new_users.location,
-                                    new_users.travelRadius,
+                                    user_travel_radii.kilometres as travelRadius,
                                     new_users.cellphone,
-                                    new_users.descriptionOfAcces
+                                    new_users.descriptionOfAcces,
+                                    new_users.created_at,
+                                    new_users.gps_lat,
+                                    new_users.gps_long
                                     
                                     "
-        )
-        )->where('active',1);
+            )
+            );
 
 
-    return Datatables::of($NewUser)
-        ->addColumn('actions','Edit')
-        ->make(true);
+        return Datatables::of($activeUsers)
+            ->make(true);
 
 
-}
 
+    }
+    public function  deactivatedusersList()
+    {
+
+        $deactivated = \DB::table('new_users')
+            ->where('new_users.active','=',3)
+            ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+            ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
+            ->select(\DB::raw(
+                "
+
+                                    new_users.id,
+                                    new_users.name,
+                                    new_users.surname,
+                                    new_users.email,
+                                    user_roles.name  as intrest,
+                                    new_users.location,
+                                    user_travel_radii.kilometres as travelRadius,
+                                    new_users.cellphone,
+                                    new_users.descriptionOfAcces,
+                                    new_users.created_at,
+                                    new_users.gps_lat,
+                                    new_users.gps_long
+                                    
+                                    "
+            )
+            );
+
+//        return $deactivated;
+
+
+        return Datatables::of($deactivated)
+            ->make(true);
+
+
+    }
     public function register()
     {
         return view('admin.register');

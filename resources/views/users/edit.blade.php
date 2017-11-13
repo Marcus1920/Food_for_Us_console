@@ -3,13 +3,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/users') }}"> Home</a></li>
-        <li class="active">Update Form</li>
+        <li><a href="{{ url('/inactiveUsers') }}"> Inactive App Users</a></li>
+        <li class="active">Activation Form</li>
     </ol>
-    <h4 class="page-title">USERS</h4>
+    <h4 class="page-title">Activate {{$user->name}} {{$user->surname}}</h4>
 
     <!-- Basic with panel-->
     <div class="block-area" id="basic">
-        <h3 class="block-title">Update Form</h3>
+        <h3 class="block-title">Activation Form</h3>
         <div class="tile p-15">
 
 
@@ -37,14 +38,6 @@
                     @endif
                 </div>
             </div>
-
-            {{--<div class="form-group">--}}
-                {{--{!! Form::label('Gender', 'Gender', array('class' => 'col-md-2 control-label')) !!}--}}
-                {{--<div class="col-md-6">--}}
-                    {{--{!! Form::text('gender',$user->gender,['class' => 'locality form-control input-sm','id' => 'gender' , 'required']) !!}--}}
-                    {{--@if ($errors->has('gender'))<span class="help-block"><strong>{{ $errors->first('gender') }}</strong></span>@endif--}}
-                {{--</div>--}}
-            {{--</div>--}}
 
             <div class="form-group">
                 {!! Form::label('Interest', 'Interest', array('class' => 'col-md-2 control-label')) !!}
@@ -92,7 +85,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-6">
-                    <button type="submit" id='submitMemberForm' class="btn btn-info btn-sm m-t-10">APPROVE USER</button>
+                    <button type="submit" id='submitMemberForm' class="btn btn-info btn-sm m-t-10">ACTIVATE USER</button>
                 </div>
             </div>
             {!! Form::close() !!}

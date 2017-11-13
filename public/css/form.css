@@ -85,7 +85,7 @@ select:not([multiple]){
    background-image: url(../img/select-bg.png);
    background-repeat: no-repeat;
    background-position: right center;
-   color:
+    color:#fff;
 }
 
 .ie9 select:not([multiple]){
@@ -101,7 +101,7 @@ select option {
 }
 
 .ie9 select option:first-child, select[multiple] option {
-   color: #fff !important;
+   color: #000 !important;
 }
 
 select::-ms-expand {

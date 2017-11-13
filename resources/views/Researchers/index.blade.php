@@ -14,9 +14,9 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">RESEARCHES </h3>
-                        <table class="table tile table-striped" id="pendingreferralCasesTable">
+                        <table class="table tile table-striped" id="reseachersTable">
                             <thead>
                             <tr>
                                 <th>Id</th>
@@ -27,34 +27,70 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            @foreach($all_researchs  as $all_research)
-                                <tr>
-                                    <td> {{$all_research->id}} </td>
-                                    <td> {{$all_research->natureOfBusiness}} </td>
-                                    <td> {{$all_research->summaryBox}} </td>
-                                    <td> {{$all_research->researchNotes}} </td>
-                                    <td> {{$all_research->created_at->diffForHumans()}}</td>
-
-                                    <td><a href="{{url('/researchProfile/'.$all_research->id)}}"  value="click me" class="btn btn-secondary">View</a></td>
-
-                                </tr>
-                            @endforeach
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
 @endsection
 @section('footer')
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <script>
 
+        jQuery(document).ready(function($){
+
+
+            var reseachersTable     = $('#reseachersTable').DataTable({
+                "autoWidth": false,
+
+                "processing": true,
+                speed: 500,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    ,{
+
+                        extend : 'pdfHtml5',
+                        title  : 'Siyaleader_Report',
+                        header : 'I am text in',
+                    },
+
+                ],
+
+
+                "order" :[[0,"desc"]],
+                "ajax": "{!! url('/getResearchList/')!!}",
+                "processing": true,
+                "serverSide": true,
+                "order" :[[0,"desc"]],
+
+                "buttons": [
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+
+
+                "columns": [
+                    {data: 'id', name: 'id'},
+                    {data: 'natureOfBusiness', name: 'natureOfBusiness'},
+                    {data: 'summaryBox', name: 'summaryBox'},
+                    {data: 'researchNotes', name: 'researchNotes'},
+                    {data: 'created_at', name: 'created_at'},
+
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('researchProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                    }},
+                ],
+
+                "aoColumnDefs": [
+                    { "bSearchable": false, "aTargets": [ 4] },
+                    { "bSortable": false, "aTargets": [ 4] }
+                ]
+
+            });
+        });
+    </script>
 @endsection

@@ -8,7 +8,7 @@ class ProductTypeController extends Controller
 {
      public   function index () 
 	 {
-		 $ProductType = ProductType::select('name' , 'id')-> get() ;
+		 $ProductType = ProductType::select('name' , 'id')->orderBy('name','ASC')-> get() ;
 		 
 		 return   $ProductType  ;   
 	 }
@@ -39,6 +39,6 @@ class ProductTypeController extends Controller
          $product->save();
 
 //         return redirect()->route("productlist");
-         return Redirect('/productlist');
+         return Redirect('/allProduct');
      }
 }

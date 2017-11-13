@@ -61,16 +61,18 @@
                             </tr>
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 15px; text-align: left; color:#2E363F;">
-                                    <h3 style="padding-left: 10px":>Hi{{$name}} </h3>
+                                    <h3 style="padding-left: 10px":>Hi    {{$name}} </h3>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
-                                    <p  style="padding: 0px 10px 0 10px; text-align: justify"> Reset your password, and we'll get you on your way.
-                                        To change your Foodforus password, click here :</p>
-                                    <p style="padding:0px 0px 10px 0px; text-align: left">kind Regards Food For Us </p>
-                                    <a href={{ asset('/auth/passwords.reset') }}"">Reset Password</a>
+                                    <p  style="padding: 0px 10px 0 10px; text-align: justify"> Your password has been resetted to:  <span style="font-weight: 800"> {{$passsword}}</span>, you are ready to use the app again.
+
+                                    </p>
+                                    <p style="padding:0px 0px 10px 0px; text-align: left">Kind Regards  </p>
+                                    <p style="padding:0px 0px 10px 0px; text-align: left">Food For Us</p>
+                                    {{--<a href={{ asset('/auth/passwords.reset') }}"">Reset Password</a>--}}
 
 
                                 </td>

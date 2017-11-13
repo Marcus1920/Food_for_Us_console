@@ -17,9 +17,9 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('buyer_id')->unsigned();
             $table->integer('seller_id')->unsigned();
-            $table->integer('status');
+            $table->integer('status')->unsigned()->nullable();
             $table->integer('product')->unsigned();
-            $table->integer('quantity');
+            $table->integer('quantity')->unsigned();
             $table->foreign('status')->references('id')->on('transaction_statuses');
             $table->foreign('buyer_id')->references('id')->on('new_users');
             $table->foreign('product')->references('id')->on('sellers_details_tabs');

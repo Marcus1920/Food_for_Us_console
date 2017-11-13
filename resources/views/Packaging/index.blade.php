@@ -10,13 +10,11 @@
 
 
     <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8" >
+        <div class="col-md-12" >
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive overflow">
+                    <div class="table-responsive">
                         <h3 class="block-title">Packaging Types</h3>
                         <a href="{{ url('createPackaging') }}" class="btn btn-sm">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new packaging" data-toggle="tooltip"></i>
@@ -26,14 +24,9 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
-                            @foreach($packagings  as $packaging)
-                                <tr>
-                                    <td> {{$packaging->id}} </td>
-                                    <td> {{$packaging->name}}</td>
-                                </tr>
-                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -46,10 +39,55 @@
 
 @endsection
 @section('footer')
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <script>
 
+        jQuery(document).ready(function($){
+
+
+            var pendingreferralCasesTable     = $('#pendingreferralCasesTable').DataTable({
+                "autoWidth": false,
+
+                "processing": true,
+                speed: 500,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5',
+                    ,{
+
+                        extend : 'pdfHtml5',
+                        title  : 'Siyaleader_Report',
+                        header : 'I am text in',
+                    },
+
+                ],
+
+
+                "order" :[[0,"desc"]],
+                "ajax": "{!! url('/getPackagingList/')!!}","processing": true,
+                "serverSide": true,
+                "dom": 'Bfrtip',
+                "order" :[[0,"desc"]],
+
+                "buttons": [
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                "columns": [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: function(d)
+                    {
+                        return "<a href='{!! url('editPackaging/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                    },"name" : 'name'},
+                ],
+                "aoColumnDefs": [
+                    { "bSearchable": false, "aTargets": [ 2] }
+//                { "bSortable": false, "aTargets": [ 1] }
+                ]
+
+            });
+        });
+    </script>
 @endsection

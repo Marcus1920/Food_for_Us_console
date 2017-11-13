@@ -31,14 +31,12 @@
         </div>
     </div>
 &nbsp;
-    {{--<div class="col-md-12">--}}
-        {{--<div class="col-md-6">--}}
-            {{--{!! $chart2->html() !!}--}}
-        {{--</div>--}}
-        {{--<div class="col-md-6">--}}
-            {{--{!! $chart3->html() !!}--}}
-        {{--</div>--}}
-{{--</div>--}}
+    <div class="col-md-12">
+        <br/>
+    </div>
+    <div class="col-md-12">
+            {!! $chart2->html() !!}
+    </div>
 <!-- Main Application (Can be VueJS or other JS framework) -->
 <div class="app">
     <center>
@@ -49,8 +47,7 @@
 {!! Charts::scripts() !!}
 {!! $chart->script() !!}
 {!! $chart1->script() !!}
-{{--{!! $chart2->script() !!}--}}
-{{--{!! $chart3->script() !!}--}}
+{!! $chart2->script() !!}
 </body>
 </html>
 @endsection

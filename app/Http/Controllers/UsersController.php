@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\PublicWall;
+use App\Sellers_details_tabs;
 use App\User;
+use App\UserDefaultLocation;
+//use Dotenv\Validator;
+use Validator;
 use Illuminate\Http\Request;
 use App\NewUser  ;
 use App\UserRoles;
 use App\UserTravelRadius;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rules\In;
 use phpDocumentor\Reflection\Types\Null_;
+use Psr\Log\NullLogger;
 use Redirect;
+
 use Illuminate\Pagination\Paginator;
+use App\ManageLogin;
+use App\Http\Requests\EditAdminRequest;
 
 class UsersController extends Controller
 {
@@ -23,18 +32,29 @@ class UsersController extends Controller
 
         return response()->json($userList);
     }
-
-
-
     public function myProfile()
     {
-        $api_key   = Input::get('api_key');
-
-        $user  = NewUser::where('api_key',$api_key)->first();
-
+        $user  = NewUser::where('api_key',Input::get('api_key'))
+            ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+            ->select(
+                \DB::raw(
+                    "
+                        new_users.id,
+                        new_users.profilePicture,
+                        new_users.idNumber,
+                        new_users.name,
+                        new_users.surname,
+                        new_users.email,
+                        new_users.cellphone,
+                        new_users.location,
+                        new_users.descriptionOfAcces,
+                        user_roles.name as interest 
+                       "
+                )
+            )
+            ->first();
         return response()->json($user);
     }
-
     public function changePassword()
     {
         $api_key   = Input::get('api_key');
@@ -63,12 +83,12 @@ class UsersController extends Controller
 
 
                 \Mail::send('emails.changePassword', $data, function ($message) use ($userUpdated) {
-                    $message->from('info@foodforus', 'Food For us');
+                    $message->from('Info@FoodForUs.cloud', 'Food For us');
                     $message->to($userUpdated->email)->subject("Food  for  us Notification! ");
 
                 });
 
-                return "Password successfuly changed to $userUpdated->password";
+                return "Password successfuly changed ";
             }
             else
             {
@@ -80,8 +100,6 @@ class UsersController extends Controller
             return "Incorrect old password";
         }
     }
-
-
     public function forgot()
     {
 
@@ -90,11 +108,11 @@ class UsersController extends Controller
 
         $userNew = NewUser::where('email', '=', $email)->first();
 
-
+      ///  $userNew->password = rand(1,9999);
+       // $userNew->save();
         if (sizeof($userNew) > 0) {
 
-            $userNew->password = "newpassword";
-            $userNew->save();
+           
             $message = "your  new  password  is  ";
             $response["error"] = false;
             $data = array(
@@ -107,12 +125,12 @@ class UsersController extends Controller
 
 
             \Mail::send('emails.resetpassword', $data, function ($message) use ($userNew) {
-                $message->from('info@foodforus', 'Food For us');
+                $message->from('Info@FoodForUs.cloud', 'Food For us');
                 $message->to($userNew->email)->subject("Food  for  us Notification! ");
 
             });
 
-            $response["message"] = "You have successfully changed your password check  your  email";
+            $response["message"] = "You have successfully resetted your password check  your  email for a new password";
 
 
         } else {
@@ -122,8 +140,6 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function login()
     {
 
@@ -165,6 +181,10 @@ class UsersController extends Controller
               $response['createdAt']   = $data->created_at;
 			  $response['active']      = 2;
 			  $response["msg"]         = "ok";
+
+			  $addLogin = new ManageLogin();
+			  $addLogin->new_user_id = $data->id;
+			  $addLogin->save();
            }
            else{
 
@@ -192,7 +212,7 @@ class UsersController extends Controller
 
                 $response["error"]  = true;
                 $response['active'] = 1;
-                $response["msg"]    = "your  acount  is Not Acive";
+                $response["msg"]    = "your  account  is Not Acive";
             }
             //   \Log::info("Login Device:".$device.", User Cell:".$cell.", User Names:".$data->name);
 
@@ -209,26 +229,31 @@ class UsersController extends Controller
 
         return \Response::json($response);
     }
-
-
     public function updateUser($id)
     {
 		
+
 		$user = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->where('id',$id)
-              ->update(['active'=>2]);
+              ->update(['active'=>1]);
+
+		$user = NewUser::with('UserStatuses')
+                                ->with('UserRole')
+                                ->with('UserTravelRadius')
+                                ->where('id',$id)
+                                ->update(['active'=>2]);
+
 
          $userDetails = NewUser::find($id);
 
           $data=array(
            'name' =>$userDetails->name,
-           'message' =>"",
-           //'sender' =>\Auth::user()->name. ' '. \Auth::user()->surname,
-                    );
+           'email' =>$userDetails->email,
+                 );
 
         \Mail::send('emails.activation', $data, function ($message) use ($userDetails) {
 
 
-            $message->from('info@fooforus.net', 'Food  For Us ');
+            $message->from('Info@FoodForUs.cloud', 'Food  For Us ');
             $message->to($userDetails->email)->subject( " Food  For Us Notification ");
 
 
@@ -238,12 +263,10 @@ class UsersController extends Controller
 
         return Redirect::to('/users');
 	}
-
-
     public function inactivateUser($id)
     {
         $user = NewUser::where('id',$id)
-            ->update(['active'=>1]);
+            ->update(['active'=>3]);
 
         $userDetails = NewUser::find($id);
  
@@ -260,25 +283,77 @@ class UsersController extends Controller
 
 
 
-            $message->from('info@siyaleader.net', 'Food For Us');
+            $message->from('Info@FoodForUs.cloud', 'Food For Us');
             $message->to($userDetails->email)->subject("Food For Us Notification !");
 
-
-            $message->from('info@Food  For  Us  ',  'Food  For  Us');
-            $message->to($userDetails->email)->subject("Food  For  Us   Notification ");
-
-
-                   });
+//
+//            $message->from('info@Food  For  Us  ',  'Food  For  Us');
+//            $message->to($userDetails->email)->subject("Food  For  Us   Notification ");
+                            });
         return Redirect::to('/users');
     }
+    public  function  create  ()   {
 
-    public  function   create  ()   {
 
-	
-	
+        $validator=Validator::make(
+            array(
+                'name'          =>Input::get('name'),
+                'surname'       =>Input::get('surname'),
+                'emails'        =>Input::get('emails'),
+                'cell'          =>Input::get('cell'),
+                'intrest'       =>Input::get('intrest'),
+                'IdNumber'      =>Input::get('IdNumber'),
+                'location'      =>Input::get('location'),
+                'travel_radius' =>Input::get('travel_radius'),
+                'description_of_acces'=> Input::get('description_of_acces'),
+            ),
 
-    
-function generateRandomString($length = 24) {
+            array(
+                'name'          =>array('required','alpha','min:3'),
+                'surname'       =>array('required','alpha','min:3'),
+                'emails'        =>array('required','email','unique:new_users,email'),
+                'intrest'       =>array('required','alpha'),
+                'cell'          =>array('required','unique:new_users,cellphone'),
+                'IdNumber'      =>array('required','unique:new_users,idNumber'),
+                'location'      =>array('required'),
+                'travel_radius' =>array('required'),
+                'description_of_acces'=>array('required'),
+            ),array(
+
+                'name.required'         =>'The Name field is required',
+                'surname.required'      =>'The Surname field is required',
+                'intrest.required'      =>'Please select group',
+                'cell.required'         =>'The Phone Number field is required',
+                'cell.unique'           =>'This Phone Number is allready taken',
+                'emails.required'       =>'The Email field is required',
+                'emails.unique'         =>'This Email is allready taken',
+                'travel_radius.required'=>'Please select Notification Radius',
+                'IdNumber.required'     =>'The Identity Number field is required',
+                'IdNumber.unique'       =>'This Identity Number is allready taken',
+                'description_of_acces.required'=>'Please select mode of transport',
+
+            )
+        );
+
+
+        if ( $validator->fails() ) {
+   $resposse = array();
+
+            $errors=$validator->messages();
+
+            foreach ( $errors->all() as $error ) {
+               $resposse["Erro"] =  $error;
+                return response()->json($resposse);
+            }
+
+        }
+
+
+//        if ( ! empty( $errors ) ) {
+//
+//        }
+
+        function generateRandomString($length = 24) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
         $name                   =  Input::get('name') ;
@@ -299,11 +374,34 @@ function generateRandomString($length = 24) {
         $description_of_acces   =  Input::get('description_of_acces');
         $gps_lat                =  Input::get('gps_lat');
         $gps_long               =  Input::get('gps_long');
+		$lat   = null  ; 
+		$long  =null ; 
+	    if ($gps_lat==null)
+		{
+		 $lat   = "-937538943";
+		}
+		else 
+		{
+			
+		$lat = Input::get('gps_lat'); 	
+		}	
+		
+		if ($gps_long==null)
+		{
+			$long = "937538943";
+			
+		}
+		else 
+			
+			{
+				$long  = Input::get('gps_long');
+				
+			}
 
         $NewUser    =   new   NewUser  () ;
         $NewUser->   active                 = 1;
-        $NewUser->  gps_lat                 = $gps_lat ;
-        $NewUser->  gps_long                = $gps_long ;
+        $NewUser->  gps_lat                 = $lat ;
+        $NewUser->  gps_long                = $long;
         $NewUser->profilePicture           ="http://154.0.164.72:8080/Foods/images/default.jpg";
         $NewUser->  name                 = $name ;
         $NewUser->  email                = $email ;
@@ -322,47 +420,50 @@ function generateRandomString($length = 24) {
         $NewUser->  descriptionOfAcces  = $description_of_acces ;
 
         $NewUser-> save() ;
+
+        $defaultLocation               = new UserDefaultLocation();
+        $defaultLocation->userId       = $NewUser->id;
+        $defaultLocation->gps_lat      = $lat;
+        $defaultLocation->gps_long     = $long;
+        $defaultLocation->save();
+
         $message= "Food For us";
         $data = array(
 
             'name'      =>      $NewUser->name,
-            'passsword' =>      $NewUser->password,
-            'content'   =>      $message,
+			'email'     =>      $NewUser->email,
+            'password' =>       $NewUser->password,
+			'surname' =>        $NewUser->surname,
+            'content'   =>      $message
                      );
 
       \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
 
-             $message->from('info@foodforus', 'Food For us');
+             $message->from('Info@FoodForUs.cloud', 'Food For us');
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 
 
         $respose = array();
-        $respose['error'] ="ok";
-        $respose['mesg'] = "successfully registered  please  wait   or  approval ";
+        $respose ['mesg']="Ok";
+        //$respose['mesg'] = "successfully registered  please  wait   or  approval ";
         return response()->json($respose);
 
 
     }
-
 //    public function getTravelRadius()
 //    {
 //
 //        $radius     = UserTravelRadius::select('','kilometres')->get();
 //        return response()->json($radius);
 //    }
-
-        public function viewAdmin($id)
+    public function viewAdmin($id)
         {
             $admin  = User::where('id',$id)->first();
-
-
-
-       return view('admin.editAdmin', compact('admin'));
+            return view('admin.editAdmin', compact('admin'));
 
         }
-
-    public function updateAdmin($id)
+    public function updateAdmin(EditAdminRequest $id)
     {
         $user                              = User::where('id',$id)->first();
 //        $user                              = User::where('id',$request['userID'])->first();
@@ -373,10 +474,91 @@ function generateRandomString($length = 24) {
         $admin->cellphone                   = Input::get('cellphone');
         $admin->updated_at                  = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
         $admin->save();
+        
+        return Redirect('/adminUser');
 
-        return view('admin.editAdmin', compact('admin'));
+    }
+    public function updateProfile(Request $request)
+      {
 
+          $input           =  $request->all();
+          $user            =  NewUser::where('api_key',$input['api_key'])->first();
+
+          if($request->hasFile('profilePicture'))
+          {
+              $img                =  $request->file('profilePicture');
+              $destinationFolder  = 'profilePictures/'.$user['name'].'_'.$user['surname'].'_'.$user['id'];
+
+              if(!\File::exists($destinationFolder))
+              {
+                  \File::makeDirectory($destinationFolder,0777,true);
+              }
+
+              $name      = $img->getClientOriginalName();
+                           $img->move($destinationFolder,$name);
+
+              $newProPicture  =  env('APP_URL').$destinationFolder.'/'.$name;
+              $user->update(['profilePicture'=>$newProPicture]);
+          }
+          return $user;
+      }
+    public function updateAppUserProfile()
+    {
+
+        $api_key = Input::get('api_key');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        $file = Input::file('file');
+
+
+        $destinationFolder = "images/".$user->name."_".$user->surname."_".$user->id."/";
+
+        if(!\File::exists($destinationFolder))
+        {
+            \File::makeDirectory($destinationFolder,0777,true);
+        }
+
+        $nameor=$file->getClientOriginalName();
+        $name=str_replace(' ','_',$nameor);
+
+        $file->move($destinationFolder,$name) ;
+
+            $user = NewUser::where('api_key', $api_key)
+                ->update(['profilePicture' => env('APP_URL').$destinationFolder.'/'.$name,
+                    'updated_at' => \Carbon\Carbon::now('Africa/Johannesburg')
+                        ->toDateTimeString()]);
+
+        $userPost = NewUser::where('api_key', $api_key)->first();
+        return  response()->json($userPost);
+
+    }
+    public function viewLogins($id)
+    {
+        $allLogins = ManageLogin::where('new_user_id',$id)->with('User')->orderBy('created_at','ASC')->get();
+
+        if($allLogins->count()==0)
+        {
+            $user = NewUser::find($id);
+
+            return view('ManageLogins.loginsNotFound', compact('user'));
+//            return "not found";
+        }
+        else {
+            $showLogins = ManageLogin::with('User')->where('new_user_id', $id)->get()->last();
+            $user = NewUser::find($showLogins->new_user_id);
+
+            return view('ManageLogins.viewLogins', compact('allLogins', 'showLogins', 'user'));
+        }
+    }
+
+    public function userProfile($id)
+    {
+        $user = NewUser::find($id);
+
+        return view('users.userProfile', compact('user'));
     }
 
 
 }
+

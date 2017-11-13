@@ -1,0 +1,9 @@
+[22-Oct-2017 03:33:41 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/foods.php on line 10
+[22-Oct-2017 03:34:51 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/NewPosts.php on line 14
+[22-Oct-2017 12:29:01 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/foods.php on line 10
+[22-Oct-2017 12:31:39 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/NewPosts.php on line 14
+[22-Oct-2017 15:09:02 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/NewPosts.php on line 14
+[22-Oct-2017 15:10:06 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/foods.php on line 10
+[22-Oct-2017 21:13:56 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/NewPosts.php on line 14
+[23-Oct-2017 03:19:32 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/NewPosts.php on line 14
+[23-Oct-2017 17:37:28 UTC] PHP Fatal error:  Class 'Illuminate\Mail\Mailable' not found in /home/foodforus/system.foodforus.cloud/app/Mail/foods.php on line 10
