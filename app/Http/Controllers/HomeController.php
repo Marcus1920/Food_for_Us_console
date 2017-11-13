@@ -35,7 +35,6 @@ public function  InactiveusersLis()
 
     $NewUser = \DB::table('new_users')
         ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
-     //   ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
         ->select(\DB::raw(
             "
                                     new_users.id,
