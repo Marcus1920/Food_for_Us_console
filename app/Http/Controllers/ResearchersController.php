@@ -50,20 +50,28 @@ class ResearchersController extends Controller
     }
     public function allResearchList()
     {
-        $all_research=Reseachers_details_tabs::all();
-//        $all_research=\DB::table('reseachers_details_tabs')
-//            ->select(
-//                \DB::raw(
-//                    "
-//                        reseachers_details_tabs.id,
-//                        reseachers_details_tabs.natureOfBusiness,
-//                        reseachers_details_tabs.summaryBox,
-//                        reseachers_details_tabs.researchNotes,
-//                        reseachers_details_tabs.created_at,
-//                        "
-//                )
-//            )
-//            ->orderBy('created_at' ,'desc')	->get();
+//        $all_research=Reseachers_details_tabs::all();
+        $all_research=\DB::table('reseachers_details_tabs')
+            ->join('new_users','reseachers_details_tabs.new_user_id','=','new_users.id')
+            ->select(
+                \DB::raw(
+                    "
+                        reseachers_details_tabs.id,
+                        new_users.name,
+                        new_users.surname,
+                        new_users.cellphone,
+                        new_users.email,
+                        reseachers_details_tabs.natureOfBusiness,
+                        reseachers_details_tabs.summaryBox,
+                        reseachers_details_tabs.researchNotes,
+                        reseachers_details_tabs.gps_lat,
+                        reseachers_details_tabs.gps_long,
+                        reseachers_details_tabs.researchNotes,
+                        reseachers_details_tabs.created_at
+                        "
+                )
+            )
+            ->orderBy('created_at' ,'desc')	->get();
 
         return Datatables::of($all_research)
             ->make(true);

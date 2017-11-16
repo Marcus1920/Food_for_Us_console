@@ -20,9 +20,15 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>name</th>
+                                <th>surname</th>
+                                <th>cellphone</th>
+                                <th>email</th>
                                 <th>Nature Of Bussiness</th>
                                 <th>Summary </th>
                                 <th>Research Note</th>
+                                <th>Gps Lat</th>
+                                <th>Gps Long</th>
                                 <th>Created</th>
                                 <th>Action</th>
                             </tr>
@@ -74,9 +80,15 @@
 
                 "columns": [
                     {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'surname', name: 'surname'},
+                    {data: 'cellphone', name: 'cellphone'},
+                    {data: 'email', name: 'email'},
                     {data: 'natureOfBusiness', name: 'natureOfBusiness'},
                     {data: 'summaryBox', name: 'summaryBox'},
                     {data: 'researchNotes', name: 'researchNotes'},
+                    {data: 'gps_lat', name: 'gps_lat'},
+                    {data: 'gps_long', name: 'gps_long'},
                     {data: 'created_at', name: 'created_at'},
 
                     {data: function(d)

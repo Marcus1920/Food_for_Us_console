@@ -26,6 +26,7 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Surname</th>
+                                    <th>Cellphone</th>
                                     <th>Email</th>
                                     <th>Cellphone</th>
                                     <th>Interest </th>
@@ -59,6 +60,7 @@
                     { data: 'id' },
                     { data: 'name' },
                     { data: 'surname' },
+                    { data: 'cellphone' },
                     { data: 'email' },
                     { data: 'cellphone'},
                     { data: 'intrest' },

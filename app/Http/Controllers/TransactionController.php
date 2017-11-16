@@ -633,6 +633,7 @@ class TransactionController extends Controller
                                                   transaction_activities.id,
                                                   transactions.id as transactionId,
                                                   transactions.quantity,
+                                                  transactions.product as postRefference,
                                                   product_types.name as productName,
                                                   transaction_ratings.comment,
                                                   transaction_ratings.rating,

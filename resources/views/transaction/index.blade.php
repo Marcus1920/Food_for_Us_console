@@ -25,6 +25,7 @@
                                     <th>ID Number</th>
                                     <th>Gps Lat</th>
                                     <th>Gps Long</th>
+                                    <th>Post Id</th>
                                     <th>Transaction Id</th>
                                     <th>Product name</th>
                                     <th>Quantity Purchased</th>
@@ -80,6 +81,7 @@
                         {data: 'idNumber', name: 'idNumber'},
                         {data: 'gps_lat', name: 'gps_lat'},
                         {data: 'gps_long', name: 'gps_long'},
+                        {data: 'postRefference', name: 'postRefference'},
                         {data: 'transactionId', name: 'transactionId'},
                         {data: 'productName', name: 'productName'},
                         {data: 'quantity', name: 'quantity'},
@@ -88,7 +90,7 @@
                         {data: 'created_at', name: 'created_at'},
                         {{--{data: function(d)--}}
                         {{--{--}}
-                            {{--return "<a href='{!! url('viewUserTransaction/" + d.id + "/" + d.idNumber + " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";--}}
+                            {{--return "<a href='{!! url('postview/" + d.postRefference " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";--}}
                         {{--}},--}}
 
                 ],
