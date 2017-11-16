@@ -182,6 +182,9 @@ class UsersController extends Controller
 			  $response['active']      = 2;
 			  $response["msg"]         = "ok";
 
+                NewUser::where('id',$data->id)
+                    ->update(['last_login'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
+
 			  $addLogin = new ManageLogin();
 			  $addLogin->new_user_id = $data->id;
 			  $addLogin->save();

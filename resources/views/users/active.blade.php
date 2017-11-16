@@ -27,8 +27,10 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Surname</th>
+                                <th>Cellphone</th>
                                 <th>Email</th>
                                 <th>Interest </th>
+                                <th>Last Login </th>
                                 <th>Location</th>
                                 <th>Gps Lat</th>
                                 <th>Gps Long</th>
@@ -61,8 +63,10 @@
                     { data: 'id' },
                     { data: 'name' },
                     { data: 'surname' },
+                    { data: 'cellphone' },
                     { data: 'email' },
                     { data: 'intrest' },
+                    { data: 'last_login' },
                     { data: 'location' },
                     { data: 'gps_lat' },
                     { data: 'gps_long' },

@@ -20,6 +20,7 @@ class PostViewController extends Controller
             ->join('new_users','sellers_details_tabs.new_user_id','=','new_users.id')
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+            ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
             ->select(
                 \DB::raw(
                     "
@@ -37,6 +38,7 @@ class PostViewController extends Controller
                         product_types.id as productTypeId,
                         sellers_details_tabs.quantityPosted,
                         sellers_details_tabs.quantitySold,
+                        sellers_details_tabs.quantityPosted-sellers_details_tabs.quantitySold as quantityRemaining,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
                         sellers_details_tabs.country,
@@ -46,6 +48,7 @@ class PostViewController extends Controller
                         sellers_details_tabs.paymentMethods,
                         sellers_details_tabs.transactionRating,
                         sellers_details_tabs.created_at,
+                        product_pickup_details.sellByDate,
                         sellers_details_tabs.updated_at
                         "
                 )
