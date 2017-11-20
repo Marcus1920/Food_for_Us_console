@@ -307,16 +307,26 @@ class TransactionController extends Controller
                     case 'Completed':
                         $messageStatus = 'closed';
 
-                        $getTransactionQuantity                 = Transaction::select('quantity')
-                                                                        ->where('id',$transactionId)
+                        $getTransactionQuantity                 = Transaction::where('id',$transactionId)
                                                                         ->first();
+<<<<<<< HEAD
                         $originalQuantitySold                   = Sellers_details_tabs::select('quantitySold')
                                              ->where('id',$transactionDetails->product)
+=======
+
+                        $originalQuantitySold                   = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
+>>>>>>> 86e63ba9239a46c9dba5e57049eacaf6e117b78a
                                                                     ->where('new_user_id',$userDetails->id)
                                                                     ->first();
+
                         $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
+<<<<<<< HEAD
                         
                         $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$transactionDetails->product)
+=======
+
+                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
+>>>>>>> 86e63ba9239a46c9dba5e57049eacaf6e117b78a
                                                                     ->update(['quantitySold'=>$QtySold]);
 
                         break;
@@ -638,7 +648,7 @@ class TransactionController extends Controller
                                       transactions.product as postRefference,
                                       transactions.id as transactionId,
                                       product_types.name as productName,
-                                      sellers_details_tabs.quantityPosted,
+                                      sellers_details_tabs.quantity as quantityPosted,
                                       transactions.quantity,
                                       sellers_details_tabs.quantity as quantityAvailable,
                                       transaction_ratings.comment,
