@@ -267,8 +267,10 @@ class TransactionController extends Controller
             $transactionStatusName = Input::get('statusName');
             $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
             $transactionStatusDetails = TransactionStatus::where('slug', $transactionStatusName)->first();
-            if ($userDetails->intrest == 1) {
-                $sellerTransactionsUpdates = Transaction::where('id', $transactionId)
+
+            if ($userDetails->intrest == 1)
+            {
+                $sellerTransactionsUpdates = Transaction::where('id',$transactionId)
                     ->where('seller_id', $userDetails->id)
                     ->update(['status' => $transactionStatusDetails->id]);
 

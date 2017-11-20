@@ -29,6 +29,7 @@
                                 <th>Surname</th>
                                 <th>Cellphone</th>
                                 <th>Email</th>
+                                <th>Cellphone</th>
                                 <th>Interest </th>
                                 <th>Last Login </th>
                                 <th>Location</th>
@@ -65,6 +66,7 @@
                     { data: 'surname' },
                     { data: 'cellphone' },
                     { data: 'email' },
+                    { data: 'cellphone'},
                     { data: 'intrest' },
                     { data: 'last_login' },
                     { data: 'location' },
