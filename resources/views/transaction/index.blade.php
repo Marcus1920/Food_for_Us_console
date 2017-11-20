@@ -19,16 +19,17 @@
                             <table class="table tile table-striped" id="transactionListTable">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Transaction Id</th>
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>ID Number</th>
                                     <th>Gps Lat</th>
                                     <th>Gps Long</th>
                                     <th>Post Id</th>
-                                    <th>Transaction Id</th>
                                     <th>Product name</th>
+                                    <th>Quantity Posted</th>
                                     <th>Quantity Purchased</th>
+                                    <th>Quantity available</th>
                                     <th>Transaction rating</th>
                                     <th>Transaction Comment</th>
                                     <th>Created At</th>
@@ -82,9 +83,10 @@
                         {data: 'gps_lat', name: 'gps_lat'},
                         {data: 'gps_long', name: 'gps_long'},
                         {data: 'postRefference', name: 'postRefference'},
-                        {data: 'transactionId', name: 'transactionId'},
                         {data: 'productName', name: 'productName'},
+                        {data: 'quantityPosted', name: 'quantityPosted'},
                         {data: 'quantity', name: 'quantity'},
+                        {data: 'quantityAvailable', name: 'quantityAvailable'},
                         {data: 'rating', name: 'rating'},
                         {data: 'comment', name: 'comment'},
                         {data: 'created_at', name: 'created_at'},

@@ -27,7 +27,6 @@ class TransactionController extends Controller
     public function store()
     {
         $transactionStatusId = TransactionStatus::find(1);
-
         $api_key = Input::get('api_key');
         $product_id = Input::get('productType');
         $sellerId = Input::get('new_user_id');
@@ -50,8 +49,7 @@ class TransactionController extends Controller
         $transactionObj->product       = $productDetails->productId;
         $transactionObj->quantity      = $productDetails->quantity;
         $transactionObj->save();
-
-
+        
         $userTransactionActivity                     = new TransactionActivity();
         $userTransactionActivity->userId             = $buyer->id;
         $userTransactionActivity->transactionId      = $transactionObj->id;
@@ -310,7 +308,8 @@ class TransactionController extends Controller
                         $messageStatus = 'closed';
 
                         $getTransactionQuantity                 = Transaction::select('quantity')
-                                                                        ->where('id',$transactionId)->first();
+                                                                        ->where('id',$transactionId)
+                                                                        ->first();
                         $originalQuantitySold                   = Sellers_details_tabs::select('quantitySold')
                                              ->where('id',$transactionDetails->product)
                                                                     ->where('new_user_id',$userDetails->id)
@@ -318,7 +317,7 @@ class TransactionController extends Controller
                         $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
                         
                         $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$transactionDetails->product)
-                                                                        ->update(['quantitySold'=>$QtySold]);
+                                                                    ->update(['quantitySold'=>$QtySold]);
 
                         break;
 
@@ -621,34 +620,62 @@ class TransactionController extends Controller
     }
     public function transactionHistory()
     {
-        $transactionHistory      =\DB::table('transaction_activities')
-                                        ->join('transactions','transaction_activities.transactionId','=','transactions.id')
-                                        ->join('new_users','transaction_activities.userId','=','new_users.id')
-                                        ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
-                                        ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
-                                        ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
-                                        ->select(
-                                            \DB::raw
-                                            (
-                                                "
-                                                  transaction_activities.id,
-                                                  transactions.id as transactionId,
-                                                  transactions.quantity,
-                                                  transactions.product as postRefference,
-                                                  product_types.name as productName,
-                                                  transaction_ratings.comment,
-                                                  transaction_ratings.rating,
-                                                  new_users.name,
-                                                  new_users.surname,
-                                                  new_users.idNumber,
-                                                  new_users.gps_lat,
-                                                  new_users.gps_long,
-                                                  transaction_ratings.created_at
-                                             
-                                                 "
-                                            )
-                                        )
-                                        ->get();
+        $transactionHistory = \DB::table('transactions')
+                              ->join('new_users','transactions.buyer_id','=','new_users.id')
+                              ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+                              ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
+                              ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
+                              ->select(
+                                  \DB::raw
+                                  (
+                                      "
+                                      transactions.id,
+                                      new_users.name,
+                                      new_users.surname,
+                                      new_users.idNumber,
+                                      new_users.gps_lat,
+                                      new_users.gps_long,
+                                      transactions.product as postRefference,
+                                      transactions.id as transactionId,
+                                      product_types.name as productName,
+                                      sellers_details_tabs.quantityPosted,
+                                      transactions.quantity,
+                                      sellers_details_tabs.quantity as quantityAvailable,
+                                      transaction_ratings.comment,
+                                      transaction_ratings.rating,
+                                      transactions.created_at
+                                      "
+                                  )
+                              )->get();
+//        $transactionHistory      =\DB::table('transaction_activities')
+//                                        ->join('transactions','transaction_activities.transactionId','=','transactions.id')
+//                                        ->join('new_users','transaction_activities.userId','=','new_users.id')
+//                                        ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+//                                        ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
+//                                        ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
+//                                        ->select(
+//                                            \DB::raw
+//                                            (
+//                                                "
+//                                                  transaction_activities.id,
+//                                                  transactions.id as transactionId,
+//                                                  transactions.quantity,
+//                                                  transactions.product as postRefference,
+//                                                  product_types.name as productName,
+//                                                  transaction_ratings.comment,
+//                                                  transaction_ratings.rating,
+//                                                  new_users.name,
+//                                                  new_users.surname,
+//                                                  new_users.idNumber,
+//                                                  new_users.gps_lat,
+//                                                  new_users.gps_long,
+//                                                  transaction_ratings.created_at
+//
+//                                                 "
+//                                            )
+//                                        )
+//                                        ->get();
+
                                 return Datatables::of($transactionHistory)
                                     ->make(true);
 
