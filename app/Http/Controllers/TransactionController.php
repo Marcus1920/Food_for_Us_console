@@ -267,8 +267,7 @@ class TransactionController extends Controller
             $transactionStatusName = Input::get('statusName');
             $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
             $transactionStatusDetails = TransactionStatus::where('slug', $transactionStatusName)->first();
-            if ($userDetails->intrest == 1)
-            {
+            if ($userDetails->intrest == 1) {
                 $sellerTransactionsUpdates = Transaction::where('id', $transactionId)
                     ->where('seller_id', $userDetails->id)
                     ->update(['status' => $transactionStatusDetails->id]);
@@ -279,52 +278,83 @@ class TransactionController extends Controller
                 $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->buyer_id)->first();
 
 
-                $sellerTransactionsActivity                   = new TransactionActivity();
-                $sellerTransactionsActivity->userId           = $userDetails->id;
-                $sellerTransactionsActivity->transactionId    = $transactionId;
-                $sellerTransactionsActivity->status           = $transactionStatusDetails->id;
+                $sellerTransactionsActivity = new TransactionActivity();
+                $sellerTransactionsActivity->userId = $userDetails->id;
+                $sellerTransactionsActivity->transactionId = $transactionId;
+                $sellerTransactionsActivity->status = $transactionStatusDetails->id;
                 $sellerTransactionsActivity->save();
 
-
                 $messageStatus = '';
-                switch ($transactionStatusName) {
-                    case 'Active':
-                        $messageStatus = 'accepted';
-                        break;
 
-                    case 'Declined':
-                        $messageStatus = 'rejected';
+                if ($transactionStatusName == "Completed") {
+                    $messageStatus = 'closed';
 
-                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
-                        $originalQuantity                       = Sellers_details_tabs::select('quantity')
-                                                                ->where('id',$transactionDetails->product)
-                                                                ->where('new_user_id',$userDetails->id)->first();
-                        $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
-                        $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
-                                                                ->update(['quantity'=>$totalQty]);
-                        break;
+                    $getTransactionQuantity = Transaction::where('id', $transactionId)
+                        ->first();
 
-                    case 'Completed':
-                        $messageStatus = 'closed';
+                    $originalQuantitySold = Sellers_details_tabs::where('id', $getTransactionQuantity->product)
+                        ->where('new_user_id', $userDetails->id)
+                        ->first();
 
-                        $getTransactionQuantity                 = Transaction::where('id',$transactionId)
-                                                                        ->first();
+                    $QtySold = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
 
-                        $originalQuantitySold                   = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
-                                                                    ->where('new_user_id',$userDetails->id)
-                                                                    ->first();
+                    $UpdateTheSellerDetailsTab = Sellers_details_tabs::where('id', $getTransactionQuantity->product)
+                        ->update(['quantitySold' => $QtySold]);
+                } else if ($transactionStatusName == "Active") {
+                    $messageStatus = 'accepted';
+                } else if ($transactionStatusName == "Declined") {
+                    $messageStatus = 'rejected';
 
-                        $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
-
-                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
-                                                                    ->update(['quantitySold'=>$QtySold]);
-
-                        break;
-
-                    case 'Cancelled':
-                        $messageStatus = 'cancelled';
-                        break;
+                    $getTransactionQuantity = Transaction::select('quantity')->where('id', $transactionId)->first();
+                    $originalQuantity = Sellers_details_tabs::select('quantity')
+                        ->where('id', $transactionDetails->product)
+                        ->where('new_user_id', $userDetails->id)->first();
+                    $totalQty = $originalQuantity->quantity + $getTransactionQuantity->quantity;
+                    $putBackTransactionQty = Sellers_details_tabs::where('id', $transactionDetails->product)
+                        ->update(['quantity' => $totalQty]);
+                } else if ($transactionStatusName == "Cancelled")
+                {
+                    $messageStatus = 'cancelled';
                 }
+
+//                switch ($transactionStatusName) {
+//                    case 'Active':
+//                        $messageStatus = 'accepted';
+//                        break;
+//
+//                    case 'Declined':
+//                        $messageStatus = 'rejected';
+//
+//                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+//                        $originalQuantity                       = Sellers_details_tabs::select('quantity')
+//                                                                ->where('id',$transactionDetails->product)
+//                                                                ->where('new_user_id',$userDetails->id)->first();
+//                        $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
+//                        $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
+//                                                                ->update(['quantity'=>$totalQty]);
+//                        break;
+//
+//                    case 'Completed':
+//                        $messageStatus = 'closed';
+//
+//                        $getTransactionQuantity                 = Transaction::where('id',$transactionId)
+//                                                                        ->first();
+//
+//                        $originalQuantitySold                   = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
+//                                                                    ->where('new_user_id',$userDetails->id)
+//                                                                    ->first();
+//
+//                        $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
+//
+//                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
+//                                                                    ->update(['quantitySold'=>$QtySold]);
+//
+//                        break;
+//
+//                    case 'Cancelled':
+//                        $messageStatus = 'cancelled';
+//                        break;
+//                }
                 $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
                 $data = array(
 
