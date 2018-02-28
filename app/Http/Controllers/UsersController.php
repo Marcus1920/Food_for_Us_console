@@ -505,6 +505,23 @@ class UsersController extends Controller
           }
           return $user;
       }
+
+      public function updateInterest()
+      {
+          $response = array();
+
+          $api_key = Input::get('api_key');
+
+          $productInterest = Input::get('productInterest');
+
+          $user  = NewUser::where('api_key',$api_key)
+              ->update(['productInterest'=>$productInterest]);
+
+          $response['message'] = "Successfully updated product interest";
+
+          return response()->json($response);
+      }
+
     public function updateAppUserProfile()
     {
 

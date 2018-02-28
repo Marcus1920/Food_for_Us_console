@@ -40,6 +40,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
      Route::get ('packagingList' , 'packagingListController@index');
      Route::get ('producttype' , 'ProductTypeController@index');
 
+     Route::post ('productInterest','UsersController@updateInterest');
+
     //Researchers
     Route::get('myResearchs','ResearchersController@index');
     Route::post('createResearch','ResearchersController@create');

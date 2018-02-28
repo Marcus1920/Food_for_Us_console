@@ -23,52 +23,52 @@
 
 
     <!-- CSS -->
-    <link href="{{ asset('public/css/token-input.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/form.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/calendar.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/generics.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/token-input.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/lightbox.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/media-player.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/file-manager.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/buttons.dataTables.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/HoldOn.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/bootstrap-switch.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/incl/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/Treant.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/collapsable.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/token-input.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/generics.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/token-input.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/media-player.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/file-manager.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/buttons.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/HoldOn.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-switch.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('incl/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/Treant.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/collapsable.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('public/css/toggles.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toggles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('public/css/toggles.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toggles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
 
     <!-- DataTables CSS -->
     <link href="{{ asset('public//bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-{{--<link href="{{ asset('public/bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">--}}
+{{--<link href="{{ asset('bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">--}}
 <!-- jQuery Library -->
-    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
     <!-- jQuery Library -->
-    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
 
 
 
 
     <!-- DataTables CSS -->
-    <link href="{{ asset('public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="{{ asset('public/bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">
+    <link href="{{ asset('bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">
 
 
 
@@ -142,7 +142,7 @@
             <!-- Profile Menu -->
             <div class="text-center s-widget m-b-25 dropdown" id="profile-menu">
                 <a href="#" data-toggle="dropdown">
-                    <img class="profile-pic animated" src="{{ asset('public/img/food_for_us_logo.png') }}" alt="lomnin">
+                    <img class="profile-pic animated" src="{{ asset('img/food_for_us_logo.png') }}" alt="lomnin">
                 </a>
 
                 <ul class="profile-menu">
@@ -176,7 +176,7 @@
                 <div id="landings_calendar"></div>
             </div>
 
-            {{--<img class="" src="{{ asset('public/images/dashboard_logo.png') }}" width="60%" alt="" style=" position: absolute; left: 25px; bottom: 10px;">--}}
+            {{--<img class="" src="{{ asset('images/dashboard_logo.png') }}" width="60%" alt="" style=" position: absolute; left: 25px; bottom: 10px;">--}}
         </div>
 
         <!-- Side Menu -->
@@ -261,69 +261,69 @@
  </section>
 @yield('footer')
 
-<script src="{{ asset('public/js/toggles.js') }}"></script>
+<script src="{{ asset('js/toggles.js') }}"></script>
 
-<script src="{{ asset('public/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
-<script src="{{ asset('public/js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
+<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
 
-<script src="{{ asset('public/js/toggles.js') }}"></script>
-<script src="{{ asset('public/js/pagination.js') }}"></script>
-<script src="{{ asset('public/js/pagination.min.js') }}"></script>
-<script src="{{ asset('public/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
-<script src="{{ asset('public/js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+<script src="{{ asset('js/toggles.js') }}"></script>
+<script src="{{ asset('js/pagination.js') }}"></script>
+<script src="{{ asset('js/pagination.min.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
+<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
 
 
 <!-- Bootstrap -->
-<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 
 
 
 <!--  Form Related -->
-<script src="{{ asset('public/js/icheck.js') }}"></script> <!-- Custom Checkbox + Radio -->
+<script src="{{ asset('js/icheck.js') }}"></script> <!-- Custom Checkbox + Radio -->
 
 <!-- UX -->
-<script src="{{ asset('public/js/scroll.min.js') }}"></script> <!-- Custom Scrollbar -->
+<script src="{{ asset('js/scroll.min.js') }}"></script> <!-- Custom Scrollbar -->
 
 <!-- Other -->
-<script src="{{ asset('public/js/calendar.min.js') }}"></script> <!-- Calendar -->
-<script src="{{ asset('public/js/feeds.min.js') }}"></script> <!-- News Feeds -->
+<script src="{{ asset('js/calendar.min.js') }}"></script> <!-- Calendar -->
+<script src="{{ asset('js/feeds.min.js') }}"></script> <!-- News Feeds -->
 
 
 <!--  Form Related -->
-<script src="{{ asset('public/js/validation/validate.min.js') }}"></script> <!-- jQuery Form Validation Library -->
-<script src="{{ asset('public/js/validation/validationEngine.min.js') }}"></script> <!-- jQuery Form Validation Library - requirred with above js -->
+<script src="{{ asset('js/validation/validate.min.js') }}"></script> <!-- jQuery Form Validation Library -->
+<script src="{{ asset('js/validation/validationEngine.min.js') }}"></script> <!-- jQuery Form Validation Library - requirred with above js -->
 
 
 <!-- All JS functions -->
-<script src="{{ asset('public/js/functions.js') }}"></script>
+<script src="{{ asset('js/functions.js') }}"></script>
 
 
 <!-- Token Input -->
-<script src="{{ asset('public/js/jquery.tokeninput.js') }}"></script> <!-- Token Input -->
+<script src="{{ asset('js/jquery.tokeninput.js') }}"></script> <!-- Token Input -->
 
 
 
 <!-- Noty JavaScript -->
-<script src="{{ asset('public/bower_components/noty/js/noty/packaged/jquery.noty.packaged.js') }}"></script>
+<script src="{{ asset('bower_components/noty/js/noty/packaged/jquery.noty.packaged.js') }}"></script>
 
 <!-- DataTables JavaScript -->
 
 
-<script src="{{ asset('public/bower_components/datatables/media/js/datatables-plugins/pagination/scrolling.js') }}"></script>
-<script src="{{ asset('public/bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('bower_components/datatables/media/js/datatables-plugins/pagination/scrolling.js') }}"></script>
+<script src="{{ asset('bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
 
 
 
 <!-- Jquery Bootstrap Maxlength -->
-<script src="{{ asset('public/bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+<script src="{{ asset('bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
 
 
 <!-- Media -->
-<script src="{{ asset('public/js/media-player.min.js') }}"></script> <!-- Video Player -->
-<script src="{{ asset('public/js/pirobox.min.js') }}"></script> <!-- Lightbox -->
-<script src="{{ asset('public/js/file-manager/elfinder.js') }}"></script> <!-- File Manager -->
+<script src="{{ asset('js/media-player.min.js') }}"></script> <!-- Video Player -->
+<script src="{{ asset('js/pirobox.min.js') }}"></script> <!-- Lightbox -->
+<script src="{{ asset('js/file-manager/elfinder.js') }}"></script> <!-- File Manager -->
 
 
 <script type="text/javascript" src="{{ asset('incl/oms.min.js') }}"></script>
@@ -331,30 +331,30 @@
 
 
 <!-- File Upload -->
-<script src="{{ asset('public/js/fileupload.min.js') }}"></script> <!-- File Upload -->
+<script src="{{ asset('js/fileupload.min.js') }}"></script> <!-- File Upload -->
 
 <!-- Spinner -->
-<script src="{{ asset('public/js/HoldOn.min.js') }}"></script> <!-- Spinner -->
+<script src="{{ asset('js/HoldOn.min.js') }}"></script> <!-- Spinner -->
 
 <!-- bootstrap-switch. -->
 <script src="{{ asset('public//js/bootstrap-switch.js') }}"></script> <!-- bootstrap-switch. -->
 
 <!-- Date & Time Picker -->
-<script src="{{ asset('public/js/datetimepicker.min.js') }}"></script> <!-- Date & Time Picker -->
+<script src="{{ asset('js/datetimepicker.min.js') }}"></script> <!-- Date & Time Picker -->
 
 <!-- Buttons HTML5 -->
-<script src="{{ asset('public/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('public/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('public/js/jszip.min.js') }}"></script>
-<script src="{{ asset('public/js/pdfmake.min.js') }}"></script>
-<script src="{{ asset('public/js/vfs_fonts.js') }}"></script>
+<script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('js/jszip.min.js') }}"></script>
+<script src="{{ asset('js/pdfmake.min.js') }}"></script>
+<script src="{{ asset('js/vfs_fonts.js') }}"></script>
 <!--  Buttons HTML5 -->
 
-<script src="{{ asset('public/js/socket.io.js') }}"></script>
+<script src="{{ asset('js/socket.io.js') }}"></script>
 
-<script src="{{ asset('public/js/calendar.min.js') }}"></script> <!-- Calendar -->
+<script src="{{ asset('js/calendar.min.js') }}"></script> <!-- Calendar -->
 
-<script src="{{ asset('public/js/raphael.js') }}"> </script>
+<script src="{{ asset('js/raphael.js') }}"> </script>
 
 
 

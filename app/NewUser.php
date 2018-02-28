@@ -60,4 +60,9 @@ class NewUser extends Eloquent
     {
         return $this->hasMany(TransactionActivity::class);
     }
+
+    public  function productInterest(){
+
+        return $this->belongsTo(ProductType::class,'productInterest','id');
+    }
 }
