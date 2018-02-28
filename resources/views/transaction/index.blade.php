@@ -19,15 +19,17 @@
                             <table class="table tile table-striped" id="transactionListTable">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Transaction Id</th>
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>ID Number</th>
                                     <th>Gps Lat</th>
                                     <th>Gps Long</th>
-                                    <th>Transaction Id</th>
+                                    <th>Post Id</th>
                                     <th>Product name</th>
+                                    <th>Quantity Posted</th>
                                     <th>Quantity Purchased</th>
+                                    <th>Quantity available</th>
                                     <th>Transaction rating</th>
                                     <th>Transaction Comment</th>
                                     <th>Created At</th>
@@ -80,15 +82,17 @@
                         {data: 'idNumber', name: 'idNumber'},
                         {data: 'gps_lat', name: 'gps_lat'},
                         {data: 'gps_long', name: 'gps_long'},
-                        {data: 'transactionId', name: 'transactionId'},
+                        {data: 'postRefference', name: 'postRefference'},
                         {data: 'productName', name: 'productName'},
+                        {data: 'quantityPosted', name: 'quantityPosted'},
                         {data: 'quantity', name: 'quantity'},
+                        {data: 'quantityAvailable', name: 'quantityAvailable'},
                         {data: 'rating', name: 'rating'},
                         {data: 'comment', name: 'comment'},
                         {data: 'created_at', name: 'created_at'},
                         {{--{data: function(d)--}}
                         {{--{--}}
-                            {{--return "<a href='{!! url('viewUserTransaction/" + d.id + "/" + d.idNumber + " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";--}}
+                            {{--return "<a href='{!! url('postview/" + d.postRefference " ') !!}' class='btn btn-sm'>" + 'View' + "</a>";--}}
                         {{--}},--}}
 
                 ],

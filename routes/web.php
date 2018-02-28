@@ -28,8 +28,19 @@ Route::get('del' , 'SellersController@destroy');
 Route::group(array('prefix' => 'api/v1'), function() {
 
     // Product  type
+    Route::get('iphone' , function(){
+        
+         $respos = array() ; 
+         
+         $respos['mesg'] ="ok"; 
+         
+         return  $respos;
+        
+    });
      Route::get ('packagingList' , 'packagingListController@index');
      Route::get ('producttype' , 'ProductTypeController@index');
+
+     Route::post ('productInterest','UsersController@updateInterest');
 
     //Researchers
     Route::get('myResearchs','ResearchersController@index');

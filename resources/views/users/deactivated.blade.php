@@ -26,7 +26,9 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Surname</th>
+                                    <th>Cellphone</th>
                                     <th>Email</th>
+                                    <th>Cellphone</th>
                                     <th>Interest </th>
                                     <th>Location</th>
                                     <th>Travel Radius</th>
@@ -58,7 +60,9 @@
                     { data: 'id' },
                     { data: 'name' },
                     { data: 'surname' },
+                    { data: 'cellphone' },
                     { data: 'email' },
+                    { data: 'cellphone'},
                     { data: 'intrest' },
                     { data: 'location' },
                     { data: 'travelRadius' },

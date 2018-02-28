@@ -34,7 +34,9 @@ class HomeController extends Controller
                                             new_users.id,
                                             new_users.name,
                                             new_users.surname,
+                                            new_users.cellphone,
                                             new_users.email,
+                                            new_users.cellphone,
                                             user_roles.name  as intrest,
                                             new_users.location,
                                             user_travel_radii.kilometres as travelRadius,
@@ -63,7 +65,9 @@ class HomeController extends Controller
                                     new_users.id,
                                     new_users.name,
                                     new_users.surname,
+                                    new_users.cellphone,
                                     new_users.email,
+                                    new_users.cellphone,
                                     user_roles.name  as intrest,
                                     new_users.location,
                                     user_travel_radii.kilometres as travelRadius,
@@ -71,7 +75,9 @@ class HomeController extends Controller
                                     new_users.descriptionOfAcces,
                                     new_users.created_at,
                                     new_users.gps_lat,
-                                    new_users.gps_long
+                                    new_users.gps_long,
+                                    new_users.last_login
+                                   
                                     
                                     "
             )
@@ -97,6 +103,7 @@ class HomeController extends Controller
                                     new_users.id,
                                     new_users.name,
                                     new_users.surname,
+                                    new_users.cellphone,
                                     new_users.email,
                                     user_roles.name  as intrest,
                                     new_users.location,

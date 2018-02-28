@@ -6,18 +6,18 @@
     <meta charset="UTF-8">
     <meta name="description" content="Siyaleader Durban University of Technology">
     <meta name="keywords" content="Siyaleader,Durban University of Technology, HIV/AIDS">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('public/img/food_for_us_logo.png') }}">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('img/food_for_us_logo.png') }}">
 
 
     <title>Food For Us</title>
 
 
     <!-- CSS -->
-    <link href="{{ asset('public/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('public/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/generics.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/generics.css') }}" rel="stylesheet">
 
 
 
@@ -49,7 +49,7 @@
 
             <form class="box tile animated active" id="box-login" role="form" method="POST" action="{{ url('login') }}">
                 <center>
-                <img src="{{ asset('public/img/FFU_Words.png') }}" alt="lomnin">
+                <img src="{{ asset('img/FFU_Words.png') }}" alt="lomnin">
                 </center>
                 <br/>
                 <h2 class="m-t-0 m-b-15">Login</h2>
@@ -75,7 +75,7 @@
             <form class="box animated tile" id="box-reset" method="POST" action="{{ route('password.request') }}">
                 {!! csrf_field() !!}
                 <center>
-                    <img src="{{ asset('public/img/FFU_Words.png') }}" alt="lomnin">
+                    <img src="{{ asset('img/FFU_Words.png') }}" alt="lomnin">
                 </center>
                 <h2 class="m-t-0 m-b-15">Reset Password</h2>
                 <p></p>
@@ -85,7 +85,7 @@
                 <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
             </form>
         </div>
-        <div class="col-md-6" style="background-image: url(public/img/login_illustration.png); height: 600px">
+        <div class="col-md-6" style="background-image: url(img/login_illustration.png); height: 600px">
 
 
         </div>
@@ -97,9 +97,9 @@
     <div class="clearfix"></div>
 </section>
 
-<script src="{{ asset('public/js/jquery.min.js') }}"></script>
-<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('public/js/functions.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/functions.js') }}"></script>
 </body>
 </html>
 

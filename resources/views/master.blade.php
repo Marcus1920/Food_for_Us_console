@@ -16,7 +16,7 @@
       nutritious food. Food for Us provides an innovative mobile phone application that brings together producers and
       consumers of food. The vision is to reduce food waste and enhance food security be providing a convenient platform
       for connecting interested peopl">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('public/img/food_for_us_logo.png') }}">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('img/food_for_us_logo.png') }}">
 
 
     <title>Food For Us</title>
@@ -50,15 +50,15 @@
     <link href="{{ asset('css/toggle-themes/toggles-all.css') }}" rel="stylesheet">
 
     <!-- DataTables CSS -->
-    <link href="{{ asset('/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('public//bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-{{--<link href="{{ asset('public/bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">--}}
+{{--<link href="{{ asset('bower_components/datatables-responsive/css/responsive.dataTables.scss') }}" rel="stylesheet">--}}
 <!-- jQuery Library -->
-    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
     <!-- jQuery Library -->
-    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
 
 
@@ -142,7 +142,7 @@
             <!-- Profile Menu -->
             <div class="text-center s-widget m-b-25 dropdown" id="profile-menu">
                 <a href="#" data-toggle="dropdown">
-                    <img class="profile-pic animated" src="{{ asset('public/img/food_for_us_logo.png') }}" alt="lomnin">
+                    <img class="profile-pic animated" src="{{ asset('img/food_for_us_logo.png') }}" alt="lomnin">
                 </a>
 
                 <ul class="profile-menu">
@@ -176,7 +176,7 @@
                 <div id="landings_calendar"></div>
             </div>
 
-            {{--<img class="" src="{{ asset('public/images/dashboard_logo.png') }}" width="60%" alt="" style=" position: absolute; left: 25px; bottom: 10px;">--}}
+            {{--<img class="" src="{{ asset('images/dashboard_logo.png') }}" width="60%" alt="" style=" position: absolute; left: 25px; bottom: 10px;">--}}
         </div>
 
         <!-- Side Menu -->
@@ -261,38 +261,38 @@
  </section>
 @yield('footer')
 
-<script src="{{ asset('public/js/toggles.js') }}"></script>
+<script src="{{ asset('js/toggles.js') }}"></script>
 
-<script src="{{ asset('public/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
-<script src="{{ asset('public/js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
+<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
 
-<script src="{{ asset('/js/toggles.js') }}"></script>
-<script src="{{ asset('/js/pagination.js') }}"></script>
-<script src="{{ asset('/js/pagination.min.js') }}"></script>
-<script src="{{ asset('/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
-<script src="{{ asset('/js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+<script src="{{ asset('js/toggles.js') }}"></script>
+<script src="{{ asset('js/pagination.js') }}"></script>
+<script src="{{ asset('js/pagination.min.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
+<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script> <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
 
 
 <!-- Bootstrap -->
-<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 
 
 
 <!--  Form Related -->
-<script src="{{ asset('public/js/icheck.js') }}"></script> <!-- Custom Checkbox + Radio -->
+<script src="{{ asset('js/icheck.js') }}"></script> <!-- Custom Checkbox + Radio -->
 
 <!-- UX -->
-<script src="{{ asset('public/js/scroll.min.js') }}"></script> <!-- Custom Scrollbar -->
+<script src="{{ asset('js/scroll.min.js') }}"></script> <!-- Custom Scrollbar -->
 
 <!-- Other -->
-<script src="{{ asset('public/js/calendar.min.js') }}"></script> <!-- Calendar -->
-<script src="{{ asset('public/js/feeds.min.js') }}"></script> <!-- News Feeds -->
+<script src="{{ asset('js/calendar.min.js') }}"></script> <!-- Calendar -->
+<script src="{{ asset('js/feeds.min.js') }}"></script> <!-- News Feeds -->
 
 
 <!--  Form Related -->
-<script src="{{ asset('public/js/validation/validate.min.js') }}"></script> <!-- jQuery Form Validation Library -->
-<script src="{{ asset('public/js/validation/validationEngine.min.js') }}"></script> <!-- jQuery Form Validation Library - requirred with above js -->
+<script src="{{ asset('js/validation/validate.min.js') }}"></script> <!-- jQuery Form Validation Library -->
+<script src="{{ asset('js/validation/validationEngine.min.js') }}"></script> <!-- jQuery Form Validation Library - requirred with above js -->
 
 
 <!-- All JS functions -->
@@ -326,7 +326,7 @@
 <script src="{{ asset('js/file-manager/elfinder.js') }}"></script> <!-- File Manager -->
 
 
-<script type="text/javascript" src="{{ asset('public/incl/oms.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('incl/oms.min.js') }}"></script>
 
 
 
@@ -337,7 +337,11 @@
 <script src="{{ asset('js/HoldOn.min.js') }}"></script> <!-- Spinner -->
 
 <!-- bootstrap-switch. -->
+<<<<<<< HEAD
 <script src="{{ asset('js/bootstrap-switch.js') }}"></script> <!-- bootstrap-switch. -->
+=======
+<script src="{{ asset('public//js/bootstrap-switch.js') }}"></script> <!-- bootstrap-switch. -->
+>>>>>>> e4c469de6a1ebb744e7a6c37234b96cbb5b309bf
 
 <!-- Date & Time Picker -->
 <script src="{{ asset('js/datetimepicker.min.js') }}"></script> <!-- Date & Time Picker -->

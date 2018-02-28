@@ -30,8 +30,10 @@
                                 <th>Packaging</th>
                                 <th>Product Type</th>
                                 <th>Cost Per KG</th>
+                                <th>Sell By Date</th>
                                 <th>Quantity Posted</th>
                                 <th>Quantity Sold</th>
+                                <th>Quantity Remaining</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -84,8 +86,10 @@
                     {data: 'packaging', name: 'packaging'},
                     {data: 'productType', name: 'productType'},
                     {data: 'costPerKg', name: 'costPerKg'},
+                    {data: 'sellByDate', name: 'sellByDate'},
                     {data: 'quantityPosted', name: 'quantityPosted'},
                     {data: 'quantitySold', name: 'quantitySold'},
+                    {data: 'quantityRemaining', name: 'quantityRemaining'},
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
                     {
