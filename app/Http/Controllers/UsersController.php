@@ -18,6 +18,7 @@ use Illuminate\Validation\Rules\In;
 use phpDocumentor\Reflection\Types\Null_;
 use Psr\Log\NullLogger;
 use Redirect;
+use App\ProductType;
 
 use Illuminate\Pagination\Paginator;
 use App\ManageLogin;
@@ -514,8 +515,10 @@ class UsersController extends Controller
 
           $productInterest = Input::get('productInterest');
 
+          $productID = ProductType::where('name',$productInterest)->first();
+
           $user  = NewUser::where('api_key',$api_key)
-              ->update(['productInterest'=>$productInterest]);
+              ->update(['productInterest'=>$productID->id]);
 
           $response['message'] = "Successfully updated product interest";
 
