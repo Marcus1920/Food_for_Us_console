@@ -435,10 +435,11 @@ class UsersController extends Controller
         $data = array(
 
             'name'      =>      $NewUser->name,
+			'surname'   =>      $NewUser->surname,
 			'email'     =>      $NewUser->email,
             'password' =>       $NewUser->password,
 			'surname' =>        $NewUser->surname,
-            'content'   =>      $message
+            'content'   =>      $message 
                      );
 
       \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
@@ -447,6 +448,11 @@ class UsersController extends Controller
            $message->to($NewUser->email)->subject("Registration Notification ");
        });
 
+        \Mail::send('emails.adminRegNotification', $data, function ($message) use ($NewUser) {
+
+            $message->from('Info@FoodForUs.cloud', 'Food For us');
+            $message->to("mozaamisi93@gmail.com")->subject("Registration Notification ");
+        });
 
         $respose = array();
         $respose ['mesg']="Ok";
@@ -580,6 +586,30 @@ class UsersController extends Controller
         $user = NewUser::find($id);
 
         return view('users.userProfile', compact('user'));
+    }
+
+    public function getUsers() {
+        $searchString = \Input::get('q');
+        $users        = \DB::table('new_users')
+            ->whereRaw(
+                "CONCAT(`new_users`.`name`, ' ', `new_users`.`surname`) LIKE '%{$searchString}%'")
+            ->select(
+                array
+                (
+                    'new_users.id as id',
+                    'new_users.name as name',
+                    'new_users.surname as surname',
+                )
+            )
+            ->get();
+        $data = array();
+        foreach ($users as $user) {
+            $data[] = array(
+                "name" => "{$user->name} > {$user->surname}",
+                "id"   => "{$user->id}",
+            );
+        }
+        return $data;
     }
 
 

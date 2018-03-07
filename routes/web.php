@@ -11,6 +11,10 @@
 */
 use  App\NewUser  ;
 
+
+Route::get('sendNotification','MessagingController@sendNotification');
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -24,6 +28,16 @@ Route::get('up' , 'SellersController@update') ;
 
 Route::get('/' , 'HomeController@index') ;
 Route::get('del' , 'SellersController@destroy');
+
+Route::resource('group','GroupController');
+Route::post ('updateGroup/{id}','GroupController@update');
+
+Route::resource('groupUser','UserGroupController');
+Route::get('groupUsers/{id}','UserGroupController@index');
+Route::get('addGroupUsers/{id}','UserGroupController@create');
+Route::get('removeUser/{id}/{group}','UserGroupController@destroy');
+
+Route::get('getUserss', 'UsersController@getUsers');
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
