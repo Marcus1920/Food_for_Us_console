@@ -42,10 +42,23 @@ class UserGroupController extends Controller
 
         for($i=0 ; $i < count($Users) ; $i++)
         {
-            $groupUser = new UserGroup();
-            $groupUser->group_id = $request->group_id;
-            $groupUser->new_user_id = ($Users[$i]);
-            $groupUser->save();
+            $userExist = UserGroup::where('new_user_id',$Users[$i])
+                ->where('group_id',$request->group_id)
+                ->first();
+
+            if($userExist!=Null)
+            {
+                UserGroup::where('new_user_id',$Users[$i])
+                    ->where('group_id',$request->group_id)
+                    ->update(['active'=>1]);
+            }
+            else
+            {
+                $groupUser = new UserGroup();
+                $groupUser->group_id = $request->group_id;
+                $groupUser->new_user_id = ($Users[$i]);
+                $groupUser->save();
+            }
         };
 
         return Redirect('/groupUsers/'.$request->group_id);
