@@ -183,6 +183,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SellerPostsServiceProvider::class,
 
+        LaravelFCM\FCMServiceProvider::class,
+
 
 
     ],
@@ -240,6 +242,9 @@ return [
         'Mapper'     => Cornford\Googlmapper\Facades\MapperFacade::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+        'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
 
    
 

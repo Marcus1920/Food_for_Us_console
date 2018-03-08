@@ -49,7 +49,7 @@ class TransactionController extends Controller
         $transactionObj->product       = $productDetails->productId;
         $transactionObj->quantity      = $productDetails->quantity;
         $transactionObj->save();
-        
+
         $userTransactionActivity                     = new TransactionActivity();
         $userTransactionActivity->userId             = $buyer->id;
         $userTransactionActivity->transactionId      = $transactionObj->id;
@@ -67,7 +67,7 @@ class TransactionController extends Controller
             ->select(
                 \DB::raw
                 (
-                                                    "
+                    "
                                                    product_types.name as productName
                                                     "
                 )
@@ -234,184 +234,214 @@ class TransactionController extends Controller
 
     }
     public function removeFromCart()
-        {
-            $sellerDetails = Sellers_details_tabs::where('productType', Input::get('productType'))
-                ->where('id', Input::get('sellerDetailsId'))
-                ->first();
+    {
+        $sellerDetails = Sellers_details_tabs::where('productType', Input::get('productType'))
+            ->where('id', Input::get('sellerDetailsId'))
+            ->first();
 
-            $buyerId = NewUser::where('api_key', Input::get('api_key'))
-                ->first();
+        $buyerId = NewUser::where('api_key', Input::get('api_key'))
+            ->first();
 
-            $CartItems = Cart::with('products', 'buyers')
-                ->where('id', Input::get('cartId'))
-                ->where('userId', $buyerId->id)
-                ->where('productId', $sellerDetails->id)
-                ->where('active', 0)
-                ->first();
+        $CartItems = Cart::with('products', 'buyers')
+            ->where('id', Input::get('cartId'))
+            ->where('userId', $buyerId->id)
+            ->where('productId', $sellerDetails->id)
+            ->where('active', 0)
+            ->first();
 
-            $addBackProduct = $sellerDetails->quantity + $CartItems->quantity;
-            $restoreProduct = $sellerDetails->update(['quantity' => $addBackProduct]);
+        $addBackProduct = $sellerDetails->quantity + $CartItems->quantity;
+        $restoreProduct = $sellerDetails->update(['quantity' => $addBackProduct]);
 
-            $CartItems->delete();
+        $CartItems->delete();
 
-            $remainingCartItems = Cart::with('products', 'buyers')
-                ->where('userId', $buyerId->id)
-                ->where('active', 0)
-                ->orderBy('carts.created_at', 'DESC')
-                ->get();
-            return $remainingCartItems;
-        }
+        $remainingCartItems = Cart::with('products', 'buyers')
+            ->where('userId', $buyerId->id)
+            ->where('active', 0)
+            ->orderBy('carts.created_at', 'DESC')
+            ->get();
+        return $remainingCartItems;
+    }
     public function approveTransaction()
+    {
+        $transactionId = Input::get('transactionId');
+        $transactionStatusName = Input::get('statusName');
+        $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
+        $transactionStatusDetails = TransactionStatus::where('slug', $transactionStatusName)->first();
+
+        if ($userDetails->intrest == 1)
         {
-            $transactionId = Input::get('transactionId');
-            $transactionStatusName = Input::get('statusName');
-            $userDetails = NewUser::where('api_key', Input::get('api_key'))->first();
-            $transactionStatusDetails = TransactionStatus::where('slug', $transactionStatusName)->first();
-            if ($userDetails->intrest == 1)
+            $sellerTransactionsUpdates = Transaction::where('id',$transactionId)
+                ->where('seller_id', $userDetails->id)
+                ->update(['status' => $transactionStatusDetails->id]);
+
+            $transactionDetails = Transaction::where('id', $transactionId)
+                ->where('seller_id', $userDetails->id)
+                ->first();
+            $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->buyer_id)->first();
+
+
+            $sellerTransactionsActivity = new TransactionActivity();
+            $sellerTransactionsActivity->userId = $userDetails->id;
+            $sellerTransactionsActivity->transactionId = $transactionId;
+            $sellerTransactionsActivity->status = $transactionStatusDetails->id;
+            $sellerTransactionsActivity->save();
+
+            $messageStatus = '';
+
+            if ($transactionStatusName == "Completed") {
+                $messageStatus = 'closed';
+
+                $getTransactionQuantity = Transaction::where('id', $transactionId)
+                    ->first();
+
+                $originalQuantitySold = Sellers_details_tabs::where('id', $getTransactionQuantity->product)
+                    ->where('new_user_id', $userDetails->id)
+                    ->first();
+
+                $QtySold = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
+
+                $QtyRemaining = $originalQuantitySold->quantity;
+
+                $UpdateTheSellerDetailsTab = Sellers_details_tabs::where('id', $getTransactionQuantity->product)
+                    ->update(['quantitySold' => $QtySold]);
+
+                $getTransactionQuantity = Transaction::where('id', $transactionId)
+                    ->update(['quantityRemaining'=> $QtyRemaining]);
+
+
+            } else if ($transactionStatusName == "Active") {
+                $messageStatus = 'accepted';
+            } else if ($transactionStatusName == "Declined") {
+                $messageStatus = 'rejected';
+
+                $getTransactionQuantity = Transaction::select('quantity')->where('id', $transactionId)->first();
+                $originalQuantity = Sellers_details_tabs::select('quantity')
+                    ->where('id', $transactionDetails->product)
+                    ->where('new_user_id', $userDetails->id)->first();
+                $totalQty = $originalQuantity->quantity + $getTransactionQuantity->quantity;
+                $putBackTransactionQty = Sellers_details_tabs::where('id', $transactionDetails->product)
+                    ->update(['quantity' => $totalQty]);
+            } else if ($transactionStatusName == "Cancelled")
             {
-                $sellerTransactionsUpdates = Transaction::where('id',     $transactionId)
-                    ->where('seller_id', $userDetails->id)
-                    ->update(['status' => $transactionStatusDetails->id]);
+                $messageStatus = 'cancelled';
 
-                $transactionDetails = Transaction::where('id', $transactionId)
-                    ->where('seller_id', $userDetails->id)
-                    ->first();
-                $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->buyer_id)->first();
-
-
-                $sellerTransactionsActivity                   = new TransactionActivity();
-                $sellerTransactionsActivity->userId           = $userDetails->id;
-                $sellerTransactionsActivity->transactionId    = $transactionId;
-                $sellerTransactionsActivity->status           = $transactionStatusDetails->id;
-                $sellerTransactionsActivity->save();
-
-
-                $messageStatus = '';
-                switch ($transactionStatusName) {
-                    case 'Active':
-                        $messageStatus = 'accepted';
-                        break;
-
-                    case 'Declined':
-                        $messageStatus = 'rejected';
-
-                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
-                        $originalQuantity                       = Sellers_details_tabs::select('quantity')
-                                                                ->where('id',$transactionDetails->product)
-                                                                ->where('new_user_id',$userDetails->id)->first();
-                        $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
-                        $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
-                            ->update(['quantity'=>$totalQty]);
-                        break;
-
-                    case 'Completed':
-                        $messageStatus = 'closed';
-
-                        $getTransactionQuantity                 = Transaction::where('id',$transactionId)
-                                                                        ->first();
-<<<<<<< HEAD
-                        $originalQuantitySold                   = Sellers_details_tabs::select('quantitySold')
-                                             ->where('id',$transactionDetails->product)
-=======
-
-                        $originalQuantitySold                   = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
->>>>>>> 86e63ba9239a46c9dba5e57049eacaf6e117b78a
-                                                                    ->where('new_user_id',$userDetails->id)
-                                                                    ->first();
-
-                        $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
-<<<<<<< HEAD
-                        
-                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$transactionDetails->product)
-=======
-
-                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
->>>>>>> 86e63ba9239a46c9dba5e57049eacaf6e117b78a
-                                                                    ->update(['quantitySold'=>$QtySold]);
-
-                        break;
-
-                    case 'Cancelled':
-                        $messageStatus = 'cancelled';
-                        break;
-                }
-                $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
-                $data = array(
-
-                    'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
-                    'content' => $messageBody,
-                );
-                \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails)
-                {
-                    $message->from('Info@FoodForUs.cloud', 'Food For us');
-                    $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
-                });
-
-                return \Response::json($sellerTransactionsUpdates);
-            } elseif ($userDetails->intrest == 2) {
-
-                $buyerTransactionsUpdates = Transaction::where('id', '=', $transactionId)
-                    ->where('buyer_id', '=', $userDetails->id)
-                    ->update(['status' => $transactionStatusDetails->id]);
-
-                $transactionDetails = Transaction::where('id', '=', $transactionId)
-                    ->where('buyer_id', '=', $userDetails->id)
-                    ->first();
-
-                $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->seller_id)->first();
-
-                $buyerTransactionsActivity = new TransactionActivity();
-                $buyerTransactionsActivity->userId = $userDetails->id;
-                $buyerTransactionsActivity->transactionId = $transactionId;
-                $buyerTransactionsActivity->status = $transactionStatusDetails->id;
-                $buyerTransactionsActivity->save();
-
-
-                $messageStatus = '';
-                switch ($transactionStatusName) {
-                    case 'Active':
-                        $messageStatus = 'accepted';
-                        break;
-
-                    case 'Declined':
-                        $messageStatus = 'rejected';
-                        break;
-
-                    case 'Completed':
-                        $messageStatus = 'closed';
-                        break;
-
-                    case 'Cancelled':
-                        $messageStatus = 'cancelled';
-
-                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
-
-                        $originalQuantity                       = Sellers_details_tabs::select('quantity')
-                                                                        ->where('id',$transactionDetails->product)->first();
-                        $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
-                        $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
-                                                                    ->update(['quantity'=>$totalQty]);
-                        break;
-                }
-
-
-                $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
-                $data = array(
-
-                    'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
-                    'content' => $messageBody,
-                );
-
-                \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails) {
-                    $message->from('Info@FoodForUs.cloud', 'Food For us');
-                    $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
-                });
-
-                return \Response::json($buyerTransactionsUpdates);
-            } else {
-                return "No updates made";
             }
+
+//                switch ($transactionStatusName) {
+//                    case 'Active':
+//                        $messageStatus = 'accepted';
+//                        break;
+//
+//                    case 'Declined':
+//                        $messageStatus = 'rejected';
+//
+//                        $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+//                        $originalQuantity                       = Sellers_details_tabs::select('quantity')
+//                                                                ->where('id',$transactionDetails->product)
+//                                                                ->where('new_user_id',$userDetails->id)->first();
+//                        $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
+//                        $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
+//                                                                ->update(['quantity'=>$totalQty]);
+//                        break;
+//
+//                    case 'Completed':
+//                        $messageStatus = 'closed';
+//
+//                        $getTransactionQuantity                 = Transaction::where('id',$transactionId)
+//                                                                        ->first();
+//
+//                        $originalQuantitySold                   = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
+//                                                                    ->where('new_user_id',$userDetails->id)
+//                                                                    ->first();
+//
+//                        $QtySold                                = $originalQuantitySold->quantitySold + $getTransactionQuantity->quantity;
+//
+//                        $UpdateTheSellerDetailsTab              = Sellers_details_tabs::where('id',$getTransactionQuantity->product)
+//                                                                    ->update(['quantitySold'=>$QtySold]);
+//
+//                        break;
+//
+//                    case 'Cancelled':
+//                        $messageStatus = 'cancelled';
+//                        break;
+//                }
+            $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
+            $data = array(
+
+                'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
+                'content' => $messageBody,
+            );
+            \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails)
+            {
+                $message->from('Info@FoodForUs.cloud', 'Food For us');
+                $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
+            });
+
+            return \Response::json($sellerTransactionsUpdates);
+        } elseif ($userDetails->intrest == 2) {
+
+            $buyerTransactionsUpdates = Transaction::where('id', '=', $transactionId)
+                ->where('buyer_id', '=', $userDetails->id)
+                ->update(['status' => $transactionStatusDetails->id]);
+
+            $transactionDetails = Transaction::where('id', '=', $transactionId)
+                ->where('buyer_id', '=', $userDetails->id)
+                ->first();
+
+            $transactionCounterPartDetails = NewUser::where('id', $transactionDetails->seller_id)->first();
+
+            $buyerTransactionsActivity = new TransactionActivity();
+            $buyerTransactionsActivity->userId = $userDetails->id;
+            $buyerTransactionsActivity->transactionId = $transactionId;
+            $buyerTransactionsActivity->status = $transactionStatusDetails->id;
+            $buyerTransactionsActivity->save();
+
+
+            $messageStatus = '';
+            switch ($transactionStatusName) {
+                case 'Active':
+                    $messageStatus = 'accepted';
+                    break;
+
+                case 'Declined':
+                    $messageStatus = 'rejected';
+                    break;
+
+                case 'Completed':
+                    $messageStatus = 'closed';
+                    break;
+
+                case 'Cancelled':
+                    $messageStatus = 'cancelled';
+
+                    $getTransactionQuantity                 = Transaction::select('quantity')->where('id',$transactionId)->first();
+
+                    $originalQuantity                       = Sellers_details_tabs::select('quantity')
+                        ->where('id',$transactionDetails->product)->first();
+                    $totalQty                               = $originalQuantity->quantity + $getTransactionQuantity->quantity;
+                    $putBackTransactionQty                  = Sellers_details_tabs::where('id',$transactionDetails->product)
+                        ->update(['quantity'=>$totalQty]);
+                    break;
+            }
+
+
+            $messageBody = 'This is meant to inform you that ' . "  " . "$userDetails->name" . " " . "$userDetails->surname" . " " . 'has ' . " $messageStatus" . ' the Transaction.';
+            $data = array(
+
+                'name' => $transactionCounterPartDetails->name . ' ' . $transactionCounterPartDetails->surname,
+                'content' => $messageBody,
+            );
+
+            \Mail::send('emails.transactionUpdate', $data, function ($message) use ($transactionCounterPartDetails) {
+                $message->from('Info@FoodForUs.cloud', 'Food For us');
+                $message->to($transactionCounterPartDetails->email)->subject("Transaction Update Notification ");
+            });
+
+            return \Response::json($buyerTransactionsUpdates);
+        } else {
+            return "No updates made";
         }
+    }
     public function transactionRating()
     {
         $userDetails = NewUser::where('api_key', Input::get('apiKey'))->first();
@@ -432,36 +462,36 @@ class TransactionController extends Controller
         return response::json($statuses);
     }
     public function deleteTransaction()
-        {
-                $deletedStatus                            = TransactionStatus::find(6);
+    {
+        $deletedStatus                            = TransactionStatus::find(6);
 
-                $userTransactionActivity                  = new TransactionActivity();
-                $userTransactionActivity->userId          = $this->userDetails()->id;
-                $userTransactionActivity->transactionId   = Input::get('transactionId');
-                $userTransactionActivity->status          = $deletedStatus->id;
-                $userTransactionActivity->save();
-                return "transaction deleted";
-        }
+        $userTransactionActivity                  = new TransactionActivity();
+        $userTransactionActivity->userId          = $this->userDetails()->id;
+        $userTransactionActivity->transactionId   = Input::get('transactionId');
+        $userTransactionActivity->status          = $deletedStatus->id;
+        $userTransactionActivity->save();
+        return "transaction deleted";
+    }
     public function userDetails()
-        {
-            $userDetailsID   = NewUser::where('api_key',  Input::get('api_key'))->first();
-            return $userDetailsID;
-        }
+    {
+        $userDetailsID   = NewUser::where('api_key',  Input::get('api_key'))->first();
+        return $userDetailsID;
+    }
     public function testTransactionDetails()
-        {
-            $deletedStatus = TransactionStatus::find(6);
+    {
+        $deletedStatus = TransactionStatus::find(6);
 
-            if ($this->userDetails()->intrest == 1) {
+        if ($this->userDetails()->intrest == 1) {
 
-                $sellerTransactionsDetails = \DB::table('transactions')
-                    ->join('new_users', 'transactions.buyer_id', '=', 'new_users.id')
-                    ->join('transaction_statuses', 'transactions.status', '=', 'transaction_statuses.id')
-                    ->join('sellers_details_tabs', 'transactions.product', '=', 'sellers_details_tabs.id')
-                    ->join('transaction_activities', 'transactions.id', '=', 'transaction_activities.transactionId')
-                    ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
-                    ->select(
-                        \DB::raw(
-                            "                        
+            $sellerTransactionsDetails = \DB::table('transactions')
+                ->join('new_users', 'transactions.buyer_id', '=', 'new_users.id')
+                ->join('transaction_statuses', 'transactions.status', '=', 'transaction_statuses.id')
+                ->join('sellers_details_tabs', 'transactions.product', '=', 'sellers_details_tabs.id')
+                ->join('transaction_activities', 'transactions.id', '=', 'transaction_activities.transactionId')
+                ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+                ->select(
+                    \DB::raw(
+                        "                        
                       new_users.name,  
                       new_users.surname,   
                       new_users.profilePicture,   
@@ -481,27 +511,27 @@ class TransactionController extends Controller
                       transactions.created_at 
                                                             
                    "
-                        )
                     )
-                    ->where('transactions.seller_id', $this->userDetails()->id, '=')
-                    ->where('transaction_activities.userId',$this->userDetails()->id, '=')
-                    ->where('transaction_activities.status','!=' ,$deletedStatus->id)
-                    ->orderBy('transactions.created_at', 'DESC')
-                    ->get();
+                )
+                ->where('transactions.seller_id', $this->userDetails()->id, '=')
+                ->where('transaction_activities.userId',$this->userDetails()->id, '=')
+                ->where('transaction_activities.status','!=' ,$deletedStatus->id)
+                ->orderBy('transactions.created_at', 'DESC')
+                ->get();
 
-                return \Response::json($sellerTransactionsDetails);
+            return \Response::json($sellerTransactionsDetails);
 
-            } elseif ($this->userDetails()->intrest == 2) {
+        } elseif ($this->userDetails()->intrest == 2) {
 
-                $buyerTransactionsDetails = \DB::table('transactions')
-                    ->join('new_users', 'transactions.seller_id', '=', 'new_users.id')
-                    ->join('transaction_statuses', 'transactions.status', '=', 'transaction_statuses.id')
-                    ->join('sellers_details_tabs', 'transactions.product', '=', 'sellers_details_tabs.id')
-                    ->join('transaction_activities', 'transactions.id', '=', 'transaction_activities.transactionId')
-                    ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
-                    ->select(
-                        \DB::raw(
-                            "                        
+            $buyerTransactionsDetails = \DB::table('transactions')
+                ->join('new_users', 'transactions.seller_id', '=', 'new_users.id')
+                ->join('transaction_statuses', 'transactions.status', '=', 'transaction_statuses.id')
+                ->join('sellers_details_tabs', 'transactions.product', '=', 'sellers_details_tabs.id')
+                ->join('transaction_activities', 'transactions.id', '=', 'transaction_activities.transactionId')
+                ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+                ->select(
+                    \DB::raw(
+                        "                        
                       new_users.name,  
                       new_users.surname,   
                       new_users.profilePicture,   
@@ -520,22 +550,22 @@ class TransactionController extends Controller
                       product_types.name as productName,
                       transactions.created_at
                                        "
-                        )
                     )
-                    ->where('transactions.buyer_id', $this->userDetails()->id, '=')
-                    ->where('transaction_activities.userId',$this->userDetails()->id, '=')
-                    ->where('transaction_activities.status', '!=',$deletedStatus->id)
-                    ->orderBy('transactions.created_at', 'DESC')
-                    ->get();
-                return \Response::json($buyerTransactionsDetails);
-            }
-            else
-                {
-                return "no transaction";
-            }
-
+                )
+                ->where('transactions.buyer_id', $this->userDetails()->id, '=')
+                ->where('transaction_activities.userId',$this->userDetails()->id, '=')
+                ->where('transaction_activities.status', '!=',$deletedStatus->id)
+                ->orderBy('transactions.created_at', 'DESC')
+                ->get();
+            return \Response::json($buyerTransactionsDetails);
         }
-        //BACKEND FUNCTIONS
+        else
+        {
+            return "no transaction";
+        }
+
+    }
+    //BACKEND FUNCTIONS
     public function userTransactionsActivity()
     {
         $deletedStatus = TransactionStatus::find(6);
@@ -631,14 +661,14 @@ class TransactionController extends Controller
     public function transactionHistory()
     {
         $transactionHistory = \DB::table('transactions')
-                              ->join('new_users','transactions.buyer_id','=','new_users.id')
-                              ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
-                              ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
-                              ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
-                              ->select(
-                                  \DB::raw
-                                  (
-                                      "
+            ->join('new_users','transactions.buyer_id','=','new_users.id')
+            ->join('sellers_details_tabs','transactions.product','=','sellers_details_tabs.id')
+            ->leftjoin('product_types','sellers_details_tabs.productType','=','product_types.id')
+            ->leftjoin('transaction_ratings','transactions.id','=','transaction_ratings.transactionId')
+            ->select(
+                \DB::raw
+                (
+                    "
                                       transactions.id,
                                       new_users.name,
                                       new_users.surname,
@@ -648,15 +678,15 @@ class TransactionController extends Controller
                                       transactions.product as postRefference,
                                       transactions.id as transactionId,
                                       product_types.name as productName,
-                                      sellers_details_tabs.quantity as quantityPosted,
+                                      sellers_details_tabs.quantityPosted as quantityPosted,
                                       transactions.quantity,
-                                      sellers_details_tabs.quantity as quantityAvailable,
+                                      transactions.quantityRemaining as quantityAvailable,
                                       transaction_ratings.comment,
                                       transaction_ratings.rating,
                                       transactions.created_at
                                       "
-                                  )
-                              )->get();
+                )
+            )->get();
 //        $transactionHistory      =\DB::table('transaction_activities')
 //                                        ->join('transactions','transaction_activities.transactionId','=','transactions.id')
 //                                        ->join('new_users','transaction_activities.userId','=','new_users.id')
@@ -686,8 +716,8 @@ class TransactionController extends Controller
 //                                        )
 //                                        ->get();
 
-                                return Datatables::of($transactionHistory)
-                                    ->make(true);
+        return Datatables::of($transactionHistory)
+            ->make(true);
 
     }
     public function viewUserTransaction($id,$idNumber)
@@ -726,35 +756,35 @@ class TransactionController extends Controller
 
 
         $userDetails                = NewUser::where('idNumber',$idNumber)
-                                       ->first();
+            ->first();
         if($userDetails->intrest == 1)
         {
             $transactionActivitiesData  = TransactionActivity::with('transactions','transactionStatuses','appUsers')
-                                                                ->where('userId', $userDetails->id)
-                                                                ->get();
+                ->where('userId', $userDetails->id)
+                ->get();
             $sellerTransactionSide      = Transaction::with('buyers')
-                                            ->where('seller_id',$userDetails->id)
-                                            ->get();
+                ->where('seller_id',$userDetails->id)
+                ->get();
 
             return view('transaction.sellerTransactionProfile', ['transactionActivitiesData'=>$transactionActivitiesData ,
-                                                                        'sellerTransactionSide' => $sellerTransactionSide,
-                                                                        'userTransactionDetails'=>$userTransactionDetails
-                                                                        ]);
+                'sellerTransactionSide' => $sellerTransactionSide,
+                'userTransactionDetails'=>$userTransactionDetails
+            ]);
 
         }
         elseif($userDetails->intrest == 2)
         {
             $transactionActivitiesData  = TransactionActivity::with('transactions','transactionStatuses','appUsers')
-                                           ->select('transactionId','status','created_at')
-                                            ->where('userId', $userDetails->id)->get();
+                ->select('transactionId','status','created_at')
+                ->where('userId', $userDetails->id)->get();
             $buyerTransactionSide      = Transaction::with('sellers')
-                                                        ->where('buyer_id',$userDetails->id)
-                                                        ->get();
+                ->where('buyer_id',$userDetails->id)
+                ->get();
 
             return view('transaction.buyerTransactionProfile', ['transactionActivitiesData'=>$transactionActivitiesData ,
-                                                                            'buyerTransactionSide' => $buyerTransactionSide,
-                                                                            'userTransactionDetails'  =>$userTransactionDetails
-                                                                        ]);
+                'buyerTransactionSide' => $buyerTransactionSide,
+                'userTransactionDetails'  =>$userTransactionDetails
+            ]);
 
 
         }else{
