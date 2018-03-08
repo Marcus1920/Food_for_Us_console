@@ -88,6 +88,7 @@ class HomeController extends Controller
             ->make(true);
 
 
+
     }
     public function  deactivatedusersList()
     {
@@ -98,6 +99,7 @@ class HomeController extends Controller
             ->join('user_travel_radii','new_users.travelRadius','=','user_travel_radii.id')
             ->select(\DB::raw(
                 "
+
                                     new_users.id,
                                     new_users.name,
                                     new_users.surname,
