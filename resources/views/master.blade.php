@@ -338,11 +338,11 @@
 <script src="{{ asset('js/HoldOn.min.js') }}"></script> <!-- Spinner -->
 
 <!-- bootstrap-switch. -->
-<<<<<<< HEAD
+
 <script src="{{ asset('js/bootstrap-switch.js') }}"></script> <!-- bootstrap-switch. -->
-=======
+
 <script src="{{ asset('public//js/bootstrap-switch.js') }}"></script> <!-- bootstrap-switch. -->
->>>>>>> e4c469de6a1ebb744e7a6c37234b96cbb5b309bf
+
 
 <!-- Date & Time Picker -->
 <script src="{{ asset('js/datetimepicker.min.js') }}"></script> <!-- Date & Time Picker -->
