@@ -75,6 +75,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Users
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
+    Route::post('updateToken','UsersController@updateToken');
 
 
 

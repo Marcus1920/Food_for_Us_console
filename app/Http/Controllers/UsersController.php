@@ -531,6 +531,22 @@ class UsersController extends Controller
           return response()->json($response);
       }
 
+      public function updateToken()
+      {
+          $response = array();
+
+          $api_key = Input::get('api_key');
+
+          $FCMtoken = Input::get('fcmToken');
+
+          $user  = NewUser::where('api_key',$api_key)
+              ->update(['FCMtoken'=>$FCMtoken]);
+
+          $response['message'] = "Successfully updated FCM Token";
+
+          return response()->json($response);
+      }
+
     public function updateAppUserProfile()
     {
 
