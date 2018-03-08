@@ -71,7 +71,7 @@
                         {data: 'surname', name: 'surname'},
                         {data: function(d)
                             {
-                                return "<a href='{!! url('removeUser/" + d.id +"',$group->id) !!}' class='glyphicon glyphicon-remove'></a>";
+                                return "<a href='{!! url('removeUser/" + d.id +"',$group->id) !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";
                             },"name" : 'name'},
                     ],
                     "aoColumnDefs": [
