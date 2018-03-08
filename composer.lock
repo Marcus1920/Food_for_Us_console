@@ -163,11 +163,9 @@
                 "maps",
                 "streetview"
             ],
-<<<<<<< HEAD
-            "time": "2018-01-17T10:29:16+00:00"
-=======
+
             "time": "2018-02-05T13:23:55+00:00"
->>>>>>> e4c469de6a1ebb744e7a6c37234b96cbb5b309bf
+
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
