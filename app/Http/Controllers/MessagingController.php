@@ -19,4 +19,5 @@ class MessagingController extends Controller
             ->orderBy('id','ASC')-> get();
         return response()->json($notifications);
     }
+
 }
