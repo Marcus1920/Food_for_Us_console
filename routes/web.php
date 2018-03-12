@@ -53,6 +53,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
          return  $respos;
         
     });
+    Route::resource('notification','MessagingController');
+
      Route::get ('packagingList' , 'packagingListController@index');
      Route::get ('producttype' , 'ProductTypeController@index');
 
