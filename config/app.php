@@ -182,6 +182,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SellerPostsServiceProvider::class,
+        App\Providers\NotificationServiceProvider::class,
 
         LaravelFCM\FCMServiceProvider::class,
 

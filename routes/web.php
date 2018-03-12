@@ -39,6 +39,8 @@ Route::get('removeUser/{id}/{group}','UserGroupController@destroy');
 
 Route::get('getUserss', 'UsersController@getUsers');
 
+Route::get('sendMessage','MessagingController@sendMessage');
+
 Route::group(array('prefix' => 'api/v1'), function() {
 
     // Product  type
@@ -75,7 +77,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Users
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
-    Route::post('updateToken','UsersController@updateToken');
+    Route::post('updatePlayeId','UsersController@updatePlayeId');
 
 
 

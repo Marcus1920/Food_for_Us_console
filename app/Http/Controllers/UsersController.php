@@ -531,18 +531,18 @@ class UsersController extends Controller
           return response()->json($response);
       }
 
-      public function updateToken()
+      public function updatePlayeId()
       {
           $response = array();
 
           $api_key = Input::get('api_key');
 
-          $FCMtoken = Input::get('fcmToken');
+          $PlayeId = Input::get('playerID');
 
           $user  = NewUser::where('api_key',$api_key)
-              ->update(['FCMtoken'=>$FCMtoken]);
+              ->update(['playerID'=>$PlayeId]);
 
-          $response['message'] = "Successfully updated FCM Token";
+          $response['message'] = "Successfully updated player ID";
 
           return response()->json($response);
       }

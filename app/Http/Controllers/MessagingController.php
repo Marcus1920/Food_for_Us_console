@@ -7,44 +7,49 @@ use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
+use App\Services\NotificationService;
 
 
 class MessagingController extends Controller
 {
-    public function sendNotification()
+    public function sendMessage()
     {
-        $optionBuilder = new OptionsBuilder();
-        $optionBuilder->setTimeToLive(60*20);
+        $message = "New product posted";
 
-        $notificationBuilder = new PayloadNotificationBuilder('my title');
-        $notificationBuilder->setBody('Hello world')
-            ->setSound('default');
+        $newNotification = new NotificationService();
 
-        $dataBuilder = new PayloadDataBuilder();
-        $dataBuilder->addData(['a_data' => 'my_data']);
+        $newNotification->sendToAll($message);
 
-        $option = $optionBuilder->build();
-        $notification = $notificationBuilder->build();
-        $data = $dataBuilder->build();
-
-        $token = "a_registration_from_your_database";
-
-        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-
-        $downstreamResponse->numberSuccess();
-        $downstreamResponse->numberFailure();
-        $downstreamResponse->numberModification();
-
-//return Array - you must remove all this tokens in your database
-        $downstreamResponse->tokensToDelete();
-
-//return Array (key : oldToken, value : new token - you must change the token in your database )
-        $downstreamResponse->tokensToModify();
-
-//return Array - you should try to resend the message to the tokens in the array
-        $downstreamResponse->tokensToRetry();
-
-// return Array (key:token, value:errror) - in production you should remove from your database the tokens
-        return "okay";
+        return "ok";
+//        $content = array(
+//            "en" => 'New product posted'
+//        );
+//
+//        $fields = array(
+//            'app_id' => "65f845f6-abc5-4239-a94a-e66e50b49dd4",
+//            'included_segments' => array('All'),
+//            'data' => array("foo" => "bar"),
+//            'contents' => $content
+//        );
+//
+//        $fields = json_encode($fields);
+//        print("\nJSON sent:\n");
+//        print($fields);
+//
+//        $ch = curl_init();
+//        curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+//            'Authorization: Basic ZTRiZTIxMDUtOGJhYS00YzhiLTk5Y2UtOWIxMjA3MDY5N2Qy'));
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+//        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+//        curl_setopt($ch, CURLOPT_POST, TRUE);
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+//
+//        $response = curl_exec($ch);
+//        curl_close($ch);
+//
+//        return $response;
     }
+
 }

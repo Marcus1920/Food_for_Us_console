@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
 use Carbon\Carbon;
+use App\Services\NotificationService;
 
 class SellersController extends Controller
 {
@@ -263,6 +264,11 @@ class SellersController extends Controller
         $productPickupDetails->gps_lat             = $lattitude;
         $productPickupDetails->gps_long            = $longitude;
         $productPickupDetails->save();
+
+        $message = "New ".Input::get('productName')." posted";
+
+        $newNotification = new NotificationService();
+        $newNotification->sendToAll($message);
 
 //       event(new newPostEvent($sellersPost));
         return $sellersPost;
