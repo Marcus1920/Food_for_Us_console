@@ -123,9 +123,6 @@ class SellersController extends Controller
 
         $notification = Notification::where('id',$id)->first();
 
-        Notification::where('id',$notification->id)
-            ->update(['Status'=>1]);
-
         $sellers_posts=\DB::table('sellers_details_tabs')
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
