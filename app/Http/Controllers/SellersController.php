@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\newPostEvent;
 use App\Jobs\SendEmailsToBuyers;
 use  App\NewUser ;
+use App\Notification;
 use App\Sellers_details_tabs;
 use App\ProductType;
 use App\Packaging;
@@ -269,6 +270,13 @@ class SellersController extends Controller
 
         $newNotification = new NotificationService();
         $newNotification->sendToAll($message);
+
+        $notification = new Notification();
+        $notification->PostId = $sellersPost->id;
+        $notification->ProductName = Input::get('productName');
+        $notification->Message = $message;
+        $notification->Status = 0;
+        $notification->save();
 
 //       event(new newPostEvent($sellersPost));
         return $sellersPost;
