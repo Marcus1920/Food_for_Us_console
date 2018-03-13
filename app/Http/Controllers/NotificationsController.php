@@ -35,6 +35,7 @@ class NotificationsController extends Controller
             )
             ->orderBy('id','ASC')
             ->get();
+        
 
         return response()->json($notifications);
     }
