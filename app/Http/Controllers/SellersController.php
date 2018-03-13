@@ -123,6 +123,9 @@ class SellersController extends Controller
 
         $notification = Notification::where('id',$id)->first();
 
+        Notification::where('id',$id)
+            ->update(['Status'=>1]);
+
         $sellers_posts=\DB::table('sellers_details_tabs')
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
@@ -208,36 +211,30 @@ class SellersController extends Controller
       {
           $input                          = $request->all();
           $user                           = NewUser::where('api_key',$input['api_key'])->first();
-          
-          
+
+
           $lattitude    = null   ;
-          
-          $longitude    = null   ;  
-          
+
+          $longitude    = null   ;
+
            if  (Input::get('gps_lat')=="" || Input::get('gps_long')=="")
-           
-           
+
+
            {
                $lattitude  = $user->gps_lat;
-               
+
                $longitude =  $user->gps_long ;
-               
-               
+
+
            }
-           else 
+           else
            {
-               
+
             $lattitude  =Input::get('gps_lat');
-               
+
             $longitude =  Input::get('gps_long');
            }
 
-//
-//          $sellersPost= new Sellers_details_tabs();
-//          $name =$user->name;
-//          $surname=$user->name;
-//          $id=$user->id;
-//          $sellersPost->new_user_id     = $user->id;
         $sellersPost                    = new Sellers_details_tabs();
         $name                           =$user->name;
         $surname                        =$user->name;
@@ -246,8 +243,8 @@ class SellersController extends Controller
 
 
         $img                            =$request->file('file');
-		
-		
+
+
         $destinationFolder              = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
@@ -261,8 +258,6 @@ class SellersController extends Controller
 
 
         $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
-
-      //  $sellersPost->productPicture     = env('APP_URL').$destinationFolder.'/'.$name;
           
 
         $productTypeID                   = ProductType::where('name',Input::get('productName'))->first();
@@ -273,21 +268,7 @@ class SellersController extends Controller
 
         $sellersPost->costPerKg          = Input::get('costPerKg');
         $sellersPost->transactionRating  = Input::get('rating');
-        /*
-                $sellersPost->city               = Input::get('city');
-                $sellersPost->country            = Input::get('country');
-                $sellersPost->location           = Input::get('country').', '.Input::get('city');
-                $sellersPost->description        = Input::get('description');
-                $sellersPost->quantity           = Input::get('quantity');
-                $sellersPost->gps_lat            = Input::get('gps_lat');
-                $sellersPost->gps_long           = Input::get('gps_long');
-                $sellersPost->availableHours     = Input::get('availableHours');
-                $sellersPost->paymentMethods     = Input::get('paymentMethods');
-                $sellersPost->transactionRating  = Input::get('transactionRating');
-        */
-
         $sellersPost->city              = Input::get('city');
-
         $sellersPost->country           = Input::get('country');
         $sellersPost->location          = Input::get('country').', '.Input::get('city');
         $sellersPost->description       = Input::get('description');
@@ -315,17 +296,25 @@ class SellersController extends Controller
 
         $message = "New ".Input::get('productName')." posted";
 
-        $newNotification = new NotificationService();
-        $newNotification->sendToAll($message);
+        //notification based on the users product interest
+        $users = NewUser::where('productInterest',$productTypeID['id'])->get();
 
-        $notification = new Notification();
-        $notification->PostId = $sellersPost->id;
-        $notification->ProductName = Input::get('productName');
-        $notification->Message = $message;
-        $notification->Status = 0;
-        $notification->save();
+        for($i=0 ; $i < count($users) ; $i++)
+        {
+            $PlayerId = $users[$i]->playerID;
 
-//       event(new newPostEvent($sellersPost));
+            $newNotification = new NotificationService();
+            $newNotification->sendToOne($message,$PlayerId);
+
+            $notification = new Notification();
+            $notification->new_user_id = $users[$i]->id;
+            $notification->PostId = $sellersPost->id;
+            $notification->ProductName = Input::get('productName');
+            $notification->Message = $message;
+            $notification->Status = 0;
+            $notification->save();
+        }
+
         return $sellersPost;
       }
     public function changeDefaultLocation()

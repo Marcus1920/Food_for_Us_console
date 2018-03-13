@@ -39,8 +39,6 @@ Route::get('removeUser/{id}/{group}','UserGroupController@destroy');
 
 Route::get('getUserss', 'UsersController@getUsers');
 
-Route::get('sendMessage','MessagingController@sendMessage');
-
 Route::group(array('prefix' => 'api/v1'), function() {
 
     // Product  type
@@ -53,7 +51,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
          return  $respos;
         
     });
-    Route::resource('notification','MessagingController');
+    Route::resource('notification','NotificationsController');
 
      Route::get ('packagingList' , 'packagingListController@index');
      Route::get ('producttype' , 'ProductTypeController@index');

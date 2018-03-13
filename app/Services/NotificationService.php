@@ -13,7 +13,7 @@ class NotificationService
         );
 
         $fields = array(
-            'app_id' => "65f845f6-abc5-4239-a94a-e66e50b49dd4",
+            'app_id' => "dbc457c7-6174-4962-bc4c-3c1f7ccb3241",
             'included_segments' => array('All'),
             'data' => array("foo" => "bar"),
             'contents' => $content
@@ -26,7 +26,7 @@ class NotificationService
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-            'Authorization: Basic ZTRiZTIxMDUtOGJhYS00YzhiLTk5Y2UtOWIxMjA3MDY5N2Qy'));
+            'Authorization: Basic OGZlYTlhMjEtODI0ZS00NWJhLThhM2YtM2JlNDZmYmI0Zjk5'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_HEADER, FALSE);
         curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -38,15 +38,15 @@ class NotificationService
 
         return $response;
     }
-    public function sendToOne($message,$PlayerIdArray)
+    public function sendToOne($message,$PlayerID)
     {
         $content = array(
             "en" => $message
         );
 
         $fields = array(
-            'app_id' => "65f845f6-abc5-4239-a94a-e66e50b49dd4",
-            'include_player_ids' => $PlayerIdArray,
+            'app_id' => "dbc457c7-6174-4962-bc4c-3c1f7ccb3241",
+            'include_player_ids' => array($PlayerID),
             'data' => array("foo" => "bar"),
             'contents' => $content
         );
@@ -58,7 +58,7 @@ class NotificationService
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-            'Authorization: Basic ZTRiZTIxMDUtOGJhYS00YzhiLTk5Y2UtOWIxMjA3MDY5N2Qy'));
+            'Authorization: Basic OGZlYTlhMjEtODI0ZS00NWJhLThhM2YtM2JlNDZmYmI0Zjk5'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_HEADER, FALSE);
         curl_setopt($ch, CURLOPT_POST, TRUE);
