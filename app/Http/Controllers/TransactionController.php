@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Services\OverDueCartItemService;
 use Illuminate\Support\Facades\Input;
 use Yajra\DataTables\DataTables;
+use App\Services\NotificationService;
 
 class TransactionController extends Controller
 {
@@ -89,6 +90,12 @@ class TransactionController extends Controller
             $message->from('Info@FoodForUs.cloud', 'Food For us');
             $message->to($sellerEmail->email)->subject("Transaction Notification ");
         });
+
+        $message = "New buyer for ".$productName->productName." you posted";
+
+        $newNotification = new NotificationService();
+        $newNotification->sendToOne($message,$sellerEmail->playerID);
+
 
         return \Response::json($transactionObj);
     }
