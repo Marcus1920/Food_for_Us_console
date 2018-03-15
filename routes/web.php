@@ -39,6 +39,9 @@ Route::get('removeUser/{id}/{group}','UserGroupController@destroy');
 
 Route::get('getUserss', 'UsersController@getUsers');
 
+Route::get('sendToGroup/{id}','MessagingController@sendToGroup');
+Route::post('msgGroup','MessagingController@groupMessageCreate');
+
 Route::group(array('prefix' => 'api/v1'), function() {
 
     // Product  type
