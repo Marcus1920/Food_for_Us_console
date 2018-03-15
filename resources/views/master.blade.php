@@ -210,6 +210,18 @@
                 </ul>
             </li>
 
+            <li {{ (Request::is('notification') ? "class=active" : '') }}>
+                <a class="sa-side-notification" href="#">
+
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <h6><b> NOTIFICATION MESSAGES</b></h6>
+                    <li><a href="{{ url('allNotification') }}"><span class="badge badge-r"></span>Notification List</a></li>
+                    <li><a href="{{ url('group') }}"><span class="badge badge-r"></span>Message Groups</a></li>
+                    <li><a href="{{ url('msgUsers') }}"><span class="badge badge-r"></span>Message Users</a></li>
+                </ul>
+            </li>
+
             <li {{ (Request::is('map') ? "class=active" : '') }}>
                 <a class="sa-side-home" href="{{ url('getUsers') }}">
                     <span class="menu-item">map</span>
@@ -240,13 +252,6 @@
             <li {{ (Request::is('reports') ? "class=active" : '') }}>
                 <a class="sa-side-reports" href="{{ url('reports') }}">
                     <span class="menu-item">Reports</span>
-
-                </a>
-            </li>
-
-            <li {{ (Request::is('notification') ? "class=active" : '') }}>
-                <a class="sa-side-notification" href="{{ url('allNotification') }}">
-                    <span class="menu-item">Notification List</span>
 
                 </a>
             </li>
