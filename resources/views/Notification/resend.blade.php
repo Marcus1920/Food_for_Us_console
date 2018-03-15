@@ -17,14 +17,11 @@
     <div>
         <div>
 
+
+
         </div>
 
-
-
     </div>
-
-
-
     <div class="form-group col-md-offset-8 col-md-6 ">
         {!! Form::label(' Users', ' Users', array('class' => 'col-md-3 control-label')) !!}
         <div class="col-md-offset-8">

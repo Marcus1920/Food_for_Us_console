@@ -24,6 +24,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
+                                <th>Message</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -77,6 +78,10 @@
                         {data: function(d)
                             {
                                 return "<a href='{!! url('groupUsers/" + d.id + "') !!}' class='btn btn-sm'>" + d.name + "</a>";
+                            },"name" : 'name'},
+                        {data: function(d)
+                            {
+                                return "<a href='{!! url('sendToGroup/" + d.id + "') !!}' class='glyphicon glyphicon-envelope'></a>";
                             },"name" : 'name'},
                         {data: function(d)
                             {

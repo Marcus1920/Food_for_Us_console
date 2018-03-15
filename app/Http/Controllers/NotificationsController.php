@@ -10,17 +10,17 @@ class NotificationsController extends Controller
 {
     public function index()
     {
-        $api_key   = Input::get('api_key');
+        $api_key = Input::get('api_key');
 
-        $user  = NewUser::where('api_key',$api_key)->first();
+        $user = NewUser::where('api_key', $api_key)->first();
 
-        $notifications=\DB::table('notifications')
+        $notifications = \DB::table('notifications')
             ->join('sellers_details_tabs', 'notifications.PostId', '=', 'sellers_details_tabs.id')
             ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->leftjoin('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
-            ->leftjoin('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
-            ->where('notifications.new_user_id',$user->id)
-            ->where('notifications.Status',0)
+            ->leftjoin('product_pickup_details', 'sellers_details_tabs.id', '=', 'product_pickup_details.SellersPostId')
+            ->where('notifications.new_user_id', $user->id)
+            ->where('notifications.Status', 0)
             ->select(
                 \DB::raw(
                     "
@@ -58,17 +58,18 @@ class NotificationsController extends Controller
                     "
                 )
             )
-            ->orderBy('id','DESC')
+            ->orderBy('id', 'DESC')
             ->get();
 
 
         return response()->json($notifications);
     }
 
+
     public function getAllNotification()
     {
-        $notifications=\DB::table('notifications')
-            ->join('new_users','notifications.new_user_id','=','new_users.id')
+        $notifications = \DB::table('notifications')
+            ->join('new_users', 'notifications.new_user_id', '=', 'new_users.id')
             ->select(
                 \DB::raw("
                                            new_users.id,
@@ -89,7 +90,24 @@ class NotificationsController extends Controller
 
     public function resendNotification($id)
     {
-        $notification = Notification::where('id',$id)->first();
-        return view( 'Notification.resend',compact('notification'));
+        $notification = Notification::where('id', $id)->first();
+        return view('Notification.resend', compact('notification'));
     }
+
+
+        public function removeNotification()
+        {
+            $response = array();
+
+            $id = Input::get('id');
+
+            Notification::where('id', $id)
+                ->update(['Status' => 1]);
+
+            $response['message'] = "Successfully removed notification";
+
+            return response()->json($response);
+
+        }
+
 }
