@@ -55,6 +55,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
         
     });
     Route::resource('notification','NotificationsController');
+    Route::post('removeNotification','NotificationsController@removeNotification');
 
      Route::get ('packagingList' , 'packagingListController@index');
      Route::get ('producttype' , 'ProductTypeController@index');

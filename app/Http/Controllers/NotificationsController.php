@@ -65,4 +65,18 @@ class NotificationsController extends Controller
 
         return response()->json($notifications);
     }
+
+    public function removeNotification()
+    {
+        $response = array();
+
+        $id   = Input::get('id');
+
+        Notification::where('id',$id)
+            ->update(['Status'=>1]);
+
+        $response['message'] = "Successfully removed notification";
+
+        return response()->json($response);
+    }
 }
