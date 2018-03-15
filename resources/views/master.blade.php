@@ -244,6 +244,14 @@
                 </a>
             </li>
 
+            <li {{ (Request::is('notification') ? "class=active" : '') }}>
+                <a class="sa-side-notification" href="{{ url('allNotification') }}">
+                    <span class="menu-item">Notification List</span>
+
+                </a>
+            </li>
+
+
             <li {{ (Request::is('transaction') ? "class=active" : '') }}>
                 <a class="sa-side-transaction" href="{{ url('transactionList') }}">
                     <span class="menu-item">Transaction history</span>

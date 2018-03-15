@@ -40,4 +40,29 @@ class GroupController extends Controller
 
         return Redirect('/group');
     }
+
+    public function getGroup()
+    {
+        $searchString = \Input::get('q');
+        $users        = \DB::table('groups')
+            ->whereRaw(
+                "CONCAT(`groups`.`name`) LIKE '%{$searchString}%'")
+            ->select(
+                array
+                (
+                    'groups.id as id',
+                    'groups.name as name',
+                )
+            )
+            ->get();
+        $data = array();
+        foreach ($users as $user) {
+            $data[] = array(
+                "name" => "{$user->name}",
+                "id"   => "{$user->id}",
+            );
+        }
+        return $data;
+    }
+
 }

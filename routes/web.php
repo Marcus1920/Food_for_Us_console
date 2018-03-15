@@ -366,4 +366,10 @@ Route::get('test','TransactionController@OverDue');
 //manage logins
 Route::get('logins/{id}','UsersController@viewLogins');
 
+Route::get('allNotification','NotificationsController@getAllNotification');
+
+Route::get('resendNotification/{id}','NotificationsController@resendNotification');
+
+Route::get('getGroup','GroupController@getGroup');
+
 ?>
