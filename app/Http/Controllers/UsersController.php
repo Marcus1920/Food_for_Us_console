@@ -542,20 +542,23 @@ class UsersController extends Controller
 
         $productsInterest = array(Input::get('productInterest1'),Input::get('productInterest2'),Input::get('productInterest3'));
 
-        return $productsInterest;
-
-        $productInterest1 = Input::get('productInterest1');
-        $productInterest2 = Input::get('productInterest2');
-        $productInterest3 = Input::get('productInterest3');
-
-        if($productInterest1!=NULL)
+        for($i=0 ; $i < count($productsInterest) ; $i++)
         {
-            $productID = ProductType::where('name',$productInterest1)->first();
+            if($productsInterest[$i]!=null)
+            {
+                $productID = ProductType::where('name',$productsInterest[$i])->first();
 
-            $newProductInterest=new ProductInterest();
-            $newProductInterest->new_user_id = $user->id;
-            $newProductInterest->ProductInterestID = $productID->id;
-            $newProductInterest->save();
+                $exist = ProductInterest::where('new_user_id',$user->id)
+                    ->where('ProductInterestID',$productID->id)->first();
+
+                if($exist==null)
+                {
+                    $newProductInterest=new ProductInterest();
+                    $newProductInterest->new_user_id = $user->id;
+                    $newProductInterest->ProductInterestID = $productID->id;
+                    $newProductInterest->save();
+                }
+            }
         }
 
         $response['message'] = "Successfully updated product interest";
