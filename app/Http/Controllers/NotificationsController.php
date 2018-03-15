@@ -14,10 +14,53 @@ class NotificationsController extends Controller
 
         $user  = NewUser::where('api_key',$api_key)->first();
 
-        $notifications = Notification::select('id','new_user_id','PostId','ProductName','Message','Status','created_at')
-            ->where('new_user_id',$user->id)
-            ->where('Status',0)
-            ->orderBy('id','ASC')-> get();
+        $notifications=\DB::table('notifications')
+            ->join('sellers_details_tabs', 'notifications.PostId', '=', 'sellers_details_tabs.id')
+            ->leftjoin('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+            ->leftjoin('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+            ->leftjoin('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+            ->where('notifications.new_user_id',$user->id)
+            ->where('notifications.Status',0)
+            ->select(
+                \DB::raw(
+                    "
+                        notifications.id,
+                        notifications.new_user_id,
+                        notifications.PostId,
+                        sellers_details_tabs.productPicture,
+                        notifications.ProductName,
+                        notifications.Message,
+                        notifications.Status,
+                        notifications.created_at,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+                        product_types.id as productTypeId,
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours
+                    "
+                )
+            )
+            ->orderBy('id','DESC')
+            ->get();
+
 
         return response()->json($notifications);
     }

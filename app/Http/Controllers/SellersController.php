@@ -17,6 +17,7 @@ use Mail;
 use Carbon\Carbon;
 use App\Services\NotificationService;
 use Mockery\Matcher\Not;
+use App\ProductInterest;
 
 class SellersController extends Controller
 {
@@ -297,11 +298,13 @@ class SellersController extends Controller
         $message = "New ".Input::get('productName')." posted";
 
         //notification based on the users product interest
-        $users = NewUser::where('productInterest',$productTypeID['id'])->get();
+        $users = ProductInterest::where('ProductInterestID',$productTypeID['id'])->get();
 
         for($i=0 ; $i < count($users) ; $i++)
         {
-            $PlayerId = $users[$i]->playerID;
+            $oneUser = NewUser::where('id',$users[$i]->new_user_id)->first();
+
+            $PlayerId = $oneUser->playerID;
 
             $newNotification = new NotificationService();
             $newNotification->sendToOne($message,$PlayerId);

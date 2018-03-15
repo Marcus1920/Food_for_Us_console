@@ -19,6 +19,7 @@ use phpDocumentor\Reflection\Types\Null_;
 use Psr\Log\NullLogger;
 use Redirect;
 use App\ProductType;
+use App\ProductInterest;
 
 use Illuminate\Pagination\Paginator;
 use App\ManageLogin;
@@ -513,7 +514,7 @@ class UsersController extends Controller
           return $user;
       }
 
-      public function updateInterest()
+      public function updateInterestOld()
       {
           $response = array();
 
@@ -530,6 +531,40 @@ class UsersController extends Controller
 
           return response()->json($response);
       }
+
+    public function updateInterest()
+    {
+        $response = array();
+
+        $api_key = Input::get('api_key');
+
+        $user   =  NewUser::where('api_key',$api_key)->first();
+
+        $productsInterest = array(Input::get('productInterest1'),Input::get('productInterest2'),Input::get('productInterest3'));
+
+        for($i=0 ; $i < count($productsInterest) ; $i++)
+        {
+            if($productsInterest[$i]!=null)
+            {
+                $productID = ProductType::where('name',$productsInterest[$i])->first();
+
+                $exist = ProductInterest::where('new_user_id',$user->id)
+                    ->where('ProductInterestID',$productID->id)->first();
+
+                if($exist==null)
+                {
+                    $newProductInterest=new ProductInterest();
+                    $newProductInterest->new_user_id = $user->id;
+                    $newProductInterest->ProductInterestID = $productID->id;
+                    $newProductInterest->save();
+                }
+            }
+        }
+
+        $response['message'] = "Successfully updated product interest";
+
+        return response()->json($response);
+    }
 
       public function updatePlayeId()
       {
