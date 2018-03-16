@@ -9,6 +9,7 @@ use App\Group;
 use App\UserGroup;
 use App\NewUser;
 use App\Services\NotificationService;
+use Session;
 
 class MessagingController extends Controller
 {
@@ -45,6 +46,7 @@ class MessagingController extends Controller
             $notificationMessage->save();
         }
 
+        \Session::flash('success', 'well done! Message notification successfully sent to '.$group->name.' group!');
         return Redirect('/group');
     }
 
@@ -73,6 +75,8 @@ class MessagingController extends Controller
             $notificationMessage->Message     = $message;
             $notificationMessage->save();
         }
+
+        \Session::flash('success', 'well done! Message notification successfully sent');
         return Redirect('/msgUsers');
     }
 }

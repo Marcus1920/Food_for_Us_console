@@ -14,6 +14,15 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
+
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-icon">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ Session::get('success') }}
+                            <i class="icon">&#61845;</i>
+                        </div>
+                    @endif
+
                     <div class="table-responsive">
                         <h3 class="block-title">Notification Groups</h3>
                         <a href="{{ url('group/create') }}" class="btn btn-sm">
