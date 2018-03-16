@@ -14,25 +14,33 @@
         </div>
     </div>
 
-    <div>
-        <div>
 
+        <div class="form-group">
+           {{--<div class="col-md-6 col-md-offset-2">--}}
+               {{--<div class="col-md-5 " style="margin-top:10px;">--}}
+                   {{--<select name="reject_reason" id="reject_reason" class="form-control " required>--}}
+                       {{--<option value="0"  selected disabled>-select group-</option>--}}
+                       {{--@foreach($groupUsers as $groupUser)--}}
+                           {{--<option value="{{$groupUser->id}}" name="group" id="{{$groupUser->id}}" required>{{$groupUser->group}}</option>--}}
+                           {{--@if ($errors->has('reject_reason')) <p class="help-block red">*{{ $errors->first('reject_reason') }}</p> @endif--}}
+                       {{--@endforeach--}}
+                   {{--</select>--}}
+               {{--</div>--}}
 
-
-        </div>
-
+           {{--</div>--}}
     </div>
-    <div class="form-group col-md-offset-8 col-md-6 ">
+    <div class="form-group col-md-offset-8 col-md-6  hidden">
         {!! Form::label(' Users', ' Users', array('class' => 'col-md-3 control-label')) !!}
         <div class="col-md-offset-8">
             {!! Form::text('userId',NULL,['class' => 'form-control input-sm','id' => 'userId']) !!}
         </div>
     </div>
     <br/>
-    <div class="form-group col-md-offset-8 col-md-6">
+    <div class="form-group col-md-offset-8 col-md-6 hidden">
         {!! Form::label('Group Users', 'Group Users', array('class' => 'col-md-3 control-label')) !!}
         <div class="col-md-offset-8 ">
             {!! Form::text('user',NULL,['class' => 'form-control input-sm','id' => 'user']) !!}
+
         </div>
     </div>
 

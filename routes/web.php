@@ -52,7 +52,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
          $respos['mesg'] ="ok"; 
          
          return  $respos;
-        
+
     });
     Route::resource('notification','NotificationsController');
     Route::post('removeNotification','NotificationsController@removeNotification');
