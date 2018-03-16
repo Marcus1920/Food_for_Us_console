@@ -54,7 +54,7 @@ class NotificationsController extends Controller
                         product_pickup_details.PickUpAddress as pickUpAddress,
                         product_pickup_details.MonToFridayHours as monToFridayHours,
                         product_pickup_details.SaturdayHours as saturdayHours,
-                        product_pickup_details.SundayHours as sundayHours
+                        product_pickup_details.SundayHours as su ndayHours
                     "
                 )
             )
@@ -64,8 +64,6 @@ class NotificationsController extends Controller
 
         return response()->json($notifications);
     }
-
-
     public function getAllNotification()
     {
         $notifications = \DB::table('notifications')
@@ -78,22 +76,19 @@ class NotificationsController extends Controller
                                            notifications.Message,
                                            new_users.name as name,
                                            new_users.surname as surname 
-                                         
-                                         
-                         ")
+                                      
+                     ")
 
             )
             ->get();
 
         return view('Notification.index', compact('notifications'));
     }
-
     public function resendNotification($id)
     {
         $notification = Notification::where('id', $id)->first();
         return view('Notification.resend', compact('notification'));
     }
-
     public function removeNotification()
         {
             $response = array();

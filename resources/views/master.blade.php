@@ -329,10 +329,8 @@
 <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
 
 
-
 <!-- Jquery Bootstrap Maxlength -->
 <script src="{{ asset('bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-
 
 <!-- Media -->
 <script src="{{ asset('js/media-player.min.js') }}"></script> <!-- Video Player -->
@@ -341,8 +339,6 @@
 
 
 <script type="text/javascript" src="{{ asset('incl/oms.min.js') }}"></script>
-
-
 
 <!-- File Upload -->
 <script src="{{ asset('js/fileupload.min.js') }}"></script> <!-- File Upload -->
@@ -373,9 +369,6 @@
 <script src="{{ asset('js/calendar.min.js') }}"></script> <!-- Calendar -->
 
 <script src="{{ asset('js/raphael.js') }}"> </script>
-
-
-
 
 
 <!-- D3.js
