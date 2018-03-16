@@ -39,7 +39,6 @@ class MessagingController extends Controller
 
             $newNotification = new NotificationService();
             $newNotification->sendToOne($message,$PlayerId);
-
             $notificationMessage              = new MessagingNotification();
             $notificationMessage->new_user_id = $oneUser->id;
             $notificationMessage->Message     = $message;
@@ -84,50 +83,71 @@ class MessagingController extends Controller
     {
         $message = $request->Message;
 
-        if($request->userId!=NULL)
-        {
-            $Users=explode(",",$request->userId);
+        if ($request->userId != NULL) {
+            $Users = explode(",", $request->userId);
 
-            for($i=0 ; $i < count($Users) ; $i++)
-            {
-                $oneUser = NewUser::where('id',$Users[$i])->first();
+            for ($i = 0; $i < count($Users); $i++) {
+                $oneUser = NewUser::where('id', $Users[$i])->first();
 
                 $PlayerId = $oneUser->playerID;
 
                 $newNotification = new NotificationService();
-                $newNotification->sendToOne($message,$PlayerId);
+                $newNotification->sendToOne($message, $PlayerId);
 
-                $notificationMessage              = new MessagingNotification();
+                $notificationMessage = new MessagingNotification();
                 $notificationMessage->new_user_id = $oneUser->id;
-                $notificationMessage->Message     = $message;
+                $notificationMessage->Message = $message;
                 $notificationMessage->save();
             }
 
             \Session::flash('success', 'well done! Message notification successfully sent');
             return Redirect('/allNotification');
-        }
-        else if($request->group!=NULL)
-        {
-            $group = Group::where('id',$request->group)->first();
+        } else if ($request->group != NULL) {
+            $group = Group::where('id', $request->group)->first();
 
-            $groupUsers = UserGroup::where('group_id',$group->id)->get();
+            $groupUsers = UserGroup::where('group_id', $group->id)->get();
 
-            for($i=0 ; $i < count($groupUsers) ; $i++)
-            {
-                $oneUser = NewUser::where('id',$groupUsers[$i]->new_user_id)->first();
+            for ($i = 0; $i < count($groupUsers); $i++) {
+                $oneUser = NewUser::where('id', $groupUsers[$i]->new_user_id)->first();
 
                 $PlayerId = $oneUser->playerID;
 
                 $newNotification = new NotificationService();
-                $newNotification->sendToOne($message,$PlayerId);
+                $newNotification->sendToOne($message, $PlayerId);
 
-                $notificationMessage              = new MessagingNotification();
+                $notificationMessage = new MessagingNotification();
                 $notificationMessage->new_user_id = $oneUser->id;
-                $notificationMessage->Message     = $message;
+                $notificationMessage->Message = $message;
                 $notificationMessage->save();
             }
-            \Session::flash('success', 'well done! Message notification successfully sent to '.$group->name.' group!');
+            \Session::flash('success', 'well done! Message notification successfully sent to ' . $group->name . ' group!');
             return Redirect('/allNotification');
         }
+    }
+    public function AllmessageNotification()
+    {
+        $notifications = \DB::table('messaging_notifications')
+            ->join('new_users', 'messaging_notifications.new_user_id', '=', 'new_users.id')
+            ->select(
+                \DB::raw("
+                                           messaging_notifications.id,
+                                           messaging_notifications.message as message,
+                                           new_users.name as name,
+                                           new_users.surname as surname 
+                                         
+                                         
+                         ")
+
+            )
+            ->get();
+
+        return view('MessagingNotification.messageNotification', compact('notifications'));
+
+    }
+
+    public function resendMessageNotification($id)
+    {
+        $notification = MessagingNotification::where('id', $id)->first();
+        return view('MessagingNotification.resendMessageNotification', compact('notification'));
     }
 }

@@ -94,8 +94,7 @@ class NotificationsController extends Controller
         return view('Notification.resend', compact('notification'));
     }
 
-
-        public function removeNotification()
+    public function removeNotification()
         {
             $response = array();
 
@@ -109,5 +108,6 @@ class NotificationsController extends Controller
             return response()->json($response);
 
         }
+
 
 }

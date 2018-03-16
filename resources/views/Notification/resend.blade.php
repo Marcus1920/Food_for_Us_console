@@ -26,6 +26,7 @@
             @if ($errors->has('Message')) <p class="help-block red">*{{ $errors->first('Message') }}</p> @endif
         </div>
     </div>
+<<<<<<< HEAD
 
     <div class="form-group">
         {!! Form::label('To', 'To', array('class' => 'col-md-2 control-label')) !!}
@@ -42,6 +43,7 @@
         </div>
     </div>
     <br/>
+            
     <div class="form-group searchGroup hidden">
         {!! Form::label('Group', 'Group', array('class' => 'col-md-2 control-label')) !!}
         <div class="col-md-10">
@@ -53,6 +55,7 @@
         <div class="col-md-offset-2 col-md-10">
             <button type="submit" type="button" class="btn btn-sm">Resend</button>
         </div>
+    </div>
     </div>
     {!! Form::close() !!}
         </div>

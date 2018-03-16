@@ -56,7 +56,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
          $respos['mesg'] ="ok"; 
          
          return  $respos;
-        
+
     });
     Route::resource('notification','NotificationsController');
     Route::post('removeNotification','NotificationsController@removeNotification');
@@ -379,5 +379,9 @@ Route::get('allNotification','NotificationsController@getAllNotification');
 Route::get('resendNotification/{id}','NotificationsController@resendNotification');
 
 Route::get('getGroup','GroupController@getGroup');
+
+Route::get('messageNotification','MessagingController@AllmessageNotification');
+
+Route::get('resendMessage/{id}','MessagingController@resendMessageNotification')
 
 ?>

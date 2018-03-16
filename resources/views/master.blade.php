@@ -219,7 +219,7 @@
                     <li><a href="{{ url('allNotification') }}"><span class="badge badge-r"></span>Notification List</a></li>
                     <li><a href="{{ url('group') }}"><span class="badge badge-r"></span>Message Groups</a></li>
                     <li><a href="{{ url('msgUsers') }}"><span class="badge badge-r"></span>Message Users</a></li>
-                </ul>
+                    <li><a href="{{ url('messageNotification') }}"><span class="badge badge-r"></span>Message Notification</a></li>                </ul>
             </li>
 
             <li {{ (Request::is('map') ? "class=active" : '') }}>
