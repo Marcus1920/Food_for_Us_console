@@ -378,4 +378,8 @@ Route::get('resendNotification/{id}','NotificationsController@resendNotification
 
 Route::get('getGroup','GroupController@getGroup');
 
+Route::get('messageNotification','MessagingController@AllmessageNotification');
+
+Route::get('resendMessage/{id}','MessagingController@resendMessageNotification')
+
 ?>

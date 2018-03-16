@@ -38,7 +38,6 @@ class MessagingController extends Controller
 
             $newNotification = new NotificationService();
             $newNotification->sendToOne($message,$PlayerId);
-
             $notificationMessage              = new MessagingNotification();
             $notificationMessage->new_user_id = $oneUser->id;
             $notificationMessage->Message     = $message;
@@ -74,5 +73,33 @@ class MessagingController extends Controller
             $notificationMessage->save();
         }
         return Redirect('/msgUsers');
+    }
+
+    public function AllmessageNotification()
+    {
+        $notifications = \DB::table('messaging_notifications')
+            ->join('new_users', 'messaging_notifications.new_user_id', '=', 'new_users.id')
+            ->select(
+                \DB::raw("
+                                           messaging_notifications.id,
+                                           messaging_notifications.message as message,
+                                           new_users.name as name,
+                                           new_users.surname as surname 
+                                         
+                                         
+                         ")
+
+            )
+            ->get();
+
+        return view('MessagingNotification.messageNotification', compact('notifications'));
+
+    }
+
+    public function resendMessageNotification($id)
+    {
+        $notification = MessagingNotification::where('id', $id)->first();
+        return view('MessagingNotification.resendMessageNotification', compact('notification'));
+
     }
 }
