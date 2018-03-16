@@ -47,4 +47,32 @@ class MessagingController extends Controller
 
         return Redirect('/group');
     }
+
+    public function sendToUsers()
+    {
+        return view('MessagingNotification.createUsers');
+    }
+
+    public function usersMessageCreate(Request $request)
+    {
+        $Users=explode(",",$request->Users);
+
+        $message = $request->message;
+
+        for($i=0 ; $i < count($Users) ; $i++)
+        {
+            $oneUser = NewUser::where('id',$Users[$i])->first();
+
+            $PlayerId = $oneUser->playerID;
+
+            $newNotification = new NotificationService();
+            $newNotification->sendToOne($message,$PlayerId);
+
+            $notificationMessage              = new MessagingNotification();
+            $notificationMessage->new_user_id = $oneUser->id;
+            $notificationMessage->Message     = $message;
+            $notificationMessage->save();
+        }
+        return Redirect('/msgUsers');
+    }
 }
