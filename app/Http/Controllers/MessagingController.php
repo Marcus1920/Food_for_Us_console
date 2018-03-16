@@ -101,7 +101,7 @@ class MessagingController extends Controller
             }
 
             \Session::flash('success', 'well done! Message notification successfully sent');
-            return Redirect('/allNotification');
+            return Redirect('/messageNotification');
         } else if ($request->group != NULL) {
             $group = Group::where('id', $request->group)->first();
 
@@ -121,7 +121,7 @@ class MessagingController extends Controller
                 $notificationMessage->save();
             }
             \Session::flash('success', 'well done! Message notification successfully sent to ' . $group->name . ' group!');
-            return Redirect('/allNotification');
+            return Redirect('/messageNotification');
         }
     }
     public function AllmessageNotification()
@@ -139,6 +139,7 @@ class MessagingController extends Controller
                          ")
 
             )
+            ->orderBy('id', 'DESC')
             ->get();
 
         return view('MessagingNotification.messageNotification', compact('notifications'));

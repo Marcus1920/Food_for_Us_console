@@ -1,6 +1,7 @@
 @extends('master')
 @section('content')
     <ol class="breadcrumb hidden-xs">
+        <li><a href="{{ url('/master') }}">Home</a></li>
         <li class="active">Notification List</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
