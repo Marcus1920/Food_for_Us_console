@@ -12,6 +12,15 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
+
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-icon">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ Session::get('success') }}
+                            <i class="icon">&#61845;</i>
+                        </div>
+                    @endif
+
                     <div class="table-responsive">
                         <table class="table tile table-striped" id="notificationsTable">
                             <thead>
@@ -68,7 +77,7 @@
                         {data: 'Message', name: 'Message'},
                         {data: function(d)
                             {
-                                return "<a href='{!! url('resendNotification/" + d.id +"') !!}'class='btn btn-sm'>" + 'Resend' + "</a>";
+                                return "<a href='{!! url('resendNotification/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'>" + ' FORWARD' + "</a>";
                             },"name" : 'name'},
                     ],
                     "aoColumnDefs": [

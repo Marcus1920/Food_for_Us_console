@@ -43,6 +43,8 @@ Route::get('sendToGroup/{id}','MessagingController@sendToGroup');
 Route::post('msgGroup','MessagingController@groupMessageCreate');
 Route::get('msgUsers','MessagingController@sendToUsers');
 Route::post('usersMessageCreate','MessagingController@usersMessageCreate');
+Route::post('resendNotification','MessagingController@resendNotification');
+
 
 Route::group(array('prefix' => 'api/v1'), function() {
 

@@ -79,4 +79,55 @@ class MessagingController extends Controller
         \Session::flash('success', 'well done! Message notification successfully sent');
         return Redirect('/msgUsers');
     }
+
+    public function resendNotification(Request $request)
+    {
+        $message = $request->Message;
+
+        if($request->userId!=NULL)
+        {
+            $Users=explode(",",$request->userId);
+
+            for($i=0 ; $i < count($Users) ; $i++)
+            {
+                $oneUser = NewUser::where('id',$Users[$i])->first();
+
+                $PlayerId = $oneUser->playerID;
+
+                $newNotification = new NotificationService();
+                $newNotification->sendToOne($message,$PlayerId);
+
+                $notificationMessage              = new MessagingNotification();
+                $notificationMessage->new_user_id = $oneUser->id;
+                $notificationMessage->Message     = $message;
+                $notificationMessage->save();
+            }
+
+            \Session::flash('success', 'well done! Message notification successfully sent');
+            return Redirect('/allNotification');
+        }
+        else if($request->group!=NULL)
+        {
+            $group = Group::where('id',$request->group)->first();
+
+            $groupUsers = UserGroup::where('group_id',$group->id)->get();
+
+            for($i=0 ; $i < count($groupUsers) ; $i++)
+            {
+                $oneUser = NewUser::where('id',$groupUsers[$i]->new_user_id)->first();
+
+                $PlayerId = $oneUser->playerID;
+
+                $newNotification = new NotificationService();
+                $newNotification->sendToOne($message,$PlayerId);
+
+                $notificationMessage              = new MessagingNotification();
+                $notificationMessage->new_user_id = $oneUser->id;
+                $notificationMessage->Message     = $message;
+                $notificationMessage->save();
+            }
+            \Session::flash('success', 'well done! Message notification successfully sent to '.$group->name.' group!');
+            return Redirect('/allNotification');
+        }
+    }
 }
