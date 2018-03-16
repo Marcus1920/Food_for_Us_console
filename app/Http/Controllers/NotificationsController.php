@@ -77,7 +77,8 @@ class NotificationsController extends Controller
                                            notifications.ProductName,
                                            notifications.Message,
                                            new_users.name as name,
-                                           new_users.surname as surname 
+                                           new_users.surname as surname,
+                                           notifications.created_at
                                          
                                          
                          ")

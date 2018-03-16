@@ -133,7 +133,8 @@ class MessagingController extends Controller
                                            messaging_notifications.id,
                                            messaging_notifications.message as message,
                                            new_users.name as name,
-                                           new_users.surname as surname 
+                                           new_users.surname as surname,
+                                           messaging_notifications.created_at
                                          
                                          
                          ")
