@@ -32,7 +32,7 @@
                                 <th>PostId</th>
                                 <th>ProductName</th>
                                 <th>Message</th>
-                                <th>Action</th>
+                                <th>Forward</th>
                             </tr>
                             </thead>
                         </table>
@@ -78,7 +78,7 @@
                         {data: 'Message', name: 'Message'},
                         {data: function(d)
                             {
-                                return "<a href='{!! url('resendNotification/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'>" + ' FORWARD' + "</a>";
+                                return "<a href='{!! url('resendNotification/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'></a>";
                             },"name" : 'name'},
                     ],
                     "aoColumnDefs": [

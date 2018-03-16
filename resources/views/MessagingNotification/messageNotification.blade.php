@@ -28,7 +28,7 @@
                                 <th>Name</th>
                                 <th>SurName</th>
                                 <th>Message</th>
-                                <th>Action</th>
+                                <th>Forward</th>
                             </tr>
                             </thead>
                         </table>
@@ -72,7 +72,7 @@
                         {data: 'message', name: 'message'},
                         {data: function(d)
                             {
-                                return "<a href='{!! url('resendMessage/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'>" + ' FORWARD' + "</a>";
+                                return "<a href='{!! url('resendMessage/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'></a>";
                             },"name" : 'name'},
                     ],
                     "aoColumnDefs": [
