@@ -514,24 +514,6 @@ class UsersController extends Controller
           return $user;
       }
 
-      public function updateInterestOld()
-      {
-          $response = array();
-
-          $api_key = Input::get('api_key');
-
-          $productInterest = Input::get('productInterest');
-
-          $productID = ProductType::where('name',$productInterest)->first();
-
-          $user  = NewUser::where('api_key',$api_key)
-              ->update(['productInterest'=>$productID->id]);
-
-          $response['message'] = "Successfully updated product interest";
-
-          return response()->json($response);
-      }
-
     public function updateInterest()
     {
         $response = array();
@@ -556,6 +538,7 @@ class UsersController extends Controller
                     $newProductInterest=new ProductInterest();
                     $newProductInterest->new_user_id = $user->id;
                     $newProductInterest->ProductInterestID = $productID->id;
+                    $newProductInterest->active = 1;
                     $newProductInterest->save();
                 }
             }
