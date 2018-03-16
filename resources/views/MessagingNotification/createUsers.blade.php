@@ -12,6 +12,13 @@
     <br/>
 
     <div class="row">
+        @if(Session::has('success'))
+            <div class="alert alert-success alert-icon">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ Session::get('success') }}
+                <i class="icon">&#61845;</i>
+            </div>
+        @endif
         <div class="col-md-6 col-md-offset-2">
 
             {!! Form::open(['url' => 'usersMessageCreate', 'method' => 'post', 'class' => 'form-horizontal']) !!}

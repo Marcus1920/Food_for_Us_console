@@ -80,6 +80,7 @@ class NotificationsController extends Controller
                      ")
 
             )
+            ->orderBy('id', 'DESC')
             ->get();
 
         return view('Notification.index', compact('notifications'));

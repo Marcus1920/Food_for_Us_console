@@ -43,6 +43,8 @@ Route::get('sendToGroup/{id}','MessagingController@sendToGroup');
 Route::post('msgGroup','MessagingController@groupMessageCreate');
 Route::get('msgUsers','MessagingController@sendToUsers');
 Route::post('usersMessageCreate','MessagingController@usersMessageCreate');
+Route::post('resendNotification','MessagingController@resendNotification');
+
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
@@ -63,6 +65,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
      Route::get ('producttype' , 'ProductTypeController@index');
 
      Route::post ('productInterest','UsersController@updateInterest');
+     Route::get('getProductInterest','ProductInterestController@index');
+     Route::post('deactivateInterest','ProductInterestController@deactivate');
+     Route::post('activateInterest','ProductInterestController@activate');
 
     //Researchers
     Route::get('myResearchs','ResearchersController@index');

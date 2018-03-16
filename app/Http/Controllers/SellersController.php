@@ -298,7 +298,9 @@ class SellersController extends Controller
         $message = "New ".Input::get('productName')." posted";
 
         //notification based on the users product interest
-        $users = ProductInterest::where('ProductInterestID',$productTypeID['id'])->get();
+        $users = ProductInterest::where('ProductInterestID',$productTypeID['id'])
+            ->where('active',1)
+            ->get();
 
         for($i=0 ; $i < count($users) ; $i++)
         {

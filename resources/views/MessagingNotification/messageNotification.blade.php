@@ -1,6 +1,7 @@
 @extends('master')
 @section('content')
     <ol class="breadcrumb hidden-xs">
+        <li><a href="{{ url('/master') }}">Home</a></li>
         <li class="active">Message Notification List</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
@@ -12,6 +13,13 @@
             <div class="tab-pane" id="closure">
                 <!-- Responsive Table -->
                 <div class="block-area" id="responsiveTable">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-icon">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ Session::get('success') }}
+                            <i class="icon">&#61845;</i>
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table class="table tile table-striped" id="messagesTable">
                             <thead>
@@ -20,7 +28,7 @@
                                 <th>Name</th>
                                 <th>SurName</th>
                                 <th>Message</th>
-                                <th>Action</th>
+                                <th>Forward</th>
                             </tr>
                             </thead>
                         </table>
@@ -64,7 +72,7 @@
                         {data: 'message', name: 'message'},
                         {data: function(d)
                             {
-                                return "<a href='{!! url('resendMessage/" + d.id +"') !!}'class='btn btn-sm'>" + 'Forward' + "</a>";
+                                return "<a href='{!! url('resendMessage/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'></a>";
                             },"name" : 'name'},
                     ],
                     "aoColumnDefs": [
