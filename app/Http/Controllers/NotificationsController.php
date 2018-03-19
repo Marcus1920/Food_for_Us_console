@@ -72,7 +72,7 @@ class NotificationsController extends Controller
             ->join('new_users', 'notifications.new_user_id', '=', 'new_users.id')
             ->select(
                 \DB::raw("
-                                           new_users.id,
+                                           notifications.id,
                                            notifications.PostId,
                                            notifications.ProductName,
                                            notifications.Message,
