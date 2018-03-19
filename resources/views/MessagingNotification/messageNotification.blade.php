@@ -28,6 +28,7 @@
                                 <th>Name</th>
                                 <th>SurName</th>
                                 <th>Message</th>
+                                <th>Created at</th>
                                 <th>Forward</th>
                             </tr>
                             </thead>
@@ -70,6 +71,7 @@
                         {data: 'name', name: 'name'},
                         {data: 'surname', name: 'surname'},
                         {data: 'message', name: 'message'},
+                        {data: 'created_at', name: 'created_at'},
                         {data: function(d)
                             {
                                 return "<a href='{!! url('resendMessage/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'></a>";

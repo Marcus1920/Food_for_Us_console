@@ -32,6 +32,7 @@
                                 <th>PostId</th>
                                 <th>ProductName</th>
                                 <th>Message</th>
+                                <th>Created at</th>
                                 <th>Forward</th>
                             </tr>
                             </thead>
@@ -76,6 +77,7 @@
                         {data: 'PostId', name: 'PostId'},
                         {data: 'ProductName', name: 'ProductName'},
                         {data: 'Message', name: 'Message'},
+                        {data: 'created_at', name: 'created_at'},
                         {data: function(d)
                             {
                                 return "<a href='{!! url('resendNotification/" + d.id +"') !!}'class='btn btn-sm glyphicon glyphicon-send'></a>";
