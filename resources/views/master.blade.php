@@ -210,16 +210,16 @@
                 </ul>
             </li>
 
-            <li {{ (Request::is('notification') ? "class=active" : '') }}>
-                <a class="sa-side-notification" href="#">
+            <li {{ (Request::is('alert') ? "class=active" : '') }}>
+                <a class="sa-side-alert" href="#">
 
                 </a>
                 <ul class="list-unstyled menu-item">
-                    <h6><b> NOTIFICATION MESSAGES</b></h6>
-                    <li><a href="{{ url('messageNotification') }}"><span class="badge badge-r"></span>Message Notification List</a></li>
-                    <li><a href="{{ url('allNotification') }}"><span class="badge badge-r"></span>Notification List</a></li>
-                    <li><a href="{{ url('group') }}"><span class="badge badge-r"></span>Message Groups</a></li>
-                    <li><a href="{{ url('msgUsers') }}"><span class="badge badge-r"></span>Message Users</a></li>
+                    <h6><b> ALERTS</b></h6>
+                    <li><a href="{{ url('messageNotification') }}"><span class="badge badge-r"></span>Push Alerts History</a></li>
+                    <li><a href="{{ url('allNotification') }}"><span class="badge badge-r"></span>App Aletrs History</a></li>
+                    <li><a href="{{ url('group') }}"><span class="badge badge-r"></span>Group Push Alerts</a></li>
+                    <li><a href="{{ url('msgUsers') }}"><span class="badge badge-r"></span>Users Push Alerts</a></li>
 
                 </ul>
             </li>

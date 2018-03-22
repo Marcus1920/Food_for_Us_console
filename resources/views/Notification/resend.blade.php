@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/master') }}">Home</a></li>
-        <li><a href="{{ url('/allNotification') }}">Notification List</a></li>
+        <li><a href="{{ url('/allNotification') }}">App Alerts History List</a></li>
         <li class="active">Forward Message</li>
     </ol>
     <h4 class="page-title">Forward Message</h4>

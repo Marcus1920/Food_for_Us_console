@@ -69,25 +69,25 @@ class NotificationsController extends Controller
         $notifications = \DB::table('notifications')
             ->join('new_users', 'notifications.new_user_id', '=', 'new_users.id')
             ->select(
-                \DB::raw("
+                \DB::raw(" 
                                            new_users.id,
                                            notifications.PostId,
                                            notifications.ProductName,
                                            notifications.Message,
-                                           new_users.name as name,                          new_users.surname as surname 
-                                            notifications.created_at
-                                      
-                     ")
+                                           new_users.name as name,                          
+                                           new_users.surname as surname,
+                                           notifications.created_at
+                                       ")
 
-
-
-    )
+                )
             ->orderBy('id', 'DESC')
             ->get();
 
         return view('Notification.index', compact('notifications'));
     }
+
     public function resendNotification($id)
+
     {
         $notification = Notification::where('id', $id)->first();
         return view('Notification.resend', compact('notification'));
@@ -104,8 +104,5 @@ class NotificationsController extends Controller
             $response['message'] = "Successfully removed notification";
 
             return response()->json($response);
-
         }
-
-
 }
