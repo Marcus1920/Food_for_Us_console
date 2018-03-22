@@ -130,14 +130,14 @@ class MessagingController extends Controller
             ->join('new_users', 'messaging_notifications.new_user_id', '=', 'new_users.id')
             ->select(
                 \DB::raw("
+                
                                            messaging_notifications.id,
                                            messaging_notifications.message as message,
                                            new_users.name as name,
                                            new_users.surname as surname,
                                            messaging_notifications.created_at
                                          
-                                         
-                         ")
+                                          ")
 
             )
             ->orderBy('id', 'DESC')

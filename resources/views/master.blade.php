@@ -210,16 +210,16 @@
                 </ul>
             </li>
 
-            <li {{ (Request::is('notification') ? "class=active" : '') }}>
-                <a class="sa-side-notification" href="#">
+            <li {{ (Request::is('alert') ? "class=active" : '') }}>
+                <a class="sa-side-alert" href="#">
 
                 </a>
                 <ul class="list-unstyled menu-item">
-                    <h6><b> NOTIFICATION MESSAGES</b></h6>
-                    <li><a href="{{ url('messageNotification') }}"><span class="badge badge-r"></span>Message Notification List</a></li>
-                    <li><a href="{{ url('allNotification') }}"><span class="badge badge-r"></span>Notification List</a></li>
-                    <li><a href="{{ url('group') }}"><span class="badge badge-r"></span>Message Groups</a></li>
-                    <li><a href="{{ url('msgUsers') }}"><span class="badge badge-r"></span>Message Users</a></li>
+                    <h6><b> ALERTS</b></h6>
+                    <li><a href="{{ url('messageNotification') }}"><span class="badge badge-r"></span>Push Alerts History</a></li>
+                    <li><a href="{{ url('allNotification') }}"><span class="badge badge-r"></span>App Aletrs History</a></li>
+                    <li><a href="{{ url('group') }}"><span class="badge badge-r"></span>Group Push Alerts</a></li>
+                    <li><a href="{{ url('msgUsers') }}"><span class="badge badge-r"></span>Users Push Alerts</a></li>
 
                 </ul>
             </li>
@@ -331,10 +331,8 @@
 <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
 
 
-
 <!-- Jquery Bootstrap Maxlength -->
 <script src="{{ asset('bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-
 
 <!-- Media -->
 <script src="{{ asset('js/media-player.min.js') }}"></script> <!-- Video Player -->
@@ -343,8 +341,6 @@
 
 
 <script type="text/javascript" src="{{ asset('incl/oms.min.js') }}"></script>
-
-
 
 <!-- File Upload -->
 <script src="{{ asset('js/fileupload.min.js') }}"></script> <!-- File Upload -->
@@ -375,9 +371,6 @@
 <script src="{{ asset('js/calendar.min.js') }}"></script> <!-- Calendar -->
 
 <script src="{{ asset('js/raphael.js') }}"> </script>
-
-
-
 
 
 <!-- D3.js

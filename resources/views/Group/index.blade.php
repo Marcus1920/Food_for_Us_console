@@ -2,11 +2,11 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/master') }}">Home</a></li>
-        <li class="active">Notification Groups</li>
+        <li class="active">Group Push Alerts List</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
-    <h4 class="page-title">Notification Groups Listing</h4>
+    <h4 class="page-title">Group Push Alerts</h4>
 
 
     <div class="row">
@@ -24,7 +24,7 @@
                     @endif
 
                     <div class="table-responsive">
-                        <h3 class="block-title">Notification Groups</h3>
+                        <h3 class="block-title">Add Group</h3>
                         <a href="{{ url('group/create') }}" class="btn btn-sm">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new group" data-toggle="tooltip"></i>
                         </a>

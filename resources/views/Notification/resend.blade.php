@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/master') }}">Home</a></li>
-        <li><a href="{{ url('/allNotification') }}">Notification List</a></li>
+        <li><a href="{{ url('/allNotification') }}">App Alerts History List</a></li>
         <li class="active">Forward Message</li>
     </ol>
     <h4 class="page-title">Forward Message</h4>
@@ -34,7 +34,6 @@
         </div>
     </div>
 
-
     <div class="form-group searchUsers hidden">
         {!! Form::label(' Users', ' Users', array('class' => 'col-md-2 control-label')) !!}
         <div class="col-md-10">
@@ -58,7 +57,7 @@
     </div>
     {!! Form::close() !!}
         </div>
-    </div>
+
 
 @endsection
 @section('footer')
@@ -78,7 +77,6 @@
                 $('.searchGroup').addClass('hidden');
             }
         })
-
         jQuery(document).ready(function($) {
             $("#userId").tokenInput("{!! url('/getUserss')!!}", {tokenLimit: 50})
         });

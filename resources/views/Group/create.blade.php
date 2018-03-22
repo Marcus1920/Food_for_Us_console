@@ -2,7 +2,7 @@
 @section('content')
     <ol class="breadcrumb hidden-xs">
         <li><a href="{{ url('/master') }}">Home</a></li>
-        <li class="active">Add Group</li>
+        <li class="active">Group Push Alerts</li>
         {{--<li class="active"><a>  </a></li>--}}
         {{--<li class="active"><a>Posts</a></li>--}}
     </ol>
