@@ -58,6 +58,18 @@ class ConversationController extends Controller
             else
             {
                 $messages = ChatMessage::where('conversation_id',$conversation->id)
+                    ->join('new_users', 'new_users.id', '=', 'chat_messages.new_user_id')
+                    ->select(
+                        \DB::raw("
+                                            chat_messages.id,
+                                            chat_messages.conversation_id,
+                                            new_users.name,
+                                            new_users.surname,
+                                            chat_messages.message,
+                                            chat_messages.user_type,
+                                            chat_messages.created_at
+                                        ")
+                    )
                     ->get();
 
                 return response()->json($messages);
