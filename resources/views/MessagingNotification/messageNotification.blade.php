@@ -67,7 +67,7 @@
                         'pdfHtml5'
                     ],
                     "columns": [
-                        {data: 'id'},
+                        {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
                         {data: 'surname', name: 'surname'},
                         {data: 'message', name: 'message'},

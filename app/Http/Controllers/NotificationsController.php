@@ -69,8 +69,8 @@ class NotificationsController extends Controller
         $notifications = \DB::table('notifications')
             ->join('new_users', 'notifications.new_user_id', '=', 'new_users.id')
             ->select(
-                \DB::raw(" 
-                                           new_users.id,
+                \DB::raw("
+                                           notifications.id,
                                            notifications.PostId,
                                            notifications.ProductName,
                                            notifications.Message,

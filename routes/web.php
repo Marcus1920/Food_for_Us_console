@@ -60,6 +60,12 @@ Route::group(array('prefix' => 'api/v1'), function() {
          return  $respos;
 
     });
+
+    Route::post('conversation','ConversationController@createConversation');
+    Route::get('getMyConversation','ConversationController@getMyConversation');
+
+    Route::post('createMessage','ChatMessageController@createMessage');
+
     Route::resource('notification','NotificationsController');
     Route::post('removeNotification','NotificationsController@removeNotification');
 
