@@ -332,5 +332,11 @@ class MapController extends Controller
         return   view  ('map.map',compact('latitude','longitude','userRoles','suppliers','sellers','buyers','reseachers'));
     }
 
+    public function index()
+    {
+        Mapper::map(53.381128999999990000, -1.470085000000040000);
+
+        return view('MessagingNotification.map');
+    }
 }
 

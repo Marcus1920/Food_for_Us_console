@@ -45,6 +45,10 @@ Route::get('msgUsers','MessagingController@sendToUsers');
 Route::post('usersMessageCreate','MessagingController@usersMessageCreate');
 Route::post('resendNotification','MessagingController@resendNotification');
 
+Route::get('geofence','GeoTableController@getPlaces');
+
+Route::get('mapNotification','MapController@index');
+
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
