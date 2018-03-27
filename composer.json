@@ -14,7 +14,8 @@
         "laravelcollective/html": "^5.4.0",
         "webpatser/laravel-countries": "dev-master",
         "yajra/laravel-datatables-oracle": "^8.0",
-        "brozot/laravel-fcm": "1.2.*"
+        "brozot/laravel-fcm": "1.2.*",
+        "jackpopp/geodistance": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

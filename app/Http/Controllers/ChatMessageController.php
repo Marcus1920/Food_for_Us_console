@@ -40,6 +40,15 @@ class ChatMessageController extends Controller
             $newChatMessage->user_type = "Sender";
             $newChatMessage->save();
 
+            $recepient  = NewUser::where('id',$conversation->Receiver_id)->first();
+
+            $messageNotification = $user->name.":".$message;
+
+            $PlayerId = $recepient->playerID;
+
+            $newNotification = new NotificationService();
+            $newNotification->sendToOne($messageNotification,$PlayerId);
+
             $respond['msg']="Sent";
 
             return response()->json($respond);
@@ -53,10 +62,41 @@ class ChatMessageController extends Controller
             $newChatMessage->user_type = "Receiver";
             $newChatMessage->save();
 
+            $recepient1  = NewUser::where('id',$conversation->Sender_id)->first();
+
+            $messageNotification = $user->name.":".$message;
+
+            $PlayerId = $recepient1->playerID;
+
+            $newNotification = new NotificationService();
+            $newNotification->sendToOne($messageNotification,$PlayerId);
+
             $respond['msg']="Sent";
 
             return response()->json($respond);
         }
+    }
+
+    public function getMessagesPerConvo()
+    {
+        $conversation_id = Input::get('conversation_id');
+
+        $messages = ChatMessage::where('conversation_id',$conversation_id)
+            ->join('new_users', 'new_users.id', '=', 'chat_messages.new_user_id')
+            ->select(
+                \DB::raw("
+                                            chat_messages.id,
+                                            chat_messages.conversation_id,
+                                            new_users.name,
+                                            new_users.surname,
+                                            chat_messages.message,
+                                            chat_messages.user_type,
+                                            chat_messages.created_at
+                                        ")
+            )
+            ->get();
+
+        return response()->json($messages);
     }
 
 }

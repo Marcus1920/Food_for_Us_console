@@ -47,6 +47,14 @@ Route::get('msgUsers','MessagingController@sendToUsers');
 Route::post('usersMessageCreate','MessagingController@usersMessageCreate');
 Route::post('resendNotification','MessagingController@resendNotification');
 
+Route::get('geofence','GeoTableController@getPlaces');
+
+Route::get('mapNotification',function (){
+    return view('MessagingNotification.map');
+});
+
+Route::post('sendByRadius','MessagingController@sendByRadius');
+
 
 Route::group(array('prefix' => 'api/v1'), function() {
 
@@ -65,6 +73,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('getMyConversation','ConversationController@getMyConversation');
 
     Route::post('createMessage','ChatMessageController@createMessage');
+    Route::get('getMessages','ChatMessageController@getMessagesPerConvo');
 
     Route::resource('notification','NotificationsController');
     Route::post('removeNotification','NotificationsController@removeNotification');
