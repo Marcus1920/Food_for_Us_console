@@ -59,7 +59,6 @@
                         {!! Form::label('Address', 'Address', array('class' => 'col-md-4 control-label')) !!}
                         <div class="col-md-6">
                             <textarea rows="2" id="address" name="address" class="form-control"></textarea>
-                            <div id = "hse_error_description"></div>
                         </div>
                     </div>
 

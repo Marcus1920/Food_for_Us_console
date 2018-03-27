@@ -158,6 +158,7 @@ class MessagingController extends Controller
         $lat = $request->lat;
         $radius = $request->radius;
         $message = $request->message;
+        $address = $request->address;
 
         if($radius==0)
         {
@@ -223,8 +224,16 @@ class MessagingController extends Controller
                 $notificationMessage->Message = $message;
                 $notificationMessage->save();
             }
-            \Session::flash('success', 'well done! Message notification successfully sent to '.count($Users).' users within '. $radius .'km radius!');
-            return Redirect('/messageNotification');
+            if(count($Users)==0)
+            {
+                \Session::flash('fail','Unsuccessful, There are '.count($Users) . ' users within ' . $radius . 'km radius of '.$address.'!');
+                return Redirect('/messageNotification');
+            }
+            else {
+
+                \Session::flash('success', 'well done! Message notification successfully sent to ' . count($Users) . ' users within ' . $radius . 'km radius of '.$address.'!');
+                return Redirect('/messageNotification');
+            }
         }
 
     }

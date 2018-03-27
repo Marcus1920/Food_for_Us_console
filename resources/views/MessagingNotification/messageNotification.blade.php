@@ -20,6 +20,13 @@
                             <i class="icon">&#61845;</i>
                         </div>
                     @endif
+                        @if(Session::has('fail'))
+                            <div class="alert alert-warning alert-icon">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ Session::get('fail') }}
+                                <i class="icon"></i>
+                            </div>
+                        @endif
                     <div class="table-responsive">
                         <table class="table tile table-striped" id="messagesTable">
                             <thead>
