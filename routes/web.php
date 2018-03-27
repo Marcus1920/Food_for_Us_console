@@ -47,7 +47,11 @@ Route::post('resendNotification','MessagingController@resendNotification');
 
 Route::get('geofence','GeoTableController@getPlaces');
 
-Route::get('mapNotification','MapController@index');
+Route::get('mapNotification',function (){
+    return view('MessagingNotification.map');
+});
+
+Route::post('sendByRadius','MessagingController@sendByRadius');
 
 
 Route::group(array('prefix' => 'api/v1'), function() {

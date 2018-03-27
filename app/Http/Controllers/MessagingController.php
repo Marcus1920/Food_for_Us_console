@@ -152,4 +152,80 @@ class MessagingController extends Controller
         $notification = MessagingNotification::where('id', $id)->first();
         return view('MessagingNotification.resendMessageNotification', compact('notification'));
     }
+    public function sendByRadius(Request $request)
+    {
+        $lng = $request->lng;
+        $lat = $request->lat;
+        $radius = $request->radius;
+        $message = $request->message;
+
+        if($radius==0)
+        {
+            $Users = \DB::table('new_users')
+                ->select(
+                    \DB::raw(
+                        "
+                    id,
+                    playerID,
+                    name,
+                    surname,
+                    gps_lat,
+                    gps_long,
+                    ( 3959 * acos ( cos ( radians(" . $lat . ") ) * cos( radians( gps_lat ) ) * cos( radians( gps_long ) - radians(" . $lng . ") ) + sin ( radians(" . $lat . ") ) * sin( radians( gps_lat ) ) ) ) AS distance
+                    "
+                    )
+                )
+                ->get();
+
+            for ($i = 0; $i < count($Users); $i++) {
+
+                $PlayerId = $Users[$i]->playerID;
+
+                $newNotification = new NotificationService();
+                $newNotification->sendToOne($message, $PlayerId);
+
+                $notificationMessage = new MessagingNotification();
+                $notificationMessage->new_user_id = $Users[$i]->id;
+                $notificationMessage->Message = $message;
+                $notificationMessage->save();
+            }
+            \Session::flash('success', 'well done! Message notification successfully sent to all '.count($Users).' users!');
+            return Redirect('/messageNotification');
+        }
+        else {
+
+            $Users = \DB::table('new_users')
+                ->select(
+                    \DB::raw(
+                        "
+                    id,
+                    playerID,
+                    name,
+                    surname,
+                    gps_lat,
+                    gps_long,
+                    ( 3959 * acos ( cos ( radians(" . $lat . ") ) * cos( radians( gps_lat ) ) * cos( radians( gps_long ) - radians(" . $lng . ") ) + sin ( radians(" . $lat . ") ) * sin( radians( gps_lat ) ) ) ) AS distance
+                    "
+                    )
+                )
+                ->having('distance', '<', $radius)
+                ->get();
+
+            for ($i = 0; $i < count($Users); $i++) {
+
+                $PlayerId = $Users[$i]->playerID;
+
+                $newNotification = new NotificationService();
+                $newNotification->sendToOne($message, $PlayerId);
+
+                $notificationMessage = new MessagingNotification();
+                $notificationMessage->new_user_id = $Users[$i]->id;
+                $notificationMessage->Message = $message;
+                $notificationMessage->save();
+            }
+            \Session::flash('success', 'well done! Message notification successfully sent to '.count($Users).' users within '. $radius .'km radius!');
+            return Redirect('/messageNotification');
+        }
+
+    }
 }

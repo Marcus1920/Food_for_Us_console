@@ -220,6 +220,7 @@
                     <li><a href="{{ url('allNotification') }}"><span class="badge badge-r"></span>App Aletrs History</a></li>
                     <li><a href="{{ url('group') }}"><span class="badge badge-r"></span>Group Push Alerts</a></li>
                     <li><a href="{{ url('msgUsers') }}"><span class="badge badge-r"></span>Users Push Alerts</a></li>
+                    <li><a href="{{ url('mapNotification') }}"><span class="badge badge-r"></span>Radius Push Alerts</a></li>
 
                 </ul>
             </li>
