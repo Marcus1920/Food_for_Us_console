@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use Illuminate\Http\Request;
 use App\UserGroup;
+use App\NewUser;
 
 class UserGroupController extends Controller
 {
@@ -69,6 +70,8 @@ class UserGroupController extends Controller
              ->where('group_id',$group_id)
              ->get();
 
+        $oneUser = NewUser::where('id',$id)->first();
+
         $num = count($users);
 
         for($i=0 ; $i < $num ; $i++)
@@ -77,7 +80,7 @@ class UserGroupController extends Controller
                 ->where('group_id',$group_id)
                 ->update(['active'=>0]);
         }
-        \Session::flash('success', 'well done! User successfully removed from the group!');
+        \Session::flash('success', 'well done! '.$oneUser->name.' '.$oneUser->surname.' successfully removed from the group!');
         return Redirect('/groupUsers/'.$group_id);
     }
     public function createRadius($id)
