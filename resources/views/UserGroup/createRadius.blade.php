@@ -47,7 +47,8 @@
 
                 </div>
 
-                {!! Form::open(['url' => 'sendByRadius', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                {!! Form::open(['url' => 'storeRadius', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                {!! Form::hidden('group_id',$group->id) !!}
 
                 <div class="col-md-4">
                     <h4 class="page-title"><center>Location</center> </h4>
@@ -88,19 +89,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        {!! Form::label('Message', 'Message', array('class' => 'col-md-4 control-label')) !!}
-                        <div class="col-md-6">
-                            <textarea rows="5" id="message" name="message" class="form-control" maxlength="500" required="required"></textarea>
-                        </div>
-
-                    </div>
-
                     <br>
                     <div class="form-group">
                         <div class="col-md-4"></div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-sm">Send Message</button>
+                            <button type="submit" class="btn btn-sm">Add Users</button>
 
                         </div>
                     </div>

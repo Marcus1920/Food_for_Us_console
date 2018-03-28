@@ -37,6 +37,7 @@ Route::get('groupUsers/{id}','UserGroupController@index');
 Route::get('addGroupUsers/{id}','UserGroupController@create');
 Route::get('addGroupUsersRadius/{id}','UserGroupController@createRadius');
 Route::get('removeUser/{id}/{group}','UserGroupController@destroy');
+Route::post('storeRadius','UserGroupController@storeRadius');
 
 Route::get('getUserss', 'UsersController@getUsers');
 

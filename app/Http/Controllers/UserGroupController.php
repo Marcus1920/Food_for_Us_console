@@ -60,7 +60,7 @@ class UserGroupController extends Controller
                 $groupUser->save();
             }
         };
-
+        \Session::flash('success', 'well done! Users successfully added to the group!');
         return Redirect('/groupUsers/'.$request->group_id);
     }
     public function destroy($id,$group_id)
@@ -77,7 +77,7 @@ class UserGroupController extends Controller
                 ->where('group_id',$group_id)
                 ->update(['active'=>0]);
         }
-
+        \Session::flash('success', 'well done! User successfully removed from the group!');
         return Redirect('/groupUsers/'.$group_id);
     }
     public function createRadius($id)
@@ -85,5 +85,95 @@ class UserGroupController extends Controller
         $group = Group::where('id',$id)->first();
 
         return view('UserGroup.createRadius',compact('group'));
+    }
+    public function storeRadius(Request $request)
+    {
+        $lng = $request->lng;
+        $lat = $request->lat;
+        $radius = $request->radius;
+
+        if($radius==0)
+        {
+            $Users = \DB::table('new_users')
+                ->select(
+                    \DB::raw(
+                        "
+                    id,
+                    playerID,
+                    name,
+                    surname,
+                    gps_lat,
+                    gps_long,
+                    ( 3959 * acos ( cos ( radians(" . $lat . ") ) * cos( radians( gps_lat ) ) * cos( radians( gps_long ) - radians(" . $lng . ") ) + sin ( radians(" . $lat . ") ) * sin( radians( gps_lat ) ) ) ) AS distance
+                    "
+                    )
+                )
+                ->get();
+
+            for ($i = 0; $i < count($Users); $i++)
+            {
+                $userExist = UserGroup::where('new_user_id',$Users[$i]->id)
+                    ->where('group_id',$request->group_id)
+                    ->first();
+
+                if($userExist!=Null)
+                {
+                    UserGroup::where('new_user_id',$Users[$i]->id)
+                        ->where('group_id',$request->group_id)
+                        ->update(['active'=>1]);
+                }
+                else
+                {
+                    $groupUser = new UserGroup();
+                    $groupUser->group_id = $request->group_id;
+                    $groupUser->new_user_id = ($Users[$i]->id);
+                    $groupUser->save();
+                }
+            }
+            \Session::flash('success', 'well done! Users successfully added to the group!');
+            return Redirect('/groupUsers/'.$request->group_id);
+        }
+        else
+            {
+                $Users = \DB::table('new_users')
+                    ->select(
+                        \DB::raw(
+                            "
+                    id,
+                    playerID,
+                    name,
+                    surname,
+                    gps_lat,
+                    gps_long,
+                    ( 3959 * acos ( cos ( radians(" . $lat . ") ) * cos( radians( gps_lat ) ) * cos( radians( gps_long ) - radians(" . $lng . ") ) + sin ( radians(" . $lat . ") ) * sin( radians( gps_lat ) ) ) ) AS distance
+                    "
+                        )
+                    )
+                    ->having('distance', '<', $radius)
+                    ->get();
+
+                for ($i = 0; $i < count($Users); $i++)
+                {
+                    $userExist = UserGroup::where('new_user_id',$Users[$i]->id)
+                        ->where('group_id',$request->group_id)
+                        ->first();
+
+                    if($userExist!=Null)
+                    {
+                        UserGroup::where('new_user_id',$Users[$i]->id)
+                            ->where('group_id',$request->group_id)
+                            ->update(['active'=>1]);
+                    }
+                    else
+                    {
+                        $groupUser = new UserGroup();
+                        $groupUser->group_id = $request->group_id;
+                        $groupUser->new_user_id = ($Users[$i]->id);
+                        $groupUser->save();
+                    }
+                }
+                \Session::flash('success', 'well done! Users successfully added to the group!');
+                return Redirect('/groupUsers/'.$request->group_id);
+        }
     }
 }

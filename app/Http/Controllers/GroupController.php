@@ -24,6 +24,7 @@ class GroupController extends Controller
         $newGroup->name = $request->name;
         $newGroup->save();
 
+        \Session::flash('success', 'well done! Successfully created '.$request->name.' group!');
         return Redirect('/group');
     }
 
