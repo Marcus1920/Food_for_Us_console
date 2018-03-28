@@ -77,6 +77,9 @@
                     } }
                 ],
                 dom: 'Bfrtip',
+                "scrollX": true,
+                "bAutoWidth": false,
+                "aaSorting": [],
                 buttons: [
 
                     {

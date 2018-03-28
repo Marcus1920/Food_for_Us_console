@@ -88,7 +88,9 @@ class MapController extends Controller
 
 
 //                return "null";
-            }else{
+            }
+            else
+                {
 
                 $content = "<div style='color:black'>
                       <tr>

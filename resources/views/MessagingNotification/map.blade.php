@@ -27,11 +27,11 @@
                     </div>
                     <div class="col-md-12 ">
 
-                        <div id="map" style="height: 450px; margin: 8px; border-radius: 10px" class="push-right"></div>
+                        <div id="map" style="height: 450px; margin: 8px; border-radius: 10px" class="push-right">
+
+                        </div>
 
                     </div>
-
-
 
                 </div>
 
@@ -40,7 +40,6 @@
                 <div class="col-md-4">
                     <h4 class="page-title"><center>Location</center> </h4>
                     &nbsp;
-
                     <div class="form-group">
                         {!! Form::label('GPS Latitude', 'GPS Latitude', array('class' => 'col-md-4 control-label')) !!}
                         <div class="col-md-6">
@@ -105,7 +104,7 @@
 
     <script async defer language="javascript">
         if(navigator.onLine)
-        {
+         {
             //initialize map
             var map=new google.maps.Map(document.getElementById("map"), {
                 center: {
@@ -173,7 +172,6 @@
                                 }
                             });
 
-
                         })
                         //to get the address of the current location
                         var geocoder = new google.maps.Geocoder;
@@ -200,7 +198,9 @@
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
                     });
-                } else {
+                }
+                else
+                    {
                     // Browser doesn't support Geolocation
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
@@ -237,7 +237,7 @@
                     var geocoder = new google.maps.Geocoder;
                     var input = lat+','+lng;
                     var latlngStr = input.split(',', 2);
-                    var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+                    var latlng = {lat: parseFloat(latlngStr[0]),   lng: parseFloat(latlngStr[1])};
                     geocoder.geocode({'location': latlng}, function(results, status) {
                         if (status === 'OK') {
                             if (results[0]) {
