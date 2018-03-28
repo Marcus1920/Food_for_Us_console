@@ -61,7 +61,7 @@ class UserGroupController extends Controller
                 $groupUser->save();
             }
         };
-        \Session::flash('success', 'well done! Users successfully added to the group!');
+        \Session::flash('success', 'well done! '.count($Users).' Users successfully added to the group!');
         return Redirect('/groupUsers/'.$request->group_id);
     }
     public function destroy($id,$group_id)
