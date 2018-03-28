@@ -32,26 +32,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
- attendance.ATTENDANCE_KEY     ,
-                                attendance.COMPANY_KEY      ,
-                                attendance.TERMINAL_KEY      ,
-                                attendance.TERMINAL_REC_NO      ,
-                                attendance.DEPARTMENT_KEY        ,
-                                attendance.ATTENDANCE_DATE      ,
-                                attendance.ATTENDANCE_TIME      ,
-                                attendance.EVENT_KEY      ,
-
-                                attendance.DEVICE_CONFIGURATION_KEY    ,
-                                attendance.CALCULATED  ,
-                                attendance.VERIFIED       ,
-                                      ,
-                                attendance.OPERATOR_KEY        ,
-                                attendance.ENROLL_ID        ,
-
 
 @endsection
 @section('footer')
