@@ -4,21 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Conversation;
-<<<<<<< HEAD
-
-class ConversationController extends Controller
-{
-
-
-    public function index()
-    {
-        $conversation = Conversation::all();
-        return Response()->json($conversation);
-    }
-
-
-
-=======
 use Illuminate\Support\Facades\Input;
 use App\NewUser;
 use App\Sellers_details_tabs;
@@ -103,5 +88,4 @@ class ConversationController extends Controller
 
         return response()->json($conversations);
     }
->>>>>>> ff43700e32038809efbf1f25aebd490502401a9a
 }

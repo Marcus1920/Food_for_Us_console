@@ -8,42 +8,42 @@
     </ol>
     <h4 class="page-title">Seller Post Listing</h4>
 
-
     <div>
-    <div class="row">
-        <div class="col-md-12" >
-            <div class="tab-pane" id="closure">
-                <!-- Responsive Table -->
-                <div class="block-area" id="responsiveTable">
-                    <div class="table-responsive">
-                        <h3 class="block-title">Post </h3>
-                        <table class="table tile table-striped" id="sellersPostTable">
-                            <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Surname</th>
-                                <th>Email</th>
-                                <th>ID Number</th>
-                                <th>gps Lat</th>
-                                <th>gps long</th>
-                                <th>Packaging</th>
-                                <th>Product Type</th>
-                                <th>Cost Per KG</th>
-                                <th>Sell By Date</th>
-                                <th>Quantity Posted</th>
-                                <th>Quantity Sold</th>
-                                <th>Quantity Remaining</th>
-                                <th>Created At</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                        </table>
+        <div class="row">
+            <div class="col-md-12" >
+                <div class="tab-pane" id="closure">
+                    <!-- Responsive Table -->
+                    <div class="block-area" id="responsiveTable">
+                        <div class="table-responsive">
+                            <h3 class="block-title">Post </h3>
+                            <table class="table tile table-striped" id="sellersPostTable">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>ID Number</th>
+                                    <th>gps Lat</th>
+                                    <th>gps long</th>
+                                    <th>Packaging</th>
+                                    <th>Product Type</th>
+                                    <th>Description</th>
+                                    <th>Cost Per KG</th>
+                                    <th>Sell By Date</th>
+                                    <th>Quantity Posted</th>
+                                    <th>Quantity Sold</th>
+                                    <th>Quantity Remaining</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 @endsection
@@ -51,11 +51,14 @@
     <script>
 
         jQuery(document).ready(function($){
-            var sellersPostTable     = $('#sellersPostTable').DataTable({
+            var sellersPostTable  = $('#sellersPostTable').DataTable({
                 "autoWidth": false,
                 "processing": true,
                 speed: 500,
                 "dom": 'Bfrtip',
+                "scrollX": true,
+                "bAutoWidth": false,
+                "aaSorting": [],
                 "buttons": [
                     'copyHtml5',
                     'excelHtml5',
@@ -85,6 +88,7 @@
                     {data: 'gps_long', name: 'gps_long'},
                     {data: 'packaging', name: 'packaging'},
                     {data: 'productType', name: 'productType'},
+                    {data: 'description', name: 'description'},
                     {data: 'costPerKg', name: 'costPerKg'},
                     {data: 'sellByDate', name: 'sellByDate'},
                     {data: 'quantityPosted', name: 'quantityPosted'},
@@ -92,9 +96,9 @@
                     {data: 'quantityRemaining', name: 'quantityRemaining'},
                     {data: 'created_at', name: 'created_at'},
                     {data: function(d)
-                    {
-                        return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
-                    }},
+                        {
+                            return "<a href='{!! url('postview/" + d.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                        }},
                 ],
                 "aoColumnDefs": [
                     { "bSearchable": false, "aTargets": [ 4] },

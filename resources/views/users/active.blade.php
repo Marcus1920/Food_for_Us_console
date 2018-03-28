@@ -59,8 +59,11 @@
 
             $('#activeUsersTable').dataTable({
 
+
                 ajax:"{!! url('/active/')!!}","processing": true,
+
                 columns: [
+
                     { data: 'id' },
                     { data: 'name' },
                     { data: 'surname' },
@@ -75,44 +78,40 @@
                     { data: 'travelRadius' },
                     { data: 'descriptionOfAcces' },
                     { data: 'created_at' },
-                    { data: function (data, type, row) {
+                    { data: function (data, type, row)
+                        {
                         return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>"+
                             "<a href='{!! url('inactivateUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
 
                         data.replace( /[$,]/g, '' )
                             data;
-                    } }
+                    }
+                    }
                 ],
                 dom: 'Bfrtip',
-                buttons: [
-
-                    {
-                        extend: 'copyHtml5',
-                        orientation: 'landscape',
-                        exportOptions: { orthogonal: 'export',
-                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-                        }
+                "scrollX": true,
+                "bAutoWidth": false,
+                "aaSorting": [],
+                "buttons":
+                    [
+                        'copyHtml5',
+                        'excelHtml5',
+                        ,{
+                        extend : 'pdfHtml5',
+                        title  : 'Food_For_Us',
+                        header : 'I am text in',
                     },
-                    {
-                        extend: 'excelHtml5',
-                        orientation: 'landscape',
-                        exportOptions: { orthogonal: 'export',
-                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-                        }
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        exportOptions: { orthogonal: 'export',
-                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-                        }
-                    }
-                ]
+                    ],
+                "buttons": [
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
             });
 
         })
     </script>
-    
+
 
 
 @endsection
