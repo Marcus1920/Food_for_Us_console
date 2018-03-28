@@ -22,8 +22,10 @@ Auth::routes();
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('create' , 'SellersController@create')
                 ->middleware('auth');
+
 Route::get('all' , 'SellersController@index')
                        ->middleware('auth');
+
 Route::get('up' , 'SellersController@update') ;
 
 Route::get('/' , 'HomeController@index') ;
@@ -185,10 +187,7 @@ Route::get('/master' , 'MapController@getUsers')
 
 Route::get('/users' , 'HomeController@show')
 
-          //->name('users');
           ->middleware('auth')
-
-
           ->name('users');
 
 Route::get('/register' , 'HomeController@register')
@@ -402,6 +401,9 @@ Route::get('getGroup','GroupController@getGroup');
 
 Route::get('messageNotification','MessagingController@AllmessageNotification');
 
-Route::get('resendMessage/{id}','MessagingController@resendMessageNotification')
+Route::get('resendMessage/{id}','MessagingController@resendMessageNotification');
 
+
+Route::get('conversation','ConversationController@index')
+//->middleware('auth');
 ?>

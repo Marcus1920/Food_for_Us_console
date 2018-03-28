@@ -76,6 +76,7 @@ class ChatMessageController extends Controller
             return response()->json($respond);
         }
     }
+
     public function getMessagesPerConvo()
     {
         $conversation_id = Input::get('conversation_id');
@@ -97,4 +98,5 @@ class ChatMessageController extends Controller
 
         return response()->json($messages);
     }
+
 }

@@ -56,6 +56,9 @@
                 "processing": true,
                 speed: 500,
                 "dom": 'Bfrtip',
+                "scrollX": true,
+                "bAutoWidth": false,
+                "aaSorting": [],
                 "buttons": [
                     'copyHtml5',
                     'excelHtml5',

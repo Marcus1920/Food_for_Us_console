@@ -59,7 +59,8 @@
                     "bAutoWidth": false,
                     "aaData": data,
                     "aaSorting": [],
-                    "buttons": [
+                    "buttons":
+                        [
                         'copyHtml5',
                         'excelHtml5',
                         ,{
