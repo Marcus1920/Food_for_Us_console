@@ -35,6 +35,7 @@ Route::post ('updateGroup/{id}','GroupController@update');
 Route::resource('groupUser','UserGroupController');
 Route::get('groupUsers/{id}','UserGroupController@index');
 Route::get('addGroupUsers/{id}','UserGroupController@create');
+Route::get('addGroupUsersRadius/{id}','UserGroupController@createRadius');
 Route::get('removeUser/{id}/{group}','UserGroupController@destroy');
 
 Route::get('getUserss', 'UsersController@getUsers');

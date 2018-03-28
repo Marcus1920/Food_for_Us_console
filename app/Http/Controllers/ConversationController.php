@@ -84,6 +84,7 @@ class ConversationController extends Controller
 
         $conversations = Conversation::where('Sender_id',$user->id)
             ->orWhere('Receiver_id',$user->id)
+            ->with('messages')
             ->get();
 
         return response()->json($conversations);

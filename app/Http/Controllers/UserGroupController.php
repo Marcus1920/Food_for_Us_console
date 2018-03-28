@@ -80,4 +80,10 @@ class UserGroupController extends Controller
 
         return Redirect('/groupUsers/'.$group_id);
     }
+    public function createRadius($id)
+    {
+        $group = Group::where('id',$id)->first();
+
+        return view('UserGroup.createRadius',compact('group'));
+    }
 }
