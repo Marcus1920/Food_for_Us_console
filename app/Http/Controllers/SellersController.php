@@ -281,6 +281,7 @@ class SellersController extends Controller
         $sellersPost->paymentMethods    =  Input::get('paymentMethods');
         $sellersPost->transactionRating = Input::get('transactionRating');
 		 $sellersPost->post_status = 1;
+		 $radius = Input::get('radius');
 
         $sellersPost->save();
 
@@ -295,6 +296,9 @@ class SellersController extends Controller
         $productPickupDetails->gps_long            = $longitude;
         $productPickupDetails->save();
 
+        //send notifications based on the radius specified on a post and product interest
+
+
         $message = "New ".Input::get('productName')." posted";
 
         //notification based on the users product interest
@@ -304,20 +308,41 @@ class SellersController extends Controller
 
         for($i=0 ; $i < count($users) ; $i++)
         {
-            $oneUser = NewUser::where('id',$users[$i]->new_user_id)->first();
+//            $oneUser = NewUser::where('id',$users[$i]->new_user_id)->first();
 
-            $PlayerId = $oneUser->playerID;
+            $oneUser = \DB::table('new_users')
+                ->where('id',$users[$i]->new_user_id)
+                ->select(
+                    \DB::raw(
+                        "
+                    id,
+                    playerID,
+                    name,
+                    surname,
+                    gps_lat,
+                    gps_long,
+                    ( 3959 * acos ( cos ( radians(" . $lattitude . ") ) * cos( radians( gps_lat ) ) * cos( radians( gps_long ) - radians(" . $longitude . ") ) + sin ( radians(" . $lattitude . ") ) * sin( radians( gps_lat ) ) ) ) AS distance
+                    "
+                    )
+                )
+                ->having('distance', '<', $radius)
+                ->first();
 
-            $newNotification = new NotificationService();
-            $newNotification->sendToOne($message,$PlayerId);
+            if($oneUser!=NULL)
+            {
+                $PlayerId = $oneUser->playerID;
 
-            $notification = new Notification();
-            $notification->new_user_id = $users[$i]->id;
-            $notification->PostId = $sellersPost->id;
-            $notification->ProductName = Input::get('productName');
-            $notification->Message = $message;
-            $notification->Status = 0;
-            $notification->save();
+                $newNotification = new NotificationService();
+                $newNotification->sendToOne($message,$PlayerId);
+
+                $notification = new Notification();
+                $notification->new_user_id = $users[$i]->new_user_id;
+                $notification->PostId = $sellersPost->id;
+                $notification->ProductName = Input::get('productName');
+                $notification->Message = $message;
+                $notification->Status = 0;
+                $notification->save();
+            }
         }
 
         return $sellersPost;
