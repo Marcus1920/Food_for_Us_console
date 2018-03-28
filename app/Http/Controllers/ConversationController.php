@@ -39,9 +39,29 @@ class ConversationController extends Controller
             $newConversation->Post_id = $post->id;
             $newConversation->save();
 
-            $respond['conversation_id']=$newConversation->id;
+            $newChatMessage = new ChatMessage();
+            $newChatMessage->conversation_id = $newConversation->id;
+            $newChatMessage->new_user_id = $receiver->id;
+            $newChatMessage->message = "Hi ".$user->name;
+            $newChatMessage->user_type = "Receiver";
+            $newChatMessage->save();
 
-            return response()->json($respond);
+            $messages = ChatMessage::where('conversation_id',$newConversation->id)
+                ->join('new_users', 'new_users.id', '=', 'chat_messages.new_user_id')
+                ->select(
+                    \DB::raw("
+                                            chat_messages.id,
+                                            chat_messages.conversation_id,
+                                            new_users.name,
+                                            new_users.surname,
+                                            chat_messages.message,
+                                            chat_messages.user_type,
+                                            chat_messages.created_at
+                                        ")
+                )
+                ->get();
+
+            return response()->json($messages);
 
         }
         else
