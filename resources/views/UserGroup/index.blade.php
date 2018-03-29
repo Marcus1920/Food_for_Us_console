@@ -37,6 +37,10 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Surname</th>
+                                <th>User Role</th>
+                                <th>Location</th>
+                                <th>Gps latitude </th>
+                                <th>Gps Longitude</th>
                                 <th>Remove</th>
                             </tr>
                             </thead>
@@ -81,6 +85,10 @@
                     "columns": [
                         {data: 'name', name: 'name'},
                         {data: 'surname', name: 'surname'},
+                        {data: 'UserRole', name: 'UserRole'},
+                        {data: 'location', name: 'location'},
+                        {data: 'gps_lat', name: 'gps_lat'},
+                        {data: 'gps_long', name: 'gps_long'},
                         {data: function(d)
                             {
                                 return "<a href='{!! url('removeUser/" + d.id +"',$group->id) !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";

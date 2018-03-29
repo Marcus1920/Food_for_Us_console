@@ -15,12 +15,17 @@ class UserGroupController extends Controller
             ->where('user_groups.group_id','=',$id)
             ->join('groups', 'groups.id', '=', 'user_groups.group_id')
             ->join('new_users', 'new_users.id', '=', 'user_groups.new_user_id')
+            ->leftjoin('user_roles', 'new_users.intrest', '=', 'user_roles.id')
             ->select(
                 \DB::raw("
                                             DISTINCT(new_users.id),
                                             new_users.name,
                                             new_users.surname,
-                                            user_groups.active
+                                            user_groups.active,
+                                            user_roles.name AS UserRole,
+                                            new_users.location,
+                                            new_users.gps_lat,
+                                            new_users.gps_long
                                         ")
             )
             ->where('user_groups.active','=',1)
