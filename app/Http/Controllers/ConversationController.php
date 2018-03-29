@@ -59,8 +59,6 @@ class ConversationController extends Controller
                                             chat_messages.created_at
                                         ")
                 )
-                ->latest('created_at')
-                ->limit('5')
                 ->get();
 
             return response()->json($messages);
@@ -92,8 +90,6 @@ class ConversationController extends Controller
                                             chat_messages.created_at
                                         ")
                     )
-                    ->latest('created_at')
-                    ->limit('5')
                     ->get();
 
                 return response()->json($messages);
