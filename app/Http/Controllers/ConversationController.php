@@ -107,9 +107,9 @@ class ConversationController extends Controller
 
         $user  = NewUser::where('api_key',$api_key)->first();
 
-        $conversation = Conversation::where('Sender_id',$user->id)
-            ->orWhere('Receiver_id',$user->id)
-            ->where('Post_id',$post_id)->first();
+        $conversation = Conversation::where('Post_id',$post_id)
+            ->where('Sender_id',$user->id)
+            ->orWhere('Receiver_id',$user->id)->first();
 
         $convo = Conversation::where('id',$conversation->id)->first();
 
