@@ -96,6 +96,28 @@ class ConversationController extends Controller
             }
         }
     }
+
+    public function getConverstation()
+    {
+        $respond=array();
+
+        $post_id = Input::get('post_id');
+
+        $api_key = Input::get('api_key');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        $conversation = Conversation::where('Sender_id',$user->id)
+            ->orWhere('Receiver_id',$user->id)
+            ->where('Post_id',$post_id)->first();
+
+        $convo = Conversation::where('id',$conversation->id)->first();
+
+        $respond['conversation_id']=$convo->id;
+
+        return response()->json($respond);
+    }
+
     public function getMyConversation()
     {
         $api_key = Input::get('api_key');

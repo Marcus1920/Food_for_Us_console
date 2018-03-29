@@ -29,9 +29,9 @@
                             <i class="fa fa-plus" aria-hidden="true" title="Add new user" data-toggle="tooltip"></i>
                         </a>
                         &nbsp;&nbsp;&nbsp;
-                        {{--<a href="{{ url('addGroupUsersRadius',$group->id) }}" class="btn btn-sm">--}}
-                            {{--<i class="glyphicon glyphicon-map-marker" title="Add users based on radius"></i>--}}
-                        {{--</a>--}}
+                        <a href="{{ url('addGroupUsersRadius',$group->id) }}" class="btn btn-sm">
+                            <i class="glyphicon glyphicon-map-marker" title="Add users based on radius"></i>
+                        </a>
                         <table class="table tile table-striped" id="UserGroupTable">
                             <thead>
                             <tr>
