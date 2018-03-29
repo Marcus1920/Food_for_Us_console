@@ -43,7 +43,6 @@
 
 
 
-
 @section('footer')
     <script>
 

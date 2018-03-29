@@ -61,7 +61,6 @@ class NotificationsController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-
         return response()->json($notifications);
     }
     public function getAllNotification()
@@ -85,9 +84,7 @@ class NotificationsController extends Controller
 
         return view('Notification.index', compact('notifications'));
     }
-
     public function resendNotification($id)
-
     {
         $notification = Notification::where('id', $id)->first();
         return view('Notification.resend', compact('notification'));

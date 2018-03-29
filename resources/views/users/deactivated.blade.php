@@ -72,8 +72,8 @@
                         return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>"+
                             "<a href='{!! url('inactivateUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
 
-                        data.replace( /[$,]/g, '' )
-                        data;
+                        // data.replace( /[$,]/g, '' )
+                        // data;
                     } }
                 ],
                 dom: 'Bfrtip',

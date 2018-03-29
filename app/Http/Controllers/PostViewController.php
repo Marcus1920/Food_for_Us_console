@@ -57,7 +57,7 @@ class PostViewController extends Controller
 //       $post = Sellers_details_tabs::with('newuser')->with('Products')->with('Packaging')->get();
 
 //
-//      return view('users.postslist', compact('post'));
+//    return view('users.postslist', compact('post'));
         return Datatables::of($post)
             ->make(true);
     }
