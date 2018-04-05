@@ -138,20 +138,23 @@ class ConversationController extends Controller
 
         $user  = NewUser::where('api_key',$api_key)->first();
 
-        $hideConversation = HideChatMessage::where('new_users_id',$user->id)
+        $conversations = HideChatMessage::where('new_users_id',$user->id)
             ->where('status','=',1)
+            ->join('conversations', 'conversations.id', '=', 'hide_chat_messages.conversation_id')
             ->get();
 
-        $items = array();
+        return response()->json($conversations);
 
-        for($i=0 ; $i < count($hideConversation) ; $i++)
-        {
-            $items[] = Conversation::where('id',$hideConversation[$i]->conversation_id)
-                ->with('messages')
-                ->get();
-        }
-
-        return response()->json($items);
+//        $items = array();
+//
+//        for($i=0 ; $i < count($hideConversation) ; $i++)
+//        {
+//            $items[] = Conversation::where('id',$hideConversation[$i]->conversation_id)
+//                ->with('messages')
+//                ->get();
+//        }
+//
+//        return response()->json($items);
 
 //        $conversations = Conversation::where('Sender_id',$user->id)
 //            ->orWhere('Receiver_id',$user->id)
