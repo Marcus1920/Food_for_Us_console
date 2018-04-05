@@ -63,7 +63,7 @@
                             </tr>
                             <tr>
                                 <td>Posted </td>
-                                <td>{{$data->Packaging->created_at->diffForHumans()}}</td>
+                                <td>{{$data->created_at->diffForHumans()}}</td>
 
                                 <td>{{$data->lat}}</td>
                             </tr>
