@@ -144,23 +144,24 @@ class ConversationController extends Controller
             ->get();
 
         return response()->json($conversations);
+    }
 
-//        $items = array();
-//
-//        for($i=0 ; $i < count($hideConversation) ; $i++)
-//        {
-//            $items[] = Conversation::where('id',$hideConversation[$i]->conversation_id)
-//                ->with('messages')
-//                ->get();
-//        }
-//
-//        return response()->json($items);
+    public function hideConversation()
+    {
+        $respond=array();
 
-//        $conversations = Conversation::where('Sender_id',$user->id)
-//            ->orWhere('Receiver_id',$user->id)
-//            ->with('messages')
-//            ->get();
-//
-//        return response()->json($conversations);
+        $api_key = Input::get('api_key');
+
+        $conversation_id = Input::get('conversation_id');
+
+        $user  = NewUser::where('api_key',$api_key)->first();
+
+        HideChatMessage::where('new_users_id',$user->id)
+            ->where('conversation_id',$conversation_id)
+            ->update(['status'=>0]);
+
+        $respond['message']="Successfully deleted conversation";
+
+        return response()->json($respond);
     }
 }

@@ -74,6 +74,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::post('conversation','ConversationController@createConversation');
     Route::get('getMyConversation','ConversationController@getMyConversation');
     Route::post('getConversation','ConversationController@getConverstation');
+    Route::post('hideConversation','ConversationController@hideConversation');
 
     Route::post('createMessage','ChatMessageController@createMessage');
     Route::get('getMessages','ChatMessageController@getMessagesPerConvo');
