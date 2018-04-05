@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\NewUser;
 use App\Sellers_details_tabs;
 use App\ChatMessage;
+use App\HideChatMessage;
 
 class ConversationController extends Controller
 {
@@ -46,6 +47,18 @@ class ConversationController extends Controller
             $newChatMessage->message = "Hi ".$user->name;
             $newChatMessage->user_type = "Receiver";
             $newChatMessage->save();
+
+            $newConversationStatus = new HideChatMessage();
+            $newConversationStatus->conversation_id = $newConversation->id;
+            $newConversationStatus->new_users_id = $receiver->id;
+            $newConversationStatus->status = 1;
+            $newConversationStatus->save();
+
+            $newConversationStatus1 = new HideChatMessage();
+            $newConversationStatus1->conversation_id = $newConversation->id;
+            $newConversationStatus1->new_users_id = $user->id;
+            $newConversationStatus1->status = 1;
+            $newConversationStatus1->save();
 
             $messages = ChatMessage::where('conversation_id',$newConversation->id)
                 ->join('new_users', 'new_users.id', '=', 'chat_messages.new_user_id')
@@ -125,11 +138,26 @@ class ConversationController extends Controller
 
         $user  = NewUser::where('api_key',$api_key)->first();
 
-        $conversations = Conversation::where('Sender_id',$user->id)
-            ->orWhere('Receiver_id',$user->id)
-            ->with('messages')
+        $hideConversation = HideChatMessage::where('new_users_id',$user->id)
+            ->where('status','=',1)
             ->get();
 
-        return response()->json($conversations);
+        $items = array();
+
+        for($i=0 ; $i < count($hideConversation) ; $i++)
+        {
+            $items[] = Conversation::where('id',$hideConversation[$i]->conversation_id)
+                ->with('messages')
+                ->get();
+        }
+
+        return response()->json($items);
+
+//        $conversations = Conversation::where('Sender_id',$user->id)
+//            ->orWhere('Receiver_id',$user->id)
+//            ->with('messages')
+//            ->get();
+//
+//        return response()->json($conversations);
     }
 }

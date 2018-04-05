@@ -38,6 +38,7 @@ class ChatMessageController extends Controller
             $newChatMessage->new_user_id = $user->id;
             $newChatMessage->message = $message;
             $newChatMessage->user_type = "Sender";
+            $newChatMessage->created_at = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
             $newChatMessage->save();
 
             $recepient  = NewUser::where('id',$conversation->Receiver_id)->first();
@@ -60,6 +61,7 @@ class ChatMessageController extends Controller
             $newChatMessage->new_user_id = $user->id;
             $newChatMessage->message = $message;
             $newChatMessage->user_type = "Receiver";
+            $newChatMessage->created_at = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
             $newChatMessage->save();
 
             $recepient1  = NewUser::where('id',$conversation->Sender_id)->first();
