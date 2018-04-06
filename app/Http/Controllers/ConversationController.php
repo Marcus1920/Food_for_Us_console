@@ -84,6 +84,10 @@ class ConversationController extends Controller
         }
         else
         {
+            HideChatMessage::where('new_users_id',$user->id)
+                ->where('conversation_id',$conversation->id)
+                ->update(['status'=>1]);
+
             $messagesExist = ChatMessage::where('conversation_id',$conversation->id)->exists();
 
             if($messagesExist==NULL)
