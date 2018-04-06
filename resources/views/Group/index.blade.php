@@ -34,7 +34,8 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Message</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                         </table>
@@ -94,7 +95,11 @@
                             },"name" : 'name'},
                         {data: function(d)
                             {
-                                return "<a href='{!! url('group/" + d.id + "/edit') !!}' class='btn btn-sm'>" + 'EDIT' + "</a>";
+                                return "<a href='{!! url('group/" + d.id + "/edit') !!}' class='glyphicon glyphicon-edit' style='color:yellow'></a>";
+                            },"name" : 'name'},
+                        {data: function(d)
+                            {
+                                return "<a href='{!! url('removeGroup/" + d.id + "') !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";
                             },"name" : 'name'},
                     ],
                     "aoColumnDefs": [

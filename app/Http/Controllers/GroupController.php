@@ -9,7 +9,9 @@ class GroupController extends Controller
 {
     public function index()
     {
-        $groups = Group::select('id','name')->orderBy('id','DESC')->get();
+        $groups = Group::select('id','name')
+            ->where('status',1)
+            ->orderBy('id','DESC')->get();
         return view('Group.index', compact('groups'));
     }
 
@@ -39,6 +41,18 @@ class GroupController extends Controller
         Group::where('id',$id)
             ->update(['name'=>$request['name']]);
 
+        return Redirect('/group');
+    }
+
+    public function remove($id)
+    {
+        $groupName = Group::where('id',$id)
+            ->first();
+
+        Group::where('id',$id)
+            ->update(['status'=>0]);
+
+        \Session::flash('success', 'well done! Successfully removed '.$groupName->name.' group!');
         return Redirect('/group');
     }
 

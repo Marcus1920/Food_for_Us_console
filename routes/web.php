@@ -33,6 +33,7 @@ Route::get('del' , 'SellersController@destroy');
 
 Route::resource('group','GroupController');
 Route::post ('updateGroup/{id}','GroupController@update');
+Route::get ('removeGroup/{id}','GroupController@remove');
 
 Route::resource('groupUser','UserGroupController');
 Route::get('groupUsers/{id}','UserGroupController@index');
