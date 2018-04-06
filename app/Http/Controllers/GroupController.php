@@ -24,6 +24,7 @@ class GroupController extends Controller
     {
         $newGroup = new Group();
         $newGroup->name = $request->name;
+        $newGroup->status = 1;
         $newGroup->save();
 
         \Session::flash('success', 'well done! Successfully created '.$request->name.' group!');
@@ -60,6 +61,7 @@ class GroupController extends Controller
     {
         $searchString = \Input::get('q');
         $users        = \DB::table('groups')
+            ->where('status',1)
             ->whereRaw(
                 "CONCAT(`groups`.`name`) LIKE '%{$searchString}%'")
             ->select(

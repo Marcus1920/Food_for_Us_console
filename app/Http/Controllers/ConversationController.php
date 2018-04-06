@@ -39,6 +39,7 @@ class ConversationController extends Controller
             $newConversation->Receiver_id = $receiver->id;
             $newConversation->ReceiverName = $receiver->name.' '.$receiver->surname;
             $newConversation->Post_id = $post->id;
+            $newConversation->created_at = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
             $newConversation->save();
 
             $newChatMessage = new ChatMessage();
@@ -46,18 +47,21 @@ class ConversationController extends Controller
             $newChatMessage->new_user_id = $receiver->id;
             $newChatMessage->message = "Hi ".$user->name;
             $newChatMessage->user_type = "Receiver";
+            $newChatMessage->created_at = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
             $newChatMessage->save();
 
             $newConversationStatus = new HideChatMessage();
             $newConversationStatus->conversation_id = $newConversation->id;
             $newConversationStatus->new_users_id = $receiver->id;
             $newConversationStatus->status = 1;
+            $newConversationStatus->created_at = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
             $newConversationStatus->save();
 
             $newConversationStatus1 = new HideChatMessage();
             $newConversationStatus1->conversation_id = $newConversation->id;
             $newConversationStatus1->new_users_id = $user->id;
             $newConversationStatus1->status = 1;
+            $newConversationStatus1->created_at = \Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString();
             $newConversationStatus1->save();
 
             $messages = ChatMessage::where('conversation_id',$newConversation->id)
