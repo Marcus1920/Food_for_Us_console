@@ -85,8 +85,8 @@
 
 
                         @if (count($errors) > 0)
-                            <div class="alert alert-form alert-success text-xs-center">
-                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                            <div class="alert alert-form alert-danger text-xs-center">
+                                <strong>Whoops!</strong> There were some problems with your input <br><br>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -141,7 +141,7 @@
 
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
-                                    <input type="checkbox"  name="name" required="" data-form-field="Name" id="form1-4-name"> <span style="color:white"> Remember Me </span>
+                                    <input type="checkbox"  name="name"  id="form1-4-name"> <span style="color:white"> Remember Me </span>
                                 </div>
                             </div>
 
