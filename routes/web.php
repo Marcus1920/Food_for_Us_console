@@ -15,6 +15,15 @@ use  App\NewUser  ;
 Route::get('sendNotification','MessagingController@sendNotification');
 
 
+Route::get('recentPost', function () {
+    return view('auth.Recentpos');
+});
+
+Route::get('dologin', function () {
+    return view('auth.doLogin');
+});
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
