@@ -24,6 +24,26 @@ Route::get('dologin', function () {
 });
 
 
+Route::get('userporifiles', function () {
+    return view('userprofile.profile');
+});
+
+
+
+Route::get('recieptlist', function () {
+    return view('userprofile.reciept');
+});
+
+
+
+
+Route::get('mypostlist', function () {
+    return view('userprofile.mypost');
+});
+
+
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
