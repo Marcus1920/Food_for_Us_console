@@ -28,16 +28,16 @@
 
 <nav class="navbar navbar-color-on-scroll navbar-transparent   fixed-top  navbar-expand-lg " color-on-scroll="50" id="sectionsNav">
     <div class="container">
-        <div class="navbar-translate">
+        <div class="navbar-translate  " >
             <a class="navbar-brand" href="#"> <img  style="width: 50px; height: 50px; margin-bottom: 8px; padding-bottom: 15px;" src="profile/assets/img/logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span  class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
 
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" >
             <ul class="navbar-nav"  data-tabs="tabs">
                 <li class="nav-item active">
                     <a href="userporifiles" class="nav-link" > <i class="material-icons">account_circle</i>
