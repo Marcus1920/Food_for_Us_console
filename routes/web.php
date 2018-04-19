@@ -15,6 +15,35 @@ use  App\NewUser  ;
 Route::get('sendNotification','MessagingController@sendNotification');
 
 
+Route::get('recentPost', function () {
+    return view('auth.Recentpos');
+});
+
+Route::get('dologin', function () {
+    return view('auth.doLogin');
+});
+
+
+Route::get('userporifiles', function () {
+    return view('userprofile.profile');
+});
+
+
+
+Route::get('recieptlist', function () {
+    return view('userprofile.reciept');
+});
+
+
+
+
+Route::get('mypostlist', function () {
+    return view('userprofile.mypost');
+});
+
+
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
