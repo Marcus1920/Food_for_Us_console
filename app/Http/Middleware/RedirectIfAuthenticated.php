@@ -16,7 +16,7 @@ class RedirectIfAuthenticated
                 // or return route('routename');
             }
             else if(\Auth::user()->role == 'mobile-user'){
-                return redirect('/group');
+                return redirect('/mypostlist');
             }
 
         }

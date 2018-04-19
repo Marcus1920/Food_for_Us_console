@@ -14,6 +14,7 @@ use App\UserDefaultLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Mail;
+use Auth;
 use Carbon\Carbon;
 use App\Services\NotificationService;
 use Mockery\Matcher\Not;
@@ -63,9 +64,14 @@ class SellersController extends Controller
         $respond=array();
 
         $api_key   = Input::get('api_key');
-		
-		
-        $user  = NewUser::where('api_key',$api_key)->first();
+
+        if(Input::get('api_key')==NULL)
+        {
+            $user  = NewUser::where('id',Auth::user()->new_user_id)->first();
+        }
+        else {
+            $user  = NewUser::where('api_key',$api_key)->first();
+        }
 
         if($user!=NULL)
         {

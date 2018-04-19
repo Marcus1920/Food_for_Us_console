@@ -34,7 +34,7 @@ class LoginController extends Controller
             // or return route('routename');
         }
         else if(\Auth::user()->role == 'mobile-user'){
-            return "/group";
+            return "/mypostlist";
         }
     }
     /**

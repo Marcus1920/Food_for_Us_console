@@ -160,6 +160,23 @@ class UsersController extends Controller
             ->where('password', $password)
             ->first();
 
+        $exist = User::where('new_user_id',$data->id)
+            ->first();
+
+        if($exist==NULL)
+        {
+            $adminUsers                 = new User();
+            $adminUsers->name           = $data->name;
+            $adminUsers->new_user_id    = $data->id;
+            $adminUsers->surname        = $data->surname;
+            $adminUsers->gender         = "none";
+            $adminUsers->cellphone      = $data->cellphone;
+            $adminUsers->email          = $data->email;
+            $adminUsers->password       = bcrypt(8407);
+            $adminUsers->role           = "mobile-user";
+            $adminUsers->created_by     = $data->name . ' ' . $data->surname  ;
+            $adminUsers->save();
+        }
 
         if (sizeof($data) > 0) {
 

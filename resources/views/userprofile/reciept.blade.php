@@ -54,6 +54,11 @@
                         Receipt</a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ url('/auth/logout') }}" class="nav-link"> <i class="material-icons">settings_power</i>
+                        Logout</a>
+                </li>
+
 
             </ul>
 
