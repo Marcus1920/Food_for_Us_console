@@ -739,6810 +739,123 @@
             y : 'à¦à¦• à¦¬à¦›à¦°',
             yy : '%d à¦¬à¦›à¦°'
         },
-        preparse: function (string) {
-            return string.replace(/[à§§à§¨à§©à§ªà§«à§¬à§­à§®à§¯à§¦]/g, function (match) {
-                return bn__numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return bn__symbolMap[match];
-            });
-        },
-        meridiemParse: /à¦°à¦¾à¦¤|à¦¸à¦•à¦¾à¦²|à¦¦à§à¦ªà§à¦°|à¦¬à¦¿à¦•à¦¾à¦²|à¦°à¦¾à¦¤/,
-        isPM: function (input) {
-            return /^(à¦¦à§à¦ªà§à¦°|à¦¬à¦¿à¦•à¦¾à¦²|à¦°à¦¾à¦¤)$/.test(input);
-        },
-        //Bengali is a vast language its spoken
-        //in different forms in various parts of the world.
-        //I have just generalized with most common one used
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'à¦°à¦¾à¦¤';
-            } else if (hour < 10) {
-                return 'à¦¸à¦•à¦¾à¦²';
-            } else if (hour < 17) {
-                return 'à¦¦à§à¦ªà§à¦°';
-            } else if (hour < 20) {
-                return 'à¦¬à¦¿à¦•à¦¾à¦²';
-            } else {
-                return 'à¦°à¦¾à¦¤';
-            }
-        },
-        week : {
-            dow : 0, // Sunday is the first day of the week.
-            doy : 6  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : tibetan (bo)
-    //! author : Thupten N. Chakrishar : https://github.com/vajradog
-
-    var bo__symbolMap = {
-        '1': 'à¼¡',
-        '2': 'à¼¢',
-        '3': 'à¼£',
-        '4': 'à¼¤',
-        '5': 'à¼¥',
-        '6': 'à¼¦',
-        '7': 'à¼§',
-        '8': 'à¼¨',
-        '9': 'à¼©',
-        '0': 'à¼ '
-    },
-    bo__numberMap = {
-        'à¼¡': '1',
-        'à¼¢': '2',
-        'à¼£': '3',
-        'à¼¤': '4',
-        'à¼¥': '5',
-        'à¼¦': '6',
-        'à¼§': '7',
-        'à¼¨': '8',
-        'à¼©': '9',
-        'à¼ ': '0'
-    };
-
-    var bo = moment.defineLocale('bo', {
-        months : 'à½Ÿà¾³à¼‹à½–à¼‹à½‘à½„à¼‹à½”à½¼_à½Ÿà¾³à¼‹à½–à¼‹à½‚à½‰à½²à½¦à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½‚à½¦à½´à½˜à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½žà½²à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½£à¾”à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½‘à¾²à½´à½‚à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½‘à½´à½“à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½¢à¾’à¾±à½‘à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½‘à½‚à½´à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½…à½´à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½…à½´à¼‹à½‚à½…à½²à½‚à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½…à½´à¼‹à½‚à½‰à½²à½¦à¼‹à½”'.split('_'),
-        monthsShort : 'à½Ÿà¾³à¼‹à½–à¼‹à½‘à½„à¼‹à½”à½¼_à½Ÿà¾³à¼‹à½–à¼‹à½‚à½‰à½²à½¦à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½‚à½¦à½´à½˜à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½žà½²à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½£à¾”à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½‘à¾²à½´à½‚à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½‘à½´à½“à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½¢à¾’à¾±à½‘à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½‘à½‚à½´à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½…à½´à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½…à½´à¼‹à½‚à½…à½²à½‚à¼‹à½”_à½Ÿà¾³à¼‹à½–à¼‹à½–à½…à½´à¼‹à½‚à½‰à½²à½¦à¼‹à½”'.split('_'),
-        weekdays : 'à½‚à½Ÿà½ à¼‹à½‰à½²à¼‹à½˜à¼‹_à½‚à½Ÿà½ à¼‹à½Ÿà¾³à¼‹à½–à¼‹_à½‚à½Ÿà½ à¼‹à½˜à½²à½‚à¼‹à½‘à½˜à½¢à¼‹_à½‚à½Ÿà½ à¼‹à½£à¾·à½‚à¼‹à½”à¼‹_à½‚à½Ÿà½ à¼‹à½•à½´à½¢à¼‹à½–à½´_à½‚à½Ÿà½ à¼‹à½”à¼‹à½¦à½„à½¦à¼‹_à½‚à½Ÿà½ à¼‹à½¦à¾¤à½ºà½“à¼‹à½”à¼‹'.split('_'),
-        weekdaysShort : 'à½‰à½²à¼‹à½˜à¼‹_à½Ÿà¾³à¼‹à½–à¼‹_à½˜à½²à½‚à¼‹à½‘à½˜à½¢à¼‹_à½£à¾·à½‚à¼‹à½”à¼‹_à½•à½´à½¢à¼‹à½–à½´_à½”à¼‹à½¦à½„à½¦à¼‹_à½¦à¾¤à½ºà½“à¼‹à½”à¼‹'.split('_'),
-        weekdaysMin : 'à½‰à½²à¼‹à½˜à¼‹_à½Ÿà¾³à¼‹à½–à¼‹_à½˜à½²à½‚à¼‹à½‘à½˜à½¢à¼‹_à½£à¾·à½‚à¼‹à½”à¼‹_à½•à½´à½¢à¼‹à½–à½´_à½”à¼‹à½¦à½„à½¦à¼‹_à½¦à¾¤à½ºà½“à¼‹à½”à¼‹'.split('_'),
-        longDateFormat : {
-            LT : 'A h:mm',
-            LTS : 'A h:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY, A h:mm',
-            LLLL : 'dddd, D MMMM YYYY, A h:mm'
-        },
-        calendar : {
-            sameDay : '[à½‘à½²à¼‹à½¢à½²à½„] LT',
-            nextDay : '[à½¦à½„à¼‹à½‰à½²à½“] LT',
-            nextWeek : '[à½–à½‘à½´à½“à¼‹à½•à¾²à½‚à¼‹à½¢à¾—à½ºà½¦à¼‹à½˜], LT',
-            lastDay : '[à½à¼‹à½¦à½„] LT',
-            lastWeek : '[à½–à½‘à½´à½“à¼‹à½•à¾²à½‚à¼‹à½˜à½à½ à¼‹à½˜] dddd, LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s à½£à¼‹',
-            past : '%s à½¦à¾”à½“à¼‹à½£',
-            s : 'à½£à½˜à¼‹à½¦à½„',
-            m : 'à½¦à¾à½¢à¼‹à½˜à¼‹à½‚à½…à½²à½‚',
-            mm : '%d à½¦à¾à½¢à¼‹à½˜',
-            h : 'à½†à½´à¼‹à½šà½¼à½‘à¼‹à½‚à½…à½²à½‚',
-            hh : '%d à½†à½´à¼‹à½šà½¼à½‘',
-            d : 'à½‰à½²à½“à¼‹à½‚à½…à½²à½‚',
-            dd : '%d à½‰à½²à½“à¼‹',
-            M : 'à½Ÿà¾³à¼‹à½–à¼‹à½‚à½…à½²à½‚',
-            MM : '%d à½Ÿà¾³à¼‹à½–',
-            y : 'à½£à½¼à¼‹à½‚à½…à½²à½‚',
-            yy : '%d à½£à½¼'
-        },
-        preparse: function (string) {
-            return string.replace(/[à¼¡à¼¢à¼£à¼¤à¼¥à¼¦à¼§à¼¨à¼©à¼ ]/g, function (match) {
-                return bo__numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return bo__symbolMap[match];
-            });
-        },
-        meridiemParse: /à½˜à½šà½“à¼‹à½˜à½¼|à½žà½¼à½‚à½¦à¼‹à½€à½¦|à½‰à½²à½“à¼‹à½‚à½´à½„|à½‘à½‚à½¼à½„à¼‹à½‘à½‚|à½˜à½šà½“à¼‹à½˜à½¼/,
-        isPM: function (input) {
-            return /^(à½‰à½²à½“à¼‹à½‚à½´à½„|à½‘à½‚à½¼à½„à¼‹à½‘à½‚|à½˜à½šà½“à¼‹à½˜à½¼)$/.test(input);
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'à½˜à½šà½“à¼‹à½˜à½¼';
-            } else if (hour < 10) {
-                return 'à½žà½¼à½‚à½¦à¼‹à½€à½¦';
-            } else if (hour < 17) {
-                return 'à½‰à½²à½“à¼‹à½‚à½´à½„';
-            } else if (hour < 20) {
-                return 'à½‘à½‚à½¼à½„à¼‹à½‘à½‚';
-            } else {
-                return 'à½˜à½šà½“à¼‹à½˜à½¼';
-            }
-        },
-        week : {
-            dow : 0, // Sunday is the first day of the week.
-            doy : 6  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : breton (br)
-    //! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
-
-    function relativeTimeWithMutation(number, withoutSuffix, key) {
-        var format = {
-            'mm': 'munutenn',
-            'MM': 'miz',
-            'dd': 'devezh'
-        };
-        return number + ' ' + mutation(format[key], number);
-    }
-    function specialMutationForYears(number) {
-        switch (lastNumber(number)) {
-        case 1:
-        case 3:
-        case 4:
-        case 5:
-        case 9:
-            return number + ' bloaz';
-        default:
-            return number + ' vloaz';
-        }
-    }
-    function lastNumber(number) {
-        if (number > 9) {
-            return lastNumber(number % 10);
-        }
-        return number;
-    }
-    function mutation(text, number) {
-        if (number === 2) {
-            return softMutation(text);
-        }
-        return text;
-    }
-    function softMutation(text) {
-        var mutationTable = {
-            'm': 'v',
-            'b': 'v',
-            'd': 'z'
-        };
-        if (mutationTable[text.charAt(0)] === undefined) {
-            return text;
-        }
-        return mutationTable[text.charAt(0)] + text.substring(1);
-    }
-
-    var br = moment.defineLocale('br', {
-        months : 'Genver_C\'hwevrer_Meurzh_Ebrel_Mae_Mezheven_Gouere_Eost_Gwengolo_Here_Du_Kerzu'.split('_'),
-        monthsShort : 'Gen_C\'hwe_Meu_Ebr_Mae_Eve_Gou_Eos_Gwe_Her_Du_Ker'.split('_'),
-        weekdays : 'Sul_Lun_Meurzh_Merc\'her_Yaou_Gwener_Sadorn'.split('_'),
-        weekdaysShort : 'Sul_Lun_Meu_Mer_Yao_Gwe_Sad'.split('_'),
-        weekdaysMin : 'Su_Lu_Me_Mer_Ya_Gw_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'h[e]mm A',
-            LTS : 'h[e]mm:ss A',
-            L : 'DD/MM/YYYY',
-            LL : 'D [a viz] MMMM YYYY',
-            LLL : 'D [a viz] MMMM YYYY h[e]mm A',
-            LLLL : 'dddd, D [a viz] MMMM YYYY h[e]mm A'
-        },
-        calendar : {
-            sameDay : '[Hiziv da] LT',
-            nextDay : '[Warc\'hoazh da] LT',
-            nextWeek : 'dddd [da] LT',
-            lastDay : '[Dec\'h da] LT',
-            lastWeek : 'dddd [paset da] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'a-benn %s',
-            past : '%s \'zo',
-            s : 'un nebeud segondennoÃ¹',
-            m : 'ur vunutenn',
-            mm : relativeTimeWithMutation,
-            h : 'un eur',
-            hh : '%d eur',
-            d : 'un devezh',
-            dd : relativeTimeWithMutation,
-            M : 'ur miz',
-            MM : relativeTimeWithMutation,
-            y : 'ur bloaz',
-            yy : specialMutationForYears
-        },
-        ordinalParse: /\d{1,2}(aÃ±|vet)/,
-        ordinal : function (number) {
-            var output = (number === 1) ? 'aÃ±' : 'vet';
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : bosnian (bs)
-    //! author : Nedim Cholich : https://github.com/frontyard
-    //! based on (hr) translation by Bojan MarkoviÄ‡
-
-    function bs__translate(number, withoutSuffix, key) {
-        var result = number + ' ';
-        switch (key) {
-        case 'm':
-            return withoutSuffix ? 'jedna minuta' : 'jedne minute';
-        case 'mm':
-            if (number === 1) {
-                result += 'minuta';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'minute';
-            } else {
-                result += 'minuta';
-            }
-            return result;
-        case 'h':
-            return withoutSuffix ? 'jedan sat' : 'jednog sata';
-        case 'hh':
-            if (number === 1) {
-                result += 'sat';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'sata';
-            } else {
-                result += 'sati';
-            }
-            return result;
-        case 'dd':
-            if (number === 1) {
-                result += 'dan';
-            } else {
-                result += 'dana';
-            }
-            return result;
-        case 'MM':
-            if (number === 1) {
-                result += 'mjesec';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'mjeseca';
-            } else {
-                result += 'mjeseci';
-            }
-            return result;
-        case 'yy':
-            if (number === 1) {
-                result += 'godina';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'godine';
-            } else {
-                result += 'godina';
-            }
-            return result;
-        }
-    }
-
-    var bs = moment.defineLocale('bs', {
-        months : 'januar_februar_mart_april_maj_juni_juli_august_septembar_oktobar_novembar_decembar'.split('_'),
-        monthsShort : 'jan._feb._mar._apr._maj._jun._jul._aug._sep._okt._nov._dec.'.split('_'),
-        weekdays : 'nedjelja_ponedjeljak_utorak_srijeda_Äetvrtak_petak_subota'.split('_'),
-        weekdaysShort : 'ned._pon._uto._sri._Äet._pet._sub.'.split('_'),
-        weekdaysMin : 'ne_po_ut_sr_Äe_pe_su'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD. MM. YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY H:mm',
-            LLLL : 'dddd, D. MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay  : '[danas u] LT',
-            nextDay  : '[sutra u] LT',
-            nextWeek : function () {
-                switch (this.day()) {
-                case 0:
-                    return '[u] [nedjelju] [u] LT';
-                case 3:
-                    return '[u] [srijedu] [u] LT';
-                case 6:
-                    return '[u] [subotu] [u] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[u] dddd [u] LT';
-                }
-            },
-            lastDay  : '[juÄer u] LT',
-            lastWeek : function () {
-                switch (this.day()) {
-                case 0:
-                case 3:
-                    return '[proÅ¡lu] dddd [u] LT';
-                case 6:
-                    return '[proÅ¡le] [subote] [u] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[proÅ¡li] dddd [u] LT';
-                }
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'za %s',
-            past   : 'prije %s',
-            s      : 'par sekundi',
-            m      : bs__translate,
-            mm     : bs__translate,
-            h      : bs__translate,
-            hh     : bs__translate,
-            d      : 'dan',
-            dd     : bs__translate,
-            M      : 'mjesec',
-            MM     : bs__translate,
-            y      : 'godinu',
-            yy     : bs__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : catalan (ca)
-    //! author : Juan G. Hurtado : https://github.com/juanghurtado
-
-    var ca = moment.defineLocale('ca', {
-        months : 'gener_febrer_marÃ§_abril_maig_juny_juliol_agost_setembre_octubre_novembre_desembre'.split('_'),
-        monthsShort : 'gen._febr._mar._abr._mai._jun._jul._ag._set._oct._nov._des.'.split('_'),
-        weekdays : 'diumenge_dilluns_dimarts_dimecres_dijous_divendres_dissabte'.split('_'),
-        weekdaysShort : 'dg._dl._dt._dc._dj._dv._ds.'.split('_'),
-        weekdaysMin : 'Dg_Dl_Dt_Dc_Dj_Dv_Ds'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY H:mm',
-            LLLL : 'dddd D MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay : function () {
-                return '[avui a ' + ((this.hours() !== 1) ? 'les' : 'la') + '] LT';
-            },
-            nextDay : function () {
-                return '[demÃ  a ' + ((this.hours() !== 1) ? 'les' : 'la') + '] LT';
-            },
-            nextWeek : function () {
-                return 'dddd [a ' + ((this.hours() !== 1) ? 'les' : 'la') + '] LT';
-            },
-            lastDay : function () {
-                return '[ahir a ' + ((this.hours() !== 1) ? 'les' : 'la') + '] LT';
-            },
-            lastWeek : function () {
-                return '[el] dddd [passat a ' + ((this.hours() !== 1) ? 'les' : 'la') + '] LT';
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'en %s',
-            past : 'fa %s',
-            s : 'uns segons',
-            m : 'un minut',
-            mm : '%d minuts',
-            h : 'una hora',
-            hh : '%d hores',
-            d : 'un dia',
-            dd : '%d dies',
-            M : 'un mes',
-            MM : '%d mesos',
-            y : 'un any',
-            yy : '%d anys'
-        },
-        ordinalParse: /\d{1,2}(r|n|t|Ã¨|a)/,
-        ordinal : function (number, period) {
-            var output = (number === 1) ? 'r' :
-                (number === 2) ? 'n' :
-                (number === 3) ? 'r' :
-                (number === 4) ? 't' : 'Ã¨';
-            if (period === 'w' || period === 'W') {
-                output = 'a';
-            }
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : czech (cs)
-    //! author : petrbela : https://github.com/petrbela
-
-    var cs__months = 'leden_Ãºnor_bÅ™ezen_duben_kvÄ›ten_Äerven_Äervenec_srpen_zÃ¡Å™Ã­_Å™Ã­jen_listopad_prosinec'.split('_'),
-        cs__monthsShort = 'led_Ãºno_bÅ™e_dub_kvÄ›_Ävn_Ävc_srp_zÃ¡Å™_Å™Ã­j_lis_pro'.split('_');
-    function cs__plural(n) {
-        return (n > 1) && (n < 5) && (~~(n / 10) !== 1);
-    }
-    function cs__translate(number, withoutSuffix, key, isFuture) {
-        var result = number + ' ';
-        switch (key) {
-        case 's':  // a few seconds / in a few seconds / a few seconds ago
-            return (withoutSuffix || isFuture) ? 'pÃ¡r sekund' : 'pÃ¡r sekundami';
-        case 'm':  // a minute / in a minute / a minute ago
-            return withoutSuffix ? 'minuta' : (isFuture ? 'minutu' : 'minutou');
-        case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
-            if (withoutSuffix || isFuture) {
-                return result + (cs__plural(number) ? 'minuty' : 'minut');
-            } else {
-                return result + 'minutami';
-            }
-            break;
-        case 'h':  // an hour / in an hour / an hour ago
-            return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
-        case 'hh': // 9 hours / in 9 hours / 9 hours ago
-            if (withoutSuffix || isFuture) {
-                return result + (cs__plural(number) ? 'hodiny' : 'hodin');
-            } else {
-                return result + 'hodinami';
-            }
-            break;
-        case 'd':  // a day / in a day / a day ago
-            return (withoutSuffix || isFuture) ? 'den' : 'dnem';
-        case 'dd': // 9 days / in 9 days / 9 days ago
-            if (withoutSuffix || isFuture) {
-                return result + (cs__plural(number) ? 'dny' : 'dnÃ­');
-            } else {
-                return result + 'dny';
-            }
-            break;
-        case 'M':  // a month / in a month / a month ago
-            return (withoutSuffix || isFuture) ? 'mÄ›sÃ­c' : 'mÄ›sÃ­cem';
-        case 'MM': // 9 months / in 9 months / 9 months ago
-            if (withoutSuffix || isFuture) {
-                return result + (cs__plural(number) ? 'mÄ›sÃ­ce' : 'mÄ›sÃ­cÅ¯');
-            } else {
-                return result + 'mÄ›sÃ­ci';
-            }
-            break;
-        case 'y':  // a year / in a year / a year ago
-            return (withoutSuffix || isFuture) ? 'rok' : 'rokem';
-        case 'yy': // 9 years / in 9 years / 9 years ago
-            if (withoutSuffix || isFuture) {
-                return result + (cs__plural(number) ? 'roky' : 'let');
-            } else {
-                return result + 'lety';
-            }
-            break;
-        }
-    }
-
-    var cs = moment.defineLocale('cs', {
-        months : cs__months,
-        monthsShort : cs__monthsShort,
-        monthsParse : (function (months, monthsShort) {
-            var i, _monthsParse = [];
-            for (i = 0; i < 12; i++) {
-                // use custom parser to solve problem with July (Äervenec)
-                _monthsParse[i] = new RegExp('^' + months[i] + '$|^' + monthsShort[i] + '$', 'i');
-            }
-            return _monthsParse;
-        }(cs__months, cs__monthsShort)),
-        shortMonthsParse : (function (monthsShort) {
-            var i, _shortMonthsParse = [];
-            for (i = 0; i < 12; i++) {
-                _shortMonthsParse[i] = new RegExp('^' + monthsShort[i] + '$', 'i');
-            }
-            return _shortMonthsParse;
-        }(cs__monthsShort)),
-        longMonthsParse : (function (months) {
-            var i, _longMonthsParse = [];
-            for (i = 0; i < 12; i++) {
-                _longMonthsParse[i] = new RegExp('^' + months[i] + '$', 'i');
-            }
-            return _longMonthsParse;
-        }(cs__months)),
-        weekdays : 'nedÄ›le_pondÄ›lÃ­_ÃºterÃ½_stÅ™eda_Ätvrtek_pÃ¡tek_sobota'.split('_'),
-        weekdaysShort : 'ne_po_Ãºt_st_Ät_pÃ¡_so'.split('_'),
-        weekdaysMin : 'ne_po_Ãºt_st_Ät_pÃ¡_so'.split('_'),
-        longDateFormat : {
-            LT: 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY H:mm',
-            LLLL : 'dddd D. MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay: '[dnes v] LT',
-            nextDay: '[zÃ­tra v] LT',
-            nextWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[v nedÄ›li v] LT';
-                case 1:
-                case 2:
-                    return '[v] dddd [v] LT';
-                case 3:
-                    return '[ve stÅ™edu v] LT';
-                case 4:
-                    return '[ve Ätvrtek v] LT';
-                case 5:
-                    return '[v pÃ¡tek v] LT';
-                case 6:
-                    return '[v sobotu v] LT';
-                }
-            },
-            lastDay: '[vÄera v] LT',
-            lastWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[minulou nedÄ›li v] LT';
-                case 1:
-                case 2:
-                    return '[minulÃ©] dddd [v] LT';
-                case 3:
-                    return '[minulou stÅ™edu v] LT';
-                case 4:
-                case 5:
-                    return '[minulÃ½] dddd [v] LT';
-                case 6:
-                    return '[minulou sobotu v] LT';
-                }
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'za %s',
-            past : 'pÅ™ed %s',
-            s : cs__translate,
-            m : cs__translate,
-            mm : cs__translate,
-            h : cs__translate,
-            hh : cs__translate,
-            d : cs__translate,
-            dd : cs__translate,
-            M : cs__translate,
-            MM : cs__translate,
-            y : cs__translate,
-            yy : cs__translate
-        },
-        ordinalParse : /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : chuvash (cv)
-    //! author : Anatoly Mironov : https://github.com/mirontoli
-
-    var cv = moment.defineLocale('cv', {
-        months : 'ÐºÓ‘Ñ€Ð»Ð°Ñ‡_Ð½Ð°Ñ€Ó‘Ñ_Ð¿ÑƒÑˆ_Ð°ÐºÐ°_Ð¼Ð°Ð¹_Ò«Ó—Ñ€Ñ‚Ð¼Ðµ_ÑƒÑ‚Ó‘_Ò«ÑƒÑ€Ð»Ð°_Ð°Ð²Ó‘Ð½_ÑŽÐ¿Ð°_Ñ‡Ó³Ðº_Ñ€Ð°ÑˆÑ‚Ð°Ð²'.split('_'),
-        monthsShort : 'ÐºÓ‘Ñ€_Ð½Ð°Ñ€_Ð¿ÑƒÑˆ_Ð°ÐºÐ°_Ð¼Ð°Ð¹_Ò«Ó—Ñ€_ÑƒÑ‚Ó‘_Ò«ÑƒÑ€_Ð°Ð²Ð½_ÑŽÐ¿Ð°_Ñ‡Ó³Ðº_Ñ€Ð°Ñˆ'.split('_'),
-        weekdays : 'Ð²Ñ‹Ñ€ÑÐ°Ñ€Ð½Ð¸ÐºÑƒÐ½_Ñ‚ÑƒÐ½Ñ‚Ð¸ÐºÑƒÐ½_Ñ‹Ñ‚Ð»Ð°Ñ€Ð¸ÐºÑƒÐ½_ÑŽÐ½ÐºÑƒÐ½_ÐºÓ—Ò«Ð½ÐµÑ€Ð½Ð¸ÐºÑƒÐ½_ÑÑ€Ð½ÐµÐºÑƒÐ½_ÑˆÓ‘Ð¼Ð°Ñ‚ÐºÑƒÐ½'.split('_'),
-        weekdaysShort : 'Ð²Ñ‹Ñ€_Ñ‚ÑƒÐ½_Ñ‹Ñ‚Ð»_ÑŽÐ½_ÐºÓ—Ò«_ÑÑ€Ð½_ÑˆÓ‘Ð¼'.split('_'),
-        weekdaysMin : 'Ð²Ñ€_Ñ‚Ð½_Ñ‹Ñ‚_ÑŽÐ½_ÐºÒ«_ÑÑ€_ÑˆÐ¼'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD-MM-YYYY',
-            LL : 'YYYY [Ò«ÑƒÐ»Ñ…Ð¸] MMMM [ÑƒÐ¹Ó‘Ñ…Ó—Ð½] D[-Ð¼Ó—ÑˆÓ—]',
-            LLL : 'YYYY [Ò«ÑƒÐ»Ñ…Ð¸] MMMM [ÑƒÐ¹Ó‘Ñ…Ó—Ð½] D[-Ð¼Ó—ÑˆÓ—], HH:mm',
-            LLLL : 'dddd, YYYY [Ò«ÑƒÐ»Ñ…Ð¸] MMMM [ÑƒÐ¹Ó‘Ñ…Ó—Ð½] D[-Ð¼Ó—ÑˆÓ—], HH:mm'
-        },
-        calendar : {
-            sameDay: '[ÐŸÐ°ÑÐ½] LT [ÑÐµÑ…ÐµÑ‚Ñ€Ðµ]',
-            nextDay: '[Ð«Ñ€Ð°Ð½] LT [ÑÐµÑ…ÐµÑ‚Ñ€Ðµ]',
-            lastDay: '[Ó–Ð½ÐµÑ€] LT [ÑÐµÑ…ÐµÑ‚Ñ€Ðµ]',
-            nextWeek: '[ÒªÐ¸Ñ‚ÐµÑ] dddd LT [ÑÐµÑ…ÐµÑ‚Ñ€Ðµ]',
-            lastWeek: '[Ð˜Ñ€Ñ‚Ð½Ó—] dddd LT [ÑÐµÑ…ÐµÑ‚Ñ€Ðµ]',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : function (output) {
-                var affix = /ÑÐµÑ…ÐµÑ‚$/i.exec(output) ? 'Ñ€ÐµÐ½' : /Ò«ÑƒÐ»$/i.exec(output) ? 'Ñ‚Ð°Ð½' : 'Ñ€Ð°Ð½';
-                return output + affix;
-            },
-            past : '%s ÐºÐ°ÑÐ»Ð»Ð°',
-            s : 'Ð¿Ó—Ñ€-Ð¸Ðº Ò«ÐµÐºÐºÑƒÐ½Ñ‚',
-            m : 'Ð¿Ó—Ñ€ Ð¼Ð¸Ð½ÑƒÑ‚',
-            mm : '%d Ð¼Ð¸Ð½ÑƒÑ‚',
-            h : 'Ð¿Ó—Ñ€ ÑÐµÑ…ÐµÑ‚',
-            hh : '%d ÑÐµÑ…ÐµÑ‚',
-            d : 'Ð¿Ó—Ñ€ ÐºÑƒÐ½',
-            dd : '%d ÐºÑƒÐ½',
-            M : 'Ð¿Ó—Ñ€ ÑƒÐ¹Ó‘Ñ…',
-            MM : '%d ÑƒÐ¹Ó‘Ñ…',
-            y : 'Ð¿Ó—Ñ€ Ò«ÑƒÐ»',
-            yy : '%d Ò«ÑƒÐ»'
-        },
-        ordinalParse: /\d{1,2}-Ð¼Ó—Ñˆ/,
-        ordinal : '%d-Ð¼Ó—Ñˆ',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Welsh (cy)
-    //! author : Robert Allen
-
-    var cy = moment.defineLocale('cy', {
-        months: 'Ionawr_Chwefror_Mawrth_Ebrill_Mai_Mehefin_Gorffennaf_Awst_Medi_Hydref_Tachwedd_Rhagfyr'.split('_'),
-        monthsShort: 'Ion_Chwe_Maw_Ebr_Mai_Meh_Gor_Aws_Med_Hyd_Tach_Rhag'.split('_'),
-        weekdays: 'Dydd Sul_Dydd Llun_Dydd Mawrth_Dydd Mercher_Dydd Iau_Dydd Gwener_Dydd Sadwrn'.split('_'),
-        weekdaysShort: 'Sul_Llun_Maw_Mer_Iau_Gwe_Sad'.split('_'),
-        weekdaysMin: 'Su_Ll_Ma_Me_Ia_Gw_Sa'.split('_'),
-        // time formats are the same as en-gb
-        longDateFormat: {
-            LT: 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L: 'DD/MM/YYYY',
-            LL: 'D MMMM YYYY',
-            LLL: 'D MMMM YYYY HH:mm',
-            LLLL: 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar: {
-            sameDay: '[Heddiw am] LT',
-            nextDay: '[Yfory am] LT',
-            nextWeek: 'dddd [am] LT',
-            lastDay: '[Ddoe am] LT',
-            lastWeek: 'dddd [diwethaf am] LT',
-            sameElse: 'L'
-        },
-        relativeTime: {
-            future: 'mewn %s',
-            past: '%s yn Ã´l',
-            s: 'ychydig eiliadau',
-            m: 'munud',
-            mm: '%d munud',
-            h: 'awr',
-            hh: '%d awr',
-            d: 'diwrnod',
-            dd: '%d diwrnod',
-            M: 'mis',
-            MM: '%d mis',
-            y: 'blwyddyn',
-            yy: '%d flynedd'
-        },
-        ordinalParse: /\d{1,2}(fed|ain|af|il|ydd|ed|eg)/,
-        // traditional ordinal numbers above 31 are not commonly used in colloquial Welsh
-        ordinal: function (number) {
-            var b = number,
-                output = '',
-                lookup = [
-                    '', 'af', 'il', 'ydd', 'ydd', 'ed', 'ed', 'ed', 'fed', 'fed', 'fed', // 1af to 10fed
-                    'eg', 'fed', 'eg', 'eg', 'fed', 'eg', 'eg', 'fed', 'eg', 'fed' // 11eg to 20fed
-                ];
-            if (b > 20) {
-                if (b === 40 || b === 50 || b === 60 || b === 80 || b === 100) {
-                    output = 'fed'; // not 30ain, 70ain or 90ain
-                } else {
-                    output = 'ain';
-                }
-            } else if (b > 0) {
-                output = lookup[b];
-            }
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : danish (da)
-    //! author : Ulrik Nielsen : https://github.com/mrbase
-
-    var da = moment.defineLocale('da', {
-        months : 'januar_februar_marts_april_maj_juni_juli_august_september_oktober_november_december'.split('_'),
-        monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec'.split('_'),
-        weekdays : 'sÃ¸ndag_mandag_tirsdag_onsdag_torsdag_fredag_lÃ¸rdag'.split('_'),
-        weekdaysShort : 'sÃ¸n_man_tir_ons_tor_fre_lÃ¸r'.split('_'),
-        weekdaysMin : 'sÃ¸_ma_ti_on_to_fr_lÃ¸'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY HH:mm',
-            LLLL : 'dddd [d.] D. MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[I dag kl.] LT',
-            nextDay : '[I morgen kl.] LT',
-            nextWeek : 'dddd [kl.] LT',
-            lastDay : '[I gÃ¥r kl.] LT',
-            lastWeek : '[sidste] dddd [kl] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'om %s',
-            past : '%s siden',
-            s : 'fÃ¥ sekunder',
-            m : 'et minut',
-            mm : '%d minutter',
-            h : 'en time',
-            hh : '%d timer',
-            d : 'en dag',
-            dd : '%d dage',
-            M : 'en mÃ¥ned',
-            MM : '%d mÃ¥neder',
-            y : 'et Ã¥r',
-            yy : '%d Ã¥r'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : austrian german (de-at)
-    //! author : lluchs : https://github.com/lluchs
-    //! author: Menelion ElensÃºle: https://github.com/Oire
-    //! author : Martin Groller : https://github.com/MadMG
-    //! author : Mikolaj Dadela : https://github.com/mik01aj
-
-    function de_at__processRelativeTime(number, withoutSuffix, key, isFuture) {
-        var format = {
-            'm': ['eine Minute', 'einer Minute'],
-            'h': ['eine Stunde', 'einer Stunde'],
-            'd': ['ein Tag', 'einem Tag'],
-            'dd': [number + ' Tage', number + ' Tagen'],
-            'M': ['ein Monat', 'einem Monat'],
-            'MM': [number + ' Monate', number + ' Monaten'],
-            'y': ['ein Jahr', 'einem Jahr'],
-            'yy': [number + ' Jahre', number + ' Jahren']
-        };
-        return withoutSuffix ? format[key][0] : format[key][1];
-    }
-
-    var de_at = moment.defineLocale('de-at', {
-        months : 'JÃ¤nner_Februar_MÃ¤rz_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-        monthsShort : 'JÃ¤n._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
-        weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
-        weekdaysShort : 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
-        weekdaysMin : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
-        longDateFormat : {
-            LT: 'HH:mm',
-            LTS: 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY HH:mm',
-            LLLL : 'dddd, D. MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[heute um] LT [Uhr]',
-            sameElse: 'L',
-            nextDay: '[morgen um] LT [Uhr]',
-            nextWeek: 'dddd [um] LT [Uhr]',
-            lastDay: '[gestern um] LT [Uhr]',
-            lastWeek: '[letzten] dddd [um] LT [Uhr]'
-        },
-        relativeTime : {
-            future : 'in %s',
-            past : 'vor %s',
-            s : 'ein paar Sekunden',
-            m : de_at__processRelativeTime,
-            mm : '%d Minuten',
-            h : de_at__processRelativeTime,
-            hh : '%d Stunden',
-            d : de_at__processRelativeTime,
-            dd : de_at__processRelativeTime,
-            M : de_at__processRelativeTime,
-            MM : de_at__processRelativeTime,
-            y : de_at__processRelativeTime,
-            yy : de_at__processRelativeTime
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : german (de)
-    //! author : lluchs : https://github.com/lluchs
-    //! author: Menelion ElensÃºle: https://github.com/Oire
-    //! author : Mikolaj Dadela : https://github.com/mik01aj
-
-    function de__processRelativeTime(number, withoutSuffix, key, isFuture) {
-        var format = {
-            'm': ['eine Minute', 'einer Minute'],
-            'h': ['eine Stunde', 'einer Stunde'],
-            'd': ['ein Tag', 'einem Tag'],
-            'dd': [number + ' Tage', number + ' Tagen'],
-            'M': ['ein Monat', 'einem Monat'],
-            'MM': [number + ' Monate', number + ' Monaten'],
-            'y': ['ein Jahr', 'einem Jahr'],
-            'yy': [number + ' Jahre', number + ' Jahren']
-        };
-        return withoutSuffix ? format[key][0] : format[key][1];
-    }
-
-    var de = moment.defineLocale('de', {
-        months : 'Januar_Februar_MÃ¤rz_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-        monthsShort : 'Jan._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
-        weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
-        weekdaysShort : 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
-        weekdaysMin : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
-        longDateFormat : {
-            LT: 'HH:mm',
-            LTS: 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY HH:mm',
-            LLLL : 'dddd, D. MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[heute um] LT [Uhr]',
-            sameElse: 'L',
-            nextDay: '[morgen um] LT [Uhr]',
-            nextWeek: 'dddd [um] LT [Uhr]',
-            lastDay: '[gestern um] LT [Uhr]',
-            lastWeek: '[letzten] dddd [um] LT [Uhr]'
-        },
-        relativeTime : {
-            future : 'in %s',
-            past : 'vor %s',
-            s : 'ein paar Sekunden',
-            m : de__processRelativeTime,
-            mm : '%d Minuten',
-            h : de__processRelativeTime,
-            hh : '%d Stunden',
-            d : de__processRelativeTime,
-            dd : de__processRelativeTime,
-            M : de__processRelativeTime,
-            MM : de__processRelativeTime,
-            y : de__processRelativeTime,
-            yy : de__processRelativeTime
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : dhivehi (dv)
-    //! author : Jawish Hameed : https://github.com/jawish
-
-    var dv__months = [
-        'Þ–Þ¬Þ‚ÞªÞ‡Þ¦ÞƒÞ©',
-        'ÞŠÞ¬Þ„Þ°ÞƒÞªÞ‡Þ¦ÞƒÞ©',
-        'Þ‰Þ§ÞƒÞ¨Þ—Þª',
-        'Þ‡Þ­Þ•Þ°ÞƒÞ©ÞÞª',
-        'Þ‰Þ­',
-        'Þ–Þ«Þ‚Þ°',
-        'Þ–ÞªÞÞ¦Þ‡Þ¨',
-        'Þ‡Þ¯ÞŽÞ¦ÞÞ°Þ“Þª',
-        'ÞÞ¬Þ•Þ°Þ“Þ¬Þ‰Þ°Þ„Þ¦ÞƒÞª',
-        'Þ‡Þ®Þ†Þ°Þ“Þ¯Þ„Þ¦ÞƒÞª',
-        'Þ‚Þ®ÞˆÞ¬Þ‰Þ°Þ„Þ¦ÞƒÞª',
-        'Þ‘Þ¨ÞÞ¬Þ‰Þ°Þ„Þ¦ÞƒÞª'
-    ], dv__weekdays = [
-        'Þ‡Þ§Þ‹Þ¨Þ‡Þ°ÞŒÞ¦',
-        'Þ€Þ¯Þ‰Þ¦',
-        'Þ‡Þ¦Þ‚Þ°ÞŽÞ§ÞƒÞ¦',
-        'Þ„ÞªÞ‹Þ¦',
-        'Þ„ÞªÞƒÞ§ÞÞ°ÞŠÞ¦ÞŒÞ¨',
-        'Þ€ÞªÞ†ÞªÞƒÞª',
-        'Þ€Þ®Þ‚Þ¨Þ€Þ¨ÞƒÞª'
-    ];
-
-    var dv = moment.defineLocale('dv', {
-        months : dv__months,
-        monthsShort : dv__months,
-        weekdays : dv__weekdays,
-        weekdaysShort : dv__weekdays,
-        weekdaysMin : 'Þ‡Þ§Þ‹Þ¨_Þ€Þ¯Þ‰Þ¦_Þ‡Þ¦Þ‚Þ°_Þ„ÞªÞ‹Þ¦_Þ„ÞªÞƒÞ§_Þ€ÞªÞ†Þª_Þ€Þ®Þ‚Þ¨'.split('_'),
-        longDateFormat : {
-
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'D/M/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        meridiemParse: /Þ‰Þ†|Þ‰ÞŠ/,
-        isPM : function (input) {
-            return '' === input;
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 12) {
-                return 'Þ‰Þ†';
-            } else {
-                return 'Þ‰ÞŠ';
-            }
-        },
-        calendar : {
-            sameDay : '[Þ‰Þ¨Þ‡Þ¦Þ‹Þª] LT',
-            nextDay : '[Þ‰Þ§Þ‹Þ¦Þ‰Þ§] LT',
-            nextWeek : 'dddd LT',
-            lastDay : '[Þ‡Þ¨Þ‡Þ°Þ”Þ¬] LT',
-            lastWeek : '[ÞŠÞ§Þ‡Þ¨ÞŒÞªÞˆÞ¨] dddd LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'ÞŒÞ¬ÞƒÞ­ÞŽÞ¦Þ‡Þ¨ %s',
-            past : 'Þ†ÞªÞƒÞ¨Þ‚Þ° %s',
-            s : 'ÞÞ¨Þ†ÞªÞ‚Þ°ÞŒÞªÞ†Þ®Þ…Þ¬Þ‡Þ°',
-            m : 'Þ‰Þ¨Þ‚Þ¨Þ“Þ¬Þ‡Þ°',
-            mm : 'Þ‰Þ¨Þ‚Þ¨Þ“Þª %d',
-            h : 'ÞŽÞ¦Þ‘Þ¨Þ‡Þ¨ÞƒÞ¬Þ‡Þ°',
-            hh : 'ÞŽÞ¦Þ‘Þ¨Þ‡Þ¨ÞƒÞª %d',
-            d : 'Þ‹ÞªÞˆÞ¦Þ€Þ¬Þ‡Þ°',
-            dd : 'Þ‹ÞªÞˆÞ¦ÞÞ° %d',
-            M : 'Þ‰Þ¦Þ€Þ¬Þ‡Þ°',
-            MM : 'Þ‰Þ¦ÞÞ° %d',
-            y : 'Þ‡Þ¦Þ€Þ¦ÞƒÞ¬Þ‡Þ°',
-            yy : 'Þ‡Þ¦Þ€Þ¦ÞƒÞª %d'
-        },
-        preparse: function (string) {
-            return string.replace(/ØŒ/g, ',');
-        },
-        postformat: function (string) {
-            return string.replace(/,/g, 'ØŒ');
-        },
-        week : {
-            dow : 7,  // Sunday is the first day of the week.
-            doy : 12  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    function isFunction(input) {
-        return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
-    }
-
-    //! moment.js locale configuration
-    //! locale : modern greek (el)
-    //! author : Aggelos Karalias : https://github.com/mehiel
-
-    var el = moment.defineLocale('el', {
-        monthsNominativeEl : 'Î™Î±Î½Î¿Ï…Î¬ÏÎ¹Î¿Ï‚_Î¦ÎµÎ²ÏÎ¿Ï…Î¬ÏÎ¹Î¿Ï‚_ÎœÎ¬ÏÏ„Î¹Î¿Ï‚_Î‘Ï€ÏÎ¯Î»Î¹Î¿Ï‚_ÎœÎ¬Î¹Î¿Ï‚_Î™Î¿ÏÎ½Î¹Î¿Ï‚_Î™Î¿ÏÎ»Î¹Î¿Ï‚_Î‘ÏÎ³Î¿Ï…ÏƒÏ„Î¿Ï‚_Î£ÎµÏ€Ï„Î­Î¼Î²ÏÎ¹Î¿Ï‚_ÎŸÎºÏ„ÏŽÎ²ÏÎ¹Î¿Ï‚_ÎÎ¿Î­Î¼Î²ÏÎ¹Î¿Ï‚_Î”ÎµÎºÎ­Î¼Î²ÏÎ¹Î¿Ï‚'.split('_'),
-        monthsGenitiveEl : 'Î™Î±Î½Î¿Ï…Î±ÏÎ¯Î¿Ï…_Î¦ÎµÎ²ÏÎ¿Ï…Î±ÏÎ¯Î¿Ï…_ÎœÎ±ÏÏ„Î¯Î¿Ï…_Î‘Ï€ÏÎ¹Î»Î¯Î¿Ï…_ÎœÎ±ÎÎ¿Ï…_Î™Î¿Ï…Î½Î¯Î¿Ï…_Î™Î¿Ï…Î»Î¯Î¿Ï…_Î‘Ï…Î³Î¿ÏÏƒÏ„Î¿Ï…_Î£ÎµÏ€Ï„ÎµÎ¼Î²ÏÎ¯Î¿Ï…_ÎŸÎºÏ„Ï‰Î²ÏÎ¯Î¿Ï…_ÎÎ¿ÎµÎ¼Î²ÏÎ¯Î¿Ï…_Î”ÎµÎºÎµÎ¼Î²ÏÎ¯Î¿Ï…'.split('_'),
-        months : function (momentToFormat, format) {
-            if (/D/.test(format.substring(0, format.indexOf('MMMM')))) { // if there is a day number before 'MMMM'
-                return this._monthsGenitiveEl[momentToFormat.month()];
-            } else {
-                return this._monthsNominativeEl[momentToFormat.month()];
-            }
-        },
-        monthsShort : 'Î™Î±Î½_Î¦ÎµÎ²_ÎœÎ±Ï_Î‘Ï€Ï_ÎœÎ±ÏŠ_Î™Î¿Ï…Î½_Î™Î¿Ï…Î»_Î‘Ï…Î³_Î£ÎµÏ€_ÎŸÎºÏ„_ÎÎ¿Îµ_Î”ÎµÎº'.split('_'),
-        weekdays : 'ÎšÏ…ÏÎ¹Î±ÎºÎ®_Î”ÎµÏ…Ï„Î­ÏÎ±_Î¤ÏÎ¯Ï„Î·_Î¤ÎµÏ„Î¬ÏÏ„Î·_Î Î­Î¼Ï€Ï„Î·_Î Î±ÏÎ±ÏƒÎºÎµÏ…Î®_Î£Î¬Î²Î²Î±Ï„Î¿'.split('_'),
-        weekdaysShort : 'ÎšÏ…Ï_Î”ÎµÏ…_Î¤ÏÎ¹_Î¤ÎµÏ„_Î ÎµÎ¼_Î Î±Ï_Î£Î±Î²'.split('_'),
-        weekdaysMin : 'ÎšÏ…_Î”Îµ_Î¤Ï_Î¤Îµ_Î Îµ_Î Î±_Î£Î±'.split('_'),
-        meridiem : function (hours, minutes, isLower) {
-            if (hours > 11) {
-                return isLower ? 'Î¼Î¼' : 'ÎœÎœ';
-            } else {
-                return isLower ? 'Ï€Î¼' : 'Î Îœ';
-            }
-        },
-        isPM : function (input) {
-            return ((input + '').toLowerCase()[0] === 'Î¼');
-        },
-        meridiemParse : /[Î Îœ]\.?Îœ?\.?/i,
-        longDateFormat : {
-            LT : 'h:mm A',
-            LTS : 'h:mm:ss A',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY h:mm A',
-            LLLL : 'dddd, D MMMM YYYY h:mm A'
-        },
-        calendarEl : {
-            sameDay : '[Î£Î®Î¼ÎµÏÎ± {}] LT',
-            nextDay : '[Î‘ÏÏÎ¹Î¿ {}] LT',
-            nextWeek : 'dddd [{}] LT',
-            lastDay : '[Î§Î¸ÎµÏ‚ {}] LT',
-            lastWeek : function () {
-                switch (this.day()) {
-                    case 6:
-                        return '[Ï„Î¿ Ï€ÏÎ¿Î·Î³Î¿ÏÎ¼ÎµÎ½Î¿] dddd [{}] LT';
-                    default:
-                        return '[Ï„Î·Î½ Ï€ÏÎ¿Î·Î³Î¿ÏÎ¼ÎµÎ½Î·] dddd [{}] LT';
-                }
-            },
-            sameElse : 'L'
-        },
-        calendar : function (key, mom) {
-            var output = this._calendarEl[key],
-                hours = mom && mom.hours();
-            if (isFunction(output)) {
-                output = output.apply(mom);
-            }
-            return output.replace('{}', (hours % 12 === 1 ? 'ÏƒÏ„Î·' : 'ÏƒÏ„Î¹Ï‚'));
-        },
-        relativeTime : {
-            future : 'ÏƒÎµ %s',
-            past : '%s Ï€ÏÎ¹Î½',
-            s : 'Î»Î¯Î³Î± Î´ÎµÏ…Ï„ÎµÏÏŒÎ»ÎµÏ€Ï„Î±',
-            m : 'Î­Î½Î± Î»ÎµÏ€Ï„ÏŒ',
-            mm : '%d Î»ÎµÏ€Ï„Î¬',
-            h : 'Î¼Î¯Î± ÏŽÏÎ±',
-            hh : '%d ÏŽÏÎµÏ‚',
-            d : 'Î¼Î¯Î± Î¼Î­ÏÎ±',
-            dd : '%d Î¼Î­ÏÎµÏ‚',
-            M : 'Î­Î½Î±Ï‚ Î¼Î®Î½Î±Ï‚',
-            MM : '%d Î¼Î®Î½ÎµÏ‚',
-            y : 'Î­Î½Î±Ï‚ Ï‡ÏÏŒÎ½Î¿Ï‚',
-            yy : '%d Ï‡ÏÏŒÎ½Î¹Î±'
-        },
-        ordinalParse: /\d{1,2}Î·/,
-        ordinal: '%dÎ·',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : australian english (en-au)
-
-    var en_au = moment.defineLocale('en-au', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'h:mm A',
-            LTS : 'h:mm:ss A',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY h:mm A',
-            LLLL : 'dddd, D MMMM YYYY h:mm A'
-        },
-        calendar : {
-            sameDay : '[Today at] LT',
-            nextDay : '[Tomorrow at] LT',
-            nextWeek : 'dddd [at] LT',
-            lastDay : '[Yesterday at] LT',
-            lastWeek : '[Last] dddd [at] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'in %s',
-            past : '%s ago',
-            s : 'a few seconds',
-            m : 'a minute',
-            mm : '%d minutes',
-            h : 'an hour',
-            hh : '%d hours',
-            d : 'a day',
-            dd : '%d days',
-            M : 'a month',
-            MM : '%d months',
-            y : 'a year',
-            yy : '%d years'
-        },
-        ordinalParse: /\d{1,2}(st|nd|rd|th)/,
-        ordinal : function (number) {
-            var b = number % 10,
-                output = (~~(number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : canadian english (en-ca)
-    //! author : Jonathan Abourbih : https://github.com/jonbca
-
-    var en_ca = moment.defineLocale('en-ca', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'h:mm A',
-            LTS : 'h:mm:ss A',
-            L : 'YYYY-MM-DD',
-            LL : 'D MMMM, YYYY',
-            LLL : 'D MMMM, YYYY h:mm A',
-            LLLL : 'dddd, D MMMM, YYYY h:mm A'
-        },
-        calendar : {
-            sameDay : '[Today at] LT',
-            nextDay : '[Tomorrow at] LT',
-            nextWeek : 'dddd [at] LT',
-            lastDay : '[Yesterday at] LT',
-            lastWeek : '[Last] dddd [at] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'in %s',
-            past : '%s ago',
-            s : 'a few seconds',
-            m : 'a minute',
-            mm : '%d minutes',
-            h : 'an hour',
-            hh : '%d hours',
-            d : 'a day',
-            dd : '%d days',
-            M : 'a month',
-            MM : '%d months',
-            y : 'a year',
-            yy : '%d years'
-        },
-        ordinalParse: /\d{1,2}(st|nd|rd|th)/,
-        ordinal : function (number) {
-            var b = number % 10,
-                output = (~~(number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
-            return number + output;
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : great britain english (en-gb)
-    //! author : Chris Gedrim : https://github.com/chrisgedrim
-
-    var en_gb = moment.defineLocale('en-gb', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[Today at] LT',
-            nextDay : '[Tomorrow at] LT',
-            nextWeek : 'dddd [at] LT',
-            lastDay : '[Yesterday at] LT',
-            lastWeek : '[Last] dddd [at] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'in %s',
-            past : '%s ago',
-            s : 'a few seconds',
-            m : 'a minute',
-            mm : '%d minutes',
-            h : 'an hour',
-            hh : '%d hours',
-            d : 'a day',
-            dd : '%d days',
-            M : 'a month',
-            MM : '%d months',
-            y : 'a year',
-            yy : '%d years'
-        },
-        ordinalParse: /\d{1,2}(st|nd|rd|th)/,
-        ordinal : function (number) {
-            var b = number % 10,
-                output = (~~(number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Irish english (en-ie)
-    //! author : Chris Cartlidge : https://github.com/chriscartlidge
-
-    var en_ie = moment.defineLocale('en-ie', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD-MM-YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[Today at] LT',
-            nextDay : '[Tomorrow at] LT',
-            nextWeek : 'dddd [at] LT',
-            lastDay : '[Yesterday at] LT',
-            lastWeek : '[Last] dddd [at] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'in %s',
-            past : '%s ago',
-            s : 'a few seconds',
-            m : 'a minute',
-            mm : '%d minutes',
-            h : 'an hour',
-            hh : '%d hours',
-            d : 'a day',
-            dd : '%d days',
-            M : 'a month',
-            MM : '%d months',
-            y : 'a year',
-            yy : '%d years'
-        },
-        ordinalParse: /\d{1,2}(st|nd|rd|th)/,
-        ordinal : function (number) {
-            var b = number % 10,
-                output = (~~(number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : New Zealand english (en-nz)
-
-    var en_nz = moment.defineLocale('en-nz', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'h:mm A',
-            LTS : 'h:mm:ss A',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY h:mm A',
-            LLLL : 'dddd, D MMMM YYYY h:mm A'
-        },
-        calendar : {
-            sameDay : '[Today at] LT',
-            nextDay : '[Tomorrow at] LT',
-            nextWeek : 'dddd [at] LT',
-            lastDay : '[Yesterday at] LT',
-            lastWeek : '[Last] dddd [at] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'in %s',
-            past : '%s ago',
-            s : 'a few seconds',
-            m : 'a minute',
-            mm : '%d minutes',
-            h : 'an hour',
-            hh : '%d hours',
-            d : 'a day',
-            dd : '%d days',
-            M : 'a month',
-            MM : '%d months',
-            y : 'a year',
-            yy : '%d years'
-        },
-        ordinalParse: /\d{1,2}(st|nd|rd|th)/,
-        ordinal : function (number) {
-            var b = number % 10,
-                output = (~~(number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : esperanto (eo)
-    //! author : Colin Dean : https://github.com/colindean
-    //! komento: Mi estas malcerta se mi korekte traktis akuzativojn en tiu traduko.
-    //!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
-
-    var eo = moment.defineLocale('eo', {
-        months : 'januaro_februaro_marto_aprilo_majo_junio_julio_aÅ­gusto_septembro_oktobro_novembro_decembro'.split('_'),
-        monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aÅ­g_sep_okt_nov_dec'.split('_'),
-        weekdays : 'DimanÄ‰o_Lundo_Mardo_Merkredo_Ä´aÅ­do_Vendredo_Sabato'.split('_'),
-        weekdaysShort : 'Dim_Lun_Mard_Merk_Ä´aÅ­_Ven_Sab'.split('_'),
-        weekdaysMin : 'Di_Lu_Ma_Me_Ä´a_Ve_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'YYYY-MM-DD',
-            LL : 'D[-an de] MMMM, YYYY',
-            LLL : 'D[-an de] MMMM, YYYY HH:mm',
-            LLLL : 'dddd, [la] D[-an de] MMMM, YYYY HH:mm'
-        },
-        meridiemParse: /[ap]\.t\.m/i,
-        isPM: function (input) {
-            return input.charAt(0).toLowerCase() === 'p';
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours > 11) {
-                return isLower ? 'p.t.m.' : 'P.T.M.';
-            } else {
-                return isLower ? 'a.t.m.' : 'A.T.M.';
-            }
-        },
-        calendar : {
-            sameDay : '[HodiaÅ­ je] LT',
-            nextDay : '[MorgaÅ­ je] LT',
-            nextWeek : 'dddd [je] LT',
-            lastDay : '[HieraÅ­ je] LT',
-            lastWeek : '[pasinta] dddd [je] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'je %s',
-            past : 'antaÅ­ %s',
-            s : 'sekundoj',
-            m : 'minuto',
-            mm : '%d minutoj',
-            h : 'horo',
-            hh : '%d horoj',
-            d : 'tago',//ne 'diurno', Ä‰ar estas uzita por proksimumo
-            dd : '%d tagoj',
-            M : 'monato',
-            MM : '%d monatoj',
-            y : 'jaro',
-            yy : '%d jaroj'
-        },
-        ordinalParse: /\d{1,2}a/,
-        ordinal : '%da',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : spanish (es)
-    //! author : Julio NapurÃ­ : https://github.com/julionc
-
-    var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
-        es__monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
-
-    var es = moment.defineLocale('es', {
-        months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
-        monthsShort : function (m, format) {
-            if (/-MMM-/.test(format)) {
-                return es__monthsShort[m.month()];
-            } else {
-                return monthsShortDot[m.month()];
-            }
-        },
-        weekdays : 'domingo_lunes_martes_miÃ©rcoles_jueves_viernes_sÃ¡bado'.split('_'),
-        weekdaysShort : 'dom._lun._mar._miÃ©._jue._vie._sÃ¡b.'.split('_'),
-        weekdaysMin : 'do_lu_ma_mi_ju_vi_sÃ¡'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D [de] MMMM [de] YYYY',
-            LLL : 'D [de] MMMM [de] YYYY H:mm',
-            LLLL : 'dddd, D [de] MMMM [de] YYYY H:mm'
-        },
-        calendar : {
-            sameDay : function () {
-                return '[hoy a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-            },
-            nextDay : function () {
-                return '[maÃ±ana a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-            },
-            nextWeek : function () {
-                return 'dddd [a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-            },
-            lastDay : function () {
-                return '[ayer a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-            },
-            lastWeek : function () {
-                return '[el] dddd [pasado a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'en %s',
-            past : 'hace %s',
-            s : 'unos segundos',
-            m : 'un minuto',
-            mm : '%d minutos',
-            h : 'una hora',
-            hh : '%d horas',
-            d : 'un dÃ­a',
-            dd : '%d dÃ­as',
-            M : 'un mes',
-            MM : '%d meses',
-            y : 'un aÃ±o',
-            yy : '%d aÃ±os'
-        },
-        ordinalParse : /\d{1,2}Âº/,
-        ordinal : '%dÂº',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : estonian (et)
-    //! author : Henry Kehlmann : https://github.com/madhenry
-    //! improvements : Illimar Tambek : https://github.com/ragulka
-
-    function et__processRelativeTime(number, withoutSuffix, key, isFuture) {
-        var format = {
-            's' : ['mÃµne sekundi', 'mÃµni sekund', 'paar sekundit'],
-            'm' : ['Ã¼he minuti', 'Ã¼ks minut'],
-            'mm': [number + ' minuti', number + ' minutit'],
-            'h' : ['Ã¼he tunni', 'tund aega', 'Ã¼ks tund'],
-            'hh': [number + ' tunni', number + ' tundi'],
-            'd' : ['Ã¼he pÃ¤eva', 'Ã¼ks pÃ¤ev'],
-            'M' : ['kuu aja', 'kuu aega', 'Ã¼ks kuu'],
-            'MM': [number + ' kuu', number + ' kuud'],
-            'y' : ['Ã¼he aasta', 'aasta', 'Ã¼ks aasta'],
-            'yy': [number + ' aasta', number + ' aastat']
-        };
-        if (withoutSuffix) {
-            return format[key][2] ? format[key][2] : format[key][1];
-        }
-        return isFuture ? format[key][0] : format[key][1];
-    }
-
-    var et = moment.defineLocale('et', {
-        months        : 'jaanuar_veebruar_mÃ¤rts_aprill_mai_juuni_juuli_august_september_oktoober_november_detsember'.split('_'),
-        monthsShort   : 'jaan_veebr_mÃ¤rts_apr_mai_juuni_juuli_aug_sept_okt_nov_dets'.split('_'),
-        weekdays      : 'pÃ¼hapÃ¤ev_esmaspÃ¤ev_teisipÃ¤ev_kolmapÃ¤ev_neljapÃ¤ev_reede_laupÃ¤ev'.split('_'),
-        weekdaysShort : 'P_E_T_K_N_R_L'.split('_'),
-        weekdaysMin   : 'P_E_T_K_N_R_L'.split('_'),
-        longDateFormat : {
-            LT   : 'H:mm',
-            LTS : 'H:mm:ss',
-            L    : 'DD.MM.YYYY',
-            LL   : 'D. MMMM YYYY',
-            LLL  : 'D. MMMM YYYY H:mm',
-            LLLL : 'dddd, D. MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay  : '[TÃ¤na,] LT',
-            nextDay  : '[Homme,] LT',
-            nextWeek : '[JÃ¤rgmine] dddd LT',
-            lastDay  : '[Eile,] LT',
-            lastWeek : '[Eelmine] dddd LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s pÃ¤rast',
-            past   : '%s tagasi',
-            s      : et__processRelativeTime,
-            m      : et__processRelativeTime,
-            mm     : et__processRelativeTime,
-            h      : et__processRelativeTime,
-            hh     : et__processRelativeTime,
-            d      : et__processRelativeTime,
-            dd     : '%d pÃ¤eva',
-            M      : et__processRelativeTime,
-            MM     : et__processRelativeTime,
-            y      : et__processRelativeTime,
-            yy     : et__processRelativeTime
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : euskara (eu)
-    //! author : Eneko Illarramendi : https://github.com/eillarra
-
-    var eu = moment.defineLocale('eu', {
-        months : 'urtarrila_otsaila_martxoa_apirila_maiatza_ekaina_uztaila_abuztua_iraila_urria_azaroa_abendua'.split('_'),
-        monthsShort : 'urt._ots._mar._api._mai._eka._uzt._abu._ira._urr._aza._abe.'.split('_'),
-        weekdays : 'igandea_astelehena_asteartea_asteazkena_osteguna_ostirala_larunbata'.split('_'),
-        weekdaysShort : 'ig._al._ar._az._og._ol._lr.'.split('_'),
-        weekdaysMin : 'ig_al_ar_az_og_ol_lr'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'YYYY-MM-DD',
-            LL : 'YYYY[ko] MMMM[ren] D[a]',
-            LLL : 'YYYY[ko] MMMM[ren] D[a] HH:mm',
-            LLLL : 'dddd, YYYY[ko] MMMM[ren] D[a] HH:mm',
-            l : 'YYYY-M-D',
-            ll : 'YYYY[ko] MMM D[a]',
-            lll : 'YYYY[ko] MMM D[a] HH:mm',
-            llll : 'ddd, YYYY[ko] MMM D[a] HH:mm'
-        },
-        calendar : {
-            sameDay : '[gaur] LT[etan]',
-            nextDay : '[bihar] LT[etan]',
-            nextWeek : 'dddd LT[etan]',
-            lastDay : '[atzo] LT[etan]',
-            lastWeek : '[aurreko] dddd LT[etan]',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s barru',
-            past : 'duela %s',
-            s : 'segundo batzuk',
-            m : 'minutu bat',
-            mm : '%d minutu',
-            h : 'ordu bat',
-            hh : '%d ordu',
-            d : 'egun bat',
-            dd : '%d egun',
-            M : 'hilabete bat',
-            MM : '%d hilabete',
-            y : 'urte bat',
-            yy : '%d urte'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Persian (fa)
-    //! author : Ebrahim Byagowi : https://github.com/ebraminio
-
-    var fa__symbolMap = {
-        '1': 'Û±',
-        '2': 'Û²',
-        '3': 'Û³',
-        '4': 'Û´',
-        '5': 'Ûµ',
-        '6': 'Û¶',
-        '7': 'Û·',
-        '8': 'Û¸',
-        '9': 'Û¹',
-        '0': 'Û°'
-    }, fa__numberMap = {
-        'Û±': '1',
-        'Û²': '2',
-        'Û³': '3',
-        'Û´': '4',
-        'Ûµ': '5',
-        'Û¶': '6',
-        'Û·': '7',
-        'Û¸': '8',
-        'Û¹': '9',
-        'Û°': '0'
-    };
-
-    var fa = moment.defineLocale('fa', {
-        months : 'Ú˜Ø§Ù†ÙˆÛŒÙ‡_ÙÙˆØ±ÛŒÙ‡_Ù…Ø§Ø±Ø³_Ø¢ÙˆØ±ÛŒÙ„_Ù…Ù‡_Ú˜ÙˆØ¦Ù†_Ú˜ÙˆØ¦ÛŒÙ‡_Ø§ÙˆØª_Ø³Ù¾ØªØ§Ù…Ø¨Ø±_Ø§Ú©ØªØ¨Ø±_Ù†ÙˆØ§Ù…Ø¨Ø±_Ø¯Ø³Ø§Ù…Ø¨Ø±'.split('_'),
-        monthsShort : 'Ú˜Ø§Ù†ÙˆÛŒÙ‡_ÙÙˆØ±ÛŒÙ‡_Ù…Ø§Ø±Ø³_Ø¢ÙˆØ±ÛŒÙ„_Ù…Ù‡_Ú˜ÙˆØ¦Ù†_Ú˜ÙˆØ¦ÛŒÙ‡_Ø§ÙˆØª_Ø³Ù¾ØªØ§Ù…Ø¨Ø±_Ø§Ú©ØªØ¨Ø±_Ù†ÙˆØ§Ù…Ø¨Ø±_Ø¯Ø³Ø§Ù…Ø¨Ø±'.split('_'),
-        weekdays : 'ÛŒÚ©\u200cØ´Ù†Ø¨Ù‡_Ø¯ÙˆØ´Ù†Ø¨Ù‡_Ø³Ù‡\u200cØ´Ù†Ø¨Ù‡_Ú†Ù‡Ø§Ø±Ø´Ù†Ø¨Ù‡_Ù¾Ù†Ø¬\u200cØ´Ù†Ø¨Ù‡_Ø¬Ù…Ø¹Ù‡_Ø´Ù†Ø¨Ù‡'.split('_'),
-        weekdaysShort : 'ÛŒÚ©\u200cØ´Ù†Ø¨Ù‡_Ø¯ÙˆØ´Ù†Ø¨Ù‡_Ø³Ù‡\u200cØ´Ù†Ø¨Ù‡_Ú†Ù‡Ø§Ø±Ø´Ù†Ø¨Ù‡_Ù¾Ù†Ø¬\u200cØ´Ù†Ø¨Ù‡_Ø¬Ù…Ø¹Ù‡_Ø´Ù†Ø¨Ù‡'.split('_'),
-        weekdaysMin : 'ÛŒ_Ø¯_Ø³_Ú†_Ù¾_Ø¬_Ø´'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        meridiemParse: /Ù‚Ø¨Ù„ Ø§Ø² Ø¸Ù‡Ø±|Ø¨Ø¹Ø¯ Ø§Ø² Ø¸Ù‡Ø±/,
-        isPM: function (input) {
-            return /Ø¨Ø¹Ø¯ Ø§Ø² Ø¸Ù‡Ø±/.test(input);
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 12) {
-                return 'Ù‚Ø¨Ù„ Ø§Ø² Ø¸Ù‡Ø±';
-            } else {
-                return 'Ø¨Ø¹Ø¯ Ø§Ø² Ø¸Ù‡Ø±';
-            }
-        },
-        calendar : {
-            sameDay : '[Ø§Ù…Ø±ÙˆØ² Ø³Ø§Ø¹Øª] LT',
-            nextDay : '[ÙØ±Ø¯Ø§ Ø³Ø§Ø¹Øª] LT',
-            nextWeek : 'dddd [Ø³Ø§Ø¹Øª] LT',
-            lastDay : '[Ø¯ÛŒØ±ÙˆØ² Ø³Ø§Ø¹Øª] LT',
-            lastWeek : 'dddd [Ù¾ÛŒØ´] [Ø³Ø§Ø¹Øª] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'Ø¯Ø± %s',
-            past : '%s Ù¾ÛŒØ´',
-            s : 'Ú†Ù†Ø¯ÛŒÙ† Ø«Ø§Ù†ÛŒÙ‡',
-            m : 'ÛŒÚ© Ø¯Ù‚ÛŒÙ‚Ù‡',
-            mm : '%d Ø¯Ù‚ÛŒÙ‚Ù‡',
-            h : 'ÛŒÚ© Ø³Ø§Ø¹Øª',
-            hh : '%d Ø³Ø§Ø¹Øª',
-            d : 'ÛŒÚ© Ø±ÙˆØ²',
-            dd : '%d Ø±ÙˆØ²',
-            M : 'ÛŒÚ© Ù…Ø§Ù‡',
-            MM : '%d Ù…Ø§Ù‡',
-            y : 'ÛŒÚ© Ø³Ø§Ù„',
-            yy : '%d Ø³Ø§Ù„'
-        },
-        preparse: function (string) {
-            return string.replace(/[Û°-Û¹]/g, function (match) {
-                return fa__numberMap[match];
-            }).replace(/ØŒ/g, ',');
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return fa__symbolMap[match];
-            }).replace(/,/g, 'ØŒ');
-        },
-        ordinalParse: /\d{1,2}Ù…/,
-        ordinal : '%dÙ…',
-        week : {
-            dow : 6, // Saturday is the first day of the week.
-            doy : 12 // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : finnish (fi)
-    //! author : Tarmo Aidantausta : https://github.com/bleadof
-
-    var numbersPast = 'nolla yksi kaksi kolme neljÃ¤ viisi kuusi seitsemÃ¤n kahdeksan yhdeksÃ¤n'.split(' '),
-        numbersFuture = [
-            'nolla', 'yhden', 'kahden', 'kolmen', 'neljÃ¤n', 'viiden', 'kuuden',
-            numbersPast[7], numbersPast[8], numbersPast[9]
-        ];
-    function fi__translate(number, withoutSuffix, key, isFuture) {
-        var result = '';
-        switch (key) {
-        case 's':
-            return isFuture ? 'muutaman sekunnin' : 'muutama sekunti';
-        case 'm':
-            return isFuture ? 'minuutin' : 'minuutti';
-        case 'mm':
-            result = isFuture ? 'minuutin' : 'minuuttia';
-            break;
-        case 'h':
-            return isFuture ? 'tunnin' : 'tunti';
-        case 'hh':
-            result = isFuture ? 'tunnin' : 'tuntia';
-            break;
-        case 'd':
-            return isFuture ? 'pÃ¤ivÃ¤n' : 'pÃ¤ivÃ¤';
-        case 'dd':
-            result = isFuture ? 'pÃ¤ivÃ¤n' : 'pÃ¤ivÃ¤Ã¤';
-            break;
-        case 'M':
-            return isFuture ? 'kuukauden' : 'kuukausi';
-        case 'MM':
-            result = isFuture ? 'kuukauden' : 'kuukautta';
-            break;
-        case 'y':
-            return isFuture ? 'vuoden' : 'vuosi';
-        case 'yy':
-            result = isFuture ? 'vuoden' : 'vuotta';
-            break;
-        }
-        result = verbalNumber(number, isFuture) + ' ' + result;
-        return result;
-    }
-    function verbalNumber(number, isFuture) {
-        return number < 10 ? (isFuture ? numbersFuture[number] : numbersPast[number]) : number;
-    }
-
-    var fi = moment.defineLocale('fi', {
-        months : 'tammikuu_helmikuu_maaliskuu_huhtikuu_toukokuu_kesÃ¤kuu_heinÃ¤kuu_elokuu_syyskuu_lokakuu_marraskuu_joulukuu'.split('_'),
-        monthsShort : 'tammi_helmi_maalis_huhti_touko_kesÃ¤_heinÃ¤_elo_syys_loka_marras_joulu'.split('_'),
-        weekdays : 'sunnuntai_maanantai_tiistai_keskiviikko_torstai_perjantai_lauantai'.split('_'),
-        weekdaysShort : 'su_ma_ti_ke_to_pe_la'.split('_'),
-        weekdaysMin : 'su_ma_ti_ke_to_pe_la'.split('_'),
-        longDateFormat : {
-            LT : 'HH.mm',
-            LTS : 'HH.mm.ss',
-            L : 'DD.MM.YYYY',
-            LL : 'Do MMMM[ta] YYYY',
-            LLL : 'Do MMMM[ta] YYYY, [klo] HH.mm',
-            LLLL : 'dddd, Do MMMM[ta] YYYY, [klo] HH.mm',
-            l : 'D.M.YYYY',
-            ll : 'Do MMM YYYY',
-            lll : 'Do MMM YYYY, [klo] HH.mm',
-            llll : 'ddd, Do MMM YYYY, [klo] HH.mm'
-        },
-        calendar : {
-            sameDay : '[tÃ¤nÃ¤Ã¤n] [klo] LT',
-            nextDay : '[huomenna] [klo] LT',
-            nextWeek : 'dddd [klo] LT',
-            lastDay : '[eilen] [klo] LT',
-            lastWeek : '[viime] dddd[na] [klo] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s pÃ¤Ã¤stÃ¤',
-            past : '%s sitten',
-            s : fi__translate,
-            m : fi__translate,
-            mm : fi__translate,
-            h : fi__translate,
-            hh : fi__translate,
-            d : fi__translate,
-            dd : fi__translate,
-            M : fi__translate,
-            MM : fi__translate,
-            y : fi__translate,
-            yy : fi__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : faroese (fo)
-    //! author : Ragnar Johannesen : https://github.com/ragnar123
-
-    var fo = moment.defineLocale('fo', {
-        months : 'januar_februar_mars_aprÃ­l_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
-        monthsShort : 'jan_feb_mar_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_'),
-        weekdays : 'sunnudagur_mÃ¡nadagur_tÃ½sdagur_mikudagur_hÃ³sdagur_frÃ­ggjadagur_leygardagur'.split('_'),
-        weekdaysShort : 'sun_mÃ¡n_tÃ½s_mik_hÃ³s_frÃ­_ley'.split('_'),
-        weekdaysMin : 'su_mÃ¡_tÃ½_mi_hÃ³_fr_le'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D. MMMM, YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[Ã dag kl.] LT',
-            nextDay : '[Ã morgin kl.] LT',
-            nextWeek : 'dddd [kl.] LT',
-            lastDay : '[Ã gjÃ¡r kl.] LT',
-            lastWeek : '[sÃ­Ã°stu] dddd [kl] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'um %s',
-            past : '%s sÃ­Ã°ani',
-            s : 'fÃ¡ sekund',
-            m : 'ein minutt',
-            mm : '%d minuttir',
-            h : 'ein tÃ­mi',
-            hh : '%d tÃ­mar',
-            d : 'ein dagur',
-            dd : '%d dagar',
-            M : 'ein mÃ¡naÃ°i',
-            MM : '%d mÃ¡naÃ°ir',
-            y : 'eitt Ã¡r',
-            yy : '%d Ã¡r'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : canadian french (fr-ca)
-    //! author : Jonathan Abourbih : https://github.com/jonbca
-
-    var fr_ca = moment.defineLocale('fr-ca', {
-        months : 'janvier_fÃ©vrier_mars_avril_mai_juin_juillet_aoÃ»t_septembre_octobre_novembre_dÃ©cembre'.split('_'),
-        monthsShort : 'janv._fÃ©vr._mars_avr._mai_juin_juil._aoÃ»t_sept._oct._nov._dÃ©c.'.split('_'),
-        weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
-        weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-        weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'YYYY-MM-DD',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[Aujourd\'hui Ã ] LT',
-            nextDay: '[Demain Ã ] LT',
-            nextWeek: 'dddd [Ã ] LT',
-            lastDay: '[Hier Ã ] LT',
-            lastWeek: 'dddd [dernier Ã ] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'dans %s',
-            past : 'il y a %s',
-            s : 'quelques secondes',
-            m : 'une minute',
-            mm : '%d minutes',
-            h : 'une heure',
-            hh : '%d heures',
-            d : 'un jour',
-            dd : '%d jours',
-            M : 'un mois',
-            MM : '%d mois',
-            y : 'un an',
-            yy : '%d ans'
-        },
-        ordinalParse: /\d{1,2}(er|e)/,
-        ordinal : function (number) {
-            return number + (number === 1 ? 'er' : 'e');
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : swiss french (fr)
-    //! author : Gaspard Bucher : https://github.com/gaspard
-
-    var fr_ch = moment.defineLocale('fr-ch', {
-        months : 'janvier_fÃ©vrier_mars_avril_mai_juin_juillet_aoÃ»t_septembre_octobre_novembre_dÃ©cembre'.split('_'),
-        monthsShort : 'janv._fÃ©vr._mars_avr._mai_juin_juil._aoÃ»t_sept._oct._nov._dÃ©c.'.split('_'),
-        weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
-        weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-        weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[Aujourd\'hui Ã ] LT',
-            nextDay: '[Demain Ã ] LT',
-            nextWeek: 'dddd [Ã ] LT',
-            lastDay: '[Hier Ã ] LT',
-            lastWeek: 'dddd [dernier Ã ] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'dans %s',
-            past : 'il y a %s',
-            s : 'quelques secondes',
-            m : 'une minute',
-            mm : '%d minutes',
-            h : 'une heure',
-            hh : '%d heures',
-            d : 'un jour',
-            dd : '%d jours',
-            M : 'un mois',
-            MM : '%d mois',
-            y : 'un an',
-            yy : '%d ans'
-        },
-        ordinalParse: /\d{1,2}(er|e)/,
-        ordinal : function (number) {
-            return number + (number === 1 ? 'er' : 'e');
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : french (fr)
-    //! author : John Fischer : https://github.com/jfroffice
-
-    var fr = moment.defineLocale('fr', {
-        months : 'janvier_fÃ©vrier_mars_avril_mai_juin_juillet_aoÃ»t_septembre_octobre_novembre_dÃ©cembre'.split('_'),
-        monthsShort : 'janv._fÃ©vr._mars_avr._mai_juin_juil._aoÃ»t_sept._oct._nov._dÃ©c.'.split('_'),
-        weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
-        weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-        weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[Aujourd\'hui Ã ] LT',
-            nextDay: '[Demain Ã ] LT',
-            nextWeek: 'dddd [Ã ] LT',
-            lastDay: '[Hier Ã ] LT',
-            lastWeek: 'dddd [dernier Ã ] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'dans %s',
-            past : 'il y a %s',
-            s : 'quelques secondes',
-            m : 'une minute',
-            mm : '%d minutes',
-            h : 'une heure',
-            hh : '%d heures',
-            d : 'un jour',
-            dd : '%d jours',
-            M : 'un mois',
-            MM : '%d mois',
-            y : 'un an',
-            yy : '%d ans'
-        },
-        ordinalParse: /\d{1,2}(er|)/,
-        ordinal : function (number) {
-            return number + (number === 1 ? 'er' : '');
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : frisian (fy)
-    //! author : Robin van der Vliet : https://github.com/robin0van0der0v
-
-    var fy__monthsShortWithDots = 'jan._feb._mrt._apr._mai_jun._jul._aug._sep._okt._nov._des.'.split('_'),
-        fy__monthsShortWithoutDots = 'jan_feb_mrt_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_');
-
-    var fy = moment.defineLocale('fy', {
-        months : 'jannewaris_febrewaris_maart_april_maaie_juny_july_augustus_septimber_oktober_novimber_desimber'.split('_'),
-        monthsShort : function (m, format) {
-            if (/-MMM-/.test(format)) {
-                return fy__monthsShortWithoutDots[m.month()];
-            } else {
-                return fy__monthsShortWithDots[m.month()];
-            }
-        },
-        weekdays : 'snein_moandei_tiisdei_woansdei_tongersdei_freed_sneon'.split('_'),
-        weekdaysShort : 'si._mo._ti._wo._to._fr._so.'.split('_'),
-        weekdaysMin : 'Si_Mo_Ti_Wo_To_Fr_So'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD-MM-YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[hjoed om] LT',
-            nextDay: '[moarn om] LT',
-            nextWeek: 'dddd [om] LT',
-            lastDay: '[juster om] LT',
-            lastWeek: '[Ã´frÃ»ne] dddd [om] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'oer %s',
-            past : '%s lyn',
-            s : 'in pear sekonden',
-            m : 'ien minÃºt',
-            mm : '%d minuten',
-            h : 'ien oere',
-            hh : '%d oeren',
-            d : 'ien dei',
-            dd : '%d dagen',
-            M : 'ien moanne',
-            MM : '%d moannen',
-            y : 'ien jier',
-            yy : '%d jierren'
-        },
-        ordinalParse: /\d{1,2}(ste|de)/,
-        ordinal : function (number) {
-            return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de');
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : great britain scottish gealic (gd)
-    //! author : Jon Ashdown : https://github.com/jonashdown
-
-    var gd__months = [
-        'Am Faoilleach', 'An Gearran', 'Am MÃ rt', 'An Giblean', 'An CÃ¨itean', 'An t-Ã’gmhios', 'An t-Iuchar', 'An LÃ¹nastal', 'An t-Sultain', 'An DÃ mhair', 'An t-Samhain', 'An DÃ¹bhlachd'
-    ];
-
-    var gd__monthsShort = ['Faoi', 'Gear', 'MÃ rt', 'Gibl', 'CÃ¨it', 'Ã’gmh', 'Iuch', 'LÃ¹n', 'Sult', 'DÃ mh', 'Samh', 'DÃ¹bh'];
-
-    var gd__weekdays = ['DidÃ²mhnaich', 'Diluain', 'DimÃ irt', 'Diciadain', 'Diardaoin', 'Dihaoine', 'Disathairne'];
-
-    var weekdaysShort = ['Did', 'Dil', 'Dim', 'Dic', 'Dia', 'Dih', 'Dis'];
-
-    var weekdaysMin = ['DÃ²', 'Lu', 'MÃ ', 'Ci', 'Ar', 'Ha', 'Sa'];
-
-    var gd = moment.defineLocale('gd', {
-        months : gd__months,
-        monthsShort : gd__monthsShort,
-        monthsParseExact : true,
-        weekdays : gd__weekdays,
-        weekdaysShort : weekdaysShort,
-        weekdaysMin : weekdaysMin,
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[An-diugh aig] LT',
-            nextDay : '[A-mÃ ireach aig] LT',
-            nextWeek : 'dddd [aig] LT',
-            lastDay : '[An-dÃ¨ aig] LT',
-            lastWeek : 'dddd [seo chaidh] [aig] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'ann an %s',
-            past : 'bho chionn %s',
-            s : 'beagan diogan',
-            m : 'mionaid',
-            mm : '%d mionaidean',
-            h : 'uair',
-            hh : '%d uairean',
-            d : 'latha',
-            dd : '%d latha',
-            M : 'mÃ¬os',
-            MM : '%d mÃ¬osan',
-            y : 'bliadhna',
-            yy : '%d bliadhna'
-        },
-        ordinalParse : /\d{1,2}(d|na|mh)/,
-        ordinal : function (number) {
-            var output = number === 1 ? 'd' : number % 10 === 2 ? 'na' : 'mh';
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : galician (gl)
-    //! author : Juan G. Hurtado : https://github.com/juanghurtado
-
-    var gl = moment.defineLocale('gl', {
-        months : 'Xaneiro_Febreiro_Marzo_Abril_Maio_XuÃ±o_Xullo_Agosto_Setembro_Outubro_Novembro_Decembro'.split('_'),
-        monthsShort : 'Xan._Feb._Mar._Abr._Mai._XuÃ±._Xul._Ago._Set._Out._Nov._Dec.'.split('_'),
-        weekdays : 'Domingo_Luns_Martes_MÃ©rcores_Xoves_Venres_SÃ¡bado'.split('_'),
-        weekdaysShort : 'Dom._Lun._Mar._MÃ©r._Xov._Ven._SÃ¡b.'.split('_'),
-        weekdaysMin : 'Do_Lu_Ma_MÃ©_Xo_Ve_SÃ¡'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY H:mm',
-            LLLL : 'dddd D MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay : function () {
-                return '[hoxe ' + ((this.hours() !== 1) ? 'Ã¡s' : 'Ã¡') + '] LT';
-            },
-            nextDay : function () {
-                return '[maÃ±Ã¡ ' + ((this.hours() !== 1) ? 'Ã¡s' : 'Ã¡') + '] LT';
-            },
-            nextWeek : function () {
-                return 'dddd [' + ((this.hours() !== 1) ? 'Ã¡s' : 'a') + '] LT';
-            },
-            lastDay : function () {
-                return '[onte ' + ((this.hours() !== 1) ? 'Ã¡' : 'a') + '] LT';
-            },
-            lastWeek : function () {
-                return '[o] dddd [pasado ' + ((this.hours() !== 1) ? 'Ã¡s' : 'a') + '] LT';
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : function (str) {
-                if (str === 'uns segundos') {
-                    return 'nuns segundos';
-                }
-                return 'en ' + str;
-            },
-            past : 'hai %s',
-            s : 'uns segundos',
-            m : 'un minuto',
-            mm : '%d minutos',
-            h : 'unha hora',
-            hh : '%d horas',
-            d : 'un dÃ­a',
-            dd : '%d dÃ­as',
-            M : 'un mes',
-            MM : '%d meses',
-            y : 'un ano',
-            yy : '%d anos'
-        },
-        ordinalParse : /\d{1,2}Âº/,
-        ordinal : '%dÂº',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Hebrew (he)
-    //! author : Tomer Cohen : https://github.com/tomer
-    //! author : Moshe Simantov : https://github.com/DevelopmentIL
-    //! author : Tal Ater : https://github.com/TalAter
-
-    var he = moment.defineLocale('he', {
-        months : '×™× ×•××¨_×¤×‘×¨×•××¨_×ž×¨×¥_××¤×¨×™×œ_×ž××™_×™×•× ×™_×™×•×œ×™_××•×’×•×¡×˜_×¡×¤×˜×ž×‘×¨_××•×§×˜×•×‘×¨_× ×•×‘×ž×‘×¨_×“×¦×ž×‘×¨'.split('_'),
-        monthsShort : '×™× ×•×³_×¤×‘×¨×³_×ž×¨×¥_××¤×¨×³_×ž××™_×™×•× ×™_×™×•×œ×™_××•×’×³_×¡×¤×˜×³_××•×§×³_× ×•×‘×³_×“×¦×ž×³'.split('_'),
-        weekdays : '×¨××©×•×Ÿ_×©× ×™_×©×œ×™×©×™_×¨×‘×™×¢×™_×—×ž×™×©×™_×©×™×©×™_×©×‘×ª'.split('_'),
-        weekdaysShort : '××³_×‘×³_×’×³_×“×³_×”×³_×•×³_×©×³'.split('_'),
-        weekdaysMin : '×_×‘_×’_×“_×”_×•_×©'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D [×‘]MMMM YYYY',
-            LLL : 'D [×‘]MMMM YYYY HH:mm',
-            LLLL : 'dddd, D [×‘]MMMM YYYY HH:mm',
-            l : 'D/M/YYYY',
-            ll : 'D MMM YYYY',
-            lll : 'D MMM YYYY HH:mm',
-            llll : 'ddd, D MMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[×”×™×•× ×‘Ö¾]LT',
-            nextDay : '[×ž×—×¨ ×‘Ö¾]LT',
-            nextWeek : 'dddd [×‘×©×¢×”] LT',
-            lastDay : '[××ª×ž×•×œ ×‘Ö¾]LT',
-            lastWeek : '[×‘×™×•×] dddd [×”××—×¨×•×Ÿ ×‘×©×¢×”] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '×‘×¢×•×“ %s',
-            past : '×œ×¤× ×™ %s',
-            s : '×ž×¡×¤×¨ ×©× ×™×•×ª',
-            m : '×“×§×”',
-            mm : '%d ×“×§×•×ª',
-            h : '×©×¢×”',
-            hh : function (number) {
-                if (number === 2) {
-                    return '×©×¢×ª×™×™×';
-                }
-                return number + ' ×©×¢×•×ª';
-            },
-            d : '×™×•×',
-            dd : function (number) {
-                if (number === 2) {
-                    return '×™×•×ž×™×™×';
-                }
-                return number + ' ×™×ž×™×';
-            },
-            M : '×—×•×“×©',
-            MM : function (number) {
-                if (number === 2) {
-                    return '×—×•×“×©×™×™×';
-                }
-                return number + ' ×—×•×“×©×™×';
-            },
-            y : '×©× ×”',
-            yy : function (number) {
-                if (number === 2) {
-                    return '×©× ×ª×™×™×';
-                } else if (number % 10 === 0 && number !== 10) {
-                    return number + ' ×©× ×”';
-                }
-                return number + ' ×©× ×™×';
-            }
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : hindi (hi)
-    //! author : Mayank Singhal : https://github.com/mayanksinghal
-
-    var hi__symbolMap = {
-        '1': 'à¥§',
-        '2': 'à¥¨',
-        '3': 'à¥©',
-        '4': 'à¥ª',
-        '5': 'à¥«',
-        '6': 'à¥¬',
-        '7': 'à¥­',
-        '8': 'à¥®',
-        '9': 'à¥¯',
-        '0': 'à¥¦'
-    },
-    hi__numberMap = {
-        'à¥§': '1',
-        'à¥¨': '2',
-        'à¥©': '3',
-        'à¥ª': '4',
-        'à¥«': '5',
-        'à¥¬': '6',
-        'à¥­': '7',
-        'à¥®': '8',
-        'à¥¯': '9',
-        'à¥¦': '0'
-    };
-
-    var hi = moment.defineLocale('hi', {
-        months : 'à¤œà¤¨à¤µà¤°à¥€_à¤«à¤¼à¤°à¤µà¤°à¥€_à¤®à¤¾à¤°à¥à¤š_à¤…à¤ªà¥à¤°à¥ˆà¤²_à¤®à¤ˆ_à¤œà¥‚à¤¨_à¤œà¥à¤²à¤¾à¤ˆ_à¤…à¤—à¤¸à¥à¤¤_à¤¸à¤¿à¤¤à¤®à¥à¤¬à¤°_à¤…à¤•à¥à¤Ÿà¥‚à¤¬à¤°_à¤¨à¤µà¤®à¥à¤¬à¤°_à¤¦à¤¿à¤¸à¤®à¥à¤¬à¤°'.split('_'),
-        monthsShort : 'à¤œà¤¨._à¤«à¤¼à¤°._à¤®à¤¾à¤°à¥à¤š_à¤…à¤ªà¥à¤°à¥ˆ._à¤®à¤ˆ_à¤œà¥‚à¤¨_à¤œà¥à¤²._à¤…à¤—._à¤¸à¤¿à¤¤._à¤…à¤•à¥à¤Ÿà¥‚._à¤¨à¤µ._à¤¦à¤¿à¤¸.'.split('_'),
-        weekdays : 'à¤°à¤µà¤¿à¤µà¤¾à¤°_à¤¸à¥‹à¤®à¤µà¤¾à¤°_à¤®à¤‚à¤—à¤²à¤µà¤¾à¤°_à¤¬à¥à¤§à¤µà¤¾à¤°_à¤—à¥à¤°à¥‚à¤µà¤¾à¤°_à¤¶à¥à¤•à¥à¤°à¤µà¤¾à¤°_à¤¶à¤¨à¤¿à¤µà¤¾à¤°'.split('_'),
-        weekdaysShort : 'à¤°à¤µà¤¿_à¤¸à¥‹à¤®_à¤®à¤‚à¤—à¤²_à¤¬à¥à¤§_à¤—à¥à¤°à¥‚_à¤¶à¥à¤•à¥à¤°_à¤¶à¤¨à¤¿'.split('_'),
-        weekdaysMin : 'à¤°_à¤¸à¥‹_à¤®à¤‚_à¤¬à¥_à¤—à¥_à¤¶à¥_à¤¶'.split('_'),
-        longDateFormat : {
-            LT : 'A h:mm à¤¬à¤œà¥‡',
-            LTS : 'A h:mm:ss à¤¬à¤œà¥‡',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY, A h:mm à¤¬à¤œà¥‡',
-            LLLL : 'dddd, D MMMM YYYY, A h:mm à¤¬à¤œà¥‡'
-        },
-        calendar : {
-            sameDay : '[à¤†à¤œ] LT',
-            nextDay : '[à¤•à¤²] LT',
-            nextWeek : 'dddd, LT',
-            lastDay : '[à¤•à¤²] LT',
-            lastWeek : '[à¤ªà¤¿à¤›à¤²à¥‡] dddd, LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s à¤®à¥‡à¤‚',
-            past : '%s à¤ªà¤¹à¤²à¥‡',
-            s : 'à¤•à¥à¤› à¤¹à¥€ à¤•à¥à¤·à¤£',
-            m : 'à¤à¤• à¤®à¤¿à¤¨à¤Ÿ',
-            mm : '%d à¤®à¤¿à¤¨à¤Ÿ',
-            h : 'à¤à¤• à¤˜à¤‚à¤Ÿà¤¾',
-            hh : '%d à¤˜à¤‚à¤Ÿà¥‡',
-            d : 'à¤à¤• à¤¦à¤¿à¤¨',
-            dd : '%d à¤¦à¤¿à¤¨',
-            M : 'à¤à¤• à¤®à¤¹à¥€à¤¨à¥‡',
-            MM : '%d à¤®à¤¹à¥€à¤¨à¥‡',
-            y : 'à¤à¤• à¤µà¤°à¥à¤·',
-            yy : '%d à¤µà¤°à¥à¤·'
-        },
-        preparse: function (string) {
-            return string.replace(/[à¥§à¥¨à¥©à¥ªà¥«à¥¬à¥­à¥®à¥¯à¥¦]/g, function (match) {
-                return hi__numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return hi__symbolMap[match];
-            });
-        },
-        // Hindi notation for meridiems are quite fuzzy in practice. While there exists
-        // a rigid notion of a 'Pahar' it is not used as rigidly in modern Hindi.
-        meridiemParse: /à¤°à¤¾à¤¤|à¤¸à¥à¤¬à¤¹|à¤¦à¥‹à¤ªà¤¹à¤°|à¤¶à¤¾à¤®/,
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'à¤°à¤¾à¤¤') {
-                return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'à¤¸à¥à¤¬à¤¹') {
-                return hour;
-            } else if (meridiem === 'à¤¦à¥‹à¤ªà¤¹à¤°') {
-                return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'à¤¶à¤¾à¤®') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'à¤°à¤¾à¤¤';
-            } else if (hour < 10) {
-                return 'à¤¸à¥à¤¬à¤¹';
-            } else if (hour < 17) {
-                return 'à¤¦à¥‹à¤ªà¤¹à¤°';
-            } else if (hour < 20) {
-                return 'à¤¶à¤¾à¤®';
-            } else {
-                return 'à¤°à¤¾à¤¤';
-            }
-        },
-        week : {
-            dow : 0, // Sunday is the first day of the week.
-            doy : 6  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : hrvatski (hr)
-    //! author : Bojan MarkoviÄ‡ : https://github.com/bmarkovic
-
-    function hr__translate(number, withoutSuffix, key) {
-        var result = number + ' ';
-        switch (key) {
-        case 'm':
-            return withoutSuffix ? 'jedna minuta' : 'jedne minute';
-        case 'mm':
-            if (number === 1) {
-                result += 'minuta';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'minute';
-            } else {
-                result += 'minuta';
-            }
-            return result;
-        case 'h':
-            return withoutSuffix ? 'jedan sat' : 'jednog sata';
-        case 'hh':
-            if (number === 1) {
-                result += 'sat';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'sata';
-            } else {
-                result += 'sati';
-            }
-            return result;
-        case 'dd':
-            if (number === 1) {
-                result += 'dan';
-            } else {
-                result += 'dana';
-            }
-            return result;
-        case 'MM':
-            if (number === 1) {
-                result += 'mjesec';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'mjeseca';
-            } else {
-                result += 'mjeseci';
-            }
-            return result;
-        case 'yy':
-            if (number === 1) {
-                result += 'godina';
-            } else if (number === 2 || number === 3 || number === 4) {
-                result += 'godine';
-            } else {
-                result += 'godina';
-            }
-            return result;
-        }
-    }
-
-    var hr = moment.defineLocale('hr', {
-        months : {
-            format: 'sijeÄnja_veljaÄe_oÅ¾ujka_travnja_svibnja_lipnja_srpnja_kolovoza_rujna_listopada_studenoga_prosinca'.split('_'),
-            standalone: 'sijeÄanj_veljaÄa_oÅ¾ujak_travanj_svibanj_lipanj_srpanj_kolovoz_rujan_listopad_studeni_prosinac'.split('_')
-        },
-        monthsShort : 'sij._velj._oÅ¾u._tra._svi._lip._srp._kol._ruj._lis._stu._pro.'.split('_'),
-        weekdays : 'nedjelja_ponedjeljak_utorak_srijeda_Äetvrtak_petak_subota'.split('_'),
-        weekdaysShort : 'ned._pon._uto._sri._Äet._pet._sub.'.split('_'),
-        weekdaysMin : 'ne_po_ut_sr_Äe_pe_su'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD. MM. YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY H:mm',
-            LLLL : 'dddd, D. MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay  : '[danas u] LT',
-            nextDay  : '[sutra u] LT',
-            nextWeek : function () {
-                switch (this.day()) {
-                case 0:
-                    return '[u] [nedjelju] [u] LT';
-                case 3:
-                    return '[u] [srijedu] [u] LT';
-                case 6:
-                    return '[u] [subotu] [u] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[u] dddd [u] LT';
-                }
-            },
-            lastDay  : '[juÄer u] LT',
-            lastWeek : function () {
-                switch (this.day()) {
-                case 0:
-                case 3:
-                    return '[proÅ¡lu] dddd [u] LT';
-                case 6:
-                    return '[proÅ¡le] [subote] [u] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[proÅ¡li] dddd [u] LT';
-                }
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'za %s',
-            past   : 'prije %s',
-            s      : 'par sekundi',
-            m      : hr__translate,
-            mm     : hr__translate,
-            h      : hr__translate,
-            hh     : hr__translate,
-            d      : 'dan',
-            dd     : hr__translate,
-            M      : 'mjesec',
-            MM     : hr__translate,
-            y      : 'godinu',
-            yy     : hr__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : hungarian (hu)
-    //! author : Adam Brunner : https://github.com/adambrunner
-
-    var weekEndings = 'vasÃ¡rnap hÃ©tfÅ‘n kedden szerdÃ¡n csÃ¼tÃ¶rtÃ¶kÃ¶n pÃ©nteken szombaton'.split(' ');
-    function hu__translate(number, withoutSuffix, key, isFuture) {
-        var num = number,
-            suffix;
-        switch (key) {
-        case 's':
-            return (isFuture || withoutSuffix) ? 'nÃ©hÃ¡ny mÃ¡sodperc' : 'nÃ©hÃ¡ny mÃ¡sodperce';
-        case 'm':
-            return 'egy' + (isFuture || withoutSuffix ? ' perc' : ' perce');
-        case 'mm':
-            return num + (isFuture || withoutSuffix ? ' perc' : ' perce');
-        case 'h':
-            return 'egy' + (isFuture || withoutSuffix ? ' Ã³ra' : ' Ã³rÃ¡ja');
-        case 'hh':
-            return num + (isFuture || withoutSuffix ? ' Ã³ra' : ' Ã³rÃ¡ja');
-        case 'd':
-            return 'egy' + (isFuture || withoutSuffix ? ' nap' : ' napja');
-        case 'dd':
-            return num + (isFuture || withoutSuffix ? ' nap' : ' napja');
-        case 'M':
-            return 'egy' + (isFuture || withoutSuffix ? ' hÃ³nap' : ' hÃ³napja');
-        case 'MM':
-            return num + (isFuture || withoutSuffix ? ' hÃ³nap' : ' hÃ³napja');
-        case 'y':
-            return 'egy' + (isFuture || withoutSuffix ? ' Ã©v' : ' Ã©ve');
-        case 'yy':
-            return num + (isFuture || withoutSuffix ? ' Ã©v' : ' Ã©ve');
-        }
-        return '';
-    }
-    function week(isFuture) {
-        return (isFuture ? '' : '[mÃºlt] ') + '[' + weekEndings[this.day()] + '] LT[-kor]';
-    }
-
-    var hu = moment.defineLocale('hu', {
-        months : 'januÃ¡r_februÃ¡r_mÃ¡rcius_Ã¡prilis_mÃ¡jus_jÃºnius_jÃºlius_augusztus_szeptember_oktÃ³ber_november_december'.split('_'),
-        monthsShort : 'jan_feb_mÃ¡rc_Ã¡pr_mÃ¡j_jÃºn_jÃºl_aug_szept_okt_nov_dec'.split('_'),
-        weekdays : 'vasÃ¡rnap_hÃ©tfÅ‘_kedd_szerda_csÃ¼tÃ¶rtÃ¶k_pÃ©ntek_szombat'.split('_'),
-        weekdaysShort : 'vas_hÃ©t_kedd_sze_csÃ¼t_pÃ©n_szo'.split('_'),
-        weekdaysMin : 'v_h_k_sze_cs_p_szo'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'YYYY.MM.DD.',
-            LL : 'YYYY. MMMM D.',
-            LLL : 'YYYY. MMMM D. H:mm',
-            LLLL : 'YYYY. MMMM D., dddd H:mm'
-        },
-        meridiemParse: /de|du/i,
-        isPM: function (input) {
-            return input.charAt(1).toLowerCase() === 'u';
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours < 12) {
-                return isLower === true ? 'de' : 'DE';
-            } else {
-                return isLower === true ? 'du' : 'DU';
-            }
-        },
-        calendar : {
-            sameDay : '[ma] LT[-kor]',
-            nextDay : '[holnap] LT[-kor]',
-            nextWeek : function () {
-                return week.call(this, true);
-            },
-            lastDay : '[tegnap] LT[-kor]',
-            lastWeek : function () {
-                return week.call(this, false);
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s mÃºlva',
-            past : '%s',
-            s : hu__translate,
-            m : hu__translate,
-            mm : hu__translate,
-            h : hu__translate,
-            hh : hu__translate,
-            d : hu__translate,
-            dd : hu__translate,
-            M : hu__translate,
-            MM : hu__translate,
-            y : hu__translate,
-            yy : hu__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Armenian (hy-am)
-    //! author : Armendarabyan : https://github.com/armendarabyan
-
-    var hy_am = moment.defineLocale('hy-am', {
-        months : {
-            format: 'Õ°Õ¸Ö‚Õ¶Õ¾Õ¡Ö€Õ«_ÖƒÕ¥Õ¿Ö€Õ¾Õ¡Ö€Õ«_Õ´Õ¡Ö€Õ¿Õ«_Õ¡ÕºÖ€Õ«Õ¬Õ«_Õ´Õ¡ÕµÕ«Õ½Õ«_Õ°Õ¸Ö‚Õ¶Õ«Õ½Õ«_Õ°Õ¸Ö‚Õ¬Õ«Õ½Õ«_Ö…Õ£Õ¸Õ½Õ¿Õ¸Õ½Õ«_Õ½Õ¥ÕºÕ¿Õ¥Õ´Õ¢Õ¥Ö€Õ«_Õ°Õ¸Õ¯Õ¿Õ¥Õ´Õ¢Õ¥Ö€Õ«_Õ¶Õ¸ÕµÕ¥Õ´Õ¢Õ¥Ö€Õ«_Õ¤Õ¥Õ¯Õ¿Õ¥Õ´Õ¢Õ¥Ö€Õ«'.split('_'),
-            standalone: 'Õ°Õ¸Ö‚Õ¶Õ¾Õ¡Ö€_ÖƒÕ¥Õ¿Ö€Õ¾Õ¡Ö€_Õ´Õ¡Ö€Õ¿_Õ¡ÕºÖ€Õ«Õ¬_Õ´Õ¡ÕµÕ«Õ½_Õ°Õ¸Ö‚Õ¶Õ«Õ½_Õ°Õ¸Ö‚Õ¬Õ«Õ½_Ö…Õ£Õ¸Õ½Õ¿Õ¸Õ½_Õ½Õ¥ÕºÕ¿Õ¥Õ´Õ¢Õ¥Ö€_Õ°Õ¸Õ¯Õ¿Õ¥Õ´Õ¢Õ¥Ö€_Õ¶Õ¸ÕµÕ¥Õ´Õ¢Õ¥Ö€_Õ¤Õ¥Õ¯Õ¿Õ¥Õ´Õ¢Õ¥Ö€'.split('_')
-        },
-        monthsShort : 'Õ°Õ¶Õ¾_ÖƒÕ¿Ö€_Õ´Ö€Õ¿_Õ¡ÕºÖ€_Õ´ÕµÕ½_Õ°Õ¶Õ½_Õ°Õ¬Õ½_Ö…Õ£Õ½_Õ½ÕºÕ¿_Õ°Õ¯Õ¿_Õ¶Õ´Õ¢_Õ¤Õ¯Õ¿'.split('_'),
-        weekdays : 'Õ¯Õ«Ö€Õ¡Õ¯Õ«_Õ¥Ö€Õ¯Õ¸Ö‚Õ·Õ¡Õ¢Õ©Õ«_Õ¥Ö€Õ¥Ö„Õ·Õ¡Õ¢Õ©Õ«_Õ¹Õ¸Ö€Õ¥Ö„Õ·Õ¡Õ¢Õ©Õ«_Õ°Õ«Õ¶Õ£Õ·Õ¡Õ¢Õ©Õ«_Õ¸Ö‚Ö€Õ¢Õ¡Õ©_Õ·Õ¡Õ¢Õ¡Õ©'.split('_'),
-        weekdaysShort : 'Õ¯Ö€Õ¯_Õ¥Ö€Õ¯_Õ¥Ö€Ö„_Õ¹Ö€Ö„_Õ°Õ¶Õ£_Õ¸Ö‚Ö€Õ¢_Õ·Õ¢Õ©'.split('_'),
-        weekdaysMin : 'Õ¯Ö€Õ¯_Õ¥Ö€Õ¯_Õ¥Ö€Ö„_Õ¹Ö€Ö„_Õ°Õ¶Õ£_Õ¸Ö‚Ö€Õ¢_Õ·Õ¢Õ©'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY Õ©.',
-            LLL : 'D MMMM YYYY Õ©., HH:mm',
-            LLLL : 'dddd, D MMMM YYYY Õ©., HH:mm'
-        },
-        calendar : {
-            sameDay: '[Õ¡ÕµÕ½Ö…Ö€] LT',
-            nextDay: '[Õ¾Õ¡Õ²Õ¨] LT',
-            lastDay: '[Õ¥Ö€Õ¥Õ¯] LT',
-            nextWeek: function () {
-                return 'dddd [Ö…Ö€Õ¨ ÕªÕ¡Õ´Õ¨] LT';
-            },
-            lastWeek: function () {
-                return '[Õ¡Õ¶ÖÕ¡Õ®] dddd [Ö…Ö€Õ¨ ÕªÕ¡Õ´Õ¨] LT';
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : '%s Õ°Õ¥Õ¿Õ¸',
-            past : '%s Õ¡Õ¼Õ¡Õ»',
-            s : 'Õ´Õ« Ö„Õ¡Õ¶Õ« Õ¾Õ¡ÕµÖ€Õ¯ÕµÕ¡Õ¶',
-            m : 'Ö€Õ¸ÕºÕ¥',
-            mm : '%d Ö€Õ¸ÕºÕ¥',
-            h : 'ÕªÕ¡Õ´',
-            hh : '%d ÕªÕ¡Õ´',
-            d : 'Ö…Ö€',
-            dd : '%d Ö…Ö€',
-            M : 'Õ¡Õ´Õ«Õ½',
-            MM : '%d Õ¡Õ´Õ«Õ½',
-            y : 'Õ¿Õ¡Ö€Õ«',
-            yy : '%d Õ¿Õ¡Ö€Õ«'
-        },
-        meridiemParse: /Õ£Õ«Õ·Õ¥Ö€Õ¾Õ¡|Õ¡Õ¼Õ¡Õ¾Õ¸Õ¿Õ¾Õ¡|ÖÕ¥Ö€Õ¥Õ¯Õ¾Õ¡|Õ¥Ö€Õ¥Õ¯Õ¸ÕµÕ¡Õ¶/,
-        isPM: function (input) {
-            return /^(ÖÕ¥Ö€Õ¥Õ¯Õ¾Õ¡|Õ¥Ö€Õ¥Õ¯Õ¸ÕµÕ¡Õ¶)$/.test(input);
-        },
-        meridiem : function (hour) {
-            if (hour < 4) {
-                return 'Õ£Õ«Õ·Õ¥Ö€Õ¾Õ¡';
-            } else if (hour < 12) {
-                return 'Õ¡Õ¼Õ¡Õ¾Õ¸Õ¿Õ¾Õ¡';
-            } else if (hour < 17) {
-                return 'ÖÕ¥Ö€Õ¥Õ¯Õ¾Õ¡';
-            } else {
-                return 'Õ¥Ö€Õ¥Õ¯Õ¸ÕµÕ¡Õ¶';
-            }
-        },
-        ordinalParse: /\d{1,2}|\d{1,2}-(Õ«Õ¶|Ö€Õ¤)/,
-        ordinal: function (number, period) {
-            switch (period) {
-            case 'DDD':
-            case 'w':
-            case 'W':
-            case 'DDDo':
-                if (number === 1) {
-                    return number + '-Õ«Õ¶';
-                }
-                return number + '-Ö€Õ¤';
-            default:
-                return number;
-            }
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Bahasa Indonesia (id)
-    //! author : Mohammad Satrio Utomo : https://github.com/tyok
-    //! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
-
-    var id = moment.defineLocale('id', {
-        months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Ags_Sep_Okt_Nov_Des'.split('_'),
-        weekdays : 'Minggu_Senin_Selasa_Rabu_Kamis_Jumat_Sabtu'.split('_'),
-        weekdaysShort : 'Min_Sen_Sel_Rab_Kam_Jum_Sab'.split('_'),
-        weekdaysMin : 'Mg_Sn_Sl_Rb_Km_Jm_Sb'.split('_'),
-        longDateFormat : {
-            LT : 'HH.mm',
-            LTS : 'HH.mm.ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY [pukul] HH.mm',
-            LLLL : 'dddd, D MMMM YYYY [pukul] HH.mm'
-        },
-        meridiemParse: /pagi|siang|sore|malam/,
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'pagi') {
-                return hour;
-            } else if (meridiem === 'siang') {
-                return hour >= 11 ? hour : hour + 12;
-            } else if (meridiem === 'sore' || meridiem === 'malam') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours < 11) {
-                return 'pagi';
-            } else if (hours < 15) {
-                return 'siang';
-            } else if (hours < 19) {
-                return 'sore';
-            } else {
-                return 'malam';
-            }
-        },
-        calendar : {
-            sameDay : '[Hari ini pukul] LT',
-            nextDay : '[Besok pukul] LT',
-            nextWeek : 'dddd [pukul] LT',
-            lastDay : '[Kemarin pukul] LT',
-            lastWeek : 'dddd [lalu pukul] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'dalam %s',
-            past : '%s yang lalu',
-            s : 'beberapa detik',
-            m : 'semenit',
-            mm : '%d menit',
-            h : 'sejam',
-            hh : '%d jam',
-            d : 'sehari',
-            dd : '%d hari',
-            M : 'sebulan',
-            MM : '%d bulan',
-            y : 'setahun',
-            yy : '%d tahun'
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : icelandic (is)
-    //! author : Hinrik Ã–rn SigurÃ°sson : https://github.com/hinrik
-
-    function is__plural(n) {
-        if (n % 100 === 11) {
-            return true;
-        } else if (n % 10 === 1) {
-            return false;
-        }
-        return true;
-    }
-    function is__translate(number, withoutSuffix, key, isFuture) {
-        var result = number + ' ';
-        switch (key) {
-        case 's':
-            return withoutSuffix || isFuture ? 'nokkrar sekÃºndur' : 'nokkrum sekÃºndum';
-        case 'm':
-            return withoutSuffix ? 'mÃ­nÃºta' : 'mÃ­nÃºtu';
-        case 'mm':
-            if (is__plural(number)) {
-                return result + (withoutSuffix || isFuture ? 'mÃ­nÃºtur' : 'mÃ­nÃºtum');
-            } else if (withoutSuffix) {
-                return result + 'mÃ­nÃºta';
-            }
-            return result + 'mÃ­nÃºtu';
-        case 'hh':
-            if (is__plural(number)) {
-                return result + (withoutSuffix || isFuture ? 'klukkustundir' : 'klukkustundum');
-            }
-            return result + 'klukkustund';
-        case 'd':
-            if (withoutSuffix) {
-                return 'dagur';
-            }
-            return isFuture ? 'dag' : 'degi';
-        case 'dd':
-            if (is__plural(number)) {
-                if (withoutSuffix) {
-                    return result + 'dagar';
-                }
-                return result + (isFuture ? 'daga' : 'dÃ¶gum');
-            } else if (withoutSuffix) {
-                return result + 'dagur';
-            }
-            return result + (isFuture ? 'dag' : 'degi');
-        case 'M':
-            if (withoutSuffix) {
-                return 'mÃ¡nuÃ°ur';
-            }
-            return isFuture ? 'mÃ¡nuÃ°' : 'mÃ¡nuÃ°i';
-        case 'MM':
-            if (is__plural(number)) {
-                if (withoutSuffix) {
-                    return result + 'mÃ¡nuÃ°ir';
-                }
-                return result + (isFuture ? 'mÃ¡nuÃ°i' : 'mÃ¡nuÃ°um');
-            } else if (withoutSuffix) {
-                return result + 'mÃ¡nuÃ°ur';
-            }
-            return result + (isFuture ? 'mÃ¡nuÃ°' : 'mÃ¡nuÃ°i');
-        case 'y':
-            return withoutSuffix || isFuture ? 'Ã¡r' : 'Ã¡ri';
-        case 'yy':
-            if (is__plural(number)) {
-                return result + (withoutSuffix || isFuture ? 'Ã¡r' : 'Ã¡rum');
-            }
-            return result + (withoutSuffix || isFuture ? 'Ã¡r' : 'Ã¡ri');
-        }
-    }
-
-    var is = moment.defineLocale('is', {
-        months : 'janÃºar_febrÃºar_mars_aprÃ­l_maÃ­_jÃºnÃ­_jÃºlÃ­_Ã¡gÃºst_september_oktÃ³ber_nÃ³vember_desember'.split('_'),
-        monthsShort : 'jan_feb_mar_apr_maÃ­_jÃºn_jÃºl_Ã¡gÃº_sep_okt_nÃ³v_des'.split('_'),
-        weekdays : 'sunnudagur_mÃ¡nudagur_Ã¾riÃ°judagur_miÃ°vikudagur_fimmtudagur_fÃ¶studagur_laugardagur'.split('_'),
-        weekdaysShort : 'sun_mÃ¡n_Ã¾ri_miÃ°_fim_fÃ¶s_lau'.split('_'),
-        weekdaysMin : 'Su_MÃ¡_Ãžr_Mi_Fi_FÃ¶_La'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY [kl.] H:mm',
-            LLLL : 'dddd, D. MMMM YYYY [kl.] H:mm'
-        },
-        calendar : {
-            sameDay : '[Ã­ dag kl.] LT',
-            nextDay : '[Ã¡ morgun kl.] LT',
-            nextWeek : 'dddd [kl.] LT',
-            lastDay : '[Ã­ gÃ¦r kl.] LT',
-            lastWeek : '[sÃ­Ã°asta] dddd [kl.] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'eftir %s',
-            past : 'fyrir %s sÃ­Ã°an',
-            s : is__translate,
-            m : is__translate,
-            mm : is__translate,
-            h : 'klukkustund',
-            hh : is__translate,
-            d : is__translate,
-            dd : is__translate,
-            M : is__translate,
-            MM : is__translate,
-            y : is__translate,
-            yy : is__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : italian (it)
-    //! author : Lorenzo : https://github.com/aliem
-    //! author: Mattia Larentis: https://github.com/nostalgiaz
-
-    var it = moment.defineLocale('it', {
-        months : 'gennaio_febbraio_marzo_aprile_maggio_giugno_luglio_agosto_settembre_ottobre_novembre_dicembre'.split('_'),
-        monthsShort : 'gen_feb_mar_apr_mag_giu_lug_ago_set_ott_nov_dic'.split('_'),
-        weekdays : 'Domenica_LunedÃ¬_MartedÃ¬_MercoledÃ¬_GiovedÃ¬_VenerdÃ¬_Sabato'.split('_'),
-        weekdaysShort : 'Dom_Lun_Mar_Mer_Gio_Ven_Sab'.split('_'),
-        weekdaysMin : 'Do_Lu_Ma_Me_Gi_Ve_Sa'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[Oggi alle] LT',
-            nextDay: '[Domani alle] LT',
-            nextWeek: 'dddd [alle] LT',
-            lastDay: '[Ieri alle] LT',
-            lastWeek: function () {
-                switch (this.day()) {
-                    case 0:
-                        return '[la scorsa] dddd [alle] LT';
-                    default:
-                        return '[lo scorso] dddd [alle] LT';
-                }
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : function (s) {
-                return ((/^[0-9].+$/).test(s) ? 'tra' : 'in') + ' ' + s;
-            },
-            past : '%s fa',
-            s : 'alcuni secondi',
-            m : 'un minuto',
-            mm : '%d minuti',
-            h : 'un\'ora',
-            hh : '%d ore',
-            d : 'un giorno',
-            dd : '%d giorni',
-            M : 'un mese',
-            MM : '%d mesi',
-            y : 'un anno',
-            yy : '%d anni'
-        },
-        ordinalParse : /\d{1,2}Âº/,
-        ordinal: '%dÂº',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : japanese (ja)
-    //! author : LI Long : https://github.com/baryon
-
-    var ja = moment.defineLocale('ja', {
-        months : '1æœˆ_2æœˆ_3æœˆ_4æœˆ_5æœˆ_6æœˆ_7æœˆ_8æœˆ_9æœˆ_10æœˆ_11æœˆ_12æœˆ'.split('_'),
-        monthsShort : '1æœˆ_2æœˆ_3æœˆ_4æœˆ_5æœˆ_6æœˆ_7æœˆ_8æœˆ_9æœˆ_10æœˆ_11æœˆ_12æœˆ'.split('_'),
-        weekdays : 'æ—¥æ›œæ—¥_æœˆæ›œæ—¥_ç«æ›œæ—¥_æ°´æ›œæ—¥_æœ¨æ›œæ—¥_é‡‘æ›œæ—¥_åœŸæ›œæ—¥'.split('_'),
-        weekdaysShort : 'æ—¥_æœˆ_ç«_æ°´_æœ¨_é‡‘_åœŸ'.split('_'),
-        weekdaysMin : 'æ—¥_æœˆ_ç«_æ°´_æœ¨_é‡‘_åœŸ'.split('_'),
-        longDateFormat : {
-            LT : 'Ahæ™‚måˆ†',
-            LTS : 'Ahæ™‚måˆ†sç§’',
-            L : 'YYYY/MM/DD',
-            LL : 'YYYYå¹´MæœˆDæ—¥',
-            LLL : 'YYYYå¹´MæœˆDæ—¥Ahæ™‚måˆ†',
-            LLLL : 'YYYYå¹´MæœˆDæ—¥Ahæ™‚måˆ† dddd'
-        },
-        meridiemParse: /åˆå‰|åˆå¾Œ/i,
-        isPM : function (input) {
-            return input === 'åˆå¾Œ';
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 12) {
-                return 'åˆå‰';
-            } else {
-                return 'åˆå¾Œ';
-            }
-        },
-        calendar : {
-            sameDay : '[ä»Šæ—¥] LT',
-            nextDay : '[æ˜Žæ—¥] LT',
-            nextWeek : '[æ¥é€±]dddd LT',
-            lastDay : '[æ˜¨æ—¥] LT',
-            lastWeek : '[å‰é€±]dddd LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%så¾Œ',
-            past : '%så‰',
-            s : 'æ•°ç§’',
-            m : '1åˆ†',
-            mm : '%dåˆ†',
-            h : '1æ™‚é–“',
-            hh : '%dæ™‚é–“',
-            d : '1æ—¥',
-            dd : '%dæ—¥',
-            M : '1ãƒ¶æœˆ',
-            MM : '%dãƒ¶æœˆ',
-            y : '1å¹´',
-            yy : '%då¹´'
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Boso Jowo (jv)
-    //! author : Rony Lantip : https://github.com/lantip
-    //! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
-
-    var jv = moment.defineLocale('jv', {
-        months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_Nopember_Desember'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Ags_Sep_Okt_Nop_Des'.split('_'),
-        weekdays : 'Minggu_Senen_Seloso_Rebu_Kemis_Jemuwah_Septu'.split('_'),
-        weekdaysShort : 'Min_Sen_Sel_Reb_Kem_Jem_Sep'.split('_'),
-        weekdaysMin : 'Mg_Sn_Sl_Rb_Km_Jm_Sp'.split('_'),
-        longDateFormat : {
-            LT : 'HH.mm',
-            LTS : 'HH.mm.ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY [pukul] HH.mm',
-            LLLL : 'dddd, D MMMM YYYY [pukul] HH.mm'
-        },
-        meridiemParse: /enjing|siyang|sonten|ndalu/,
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'enjing') {
-                return hour;
-            } else if (meridiem === 'siyang') {
-                return hour >= 11 ? hour : hour + 12;
-            } else if (meridiem === 'sonten' || meridiem === 'ndalu') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours < 11) {
-                return 'enjing';
-            } else if (hours < 15) {
-                return 'siyang';
-            } else if (hours < 19) {
-                return 'sonten';
-            } else {
-                return 'ndalu';
-            }
-        },
-        calendar : {
-            sameDay : '[Dinten puniko pukul] LT',
-            nextDay : '[Mbenjang pukul] LT',
-            nextWeek : 'dddd [pukul] LT',
-            lastDay : '[Kala wingi pukul] LT',
-            lastWeek : 'dddd [kepengker pukul] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'wonten ing %s',
-            past : '%s ingkang kepengker',
-            s : 'sawetawis detik',
-            m : 'setunggal menit',
-            mm : '%d menit',
-            h : 'setunggal jam',
-            hh : '%d jam',
-            d : 'sedinten',
-            dd : '%d dinten',
-            M : 'sewulan',
-            MM : '%d wulan',
-            y : 'setaun',
-            yy : '%d taun'
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Georgian (ka)
-    //! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
-
-    var ka = moment.defineLocale('ka', {
-        months : {
-            standalone: 'áƒ˜áƒáƒœáƒ•áƒáƒ áƒ˜_áƒ—áƒ”áƒ‘áƒ”áƒ áƒ•áƒáƒšáƒ˜_áƒ›áƒáƒ áƒ¢áƒ˜_áƒáƒžáƒ áƒ˜áƒšáƒ˜_áƒ›áƒáƒ˜áƒ¡áƒ˜_áƒ˜áƒ•áƒœáƒ˜áƒ¡áƒ˜_áƒ˜áƒ•áƒšáƒ˜áƒ¡áƒ˜_áƒáƒ’áƒ•áƒ˜áƒ¡áƒ¢áƒ_áƒ¡áƒ”áƒ¥áƒ¢áƒ”áƒ›áƒ‘áƒ”áƒ áƒ˜_áƒáƒ¥áƒ¢áƒáƒ›áƒ‘áƒ”áƒ áƒ˜_áƒœáƒáƒ”áƒ›áƒ‘áƒ”áƒ áƒ˜_áƒ“áƒ”áƒ™áƒ”áƒ›áƒ‘áƒ”áƒ áƒ˜'.split('_'),
-            format: 'áƒ˜áƒáƒœáƒ•áƒáƒ áƒ¡_áƒ—áƒ”áƒ‘áƒ”áƒ áƒ•áƒáƒšáƒ¡_áƒ›áƒáƒ áƒ¢áƒ¡_áƒáƒžáƒ áƒ˜áƒšáƒ˜áƒ¡_áƒ›áƒáƒ˜áƒ¡áƒ¡_áƒ˜áƒ•áƒœáƒ˜áƒ¡áƒ¡_áƒ˜áƒ•áƒšáƒ˜áƒ¡áƒ¡_áƒáƒ’áƒ•áƒ˜áƒ¡áƒ¢áƒ¡_áƒ¡áƒ”áƒ¥áƒ¢áƒ”áƒ›áƒ‘áƒ”áƒ áƒ¡_áƒáƒ¥áƒ¢áƒáƒ›áƒ‘áƒ”áƒ áƒ¡_áƒœáƒáƒ”áƒ›áƒ‘áƒ”áƒ áƒ¡_áƒ“áƒ”áƒ™áƒ”áƒ›áƒ‘áƒ”áƒ áƒ¡'.split('_')
-        },
-        monthsShort : 'áƒ˜áƒáƒœ_áƒ—áƒ”áƒ‘_áƒ›áƒáƒ _áƒáƒžáƒ _áƒ›áƒáƒ˜_áƒ˜áƒ•áƒœ_áƒ˜áƒ•áƒš_áƒáƒ’áƒ•_áƒ¡áƒ”áƒ¥_áƒáƒ¥áƒ¢_áƒœáƒáƒ”_áƒ“áƒ”áƒ™'.split('_'),
-        weekdays : {
-            standalone: 'áƒ™áƒ•áƒ˜áƒ áƒ_áƒáƒ áƒ¨áƒáƒ‘áƒáƒ—áƒ˜_áƒ¡áƒáƒ›áƒ¨áƒáƒ‘áƒáƒ—áƒ˜_áƒáƒ—áƒ®áƒ¨áƒáƒ‘áƒáƒ—áƒ˜_áƒ®áƒ£áƒ—áƒ¨áƒáƒ‘áƒáƒ—áƒ˜_áƒžáƒáƒ áƒáƒ¡áƒ™áƒ”áƒ•áƒ˜_áƒ¨áƒáƒ‘áƒáƒ—áƒ˜'.split('_'),
-            format: 'áƒ™áƒ•áƒ˜áƒ áƒáƒ¡_áƒáƒ áƒ¨áƒáƒ‘áƒáƒ—áƒ¡_áƒ¡áƒáƒ›áƒ¨áƒáƒ‘áƒáƒ—áƒ¡_áƒáƒ—áƒ®áƒ¨áƒáƒ‘áƒáƒ—áƒ¡_áƒ®áƒ£áƒ—áƒ¨áƒáƒ‘áƒáƒ—áƒ¡_áƒžáƒáƒ áƒáƒ¡áƒ™áƒ”áƒ•áƒ¡_áƒ¨áƒáƒ‘áƒáƒ—áƒ¡'.split('_'),
-            isFormat: /(áƒ¬áƒ˜áƒœáƒ|áƒ¨áƒ”áƒ›áƒ“áƒ”áƒ’)/
-        },
-        weekdaysShort : 'áƒ™áƒ•áƒ˜_áƒáƒ áƒ¨_áƒ¡áƒáƒ›_áƒáƒ—áƒ®_áƒ®áƒ£áƒ—_áƒžáƒáƒ _áƒ¨áƒáƒ‘'.split('_'),
-        weekdaysMin : 'áƒ™áƒ•_áƒáƒ _áƒ¡áƒ_áƒáƒ—_áƒ®áƒ£_áƒžáƒ_áƒ¨áƒ'.split('_'),
-        longDateFormat : {
-            LT : 'h:mm A',
-            LTS : 'h:mm:ss A',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY h:mm A',
-            LLLL : 'dddd, D MMMM YYYY h:mm A'
-        },
-        calendar : {
-            sameDay : '[áƒ“áƒ¦áƒ”áƒ¡] LT[-áƒ–áƒ”]',
-            nextDay : '[áƒ®áƒ•áƒáƒš] LT[-áƒ–áƒ”]',
-            lastDay : '[áƒ’áƒ£áƒ¨áƒ˜áƒœ] LT[-áƒ–áƒ”]',
-            nextWeek : '[áƒ¨áƒ”áƒ›áƒ“áƒ”áƒ’] dddd LT[-áƒ–áƒ”]',
-            lastWeek : '[áƒ¬áƒ˜áƒœáƒ] dddd LT-áƒ–áƒ”',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : function (s) {
-                return (/(áƒ¬áƒáƒ›áƒ˜|áƒ¬áƒ£áƒ—áƒ˜|áƒ¡áƒáƒáƒ—áƒ˜|áƒ¬áƒ”áƒšáƒ˜)/).test(s) ?
-                    s.replace(/áƒ˜$/, 'áƒ¨áƒ˜') :
-                    s + 'áƒ¨áƒ˜';
-            },
-            past : function (s) {
-                if ((/(áƒ¬áƒáƒ›áƒ˜|áƒ¬áƒ£áƒ—áƒ˜|áƒ¡áƒáƒáƒ—áƒ˜|áƒ“áƒ¦áƒ”|áƒ—áƒ•áƒ”)/).test(s)) {
-                    return s.replace(/(áƒ˜|áƒ”)$/, 'áƒ˜áƒ¡ áƒ¬áƒ˜áƒœ');
-                }
-                if ((/áƒ¬áƒ”áƒšáƒ˜/).test(s)) {
-                    return s.replace(/áƒ¬áƒ”áƒšáƒ˜$/, 'áƒ¬áƒšáƒ˜áƒ¡ áƒ¬áƒ˜áƒœ');
-                }
-            },
-            s : 'áƒ áƒáƒ›áƒ“áƒ”áƒœáƒ˜áƒ›áƒ” áƒ¬áƒáƒ›áƒ˜',
-            m : 'áƒ¬áƒ£áƒ—áƒ˜',
-            mm : '%d áƒ¬áƒ£áƒ—áƒ˜',
-            h : 'áƒ¡áƒáƒáƒ—áƒ˜',
-            hh : '%d áƒ¡áƒáƒáƒ—áƒ˜',
-            d : 'áƒ“áƒ¦áƒ”',
-            dd : '%d áƒ“áƒ¦áƒ”',
-            M : 'áƒ—áƒ•áƒ”',
-            MM : '%d áƒ—áƒ•áƒ”',
-            y : 'áƒ¬áƒ”áƒšáƒ˜',
-            yy : '%d áƒ¬áƒ”áƒšáƒ˜'
-        },
-        ordinalParse: /0|1-áƒšáƒ˜|áƒ›áƒ”-\d{1,2}|\d{1,2}-áƒ”/,
-        ordinal : function (number) {
-            if (number === 0) {
-                return number;
-            }
-            if (number === 1) {
-                return number + '-áƒšáƒ˜';
-            }
-            if ((number < 20) || (number <= 100 && (number % 20 === 0)) || (number % 100 === 0)) {
-                return 'áƒ›áƒ”-' + number;
-            }
-            return number + '-áƒ”';
-        },
-        week : {
-            dow : 1,
-            doy : 7
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : kazakh (kk)
-    //! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
-
-    var kk__suffixes = {
-        0: '-ÑˆÑ–',
-        1: '-ÑˆÑ–',
-        2: '-ÑˆÑ–',
-        3: '-ÑˆÑ–',
-        4: '-ÑˆÑ–',
-        5: '-ÑˆÑ–',
-        6: '-ÑˆÑ‹',
-        7: '-ÑˆÑ–',
-        8: '-ÑˆÑ–',
-        9: '-ÑˆÑ‹',
-        10: '-ÑˆÑ‹',
-        20: '-ÑˆÑ‹',
-        30: '-ÑˆÑ‹',
-        40: '-ÑˆÑ‹',
-        50: '-ÑˆÑ–',
-        60: '-ÑˆÑ‹',
-        70: '-ÑˆÑ–',
-        80: '-ÑˆÑ–',
-        90: '-ÑˆÑ‹',
-        100: '-ÑˆÑ–'
-    };
-
-    var kk = moment.defineLocale('kk', {
-        months : 'ÒšÐ°Ò£Ñ‚Ð°Ñ€_ÐÒ›Ð¿Ð°Ð½_ÐÐ°ÑƒÑ€Ñ‹Ð·_Ð¡Ó™ÑƒÑ–Ñ€_ÐœÐ°Ð¼Ñ‹Ñ€_ÐœÐ°ÑƒÑÑ‹Ð¼_Ð¨Ñ–Ð»Ð´Ðµ_Ð¢Ð°Ð¼Ñ‹Ð·_ÒšÑ‹Ñ€ÐºÒ¯Ð¹ÐµÐº_ÒšÐ°Ð·Ð°Ð½_ÒšÐ°Ñ€Ð°ÑˆÐ°_Ð–ÐµÐ»Ñ‚Ð¾Ò›ÑÐ°Ð½'.split('_'),
-        monthsShort : 'ÒšÐ°Ò£_ÐÒ›Ð¿_ÐÐ°Ñƒ_Ð¡Ó™Ñƒ_ÐœÐ°Ð¼_ÐœÐ°Ñƒ_Ð¨Ñ–Ð»_Ð¢Ð°Ð¼_ÒšÑ‹Ñ€_ÒšÐ°Ð·_ÒšÐ°Ñ€_Ð–ÐµÐ»'.split('_'),
-        weekdays : 'Ð–ÐµÐºÑÐµÐ½Ð±Ñ–_Ð”Ò¯Ð¹ÑÐµÐ½Ð±Ñ–_Ð¡ÐµÐ¹ÑÐµÐ½Ð±Ñ–_Ð¡Ó™Ñ€ÑÐµÐ½Ð±Ñ–_Ð‘ÐµÐ¹ÑÐµÐ½Ð±Ñ–_Ð–Ò±Ð¼Ð°_Ð¡ÐµÐ½Ð±Ñ–'.split('_'),
-        weekdaysShort : 'Ð–ÐµÐº_Ð”Ò¯Ð¹_Ð¡ÐµÐ¹_Ð¡Ó™Ñ€_Ð‘ÐµÐ¹_Ð–Ò±Ð¼_Ð¡ÐµÐ½'.split('_'),
-        weekdaysMin : 'Ð–Ðº_Ð”Ð¹_Ð¡Ð¹_Ð¡Ñ€_Ð‘Ð¹_Ð–Ð¼_Ð¡Ð½'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[Ð‘Ò¯Ð³Ñ–Ð½ ÑÐ°Ò“Ð°Ñ‚] LT',
-            nextDay : '[Ð•Ñ€Ñ‚ÐµÒ£ ÑÐ°Ò“Ð°Ñ‚] LT',
-            nextWeek : 'dddd [ÑÐ°Ò“Ð°Ñ‚] LT',
-            lastDay : '[ÐšÐµÑˆÐµ ÑÐ°Ò“Ð°Ñ‚] LT',
-            lastWeek : '[Ó¨Ñ‚ÐºÐµÐ½ Ð°Ð¿Ñ‚Ð°Ð½Ñ‹Ò£] dddd [ÑÐ°Ò“Ð°Ñ‚] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s Ñ–ÑˆÑ–Ð½Ð´Ðµ',
-            past : '%s Ð±Ò±Ñ€Ñ‹Ð½',
-            s : 'Ð±Ñ–Ñ€Ð½ÐµÑˆÐµ ÑÐµÐºÑƒÐ½Ð´',
-            m : 'Ð±Ñ–Ñ€ Ð¼Ð¸Ð½ÑƒÑ‚',
-            mm : '%d Ð¼Ð¸Ð½ÑƒÑ‚',
-            h : 'Ð±Ñ–Ñ€ ÑÐ°Ò“Ð°Ñ‚',
-            hh : '%d ÑÐ°Ò“Ð°Ñ‚',
-            d : 'Ð±Ñ–Ñ€ ÐºÒ¯Ð½',
-            dd : '%d ÐºÒ¯Ð½',
-            M : 'Ð±Ñ–Ñ€ Ð°Ð¹',
-            MM : '%d Ð°Ð¹',
-            y : 'Ð±Ñ–Ñ€ Ð¶Ñ‹Ð»',
-            yy : '%d Ð¶Ñ‹Ð»'
-        },
-        ordinalParse: /\d{1,2}-(ÑˆÑ–|ÑˆÑ‹)/,
-        ordinal : function (number) {
-            var a = number % 10,
-                b = number >= 100 ? 100 : null;
-            return number + (kk__suffixes[number] || kk__suffixes[a] || kk__suffixes[b]);
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : khmer (km)
-    //! author : Kruy Vanna : https://github.com/kruyvanna
-
-    var km = moment.defineLocale('km', {
-        months: 'áž˜áž€ážšáž¶_áž€áž»áž˜áŸ’áž—áŸˆ_áž˜áž·áž“áž¶_áž˜áŸážŸáž¶_áž§ážŸáž—áž¶_áž˜áž·ážáž»áž“áž¶_áž€áž€áŸ’áž€ážŠáž¶_ážŸáž¸áž áž¶_áž€áž‰áŸ’áž‰áž¶_ážáž»áž›áž¶_ážœáž·áž…áŸ’áž†áž·áž€áž¶_áž’áŸ’áž“áž¼'.split('_'),
-        monthsShort: 'áž˜áž€ážšáž¶_áž€áž»áž˜áŸ’áž—áŸˆ_áž˜áž·áž“áž¶_áž˜áŸážŸáž¶_áž§ážŸáž—áž¶_áž˜áž·ážáž»áž“áž¶_áž€áž€áŸ’áž€ážŠáž¶_ážŸáž¸áž áž¶_áž€áž‰áŸ’áž‰áž¶_ážáž»áž›áž¶_ážœáž·áž…áŸ’áž†áž·áž€áž¶_áž’áŸ’áž“áž¼'.split('_'),
-        weekdays: 'áž¢áž¶áž‘áž·ážáŸ’áž™_áž…áŸáž“áŸ’áž‘_áž¢áž„áŸ’áž‚áž¶ážš_áž–áž»áž’_áž–áŸ’ážšáž ážŸáŸ’áž”ážáž·áŸ_ážŸáž»áž€áŸ’ážš_ážŸáŸ…ážšáŸ'.split('_'),
-        weekdaysShort: 'áž¢áž¶áž‘áž·ážáŸ’áž™_áž…áŸáž“áŸ’áž‘_áž¢áž„áŸ’áž‚áž¶ážš_áž–áž»áž’_áž–áŸ’ážšáž ážŸáŸ’áž”ážáž·áŸ_ážŸáž»áž€áŸ’ážš_ážŸáŸ…ážšáŸ'.split('_'),
-        weekdaysMin: 'áž¢áž¶áž‘áž·ážáŸ’áž™_áž…áŸáž“áŸ’áž‘_áž¢áž„áŸ’áž‚áž¶ážš_áž–áž»áž’_áž–áŸ’ážšáž ážŸáŸ’áž”ážáž·áŸ_ážŸáž»áž€áŸ’ážš_ážŸáŸ…ážšáŸ'.split('_'),
-        longDateFormat: {
-            LT: 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L: 'DD/MM/YYYY',
-            LL: 'D MMMM YYYY',
-            LLL: 'D MMMM YYYY HH:mm',
-            LLLL: 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar: {
-            sameDay: '[ážáŸ’áž„áŸƒáž“áŸáŸ‡ áž˜áŸ‰áŸ„áž„] LT',
-            nextDay: '[ážŸáŸ’áž¢áŸ‚áž€ áž˜áŸ‰áŸ„áž„] LT',
-            nextWeek: 'dddd [áž˜áŸ‰áŸ„áž„] LT',
-            lastDay: '[áž˜áŸ’ážŸáž·áž›áž˜áž·áž‰ áž˜áŸ‰áŸ„áž„] LT',
-            lastWeek: 'dddd [ážŸáž”áŸ’ážáž¶áž áŸáž˜áž»áž“] [áž˜áŸ‰áŸ„áž„] LT',
-            sameElse: 'L'
-        },
-        relativeTime: {
-            future: '%sáž‘áŸ€áž',
-            past: '%sáž˜áž»áž“',
-            s: 'áž”áŸ‰áž»áž“áŸ’áž˜áž¶áž“ážœáž·áž“áž¶áž‘áž¸',
-            m: 'áž˜áž½áž™áž“áž¶áž‘áž¸',
-            mm: '%d áž“áž¶áž‘áž¸',
-            h: 'áž˜áž½áž™áž˜áŸ‰áŸ„áž„',
-            hh: '%d áž˜áŸ‰áŸ„áž„',
-            d: 'áž˜áž½áž™ážáŸ’áž„áŸƒ',
-            dd: '%d ážáŸ’áž„áŸƒ',
-            M: 'áž˜áž½áž™ážáŸ‚',
-            MM: '%d ážáŸ‚',
-            y: 'áž˜áž½áž™áž†áŸ’áž“áž¶áŸ†',
-            yy: '%d áž†áŸ’áž“áž¶áŸ†'
-        },
-        week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4 // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : korean (ko)
-    //!
-    //! authors
-    //!
-    //! - Kyungwook, Park : https://github.com/kyungw00k
-    //! - Jeeeyul Lee <jeeeyul@gmail.com>
-
-    var ko = moment.defineLocale('ko', {
-        months : '1ì›”_2ì›”_3ì›”_4ì›”_5ì›”_6ì›”_7ì›”_8ì›”_9ì›”_10ì›”_11ì›”_12ì›”'.split('_'),
-        monthsShort : '1ì›”_2ì›”_3ì›”_4ì›”_5ì›”_6ì›”_7ì›”_8ì›”_9ì›”_10ì›”_11ì›”_12ì›”'.split('_'),
-        weekdays : 'ì¼ìš”ì¼_ì›”ìš”ì¼_í™”ìš”ì¼_ìˆ˜ìš”ì¼_ëª©ìš”ì¼_ê¸ˆìš”ì¼_í† ìš”ì¼'.split('_'),
-        weekdaysShort : 'ì¼_ì›”_í™”_ìˆ˜_ëª©_ê¸ˆ_í† '.split('_'),
-        weekdaysMin : 'ì¼_ì›”_í™”_ìˆ˜_ëª©_ê¸ˆ_í† '.split('_'),
-        longDateFormat : {
-            LT : 'A hì‹œ më¶„',
-            LTS : 'A hì‹œ më¶„ sì´ˆ',
-            L : 'YYYY.MM.DD',
-            LL : 'YYYYë…„ MMMM Dì¼',
-            LLL : 'YYYYë…„ MMMM Dì¼ A hì‹œ më¶„',
-            LLLL : 'YYYYë…„ MMMM Dì¼ dddd A hì‹œ më¶„'
-        },
-        calendar : {
-            sameDay : 'ì˜¤ëŠ˜ LT',
-            nextDay : 'ë‚´ì¼ LT',
-            nextWeek : 'dddd LT',
-            lastDay : 'ì–´ì œ LT',
-            lastWeek : 'ì§€ë‚œì£¼ dddd LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s í›„',
-            past : '%s ì „',
-            s : 'ëª‡ì´ˆ',
-            ss : '%dì´ˆ',
-            m : 'ì¼ë¶„',
-            mm : '%dë¶„',
-            h : 'í•œì‹œê°„',
-            hh : '%dì‹œê°„',
-            d : 'í•˜ë£¨',
-            dd : '%dì¼',
-            M : 'í•œë‹¬',
-            MM : '%dë‹¬',
-            y : 'ì¼ë…„',
-            yy : '%dë…„'
-        },
-        ordinalParse : /\d{1,2}ì¼/,
-        ordinal : '%dì¼',
-        meridiemParse : /ì˜¤ì „|ì˜¤í›„/,
-        isPM : function (token) {
-            return token === 'ì˜¤í›„';
-        },
-        meridiem : function (hour, minute, isUpper) {
-            return hour < 12 ? 'ì˜¤ì „' : 'ì˜¤í›„';
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Luxembourgish (lb)
-    //! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
-
-    function lb__processRelativeTime(number, withoutSuffix, key, isFuture) {
-        var format = {
-            'm': ['eng Minutt', 'enger Minutt'],
-            'h': ['eng Stonn', 'enger Stonn'],
-            'd': ['een Dag', 'engem Dag'],
-            'M': ['ee Mount', 'engem Mount'],
-            'y': ['ee Joer', 'engem Joer']
-        };
-        return withoutSuffix ? format[key][0] : format[key][1];
-    }
-    function processFutureTime(string) {
-        var number = string.substr(0, string.indexOf(' '));
-        if (eifelerRegelAppliesToNumber(number)) {
-            return 'a ' + string;
-        }
-        return 'an ' + string;
-    }
-    function processPastTime(string) {
-        var number = string.substr(0, string.indexOf(' '));
-        if (eifelerRegelAppliesToNumber(number)) {
-            return 'viru ' + string;
-        }
-        return 'virun ' + string;
-    }
-    /**
-     * Returns true if the word before the given number loses the '-n' ending.
-     * e.g. 'an 10 Deeg' but 'a 5 Deeg'
-     *
-     * @param number {integer}
-     * @returns {boolean}
-     */
-    function eifelerRegelAppliesToNumber(number) {
-        number = parseInt(number, 10);
-        if (isNaN(number)) {
-            return false;
-        }
-        if (number < 0) {
-            // Negative Number --> always true
-            return true;
-        } else if (number < 10) {
-            // Only 1 digit
-            if (4 <= number && number <= 7) {
-                return true;
-            }
-            return false;
-        } else if (number < 100) {
-            // 2 digits
-            var lastDigit = number % 10, firstDigit = number / 10;
-            if (lastDigit === 0) {
-                return eifelerRegelAppliesToNumber(firstDigit);
-            }
-            return eifelerRegelAppliesToNumber(lastDigit);
-        } else if (number < 10000) {
-            // 3 or 4 digits --> recursively check first digit
-            while (number >= 10) {
-                number = number / 10;
-            }
-            return eifelerRegelAppliesToNumber(number);
-        } else {
-            // Anything larger than 4 digits: recursively check first n-3 digits
-            number = number / 1000;
-            return eifelerRegelAppliesToNumber(number);
-        }
-    }
-
-    var lb = moment.defineLocale('lb', {
-        months: 'Januar_Februar_MÃ¤erz_AbrÃ«ll_Mee_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-        monthsShort: 'Jan._Febr._Mrz._Abr._Mee_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
-        weekdays: 'Sonndeg_MÃ©indeg_DÃ«nschdeg_MÃ«ttwoch_Donneschdeg_Freideg_Samschdeg'.split('_'),
-        weekdaysShort: 'So._MÃ©._DÃ«._MÃ«._Do._Fr._Sa.'.split('_'),
-        weekdaysMin: 'So_MÃ©_DÃ«_MÃ«_Do_Fr_Sa'.split('_'),
-        longDateFormat: {
-            LT: 'H:mm [Auer]',
-            LTS: 'H:mm:ss [Auer]',
-            L: 'DD.MM.YYYY',
-            LL: 'D. MMMM YYYY',
-            LLL: 'D. MMMM YYYY H:mm [Auer]',
-            LLLL: 'dddd, D. MMMM YYYY H:mm [Auer]'
-        },
-        calendar: {
-            sameDay: '[Haut um] LT',
-            sameElse: 'L',
-            nextDay: '[Muer um] LT',
-            nextWeek: 'dddd [um] LT',
-            lastDay: '[GÃ«schter um] LT',
-            lastWeek: function () {
-                // Different date string for 'DÃ«nschdeg' (Tuesday) and 'Donneschdeg' (Thursday) due to phonological rule
-                switch (this.day()) {
-                    case 2:
-                    case 4:
-                        return '[Leschten] dddd [um] LT';
-                    default:
-                        return '[Leschte] dddd [um] LT';
-                }
-            }
-        },
-        relativeTime : {
-            future : processFutureTime,
-            past : processPastTime,
-            s : 'e puer Sekonnen',
-            m : lb__processRelativeTime,
-            mm : '%d Minutten',
-            h : lb__processRelativeTime,
-            hh : '%d Stonnen',
-            d : lb__processRelativeTime,
-            dd : '%d Deeg',
-            M : lb__processRelativeTime,
-            MM : '%d MÃ©int',
-            y : lb__processRelativeTime,
-            yy : '%d Joer'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal: '%d.',
-        week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : lao (lo)
-    //! author : Ryan Hart : https://github.com/ryanhart2
-
-    var lo = moment.defineLocale('lo', {
-        months : 'àº¡àº±àº‡àºàº­àº™_àºàº¸àº¡àºžàº²_àº¡àºµàº™àº²_à»€àº¡àºªàº²_àºžàº¶àº”àºªàº°àºžàº²_àº¡àº´àº–àº¸àº™àº²_àºà»àº¥àº°àºàº»àº”_àºªàº´àº‡àº«àº²_àºàº±àº™àºàº²_àº•àº¸àº¥àº²_àºžàº°àºˆàº´àº_àº—àº±àº™àº§àº²'.split('_'),
-        monthsShort : 'àº¡àº±àº‡àºàº­àº™_àºàº¸àº¡àºžàº²_àº¡àºµàº™àº²_à»€àº¡àºªàº²_àºžàº¶àº”àºªàº°àºžàº²_àº¡àº´àº–àº¸àº™àº²_àºà»àº¥àº°àºàº»àº”_àºªàº´àº‡àº«àº²_àºàº±àº™àºàº²_àº•àº¸àº¥àº²_àºžàº°àºˆàº´àº_àº—àº±àº™àº§àº²'.split('_'),
-        weekdays : 'àº­àº²àº—àº´àº”_àºˆàº±àº™_àº­àº±àº‡àº„àº²àº™_àºžàº¸àº”_àºžàº°àº«àº±àº”_àºªàº¸àº_à»€àºªàº»àº²'.split('_'),
-        weekdaysShort : 'àº—àº´àº”_àºˆàº±àº™_àº­àº±àº‡àº„àº²àº™_àºžàº¸àº”_àºžàº°àº«àº±àº”_àºªàº¸àº_à»€àºªàº»àº²'.split('_'),
-        weekdaysMin : 'àº—_àºˆ_àº­àº„_àºž_àºžàº«_àºªàº_àºª'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'àº§àº±àº™dddd D MMMM YYYY HH:mm'
-        },
-        meridiemParse: /àº•àº­àº™à»€àºŠàº»à»‰àº²|àº•àº­àº™à»àº¥àº‡/,
-        isPM: function (input) {
-            return input === 'àº•àº­àº™à»àº¥àº‡';
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 12) {
-                return 'àº•àº­àº™à»€àºŠàº»à»‰àº²';
-            } else {
-                return 'àº•àº­àº™à»àº¥àº‡';
-            }
-        },
-        calendar : {
-            sameDay : '[àº¡àº·à»‰àº™àºµà»‰à»€àº§àº¥àº²] LT',
-            nextDay : '[àº¡àº·à»‰àº­àº·à»ˆàº™à»€àº§àº¥àº²] LT',
-            nextWeek : '[àº§àº±àº™]dddd[à»œà»‰àº²à»€àº§àº¥àº²] LT',
-            lastDay : '[àº¡àº·à»‰àº§àº²àº™àº™àºµà»‰à»€àº§àº¥àº²] LT',
-            lastWeek : '[àº§àº±àº™]dddd[à»àº¥à»‰àº§àº™àºµà»‰à»€àº§àº¥àº²] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'àº­àºµàº %s',
-            past : '%sàºœà»ˆàº²àº™àº¡àº²',
-            s : 'àºšà»à»ˆà»€àº—àº»à»ˆàº²à»ƒàº”àº§àº´àº™àº²àº—àºµ',
-            m : '1 àº™àº²àº—àºµ',
-            mm : '%d àº™àº²àº—àºµ',
-            h : '1 àºŠàº»à»ˆàº§à»‚àº¡àº‡',
-            hh : '%d àºŠàº»à»ˆàº§à»‚àº¡àº‡',
-            d : '1 àº¡àº·à»‰',
-            dd : '%d àº¡àº·à»‰',
-            M : '1 à»€àº”àº·àº­àº™',
-            MM : '%d à»€àº”àº·àº­àº™',
-            y : '1 àº›àºµ',
-            yy : '%d àº›àºµ'
-        },
-        ordinalParse: /(àº—àºµà»ˆ)\d{1,2}/,
-        ordinal : function (number) {
-            return 'àº—àºµà»ˆ' + number;
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Lithuanian (lt)
-    //! author : Mindaugas MozÅ«ras : https://github.com/mmozuras
-
-    var lt__units = {
-        'm' : 'minutÄ—_minutÄ—s_minutÄ™',
-        'mm': 'minutÄ—s_minuÄiÅ³_minutes',
-        'h' : 'valanda_valandos_valandÄ…',
-        'hh': 'valandos_valandÅ³_valandas',
-        'd' : 'diena_dienos_dienÄ…',
-        'dd': 'dienos_dienÅ³_dienas',
-        'M' : 'mÄ—nuo_mÄ—nesio_mÄ—nesÄ¯',
-        'MM': 'mÄ—nesiai_mÄ—nesiÅ³_mÄ—nesius',
-        'y' : 'metai_metÅ³_metus',
-        'yy': 'metai_metÅ³_metus'
-    };
-    function translateSeconds(number, withoutSuffix, key, isFuture) {
-        if (withoutSuffix) {
-            return 'kelios sekundÄ—s';
-        } else {
-            return isFuture ? 'keliÅ³ sekundÅ¾iÅ³' : 'kelias sekundes';
-        }
-    }
-    function translateSingular(number, withoutSuffix, key, isFuture) {
-        return withoutSuffix ? forms(key)[0] : (isFuture ? forms(key)[1] : forms(key)[2]);
-    }
-    function special(number) {
-        return number % 10 === 0 || (number > 10 && number < 20);
-    }
-    function forms(key) {
-        return lt__units[key].split('_');
-    }
-    function lt__translate(number, withoutSuffix, key, isFuture) {
-        var result = number + ' ';
-        if (number === 1) {
-            return result + translateSingular(number, withoutSuffix, key[0], isFuture);
-        } else if (withoutSuffix) {
-            return result + (special(number) ? forms(key)[1] : forms(key)[0]);
-        } else {
-            if (isFuture) {
-                return result + forms(key)[1];
-            } else {
-                return result + (special(number) ? forms(key)[1] : forms(key)[2]);
-            }
-        }
-    }
-    var lt = moment.defineLocale('lt', {
-        months : {
-            format: 'sausio_vasario_kovo_balandÅ¾io_geguÅ¾Ä—s_birÅ¾elio_liepos_rugpjÅ«Äio_rugsÄ—jo_spalio_lapkriÄio_gruodÅ¾io'.split('_'),
-            standalone: 'sausis_vasaris_kovas_balandis_geguÅ¾Ä—_birÅ¾elis_liepa_rugpjÅ«tis_rugsÄ—jis_spalis_lapkritis_gruodis'.split('_')
-        },
-        monthsShort : 'sau_vas_kov_bal_geg_bir_lie_rgp_rgs_spa_lap_grd'.split('_'),
-        weekdays : {
-            format: 'sekmadienÄ¯_pirmadienÄ¯_antradienÄ¯_treÄiadienÄ¯_ketvirtadienÄ¯_penktadienÄ¯_Å¡eÅ¡tadienÄ¯'.split('_'),
-            standalone: 'sekmadienis_pirmadienis_antradienis_treÄiadienis_ketvirtadienis_penktadienis_Å¡eÅ¡tadienis'.split('_'),
-            isFormat: /dddd HH:mm/
-        },
-        weekdaysShort : 'Sek_Pir_Ant_Tre_Ket_Pen_Å eÅ¡'.split('_'),
-        weekdaysMin : 'S_P_A_T_K_Pn_Å '.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'YYYY-MM-DD',
-            LL : 'YYYY [m.] MMMM D [d.]',
-            LLL : 'YYYY [m.] MMMM D [d.], HH:mm [val.]',
-            LLLL : 'YYYY [m.] MMMM D [d.], dddd, HH:mm [val.]',
-            l : 'YYYY-MM-DD',
-            ll : 'YYYY [m.] MMMM D [d.]',
-            lll : 'YYYY [m.] MMMM D [d.], HH:mm [val.]',
-            llll : 'YYYY [m.] MMMM D [d.], ddd, HH:mm [val.]'
-        },
-        calendar : {
-            sameDay : '[Å iandien] LT',
-            nextDay : '[Rytoj] LT',
-            nextWeek : 'dddd LT',
-            lastDay : '[Vakar] LT',
-            lastWeek : '[PraÄ—jusÄ¯] dddd LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'po %s',
-            past : 'prieÅ¡ %s',
-            s : translateSeconds,
-            m : translateSingular,
-            mm : lt__translate,
-            h : translateSingular,
-            hh : lt__translate,
-            d : translateSingular,
-            dd : lt__translate,
-            M : translateSingular,
-            MM : lt__translate,
-            y : translateSingular,
-            yy : lt__translate
-        },
-        ordinalParse: /\d{1,2}-oji/,
-        ordinal : function (number) {
-            return number + '-oji';
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : latvian (lv)
-    //! author : Kristaps Karlsons : https://github.com/skakri
-    //! author : JÄnis Elmeris : https://github.com/JanisE
-
-    var lv__units = {
-        'm': 'minÅ«tes_minÅ«tÄ“m_minÅ«te_minÅ«tes'.split('_'),
-        'mm': 'minÅ«tes_minÅ«tÄ“m_minÅ«te_minÅ«tes'.split('_'),
-        'h': 'stundas_stundÄm_stunda_stundas'.split('_'),
-        'hh': 'stundas_stundÄm_stunda_stundas'.split('_'),
-        'd': 'dienas_dienÄm_diena_dienas'.split('_'),
-        'dd': 'dienas_dienÄm_diena_dienas'.split('_'),
-        'M': 'mÄ“neÅ¡a_mÄ“neÅ¡iem_mÄ“nesis_mÄ“neÅ¡i'.split('_'),
-        'MM': 'mÄ“neÅ¡a_mÄ“neÅ¡iem_mÄ“nesis_mÄ“neÅ¡i'.split('_'),
-        'y': 'gada_gadiem_gads_gadi'.split('_'),
-        'yy': 'gada_gadiem_gads_gadi'.split('_')
-    };
-    /**
-     * @param withoutSuffix boolean true = a length of time; false = before/after a period of time.
-     */
-    function format(forms, number, withoutSuffix) {
-        if (withoutSuffix) {
-            // E.g. "21 minÅ«te", "3 minÅ«tes".
-            return number % 10 === 1 && number !== 11 ? forms[2] : forms[3];
-        } else {
-            // E.g. "21 minÅ«tes" as in "pÄ“c 21 minÅ«tes".
-            // E.g. "3 minÅ«tÄ“m" as in "pÄ“c 3 minÅ«tÄ“m".
-            return number % 10 === 1 && number !== 11 ? forms[0] : forms[1];
-        }
-    }
-    function lv__relativeTimeWithPlural(number, withoutSuffix, key) {
-        return number + ' ' + format(lv__units[key], number, withoutSuffix);
-    }
-    function relativeTimeWithSingular(number, withoutSuffix, key) {
-        return format(lv__units[key], number, withoutSuffix);
-    }
-    function relativeSeconds(number, withoutSuffix) {
-        return withoutSuffix ? 'daÅ¾as sekundes' : 'daÅ¾Äm sekundÄ“m';
-    }
-
-    var lv = moment.defineLocale('lv', {
-        months : 'janvÄris_februÄris_marts_aprÄ«lis_maijs_jÅ«nijs_jÅ«lijs_augusts_septembris_oktobris_novembris_decembris'.split('_'),
-        monthsShort : 'jan_feb_mar_apr_mai_jÅ«n_jÅ«l_aug_sep_okt_nov_dec'.split('_'),
-        weekdays : 'svÄ“tdiena_pirmdiena_otrdiena_treÅ¡diena_ceturtdiena_piektdiena_sestdiena'.split('_'),
-        weekdaysShort : 'Sv_P_O_T_C_Pk_S'.split('_'),
-        weekdaysMin : 'Sv_P_O_T_C_Pk_S'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY.',
-            LL : 'YYYY. [gada] D. MMMM',
-            LLL : 'YYYY. [gada] D. MMMM, HH:mm',
-            LLLL : 'YYYY. [gada] D. MMMM, dddd, HH:mm'
-        },
-        calendar : {
-            sameDay : '[Å odien pulksten] LT',
-            nextDay : '[RÄ«t pulksten] LT',
-            nextWeek : 'dddd [pulksten] LT',
-            lastDay : '[Vakar pulksten] LT',
-            lastWeek : '[PagÄjuÅ¡Ä] dddd [pulksten] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'pÄ“c %s',
-            past : 'pirms %s',
-            s : relativeSeconds,
-            m : relativeTimeWithSingular,
-            mm : lv__relativeTimeWithPlural,
-            h : relativeTimeWithSingular,
-            hh : lv__relativeTimeWithPlural,
-            d : relativeTimeWithSingular,
-            dd : lv__relativeTimeWithPlural,
-            M : relativeTimeWithSingular,
-            MM : lv__relativeTimeWithPlural,
-            y : relativeTimeWithSingular,
-            yy : lv__relativeTimeWithPlural
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Montenegrin (me)
-    //! author : Miodrag NikaÄ <miodrag@restartit.me> : https://github.com/miodragnikac
-
-    var me__translator = {
-        words: { //Different grammatical cases
-            m: ['jedan minut', 'jednog minuta'],
-            mm: ['minut', 'minuta', 'minuta'],
-            h: ['jedan sat', 'jednog sata'],
-            hh: ['sat', 'sata', 'sati'],
-            dd: ['dan', 'dana', 'dana'],
-            MM: ['mjesec', 'mjeseca', 'mjeseci'],
-            yy: ['godina', 'godine', 'godina']
-        },
-        correctGrammaticalCase: function (number, wordKey) {
-            return number === 1 ? wordKey[0] : (number >= 2 && number <= 4 ? wordKey[1] : wordKey[2]);
-        },
-        translate: function (number, withoutSuffix, key) {
-            var wordKey = me__translator.words[key];
-            if (key.length === 1) {
-                return withoutSuffix ? wordKey[0] : wordKey[1];
-            } else {
-                return number + ' ' + me__translator.correctGrammaticalCase(number, wordKey);
-            }
-        }
-    };
-
-    var me = moment.defineLocale('me', {
-        months: ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'],
-        monthsShort: ['jan.', 'feb.', 'mar.', 'apr.', 'maj', 'jun', 'jul', 'avg.', 'sep.', 'okt.', 'nov.', 'dec.'],
-        weekdays: ['nedjelja', 'ponedjeljak', 'utorak', 'srijeda', 'Äetvrtak', 'petak', 'subota'],
-        weekdaysShort: ['ned.', 'pon.', 'uto.', 'sri.', 'Äet.', 'pet.', 'sub.'],
-        weekdaysMin: ['ne', 'po', 'ut', 'sr', 'Äe', 'pe', 'su'],
-        longDateFormat: {
-            LT: 'H:mm',
-            LTS : 'H:mm:ss',
-            L: 'DD. MM. YYYY',
-            LL: 'D. MMMM YYYY',
-            LLL: 'D. MMMM YYYY H:mm',
-            LLLL: 'dddd, D. MMMM YYYY H:mm'
-        },
-        calendar: {
-            sameDay: '[danas u] LT',
-            nextDay: '[sjutra u] LT',
-
-            nextWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[u] [nedjelju] [u] LT';
-                case 3:
-                    return '[u] [srijedu] [u] LT';
-                case 6:
-                    return '[u] [subotu] [u] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[u] dddd [u] LT';
-                }
-            },
-            lastDay  : '[juÄe u] LT',
-            lastWeek : function () {
-                var lastWeekDays = [
-                    '[proÅ¡le] [nedjelje] [u] LT',
-                    '[proÅ¡log] [ponedjeljka] [u] LT',
-                    '[proÅ¡log] [utorka] [u] LT',
-                    '[proÅ¡le] [srijede] [u] LT',
-                    '[proÅ¡log] [Äetvrtka] [u] LT',
-                    '[proÅ¡log] [petka] [u] LT',
-                    '[proÅ¡le] [subote] [u] LT'
-                ];
-                return lastWeekDays[this.day()];
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'za %s',
-            past   : 'prije %s',
-            s      : 'nekoliko sekundi',
-            m      : me__translator.translate,
-            mm     : me__translator.translate,
-            h      : me__translator.translate,
-            hh     : me__translator.translate,
-            d      : 'dan',
-            dd     : me__translator.translate,
-            M      : 'mjesec',
-            MM     : me__translator.translate,
-            y      : 'godinu',
-            yy     : me__translator.translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : macedonian (mk)
-    //! author : Borislav Mickov : https://github.com/B0k0
-
-    var mk = moment.defineLocale('mk', {
-        months : 'Ñ˜Ð°Ð½ÑƒÐ°Ñ€Ð¸_Ñ„ÐµÐ²Ñ€ÑƒÐ°Ñ€Ð¸_Ð¼Ð°Ñ€Ñ‚_Ð°Ð¿Ñ€Ð¸Ð»_Ð¼Ð°Ñ˜_Ñ˜ÑƒÐ½Ð¸_Ñ˜ÑƒÐ»Ð¸_Ð°Ð²Ð³ÑƒÑÑ‚_ÑÐµÐ¿Ñ‚ÐµÐ¼Ð²Ñ€Ð¸_Ð¾ÐºÑ‚Ð¾Ð¼Ð²Ñ€Ð¸_Ð½Ð¾ÐµÐ¼Ð²Ñ€Ð¸_Ð´ÐµÐºÐµÐ¼Ð²Ñ€Ð¸'.split('_'),
-        monthsShort : 'Ñ˜Ð°Ð½_Ñ„ÐµÐ²_Ð¼Ð°Ñ€_Ð°Ð¿Ñ€_Ð¼Ð°Ñ˜_Ñ˜ÑƒÐ½_Ñ˜ÑƒÐ»_Ð°Ð²Ð³_ÑÐµÐ¿_Ð¾ÐºÑ‚_Ð½Ð¾Ðµ_Ð´ÐµÐº'.split('_'),
-        weekdays : 'Ð½ÐµÐ´ÐµÐ»Ð°_Ð¿Ð¾Ð½ÐµÐ´ÐµÐ»Ð½Ð¸Ðº_Ð²Ñ‚Ð¾Ñ€Ð½Ð¸Ðº_ÑÑ€ÐµÐ´Ð°_Ñ‡ÐµÑ‚Ð²Ñ€Ñ‚Ð¾Ðº_Ð¿ÐµÑ‚Ð¾Ðº_ÑÐ°Ð±Ð¾Ñ‚Ð°'.split('_'),
-        weekdaysShort : 'Ð½ÐµÐ´_Ð¿Ð¾Ð½_Ð²Ñ‚Ð¾_ÑÑ€Ðµ_Ñ‡ÐµÑ‚_Ð¿ÐµÑ‚_ÑÐ°Ð±'.split('_'),
-        weekdaysMin : 'Ð½e_Ð¿o_Ð²Ñ‚_ÑÑ€_Ñ‡Ðµ_Ð¿Ðµ_Ña'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'D.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY H:mm',
-            LLLL : 'dddd, D MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay : '[Ð”ÐµÐ½ÐµÑ Ð²Ð¾] LT',
-            nextDay : '[Ð£Ñ‚Ñ€Ðµ Ð²Ð¾] LT',
-            nextWeek : '[Ð’Ð¾] dddd [Ð²Ð¾] LT',
-            lastDay : '[Ð’Ñ‡ÐµÑ€Ð° Ð²Ð¾] LT',
-            lastWeek : function () {
-                switch (this.day()) {
-                case 0:
-                case 3:
-                case 6:
-                    return '[Ð˜Ð·Ð¼Ð¸Ð½Ð°Ñ‚Ð°Ñ‚Ð°] dddd [Ð²Ð¾] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[Ð˜Ð·Ð¼Ð¸Ð½Ð°Ñ‚Ð¸Ð¾Ñ‚] dddd [Ð²Ð¾] LT';
-                }
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'Ð¿Ð¾ÑÐ»Ðµ %s',
-            past : 'Ð¿Ñ€ÐµÐ´ %s',
-            s : 'Ð½ÐµÐºÐ¾Ð»ÐºÑƒ ÑÐµÐºÑƒÐ½Ð´Ð¸',
-            m : 'Ð¼Ð¸Ð½ÑƒÑ‚Ð°',
-            mm : '%d Ð¼Ð¸Ð½ÑƒÑ‚Ð¸',
-            h : 'Ñ‡Ð°Ñ',
-            hh : '%d Ñ‡Ð°ÑÐ°',
-            d : 'Ð´ÐµÐ½',
-            dd : '%d Ð´ÐµÐ½Ð°',
-            M : 'Ð¼ÐµÑÐµÑ†',
-            MM : '%d Ð¼ÐµÑÐµÑ†Ð¸',
-            y : 'Ð³Ð¾Ð´Ð¸Ð½Ð°',
-            yy : '%d Ð³Ð¾Ð´Ð¸Ð½Ð¸'
-        },
-        ordinalParse: /\d{1,2}-(ÐµÐ²|ÐµÐ½|Ñ‚Ð¸|Ð²Ð¸|Ñ€Ð¸|Ð¼Ð¸)/,
-        ordinal : function (number) {
-            var lastDigit = number % 10,
-                last2Digits = number % 100;
-            if (number === 0) {
-                return number + '-ÐµÐ²';
-            } else if (last2Digits === 0) {
-                return number + '-ÐµÐ½';
-            } else if (last2Digits > 10 && last2Digits < 20) {
-                return number + '-Ñ‚Ð¸';
-            } else if (lastDigit === 1) {
-                return number + '-Ð²Ð¸';
-            } else if (lastDigit === 2) {
-                return number + '-Ñ€Ð¸';
-            } else if (lastDigit === 7 || lastDigit === 8) {
-                return number + '-Ð¼Ð¸';
-            } else {
-                return number + '-Ñ‚Ð¸';
-            }
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : malayalam (ml)
-    //! author : Floyd Pink : https://github.com/floydpink
-
-    var ml = moment.defineLocale('ml', {
-        months : 'à´œà´¨àµà´µà´°à´¿_à´«àµ†à´¬àµà´°àµà´µà´°à´¿_à´®à´¾àµ¼à´šàµà´šàµ_à´à´ªàµà´°à´¿àµ½_à´®àµ‡à´¯àµ_à´œàµ‚àµº_à´œàµ‚à´²àµˆ_à´“à´—à´¸àµà´±àµà´±àµ_à´¸àµ†à´ªàµà´±àµà´±à´‚à´¬àµ¼_à´’à´•àµà´Ÿàµ‹à´¬àµ¼_à´¨à´µà´‚à´¬àµ¼_à´¡à´¿à´¸à´‚à´¬àµ¼'.split('_'),
-        monthsShort : 'à´œà´¨àµ._à´«àµ†à´¬àµà´°àµ._à´®à´¾àµ¼._à´à´ªàµà´°à´¿._à´®àµ‡à´¯àµ_à´œàµ‚àµº_à´œàµ‚à´²àµˆ._à´“à´—._à´¸àµ†à´ªàµà´±àµà´±._à´’à´•àµà´Ÿàµ‹._à´¨à´µà´‚._à´¡à´¿à´¸à´‚.'.split('_'),
-        weekdays : 'à´žà´¾à´¯à´±à´¾à´´àµà´š_à´¤à´¿à´™àµà´•à´³à´¾à´´àµà´š_à´šàµŠà´µàµà´µà´¾à´´àµà´š_à´¬àµà´§à´¨à´¾à´´àµà´š_à´µàµà´¯à´¾à´´à´¾à´´àµà´š_à´µàµ†à´³àµà´³à´¿à´¯à´¾à´´àµà´š_à´¶à´¨à´¿à´¯à´¾à´´àµà´š'.split('_'),
-        weekdaysShort : 'à´žà´¾à´¯àµ¼_à´¤à´¿à´™àµà´•àµ¾_à´šàµŠà´µàµà´µ_à´¬àµà´§àµ»_à´µàµà´¯à´¾à´´à´‚_à´µàµ†à´³àµà´³à´¿_à´¶à´¨à´¿'.split('_'),
-        weekdaysMin : 'à´žà´¾_à´¤à´¿_à´šàµŠ_à´¬àµ_à´µàµà´¯à´¾_à´µàµ†_à´¶'.split('_'),
-        longDateFormat : {
-            LT : 'A h:mm -à´¨àµ',
-            LTS : 'A h:mm:ss -à´¨àµ',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY, A h:mm -à´¨àµ',
-            LLLL : 'dddd, D MMMM YYYY, A h:mm -à´¨àµ'
-        },
-        calendar : {
-            sameDay : '[à´‡à´¨àµà´¨àµ] LT',
-            nextDay : '[à´¨à´¾à´³àµ†] LT',
-            nextWeek : 'dddd, LT',
-            lastDay : '[à´‡à´¨àµà´¨à´²àµ†] LT',
-            lastWeek : '[à´•à´´à´¿à´žàµà´ž] dddd, LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s à´•à´´à´¿à´žàµà´žàµ',
-            past : '%s à´®àµàµ»à´ªàµ',
-            s : 'à´…àµ½à´ª à´¨à´¿à´®à´¿à´·à´™àµà´™àµ¾',
-            m : 'à´’à´°àµ à´®à´¿à´¨à´¿à´±àµà´±àµ',
-            mm : '%d à´®à´¿à´¨à´¿à´±àµà´±àµ',
-            h : 'à´’à´°àµ à´®à´£à´¿à´•àµà´•àµ‚àµ¼',
-            hh : '%d à´®à´£à´¿à´•àµà´•àµ‚àµ¼',
-            d : 'à´’à´°àµ à´¦à´¿à´µà´¸à´‚',
-            dd : '%d à´¦à´¿à´µà´¸à´‚',
-            M : 'à´’à´°àµ à´®à´¾à´¸à´‚',
-            MM : '%d à´®à´¾à´¸à´‚',
-            y : 'à´’à´°àµ à´µàµ¼à´·à´‚',
-            yy : '%d à´µàµ¼à´·à´‚'
-        },
-        meridiemParse: /à´°à´¾à´¤àµà´°à´¿|à´°à´¾à´µà´¿à´²àµ†|à´‰à´šàµà´š à´•à´´à´¿à´žàµà´žàµ|à´µàµˆà´•àµà´¨àµà´¨àµ‡à´°à´‚|à´°à´¾à´¤àµà´°à´¿/i,
-        isPM : function (input) {
-            return /^(à´‰à´šàµà´š à´•à´´à´¿à´žàµà´žàµ|à´µàµˆà´•àµà´¨àµà´¨àµ‡à´°à´‚|à´°à´¾à´¤àµà´°à´¿)$/.test(input);
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'à´°à´¾à´¤àµà´°à´¿';
-            } else if (hour < 12) {
-                return 'à´°à´¾à´µà´¿à´²àµ†';
-            } else if (hour < 17) {
-                return 'à´‰à´šàµà´š à´•à´´à´¿à´žàµà´žàµ';
-            } else if (hour < 20) {
-                return 'à´µàµˆà´•àµà´¨àµà´¨àµ‡à´°à´‚';
-            } else {
-                return 'à´°à´¾à´¤àµà´°à´¿';
-            }
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Marathi (mr)
-    //! author : Harshad Kale : https://github.com/kalehv
-    //! author : Vivek Athalye : https://github.com/vnathalye
-
-    var mr__symbolMap = {
-        '1': 'à¥§',
-        '2': 'à¥¨',
-        '3': 'à¥©',
-        '4': 'à¥ª',
-        '5': 'à¥«',
-        '6': 'à¥¬',
-        '7': 'à¥­',
-        '8': 'à¥®',
-        '9': 'à¥¯',
-        '0': 'à¥¦'
-    },
-    mr__numberMap = {
-        'à¥§': '1',
-        'à¥¨': '2',
-        'à¥©': '3',
-        'à¥ª': '4',
-        'à¥«': '5',
-        'à¥¬': '6',
-        'à¥­': '7',
-        'à¥®': '8',
-        'à¥¯': '9',
-        'à¥¦': '0'
-    };
-
-    function relativeTimeMr(number, withoutSuffix, string, isFuture)
-    {
-        var output = '';
-        if (withoutSuffix) {
-            switch (string) {
-                case 's': output = 'à¤•à¤¾à¤¹à¥€ à¤¸à¥‡à¤•à¤‚à¤¦'; break;
-                case 'm': output = 'à¤à¤• à¤®à¤¿à¤¨à¤¿à¤Ÿ'; break;
-                case 'mm': output = '%d à¤®à¤¿à¤¨à¤¿à¤Ÿà¥‡'; break;
-                case 'h': output = 'à¤à¤• à¤¤à¤¾à¤¸'; break;
-                case 'hh': output = '%d à¤¤à¤¾à¤¸'; break;
-                case 'd': output = 'à¤à¤• à¤¦à¤¿à¤µà¤¸'; break;
-                case 'dd': output = '%d à¤¦à¤¿à¤µà¤¸'; break;
-                case 'M': output = 'à¤à¤• à¤®à¤¹à¤¿à¤¨à¤¾'; break;
-                case 'MM': output = '%d à¤®à¤¹à¤¿à¤¨à¥‡'; break;
-                case 'y': output = 'à¤à¤• à¤µà¤°à¥à¤·'; break;
-                case 'yy': output = '%d à¤µà¤°à¥à¤·à¥‡'; break;
-            }
-        }
-        else {
-            switch (string) {
-                case 's': output = 'à¤•à¤¾à¤¹à¥€ à¤¸à¥‡à¤•à¤‚à¤¦à¤¾à¤‚'; break;
-                case 'm': output = 'à¤à¤•à¤¾ à¤®à¤¿à¤¨à¤¿à¤Ÿà¤¾'; break;
-                case 'mm': output = '%d à¤®à¤¿à¤¨à¤¿à¤Ÿà¤¾à¤‚'; break;
-                case 'h': output = 'à¤à¤•à¤¾ à¤¤à¤¾à¤¸à¤¾'; break;
-                case 'hh': output = '%d à¤¤à¤¾à¤¸à¤¾à¤‚'; break;
-                case 'd': output = 'à¤à¤•à¤¾ à¤¦à¤¿à¤µà¤¸à¤¾'; break;
-                case 'dd': output = '%d à¤¦à¤¿à¤µà¤¸à¤¾à¤‚'; break;
-                case 'M': output = 'à¤à¤•à¤¾ à¤®à¤¹à¤¿à¤¨à¥à¤¯à¤¾'; break;
-                case 'MM': output = '%d à¤®à¤¹à¤¿à¤¨à¥à¤¯à¤¾à¤‚'; break;
-                case 'y': output = 'à¤à¤•à¤¾ à¤µà¤°à¥à¤·à¤¾'; break;
-                case 'yy': output = '%d à¤µà¤°à¥à¤·à¤¾à¤‚'; break;
-            }
-        }
-        return output.replace(/%d/i, number);
-    }
-
-    var mr = moment.defineLocale('mr', {
-        months : 'à¤œà¤¾à¤¨à¥‡à¤µà¤¾à¤°à¥€_à¤«à¥‡à¤¬à¥à¤°à¥à¤µà¤¾à¤°à¥€_à¤®à¤¾à¤°à¥à¤š_à¤à¤ªà¥à¤°à¤¿à¤²_à¤®à¥‡_à¤œà¥‚à¤¨_à¤œà¥à¤²à¥ˆ_à¤‘à¤—à¤¸à¥à¤Ÿ_à¤¸à¤ªà¥à¤Ÿà¥‡à¤‚à¤¬à¤°_à¤‘à¤•à¥à¤Ÿà¥‹à¤¬à¤°_à¤¨à¥‹à¤µà¥à¤¹à¥‡à¤‚à¤¬à¤°_à¤¡à¤¿à¤¸à¥‡à¤‚à¤¬à¤°'.split('_'),
-        monthsShort: 'à¤œà¤¾à¤¨à¥‡._à¤«à¥‡à¤¬à¥à¤°à¥._à¤®à¤¾à¤°à¥à¤š._à¤à¤ªà¥à¤°à¤¿._à¤®à¥‡._à¤œà¥‚à¤¨._à¤œà¥à¤²à¥ˆ._à¤‘à¤—._à¤¸à¤ªà¥à¤Ÿà¥‡à¤‚._à¤‘à¤•à¥à¤Ÿà¥‹._à¤¨à¥‹à¤µà¥à¤¹à¥‡à¤‚._à¤¡à¤¿à¤¸à¥‡à¤‚.'.split('_'),
-        weekdays : 'à¤°à¤µà¤¿à¤µà¤¾à¤°_à¤¸à¥‹à¤®à¤µà¤¾à¤°_à¤®à¤‚à¤—à¤³à¤µà¤¾à¤°_à¤¬à¥à¤§à¤µà¤¾à¤°_à¤—à¥à¤°à¥‚à¤µà¤¾à¤°_à¤¶à¥à¤•à¥à¤°à¤µà¤¾à¤°_à¤¶à¤¨à¤¿à¤µà¤¾à¤°'.split('_'),
-        weekdaysShort : 'à¤°à¤µà¤¿_à¤¸à¥‹à¤®_à¤®à¤‚à¤—à¤³_à¤¬à¥à¤§_à¤—à¥à¤°à¥‚_à¤¶à¥à¤•à¥à¤°_à¤¶à¤¨à¤¿'.split('_'),
-        weekdaysMin : 'à¤°_à¤¸à¥‹_à¤®à¤‚_à¤¬à¥_à¤—à¥_à¤¶à¥_à¤¶'.split('_'),
-        longDateFormat : {
-            LT : 'A h:mm à¤µà¤¾à¤œà¤¤à¤¾',
-            LTS : 'A h:mm:ss à¤µà¤¾à¤œà¤¤à¤¾',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY, A h:mm à¤µà¤¾à¤œà¤¤à¤¾',
-            LLLL : 'dddd, D MMMM YYYY, A h:mm à¤µà¤¾à¤œà¤¤à¤¾'
-        },
-        calendar : {
-            sameDay : '[à¤†à¤œ] LT',
-            nextDay : '[à¤‰à¤¦à¥à¤¯à¤¾] LT',
-            nextWeek : 'dddd, LT',
-            lastDay : '[à¤•à¤¾à¤²] LT',
-            lastWeek: '[à¤®à¤¾à¤—à¥€à¤²] dddd, LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future: '%sà¤®à¤§à¥à¤¯à¥‡',
-            past: '%sà¤ªà¥‚à¤°à¥à¤µà¥€',
-            s: relativeTimeMr,
-            m: relativeTimeMr,
-            mm: relativeTimeMr,
-            h: relativeTimeMr,
-            hh: relativeTimeMr,
-            d: relativeTimeMr,
-            dd: relativeTimeMr,
-            M: relativeTimeMr,
-            MM: relativeTimeMr,
-            y: relativeTimeMr,
-            yy: relativeTimeMr
-        },
-        preparse: function (string) {
-            return string.replace(/[à¥§à¥¨à¥©à¥ªà¥«à¥¬à¥­à¥®à¥¯à¥¦]/g, function (match) {
-                return mr__numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return mr__symbolMap[match];
-            });
-        },
-        meridiemParse: /à¤°à¤¾à¤¤à¥à¤°à¥€|à¤¸à¤•à¤¾à¤³à¥€|à¤¦à¥à¤ªà¤¾à¤°à¥€|à¤¸à¤¾à¤¯à¤‚à¤•à¤¾à¤³à¥€/,
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'à¤°à¤¾à¤¤à¥à¤°à¥€') {
-                return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'à¤¸à¤•à¤¾à¤³à¥€') {
-                return hour;
-            } else if (meridiem === 'à¤¦à¥à¤ªà¤¾à¤°à¥€') {
-                return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'à¤¸à¤¾à¤¯à¤‚à¤•à¤¾à¤³à¥€') {
-                return hour + 12;
-            }
-        },
-        meridiem: function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'à¤°à¤¾à¤¤à¥à¤°à¥€';
-            } else if (hour < 10) {
-                return 'à¤¸à¤•à¤¾à¤³à¥€';
-            } else if (hour < 17) {
-                return 'à¤¦à¥à¤ªà¤¾à¤°à¥€';
-            } else if (hour < 20) {
-                return 'à¤¸à¤¾à¤¯à¤‚à¤•à¤¾à¤³à¥€';
-            } else {
-                return 'à¤°à¤¾à¤¤à¥à¤°à¥€';
-            }
-        },
-        week : {
-            dow : 0, // Sunday is the first day of the week.
-            doy : 6  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Bahasa Malaysia (ms-MY)
-    //! author : Weldan Jamili : https://github.com/weldan
-
-    var ms_my = moment.defineLocale('ms-my', {
-        months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
-        monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
-        weekdays : 'Ahad_Isnin_Selasa_Rabu_Khamis_Jumaat_Sabtu'.split('_'),
-        weekdaysShort : 'Ahd_Isn_Sel_Rab_Kha_Jum_Sab'.split('_'),
-        weekdaysMin : 'Ah_Is_Sl_Rb_Km_Jm_Sb'.split('_'),
-        longDateFormat : {
-            LT : 'HH.mm',
-            LTS : 'HH.mm.ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY [pukul] HH.mm',
-            LLLL : 'dddd, D MMMM YYYY [pukul] HH.mm'
-        },
-        meridiemParse: /pagi|tengahari|petang|malam/,
-        meridiemHour: function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'pagi') {
-                return hour;
-            } else if (meridiem === 'tengahari') {
-                return hour >= 11 ? hour : hour + 12;
-            } else if (meridiem === 'petang' || meridiem === 'malam') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours < 11) {
-                return 'pagi';
-            } else if (hours < 15) {
-                return 'tengahari';
-            } else if (hours < 19) {
-                return 'petang';
-            } else {
-                return 'malam';
-            }
-        },
-        calendar : {
-            sameDay : '[Hari ini pukul] LT',
-            nextDay : '[Esok pukul] LT',
-            nextWeek : 'dddd [pukul] LT',
-            lastDay : '[Kelmarin pukul] LT',
-            lastWeek : 'dddd [lepas pukul] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'dalam %s',
-            past : '%s yang lepas',
-            s : 'beberapa saat',
-            m : 'seminit',
-            mm : '%d minit',
-            h : 'sejam',
-            hh : '%d jam',
-            d : 'sehari',
-            dd : '%d hari',
-            M : 'sebulan',
-            MM : '%d bulan',
-            y : 'setahun',
-            yy : '%d tahun'
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Bahasa Malaysia (ms-MY)
-    //! author : Weldan Jamili : https://github.com/weldan
-
-    var ms = moment.defineLocale('ms', {
-        months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
-        monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
-        weekdays : 'Ahad_Isnin_Selasa_Rabu_Khamis_Jumaat_Sabtu'.split('_'),
-        weekdaysShort : 'Ahd_Isn_Sel_Rab_Kha_Jum_Sab'.split('_'),
-        weekdaysMin : 'Ah_Is_Sl_Rb_Km_Jm_Sb'.split('_'),
-        longDateFormat : {
-            LT : 'HH.mm',
-            LTS : 'HH.mm.ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY [pukul] HH.mm',
-            LLLL : 'dddd, D MMMM YYYY [pukul] HH.mm'
-        },
-        meridiemParse: /pagi|tengahari|petang|malam/,
-        meridiemHour: function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'pagi') {
-                return hour;
-            } else if (meridiem === 'tengahari') {
-                return hour >= 11 ? hour : hour + 12;
-            } else if (meridiem === 'petang' || meridiem === 'malam') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours < 11) {
-                return 'pagi';
-            } else if (hours < 15) {
-                return 'tengahari';
-            } else if (hours < 19) {
-                return 'petang';
-            } else {
-                return 'malam';
-            }
-        },
-        calendar : {
-            sameDay : '[Hari ini pukul] LT',
-            nextDay : '[Esok pukul] LT',
-            nextWeek : 'dddd [pukul] LT',
-            lastDay : '[Kelmarin pukul] LT',
-            lastWeek : 'dddd [lepas pukul] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'dalam %s',
-            past : '%s yang lepas',
-            s : 'beberapa saat',
-            m : 'seminit',
-            mm : '%d minit',
-            h : 'sejam',
-            hh : '%d jam',
-            d : 'sehari',
-            dd : '%d hari',
-            M : 'sebulan',
-            MM : '%d bulan',
-            y : 'setahun',
-            yy : '%d tahun'
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Burmese (my)
-    //! author : Squar team, mysquar.com
-
-    var my__symbolMap = {
-        '1': 'á',
-        '2': 'á‚',
-        '3': 'áƒ',
-        '4': 'á„',
-        '5': 'á…',
-        '6': 'á†',
-        '7': 'á‡',
-        '8': 'áˆ',
-        '9': 'á‰',
-        '0': 'á€'
-    }, my__numberMap = {
-        'á': '1',
-        'á‚': '2',
-        'áƒ': '3',
-        'á„': '4',
-        'á…': '5',
-        'á†': '6',
-        'á‡': '7',
-        'áˆ': '8',
-        'á‰': '9',
-        'á€': '0'
-    };
-
-    var my = moment.defineLocale('my', {
-        months: 'á€‡á€”á€ºá€”á€á€«á€›á€®_á€–á€±á€–á€±á€¬á€ºá€á€«á€›á€®_á€™á€á€º_á€§á€•á€¼á€®_á€™á€±_á€‡á€½á€”á€º_á€‡á€°á€œá€­á€¯á€„á€º_á€žá€¼á€‚á€¯á€á€º_á€…á€€á€ºá€á€„á€ºá€˜á€¬_á€¡á€±á€¬á€€á€ºá€á€­á€¯á€˜á€¬_á€”á€­á€¯á€á€„á€ºá€˜á€¬_á€’á€®á€‡á€„á€ºá€˜á€¬'.split('_'),
-        monthsShort: 'á€‡á€”á€º_á€–á€±_á€™á€á€º_á€•á€¼á€®_á€™á€±_á€‡á€½á€”á€º_á€œá€­á€¯á€„á€º_á€žá€¼_á€…á€€á€º_á€¡á€±á€¬á€€á€º_á€”á€­á€¯_á€’á€®'.split('_'),
-        weekdays: 'á€á€”á€„á€ºá€¹á€‚á€”á€½á€±_á€á€”á€„á€ºá€¹á€œá€¬_á€¡á€„á€ºá€¹á€‚á€«_á€—á€¯á€’á€¹á€“á€Ÿá€°á€¸_á€€á€¼á€¬á€žá€•á€á€±á€¸_á€žá€±á€¬á€€á€¼á€¬_á€…á€”á€±'.split('_'),
-        weekdaysShort: 'á€”á€½á€±_á€œá€¬_á€‚á€«_á€Ÿá€°á€¸_á€€á€¼á€¬_á€žá€±á€¬_á€”á€±'.split('_'),
-        weekdaysMin: 'á€”á€½á€±_á€œá€¬_á€‚á€«_á€Ÿá€°á€¸_á€€á€¼á€¬_á€žá€±á€¬_á€”á€±'.split('_'),
-
-        longDateFormat: {
-            LT: 'HH:mm',
-            LTS: 'HH:mm:ss',
-            L: 'DD/MM/YYYY',
-            LL: 'D MMMM YYYY',
-            LLL: 'D MMMM YYYY HH:mm',
-            LLLL: 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar: {
-            sameDay: '[á€šá€”á€±.] LT [á€™á€¾á€¬]',
-            nextDay: '[á€™á€”á€€á€ºá€–á€¼á€”á€º] LT [á€™á€¾á€¬]',
-            nextWeek: 'dddd LT [á€™á€¾á€¬]',
-            lastDay: '[á€™á€”á€±.á€€] LT [á€™á€¾á€¬]',
-            lastWeek: '[á€•á€¼á€®á€¸á€á€²á€·á€žá€±á€¬] dddd LT [á€™á€¾á€¬]',
-            sameElse: 'L'
-        },
-        relativeTime: {
-            future: 'á€œá€¬á€™á€Šá€ºá€· %s á€™á€¾á€¬',
-            past: 'á€œá€½á€”á€ºá€á€²á€·á€žá€±á€¬ %s á€€',
-            s: 'á€…á€€á€¹á€€á€”á€º.á€¡á€”á€Šá€ºá€¸á€„á€šá€º',
-            m: 'á€á€…á€ºá€™á€­á€”á€…á€º',
-            mm: '%d á€™á€­á€”á€…á€º',
-            h: 'á€á€…á€ºá€”á€¬á€›á€®',
-            hh: '%d á€”á€¬á€›á€®',
-            d: 'á€á€…á€ºá€›á€€á€º',
-            dd: '%d á€›á€€á€º',
-            M: 'á€á€…á€ºá€œ',
-            MM: '%d á€œ',
-            y: 'á€á€…á€ºá€”á€¾á€…á€º',
-            yy: '%d á€”á€¾á€…á€º'
-        },
-        preparse: function (string) {
-            return string.replace(/[áá‚áƒá„á…á†á‡áˆá‰á€]/g, function (match) {
-                return my__numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return my__symbolMap[match];
-            });
-        },
-        week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4 // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : norwegian bokmÃ¥l (nb)
-    //! authors : Espen Hovlandsdal : https://github.com/rexxars
-    //!           Sigurd Gartmann : https://github.com/sigurdga
-
-    var nb = moment.defineLocale('nb', {
-        months : 'januar_februar_mars_april_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
-        monthsShort : 'jan._feb._mars_april_mai_juni_juli_aug._sep._okt._nov._des.'.split('_'),
-        weekdays : 'sÃ¸ndag_mandag_tirsdag_onsdag_torsdag_fredag_lÃ¸rdag'.split('_'),
-        weekdaysShort : 'sÃ¸._ma._ti._on._to._fr._lÃ¸.'.split('_'),
-        weekdaysMin : 'sÃ¸_ma_ti_on_to_fr_lÃ¸'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY [kl.] HH:mm',
-            LLLL : 'dddd D. MMMM YYYY [kl.] HH:mm'
-        },
-        calendar : {
-            sameDay: '[i dag kl.] LT',
-            nextDay: '[i morgen kl.] LT',
-            nextWeek: 'dddd [kl.] LT',
-            lastDay: '[i gÃ¥r kl.] LT',
-            lastWeek: '[forrige] dddd [kl.] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'om %s',
-            past : 'for %s siden',
-            s : 'noen sekunder',
-            m : 'ett minutt',
-            mm : '%d minutter',
-            h : 'en time',
-            hh : '%d timer',
-            d : 'en dag',
-            dd : '%d dager',
-            M : 'en mÃ¥ned',
-            MM : '%d mÃ¥neder',
-            y : 'ett Ã¥r',
-            yy : '%d Ã¥r'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : nepali/nepalese
-    //! author : suvash : https://github.com/suvash
-
-    var ne__symbolMap = {
-        '1': 'à¥§',
-        '2': 'à¥¨',
-        '3': 'à¥©',
-        '4': 'à¥ª',
-        '5': 'à¥«',
-        '6': 'à¥¬',
-        '7': 'à¥­',
-        '8': 'à¥®',
-        '9': 'à¥¯',
-        '0': 'à¥¦'
-    },
-    ne__numberMap = {
-        'à¥§': '1',
-        'à¥¨': '2',
-        'à¥©': '3',
-        'à¥ª': '4',
-        'à¥«': '5',
-        'à¥¬': '6',
-        'à¥­': '7',
-        'à¥®': '8',
-        'à¥¯': '9',
-        'à¥¦': '0'
-    };
-
-    var ne = moment.defineLocale('ne', {
-        months : 'à¤œà¤¨à¤µà¤°à¥€_à¤«à¥‡à¤¬à¥à¤°à¥à¤µà¤°à¥€_à¤®à¤¾à¤°à¥à¤š_à¤…à¤ªà¥à¤°à¤¿à¤²_à¤®à¤ˆ_à¤œà¥à¤¨_à¤œà¥à¤²à¤¾à¤ˆ_à¤…à¤—à¤·à¥à¤Ÿ_à¤¸à¥‡à¤ªà¥à¤Ÿà¥‡à¤®à¥à¤¬à¤°_à¤…à¤•à¥à¤Ÿà¥‹à¤¬à¤°_à¤¨à¥‹à¤­à¥‡à¤®à¥à¤¬à¤°_à¤¡à¤¿à¤¸à¥‡à¤®à¥à¤¬à¤°'.split('_'),
-        monthsShort : 'à¤œà¤¨._à¤«à¥‡à¤¬à¥à¤°à¥._à¤®à¤¾à¤°à¥à¤š_à¤…à¤ªà¥à¤°à¤¿._à¤®à¤ˆ_à¤œà¥à¤¨_à¤œà¥à¤²à¤¾à¤ˆ._à¤…à¤—._à¤¸à¥‡à¤ªà¥à¤Ÿ._à¤…à¤•à¥à¤Ÿà¥‹._à¤¨à¥‹à¤­à¥‡._à¤¡à¤¿à¤¸à¥‡.'.split('_'),
-        weekdays : 'à¤†à¤‡à¤¤à¤¬à¤¾à¤°_à¤¸à¥‹à¤®à¤¬à¤¾à¤°_à¤®à¤™à¥à¤—à¤²à¤¬à¤¾à¤°_à¤¬à¥à¤§à¤¬à¤¾à¤°_à¤¬à¤¿à¤¹à¤¿à¤¬à¤¾à¤°_à¤¶à¥à¤•à¥à¤°à¤¬à¤¾à¤°_à¤¶à¤¨à¤¿à¤¬à¤¾à¤°'.split('_'),
-        weekdaysShort : 'à¤†à¤‡à¤¤._à¤¸à¥‹à¤®._à¤®à¤™à¥à¤—à¤²._à¤¬à¥à¤§._à¤¬à¤¿à¤¹à¤¿._à¤¶à¥à¤•à¥à¤°._à¤¶à¤¨à¤¿.'.split('_'),
-        weekdaysMin : 'à¤†._à¤¸à¥‹._à¤®à¤‚._à¤¬à¥._à¤¬à¤¿._à¤¶à¥._à¤¶.'.split('_'),
-        longDateFormat : {
-            LT : 'Aà¤•à¥‹ h:mm à¤¬à¤œà¥‡',
-            LTS : 'Aà¤•à¥‹ h:mm:ss à¤¬à¤œà¥‡',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY, Aà¤•à¥‹ h:mm à¤¬à¤œà¥‡',
-            LLLL : 'dddd, D MMMM YYYY, Aà¤•à¥‹ h:mm à¤¬à¤œà¥‡'
-        },
-        preparse: function (string) {
-            return string.replace(/[à¥§à¥¨à¥©à¥ªà¥«à¥¬à¥­à¥®à¥¯à¥¦]/g, function (match) {
-                return ne__numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return ne__symbolMap[match];
-            });
-        },
-        meridiemParse: /à¤°à¤¾à¤¤à¤¿|à¤¬à¤¿à¤¹à¤¾à¤¨|à¤¦à¤¿à¤‰à¤à¤¸à¥‹|à¤¸à¤¾à¤à¤/,
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'à¤°à¤¾à¤¤à¤¿') {
-                return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'à¤¬à¤¿à¤¹à¤¾à¤¨') {
-                return hour;
-            } else if (meridiem === 'à¤¦à¤¿à¤‰à¤à¤¸à¥‹') {
-                return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'à¤¸à¤¾à¤à¤') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 3) {
-                return 'à¤°à¤¾à¤¤à¤¿';
-            } else if (hour < 12) {
-                return 'à¤¬à¤¿à¤¹à¤¾à¤¨';
-            } else if (hour < 16) {
-                return 'à¤¦à¤¿à¤‰à¤à¤¸à¥‹';
-            } else if (hour < 20) {
-                return 'à¤¸à¤¾à¤à¤';
-            } else {
-                return 'à¤°à¤¾à¤¤à¤¿';
-            }
-        },
-        calendar : {
-            sameDay : '[à¤†à¤œ] LT',
-            nextDay : '[à¤­à¥‹à¤²à¤¿] LT',
-            nextWeek : '[à¤†à¤‰à¤à¤¦à¥‹] dddd[,] LT',
-            lastDay : '[à¤¹à¤¿à¤œà¥‹] LT',
-            lastWeek : '[à¤—à¤à¤•à¥‹] dddd[,] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%sà¤®à¤¾',
-            past : '%s à¤…à¤—à¤¾à¤¡à¤¿',
-            s : 'à¤•à¥‡à¤¹à¥€ à¤•à¥à¤·à¤£',
-            m : 'à¤à¤• à¤®à¤¿à¤¨à¥‡à¤Ÿ',
-            mm : '%d à¤®à¤¿à¤¨à¥‡à¤Ÿ',
-            h : 'à¤à¤• à¤˜à¤£à¥à¤Ÿà¤¾',
-            hh : '%d à¤˜à¤£à¥à¤Ÿà¤¾',
-            d : 'à¤à¤• à¤¦à¤¿à¤¨',
-            dd : '%d à¤¦à¤¿à¤¨',
-            M : 'à¤à¤• à¤®à¤¹à¤¿à¤¨à¤¾',
-            MM : '%d à¤®à¤¹à¤¿à¤¨à¤¾',
-            y : 'à¤à¤• à¤¬à¤°à¥à¤·',
-            yy : '%d à¤¬à¤°à¥à¤·'
-        },
-        week : {
-            dow : 0, // Sunday is the first day of the week.
-            doy : 6  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : dutch (nl)
-    //! author : Joris RÃ¶ling : https://github.com/jjupiter
-
-    var nl__monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
-        nl__monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
-
-    var nl = moment.defineLocale('nl', {
-        months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
-        monthsShort : function (m, format) {
-            if (/-MMM-/.test(format)) {
-                return nl__monthsShortWithoutDots[m.month()];
-            } else {
-                return nl__monthsShortWithDots[m.month()];
-            }
-        },
-        weekdays : 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
-        weekdaysShort : 'zo._ma._di._wo._do._vr._za.'.split('_'),
-        weekdaysMin : 'Zo_Ma_Di_Wo_Do_Vr_Za'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD-MM-YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[vandaag om] LT',
-            nextDay: '[morgen om] LT',
-            nextWeek: 'dddd [om] LT',
-            lastDay: '[gisteren om] LT',
-            lastWeek: '[afgelopen] dddd [om] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'over %s',
-            past : '%s geleden',
-            s : 'een paar seconden',
-            m : 'Ã©Ã©n minuut',
-            mm : '%d minuten',
-            h : 'Ã©Ã©n uur',
-            hh : '%d uur',
-            d : 'Ã©Ã©n dag',
-            dd : '%d dagen',
-            M : 'Ã©Ã©n maand',
-            MM : '%d maanden',
-            y : 'Ã©Ã©n jaar',
-            yy : '%d jaar'
-        },
-        ordinalParse: /\d{1,2}(ste|de)/,
-        ordinal : function (number) {
-            return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de');
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : norwegian nynorsk (nn)
-    //! author : https://github.com/mechuwind
-
-    var nn = moment.defineLocale('nn', {
-        months : 'januar_februar_mars_april_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
-        monthsShort : 'jan_feb_mar_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_'),
-        weekdays : 'sundag_mÃ¥ndag_tysdag_onsdag_torsdag_fredag_laurdag'.split('_'),
-        weekdaysShort : 'sun_mÃ¥n_tys_ons_tor_fre_lau'.split('_'),
-        weekdaysMin : 'su_mÃ¥_ty_on_to_fr_lÃ¸'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY [kl.] H:mm',
-            LLLL : 'dddd D. MMMM YYYY [kl.] HH:mm'
-        },
-        calendar : {
-            sameDay: '[I dag klokka] LT',
-            nextDay: '[I morgon klokka] LT',
-            nextWeek: 'dddd [klokka] LT',
-            lastDay: '[I gÃ¥r klokka] LT',
-            lastWeek: '[FÃ¸regÃ¥ande] dddd [klokka] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'om %s',
-            past : 'for %s sidan',
-            s : 'nokre sekund',
-            m : 'eit minutt',
-            mm : '%d minutt',
-            h : 'ein time',
-            hh : '%d timar',
-            d : 'ein dag',
-            dd : '%d dagar',
-            M : 'ein mÃ¥nad',
-            MM : '%d mÃ¥nader',
-            y : 'eit Ã¥r',
-            yy : '%d Ã¥r'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : polish (pl)
-    //! author : Rafal Hirsz : https://github.com/evoL
-
-    var monthsNominative = 'styczeÅ„_luty_marzec_kwiecieÅ„_maj_czerwiec_lipiec_sierpieÅ„_wrzesieÅ„_paÅºdziernik_listopad_grudzieÅ„'.split('_'),
-        monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_wrzeÅ›nia_paÅºdziernika_listopada_grudnia'.split('_');
-    function pl__plural(n) {
-        return (n % 10 < 5) && (n % 10 > 1) && ((~~(n / 10) % 10) !== 1);
-    }
-    function pl__translate(number, withoutSuffix, key) {
-        var result = number + ' ';
-        switch (key) {
-        case 'm':
-            return withoutSuffix ? 'minuta' : 'minutÄ™';
-        case 'mm':
-            return result + (pl__plural(number) ? 'minuty' : 'minut');
-        case 'h':
-            return withoutSuffix  ? 'godzina'  : 'godzinÄ™';
-        case 'hh':
-            return result + (pl__plural(number) ? 'godziny' : 'godzin');
-        case 'MM':
-            return result + (pl__plural(number) ? 'miesiÄ…ce' : 'miesiÄ™cy');
-        case 'yy':
-            return result + (pl__plural(number) ? 'lata' : 'lat');
-        }
-    }
-
-    var pl = moment.defineLocale('pl', {
-        months : function (momentToFormat, format) {
-            if (format === '') {
-                // Hack: if format empty we know this is used to generate
-                // RegExp by moment. Give then back both valid forms of months
-                // in RegExp ready format.
-                return '(' + monthsSubjective[momentToFormat.month()] + '|' + monthsNominative[momentToFormat.month()] + ')';
-            } else if (/D MMMM/.test(format)) {
-                return monthsSubjective[momentToFormat.month()];
-            } else {
-                return monthsNominative[momentToFormat.month()];
-            }
-        },
-        monthsShort : 'sty_lut_mar_kwi_maj_cze_lip_sie_wrz_paÅº_lis_gru'.split('_'),
-        weekdays : 'niedziela_poniedziaÅ‚ek_wtorek_Å›roda_czwartek_piÄ…tek_sobota'.split('_'),
-        weekdaysShort : 'nie_pon_wt_Å›r_czw_pt_sb'.split('_'),
-        weekdaysMin : 'Nd_Pn_Wt_Åšr_Cz_Pt_So'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[DziÅ› o] LT',
-            nextDay: '[Jutro o] LT',
-            nextWeek: '[W] dddd [o] LT',
-            lastDay: '[Wczoraj o] LT',
-            lastWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[W zeszÅ‚Ä… niedzielÄ™ o] LT';
-                case 3:
-                    return '[W zeszÅ‚Ä… Å›rodÄ™ o] LT';
-                case 6:
-                    return '[W zeszÅ‚Ä… sobotÄ™ o] LT';
-                default:
-                    return '[W zeszÅ‚y] dddd [o] LT';
-                }
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'za %s',
-            past : '%s temu',
-            s : 'kilka sekund',
-            m : pl__translate,
-            mm : pl__translate,
-            h : pl__translate,
-            hh : pl__translate,
-            d : '1 dzieÅ„',
-            dd : '%d dni',
-            M : 'miesiÄ…c',
-            MM : pl__translate,
-            y : 'rok',
-            yy : pl__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : brazilian portuguese (pt-br)
-    //! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
-
-    var pt_br = moment.defineLocale('pt-br', {
-        months : 'Janeiro_Fevereiro_MarÃ§o_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-        monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
-        weekdays : 'Domingo_Segunda-Feira_TerÃ§a-Feira_Quarta-Feira_Quinta-Feira_Sexta-Feira_SÃ¡bado'.split('_'),
-        weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_SÃ¡b'.split('_'),
-        weekdaysMin : 'Dom_2Âª_3Âª_4Âª_5Âª_6Âª_SÃ¡b'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D [de] MMMM [de] YYYY',
-            LLL : 'D [de] MMMM [de] YYYY [Ã s] HH:mm',
-            LLLL : 'dddd, D [de] MMMM [de] YYYY [Ã s] HH:mm'
-        },
-        calendar : {
-            sameDay: '[Hoje Ã s] LT',
-            nextDay: '[AmanhÃ£ Ã s] LT',
-            nextWeek: 'dddd [Ã s] LT',
-            lastDay: '[Ontem Ã s] LT',
-            lastWeek: function () {
-                return (this.day() === 0 || this.day() === 6) ?
-                    '[Ãšltimo] dddd [Ã s] LT' : // Saturday + Sunday
-                    '[Ãšltima] dddd [Ã s] LT'; // Monday - Friday
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'em %s',
-            past : '%s atrÃ¡s',
-            s : 'poucos segundos',
-            m : 'um minuto',
-            mm : '%d minutos',
-            h : 'uma hora',
-            hh : '%d horas',
-            d : 'um dia',
-            dd : '%d dias',
-            M : 'um mÃªs',
-            MM : '%d meses',
-            y : 'um ano',
-            yy : '%d anos'
-        },
-        ordinalParse: /\d{1,2}Âº/,
-        ordinal : '%dÂº'
-    });
-
-    //! moment.js locale configuration
-    //! locale : portuguese (pt)
-    //! author : Jefferson : https://github.com/jalex79
-
-    var pt = moment.defineLocale('pt', {
-        months : 'Janeiro_Fevereiro_MarÃ§o_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-        monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
-        weekdays : 'Domingo_Segunda-Feira_TerÃ§a-Feira_Quarta-Feira_Quinta-Feira_Sexta-Feira_SÃ¡bado'.split('_'),
-        weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_SÃ¡b'.split('_'),
-        weekdaysMin : 'Dom_2Âª_3Âª_4Âª_5Âª_6Âª_SÃ¡b'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D [de] MMMM [de] YYYY',
-            LLL : 'D [de] MMMM [de] YYYY HH:mm',
-            LLLL : 'dddd, D [de] MMMM [de] YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[Hoje Ã s] LT',
-            nextDay: '[AmanhÃ£ Ã s] LT',
-            nextWeek: 'dddd [Ã s] LT',
-            lastDay: '[Ontem Ã s] LT',
-            lastWeek: function () {
-                return (this.day() === 0 || this.day() === 6) ?
-                    '[Ãšltimo] dddd [Ã s] LT' : // Saturday + Sunday
-                    '[Ãšltima] dddd [Ã s] LT'; // Monday - Friday
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'em %s',
-            past : 'hÃ¡ %s',
-            s : 'segundos',
-            m : 'um minuto',
-            mm : '%d minutos',
-            h : 'uma hora',
-            hh : '%d horas',
-            d : 'um dia',
-            dd : '%d dias',
-            M : 'um mÃªs',
-            MM : '%d meses',
-            y : 'um ano',
-            yy : '%d anos'
-        },
-        ordinalParse: /\d{1,2}Âº/,
-        ordinal : '%dÂº',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : romanian (ro)
-    //! author : Vlad Gurdiga : https://github.com/gurdiga
-    //! author : Valentin Agachi : https://github.com/avaly
-
-    function ro__relativeTimeWithPlural(number, withoutSuffix, key) {
-        var format = {
-                'mm': 'minute',
-                'hh': 'ore',
-                'dd': 'zile',
-                'MM': 'luni',
-                'yy': 'ani'
-            },
-            separator = ' ';
-        if (number % 100 >= 20 || (number >= 100 && number % 100 === 0)) {
-            separator = ' de ';
-        }
-        return number + separator + format[key];
-    }
-
-    var ro = moment.defineLocale('ro', {
-        months : 'ianuarie_februarie_martie_aprilie_mai_iunie_iulie_august_septembrie_octombrie_noiembrie_decembrie'.split('_'),
-        monthsShort : 'ian._febr._mart._apr._mai_iun._iul._aug._sept._oct._nov._dec.'.split('_'),
-        weekdays : 'duminicÄƒ_luni_marÈ›i_miercuri_joi_vineri_sÃ¢mbÄƒtÄƒ'.split('_'),
-        weekdaysShort : 'Dum_Lun_Mar_Mie_Joi_Vin_SÃ¢m'.split('_'),
-        weekdaysMin : 'Du_Lu_Ma_Mi_Jo_Vi_SÃ¢'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY H:mm',
-            LLLL : 'dddd, D MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay: '[azi la] LT',
-            nextDay: '[mÃ¢ine la] LT',
-            nextWeek: 'dddd [la] LT',
-            lastDay: '[ieri la] LT',
-            lastWeek: '[fosta] dddd [la] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'peste %s',
-            past : '%s Ã®n urmÄƒ',
-            s : 'cÃ¢teva secunde',
-            m : 'un minut',
-            mm : ro__relativeTimeWithPlural,
-            h : 'o orÄƒ',
-            hh : ro__relativeTimeWithPlural,
-            d : 'o zi',
-            dd : ro__relativeTimeWithPlural,
-            M : 'o lunÄƒ',
-            MM : ro__relativeTimeWithPlural,
-            y : 'un an',
-            yy : ro__relativeTimeWithPlural
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : russian (ru)
-    //! author : Viktorminator : https://github.com/Viktorminator
-    //! Author : Menelion ElensÃºle : https://github.com/Oire
-
-    function ru__plural(word, num) {
-        var forms = word.split('_');
-        return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
-    }
-    function ru__relativeTimeWithPlural(number, withoutSuffix, key) {
-        var format = {
-            'mm': withoutSuffix ? 'Ð¼Ð¸Ð½ÑƒÑ‚Ð°_Ð¼Ð¸Ð½ÑƒÑ‚Ñ‹_Ð¼Ð¸Ð½ÑƒÑ‚' : 'Ð¼Ð¸Ð½ÑƒÑ‚Ñƒ_Ð¼Ð¸Ð½ÑƒÑ‚Ñ‹_Ð¼Ð¸Ð½ÑƒÑ‚',
-            'hh': 'Ñ‡Ð°Ñ_Ñ‡Ð°ÑÐ°_Ñ‡Ð°ÑÐ¾Ð²',
-            'dd': 'Ð´ÐµÐ½ÑŒ_Ð´Ð½Ñ_Ð´Ð½ÐµÐ¹',
-            'MM': 'Ð¼ÐµÑÑÑ†_Ð¼ÐµÑÑÑ†Ð°_Ð¼ÐµÑÑÑ†ÐµÐ²',
-            'yy': 'Ð³Ð¾Ð´_Ð³Ð¾Ð´Ð°_Ð»ÐµÑ‚'
-        };
-        if (key === 'm') {
-            return withoutSuffix ? 'Ð¼Ð¸Ð½ÑƒÑ‚Ð°' : 'Ð¼Ð¸Ð½ÑƒÑ‚Ñƒ';
-        }
-        else {
-            return number + ' ' + ru__plural(format[key], +number);
-        }
-    }
-    var monthsParse = [/^ÑÐ½Ð²/i, /^Ñ„ÐµÐ²/i, /^Ð¼Ð°Ñ€/i, /^Ð°Ð¿Ñ€/i, /^Ð¼Ð°[Ð¹|Ñ]/i, /^Ð¸ÑŽÐ½/i, /^Ð¸ÑŽÐ»/i, /^Ð°Ð²Ð³/i, /^ÑÐµÐ½/i, /^Ð¾ÐºÑ‚/i, /^Ð½Ð¾Ñ/i, /^Ð´ÐµÐº/i];
-
-    var ru = moment.defineLocale('ru', {
-        months : {
-            format: 'Ð¯Ð½Ð²Ð°Ñ€Ñ_Ð¤ÐµÐ²Ñ€Ð°Ð»Ñ_ÐœÐ°Ñ€Ñ‚Ð°_ÐÐ¿Ñ€ÐµÐ»Ñ_ÐœÐ°Ñ_Ð˜ÑŽÐ½Ñ_Ð˜ÑŽÐ»Ñ_ÐÐ²Ð³ÑƒÑÑ‚Ð°_Ð¡ÐµÐ½Ñ‚ÑÐ±Ñ€Ñ_ÐžÐºÑ‚ÑÐ±Ñ€Ñ_ÐÐ¾ÑÐ±Ñ€Ñ_Ð”ÐµÐºÐ°Ð±Ñ€Ñ'.split('_'),
-            standalone: 'Ð¯Ð½Ð²Ð°Ñ€ÑŒ_Ð¤ÐµÐ²Ñ€Ð°Ð»ÑŒ_ÐœÐ°Ñ€Ñ‚_ÐÐ¿Ñ€ÐµÐ»ÑŒ_ÐœÐ°Ð¹_Ð˜ÑŽÐ½ÑŒ_Ð˜ÑŽÐ»ÑŒ_ÐÐ²Ð³ÑƒÑÑ‚_Ð¡ÐµÐ½Ñ‚ÑÐ±Ñ€ÑŒ_ÐžÐºÑ‚ÑÐ±Ñ€ÑŒ_ÐÐ¾ÑÐ±Ñ€ÑŒ_Ð”ÐµÐºÐ°Ð±Ñ€ÑŒ'.split('_')
-        },
-        monthsShort : {
-            format: 'ÑÐ½Ð²_Ñ„ÐµÐ²_Ð¼Ð°Ñ€_Ð°Ð¿Ñ€_Ð¼Ð°Ñ_Ð¸ÑŽÐ½Ñ_Ð¸ÑŽÐ»Ñ_Ð°Ð²Ð³_ÑÐµÐ½_Ð¾ÐºÑ‚_Ð½Ð¾Ñ_Ð´ÐµÐº'.split('_'),
-            standalone: 'ÑÐ½Ð²_Ñ„ÐµÐ²_Ð¼Ð°Ñ€Ñ‚_Ð°Ð¿Ñ€_Ð¼Ð°Ð¹_Ð¸ÑŽÐ½ÑŒ_Ð¸ÑŽÐ»ÑŒ_Ð°Ð²Ð³_ÑÐµÐ½_Ð¾ÐºÑ‚_Ð½Ð¾Ñ_Ð´ÐµÐº'.split('_')
-        },
-        weekdays : {
-            standalone: 'Ð’Ð¾ÑÐºÑ€ÐµÑÐµÐ½ÑŒÐµ_ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº_Ð’Ñ‚Ð¾Ñ€Ð½Ð¸Ðº_Ð¡Ñ€ÐµÐ´Ð°_Ð§ÐµÑ‚Ð²ÐµÑ€Ð³_ÐŸÑÑ‚Ð½Ð¸Ñ†Ð°_Ð¡ÑƒÐ±Ð±Ð¾Ñ‚Ð°'.split('_'),
-            format: 'Ð’Ð¾ÑÐºÑ€ÐµÑÐµÐ½ÑŒÐµ_ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº_Ð’Ñ‚Ð¾Ñ€Ð½Ð¸Ðº_Ð¡Ñ€ÐµÐ´Ñƒ_Ð§ÐµÑ‚Ð²ÐµÑ€Ð³_ÐŸÑÑ‚Ð½Ð¸Ñ†Ñƒ_Ð¡ÑƒÐ±Ð±Ð¾Ñ‚Ñƒ'.split('_'),
-            isFormat: /\[ ?[Ð’Ð²] ?(?:Ð¿Ñ€Ð¾ÑˆÐ»ÑƒÑŽ|ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÑƒÑŽ|ÑÑ‚Ñƒ)? ?\] ?dddd/
-        },
-        weekdaysShort : 'Ð’Ñ_ÐŸÐ½_Ð’Ñ‚_Ð¡Ñ€_Ð§Ñ‚_ÐŸÑ‚_Ð¡Ð±'.split('_'),
-        weekdaysMin : 'Ð’Ñ_ÐŸÐ½_Ð’Ñ‚_Ð¡Ñ€_Ð§Ñ‚_ÐŸÑ‚_Ð¡Ð±'.split('_'),
-        monthsParse : monthsParse,
-        longMonthsParse : monthsParse,
-        shortMonthsParse : monthsParse,
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY Ð³.',
-            LLL : 'D MMMM YYYY Ð³., HH:mm',
-            LLLL : 'dddd, D MMMM YYYY Ð³., HH:mm'
-        },
-        calendar : {
-            sameDay: '[Ð¡ÐµÐ³Ð¾Ð´Ð½Ñ Ð²] LT',
-            nextDay: '[Ð—Ð°Ð²Ñ‚Ñ€Ð° Ð²] LT',
-            lastDay: '[Ð’Ñ‡ÐµÑ€Ð° Ð²] LT',
-            nextWeek: function (now) {
-                if (now.week() !== this.week()) {
-                    switch (this.day()) {
-                    case 0:
-                        return '[Ð’ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐµ] dddd [Ð²] LT';
-                    case 1:
-                    case 2:
-                    case 4:
-                        return '[Ð’ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹] dddd [Ð²] LT';
-                    case 3:
-                    case 5:
-                    case 6:
-                        return '[Ð’ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÑƒÑŽ] dddd [Ð²] LT';
-                    }
-                } else {
-                    if (this.day() === 2) {
-                        return '[Ð’Ð¾] dddd [Ð²] LT';
-                    } else {
-                        return '[Ð’] dddd [Ð²] LT';
-                    }
-                }
-            },
-            lastWeek: function (now) {
-                if (now.week() !== this.week()) {
-                    switch (this.day()) {
-                    case 0:
-                        return '[Ð’ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾Ðµ] dddd [Ð²] LT';
-                    case 1:
-                    case 2:
-                    case 4:
-                        return '[Ð’ Ð¿Ñ€Ð¾ÑˆÐ»Ñ‹Ð¹] dddd [Ð²] LT';
-                    case 3:
-                    case 5:
-                    case 6:
-                        return '[Ð’ Ð¿Ñ€Ð¾ÑˆÐ»ÑƒÑŽ] dddd [Ð²] LT';
-                    }
-                } else {
-                    if (this.day() === 2) {
-                        return '[Ð’Ð¾] dddd [Ð²] LT';
-                    } else {
-                        return '[Ð’] dddd [Ð²] LT';
-                    }
-                }
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'Ñ‡ÐµÑ€ÐµÐ· %s',
-            past : '%s Ð½Ð°Ð·Ð°Ð´',
-            s : 'Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÐµÐºÑƒÐ½Ð´',
-            m : ru__relativeTimeWithPlural,
-            mm : ru__relativeTimeWithPlural,
-            h : 'Ñ‡Ð°Ñ',
-            hh : ru__relativeTimeWithPlural,
-            d : 'Ð´ÐµÐ½ÑŒ',
-            dd : ru__relativeTimeWithPlural,
-            M : 'Ð¼ÐµÑÑÑ†',
-            MM : ru__relativeTimeWithPlural,
-            y : 'Ð³Ð¾Ð´',
-            yy : ru__relativeTimeWithPlural
-        },
-        meridiemParse: /Ð½Ð¾Ñ‡Ð¸|ÑƒÑ‚Ñ€Ð°|Ð´Ð½Ñ|Ð²ÐµÑ‡ÐµÑ€Ð°/i,
-        isPM : function (input) {
-            return /^(Ð´Ð½Ñ|Ð²ÐµÑ‡ÐµÑ€Ð°)$/.test(input);
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'Ð½Ð¾Ñ‡Ð¸';
-            } else if (hour < 12) {
-                return 'ÑƒÑ‚Ñ€Ð°';
-            } else if (hour < 17) {
-                return 'Ð´Ð½Ñ';
-            } else {
-                return 'Ð²ÐµÑ‡ÐµÑ€Ð°';
-            }
-        },
-        ordinalParse: /\d{1,2}-(Ð¹|Ð³Ð¾|Ñ)/,
-        ordinal: function (number, period) {
-            switch (period) {
-            case 'M':
-            case 'd':
-            case 'DDD':
-                return number + '-Ð¹';
-            case 'D':
-                return number + '-Ð³Ð¾';
-            case 'w':
-            case 'W':
-                return number + '-Ñ';
-            default:
-                return number;
-            }
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Northern Sami (se)
-    //! authors : BÃ¥rd Rolstad Henriksen : https://github.com/karamell
-
-
-    var se = moment.defineLocale('se', {
-        months : 'oÄ‘Ä‘ajagemÃ¡nnu_guovvamÃ¡nnu_njukÄamÃ¡nnu_cuoÅ‹omÃ¡nnu_miessemÃ¡nnu_geassemÃ¡nnu_suoidnemÃ¡nnu_borgemÃ¡nnu_ÄakÄamÃ¡nnu_golggotmÃ¡nnu_skÃ¡bmamÃ¡nnu_juovlamÃ¡nnu'.split('_'),
-        monthsShort : 'oÄ‘Ä‘j_guov_njuk_cuo_mies_geas_suoi_borg_ÄakÄ_golg_skÃ¡b_juov'.split('_'),
-        weekdays : 'sotnabeaivi_vuossÃ¡rga_maÅ‹Å‹ebÃ¡rga_gaskavahkku_duorastat_bearjadat_lÃ¡vvardat'.split('_'),
-        weekdaysShort : 'sotn_vuos_maÅ‹_gask_duor_bear_lÃ¡v'.split('_'),
-        weekdaysMin : 's_v_m_g_d_b_L'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'MMMM D. [b.] YYYY',
-            LLL : 'MMMM D. [b.] YYYY [ti.] HH:mm',
-            LLLL : 'dddd, MMMM D. [b.] YYYY [ti.] HH:mm'
-        },
-        calendar : {
-            sameDay: '[otne ti] LT',
-            nextDay: '[ihttin ti] LT',
-            nextWeek: 'dddd [ti] LT',
-            lastDay: '[ikte ti] LT',
-            lastWeek: '[ovddit] dddd [ti] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : '%s geaÅ¾es',
-            past : 'maÅ‹it %s',
-            s : 'moadde sekunddat',
-            m : 'okta minuhta',
-            mm : '%d minuhtat',
-            h : 'okta diimmu',
-            hh : '%d diimmut',
-            d : 'okta beaivi',
-            dd : '%d beaivvit',
-            M : 'okta mÃ¡nnu',
-            MM : '%d mÃ¡nut',
-            y : 'okta jahki',
-            yy : '%d jagit'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Sinhalese (si)
-    //! author : Sampath Sitinamaluwa : https://github.com/sampathsris
-
-    /*jshint -W100*/
-    var si = moment.defineLocale('si', {
-        months : 'à¶¢à¶±à·€à·à¶»à·’_à¶´à·™à¶¶à¶»à·€à·à¶»à·’_à¶¸à·à¶»à·Šà¶­à·”_à¶…à¶´à·Šâ€à¶»à·šà¶½à·Š_à¶¸à·à¶ºà·’_à¶¢à·–à¶±à·’_à¶¢à·–à¶½à·’_à¶…à¶œà·à·ƒà·Šà¶­à·”_à·ƒà·à¶´à·Šà¶­à·à¶¸à·Šà¶¶à¶»à·Š_à¶”à¶šà·Šà¶­à·à¶¶à¶»à·Š_à¶±à·œà·€à·à¶¸à·Šà¶¶à¶»à·Š_à¶¯à·™à·ƒà·à¶¸à·Šà¶¶à¶»à·Š'.split('_'),
-        monthsShort : 'à¶¢à¶±_à¶´à·™à¶¶_à¶¸à·à¶»à·Š_à¶…à¶´à·Š_à¶¸à·à¶ºà·’_à¶¢à·–à¶±à·’_à¶¢à·–à¶½à·’_à¶…à¶œà·_à·ƒà·à¶´à·Š_à¶”à¶šà·Š_à¶±à·œà·€à·_à¶¯à·™à·ƒà·'.split('_'),
-        weekdays : 'à¶‰à¶»à·’à¶¯à·_à·ƒà¶³à·”à¶¯à·_à¶…à¶Ÿà·„à¶»à·”à·€à·à¶¯à·_à¶¶à¶¯à·à¶¯à·_à¶¶à·Šâ€à¶»à·„à·ƒà·Šà¶´à¶­à·’à¶±à·Šà¶¯à·_à·ƒà·’à¶šà·”à¶»à·à¶¯à·_à·ƒà·™à¶±à·ƒà·”à¶»à·à¶¯à·'.split('_'),
-        weekdaysShort : 'à¶‰à¶»à·’_à·ƒà¶³à·”_à¶…à¶Ÿ_à¶¶à¶¯à·_à¶¶à·Šâ€à¶»à·„_à·ƒà·’à¶šà·”_à·ƒà·™à¶±'.split('_'),
-        weekdaysMin : 'à¶‰_à·ƒ_à¶…_à¶¶_à¶¶à·Šâ€à¶»_à·ƒà·’_à·ƒà·™'.split('_'),
-        longDateFormat : {
-            LT : 'a h:mm',
-            LTS : 'a h:mm:ss',
-            L : 'YYYY/MM/DD',
-            LL : 'YYYY MMMM D',
-            LLL : 'YYYY MMMM D, a h:mm',
-            LLLL : 'YYYY MMMM D [à·€à·à¶±à·’] dddd, a h:mm:ss'
-        },
-        calendar : {
-            sameDay : '[à¶…à¶¯] LT[à¶§]',
-            nextDay : '[à·„à·™à¶§] LT[à¶§]',
-            nextWeek : 'dddd LT[à¶§]',
-            lastDay : '[à¶Šà¶ºà·š] LT[à¶§]',
-            lastWeek : '[à¶´à·ƒà·”à¶œà·’à¶º] dddd LT[à¶§]',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%sà¶šà·’à¶±à·Š',
-            past : '%sà¶šà¶§ à¶´à·™à¶»',
-            s : 'à¶­à¶­à·Šà¶´à¶» à¶šà·’à·„à·’à¶´à¶º',
-            m : 'à¶¸à·’à¶±à·’à¶­à·Šà¶­à·”à·€',
-            mm : 'à¶¸à·’à¶±à·’à¶­à·Šà¶­à·” %d',
-            h : 'à¶´à·à¶º',
-            hh : 'à¶´à·à¶º %d',
-            d : 'à¶¯à·’à¶±à¶º',
-            dd : 'à¶¯à·’à¶± %d',
-            M : 'à¶¸à·à·ƒà¶º',
-            MM : 'à¶¸à·à·ƒ %d',
-            y : 'à·€à·ƒà¶»',
-            yy : 'à·€à·ƒà¶» %d'
-        },
-        ordinalParse: /\d{1,2} à·€à·à¶±à·’/,
-        ordinal : function (number) {
-            return number + ' à·€à·à¶±à·’';
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours > 11) {
-                return isLower ? 'à¶´.à·€.' : 'à¶´à·ƒà·Š à·€à¶»à·”';
-            } else {
-                return isLower ? 'à¶´à·™.à·€.' : 'à¶´à·™à¶» à·€à¶»à·”';
-            }
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : slovak (sk)
-    //! author : Martin Minka : https://github.com/k2s
-    //! based on work of petrbela : https://github.com/petrbela
-
-    var sk__months = 'januÃ¡r_februÃ¡r_marec_aprÃ­l_mÃ¡j_jÃºn_jÃºl_august_september_oktÃ³ber_november_december'.split('_'),
-        sk__monthsShort = 'jan_feb_mar_apr_mÃ¡j_jÃºn_jÃºl_aug_sep_okt_nov_dec'.split('_');
-    function sk__plural(n) {
-        return (n > 1) && (n < 5);
-    }
-    function sk__translate(number, withoutSuffix, key, isFuture) {
-        var result = number + ' ';
-        switch (key) {
-        case 's':  // a few seconds / in a few seconds / a few seconds ago
-            return (withoutSuffix || isFuture) ? 'pÃ¡r sekÃºnd' : 'pÃ¡r sekundami';
-        case 'm':  // a minute / in a minute / a minute ago
-            return withoutSuffix ? 'minÃºta' : (isFuture ? 'minÃºtu' : 'minÃºtou');
-        case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
-            if (withoutSuffix || isFuture) {
-                return result + (sk__plural(number) ? 'minÃºty' : 'minÃºt');
-            } else {
-                return result + 'minÃºtami';
-            }
-            break;
-        case 'h':  // an hour / in an hour / an hour ago
-            return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
-        case 'hh': // 9 hours / in 9 hours / 9 hours ago
-            if (withoutSuffix || isFuture) {
-                return result + (sk__plural(number) ? 'hodiny' : 'hodÃ­n');
-            } else {
-                return result + 'hodinami';
-            }
-            break;
-        case 'd':  // a day / in a day / a day ago
-            return (withoutSuffix || isFuture) ? 'deÅˆ' : 'dÅˆom';
-        case 'dd': // 9 days / in 9 days / 9 days ago
-            if (withoutSuffix || isFuture) {
-                return result + (sk__plural(number) ? 'dni' : 'dnÃ­');
-            } else {
-                return result + 'dÅˆami';
-            }
-            break;
-        case 'M':  // a month / in a month / a month ago
-            return (withoutSuffix || isFuture) ? 'mesiac' : 'mesiacom';
-        case 'MM': // 9 months / in 9 months / 9 months ago
-            if (withoutSuffix || isFuture) {
-                return result + (sk__plural(number) ? 'mesiace' : 'mesiacov');
-            } else {
-                return result + 'mesiacmi';
-            }
-            break;
-        case 'y':  // a year / in a year / a year ago
-            return (withoutSuffix || isFuture) ? 'rok' : 'rokom';
-        case 'yy': // 9 years / in 9 years / 9 years ago
-            if (withoutSuffix || isFuture) {
-                return result + (sk__plural(number) ? 'roky' : 'rokov');
-            } else {
-                return result + 'rokmi';
-            }
-            break;
-        }
-    }
-
-    var sk = moment.defineLocale('sk', {
-        months : sk__months,
-        monthsShort : sk__monthsShort,
-        weekdays : 'nedeÄ¾a_pondelok_utorok_streda_Å¡tvrtok_piatok_sobota'.split('_'),
-        weekdaysShort : 'ne_po_ut_st_Å¡t_pi_so'.split('_'),
-        weekdaysMin : 'ne_po_ut_st_Å¡t_pi_so'.split('_'),
-        longDateFormat : {
-            LT: 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY H:mm',
-            LLLL : 'dddd D. MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay: '[dnes o] LT',
-            nextDay: '[zajtra o] LT',
-            nextWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[v nedeÄ¾u o] LT';
-                case 1:
-                case 2:
-                    return '[v] dddd [o] LT';
-                case 3:
-                    return '[v stredu o] LT';
-                case 4:
-                    return '[vo Å¡tvrtok o] LT';
-                case 5:
-                    return '[v piatok o] LT';
-                case 6:
-                    return '[v sobotu o] LT';
-                }
-            },
-            lastDay: '[vÄera o] LT',
-            lastWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[minulÃº nedeÄ¾u o] LT';
-                case 1:
-                case 2:
-                    return '[minulÃ½] dddd [o] LT';
-                case 3:
-                    return '[minulÃº stredu o] LT';
-                case 4:
-                case 5:
-                    return '[minulÃ½] dddd [o] LT';
-                case 6:
-                    return '[minulÃº sobotu o] LT';
-                }
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'za %s',
-            past : 'pred %s',
-            s : sk__translate,
-            m : sk__translate,
-            mm : sk__translate,
-            h : sk__translate,
-            hh : sk__translate,
-            d : sk__translate,
-            dd : sk__translate,
-            M : sk__translate,
-            MM : sk__translate,
-            y : sk__translate,
-            yy : sk__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : slovenian (sl)
-    //! author : Robert SedovÅ¡ek : https://github.com/sedovsek
-
-    function sl__processRelativeTime(number, withoutSuffix, key, isFuture) {
-        var result = number + ' ';
-        switch (key) {
-        case 's':
-            return withoutSuffix || isFuture ? 'nekaj sekund' : 'nekaj sekundami';
-        case 'm':
-            return withoutSuffix ? 'ena minuta' : 'eno minuto';
-        case 'mm':
-            if (number === 1) {
-                result += withoutSuffix ? 'minuta' : 'minuto';
-            } else if (number === 2) {
-                result += withoutSuffix || isFuture ? 'minuti' : 'minutama';
-            } else if (number < 5) {
-                result += withoutSuffix || isFuture ? 'minute' : 'minutami';
-            } else {
-                result += withoutSuffix || isFuture ? 'minut' : 'minutami';
-            }
-            return result;
-        case 'h':
-            return withoutSuffix ? 'ena ura' : 'eno uro';
-        case 'hh':
-            if (number === 1) {
-                result += withoutSuffix ? 'ura' : 'uro';
-            } else if (number === 2) {
-                result += withoutSuffix || isFuture ? 'uri' : 'urama';
-            } else if (number < 5) {
-                result += withoutSuffix || isFuture ? 'ure' : 'urami';
-            } else {
-                result += withoutSuffix || isFuture ? 'ur' : 'urami';
-            }
-            return result;
-        case 'd':
-            return withoutSuffix || isFuture ? 'en dan' : 'enim dnem';
-        case 'dd':
-            if (number === 1) {
-                result += withoutSuffix || isFuture ? 'dan' : 'dnem';
-            } else if (number === 2) {
-                result += withoutSuffix || isFuture ? 'dni' : 'dnevoma';
-            } else {
-                result += withoutSuffix || isFuture ? 'dni' : 'dnevi';
-            }
-            return result;
-        case 'M':
-            return withoutSuffix || isFuture ? 'en mesec' : 'enim mesecem';
-        case 'MM':
-            if (number === 1) {
-                result += withoutSuffix || isFuture ? 'mesec' : 'mesecem';
-            } else if (number === 2) {
-                result += withoutSuffix || isFuture ? 'meseca' : 'mesecema';
-            } else if (number < 5) {
-                result += withoutSuffix || isFuture ? 'mesece' : 'meseci';
-            } else {
-                result += withoutSuffix || isFuture ? 'mesecev' : 'meseci';
-            }
-            return result;
-        case 'y':
-            return withoutSuffix || isFuture ? 'eno leto' : 'enim letom';
-        case 'yy':
-            if (number === 1) {
-                result += withoutSuffix || isFuture ? 'leto' : 'letom';
-            } else if (number === 2) {
-                result += withoutSuffix || isFuture ? 'leti' : 'letoma';
-            } else if (number < 5) {
-                result += withoutSuffix || isFuture ? 'leta' : 'leti';
-            } else {
-                result += withoutSuffix || isFuture ? 'let' : 'leti';
-            }
-            return result;
-        }
-    }
-
-    var sl = moment.defineLocale('sl', {
-        months : 'januar_februar_marec_april_maj_junij_julij_avgust_september_oktober_november_december'.split('_'),
-        monthsShort : 'jan._feb._mar._apr._maj._jun._jul._avg._sep._okt._nov._dec.'.split('_'),
-        weekdays : 'nedelja_ponedeljek_torek_sreda_Äetrtek_petek_sobota'.split('_'),
-        weekdaysShort : 'ned._pon._tor._sre._Äet._pet._sob.'.split('_'),
-        weekdaysMin : 'ne_po_to_sr_Äe_pe_so'.split('_'),
-        longDateFormat : {
-            LT : 'H:mm',
-            LTS : 'H:mm:ss',
-            L : 'DD. MM. YYYY',
-            LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY H:mm',
-            LLLL : 'dddd, D. MMMM YYYY H:mm'
-        },
-        calendar : {
-            sameDay  : '[danes ob] LT',
-            nextDay  : '[jutri ob] LT',
-
-            nextWeek : function () {
-                switch (this.day()) {
-                case 0:
-                    return '[v] [nedeljo] [ob] LT';
-                case 3:
-                    return '[v] [sredo] [ob] LT';
-                case 6:
-                    return '[v] [soboto] [ob] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[v] dddd [ob] LT';
-                }
-            },
-            lastDay  : '[vÄeraj ob] LT',
-            lastWeek : function () {
-                switch (this.day()) {
-                case 0:
-                    return '[prejÅ¡njo] [nedeljo] [ob] LT';
-                case 3:
-                    return '[prejÅ¡njo] [sredo] [ob] LT';
-                case 6:
-                    return '[prejÅ¡njo] [soboto] [ob] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[prejÅ¡nji] dddd [ob] LT';
-                }
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'Äez %s',
-            past   : 'pred %s',
-            s      : sl__processRelativeTime,
-            m      : sl__processRelativeTime,
-            mm     : sl__processRelativeTime,
-            h      : sl__processRelativeTime,
-            hh     : sl__processRelativeTime,
-            d      : sl__processRelativeTime,
-            dd     : sl__processRelativeTime,
-            M      : sl__processRelativeTime,
-            MM     : sl__processRelativeTime,
-            y      : sl__processRelativeTime,
-            yy     : sl__processRelativeTime
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Albanian (sq)
-    //! author : FlakÃ«rim Ismani : https://github.com/flakerimi
-    //! author: Menelion ElensÃºle: https://github.com/Oire (tests)
-    //! author : Oerd Cukalla : https://github.com/oerd (fixes)
-
-    var sq = moment.defineLocale('sq', {
-        months : 'Janar_Shkurt_Mars_Prill_Maj_Qershor_Korrik_Gusht_Shtator_Tetor_NÃ«ntor_Dhjetor'.split('_'),
-        monthsShort : 'Jan_Shk_Mar_Pri_Maj_Qer_Kor_Gus_Sht_Tet_NÃ«n_Dhj'.split('_'),
-        weekdays : 'E Diel_E HÃ«nÃ«_E MartÃ«_E MÃ«rkurÃ«_E Enjte_E Premte_E ShtunÃ«'.split('_'),
-        weekdaysShort : 'Die_HÃ«n_Mar_MÃ«r_Enj_Pre_Sht'.split('_'),
-        weekdaysMin : 'D_H_Ma_MÃ«_E_P_Sh'.split('_'),
-        meridiemParse: /PD|MD/,
-        isPM: function (input) {
-            return input.charAt(0) === 'M';
-        },
-        meridiem : function (hours, minutes, isLower) {
-            return hours < 12 ? 'PD' : 'MD';
-        },
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[Sot nÃ«] LT',
-            nextDay : '[NesÃ«r nÃ«] LT',
-            nextWeek : 'dddd [nÃ«] LT',
-            lastDay : '[Dje nÃ«] LT',
-            lastWeek : 'dddd [e kaluar nÃ«] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'nÃ« %s',
-            past : '%s mÃ« parÃ«',
-            s : 'disa sekonda',
-            m : 'njÃ« minutÃ«',
-            mm : '%d minuta',
-            h : 'njÃ« orÃ«',
-            hh : '%d orÃ«',
-            d : 'njÃ« ditÃ«',
-            dd : '%d ditÃ«',
-            M : 'njÃ« muaj',
-            MM : '%d muaj',
-            y : 'njÃ« vit',
-            yy : '%d vite'
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Serbian-cyrillic (sr-cyrl)
-    //! author : Milan JanaÄkoviÄ‡<milanjanackovic@gmail.com> : https://github.com/milan-j
-
-    var sr_cyrl__translator = {
-        words: { //Different grammatical cases
-            m: ['Ñ˜ÐµÐ´Ð°Ð½ Ð¼Ð¸Ð½ÑƒÑ‚', 'Ñ˜ÐµÐ´Ð½Ðµ Ð¼Ð¸Ð½ÑƒÑ‚Ðµ'],
-            mm: ['Ð¼Ð¸Ð½ÑƒÑ‚', 'Ð¼Ð¸Ð½ÑƒÑ‚Ðµ', 'Ð¼Ð¸Ð½ÑƒÑ‚Ð°'],
-            h: ['Ñ˜ÐµÐ´Ð°Ð½ ÑÐ°Ñ‚', 'Ñ˜ÐµÐ´Ð½Ð¾Ð³ ÑÐ°Ñ‚Ð°'],
-            hh: ['ÑÐ°Ñ‚', 'ÑÐ°Ñ‚Ð°', 'ÑÐ°Ñ‚Ð¸'],
-            dd: ['Ð´Ð°Ð½', 'Ð´Ð°Ð½Ð°', 'Ð´Ð°Ð½Ð°'],
-            MM: ['Ð¼ÐµÑÐµÑ†', 'Ð¼ÐµÑÐµÑ†Ð°', 'Ð¼ÐµÑÐµÑ†Ð¸'],
-            yy: ['Ð³Ð¾Ð´Ð¸Ð½Ð°', 'Ð³Ð¾Ð´Ð¸Ð½Ðµ', 'Ð³Ð¾Ð´Ð¸Ð½Ð°']
-        },
-        correctGrammaticalCase: function (number, wordKey) {
-            return number === 1 ? wordKey[0] : (number >= 2 && number <= 4 ? wordKey[1] : wordKey[2]);
-        },
-        translate: function (number, withoutSuffix, key) {
-            var wordKey = sr_cyrl__translator.words[key];
-            if (key.length === 1) {
-                return withoutSuffix ? wordKey[0] : wordKey[1];
-            } else {
-                return number + ' ' + sr_cyrl__translator.correctGrammaticalCase(number, wordKey);
-            }
-        }
-    };
-
-    var sr_cyrl = moment.defineLocale('sr-cyrl', {
-        months: ['Ñ˜Ð°Ð½ÑƒÐ°Ñ€', 'Ñ„ÐµÐ±Ñ€ÑƒÐ°Ñ€', 'Ð¼Ð°Ñ€Ñ‚', 'Ð°Ð¿Ñ€Ð¸Ð»', 'Ð¼Ð°Ñ˜', 'Ñ˜ÑƒÐ½', 'Ñ˜ÑƒÐ»', 'Ð°Ð²Ð³ÑƒÑÑ‚', 'ÑÐµÐ¿Ñ‚ÐµÐ¼Ð±Ð°Ñ€', 'Ð¾ÐºÑ‚Ð¾Ð±Ð°Ñ€', 'Ð½Ð¾Ð²ÐµÐ¼Ð±Ð°Ñ€', 'Ð´ÐµÑ†ÐµÐ¼Ð±Ð°Ñ€'],
-        monthsShort: ['Ñ˜Ð°Ð½.', 'Ñ„ÐµÐ±.', 'Ð¼Ð°Ñ€.', 'Ð°Ð¿Ñ€.', 'Ð¼Ð°Ñ˜', 'Ñ˜ÑƒÐ½', 'Ñ˜ÑƒÐ»', 'Ð°Ð²Ð³.', 'ÑÐµÐ¿.', 'Ð¾ÐºÑ‚.', 'Ð½Ð¾Ð².', 'Ð´ÐµÑ†.'],
-        weekdays: ['Ð½ÐµÐ´ÐµÑ™Ð°', 'Ð¿Ð¾Ð½ÐµÐ´ÐµÑ™Ð°Ðº', 'ÑƒÑ‚Ð¾Ñ€Ð°Ðº', 'ÑÑ€ÐµÐ´Ð°', 'Ñ‡ÐµÑ‚Ð²Ñ€Ñ‚Ð°Ðº', 'Ð¿ÐµÑ‚Ð°Ðº', 'ÑÑƒÐ±Ð¾Ñ‚Ð°'],
-        weekdaysShort: ['Ð½ÐµÐ´.', 'Ð¿Ð¾Ð½.', 'ÑƒÑ‚Ð¾.', 'ÑÑ€Ðµ.', 'Ñ‡ÐµÑ‚.', 'Ð¿ÐµÑ‚.', 'ÑÑƒÐ±.'],
-        weekdaysMin: ['Ð½Ðµ', 'Ð¿Ð¾', 'ÑƒÑ‚', 'ÑÑ€', 'Ñ‡Ðµ', 'Ð¿Ðµ', 'ÑÑƒ'],
-        longDateFormat: {
-            LT: 'H:mm',
-            LTS : 'H:mm:ss',
-            L: 'DD. MM. YYYY',
-            LL: 'D. MMMM YYYY',
-            LLL: 'D. MMMM YYYY H:mm',
-            LLLL: 'dddd, D. MMMM YYYY H:mm'
-        },
-        calendar: {
-            sameDay: '[Ð´Ð°Ð½Ð°Ñ Ñƒ] LT',
-            nextDay: '[ÑÑƒÑ‚Ñ€Ð° Ñƒ] LT',
-            nextWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[Ñƒ] [Ð½ÐµÐ´ÐµÑ™Ñƒ] [Ñƒ] LT';
-                case 3:
-                    return '[Ñƒ] [ÑÑ€ÐµÐ´Ñƒ] [Ñƒ] LT';
-                case 6:
-                    return '[Ñƒ] [ÑÑƒÐ±Ð¾Ñ‚Ñƒ] [Ñƒ] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[Ñƒ] dddd [Ñƒ] LT';
-                }
-            },
-            lastDay  : '[Ñ˜ÑƒÑ‡Ðµ Ñƒ] LT',
-            lastWeek : function () {
-                var lastWeekDays = [
-                    '[Ð¿Ñ€Ð¾ÑˆÐ»Ðµ] [Ð½ÐµÐ´ÐµÑ™Ðµ] [Ñƒ] LT',
-                    '[Ð¿Ñ€Ð¾ÑˆÐ»Ð¾Ð³] [Ð¿Ð¾Ð½ÐµÐ´ÐµÑ™ÐºÐ°] [Ñƒ] LT',
-                    '[Ð¿Ñ€Ð¾ÑˆÐ»Ð¾Ð³] [ÑƒÑ‚Ð¾Ñ€ÐºÐ°] [Ñƒ] LT',
-                    '[Ð¿Ñ€Ð¾ÑˆÐ»Ðµ] [ÑÑ€ÐµÐ´Ðµ] [Ñƒ] LT',
-                    '[Ð¿Ñ€Ð¾ÑˆÐ»Ð¾Ð³] [Ñ‡ÐµÑ‚Ð²Ñ€Ñ‚ÐºÐ°] [Ñƒ] LT',
-                    '[Ð¿Ñ€Ð¾ÑˆÐ»Ð¾Ð³] [Ð¿ÐµÑ‚ÐºÐ°] [Ñƒ] LT',
-                    '[Ð¿Ñ€Ð¾ÑˆÐ»Ðµ] [ÑÑƒÐ±Ð¾Ñ‚Ðµ] [Ñƒ] LT'
-                ];
-                return lastWeekDays[this.day()];
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'Ð·Ð° %s',
-            past   : 'Ð¿Ñ€Ðµ %s',
-            s      : 'Ð½ÐµÐºÐ¾Ð»Ð¸ÐºÐ¾ ÑÐµÐºÑƒÐ½Ð´Ð¸',
-            m      : sr_cyrl__translator.translate,
-            mm     : sr_cyrl__translator.translate,
-            h      : sr_cyrl__translator.translate,
-            hh     : sr_cyrl__translator.translate,
-            d      : 'Ð´Ð°Ð½',
-            dd     : sr_cyrl__translator.translate,
-            M      : 'Ð¼ÐµÑÐµÑ†',
-            MM     : sr_cyrl__translator.translate,
-            y      : 'Ð³Ð¾Ð´Ð¸Ð½Ñƒ',
-            yy     : sr_cyrl__translator.translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Serbian-latin (sr)
-    //! author : Milan JanaÄkoviÄ‡<milanjanackovic@gmail.com> : https://github.com/milan-j
-
-    var sr__translator = {
-        words: { //Different grammatical cases
-            m: ['jedan minut', 'jedne minute'],
-            mm: ['minut', 'minute', 'minuta'],
-            h: ['jedan sat', 'jednog sata'],
-            hh: ['sat', 'sata', 'sati'],
-            dd: ['dan', 'dana', 'dana'],
-            MM: ['mesec', 'meseca', 'meseci'],
-            yy: ['godina', 'godine', 'godina']
-        },
-        correctGrammaticalCase: function (number, wordKey) {
-            return number === 1 ? wordKey[0] : (number >= 2 && number <= 4 ? wordKey[1] : wordKey[2]);
-        },
-        translate: function (number, withoutSuffix, key) {
-            var wordKey = sr__translator.words[key];
-            if (key.length === 1) {
-                return withoutSuffix ? wordKey[0] : wordKey[1];
-            } else {
-                return number + ' ' + sr__translator.correctGrammaticalCase(number, wordKey);
-            }
-        }
-    };
-
-    var sr = moment.defineLocale('sr', {
-        months: ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'],
-        monthsShort: ['jan.', 'feb.', 'mar.', 'apr.', 'maj', 'jun', 'jul', 'avg.', 'sep.', 'okt.', 'nov.', 'dec.'],
-        weekdays: ['nedelja', 'ponedeljak', 'utorak', 'sreda', 'Äetvrtak', 'petak', 'subota'],
-        weekdaysShort: ['ned.', 'pon.', 'uto.', 'sre.', 'Äet.', 'pet.', 'sub.'],
-        weekdaysMin: ['ne', 'po', 'ut', 'sr', 'Äe', 'pe', 'su'],
-        longDateFormat: {
-            LT: 'H:mm',
-            LTS : 'H:mm:ss',
-            L: 'DD. MM. YYYY',
-            LL: 'D. MMMM YYYY',
-            LLL: 'D. MMMM YYYY H:mm',
-            LLLL: 'dddd, D. MMMM YYYY H:mm'
-        },
-        calendar: {
-            sameDay: '[danas u] LT',
-            nextDay: '[sutra u] LT',
-            nextWeek: function () {
-                switch (this.day()) {
-                case 0:
-                    return '[u] [nedelju] [u] LT';
-                case 3:
-                    return '[u] [sredu] [u] LT';
-                case 6:
-                    return '[u] [subotu] [u] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[u] dddd [u] LT';
-                }
-            },
-            lastDay  : '[juÄe u] LT',
-            lastWeek : function () {
-                var lastWeekDays = [
-                    '[proÅ¡le] [nedelje] [u] LT',
-                    '[proÅ¡log] [ponedeljka] [u] LT',
-                    '[proÅ¡log] [utorka] [u] LT',
-                    '[proÅ¡le] [srede] [u] LT',
-                    '[proÅ¡log] [Äetvrtka] [u] LT',
-                    '[proÅ¡log] [petka] [u] LT',
-                    '[proÅ¡le] [subote] [u] LT'
-                ];
-                return lastWeekDays[this.day()];
-            },
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'za %s',
-            past   : 'pre %s',
-            s      : 'nekoliko sekundi',
-            m      : sr__translator.translate,
-            mm     : sr__translator.translate,
-            h      : sr__translator.translate,
-            hh     : sr__translator.translate,
-            d      : 'dan',
-            dd     : sr__translator.translate,
-            M      : 'mesec',
-            MM     : sr__translator.translate,
-            y      : 'godinu',
-            yy     : sr__translator.translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : swedish (sv)
-    //! author : Jens Alm : https://github.com/ulmus
-
-    var sv = moment.defineLocale('sv', {
-        months : 'januari_februari_mars_april_maj_juni_juli_augusti_september_oktober_november_december'.split('_'),
-        monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec'.split('_'),
-        weekdays : 'sÃ¶ndag_mÃ¥ndag_tisdag_onsdag_torsdag_fredag_lÃ¶rdag'.split('_'),
-        weekdaysShort : 'sÃ¶n_mÃ¥n_tis_ons_tor_fre_lÃ¶r'.split('_'),
-        weekdaysMin : 'sÃ¶_mÃ¥_ti_on_to_fr_lÃ¶'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'YYYY-MM-DD',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[Idag] LT',
-            nextDay: '[Imorgon] LT',
-            lastDay: '[IgÃ¥r] LT',
-            nextWeek: '[PÃ¥] dddd LT',
-            lastWeek: '[I] dddd[s] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'om %s',
-            past : 'fÃ¶r %s sedan',
-            s : 'nÃ¥gra sekunder',
-            m : 'en minut',
-            mm : '%d minuter',
-            h : 'en timme',
-            hh : '%d timmar',
-            d : 'en dag',
-            dd : '%d dagar',
-            M : 'en mÃ¥nad',
-            MM : '%d mÃ¥nader',
-            y : 'ett Ã¥r',
-            yy : '%d Ã¥r'
-        },
-        ordinalParse: /\d{1,2}(e|a)/,
-        ordinal : function (number) {
-            var b = number % 10,
-                output = (~~(number % 100 / 10) === 1) ? 'e' :
-                (b === 1) ? 'a' :
-                (b === 2) ? 'a' :
-                (b === 3) ? 'e' : 'e';
-            return number + output;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : swahili (sw)
-    //! author : Fahad Kassim : https://github.com/fadsel
-
-    var sw = moment.defineLocale('sw', {
-        months : 'Januari_Februari_Machi_Aprili_Mei_Juni_Julai_Agosti_Septemba_Oktoba_Novemba_Desemba'.split('_'),
-        monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ago_Sep_Okt_Nov_Des'.split('_'),
-        weekdays : 'Jumapili_Jumatatu_Jumanne_Jumatano_Alhamisi_Ijumaa_Jumamosi'.split('_'),
-        weekdaysShort : 'Jpl_Jtat_Jnne_Jtan_Alh_Ijm_Jmos'.split('_'),
-        weekdaysMin : 'J2_J3_J4_J5_Al_Ij_J1'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[leo saa] LT',
-            nextDay : '[kesho saa] LT',
-            nextWeek : '[wiki ijayo] dddd [saat] LT',
-            lastDay : '[jana] LT',
-            lastWeek : '[wiki iliyopita] dddd [saat] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s baadaye',
-            past : 'tokea %s',
-            s : 'hivi punde',
-            m : 'dakika moja',
-            mm : 'dakika %d',
-            h : 'saa limoja',
-            hh : 'masaa %d',
-            d : 'siku moja',
-            dd : 'masiku %d',
-            M : 'mwezi mmoja',
-            MM : 'miezi %d',
-            y : 'mwaka mmoja',
-            yy : 'miaka %d'
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : tamil (ta)
-    //! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
-
-    var ta__symbolMap = {
-        '1': 'à¯§',
-        '2': 'à¯¨',
-        '3': 'à¯©',
-        '4': 'à¯ª',
-        '5': 'à¯«',
-        '6': 'à¯¬',
-        '7': 'à¯­',
-        '8': 'à¯®',
-        '9': 'à¯¯',
-        '0': 'à¯¦'
-    }, ta__numberMap = {
-        'à¯§': '1',
-        'à¯¨': '2',
-        'à¯©': '3',
-        'à¯ª': '4',
-        'à¯«': '5',
-        'à¯¬': '6',
-        'à¯­': '7',
-        'à¯®': '8',
-        'à¯¯': '9',
-        'à¯¦': '0'
-    };
-
-    var ta = moment.defineLocale('ta', {
-        months : 'à®œà®©à®µà®°à®¿_à®ªà®¿à®ªà¯à®°à®µà®°à®¿_à®®à®¾à®°à¯à®šà¯_à®à®ªà¯à®°à®²à¯_à®®à¯‡_à®œà¯‚à®©à¯_à®œà¯‚à®²à¯ˆ_à®†à®•à®¸à¯à®Ÿà¯_à®šà¯†à®ªà¯à®Ÿà¯†à®®à¯à®ªà®°à¯_à®…à®•à¯à®Ÿà¯‡à®¾à®ªà®°à¯_à®¨à®µà®®à¯à®ªà®°à¯_à®Ÿà®¿à®šà®®à¯à®ªà®°à¯'.split('_'),
-        monthsShort : 'à®œà®©à®µà®°à®¿_à®ªà®¿à®ªà¯à®°à®µà®°à®¿_à®®à®¾à®°à¯à®šà¯_à®à®ªà¯à®°à®²à¯_à®®à¯‡_à®œà¯‚à®©à¯_à®œà¯‚à®²à¯ˆ_à®†à®•à®¸à¯à®Ÿà¯_à®šà¯†à®ªà¯à®Ÿà¯†à®®à¯à®ªà®°à¯_à®…à®•à¯à®Ÿà¯‡à®¾à®ªà®°à¯_à®¨à®µà®®à¯à®ªà®°à¯_à®Ÿà®¿à®šà®®à¯à®ªà®°à¯'.split('_'),
-        weekdays : 'à®žà®¾à®¯à®¿à®±à¯à®±à¯à®•à¯à®•à®¿à®´à®®à¯ˆ_à®¤à®¿à®™à¯à®•à®Ÿà¯à®•à®¿à®´à®®à¯ˆ_à®šà¯†à®µà¯à®µà®¾à®¯à¯à®•à®¿à®´à®®à¯ˆ_à®ªà¯à®¤à®©à¯à®•à®¿à®´à®®à¯ˆ_à®µà®¿à®¯à®¾à®´à®•à¯à®•à®¿à®´à®®à¯ˆ_à®µà¯†à®³à¯à®³à®¿à®•à¯à®•à®¿à®´à®®à¯ˆ_à®šà®©à®¿à®•à¯à®•à®¿à®´à®®à¯ˆ'.split('_'),
-        weekdaysShort : 'à®žà®¾à®¯à®¿à®±à¯_à®¤à®¿à®™à¯à®•à®³à¯_à®šà¯†à®µà¯à®µà®¾à®¯à¯_à®ªà¯à®¤à®©à¯_à®µà®¿à®¯à®¾à®´à®©à¯_à®µà¯†à®³à¯à®³à®¿_à®šà®©à®¿'.split('_'),
-        weekdaysMin : 'à®žà®¾_à®¤à®¿_à®šà¯†_à®ªà¯_à®µà®¿_à®µà¯†_à®š'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY, HH:mm',
-            LLLL : 'dddd, D MMMM YYYY, HH:mm'
-        },
-        calendar : {
-            sameDay : '[à®‡à®©à¯à®±à¯] LT',
-            nextDay : '[à®¨à®¾à®³à¯ˆ] LT',
-            nextWeek : 'dddd, LT',
-            lastDay : '[à®¨à¯‡à®±à¯à®±à¯] LT',
-            lastWeek : '[à®•à®Ÿà®¨à¯à®¤ à®µà®¾à®°à®®à¯] dddd, LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s à®‡à®²à¯',
-            past : '%s à®®à¯à®©à¯',
-            s : 'à®’à®°à¯ à®šà®¿à®² à®µà®¿à®¨à®¾à®Ÿà®¿à®•à®³à¯',
-            m : 'à®’à®°à¯ à®¨à®¿à®®à®¿à®Ÿà®®à¯',
-            mm : '%d à®¨à®¿à®®à®¿à®Ÿà®™à¯à®•à®³à¯',
-            h : 'à®’à®°à¯ à®®à®£à®¿ à®¨à¯‡à®°à®®à¯',
-            hh : '%d à®®à®£à®¿ à®¨à¯‡à®°à®®à¯',
-            d : 'à®’à®°à¯ à®¨à®¾à®³à¯',
-            dd : '%d à®¨à®¾à®Ÿà¯à®•à®³à¯',
-            M : 'à®’à®°à¯ à®®à®¾à®¤à®®à¯',
-            MM : '%d à®®à®¾à®¤à®™à¯à®•à®³à¯',
-            y : 'à®’à®°à¯ à®µà®°à¯à®Ÿà®®à¯',
-            yy : '%d à®†à®£à¯à®Ÿà¯à®•à®³à¯'
-        },
-        ordinalParse: /\d{1,2}à®µà®¤à¯/,
-        ordinal : function (number) {
-            return number + 'à®µà®¤à¯';
-        },
-        preparse: function (string) {
-            return string.replace(/[à¯§à¯¨à¯©à¯ªà¯«à¯¬à¯­à¯®à¯¯à¯¦]/g, function (match) {
-                return ta__numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return ta__symbolMap[match];
-            });
-        },
-        // refer http://ta.wikipedia.org/s/1er1
-        meridiemParse: /à®¯à®¾à®®à®®à¯|à®µà¯ˆà®•à®±à¯ˆ|à®•à®¾à®²à¯ˆ|à®¨à®£à¯à®ªà®•à®²à¯|à®Žà®±à¯à®ªà®¾à®Ÿà¯|à®®à®¾à®²à¯ˆ/,
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 2) {
-                return ' à®¯à®¾à®®à®®à¯';
-            } else if (hour < 6) {
-                return ' à®µà¯ˆà®•à®±à¯ˆ';  // à®µà¯ˆà®•à®±à¯ˆ
-            } else if (hour < 10) {
-                return ' à®•à®¾à®²à¯ˆ'; // à®•à®¾à®²à¯ˆ
-            } else if (hour < 14) {
-                return ' à®¨à®£à¯à®ªà®•à®²à¯'; // à®¨à®£à¯à®ªà®•à®²à¯
-            } else if (hour < 18) {
-                return ' à®Žà®±à¯à®ªà®¾à®Ÿà¯'; // à®Žà®±à¯à®ªà®¾à®Ÿà¯
-            } else if (hour < 22) {
-                return ' à®®à®¾à®²à¯ˆ'; // à®®à®¾à®²à¯ˆ
-            } else {
-                return ' à®¯à®¾à®®à®®à¯';
-            }
-        },
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'à®¯à®¾à®®à®®à¯') {
-                return hour < 2 ? hour : hour + 12;
-            } else if (meridiem === 'à®µà¯ˆà®•à®±à¯ˆ' || meridiem === 'à®•à®¾à®²à¯ˆ') {
-                return hour;
-            } else if (meridiem === 'à®¨à®£à¯à®ªà®•à®²à¯') {
-                return hour >= 10 ? hour : hour + 12;
-            } else {
-                return hour + 12;
-            }
-        },
-        week : {
-            dow : 0, // Sunday is the first day of the week.
-            doy : 6  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : telugu (te)
-    //! author : Krishna Chaitanya Thota : https://github.com/kcthota
-
-    var te = moment.defineLocale('te', {
-        months : 'à°œà°¨à°µà°°à°¿_à°«à°¿à°¬à±à°°à°µà°°à°¿_à°®à°¾à°°à±à°šà°¿_à°à°ªà±à°°à°¿à°²à±_à°®à±‡_à°œà±‚à°¨à±_à°œà±‚à°²à±†à±–_à°†à°—à°¸à±à°Ÿà±_à°¸à±†à°ªà±à°Ÿà±†à°‚à°¬à°°à±_à°…à°•à±à°Ÿà±‹à°¬à°°à±_à°¨à°µà°‚à°¬à°°à±_à°¡à°¿à°¸à±†à°‚à°¬à°°à±'.split('_'),
-        monthsShort : 'à°œà°¨._à°«à°¿à°¬à±à°°._à°®à°¾à°°à±à°šà°¿_à°à°ªà±à°°à°¿._à°®à±‡_à°œà±‚à°¨à±_à°œà±‚à°²à±†à±–_à°†à°—._à°¸à±†à°ªà±._à°…à°•à±à°Ÿà±‹._à°¨à°µ._à°¡à°¿à°¸à±†.'.split('_'),
-        weekdays : 'à°†à°¦à°¿à°µà°¾à°°à°‚_à°¸à±‹à°®à°µà°¾à°°à°‚_à°®à°‚à°—à°³à°µà°¾à°°à°‚_à°¬à±à°§à°µà°¾à°°à°‚_à°—à±à°°à±à°µà°¾à°°à°‚_à°¶à±à°•à±à°°à°µà°¾à°°à°‚_à°¶à°¨à°¿à°µà°¾à°°à°‚'.split('_'),
-        weekdaysShort : 'à°†à°¦à°¿_à°¸à±‹à°®_à°®à°‚à°—à°³_à°¬à±à°§_à°—à±à°°à±_à°¶à±à°•à±à°°_à°¶à°¨à°¿'.split('_'),
-        weekdaysMin : 'à°†_à°¸à±‹_à°®à°‚_à°¬à±_à°—à±_à°¶à±_à°¶'.split('_'),
-        longDateFormat : {
-            LT : 'A h:mm',
-            LTS : 'A h:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY, A h:mm',
-            LLLL : 'dddd, D MMMM YYYY, A h:mm'
-        },
-        calendar : {
-            sameDay : '[à°¨à±‡à°¡à±] LT',
-            nextDay : '[à°°à±‡à°ªà±] LT',
-            nextWeek : 'dddd, LT',
-            lastDay : '[à°¨à°¿à°¨à±à°¨] LT',
-            lastWeek : '[à°—à°¤] dddd, LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s à°²à±‹',
-            past : '%s à°•à±à°°à°¿à°¤à°‚',
-            s : 'à°•à±Šà°¨à±à°¨à°¿ à°•à±à°·à°£à°¾à°²à±',
-            m : 'à°’à°• à°¨à°¿à°®à°¿à°·à°‚',
-            mm : '%d à°¨à°¿à°®à°¿à°·à°¾à°²à±',
-            h : 'à°’à°• à°—à°‚à°Ÿ',
-            hh : '%d à°—à°‚à°Ÿà°²à±',
-            d : 'à°’à°• à°°à±‹à°œà±',
-            dd : '%d à°°à±‹à°œà±à°²à±',
-            M : 'à°’à°• à°¨à±†à°²',
-            MM : '%d à°¨à±†à°²à°²à±',
-            y : 'à°’à°• à°¸à°‚à°µà°¤à±à°¸à°°à°‚',
-            yy : '%d à°¸à°‚à°µà°¤à±à°¸à°°à°¾à°²à±'
-        },
-        ordinalParse : /\d{1,2}à°µ/,
-        ordinal : '%dà°µ',
-        meridiemParse: /à°°à°¾à°¤à±à°°à°¿|à°‰à°¦à°¯à°‚|à°®à°§à±à°¯à°¾à°¹à±à°¨à°‚|à°¸à°¾à°¯à°‚à°¤à±à°°à°‚/,
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'à°°à°¾à°¤à±à°°à°¿') {
-                return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'à°‰à°¦à°¯à°‚') {
-                return hour;
-            } else if (meridiem === 'à°®à°§à±à°¯à°¾à°¹à±à°¨à°‚') {
-                return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'à°¸à°¾à°¯à°‚à°¤à±à°°à°‚') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'à°°à°¾à°¤à±à°°à°¿';
-            } else if (hour < 10) {
-                return 'à°‰à°¦à°¯à°‚';
-            } else if (hour < 17) {
-                return 'à°®à°§à±à°¯à°¾à°¹à±à°¨à°‚';
-            } else if (hour < 20) {
-                return 'à°¸à°¾à°¯à°‚à°¤à±à°°à°‚';
-            } else {
-                return 'à°°à°¾à°¤à±à°°à°¿';
-            }
-        },
-        week : {
-            dow : 0, // Sunday is the first day of the week.
-            doy : 6  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : thai (th)
-    //! author : Kridsada Thanabulpong : https://github.com/sirn
-
-    var th = moment.defineLocale('th', {
-        months : 'à¸¡à¸à¸£à¸²à¸„à¸¡_à¸à¸¸à¸¡à¸ à¸²à¸žà¸±à¸™à¸˜à¹Œ_à¸¡à¸µà¸™à¸²à¸„à¸¡_à¹€à¸¡à¸©à¸²à¸¢à¸™_à¸žà¸¤à¸©à¸ à¸²à¸„à¸¡_à¸¡à¸´à¸–à¸¸à¸™à¸²à¸¢à¸™_à¸à¸£à¸à¸Žà¸²à¸„à¸¡_à¸ªà¸´à¸‡à¸«à¸²à¸„à¸¡_à¸à¸±à¸™à¸¢à¸²à¸¢à¸™_à¸•à¸¸à¸¥à¸²à¸„à¸¡_à¸žà¸¤à¸¨à¸ˆà¸´à¸à¸²à¸¢à¸™_à¸˜à¸±à¸™à¸§à¸²à¸„à¸¡'.split('_'),
-        monthsShort : 'à¸¡à¸à¸£à¸²_à¸à¸¸à¸¡à¸ à¸²_à¸¡à¸µà¸™à¸²_à¹€à¸¡à¸©à¸²_à¸žà¸¤à¸©à¸ à¸²_à¸¡à¸´à¸–à¸¸à¸™à¸²_à¸à¸£à¸à¸Žà¸²_à¸ªà¸´à¸‡à¸«à¸²_à¸à¸±à¸™à¸¢à¸²_à¸•à¸¸à¸¥à¸²_à¸žà¸¤à¸¨à¸ˆà¸´à¸à¸²_à¸˜à¸±à¸™à¸§à¸²'.split('_'),
-        weekdays : 'à¸­à¸²à¸—à¸´à¸•à¸¢à¹Œ_à¸ˆà¸±à¸™à¸—à¸£à¹Œ_à¸­à¸±à¸‡à¸„à¸²à¸£_à¸žà¸¸à¸˜_à¸žà¸¤à¸«à¸±à¸ªà¸šà¸”à¸µ_à¸¨à¸¸à¸à¸£à¹Œ_à¹€à¸ªà¸²à¸£à¹Œ'.split('_'),
-        weekdaysShort : 'à¸­à¸²à¸—à¸´à¸•à¸¢à¹Œ_à¸ˆà¸±à¸™à¸—à¸£à¹Œ_à¸­à¸±à¸‡à¸„à¸²à¸£_à¸žà¸¸à¸˜_à¸žà¸¤à¸«à¸±à¸ª_à¸¨à¸¸à¸à¸£à¹Œ_à¹€à¸ªà¸²à¸£à¹Œ'.split('_'), // yes, three characters difference
-        weekdaysMin : 'à¸­à¸²._à¸ˆ._à¸­._à¸ž._à¸žà¸¤._à¸¨._à¸ª.'.split('_'),
-        longDateFormat : {
-            LT : 'H à¸™à¸²à¸¬à¸´à¸à¸² m à¸™à¸²à¸—à¸µ',
-            LTS : 'H à¸™à¸²à¸¬à¸´à¸à¸² m à¸™à¸²à¸—à¸µ s à¸§à¸´à¸™à¸²à¸—à¸µ',
-            L : 'YYYY/MM/DD',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY à¹€à¸§à¸¥à¸² H à¸™à¸²à¸¬à¸´à¸à¸² m à¸™à¸²à¸—à¸µ',
-            LLLL : 'à¸§à¸±à¸™ddddà¸—à¸µà¹ˆ D MMMM YYYY à¹€à¸§à¸¥à¸² H à¸™à¸²à¸¬à¸´à¸à¸² m à¸™à¸²à¸—à¸µ'
-        },
-        meridiemParse: /à¸à¹ˆà¸­à¸™à¹€à¸—à¸µà¹ˆà¸¢à¸‡|à¸«à¸¥à¸±à¸‡à¹€à¸—à¸µà¹ˆà¸¢à¸‡/,
-        isPM: function (input) {
-            return input === 'à¸«à¸¥à¸±à¸‡à¹€à¸—à¸µà¹ˆà¸¢à¸‡';
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 12) {
-                return 'à¸à¹ˆà¸­à¸™à¹€à¸—à¸µà¹ˆà¸¢à¸‡';
-            } else {
-                return 'à¸«à¸¥à¸±à¸‡à¹€à¸—à¸µà¹ˆà¸¢à¸‡';
-            }
-        },
-        calendar : {
-            sameDay : '[à¸§à¸±à¸™à¸™à¸µà¹‰ à¹€à¸§à¸¥à¸²] LT',
-            nextDay : '[à¸žà¸£à¸¸à¹ˆà¸‡à¸™à¸µà¹‰ à¹€à¸§à¸¥à¸²] LT',
-            nextWeek : 'dddd[à¸«à¸™à¹‰à¸² à¹€à¸§à¸¥à¸²] LT',
-            lastDay : '[à¹€à¸¡à¸·à¹ˆà¸­à¸§à¸²à¸™à¸™à¸µà¹‰ à¹€à¸§à¸¥à¸²] LT',
-            lastWeek : '[à¸§à¸±à¸™]dddd[à¸—à¸µà¹ˆà¹à¸¥à¹‰à¸§ à¹€à¸§à¸¥à¸²] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'à¸­à¸µà¸ %s',
-            past : '%sà¸—à¸µà¹ˆà¹à¸¥à¹‰à¸§',
-            s : 'à¹„à¸¡à¹ˆà¸à¸µà¹ˆà¸§à¸´à¸™à¸²à¸—à¸µ',
-            m : '1 à¸™à¸²à¸—à¸µ',
-            mm : '%d à¸™à¸²à¸—à¸µ',
-            h : '1 à¸Šà¸±à¹ˆà¸§à¹‚à¸¡à¸‡',
-            hh : '%d à¸Šà¸±à¹ˆà¸§à¹‚à¸¡à¸‡',
-            d : '1 à¸§à¸±à¸™',
-            dd : '%d à¸§à¸±à¸™',
-            M : '1 à¹€à¸”à¸·à¸­à¸™',
-            MM : '%d à¹€à¸”à¸·à¸­à¸™',
-            y : '1 à¸›à¸µ',
-            yy : '%d à¸›à¸µ'
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Tagalog/Filipino (tl-ph)
-    //! author : Dan Hagman
-
-    var tl_ph = moment.defineLocale('tl-ph', {
-        months : 'Enero_Pebrero_Marso_Abril_Mayo_Hunyo_Hulyo_Agosto_Setyembre_Oktubre_Nobyembre_Disyembre'.split('_'),
-        monthsShort : 'Ene_Peb_Mar_Abr_May_Hun_Hul_Ago_Set_Okt_Nob_Dis'.split('_'),
-        weekdays : 'Linggo_Lunes_Martes_Miyerkules_Huwebes_Biyernes_Sabado'.split('_'),
-        weekdaysShort : 'Lin_Lun_Mar_Miy_Huw_Biy_Sab'.split('_'),
-        weekdaysMin : 'Li_Lu_Ma_Mi_Hu_Bi_Sab'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'MM/D/YYYY',
-            LL : 'MMMM D, YYYY',
-            LLL : 'MMMM D, YYYY HH:mm',
-            LLLL : 'dddd, MMMM DD, YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[Ngayon sa] LT',
-            nextDay: '[Bukas sa] LT',
-            nextWeek: 'dddd [sa] LT',
-            lastDay: '[Kahapon sa] LT',
-            lastWeek: 'dddd [huling linggo] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'sa loob ng %s',
-            past : '%s ang nakalipas',
-            s : 'ilang segundo',
-            m : 'isang minuto',
-            mm : '%d minuto',
-            h : 'isang oras',
-            hh : '%d oras',
-            d : 'isang araw',
-            dd : '%d araw',
-            M : 'isang buwan',
-            MM : '%d buwan',
-            y : 'isang taon',
-            yy : '%d taon'
-        },
-        ordinalParse: /\d{1,2}/,
-        ordinal : function (number) {
-            return number;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Klingon (tlh)
-    //! author : Dominika Kruk : https://github.com/amaranthrose
-
-    var numbersNouns = 'pagh_waâ€™_chaâ€™_wej_loS_vagh_jav_Soch_chorgh_Hut'.split('_');
-
-    function translateFuture(output) {
-        var time = output;
-        time = (output.indexOf('jaj') !== -1) ?
-    	time.slice(0, -3) + 'leS' :
-    	(output.indexOf('jar') !== -1) ?
-    	time.slice(0, -3) + 'waQ' :
-    	(output.indexOf('DIS') !== -1) ?
-    	time.slice(0, -3) + 'nem' :
-    	time + ' pIq';
-        return time;
-    }
-
-    function translatePast(output) {
-        var time = output;
-        time = (output.indexOf('jaj') !== -1) ?
-    	time.slice(0, -3) + 'Huâ€™' :
-    	(output.indexOf('jar') !== -1) ?
-    	time.slice(0, -3) + 'wen' :
-    	(output.indexOf('DIS') !== -1) ?
-    	time.slice(0, -3) + 'ben' :
-    	time + ' ret';
-        return time;
-    }
-
-    function tlh__translate(number, withoutSuffix, string, isFuture) {
-        var numberNoun = numberAsNoun(number);
-        switch (string) {
-            case 'mm':
-                return numberNoun + ' tup';
-            case 'hh':
-                return numberNoun + ' rep';
-            case 'dd':
-                return numberNoun + ' jaj';
-            case 'MM':
-                return numberNoun + ' jar';
-            case 'yy':
-                return numberNoun + ' DIS';
-        }
-    }
-
-    function numberAsNoun(number) {
-        var hundred = Math.floor((number % 1000) / 100),
-    	ten = Math.floor((number % 100) / 10),
-    	one = number % 10,
-    	word = '';
-        if (hundred > 0) {
-            word += numbersNouns[hundred] + 'vatlh';
-        }
-        if (ten > 0) {
-            word += ((word !== '') ? ' ' : '') + numbersNouns[ten] + 'maH';
-        }
-        if (one > 0) {
-            word += ((word !== '') ? ' ' : '') + numbersNouns[one];
-        }
-        return (word === '') ? 'pagh' : word;
-    }
-
-    var tlh = moment.defineLocale('tlh', {
-        months : 'teraâ€™ jar waâ€™_teraâ€™ jar chaâ€™_teraâ€™ jar wej_teraâ€™ jar loS_teraâ€™ jar vagh_teraâ€™ jar jav_teraâ€™ jar Soch_teraâ€™ jar chorgh_teraâ€™ jar Hut_teraâ€™ jar waâ€™maH_teraâ€™ jar waâ€™maH waâ€™_teraâ€™ jar waâ€™maH chaâ€™'.split('_'),
-        monthsShort : 'jar waâ€™_jar chaâ€™_jar wej_jar loS_jar vagh_jar jav_jar Soch_jar chorgh_jar Hut_jar waâ€™maH_jar waâ€™maH waâ€™_jar waâ€™maH chaâ€™'.split('_'),
-        weekdays : 'lojmItjaj_DaSjaj_povjaj_ghItlhjaj_loghjaj_buqjaj_ghInjaj'.split('_'),
-        weekdaysShort : 'lojmItjaj_DaSjaj_povjaj_ghItlhjaj_loghjaj_buqjaj_ghInjaj'.split('_'),
-        weekdaysMin : 'lojmItjaj_DaSjaj_povjaj_ghItlhjaj_loghjaj_buqjaj_ghInjaj'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[DaHjaj] LT',
-            nextDay: '[waâ€™leS] LT',
-            nextWeek: 'LLL',
-            lastDay: '[waâ€™Huâ€™] LT',
-            lastWeek: 'LLL',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : translateFuture,
-            past : translatePast,
-            s : 'puS lup',
-            m : 'waâ€™ tup',
-            mm : tlh__translate,
-            h : 'waâ€™ rep',
-            hh : tlh__translate,
-            d : 'waâ€™ jaj',
-            dd : tlh__translate,
-            M : 'waâ€™ jar',
-            MM : tlh__translate,
-            y : 'waâ€™ DIS',
-            yy : tlh__translate
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : turkish (tr)
-    //! authors : Erhan Gundogan : https://github.com/erhangundogan,
-    //!           Burak YiÄŸit Kaya: https://github.com/BYK
-
-    var tr__suffixes = {
-        1: '\'inci',
-        5: '\'inci',
-        8: '\'inci',
-        70: '\'inci',
-        80: '\'inci',
-        2: '\'nci',
-        7: '\'nci',
-        20: '\'nci',
-        50: '\'nci',
-        3: '\'Ã¼ncÃ¼',
-        4: '\'Ã¼ncÃ¼',
-        100: '\'Ã¼ncÃ¼',
-        6: '\'ncÄ±',
-        9: '\'uncu',
-        10: '\'uncu',
-        30: '\'uncu',
-        60: '\'Ä±ncÄ±',
-        90: '\'Ä±ncÄ±'
-    };
-
-    var tr = moment.defineLocale('tr', {
-        months : 'Ocak_Åžubat_Mart_Nisan_MayÄ±s_Haziran_Temmuz_AÄŸustos_EylÃ¼l_Ekim_KasÄ±m_AralÄ±k'.split('_'),
-        monthsShort : 'Oca_Åžub_Mar_Nis_May_Haz_Tem_AÄŸu_Eyl_Eki_Kas_Ara'.split('_'),
-        weekdays : 'Pazar_Pazartesi_SalÄ±_Ã‡arÅŸamba_PerÅŸembe_Cuma_Cumartesi'.split('_'),
-        weekdaysShort : 'Paz_Pts_Sal_Ã‡ar_Per_Cum_Cts'.split('_'),
-        weekdaysMin : 'Pz_Pt_Sa_Ã‡a_Pe_Cu_Ct'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd, D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay : '[bugÃ¼n saat] LT',
-            nextDay : '[yarÄ±n saat] LT',
-            nextWeek : '[haftaya] dddd [saat] LT',
-            lastDay : '[dÃ¼n] LT',
-            lastWeek : '[geÃ§en hafta] dddd [saat] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : '%s sonra',
-            past : '%s Ã¶nce',
-            s : 'birkaÃ§ saniye',
-            m : 'bir dakika',
-            mm : '%d dakika',
-            h : 'bir saat',
-            hh : '%d saat',
-            d : 'bir gÃ¼n',
-            dd : '%d gÃ¼n',
-            M : 'bir ay',
-            MM : '%d ay',
-            y : 'bir yÄ±l',
-            yy : '%d yÄ±l'
-        },
-        ordinalParse: /\d{1,2}'(inci|nci|Ã¼ncÃ¼|ncÄ±|uncu|Ä±ncÄ±)/,
-        ordinal : function (number) {
-            if (number === 0) {  // special case for zero
-                return number + '\'Ä±ncÄ±';
-            }
-            var a = number % 10,
-                b = number % 100 - a,
-                c = number >= 100 ? 100 : null;
-            return number + (tr__suffixes[a] || tr__suffixes[b] || tr__suffixes[c]);
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : talossan (tzl)
-    //! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of IustÃ¬ Canun
-
-
-    // After the year there should be a slash and the amount of years since December 26, 1979 in Roman numerals.
-    // This is currently too difficult (maybe even impossible) to add.
-    var tzl = moment.defineLocale('tzl', {
-        months : 'Januar_Fevraglh_MarÃ§_AvrÃ¯u_Mai_GÃ¼n_Julia_Guscht_Setemvar_ListopÃ¤ts_Noemvar_Zecemvar'.split('_'),
-        monthsShort : 'Jan_Fev_Mar_Avr_Mai_GÃ¼n_Jul_Gus_Set_Lis_Noe_Zec'.split('_'),
-        weekdays : 'SÃºladi_LÃºneÃ§i_Maitzi_MÃ¡rcuri_XhÃºadi_ViÃ©nerÃ§i_SÃ¡turi'.split('_'),
-        weekdaysShort : 'SÃºl_LÃºn_Mai_MÃ¡r_XhÃº_ViÃ©_SÃ¡t'.split('_'),
-        weekdaysMin : 'SÃº_LÃº_Ma_MÃ¡_Xh_Vi_SÃ¡'.split('_'),
-        longDateFormat : {
-            LT : 'HH.mm',
-            LTS : 'HH.mm.ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D. MMMM [dallas] YYYY',
-            LLL : 'D. MMMM [dallas] YYYY HH.mm',
-            LLLL : 'dddd, [li] D. MMMM [dallas] YYYY HH.mm'
-        },
-        meridiem : function (hours, minutes, isLower) {
-            if (hours > 11) {
-                return isLower ? 'd\'o' : 'D\'O';
-            } else {
-                return isLower ? 'd\'a' : 'D\'A';
-            }
-        },
-        calendar : {
-            sameDay : '[oxhi Ã ] LT',
-            nextDay : '[demÃ  Ã ] LT',
-            nextWeek : 'dddd [Ã ] LT',
-            lastDay : '[ieiri Ã ] LT',
-            lastWeek : '[sÃ¼r el] dddd [lasteu Ã ] LT',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'osprei %s',
-            past : 'ja%s',
-            s : tzl__processRelativeTime,
-            m : tzl__processRelativeTime,
-            mm : tzl__processRelativeTime,
-            h : tzl__processRelativeTime,
-            hh : tzl__processRelativeTime,
-            d : tzl__processRelativeTime,
-            dd : tzl__processRelativeTime,
-            M : tzl__processRelativeTime,
-            MM : tzl__processRelativeTime,
-            y : tzl__processRelativeTime,
-            yy : tzl__processRelativeTime
-        },
-        ordinalParse: /\d{1,2}\./,
-        ordinal : '%d.',
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    function tzl__processRelativeTime(number, withoutSuffix, key, isFuture) {
-        var format = {
-            's': ['viensas secunds', '\'iensas secunds'],
-            'm': ['\'n mÃ­ut', '\'iens mÃ­ut'],
-            'mm': [number + ' mÃ­uts', '' + number + ' mÃ­uts'],
-            'h': ['\'n Ã¾ora', '\'iensa Ã¾ora'],
-            'hh': [number + ' Ã¾oras', '' + number + ' Ã¾oras'],
-            'd': ['\'n ziua', '\'iensa ziua'],
-            'dd': [number + ' ziuas', '' + number + ' ziuas'],
-            'M': ['\'n mes', '\'iens mes'],
-            'MM': [number + ' mesen', '' + number + ' mesen'],
-            'y': ['\'n ar', '\'iens ar'],
-            'yy': [number + ' ars', '' + number + ' ars']
-        };
-        return isFuture ? format[key][0] : (withoutSuffix ? format[key][0] : format[key][1]);
-    }
-
-    //! moment.js locale configuration
-    //! locale : Morocco Central Atlas TamaziÉ£t in Latin (tzm-latn)
-    //! author : Abdel Said : https://github.com/abdelsaid
-
-    var tzm_latn = moment.defineLocale('tzm-latn', {
-        months : 'innayr_brË¤ayrË¤_marË¤sË¤_ibrir_mayyw_ywnyw_ywlywz_É£wÅ¡t_Å¡wtanbir_ktË¤wbrË¤_nwwanbir_dwjnbir'.split('_'),
-        monthsShort : 'innayr_brË¤ayrË¤_marË¤sË¤_ibrir_mayyw_ywnyw_ywlywz_É£wÅ¡t_Å¡wtanbir_ktË¤wbrË¤_nwwanbir_dwjnbir'.split('_'),
-        weekdays : 'asamas_aynas_asinas_akras_akwas_asimwas_asiá¸yas'.split('_'),
-        weekdaysShort : 'asamas_aynas_asinas_akras_akwas_asimwas_asiá¸yas'.split('_'),
-        weekdaysMin : 'asamas_aynas_asinas_akras_akwas_asimwas_asiá¸yas'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[asdkh g] LT',
-            nextDay: '[aska g] LT',
-            nextWeek: 'dddd [g] LT',
-            lastDay: '[assant g] LT',
-            lastWeek: 'dddd [g] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'dadkh s yan %s',
-            past : 'yan %s',
-            s : 'imik',
-            m : 'minuá¸',
-            mm : '%d minuá¸',
-            h : 'saÉ›a',
-            hh : '%d tassaÉ›in',
-            d : 'ass',
-            dd : '%d ossan',
-            M : 'ayowr',
-            MM : '%d iyyirn',
-            y : 'asgas',
-            yy : '%d isgasn'
-        },
-        week : {
-            dow : 6, // Saturday is the first day of the week.
-            doy : 12  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : Morocco Central Atlas TamaziÉ£t (tzm)
-    //! author : Abdel Said : https://github.com/abdelsaid
-
-    var tzm = moment.defineLocale('tzm', {
-        months : 'âµ‰âµâµâ´°âµ¢âµ”_â´±âµ•â´°âµ¢âµ•_âµŽâ´°âµ•âµš_âµ‰â´±âµ”âµ‰âµ”_âµŽâ´°âµ¢âµ¢âµ“_âµ¢âµ“âµâµ¢âµ“_âµ¢âµ“âµâµ¢âµ“âµ£_âµ–âµ“âµ›âµœ_âµ›âµ“âµœâ´°âµâ´±âµ‰âµ”_â´½âµŸâµ“â´±âµ•_âµâµ“âµ¡â´°âµâ´±âµ‰âµ”_â´·âµ“âµŠâµâ´±âµ‰âµ”'.split('_'),
-        monthsShort : 'âµ‰âµâµâ´°âµ¢âµ”_â´±âµ•â´°âµ¢âµ•_âµŽâ´°âµ•âµš_âµ‰â´±âµ”âµ‰âµ”_âµŽâ´°âµ¢âµ¢âµ“_âµ¢âµ“âµâµ¢âµ“_âµ¢âµ“âµâµ¢âµ“âµ£_âµ–âµ“âµ›âµœ_âµ›âµ“âµœâ´°âµâ´±âµ‰âµ”_â´½âµŸâµ“â´±âµ•_âµâµ“âµ¡â´°âµâ´±âµ‰âµ”_â´·âµ“âµŠâµâ´±âµ‰âµ”'.split('_'),
-        weekdays : 'â´°âµ™â´°âµŽâ´°âµ™_â´°âµ¢âµâ´°âµ™_â´°âµ™âµ‰âµâ´°âµ™_â´°â´½âµ”â´°âµ™_â´°â´½âµ¡â´°âµ™_â´°âµ™âµ‰âµŽâµ¡â´°âµ™_â´°âµ™âµ‰â´¹âµ¢â´°âµ™'.split('_'),
-        weekdaysShort : 'â´°âµ™â´°âµŽâ´°âµ™_â´°âµ¢âµâ´°âµ™_â´°âµ™âµ‰âµâ´°âµ™_â´°â´½âµ”â´°âµ™_â´°â´½âµ¡â´°âµ™_â´°âµ™âµ‰âµŽâµ¡â´°âµ™_â´°âµ™âµ‰â´¹âµ¢â´°âµ™'.split('_'),
-        weekdaysMin : 'â´°âµ™â´°âµŽâ´°âµ™_â´°âµ¢âµâ´°âµ™_â´°âµ™âµ‰âµâ´°âµ™_â´°â´½âµ”â´°âµ™_â´°â´½âµ¡â´°âµ™_â´°âµ™âµ‰âµŽâµ¡â´°âµ™_â´°âµ™âµ‰â´¹âµ¢â´°âµ™'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS: 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'dddd D MMMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[â´°âµ™â´·âµ… â´´] LT',
-            nextDay: '[â´°âµ™â´½â´° â´´] LT',
-            nextWeek: 'dddd [â´´] LT',
-            lastDay: '[â´°âµšâ´°âµâµœ â´´] LT',
-            lastWeek: 'dddd [â´´] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'â´·â´°â´·âµ… âµ™ âµ¢â´°âµ %s',
-            past : 'âµ¢â´°âµ %s',
-            s : 'âµ‰âµŽâµ‰â´½',
-            m : 'âµŽâµ‰âµâµ“â´º',
-            mm : '%d âµŽâµ‰âµâµ“â´º',
-            h : 'âµ™â´°âµ„â´°',
-            hh : '%d âµœâ´°âµ™âµ™â´°âµ„âµ‰âµ',
-            d : 'â´°âµ™âµ™',
-            dd : '%d oâµ™âµ™â´°âµ',
-            M : 'â´°âµ¢oâµ“âµ”',
-            MM : '%d âµ‰âµ¢âµ¢âµ‰âµ”âµ',
-            y : 'â´°âµ™â´³â´°âµ™',
-            yy : '%d âµ‰âµ™â´³â´°âµ™âµ'
-        },
-        week : {
-            dow : 6, // Saturday is the first day of the week.
-            doy : 12  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : ukrainian (uk)
-    //! author : zemlanin : https://github.com/zemlanin
-    //! Author : Menelion ElensÃºle : https://github.com/Oire
-
-    function uk__plural(word, num) {
-        var forms = word.split('_');
-        return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
-    }
-    function uk__relativeTimeWithPlural(number, withoutSuffix, key) {
-        var format = {
-            'mm': withoutSuffix ? 'Ñ…Ð²Ð¸Ð»Ð¸Ð½Ð°_Ñ…Ð²Ð¸Ð»Ð¸Ð½Ð¸_Ñ…Ð²Ð¸Ð»Ð¸Ð½' : 'Ñ…Ð²Ð¸Ð»Ð¸Ð½Ñƒ_Ñ…Ð²Ð¸Ð»Ð¸Ð½Ð¸_Ñ…Ð²Ð¸Ð»Ð¸Ð½',
-            'hh': withoutSuffix ? 'Ð³Ð¾Ð´Ð¸Ð½Ð°_Ð³Ð¾Ð´Ð¸Ð½Ð¸_Ð³Ð¾Ð´Ð¸Ð½' : 'Ð³Ð¾Ð´Ð¸Ð½Ñƒ_Ð³Ð¾Ð´Ð¸Ð½Ð¸_Ð³Ð¾Ð´Ð¸Ð½',
-            'dd': 'Ð´ÐµÐ½ÑŒ_Ð´Ð½Ñ–_Ð´Ð½Ñ–Ð²',
-            'MM': 'Ð¼Ñ–ÑÑÑ†ÑŒ_Ð¼Ñ–ÑÑÑ†Ñ–_Ð¼Ñ–ÑÑÑ†Ñ–Ð²',
-            'yy': 'Ñ€Ñ–Ðº_Ñ€Ð¾ÐºÐ¸_Ñ€Ð¾ÐºÑ–Ð²'
-        };
-        if (key === 'm') {
-            return withoutSuffix ? 'Ñ…Ð²Ð¸Ð»Ð¸Ð½Ð°' : 'Ñ…Ð²Ð¸Ð»Ð¸Ð½Ñƒ';
-        }
-        else if (key === 'h') {
-            return withoutSuffix ? 'Ð³Ð¾Ð´Ð¸Ð½Ð°' : 'Ð³Ð¾Ð´Ð¸Ð½Ñƒ';
-        }
-        else {
-            return number + ' ' + uk__plural(format[key], +number);
-        }
-    }
-    function weekdaysCaseReplace(m, format) {
-        var weekdays = {
-            'nominative': 'Ð½ÐµÐ´Ñ–Ð»Ñ_Ð¿Ð¾Ð½ÐµÐ´Ñ–Ð»Ð¾Ðº_Ð²Ñ–Ð²Ñ‚Ð¾Ñ€Ð¾Ðº_ÑÐµÑ€ÐµÐ´Ð°_Ñ‡ÐµÑ‚Ð²ÐµÑ€_Ð¿â€™ÑÑ‚Ð½Ð¸Ñ†Ñ_ÑÑƒÐ±Ð¾Ñ‚Ð°'.split('_'),
-            'accusative': 'Ð½ÐµÐ´Ñ–Ð»ÑŽ_Ð¿Ð¾Ð½ÐµÐ´Ñ–Ð»Ð¾Ðº_Ð²Ñ–Ð²Ñ‚Ð¾Ñ€Ð¾Ðº_ÑÐµÑ€ÐµÐ´Ñƒ_Ñ‡ÐµÑ‚Ð²ÐµÑ€_Ð¿â€™ÑÑ‚Ð½Ð¸Ñ†ÑŽ_ÑÑƒÐ±Ð¾Ñ‚Ñƒ'.split('_'),
-            'genitive': 'Ð½ÐµÐ´Ñ–Ð»Ñ–_Ð¿Ð¾Ð½ÐµÐ´Ñ–Ð»ÐºÐ°_Ð²Ñ–Ð²Ñ‚Ð¾Ñ€ÐºÐ°_ÑÐµÑ€ÐµÐ´Ð¸_Ñ‡ÐµÑ‚Ð²ÐµÑ€Ð³Ð°_Ð¿â€™ÑÑ‚Ð½Ð¸Ñ†Ñ–_ÑÑƒÐ±Ð¾Ñ‚Ð¸'.split('_')
-        },
-        nounCase = (/(\[[Ð’Ð²Ð£Ñƒ]\]) ?dddd/).test(format) ?
-            'accusative' :
-            ((/\[?(?:Ð¼Ð¸Ð½ÑƒÐ»Ð¾Ñ—|Ð½Ð°ÑÑ‚ÑƒÐ¿Ð½Ð¾Ñ—)? ?\] ?dddd/).test(format) ?
-                'genitive' :
-                'nominative');
-        return weekdays[nounCase][m.day()];
-    }
-    function processHoursFunction(str) {
-        return function () {
-            return str + 'Ð¾' + (this.hours() === 11 ? 'Ð±' : '') + '] LT';
-        };
-    }
-
-    var uk = moment.defineLocale('uk', {
-        months : {
-            'format': 'ÑÑ–Ñ‡Ð½Ñ_Ð»ÑŽÑ‚Ð¾Ð³Ð¾_Ð±ÐµÑ€ÐµÐ·Ð½Ñ_ÐºÐ²Ñ–Ñ‚Ð½Ñ_Ñ‚Ñ€Ð°Ð²Ð½Ñ_Ñ‡ÐµÑ€Ð²Ð½Ñ_Ð»Ð¸Ð¿Ð½Ñ_ÑÐµÑ€Ð¿Ð½Ñ_Ð²ÐµÑ€ÐµÑÐ½Ñ_Ð¶Ð¾Ð²Ñ‚Ð½Ñ_Ð»Ð¸ÑÑ‚Ð¾Ð¿Ð°Ð´Ð°_Ð³Ñ€ÑƒÐ´Ð½Ñ'.split('_'),
-            'standalone': 'ÑÑ–Ñ‡ÐµÐ½ÑŒ_Ð»ÑŽÑ‚Ð¸Ð¹_Ð±ÐµÑ€ÐµÐ·ÐµÐ½ÑŒ_ÐºÐ²Ñ–Ñ‚ÐµÐ½ÑŒ_Ñ‚Ñ€Ð°Ð²ÐµÐ½ÑŒ_Ñ‡ÐµÑ€Ð²ÐµÐ½ÑŒ_Ð»Ð¸Ð¿ÐµÐ½ÑŒ_ÑÐµÑ€Ð¿ÐµÐ½ÑŒ_Ð²ÐµÑ€ÐµÑÐµÐ½ÑŒ_Ð¶Ð¾Ð²Ñ‚ÐµÐ½ÑŒ_Ð»Ð¸ÑÑ‚Ð¾Ð¿Ð°Ð´_Ð³Ñ€ÑƒÐ´ÐµÐ½ÑŒ'.split('_')
-        },
-        monthsShort : 'ÑÑ–Ñ‡_Ð»ÑŽÑ‚_Ð±ÐµÑ€_ÐºÐ²Ñ–Ñ‚_Ñ‚Ñ€Ð°Ð²_Ñ‡ÐµÑ€Ð²_Ð»Ð¸Ð¿_ÑÐµÑ€Ð¿_Ð²ÐµÑ€_Ð¶Ð¾Ð²Ñ‚_Ð»Ð¸ÑÑ‚_Ð³Ñ€ÑƒÐ´'.split('_'),
-        weekdays : weekdaysCaseReplace,
-        weekdaysShort : 'Ð½Ð´_Ð¿Ð½_Ð²Ñ‚_ÑÑ€_Ñ‡Ñ‚_Ð¿Ñ‚_ÑÐ±'.split('_'),
-        weekdaysMin : 'Ð½Ð´_Ð¿Ð½_Ð²Ñ‚_ÑÑ€_Ñ‡Ñ‚_Ð¿Ñ‚_ÑÐ±'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD.MM.YYYY',
-            LL : 'D MMMM YYYY Ñ€.',
-            LLL : 'D MMMM YYYY Ñ€., HH:mm',
-            LLLL : 'dddd, D MMMM YYYY Ñ€., HH:mm'
-        },
-        calendar : {
-            sameDay: processHoursFunction('[Ð¡ÑŒÐ¾Ð³Ð¾Ð´Ð½Ñ– '),
-            nextDay: processHoursFunction('[Ð—Ð°Ð²Ñ‚Ñ€Ð° '),
-            lastDay: processHoursFunction('[Ð’Ñ‡Ð¾Ñ€Ð° '),
-            nextWeek: processHoursFunction('[Ð£] dddd ['),
-            lastWeek: function () {
-                switch (this.day()) {
-                case 0:
-                case 3:
-                case 5:
-                case 6:
-                    return processHoursFunction('[ÐœÐ¸Ð½ÑƒÐ»Ð¾Ñ—] dddd [').call(this);
-                case 1:
-                case 2:
-                case 4:
-                    return processHoursFunction('[ÐœÐ¸Ð½ÑƒÐ»Ð¾Ð³Ð¾] dddd [').call(this);
-                }
-            },
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : 'Ð·Ð° %s',
-            past : '%s Ñ‚Ð¾Ð¼Ñƒ',
-            s : 'Ð´ÐµÐºÑ–Ð»ÑŒÐºÐ° ÑÐµÐºÑƒÐ½Ð´',
-            m : uk__relativeTimeWithPlural,
-            mm : uk__relativeTimeWithPlural,
-            h : 'Ð³Ð¾Ð´Ð¸Ð½Ñƒ',
-            hh : uk__relativeTimeWithPlural,
-            d : 'Ð´ÐµÐ½ÑŒ',
-            dd : uk__relativeTimeWithPlural,
-            M : 'Ð¼Ñ–ÑÑÑ†ÑŒ',
-            MM : uk__relativeTimeWithPlural,
-            y : 'Ñ€Ñ–Ðº',
-            yy : uk__relativeTimeWithPlural
-        },
-        // M. E.: those two are virtually unused but a user might want to implement them for his/her website for some reason
-        meridiemParse: /Ð½Ð¾Ñ‡Ñ–|Ñ€Ð°Ð½ÐºÑƒ|Ð´Ð½Ñ|Ð²ÐµÑ‡Ð¾Ñ€Ð°/,
-        isPM: function (input) {
-            return /^(Ð´Ð½Ñ|Ð²ÐµÑ‡Ð¾Ñ€Ð°)$/.test(input);
-        },
-        meridiem : function (hour, minute, isLower) {
-            if (hour < 4) {
-                return 'Ð½Ð¾Ñ‡Ñ–';
-            } else if (hour < 12) {
-                return 'Ñ€Ð°Ð½ÐºÑƒ';
-            } else if (hour < 17) {
-                return 'Ð´Ð½Ñ';
-            } else {
-                return 'Ð²ÐµÑ‡Ð¾Ñ€Ð°';
-            }
-        },
-        ordinalParse: /\d{1,2}-(Ð¹|Ð³Ð¾)/,
-        ordinal: function (number, period) {
-            switch (period) {
-            case 'M':
-            case 'd':
-            case 'DDD':
-            case 'w':
-            case 'W':
-                return number + '-Ð¹';
-            case 'D':
-                return number + '-Ð³Ð¾';
-            default:
-                return number;
-            }
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 1st is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : uzbek (uz)
-    //! author : Sardor Muminov : https://github.com/muminoff
-
-    var uz = moment.defineLocale('uz', {
-        months : 'ÑÐ½Ð²Ð°Ñ€_Ñ„ÐµÐ²Ñ€Ð°Ð»_Ð¼Ð°Ñ€Ñ‚_Ð°Ð¿Ñ€ÐµÐ»_Ð¼Ð°Ð¹_Ð¸ÑŽÐ½_Ð¸ÑŽÐ»_Ð°Ð²Ð³ÑƒÑÑ‚_ÑÐµÐ½Ñ‚ÑÐ±Ñ€_Ð¾ÐºÑ‚ÑÐ±Ñ€_Ð½Ð¾ÑÐ±Ñ€_Ð´ÐµÐºÐ°Ð±Ñ€'.split('_'),
-        monthsShort : 'ÑÐ½Ð²_Ñ„ÐµÐ²_Ð¼Ð°Ñ€_Ð°Ð¿Ñ€_Ð¼Ð°Ð¹_Ð¸ÑŽÐ½_Ð¸ÑŽÐ»_Ð°Ð²Ð³_ÑÐµÐ½_Ð¾ÐºÑ‚_Ð½Ð¾Ñ_Ð´ÐµÐº'.split('_'),
-        weekdays : 'Ð¯ÐºÑˆÐ°Ð½Ð±Ð°_Ð”ÑƒÑˆÐ°Ð½Ð±Ð°_Ð¡ÐµÑˆÐ°Ð½Ð±Ð°_Ð§Ð¾Ñ€ÑˆÐ°Ð½Ð±Ð°_ÐŸÐ°Ð¹ÑˆÐ°Ð½Ð±Ð°_Ð–ÑƒÐ¼Ð°_Ð¨Ð°Ð½Ð±Ð°'.split('_'),
-        weekdaysShort : 'Ð¯ÐºÑˆ_Ð”ÑƒÑˆ_Ð¡ÐµÑˆ_Ð§Ð¾Ñ€_ÐŸÐ°Ð¹_Ð–ÑƒÐ¼_Ð¨Ð°Ð½'.split('_'),
-        weekdaysMin : 'Ð¯Ðº_Ð”Ñƒ_Ð¡Ðµ_Ð§Ð¾_ÐŸÐ°_Ð–Ñƒ_Ð¨Ð°'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY HH:mm',
-            LLLL : 'D MMMM YYYY, dddd HH:mm'
-        },
-        calendar : {
-            sameDay : '[Ð‘ÑƒÐ³ÑƒÐ½ ÑÐ¾Ð°Ñ‚] LT [Ð´Ð°]',
-            nextDay : '[Ð­Ñ€Ñ‚Ð°Ð³Ð°] LT [Ð´Ð°]',
-            nextWeek : 'dddd [ÐºÑƒÐ½Ð¸ ÑÐ¾Ð°Ñ‚] LT [Ð´Ð°]',
-            lastDay : '[ÐšÐµÑ‡Ð° ÑÐ¾Ð°Ñ‚] LT [Ð´Ð°]',
-            lastWeek : '[Ð£Ñ‚Ð³Ð°Ð½] dddd [ÐºÑƒÐ½Ð¸ ÑÐ¾Ð°Ñ‚] LT [Ð´Ð°]',
-            sameElse : 'L'
-        },
-        relativeTime : {
-            future : 'Ð¯ÐºÐ¸Ð½ %s Ð¸Ñ‡Ð¸Ð´Ð°',
-            past : 'Ð‘Ð¸Ñ€ Ð½ÐµÑ‡Ð° %s Ð¾Ð»Ð´Ð¸Ð½',
-            s : 'Ñ„ÑƒÑ€ÑÐ°Ñ‚',
-            m : 'Ð±Ð¸Ñ€ Ð´Ð°ÐºÐ¸ÐºÐ°',
-            mm : '%d Ð´Ð°ÐºÐ¸ÐºÐ°',
-            h : 'Ð±Ð¸Ñ€ ÑÐ¾Ð°Ñ‚',
-            hh : '%d ÑÐ¾Ð°Ñ‚',
-            d : 'Ð±Ð¸Ñ€ ÐºÑƒÐ½',
-            dd : '%d ÐºÑƒÐ½',
-            M : 'Ð±Ð¸Ñ€ Ð¾Ð¹',
-            MM : '%d Ð¾Ð¹',
-            y : 'Ð±Ð¸Ñ€ Ð¹Ð¸Ð»',
-            yy : '%d Ð¹Ð¸Ð»'
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 7  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : vietnamese (vi)
-    //! author : Bang Nguyen : https://github.com/bangnk
-
-    var vi = moment.defineLocale('vi', {
-        months : 'thÃ¡ng 1_thÃ¡ng 2_thÃ¡ng 3_thÃ¡ng 4_thÃ¡ng 5_thÃ¡ng 6_thÃ¡ng 7_thÃ¡ng 8_thÃ¡ng 9_thÃ¡ng 10_thÃ¡ng 11_thÃ¡ng 12'.split('_'),
-        monthsShort : 'Th01_Th02_Th03_Th04_Th05_Th06_Th07_Th08_Th09_Th10_Th11_Th12'.split('_'),
-        weekdays : 'chá»§ nháº­t_thá»© hai_thá»© ba_thá»© tÆ°_thá»© nÄƒm_thá»© sÃ¡u_thá»© báº£y'.split('_'),
-        weekdaysShort : 'CN_T2_T3_T4_T5_T6_T7'.split('_'),
-        weekdaysMin : 'CN_T2_T3_T4_T5_T6_T7'.split('_'),
-        longDateFormat : {
-            LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
-            L : 'DD/MM/YYYY',
-            LL : 'D MMMM [nÄƒm] YYYY',
-            LLL : 'D MMMM [nÄƒm] YYYY HH:mm',
-            LLLL : 'dddd, D MMMM [nÄƒm] YYYY HH:mm',
-            l : 'DD/M/YYYY',
-            ll : 'D MMM YYYY',
-            lll : 'D MMM YYYY HH:mm',
-            llll : 'ddd, D MMM YYYY HH:mm'
-        },
-        calendar : {
-            sameDay: '[HÃ´m nay lÃºc] LT',
-            nextDay: '[NgÃ y mai lÃºc] LT',
-            nextWeek: 'dddd [tuáº§n tá»›i lÃºc] LT',
-            lastDay: '[HÃ´m qua lÃºc] LT',
-            lastWeek: 'dddd [tuáº§n rá»“i lÃºc] LT',
-            sameElse: 'L'
-        },
-        relativeTime : {
-            future : '%s tá»›i',
-            past : '%s trÆ°á»›c',
-            s : 'vÃ i giÃ¢y',
-            m : 'má»™t phÃºt',
-            mm : '%d phÃºt',
-            h : 'má»™t giá»',
-            hh : '%d giá»',
-            d : 'má»™t ngÃ y',
-            dd : '%d ngÃ y',
-            M : 'má»™t thÃ¡ng',
-            MM : '%d thÃ¡ng',
-            y : 'má»™t nÄƒm',
-            yy : '%d nÄƒm'
-        },
-        ordinalParse: /\d{1,2}/,
-        ordinal : function (number) {
-            return number;
-        },
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : chinese (zh-cn)
-    //! author : suupic : https://github.com/suupic
-    //! author : Zeno Zeng : https://github.com/zenozeng
-
-    var zh_cn = moment.defineLocale('zh-cn', {
-        months : 'ä¸€æœˆ_äºŒæœˆ_ä¸‰æœˆ_å››æœˆ_äº”æœˆ_å…­æœˆ_ä¸ƒæœˆ_å…«æœˆ_ä¹æœˆ_åæœˆ_åä¸€æœˆ_åäºŒæœˆ'.split('_'),
-        monthsShort : '1æœˆ_2æœˆ_3æœˆ_4æœˆ_5æœˆ_6æœˆ_7æœˆ_8æœˆ_9æœˆ_10æœˆ_11æœˆ_12æœˆ'.split('_'),
-        weekdays : 'æ˜ŸæœŸæ—¥_æ˜ŸæœŸä¸€_æ˜ŸæœŸäºŒ_æ˜ŸæœŸä¸‰_æ˜ŸæœŸå››_æ˜ŸæœŸäº”_æ˜ŸæœŸå…­'.split('_'),
-        weekdaysShort : 'å‘¨æ—¥_å‘¨ä¸€_å‘¨äºŒ_å‘¨ä¸‰_å‘¨å››_å‘¨äº”_å‘¨å…­'.split('_'),
-        weekdaysMin : 'æ—¥_ä¸€_äºŒ_ä¸‰_å››_äº”_å…­'.split('_'),
-        longDateFormat : {
-            LT : 'Ahç‚¹mmåˆ†',
-            LTS : 'Ahç‚¹måˆ†sç§’',
-            L : 'YYYY-MM-DD',
-            LL : 'YYYYå¹´MMMDæ—¥',
-            LLL : 'YYYYå¹´MMMDæ—¥Ahç‚¹mmåˆ†',
-            LLLL : 'YYYYå¹´MMMDæ—¥ddddAhç‚¹mmåˆ†',
-            l : 'YYYY-MM-DD',
-            ll : 'YYYYå¹´MMMDæ—¥',
-            lll : 'YYYYå¹´MMMDæ—¥Ahç‚¹mmåˆ†',
-            llll : 'YYYYå¹´MMMDæ—¥ddddAhç‚¹mmåˆ†'
-        },
-        meridiemParse: /å‡Œæ™¨|æ—©ä¸Š|ä¸Šåˆ|ä¸­åˆ|ä¸‹åˆ|æ™šä¸Š/,
-        meridiemHour: function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'å‡Œæ™¨' || meridiem === 'æ—©ä¸Š' ||
-                    meridiem === 'ä¸Šåˆ') {
-                return hour;
-            } else if (meridiem === 'ä¸‹åˆ' || meridiem === 'æ™šä¸Š') {
-                return hour + 12;
-            } else {
-                // 'ä¸­åˆ'
-                return hour >= 11 ? hour : hour + 12;
-            }
-        },
-        meridiem : function (hour, minute, isLower) {
-            var hm = hour * 100 + minute;
-            if (hm < 600) {
-                return 'å‡Œæ™¨';
-            } else if (hm < 900) {
-                return 'æ—©ä¸Š';
-            } else if (hm < 1130) {
-                return 'ä¸Šåˆ';
-            } else if (hm < 1230) {
-                return 'ä¸­åˆ';
-            } else if (hm < 1800) {
-                return 'ä¸‹åˆ';
-            } else {
-                return 'æ™šä¸Š';
-            }
-        },
-        calendar : {
-            sameDay : function () {
-                return this.minutes() === 0 ? '[ä»Šå¤©]Ah[ç‚¹æ•´]' : '[ä»Šå¤©]LT';
-            },
-            nextDay : function () {
-                return this.minutes() === 0 ? '[æ˜Žå¤©]Ah[ç‚¹æ•´]' : '[æ˜Žå¤©]LT';
-            },
-            lastDay : function () {
-                return this.minutes() === 0 ? '[æ˜¨å¤©]Ah[ç‚¹æ•´]' : '[æ˜¨å¤©]LT';
-            },
-            nextWeek : function () {
-                var startOfWeek, prefix;
-                startOfWeek = moment().startOf('week');
-                prefix = this.unix() - startOfWeek.unix() >= 7 * 24 * 3600 ? '[ä¸‹]' : '[æœ¬]';
-                return this.minutes() === 0 ? prefix + 'dddAhç‚¹æ•´' : prefix + 'dddAhç‚¹mm';
-            },
-            lastWeek : function () {
-                var startOfWeek, prefix;
-                startOfWeek = moment().startOf('week');
-                prefix = this.unix() < startOfWeek.unix()  ? '[ä¸Š]' : '[æœ¬]';
-                return this.minutes() === 0 ? prefix + 'dddAhç‚¹æ•´' : prefix + 'dddAhç‚¹mm';
-            },
-            sameElse : 'LL'
-        },
-        ordinalParse: /\d{1,2}(æ—¥|æœˆ|å‘¨)/,
-        ordinal : function (number, period) {
-            switch (period) {
-            case 'd':
-            case 'D':
-            case 'DDD':
-                return number + 'æ—¥';
-            case 'M':
-                return number + 'æœˆ';
-            case 'w':
-            case 'W':
-                return number + 'å‘¨';
-            default:
-                return number;
-            }
-        },
-        relativeTime : {
-            future : '%så†…',
-            past : '%så‰',
-            s : 'å‡ ç§’',
-            m : '1 åˆ†é’Ÿ',
-            mm : '%d åˆ†é’Ÿ',
-            h : '1 å°æ—¶',
-            hh : '%d å°æ—¶',
-            d : '1 å¤©',
-            dd : '%d å¤©',
-            M : '1 ä¸ªæœˆ',
-            MM : '%d ä¸ªæœˆ',
-            y : '1 å¹´',
-            yy : '%d å¹´'
-        },
-        week : {
-            // GB/T 7408-1994ã€Šæ•°æ®å…ƒå’Œäº¤æ¢æ ¼å¼Â·ä¿¡æ¯äº¤æ¢Â·æ—¥æœŸå’Œæ—¶é—´è¡¨ç¤ºæ³•ã€‹ä¸ŽISO 8601:1988ç­‰æ•ˆ
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }
-    });
-
-    //! moment.js locale configuration
-    //! locale : traditional chinese (zh-tw)
-    //! author : Ben : https://github.com/ben-lin
-
-    var zh_tw = moment.defineLocale('zh-tw', {
-        months : 'ä¸€æœˆ_äºŒæœˆ_ä¸‰æœˆ_å››æœˆ_äº”æœˆ_å…­æœˆ_ä¸ƒæœˆ_å…«æœˆ_ä¹æœˆ_åæœˆ_åä¸€æœˆ_åäºŒæœˆ'.split('_'),
-        monthsShort : '1æœˆ_2æœˆ_3æœˆ_4æœˆ_5æœˆ_6æœˆ_7æœˆ_8æœˆ_9æœˆ_10æœˆ_11æœˆ_12æœˆ'.split('_'),
-        weekdays : 'æ˜ŸæœŸæ—¥_æ˜ŸæœŸä¸€_æ˜ŸæœŸäºŒ_æ˜ŸæœŸä¸‰_æ˜ŸæœŸå››_æ˜ŸæœŸäº”_æ˜ŸæœŸå…­'.split('_'),
-        weekdaysShort : 'é€±æ—¥_é€±ä¸€_é€±äºŒ_é€±ä¸‰_é€±å››_é€±äº”_é€±å…­'.split('_'),
-        weekdaysMin : 'æ—¥_ä¸€_äºŒ_ä¸‰_å››_äº”_å…­'.split('_'),
-        longDateFormat : {
-            LT : 'Ahé»žmmåˆ†',
-            LTS : 'Ahé»žmåˆ†sç§’',
-            L : 'YYYYå¹´MMMDæ—¥',
-            LL : 'YYYYå¹´MMMDæ—¥',
-            LLL : 'YYYYå¹´MMMDæ—¥Ahé»žmmåˆ†',
-            LLLL : 'YYYYå¹´MMMDæ—¥ddddAhé»žmmåˆ†',
-            l : 'YYYYå¹´MMMDæ—¥',
-            ll : 'YYYYå¹´MMMDæ—¥',
-            lll : 'YYYYå¹´MMMDæ—¥Ahé»žmmåˆ†',
-            llll : 'YYYYå¹´MMMDæ—¥ddddAhé»žmmåˆ†'
-        },
-        meridiemParse: /æ—©ä¸Š|ä¸Šåˆ|ä¸­åˆ|ä¸‹åˆ|æ™šä¸Š/,
-        meridiemHour : function (hour, meridiem) {
-            if (hour === 12) {
-                hour = 0;
-            }
-            if (meridiem === 'æ—©ä¸Š' || meridiem === 'ä¸Šåˆ') {
-                return hour;
-            } else if (meridiem === 'ä¸­åˆ') {
-                return hour >= 11 ? hour : hour + 12;
-            } else if (meridiem === 'ä¸‹åˆ' || meridiem === 'æ™šä¸Š') {
-                return hour + 12;
-            }
-        },
-        meridiem : function (hour, minute, isLower) {
-            var hm = hour * 100 + minute;
-            if (hm < 900) {
-                return 'æ—©ä¸Š';
-            } else if (hm < 1130) {
-                return 'ä¸Šåˆ';
-            } else if (hm < 1230) {
-                return 'ä¸­åˆ';
-            } else if (hm < 1800) {
-                return 'ä¸‹åˆ';
-            } else {
-                return 'æ™šä¸Š';
-            }
-        },
-        calendar : {
-            sameDay : '[ä»Šå¤©]LT',
-            nextDay : '[æ˜Žå¤©]LT',
-            nextWeek : '[ä¸‹]ddddLT',
-            lastDay : '[æ˜¨å¤©]LT',
-            lastWeek : '[ä¸Š]ddddLT',
-            sameElse : 'L'
-        },
-        ordinalParse: /\d{1,2}(æ—¥|æœˆ|é€±)/,
-        ordinal : function (number, period) {
-            switch (period) {
-            case 'd' :
-            case 'D' :
-            case 'DDD' :
-                return number + 'æ—¥';
-            case 'M' :
-                return number + 'æœˆ';
-            case 'w' :
-            case 'W' :
-                return number + 'é€±';
-            default :
-                return number;
-            }
-        },
-        relativeTime : {
-            future : '%så…§',
-            past : '%så‰',
-            s : 'å¹¾ç§’',
-            m : 'ä¸€åˆ†é˜',
-            mm : '%dåˆ†é˜',
-            h : 'ä¸€å°æ™‚',
-            hh : '%då°æ™‚',
-            d : 'ä¸€å¤©',
-            dd : '%då¤©',
-            M : 'ä¸€å€‹æœˆ',
-            MM : '%då€‹æœˆ',
-            y : 'ä¸€å¹´',
-            yy : '%då¹´'
-        }
-    });
-
-    moment.locale('en');
-
-}));
+        preparse: function (sth      u¶            F    ‰b´¥­Ò €        "   * < ~ $ s t e r   m a i n   p r o j . d o c x   h      u¶           hF    
+¥­Ò  €        "   * < ~ $ s t e r   m a i n   p r o j . d o c x   p      u¶           ÐF    UJŽ¥­Ò           "   4 < ~ $ u d e n t - P o r t a l   -   C o p y . d o c x p      u¶           @‘F    UJŽ¥­Ò          "   4 < ~ $ u d e n t - P o r t a l   -   C o p y . d o c x p      u¶           °‘F    UJŽ¥­Ò €        "   4 < ~ $ u d e n t - P o r t a l   -   C o p y . d o c x p      u¶            ’F    SºM¥­Ò  €        "   4 < ~ $ u d e n t - P o r t a l   -   C o p y . d o c x p      s¶           ’F    !gêØ¦­Ò  €        "   . < ~ $ D   T e m p l a t e   -   C o p y . d o c       €      t¶            “F    L˜ñÛ¦­Ò  €        "   > < ~ $ o j e c t   I n i t i a t i o n   D o c u m e n t . d o c       p      r¶           €“F    àQMÜ¦­Ò  €        "   . < ~ $ D   M a i n   P r o j   D r a f t . d o c     2BX      &      #      ð“F    oe€õ¦­Ò                < $ T x f L o g . b l f     3 X      &      #      H”F    žÓ‚õ¦­Ò  €             < $ T x f L o g . b l f     3       r¶            ”F    W$€ä
+®Ò           &   N < 1 { 3 8 0 8 8 7 6 b - c 1 7 6 - 4 e 4 8 - b 7 a e - 0 4 0 4 6 e 6 c c 7 5 2 }             r¶           0•F    ó‚ä
+®Ò          &   N < 1 { 3 8 0 8 8 7 6 b - c 1 7 6 - 4 e 4 8 - b 7 a e - 0 4 0 4 6 e 6 c c 7 5 2 }             r¶           À•F    F}þä
+®Ò €        &   N < 1 { 3 8 0 8 8 7 6 b - c 1 7 6 - 4 e 4 8 - b 7 a e - 0 4 0 4 6 e 6 c c 7 5 2 }             r¶           P–F    í7`è
+®Ò  €        &   N < 1 { 3 8 0 8 8 7 6 b - c 1 7 6 - 4 e 4 8 - b 7 a e - 0 4 0 4 6 e 6 c c 7 5 2 }       X      &      #      à–F    •
+£®Ò                < $ T x f L o g . b l f       X      &      #      8—F    vÁ£®Ò  €             < $ T x f L o g . b l f       P      r¶           —F    ëŠä¦®Ò           "    < ~ $ g g . d o c x   P      r¶           à—F    °è‹ä¦®Ò          "    < ~ $ g g . d o c x   P      r¶           0˜F    °è‹ä¦®Ò €        "    < ~ $ g g . d o c x   P      r¶           €˜F    Ò2ù¦®Ò  €        "    < ~ $ g g . d o c x   ˜      r¶     Û     Ð˜F    Ypèî«®Ò              Z < S - 1 - 5 - 2 1 - 2 8 3 6 8 2 0 2 6 5 - 1 0 5 0 1 7 4 3 1 - 2 1 1 3 0 4 5 2 8 2 - 1 0 0 1   ˜      r¶     Û     h™F    ÂÒêî«®Ò  €           Z < S - 1 - 5 - 2 1 - 2 8 3 6 8 2 0 2 6 5 - 1 0 5 0 1 7 4 3 1 - 2 1 1 3 0 4 5 2 8 2 - 1 0 0 1   ˜      r¶     Û      šF    ÂÒêî«®Ò €             Z < S - 1 - 5 - 2 1 - 2 8 3 6 8 2 0 2 6 5 - 1 0 5 0 1 7 4 3 1 - 2 1 1 3 0 4 5 2 8 2 - 1 0 0 1   ˜      r¶     Û     ˜šF    ÂÒêî«®Ò € €           Z < S - 1 - 5 - 2 1 - 2 8 3 6 8 2 0 2 6 5 - 1 0 5 0 1 7 4 3 1 - 2 1 1 3 0 4 5 2 8 2 - 1 0 0 1   X      s¶     r¶     0›F    /5íî«®Ò                < d e s k t o p . i n i     eeX      s¶     r¶     ˆ›F    /5íî«®Ò               < d e s k t o p . i n i     eeX      s¶     r¶     à›F    /5íî«®Ò €             < d e s k t o p . i n i     eeX      s¶     r¶     8œF    /5íî«®Ò €              < d e s k t o p . i n i     eeX      s¶     r¶     œF    /5íî«®Ò € €            < d e s k t o p . i n i     eeX      s¶     r¶     èœF    z—ïî«®Ò               < d e s k t o p . i n i     eeX      s¶     r¶     @F    z—ïî«®Ò  €        &    < d e s k t o p . i n i     eeX      t¶           ˜F    ­S²¯®Ò               < M S I 2 a 9 1 4 . t m p     X      t¶           ðF    ’U²¯®Ò  €            < M S I 2 a 9 1 4 . t m p     X      t¶           HžF    ’U²¯®Ò  €            < M S I 2 a 9 1 4 . t m p     `      t¶            žF    	ÙÝÜÌ®Ò                < b o w e r _ c o m p o n e n t s     `      t¶            ŸF    É;àÜÌ®Ò  €             < b o w e r _ c o m p o n e n t s     `      t¶           `ŸF    É;àÜÌ®Ò €               < b o w e r _ c o m p o n e n t s                                                                     `      t¶             F    É;àÜÌ®Ò € €             < b o w e r _ c o m p o n e n t s     P      u¶     t¶     ` F    É;àÜÌ®Ò               < b o o t s t r a p   P      u¶     t¶     ° F    É;àÜÌ®Ò  €            < b o o t s t r a p   P      u¶     t¶      ¡F    É;àÜÌ®Ò €              < b o o t s t r a p   P      u¶     t¶     P¡F    É;àÜÌ®Ò € €            < b o o t s t r a p   X      v¶     u¶      ¡F    ÐbçÜÌ®Ò                < . b o w e r . j s o n     N X      v¶     u¶     ø¡F    ÐbçÜÌ®Ò               < . b o w e r . j s o n     N X      v¶     u¶     P¢F    ÐbçÜÌ®Ò               < . b o w e r . j s o n     N X      v¶     u¶     ¨¢F    ÐbçÜÌ®Ò               < . b o w e r . j s o n     N X      v¶     u¶      £F    ÐbçÜÌ®Ò €             < . b o w e r . j s o n     N P      w¶     u¶     X£F    ÃéÜÌ®Ò                < b o w e r . j s o n P      w¶     u¶     ¨£F    ÃéÜÌ®Ò               < b o w e r . j s o n P      w¶     u¶     ø£F    ÃéÜÌ®Ò               < b o w e r . j s o n P      w¶     u¶     H¤F    ÃéÜÌ®Ò               < b o w e r . j s o n P      w¶     u¶     ˜¤F    ÃéÜÌ®Ò €             < b o w e r . j s o n X      x¶     u¶     è¤F    &$íÜÌ®Ò                < C H A N G E L O G . m d     X      x¶     u¶     @¥F    &$íÜÌ®Ò               < C H A N G E L O G . m d     X      x¶     u¶     ˜¥F    &$íÜÌ®Ò               < C H A N G E L O G . m d     X      x¶     u¶     ð¥F    CKíÜÌ®Ò               < C H A N G E L O G . m d     X      x¶     u¶     H¦F    CKíÜÌ®Ò €             < C H A N G E L O G . m d     X      y¶     u¶      ¦F    Í
+ðÜÌ®Ò                < G r u n t f i l e . j s     X      y¶     u¶     ø¦F    Í
+ðÜÌ®Ò               < G r u n t f i l e . j s     X      y¶     u¶     P§F    Õ1ðÜÌ®Ò               < G r u n t f i l e . j s     X      y¶     u¶     ¨§F    Õ1ðÜÌ®Ò               < G r u n t f i l e . j s     X      y¶     u¶      ¨F    Õ1ðÜÌ®Ò €             < G r u n t f i l e . j s     P      z¶     u¶     X¨F    ÐøðÜÌ®Ò                < L I C E N S E       P      z¶     u¶     ¨¨F    ÐøðÜÌ®Ò               < L I C E N S E       P      z¶     u¶     ø¨F    ÐøðÜÌ®Ò               < L I C E N S E       P      z¶     u¶     H©F    ÐøðÜÌ®Ò               < L I C E N S E       P      z¶     u¶     ˜©F    ÐøðÜÌ®Ò €             < L I C E N S E       P      {¶     u¶     è©F    ÐøðÜÌ®Ò                < p a c k a g e . j s P      {¶     u¶     8ªF    ÐøðÜÌ®Ò               < p a c k a g e . j s P      {¶     u¶     ˆªF    ÐøðÜÌ®Ò               < p a c k a g e . j s P      {¶     u¶     ØªF    ÐøðÜÌ®Ò               < p a c k a g e . j s P      {¶     u¶     («F    ÐøðÜÌ®Ò €             < p a c k a g e . j s X      |¶     u¶     x«F    ÐøðÜÌ®Ò                < p a c k a g e . j s o n     X      |¶     u¶     Ð«F    ÐøðÜÌ®Ò               < p a c k a g e . j s o n     X      |¶     u¶     (¬F    ÐøðÜÌ®Ò               < p a c k a g e . j s o n     X      |¶     u¶     €¬F    ÐøðÜÌ®Ò               < p a c k a g e . j s o n     X      |¶     u¶     Ø¬F    ;[óÜÌ®Ò €             < p a c k a g e . j s o n     P      }¶     u¶     0­F    ;[óÜÌ®Ò                < R E A D M E . m d   P      }¶     u¶     €­F    ;[óÜÌ®Ò               < R E A D M E . m d   P      }¶     u¶     Ð­F    ;[óÜÌ®Ò               < R E A D M E . m d   P      }¶     u¶      ®F    ;[óÜÌ®Ò               < R E A D M E . m d   P      }¶     u¶     p®F    ;[óÜÌ®Ò €             < R E A D M E . m d   H      ~¶     u¶     À®F    ¸"øÜÌ®Ò               < d i s t     H      ~¶     u¶     ¯F    ¸"øÜÌ®Ò  €            < d i s t     H      ~¶     u¶     P¯F    ¸"øÜÌ®Ò €              < d i s t     H      ~¶     u¶     ˜¯F    ¸"øÜÌ®Ò € €            < d i s t                                     H      ¶     ~¶      °F    ¸"øÜÌ®Ò               < c s s       H      ¶     ~¶     H°F    ¸"øÜÌ®Ò  €            < c s s       H      ¶     ~¶     °F    ¸"øÜÌ®Ò €              < c s s       H      ¶     ~¶     Ø°F    ¸"øÜÌ®Ò € €            < c s s       h      €¶     ¶      ±F    ¸"øÜÌ®Ò               & < b o o t s t r a p - t h e m e . c s s       h      €¶     ¶     ˆ±F    ¸"øÜÌ®Ò              & < b o o t s t r a p - t h e m e . c s s       h      €¶     ¶     ð±F    ¸"øÜÌ®Ò              & < b o o t s t r a p - t h e m e . c s s       h      €¶     ¶     X²F    ¸"øÜÌ®Ò              & < b o o t s t r a p - t h e m e . c s s       h      €¶     ¶     À²F    ¸"øÜÌ®Ò €            & < b o o t s t r a p - t h e m e . c s s       p      ¶     ¶     (³F    ¸"øÜÌ®Ò               . < b o o t s t r a p - t h e m e . c s s . m a p       p      ¶     ¶     ˜³F    ¸"øÜÌ®Ò              . < b o o t s t r a p - t h e m e . c s s . m a p       p      ¶     ¶     ´F    ¸"øÜÌ®Ò              . < b o o t s t r a p - t h e m e . c s s . m a p       p      ¶     ¶     x´F    ¸"øÜÌ®Ò              . < b o o t s t r a p - t h e m e . c s s . m a p       p      ¶     ¶     è´F    ¸"øÜÌ®Ò €            . < b o o t s t r a p - t h e m e . c s s . m a p       p      ‚¶     ¶     XµF    ®‚úÜÌ®Ò               . < b o o t s t r a p - t h e m e . m i n . c s s     Ø«p      ‚¶     ¶     ÈµF    ®‚úÜÌ®Ò              . < b o o t s t r a p - t h e m e . m i n . c s s     Ø«p      ‚¶     ¶     8¶F    ®‚úÜÌ®Ò              . < b o o t s t r a p - t h e m e . m i n . c s s     Ø«p      ‚¶     ¶     ¨¶F    ®‚úÜÌ®Ò              . < b o o t s t r a p - t h e m e . m i n . c s s     Ø«p      ‚¶     ¶     ·F    ®‚úÜÌ®Ò €            . < b o o t s t r a p - t h e m e . m i n . c s s     Ø«x      ƒ¶     ¶     ˆ·F    ®‚úÜÌ®Ò               6 < b o o t s t r a p - t h e m e . m i n . c s s . m a p     ÿÿx      ƒ¶     ¶      ¸F    ®‚úÜÌ®Ò              6 < b o o t s t r a p - t h e m e . m i n . c s s . m a p     ÿÿx      ƒ¶     ¶     x¸F    ®‚úÜÌ®Ò              6 < b o o t s t r a p - t h e m e . m i n . c s s . m a p     ÿÿx      ƒ¶     ¶     ð¸F    ®‚úÜÌ®Ò              6 < b o o t s t r a p - t h e m e . m i n . c s s . m a p     ÿÿx      ƒ¶     ¶     h¹F    ®‚úÜÌ®Ò €            6 < b o o t s t r a p - t h e m e . m i n . c s s . m a p     ÿÿX      „¶     ¶     à¹F    ˆåüÜÌ®Ò                < b o o t s t r a p . c s s   X      „¶     ¶     8ºF    ˆåüÜÌ®Ò               < b o o t s t r a p . c s s   X      „¶     ¶     ºF    ˆåüÜÌ®Ò               < b o o t s t r a p . c s s   X      „¶     ¶     èºF    ˆåüÜÌ®Ò               < b o o t s t r a p . c s s   X      „¶     ¶     @»F    ˆåüÜÌ®Ò €             < b o o t s t r a p . c s s   `      …¶     ¶     ˜»F    ˆåüÜÌ®Ò               " < b o o t s t r a p . c s s . m a p   `      …¶     ¶     ø»F    ˆåüÜÌ®Ò              " < b o o t s t r a p . c s s . m a p   `      …¶     ¶     X¼F    ˆåüÜÌ®Ò              " < b o o t s t r a p . c s s . m a p   `      …¶     ¶     ¸¼F    ÐGÿÜÌ®Ò              " < b o o t s t r a p . c s s . m a p   `      …¶     ¶     ½F    ÐGÿÜÌ®Ò €            " < b o o t s t r a p . c s s . m a p   `      †¶     ¶     x½F    ÐGÿÜÌ®Ò               " < b o o t s t r a p . m i n . c s s   `      †¶     ¶     Ø½F    ÐGÿÜÌ®Ò              " < b o o t s t r a p . m i n . c s s   `      †¶     ¶     8¾F    ÐGÿÜÌ®Ò              " < b o o t s t r a p . m i n . c s s   `      †¶     ¶     ˜¾F    ÐGÿÜÌ®Ò              " < b o o t s t r a p . m i n . c s s   `      †¶     ¶     ø¾F    i©ÝÌ®Ò €            " < b o o t s t r a p . m i n . c s s   h      ‡¶     ¶     X¿F    i©ÝÌ®Ò               * < b o o t s t r a p . m i n . c s s . m a p                                                                   h      ‡¶     ¶      ÀF    i©ÝÌ®Ò              * < b o o t s t r a p . m i n . c s s . m a p   h      ‡¶     ¶     hÀF    i©ÝÌ®Ò              * < b o o t s t r a p . m i n . c s s . m a p   h      ‡¶     ¶     ÐÀF    i©ÝÌ®Ò              * < b o o t s t r a p . m i n . c s s . m a p   h      ‡¶     ¶     8ÁF    i©ÝÌ®Ò €            * < b o o t s t r a p . m i n . c s s . m a p   H      ˆ¶     ~¶      ÁF    ÇÝÌ®Ò              
+ < f o n t s   H      ˆ¶     ~¶     èÁF    ÇÝÌ®Ò  €           
+ < f o n t s   H      ˆ¶     ~¶     0ÂF    ÇÝÌ®Ò €             
+ < f o n t s   H      ˆ¶     ~¶     xÂF    ÇÝÌ®Ò € €           
+ < f o n t s   €      ‰¶     ˆ¶     ÀÂF    nÝÌ®Ò               @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      ‰¶     ˆ¶     @ÃF    nÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      ‰¶     ˆ¶     ÀÃF    nÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      ‰¶     ˆ¶     @ÄF    nÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      ‰¶     ˆ¶     ÀÄF    nÝÌ®Ò €            @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      Š¶     ˆ¶     @ÅF    ÈÑÝÌ®Ò               @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      Š¶     ˆ¶     ÀÅF    ÈÑÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      Š¶     ˆ¶     @ÆF    ÈÑÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      Š¶     ˆ¶     ÀÆF    ÈÑÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      Š¶     ˆ¶     @ÇF    ÈÑÝÌ®Ò €            @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      ‹¶     ˆ¶     ÀÇF    ÷2ÝÌ®Ò               @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      ‹¶     ˆ¶     @ÈF    ÷2ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      ‹¶     ˆ¶     ÀÈF    ÷2ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      ‹¶     ˆ¶     @ÉF    ÷2ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      ‹¶     ˆ¶     ÀÉF    ÷2ÝÌ®Ò €            @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      Œ¶     ˆ¶     @ÊF    ÷2ÝÌ®Ò               B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      Œ¶     ˆ¶     ÀÊF    ÷2ÝÌ®Ò              B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      Œ¶     ˆ¶     @ËF    ÷2ÝÌ®Ò              B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      Œ¶     ˆ¶     ÀËF    ÷2ÝÌ®Ò              B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      Œ¶     ˆ¶     @ÌF    ÷2ÝÌ®Ò €            B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      ¶     ˆ¶     ÀÌF    #•ÝÌ®Ò               D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      ¶     ˆ¶     @ÍF    #•ÝÌ®Ò              D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      ¶     ˆ¶     ÀÍF    #•ÝÌ®Ò              D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      ¶     ˆ¶     @ÎF    #•ÝÌ®Ò              D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      ¶     ˆ¶     ÀÎF    #•ÝÌ®Ò €            D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 @      Ž¶     ~¶     @ÏF    #•ÝÌ®Ò               < j s @      Ž¶     ~¶     €ÏF    #•ÝÌ®Ò  €            < j s @      Ž¶     ~¶     ÀÏF    #•ÝÌ®Ò €              < j s @      Ž¶     ~¶      ÐF    #•ÝÌ®Ò € €            < j s X      ¶     Ž¶     @ÐF    <øÝÌ®Ò                < b o o t s t r a p . j s     X      ¶     Ž¶     ˜ÐF    <øÝÌ®Ò               < b o o t s t r a p . j s     X      ¶     Ž¶     ðÐF    <øÝÌ®Ò               < b o o t s t r a p . j s     X      ¶     Ž¶     HÑF    £ZÝÌ®Ò               < b o o t s t r a p . j s     X      ¶     Ž¶      ÑF    £ZÝÌ®Ò €             < b o o t s t r a p . j s     `      ¶     Ž¶     øÑF    ó¼ÝÌ®Ò                 < b o o t s t r a p . m i n . j s     `      ¶     Ž¶     XÒF    ó¼ÝÌ®Ò                < b o o t s t r a p . m i n . j s     `      ¶     Ž¶     ¸ÒF    ó¼ÝÌ®Ò                < b o o t s t r a p . m i n . j s     `      ¶     Ž¶     ÓF    ó¼ÝÌ®Ò                < b o o t s t r a p . m i n . j s     `      ¶     Ž¶     xÓF    ó¼ÝÌ®Ò €              < b o o t s t r a p . m i n . j s     H      ‘¶     Ž¶     ØÓF    ô€ÝÌ®Ò                < n p m . j s H      ‘¶     Ž¶      ÔF    ô€ÝÌ®Ò               < n p m . j s H      ‘¶     Ž¶     hÔF    ô€ÝÌ®Ò               < n p m . j s H      ‘¶     Ž¶     °ÔF    ô€ÝÌ®Ò               < n p m . j s H      ‘¶     Ž¶     øÔF    ô€ÝÌ®Ò €             < n p m . j s H      ’¶     u¶     @ÕF    ô€ÝÌ®Ò              
+ < f o n t s   H      ’¶     u¶     ˆÕF    ô€ÝÌ®Ò  €           
+ < f o n t s   H      ’¶     u¶     ÐÕF    ô€ÝÌ®Ò €             
+ < f o n t s   H      ’¶     u¶     ÖF    ô€ÝÌ®Ò € €           
+ < f o n t s   €      “¶     ’¶     `ÖF    äÝÌ®Ò               @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      “¶     ’¶     àÖF    äÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      “¶     ’¶     `×F    äÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      “¶     ’¶     à×F    äÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      “¶     ’¶     `ØF    äÝÌ®Ò €            @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . e o t     €      ”¶     ’¶     àØF    |¨ ÝÌ®Ò               @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      ”¶     ’¶     `ÙF    |¨ ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      ”¶     ’¶     àÙF    |¨ ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      ”¶     ’¶     `ÚF    |¨ ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      ”¶     ’¶     àÚF    |¨ ÝÌ®Ò €            @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . s v g     €      •¶     ’¶     `ÛF    |¨ ÝÌ®Ò               @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      •¶     ’¶     àÛF    |¨ ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      •¶     ’¶     `ÜF    |¨ ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      •¶     ’¶     àÜF    |¨ ÝÌ®Ò              @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      •¶     ’¶     `ÝF    |¨ ÝÌ®Ò €            @ < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . t t f     €      –¶     ’¶     àÝF    o
+#ÝÌ®Ò               B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      –¶     ’¶     `ÞF    o
+#ÝÌ®Ò              B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      –¶     ’¶     àÞF    o
+#ÝÌ®Ò              B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      –¶     ’¶     `ßF    o
+#ÝÌ®Ò              B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f                                   €      –¶     ’¶      àF    o
+#ÝÌ®Ò €            B < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f   €      —¶     ’¶     €àF    o
+#ÝÌ®Ò               D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      —¶     ’¶      áF    o
+#ÝÌ®Ò              D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      —¶     ’¶     €áF    o
+#ÝÌ®Ò              D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      —¶     ’¶      âF    o
+#ÝÌ®Ò              D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 €      —¶     ’¶     €âF    o
+#ÝÌ®Ò €            D < g l y p h i c o n s - h a l f l i n g s - r e g u l a r . w o f f 2 H      ˜¶     u¶      ãF    o
+#ÝÌ®Ò              
+ < g r u n t   H      ˜¶     u¶     HãF    o
+#ÝÌ®Ò  €           
+ < g r u n t   H      ˜¶     u¶     ãF    o
+#ÝÌ®Ò €             
+ < g r u n t   H      ˜¶     u¶     ØãF    o
+#ÝÌ®Ò € €           
+ < g r u n t   P      ™¶     ˜¶      äF    Íl%ÝÌ®Ò                < . j s h i n t r c   P      ™¶     ˜¶     päF    Íl%ÝÌ®Ò               < . j s h i n t r c   P      ™¶     ˜¶     ÀäF    Íl%ÝÌ®Ò               < . j s h i n t r c   P      ™¶     ˜¶     åF    Íl%ÝÌ®Ò               < . j s h i n t r c   P      ™¶     ˜¶     `åF    Íl%ÝÌ®Ò €             < . j s h i n t r c   p      š¶     ˜¶     °åF    Íl%ÝÌ®Ò               0 < b s - c o m m o n j s - g e n e r a t o r . j s     p      š¶     ˜¶      æF    Íl%ÝÌ®Ò              0 < b s - c o m m o n j s - g e n e r a t o r . j s     p      š¶     ˜¶     æF    Íl%ÝÌ®Ò              0 < b s - c o m m o n j s - g e n e r a t o r . j s     p      š¶     ˜¶      çF    Íl%ÝÌ®Ò              0 < b s - c o m m o n j s - g e n e r a t o r . j s     p      š¶     ˜¶     pçF    Íl%ÝÌ®Ò €            0 < b s - c o m m o n j s - g e n e r a t o r . j s     €      ›¶     ˜¶     àçF    âÏ'ÝÌ®Ò               > < b s - g l y p h i c o n s - d a t a - g e n e r a t o r . j s       €      ›¶     ˜¶     `èF    âÏ'ÝÌ®Ò              > < b s - g l y p h i c o n s - d a t a - g e n e r a t o r . j s       €      ›¶     ˜¶     àèF    âÏ'ÝÌ®Ò              > < b s - g l y p h i c o n s - d a t a - g e n e r a t o r . j s       €      ›¶     ˜¶     `éF    âÏ'ÝÌ®Ò              > < b s - g l y p h i c o n s - d a t a - g e n e r a t o r . j s       €      ›¶     ˜¶     àéF    âÏ'ÝÌ®Ò €            > < b s - g l y p h i c o n s - d a t a - g e n e r a t o r . j s       h      œ¶     ˜¶     `êF    æø.ÝÌ®Ò               ( < b s - l e s s d o c - p a r s e r . j s     h      œ¶     ˜¶     ÈêF    æø.ÝÌ®Ò              ( < b s - l e s s d o c - p a r s e r . j s     h      œ¶     ˜¶     0ëF    æø.ÝÌ®Ò              ( < b s - l e s s d o c - p a r s e r . j s     h      œ¶     ˜¶     ˜ëF    æø.ÝÌ®Ò              ( < b s - l e s s d o c - p a r s e r . j s     h      œ¶     ˜¶      ìF    æø.ÝÌ®Ò €            ( < b s - l e s s d o c - p a r s e r . j s     p      ¶     ˜¶     hìF    PY1ÝÌ®Ò               2 < b s - r a w - f i l e s - g e n e r a t o r . j s   p      ¶     ˜¶     ØìF    PY1ÝÌ®Ò              2 < b s - r a w - f i l e s - g e n e r a t o r . j s   p      ¶     ˜¶     HíF    PY1ÝÌ®Ò              2 < b s - r a w - f i l e s - g e n e r a t o r . j s   p      ¶     ˜¶     ¸íF    PY1ÝÌ®Ò              2 < b s - r a w - f i l e s - g e n e r a t o r . j s   p      ¶     ˜¶     (îF    PY1ÝÌ®Ò €            2 < b s - r a w - f i l e s - g e n e r a t o r . j s   `      ž¶     ˜¶     ˜îF    PY1ÝÌ®Ò               " < c o n f i g B r i d g e . j s o n   `      ž¶     ˜¶     øîF    PY1ÝÌ®Ò              " < c o n f i g B r i d g e . j s o n   `      ž¶     ˜¶     XïF    PY1ÝÌ®Ò              " < c o n f i g B r i d g e . j s o n                                                                           `      ž¶     ˜¶      ðF    PY1ÝÌ®Ò              " < c o n f i g B r i d g e . j s o n   `      ž¶     ˜¶     `ðF    PY1ÝÌ®Ò €            " < c o n f i g B r i d g e . j s o n   `      Ÿ¶     ˜¶     ÀðF    »»3ÝÌ®Ò               $ < s a u c e _ b r o w s e r s . y m l `      Ÿ¶     ˜¶      ñF    »»3ÝÌ®Ò              $ < s a u c e _ b r o w s e r s . y m l `      Ÿ¶     ˜¶     €ñF    »»3ÝÌ®Ò              $ < s a u c e _ b r o w s e r s . y m l `      Ÿ¶     ˜¶     àñF    »»3ÝÌ®Ò              $ < s a u c e _ b r o w s e r s . y m l `      Ÿ¶     ˜¶     @òF    »»3ÝÌ®Ò €            $ < s a u c e _ b r o w s e r s . y m l @       ¶     u¶      òF    »»3ÝÌ®Ò               < j s @       ¶     u¶     àòF    »»3ÝÌ®Ò  €            < j s @       ¶     u¶      óF    »»3ÝÌ®Ò €              < j s @       ¶     u¶     `óF    »»3ÝÌ®Ò € €            < j s P      ¡¶      ¶      óF    »»3ÝÌ®Ò                < . j s c s r c     v P      ¡¶      ¶     ðóF    »»3ÝÌ®Ò               < . j s c s r c     v P      ¡¶      ¶     @ôF    »»3ÝÌ®Ò               < . j s c s r c     v P      ¡¶      ¶     ôF    »»3ÝÌ®Ò               < . j s c s r c     v P      ¡¶      ¶     àôF    »»3ÝÌ®Ò €             < . j s c s r c     v P      ¢¶      ¶     0õF    »»3ÝÌ®Ò                < . j s h i n t r c   P      ¢¶      ¶     €õF    »»3ÝÌ®Ò               < . j s h i n t r c   P      ¢¶      ¶     ÐõF    »»3ÝÌ®Ò               < . j s h i n t r c   P      ¢¶      ¶      öF    »»3ÝÌ®Ò               < . j s h i n t r c   P      ¢¶      ¶     pöF    ]6ÝÌ®Ò €             < . j s h i n t r c   P      £¶      ¶     ÀöF    W€8ÝÌ®Ò                < a f f i x . j s     P      £¶      ¶     ÷F    W€8ÝÌ®Ò               < a f f i x . j s     P      £¶      ¶     `÷F    W€8ÝÌ®Ò               < a f f i x . j s     P      £¶      ¶     °÷F    W€8ÝÌ®Ò               < a f f i x . j s     P      £¶      ¶      øF    W€8ÝÌ®Ò €             < a f f i x . j s     P      ¤¶      ¶     PøF    v©?ÝÌ®Ò                < a l e r t . j s     P      ¤¶      ¶      øF    v©?ÝÌ®Ò               < a l e r t . j s     P      ¤¶      ¶     ðøF    v©?ÝÌ®Ò               < a l e r t . j s     P      ¤¶      ¶     @ùF    v©?ÝÌ®Ò               < a l e r t . j s     P      ¤¶      ¶     ùF    v©?ÝÌ®Ò €             < a l e r t . j s     P      ¥¶      ¶     àùF    …lDÝÌ®Ò                < b u t t o n . j s   P      ¥¶      ¶     0úF    …lDÝÌ®Ò               < b u t t o n . j s   P      ¥¶      ¶     €úF    ÓÍFÝÌ®Ò               < b u t t o n . j s   P      ¥¶      ¶     ÐúF    ÓÍFÝÌ®Ò               < b u t t o n . j s   P      ¥¶      ¶      ûF    ÓÍFÝÌ®Ò €             < b u t t o n . j s   X      ¦¶      ¶     pûF    :0IÝÌ®Ò                < c a r o u s e l . j s     f X      ¦¶      ¶     ÈûF    :0IÝÌ®Ò               < c a r o u s e l . j s     f X      ¦¶      ¶      üF    :0IÝÌ®Ò               < c a r o u s e l . j s     f X      ¦¶      ¶     xüF    :0IÝÌ®Ò               < c a r o u s e l . j s     f X      ¦¶      ¶     ÐüF    :0IÝÌ®Ò €             < c a r o u s e l . j s     f X      §¶      ¶     (ýF    E“KÝÌ®Ò                < c o l l a p s e . j s     f X      §¶      ¶     €ýF    E“KÝÌ®Ò               < c o l l a p s e . j s     f X      §¶      ¶     ØýF    E“KÝÌ®Ò               < c o l l a p s e . j s     f X      §¶      ¶     0þF    E“KÝÌ®Ò               < c o l l a p s e . j s     f X      §¶      ¶     ˆþF    E“KÝÌ®Ò €             < c o l l a p s e . j s     f X      ¨¶      ¶     àþF    °õMÝÌ®Ò                < d r o p d o w n . j s     j X      ¨¶      ¶     8ÿF    °õMÝÌ®Ò               < d r o p d o w n . j s     j X      ¨¶      ¶     ÿF    °õMÝÌ®Ò               < d r o p d o w n . j s     j                         X      ¨¶      ¶       G    °õMÝÌ®Ò               < d r o p d o w n . j s     j X      ¨¶      ¶     X G    °õMÝÌ®Ò €             < d r o p d o w n . j s     j P      ©¶      ¶     ° G    ÐWPÝÌ®Ò                < m o d a l . j s     P      ©¶      ¶      G    ÐWPÝÌ®Ò               < m o d a l . j s     P      ©¶      ¶     PG    ÐWPÝÌ®Ò               < m o d a l . j s     P      ©¶      ¶      G    ÐWPÝÌ®Ò               < m o d a l . j s     P      ©¶      ¶     ðG    ÐWPÝÌ®Ò €             < m o d a l . j s     P      ª¶      ¶     @G    ¨¹RÝÌ®Ò                < p o p o v e r . j s P      ª¶      ¶     G    ¨¹RÝÌ®Ò               < p o p o v e r . j s P      ª¶      ¶     àG    ¨¹RÝÌ®Ò               < p o p o v e r . j s P      ª¶      ¶     0G    ¨¹RÝÌ®Ò               < p o p o v e r . j s P      ª¶      ¶     €G    ¨¹RÝÌ®Ò €             < p o p o v e r . j s X      «¶      ¶     ÐG    WÝÌ®Ò                < s c r o l l s p y . j s     X      «¶      ¶     (G    WÝÌ®Ò               < s c r o l l s p y . j s     X      «¶      ¶     €G    WÝÌ®Ò               < s c r o l l s p y . j s     X      «¶      ¶     ØG    WÝÌ®Ò               < s c r o l l s p y . j s     X      «¶      ¶     0G    WÝÌ®Ò €             < s c r o l l s p y . j s     H      ¬¶      ¶     ˆG    xáYÝÌ®Ò                < t a b . j s H      ¬¶      ¶     ÐG    xáYÝÌ®Ò               < t a b . j s H      ¬¶      ¶     G    xáYÝÌ®Ò               < t a b . j s H      ¬¶      ¶     `G    xáYÝÌ®Ò               < t a b . j s H      ¬¶      ¶     ¨G    xáYÝÌ®Ò €             < t a b . j s P      ­¶      ¶     ðG    ¿C\ÝÌ®Ò                < t o o l t i p . j s P      ­¶      ¶     @G    ¿C\ÝÌ®Ò               < t o o l t i p . j s P      ­¶      ¶     G    ¿C\ÝÌ®Ò               < t o o l t i p . j s P      ­¶      ¶     àG    ¿C\ÝÌ®Ò               < t o o l t i p . j s P      ­¶      ¶     0G    ¿C\ÝÌ®Ò €             < t o o l t i p . j s X      ®¶      ¶     €G    +¦^ÝÌ®Ò                < t r a n s i t i o n . j s   X      ®¶      ¶     ØG    +¦^ÝÌ®Ò               < t r a n s i t i o n . j s   X      ®¶      ¶     0	G    +¦^ÝÌ®Ò               < t r a n s i t i o n . j s   X      ®¶      ¶     ˆ	G    +¦^ÝÌ®Ò               < t r a n s i t i o n . j s   X      ®¶      ¶     à	G    +¦^ÝÌ®Ò €             < t r a n s i t i o n . j s   H      ¯¶     u¶     8
+G    +¦^ÝÌ®Ò               < l e s s     H      ¯¶     u¶     €
+G    +¦^ÝÌ®Ò  €            < l e s s     H      ¯¶     u¶     È
+G    +¦^ÝÌ®Ò €              < l e s s     H      ¯¶     u¶     G    +¦^ÝÌ®Ò € €            < l e s s     X      °¶     ¯¶     XG    +¦^ÝÌ®Ò                < . c s s c o m b . j s o n   X      °¶     ¯¶     °G    +¦^ÝÌ®Ò               < . c s s c o m b . j s o n   X      °¶     ¯¶     G    +¦^ÝÌ®Ò               < . c s s c o m b . j s o n   X      °¶     ¯¶     `G    +¦^ÝÌ®Ò               < . c s s c o m b . j s o n   X      °¶     ¯¶     ¸G    +¦^ÝÌ®Ò €             < . c s s c o m b . j s o n   P      ±¶     ¯¶     G    +¦^ÝÌ®Ò                < . c s s l i n t r c P      ±¶     ¯¶     `G    +¦^ÝÌ®Ò               < . c s s l i n t r c P      ±¶     ¯¶     °G    +¦^ÝÌ®Ò               < . c s s l i n t r c P      ±¶     ¯¶      G    +¦^ÝÌ®Ò               < . c s s l i n t r c P      ±¶     ¯¶     PG    +¦^ÝÌ®Ò €             < . c s s l i n t r c X      ²¶     ¯¶      G    raÝÌ®Ò                < a l e r t s . l e s s     c X      ²¶     ¯¶     øG    raÝÌ®Ò               < a l e r t s . l e s s     c X      ²¶     ¯¶     PG    raÝÌ®Ò               < a l e r t s . l e s s     c X      ²¶     ¯¶     ¨G    raÝÌ®Ò               < a l e r t s . l e s s     c X      ²¶     ¯¶      G    raÝÌ®Ò €             < a l e r t s . l e s s     c X      ³¶     ¯¶     XG    raÝÌ®Ò                < b a d g e s . l e s s     e X      ³¶     ¯¶     °G    raÝÌ®Ò               < b a d g e s . l e s s     e X      ³¶     ¯¶     G    raÝÌ®Ò               < b a d g e s . l e s s     e X      ³¶     ¯¶     `G    raÝÌ®Ò               < b a d g e s . l e s s     e X      ³¶     ¯¶     ¸G    raÝÌ®Ò €             < b a d g e s . l e s s     e X      ´¶     ¯¶     G    >ÎeÝÌ®Ò                < b o o t s t r a p . l e s s X      ´¶     ¯¶     hG    >ÎeÝÌ®Ò               < b o o t s t r a p . l e s s X      ´¶     ¯¶     ÀG    >ÎeÝÌ®Ò               < b o o t s t r a p . l e s s X      ´¶     ¯¶     G    >ÎeÝÌ®Ò               < b o o t s t r a p . l e s s X      ´¶     ¯¶     pG    >ÎeÝÌ®Ò €             < b o o t s t r a p . l e s s `      µ¶     ¯¶     ÈG    >ÎeÝÌ®Ò                 < b r e a d c r u m b s . l e s s     `      µ¶     ¯¶     (G    >ÎeÝÌ®Ò                < b r e a d c r u m b s . l e s s     `      µ¶     ¯¶     ˆG    >ÎeÝÌ®Ò                < b r e a d c r u m b s . l e s s     `      µ¶     ¯¶     èG    >ÎeÝÌ®Ò                < b r e a d c r u m b s . l e s s     `      µ¶     ¯¶     HG    >ÎeÝÌ®Ò €              < b r e a d c r u m b s . l e s s     `      ¶¶     ¯¶     ¨G    Ù.hÝÌ®Ò               $ < b u t t o n - g r o u p s . l e s s `      ¶¶     ¯¶     G    Ù.hÝÌ®Ò              $ < b u t t o n - g r o u p s . l e s s `      ¶¶     ¯¶     hG    Ù.hÝÌ®Ò              $ < b u t t o n - g r o u p s . l e s s `      ¶¶     ¯¶     ÈG    Ù.hÝÌ®Ò              $ < b u t t o n - g r o u p s . l e s s `      ¶¶     ¯¶     (G    Ù.hÝÌ®Ò €            $ < b u t t o n - g r o u p s . l e s s X      ·¶     ¯¶     ˆG    Ù.hÝÌ®Ò                < b u t t o n s . l e s s     X      ·¶     ¯¶     àG    Ù.hÝÌ®Ò               < b u t t o n s . l e s s     X      ·¶     ¯¶     8G    Ù.hÝÌ®Ò               < b u t t o n s . l e s s     X      ·¶     ¯¶     G    Ù.hÝÌ®Ò               < b u t t o n s . l e s s     X      ·¶     ¯¶     èG    Ù.hÝÌ®Ò €             < b u t t o n s . l e s s     X      ¸¶     ¯¶     @G    qkÝÌ®Ò                < c a r o u s e l . l e s s   X      ¸¶     ¯¶     ˜G    qkÝÌ®Ò               < c a r o u s e l . l e s s   X      ¸¶     ¯¶     ðG    qkÝÌ®Ò               < c a r o u s e l . l e s s   X      ¸¶     ¯¶     HG    qkÝÌ®Ò               < c a r o u s e l . l e s s   X      ¸¶     ¯¶      G     =kÝÌ®Ò €             < c a r o u s e l . l e s s   P      ¹¶     ¯¶     øG    (oÝÌ®Ò                < c l o s e . l e s s P      ¹¶     ¯¶     HG    (oÝÌ®Ò               < c l o s e . l e s s P      ¹¶     ¯¶     ˜G    (oÝÌ®Ò               < c l o s e . l e s s P      ¹¶     ¯¶     èG    (oÝÌ®Ò               < c l o s e . l e s s P      ¹¶     ¯¶     8G    (oÝÌ®Ò €             < c l o s e . l e s s P      º¶     ¯¶     ˆG    OzqÝÌ®Ò                < c o d e . l e s s   P      º¶     ¯¶     ØG    OzqÝÌ®Ò               < c o d e . l e s s   P      º¶     ¯¶     (G    OzqÝÌ®Ò               < c o d e . l e s s   P      º¶     ¯¶     xG    OzqÝÌ®Ò               < c o d e . l e s s   P      º¶     ¯¶     ÈG    OzqÝÌ®Ò €             < c o d e . l e s s   p      »¶     ¯¶     G    OzqÝÌ®Ò               2 < c o m p o n e n t - a n i m a t i o n s . l e s s   p      »¶     ¯¶     ˆG    OzqÝÌ®Ò              2 < c o m p o n e n t - a n i m a t i o n s . l e s s   p      »¶     ¯¶     øG    OzqÝÌ®Ò              2 < c o m p o n e n t - a n i m a t i o n s . l e s s   p      »¶     ¯¶     hG    OzqÝÌ®Ò              2 < c o m p o n e n t - a n i m a t i o n s . l e s s                                           p      »¶     ¯¶       G    OzqÝÌ®Ò €            2 < c o m p o n e n t - a n i m a t i o n s . l e s s   X      ¼¶     ¯¶     p G    )ÝsÝÌ®Ò                < d r o p d o w n s . l e s s X      ¼¶     ¯¶     È G    )ÝsÝÌ®Ò               < d r o p d o w n s . l e s s X      ¼¶     ¯¶      !G    )ÝsÝÌ®Ò               < d r o p d o w n s . l e s s X      ¼¶     ¯¶     x!G    )ÝsÝÌ®Ò               < d r o p d o w n s . l e s s X      ¼¶     ¯¶     Ð!G    )ÝsÝÌ®Ò €             < d r o p d o w n s . l e s s P      ½¶     ¯¶     ("G    ?vÝÌ®Ò                < f o r m s . l e s s P      ½¶     ¯¶     x"G    ?vÝÌ®Ò               < f o r m s . l e s s P      ½¶     ¯¶     È"G    ?vÝÌ®Ò               < f o r m s . l e s s P      ½¶     ¯¶     #G    ?vÝÌ®Ò               < f o r m s . l e s s P      ½¶     ¯¶     h#G    ?vÝÌ®Ò €             < f o r m s . l e s s `      ¾¶     ¯¶     ¸#G    ?vÝÌ®Ò                < g l y p h i c o n s . l e s s     n `      ¾¶     ¯¶     $G    ?vÝÌ®Ò               < g l y p h i c o n s . l e s s     n `      ¾¶     ¯¶     x$G    ?vÝÌ®Ò               < g l y p h i c o n s . l e s s     n `      ¾¶     ¯¶     Ø$G    ?vÝÌ®Ò               < g l y p h i c o n s . l e s s     n `      ¾¶     ¯¶     8%G    ?vÝÌ®Ò €             < g l y p h i c o n s . l e s s     n P      ¿¶     ¯¶     ˜%G    Æ¡xÝÌ®Ò                < g r i d . l e s s   P      ¿¶     ¯¶     è%G    Æ¡xÝÌ®Ò               < g r i d . l e s s   P      ¿¶     ¯¶     8&G    Æ¡xÝÌ®Ò               < g r i d . l e s s   P      ¿¶     ¯¶     ˆ&G    Æ¡xÝÌ®Ò               < g r i d . l e s s   P      ¿¶     ¯¶     Ø&G    Æ¡xÝÌ®Ò €             < g r i d . l e s s   `      À¶     ¯¶     ('G    ²{ÝÌ®Ò               " < i n p u t - g r o u p s . l e s s   `      À¶     ¯¶     ˆ'G    ²{ÝÌ®Ò              " < i n p u t - g r o u p s . l e s s   `      À¶     ¯¶     è'G    ²{ÝÌ®Ò              " < i n p u t - g r o u p s . l e s s   `      À¶     ¯¶     H(G    ²{ÝÌ®Ò              " < i n p u t - g r o u p s . l e s s   `      À¶     ¯¶     ¨(G    ²{ÝÌ®Ò €            " < i n p u t - g r o u p s . l e s s   X      Á¶     ¯¶     )G    :f}ÝÌ®Ò                < j u m b o t r o n . l e s s X      Á¶     ¯¶     `)G    :f}ÝÌ®Ò               < j u m b o t r o n . l e s s X      Á¶     ¯¶     ¸)G    :f}ÝÌ®Ò               < j u m b o t r o n . l e s s X      Á¶     ¯¶     *G    :f}ÝÌ®Ò               < j u m b o t r o n . l e s s X      Á¶     ¯¶     h*G    :f}ÝÌ®Ò €             < j u m b o t r o n . l e s s X      Â¶     ¯¶     À*G    :f}ÝÌ®Ò                < l a b e l s . l e s s       X      Â¶     ¯¶     +G    :f}ÝÌ®Ò               < l a b e l s . l e s s       X      Â¶     ¯¶     p+G    :f}ÝÌ®Ò               < l a b e l s . l e s s       X      Â¶     ¯¶     È+G    :f}ÝÌ®Ò               < l a b e l s . l e s s       X      Â¶     ¯¶      ,G    :f}ÝÌ®Ò €             < l a b e l s . l e s s       `      Ã¶     ¯¶     x,G    xÈÝÌ®Ò                < l i s t - g r o u p . l e s s     Ø«`      Ã¶     ¯¶     Ø,G    xÈÝÌ®Ò               < l i s t - g r o u p . l e s s     Ø«`      Ã¶     ¯¶     8-G    xÈÝÌ®Ò               < l i s t - g r o u p . l e s s     Ø«`      Ã¶     ¯¶     ˜-G    xÈÝÌ®Ò               < l i s t - g r o u p . l e s s     Ø«`      Ã¶     ¯¶     ø-G    xÈÝÌ®Ò €             < l i s t - g r o u p . l e s s     Ø«P      Ä¶     ¯¶     X.G    œ*‚ÝÌ®Ò                < m e d i a . l e s s P      Ä¶     ¯¶     ¨.G    œ*‚ÝÌ®Ò               < m e d i a . l e s s P      Ä¶     ¯¶     ø.G    œ*‚ÝÌ®Ò               < m e d i a . l e s s P      Ä¶     ¯¶     H/G    œ*‚ÝÌ®Ò               < m e d i a . l e s s P      Ä¶     ¯¶     ˜/G    œ*‚ÝÌ®Ò €             < m e d i a . l e s s                         X      Å¶     ¯¶      0G    œ*‚ÝÌ®Ò                < m i x i n s . l e s s       X      Å¶     ¯¶     X0G    œ*‚ÝÌ®Ò               < m i x i n s . l e s s       X      Å¶     ¯¶     °0G    œ*‚ÝÌ®Ò               < m i x i n s . l e s s       X      Å¶     ¯¶     1G    œ*‚ÝÌ®Ò               < m i x i n s . l e s s       X      Å¶     ¯¶     `1G    œ*‚ÝÌ®Ò €             < m i x i n s . l e s s       X      Æ¶     ¯¶     ¸1G    „ÝÌ®Ò                < m o d a l s . l e s s     ÿÿX      Æ¶     ¯¶     2G    „ÝÌ®Ò               < m o d a l s . l e s s     ÿÿX      Æ¶     ¯¶     h2G    „ÝÌ®Ò               < m o d a l s . l e s s     ÿÿX      Æ¶     ¯¶     À2G    „ÝÌ®Ò               < m o d a l s . l e s s     ÿÿX      Æ¶     ¯¶     3G    „ÝÌ®Ò €             < m o d a l s . l e s s     ÿÿX      Ç¶     ¯¶     p3G    Xï†ÝÌ®Ò                < n a v b a r . l e s s     . X      Ç¶     ¯¶     È3G    Xï†ÝÌ®Ò               < n a v b a r . l e s s     . X      Ç¶     ¯¶      4G    Xï†ÝÌ®Ò               < n a v b a r . l e s s     . X      Ç¶     ¯¶     x4G    Xï†ÝÌ®Ò               < n a v b a r . l e s s     . X      Ç¶     ¯¶     Ð4G    Xï†ÝÌ®Ò €             < n a v b a r . l e s s     . P      È¶     ¯¶     (5G    çQ‰ÝÌ®Ò                < n a v s . l e s s   P      È¶     ¯¶     x5G    çQ‰ÝÌ®Ò               < n a v s . l e s s   P      È¶     ¯¶     È5G    çQ‰ÝÌ®Ò               < n a v s . l e s s   P      È¶     ¯¶     6G    çQ‰ÝÌ®Ò               < n a v s . l e s s   P      È¶     ¯¶     h6G    çQ‰ÝÌ®Ò €             < n a v s . l e s s   X      É¶     ¯¶     ¸6G    çQ‰ÝÌ®Ò                < n o r m a l i z e . l e s s X      É¶     ¯¶     7G    çQ‰ÝÌ®Ò               < n o r m a l i z e . l e s s X      É¶     ¯¶     h7G    çQ‰ÝÌ®Ò               < n o r m a l i z e . l e s s X      É¶     ¯¶     À7G    çQ‰ÝÌ®Ò               < n o r m a l i z e . l e s s X      É¶     ¯¶     8G    çQ‰ÝÌ®Ò €             < n o r m a l i z e . l e s s P      Ê¶     ¯¶     p8G    ÷´‹ÝÌ®Ò                < p a g e r . l e s s P      Ê¶     ¯¶     À8G    ÷´‹ÝÌ®Ò               < p a g e r . l e s s P      Ê¶     ¯¶     9G    ÷´‹ÝÌ®Ò               < p a g e r . l e s s P      Ê¶     ¯¶     `9G    ÷´‹ÝÌ®Ò               < p a g e r . l e s s P      Ê¶     ¯¶     °9G    ÷´‹ÝÌ®Ò €             < p a g e r . l e s s `      Ë¶     ¯¶      :G    §ŽÝÌ®Ò                < p a g i n a t i o n . l e s s     u `      Ë¶     ¯¶     `:G    §ŽÝÌ®Ò               < p a g i n a t i o n . l e s s     u `      Ë¶     ¯¶     À:G    §ŽÝÌ®Ò               < p a g i n a t i o n . l e s s     u `      Ë¶     ¯¶      ;G    §ŽÝÌ®Ò               < p a g i n a t i o n . l e s s     u `      Ë¶     ¯¶     €;G    §ŽÝÌ®Ò €             < p a g i n a t i o n . l e s s     u X      Ì¶     ¯¶     à;G    §ŽÝÌ®Ò                < p a n e l s . l e s s     ÿÿX      Ì¶     ¯¶     8<G    §ŽÝÌ®Ò               < p a n e l s . l e s s     ÿÿX      Ì¶     ¯¶     <G    §ŽÝÌ®Ò               < p a n e l s . l e s s     ÿÿX      Ì¶     ¯¶     è<G    §ŽÝÌ®Ò               < p a n e l s . l e s s     ÿÿX      Ì¶     ¯¶     @=G    §ŽÝÌ®Ò €             < p a n e l s . l e s s     ÿÿX      Í¶     ¯¶     ˜=G    <xÝÌ®Ò                < p o p o v e r s . l e s s   X      Í¶     ¯¶     ð=G    <xÝÌ®Ò               < p o p o v e r s . l e s s   X      Í¶     ¯¶     H>G    <xÝÌ®Ò               < p o p o v e r s . l e s s   X      Í¶     ¯¶      >G    <xÝÌ®Ò               < p o p o v e r s . l e s s   X      Í¶     ¯¶     ø>G    <xÝÌ®Ò €             < p o p o v e r s . l e s s   P      Î¶     ¯¶     P?G    ÖÛ’ÝÌ®Ò                < p r i n t . l e s s P      Î¶     ¯¶      ?G    ÖÛ’ÝÌ®Ò               < p r i n t . l e s s                 P      Î¶     ¯¶      @G    ÖÛ’ÝÌ®Ò               < p r i n t . l e s s P      Î¶     ¯¶     P@G    ÖÛ’ÝÌ®Ò               < p r i n t . l e s s P      Î¶     ¯¶      @G    ÖÛ’ÝÌ®Ò €             < p r i n t . l e s s `      Ï¶     ¯¶     ð@G    ²=•ÝÌ®Ò               $ < p r o g r e s s - b a r s . l e s s `      Ï¶     ¯¶     PAG    ²=•ÝÌ®Ò              $ < p r o g r e s s - b a r s . l e s s `      Ï¶     ¯¶     °AG    ²=•ÝÌ®Ò              $ < p r o g r e s s - b a r s . l e s s `      Ï¶     ¯¶     BG    ²=•ÝÌ®Ò              $ < p r o g r e s s - b a r s . l e s s `      Ï¶     ¯¶     pBG    ²=•ÝÌ®Ò €            $ < p r o g r e s s - b a r s . l e s s h      Ð¶     ¯¶     ÐBG    ²=•ÝÌ®Ò               * < r e s p o n s i v e - e m b e d . l e s s   h      Ð¶     ¯¶     8CG    ²=•ÝÌ®Ò              * < r e s p o n s i v e - e m b e d . l e s s   h      Ð¶     ¯¶      CG    ²=•ÝÌ®Ò              * < r e s p o n s i v e - e m b e d . l e s s   h      Ð¶     ¯¶     DG    ²=•ÝÌ®Ò              * < r e s p o n s i v e - e m b e d . l e s s   h      Ð¶     ¯¶     pDG    ²=•ÝÌ®Ò €            * < r e s p o n s i v e - e m b e d . l e s s   p      Ñ¶     ¯¶     ØDG    r —ÝÌ®Ò               2 < r e s p o n s i v e - u t i l i t i e s . l e s s   p      Ñ¶     ¯¶     HEG    r —ÝÌ®Ò              2 < r e s p o n s i v e - u t i l i t i e s . l e s s   p      Ñ¶     ¯¶     ¸EG    r —ÝÌ®Ò              2 < r e s p o n s i v e - u t i l i t i e s . l e s s   p      Ñ¶     ¯¶     (FG    r —ÝÌ®Ò              2 < r e s p o n s i v e - u t i l i t i e s . l e s s   p      Ñ¶     ¯¶     ˜FG    r —ÝÌ®Ò €            2 < r e s p o n s i v e - u t i l i t i e s . l e s s   `      Ò¶     ¯¶     GG    0šÝÌ®Ò                 < s c a f f o l d i n g . l e s s     `      Ò¶     ¯¶     hGG    0šÝÌ®Ò                < s c a f f o l d i n g . l e s s     `      Ò¶     ¯¶     ÈGG    0šÝÌ®Ò                < s c a f f o l d i n g . l e s s     `      Ò¶     ¯¶     (HG    0šÝÌ®Ò                < s c a f f o l d i n g . l e s s     `      Ò¶     ¯¶     ˆHG    0šÝÌ®Ò €              < s c a f f o l d i n g . l e s s     X      Ó¶     ¯¶     èHG    0šÝÌ®Ò                < t a b l e s . l e s s     s X      Ó¶     ¯¶     @IG    0šÝÌ®Ò               < t a b l e s . l e s s     s X      Ó¶     ¯¶     ˜IG    0šÝÌ®Ò               < t a b l e s . l e s s     s X      Ó¶     ¯¶     ðIG    0šÝÌ®Ò               < t a b l e s . l e s s     s X      Ó¶     ¯¶     HJG    0šÝÌ®Ò €             < t a b l e s . l e s s     s P      Ô¶     ¯¶      JG    ›dœÝÌ®Ò                < t h e m e . l e s s P      Ô¶     ¯¶     ðJG    ›dœÝÌ®Ò               < t h e m e . l e s s P      Ô¶     ¯¶     @KG    ›dœÝÌ®Ò               < t h e m e . l e s s P      Ô¶     ¯¶     KG    ›dœÝÌ®Ò               < t h e m e . l e s s P      Ô¶     ¯¶     àKG    ›dœÝÌ®Ò €             < t h e m e . l e s s `      Õ¶     ¯¶     0LG    ›dœÝÌ®Ò                < t h u m b n a i l s . l e s s       `      Õ¶     ¯¶     LG    ›dœÝÌ®Ò               < t h u m b n a i l s . l e s s       `      Õ¶     ¯¶     ðLG    ›dœÝÌ®Ò               < t h u m b n a i l s . l e s s       `      Õ¶     ¯¶     PMG    ›dœÝÌ®Ò               < t h u m b n a i l s . l e s s       `      Õ¶     ¯¶     °MG    ›dœÝÌ®Ò €             < t h u m b n a i l s . l e s s       X      Ö¶     ¯¶     NG    €ÆžÝÌ®Ò                < t o o l t i p . l e s s     X      Ö¶     ¯¶     hNG    €ÆžÝÌ®Ò               < t o o l t i p . l e s s     X      Ö¶     ¯¶     ÀNG    €ÆžÝÌ®Ò               < t o o l t i p . l e s s     X      Ö¶     ¯¶     OG    €ÆžÝÌ®Ò               < t o o l t i p . l e s s     X      Ö¶     ¯¶     pOG    €ÆžÝÌ®Ò €             < t o o l t i p . l e s s                                                             P      ×¶     ¯¶      PG    €ÆžÝÌ®Ò                < t y p e . l e s s   P      ×¶     ¯¶     PPG    €ÆžÝÌ®Ò               < t y p e . l e s s   P      ×¶     ¯¶      PG    €ÆžÝÌ®Ò               < t y p e . l e s s   P      ×¶     ¯¶     ðPG    Ì(¡ÝÌ®Ò               < t y p e . l e s s   P      ×¶     ¯¶     @QG    Ì(¡ÝÌ®Ò €             < t y p e . l e s s   X      Ø¶     ¯¶     QG    Œ£ÝÌ®Ò                < u t i l i t i e s . l e s s X      Ø¶     ¯¶     èQG    Œ£ÝÌ®Ò               < u t i l i t i e s . l e s s X      Ø¶     ¯¶     @RG    Œ£ÝÌ®Ò               < u t i l i t i e s . l e s s X      Ø¶     ¯¶     ˜RG    Œ£ÝÌ®Ò               < u t i l i t i e s . l e s s X      Ø¶     ¯¶     ðRG    Œ£ÝÌ®Ò €             < u t i l i t i e s . l e s s X      Ù¶     ¯¶     HSG    5î¥ÝÌ®Ò                < v a r i a b l e s . l e s s X      Ù¶     ¯¶      SG    5î¥ÝÌ®Ò               < v a r i a b l e s . l e s s X      Ù¶     ¯¶     øSG    5î¥ÝÌ®Ò               < v a r i a b l e s . l e s s X      Ù¶     ¯¶     PTG    5î¥ÝÌ®Ò               < v a r i a b l e s . l e s s X      Ù¶     ¯¶     ¨TG    5î¥ÝÌ®Ò €             < v a r i a b l e s . l e s s P      Ú¶     ¯¶      UG    5î¥ÝÌ®Ò                < w e l l s . l e s s P      Ú¶     ¯¶     PUG    5î¥ÝÌ®Ò               < w e l l s . l e s s P      Ú¶     ¯¶      UG    5î¥ÝÌ®Ò               < w e l l s . l e s s P      Ú¶     ¯¶     ðUG    5î¥ÝÌ®Ò               < w e l l s . l e s s P      Ú¶     ¯¶     @VG    5î¥ÝÌ®Ò €             < w e l l s . l e s s H      Û¶     ¯¶     VG    5î¥ÝÌ®Ò               < m i x i n s H      Û¶     ¯¶     ØVG    5î¥ÝÌ®Ò  €            < m i x i n s H      Û¶     ¯¶      WG    4Q¨ÝÌ®Ò €              < m i x i n s H      Û¶     ¯¶     hWG    4Q¨ÝÌ®Ò € €            < m i x i n s X      Ü¶     Û¶     °WG    4Q¨ÝÌ®Ò                < a l e r t s . l e s s       X      Ü¶     Û¶     XG    4Q¨ÝÌ®Ò               < a l e r t s . l e s s       X      Ü¶     Û¶     `XG    4Q¨ÝÌ®Ò               < a l e r t s . l e s s       X      Ü¶     Û¶     ¸XG    4Q¨ÝÌ®Ò               < a l e r t s . l e s s       X      Ü¶     Û¶     YG    4Q¨ÝÌ®Ò €             < a l e r t s . l e s s       p      Ý¶     Û¶     hYG    1²ªÝÌ®Ò               . < b a c k g r o u n d - v a r i a n t . l e s s       p      Ý¶     Û¶     ØYG    1²ªÝÌ®Ò              . < b a c k g r o u n d - v a r i a n t . l e s s       p      Ý¶     Û¶     HZG    1²ªÝÌ®Ò              . < b a c k g r o u n d - v a r i a n t . l e s s       p      Ý¶     Û¶     ¸ZG    1²ªÝÌ®Ò              . < b a c k g r o u n d - v a r i a n t . l e s s       p      Ý¶     Û¶     ([G    1²ªÝÌ®Ò €            . < b a c k g r o u n d - v a r i a n t . l e s s       `      Þ¶     Û¶     ˜[G    1²ªÝÌ®Ò               $ < b o r d e r - r a d i u s . l e s s `      Þ¶     Û¶     ø[G    1²ªÝÌ®Ò              $ < b o r d e r - r a d i u s . l e s s `      Þ¶     Û¶     X\G    1²ªÝÌ®Ò              $ < b o r d e r - r a d i u s . l e s s `      Þ¶     Û¶     ¸\G    1²ªÝÌ®Ò              $ < b o r d e r - r a d i u s . l e s s `      Þ¶     Û¶     ]G    1²ªÝÌ®Ò €            $ < b o r d e r - r a d i u s . l e s s X      ß¶     Û¶     x]G    O­ÝÌ®Ò                < b u t t o n s . l e s s     X      ß¶     Û¶     Ð]G    O­ÝÌ®Ò               < b u t t o n s . l e s s     X      ß¶     Û¶     (^G    O­ÝÌ®Ò               < b u t t o n s . l e s s     X      ß¶     Û¶     €^G    O­ÝÌ®Ò               < b u t t o n s . l e s s     X      ß¶     Û¶     Ø^G    O­ÝÌ®Ò €             < b u t t o n s . l e s s     `      à¶     Û¶     0_G    O­ÝÌ®Ò               " < c e n t e r - b l o c k . l e s s   `      à¶     Û¶     _G    O­ÝÌ®Ò              " < c e n t e r - b l o c k . l e s s                   `      à¶     Û¶      `G    O­ÝÌ®Ò              " < c e n t e r - b l o c k . l e s s   `      à¶     Û¶     ``G    O­ÝÌ®Ò              " < c e n t e r - b l o c k . l e s s   `      à¶     Û¶     À`G    O­ÝÌ®Ò €            " < c e n t e r - b l o c k . l e s s   X      á¶     Û¶      aG    µw¯ÝÌ®Ò                < c l e a r f i x . l e s s   X      á¶     Û¶     xaG    µw¯ÝÌ®Ò               < c l e a r f i x . l e s s   X      á¶     Û¶     ÐaG    µw¯ÝÌ®Ò               < c l e a r f i x . l e s s   X      á¶     Û¶     (bG    µw¯ÝÌ®Ò               < c l e a r f i x . l e s s   X      á¶     Û¶     €bG    µw¯ÝÌ®Ò €             < c l e a r f i x . l e s s   P      â¶     Û¶     ØbG    µw¯ÝÌ®Ò                < f o r m s . l e s s P      â¶     Û¶     (cG    µw¯ÝÌ®Ò               < f o r m s . l e s s P      â¶     Û¶     xcG    µw¯ÝÌ®Ò               < f o r m s . l e s s P      â¶     Û¶     ÈcG    µw¯ÝÌ®Ò               < f o r m s . l e s s P      â¶     Û¶     dG    µw¯ÝÌ®Ò €             < f o r m s . l e s s X      ã¶     Û¶     hdG    øÙ±ÝÌ®Ò                < g r a d i e n t s . l e s s X      ã¶     Û¶     ÀdG    øÙ±ÝÌ®Ò               < g r a d i e n t s . l e s s X      ã¶     Û¶     eG    øÙ±ÝÌ®Ò               < g r a d i e n t s . l e s s X      ã¶     Û¶     peG    øÙ±ÝÌ®Ò               < g r a d i e n t s . l e s s X      ã¶     Û¶     ÈeG    øÙ±ÝÌ®Ò €             < g r a d i e n t s . l e s s h      ä¶     Û¶      fG    øÙ±ÝÌ®Ò               & < g r i d - f r a m e w o r k . l e s s       h      ä¶     Û¶     ˆfG    øÙ±ÝÌ®Ò              & < g r i d - f r a m e w o r k . l e s s       h      ä¶     Û¶     ðfG    øÙ±ÝÌ®Ò              & < g r i d - f r a m e w o r k . l e s s       h      ä¶     Û¶     XgG    øÙ±ÝÌ®Ò              & < g r i d - f r a m e w o r k . l e s s       h      ä¶     Û¶     ÀgG    øÙ±ÝÌ®Ò €            & < g r i d - f r a m e w o r k . l e s s       P      å¶     Û¶     (hG    V<´ÝÌ®Ò                < g r i d . l e s s   P      å¶     Û¶     xhG    V<´ÝÌ®Ò               < g r i d . l e s s   P      å¶     Û¶     ÈhG    V<´ÝÌ®Ò               < g r i d . l e s s   P      å¶     Û¶     iG    V<´ÝÌ®Ò               < g r i d . l e s s   P      å¶     Û¶     hiG    V<´ÝÌ®Ò €             < g r i d . l e s s   X      æ¶     Û¶     ¸iG    V<´ÝÌ®Ò                < h i d e - t e x t . l e s s X      æ¶     Û¶     jG    V<´ÝÌ®Ò               < h i d e - t e x t . l e s s X      æ¶     Û¶     hjG    V<´ÝÌ®Ò               < h i d e - t e x t . l e s s X      æ¶     Û¶     ÀjG    V<´ÝÌ®Ò               < h i d e - t e x t . l e s s X      æ¶     Û¶     kG    V<´ÝÌ®Ò €             < h i d e - t e x t . l e s s P      ç¶     Û¶     pkG    ‡ž¶ÝÌ®Ò                < i m a g e . l e s s P      ç¶     Û¶     ÀkG    ‡ž¶ÝÌ®Ò               < i m a g e . l e s s P      ç¶     Û¶     lG    ‡ž¶ÝÌ®Ò               < i m a g e . l e s s P      ç¶     Û¶     `lG    ‡ž¶ÝÌ®Ò               < i m a g e . l e s s P      ç¶     Û¶     °lG    ‡ž¶ÝÌ®Ò €             < i m a g e . l e s s X      è¶     Û¶      mG    ‡ž¶ÝÌ®Ò                < l a b e l s . l e s s     t X      è¶     Û¶     XmG    ‡ž¶ÝÌ®Ò               < l a b e l s . l e s s     t X      è¶     Û¶     °mG    ‡ž¶ÝÌ®Ò               < l a b e l s . l e s s     t X      è¶     Û¶     nG    ‡ž¶ÝÌ®Ò               < l a b e l s . l e s s     t X      è¶     Û¶     `nG    ‡ž¶ÝÌ®Ò €             < l a b e l s . l e s s     t `      é¶     Û¶     ¸nG    Ð¹ÝÌ®Ò                < l i s t - g r o u p . l e s s     ÿÿ`      é¶     Û¶     oG    Ð¹ÝÌ®Ò               < l i s t - g r o u p . l e s s     ÿÿ`      é¶     Û¶     xoG    Ð¹ÝÌ®Ò               < l i s t - g r o u p . l e s s     ÿÿ                                        `      é¶     Û¶      pG    Ð¹ÝÌ®Ò               < l i s t - g r o u p . l e s s     ÿÿ`      é¶     Û¶     `pG    Ð¹ÝÌ®Ò €             < l i s t - g r o u p . l e s s     ÿÿ`      ê¶     Û¶     ÀpG    Z‘ºÝÌ®Ò                 < n a v - d i v i d e r . l e s s     `      ê¶     Û¶      qG    Z‘ºÝÌ®Ò                < n a v - d i v i d e r . l e s s     `      ê¶     Û¶     €qG    Z‘ºÝÌ®Ò                < n a v - d i v i d e r . l e s s     `      ê¶     Û¶     àqG    Z‘ºÝÌ®Ò                < n a v - d i v i d e r . l e s s     `      ê¶     Û¶     @rG    Z‘ºÝÌ®Ò €              < n a v - d i v i d e r . l e s s     p      ë¶     Û¶      rG    ä{»ÝÌ®Ò               . < n a v - v e r t i c a l - a l i g n . l e s s       p      ë¶     Û¶     sG    £»ÝÌ®Ò              . < n a v - v e r t i c a l - a l i g n . l e s s       p      ë¶     Û¶     €sG    £»ÝÌ®Ò              . < n a v - v e r t i c a l - a l i g n . l e s s       p      ë¶     Û¶     ðsG    £»ÝÌ®Ò              . < n a v - v e r t i c a l - a l i g n . l e s s       p      ë¶     Û¶     `tG    £»ÝÌ®Ò €            . < n a v - v e r t i c a l - a l i g n . l e s s       X      ì¶     Û¶     ÐtG    ë½ÝÌ®Ò                < o p a c i t y . l e s s     X      ì¶     Û¶     (uG    ë½ÝÌ®Ò               < o p a c i t y . l e s s     X      ì¶     Û¶     €uG    ë½ÝÌ®Ò               < o p a c i t y . l e s s     X      ì¶     Û¶     ØuG    *½ÝÌ®Ò               < o p a c i t y . l e s s     X      ì¶     Û¶     0vG    *½ÝÌ®Ò €             < o p a c i t y . l e s s     `      í¶     Û¶     ˆvG    ­|½ÝÌ®Ò                < p a g i n a t i o n . l e s s     \ `      í¶     Û¶     èvG    ­|½ÝÌ®Ò               < p a g i n a t i o n . l e s s     \ `      í¶     Û¶     HwG    ­|½ÝÌ®Ò               < p a g i n a t i o n . l e s s     \ `      í¶     Û¶     ¨wG    ­|½ÝÌ®Ò               < p a g i n a t i o n . l e s s     \ `      í¶     Û¶     xG    ­|½ÝÌ®Ò €             < p a g i n a t i o n . l e s s     \ X      î¶     Û¶     hxG    yà¿ÝÌ®Ò                < p a n e l s . l e s s     ÿÿX      î¶     Û¶     ÀxG    yà¿ÝÌ®Ò               < p a n e l s . l e s s     ÿÿX      î¶     Û¶     yG    yà¿ÝÌ®Ò               < p a n e l s . l e s s     ÿÿX      î¶     Û¶     pyG    yà¿ÝÌ®Ò               < p a n e l s . l e s s     ÿÿX      î¶     Û¶     ÈyG    yà¿ÝÌ®Ò €             < p a n e l s . l e s s     ÿÿ`      ï¶     Û¶      zG    yà¿ÝÌ®Ò               " < p r o g r e s s - b a r . l e s s   `      ï¶     Û¶     €zG    ŒAÂÝÌ®Ò              " < p r o g r e s s - b a r . l e s s   `      ï¶     Û¶     àzG    ŒAÂÝÌ®Ò              " < p r o g r e s s - b a r . l e s s   `      ï¶     Û¶     @{G    ŒAÂÝÌ®Ò              " < p r o g r e s s - b a r . l e s s   `      ï¶     Û¶      {G    ŒAÂÝÌ®Ò €            " < p r o g r e s s - b a r . l e s s   `      ð¶     Û¶      |G    ŒAÂÝÌ®Ò               " < r e s e t - f i l t e r . l e s s   `      ð¶     Û¶     `|G    ŒAÂÝÌ®Ò              " < r e s e t - f i l t e r . l e s s   `      ð¶     Û¶     À|G    ŒAÂÝÌ®Ò              " < r e s e t - f i l t e r . l e s s   `      ð¶     Û¶      }G    ŒAÂÝÌ®Ò              " < r e s e t - f i l t e r . l e s s   `      ð¶     Û¶     €}G    ŒAÂÝÌ®Ò €            " < r e s e t - f i l t e r . l e s s   `      ñ¶     Û¶     à}G    Ï£ÄÝÌ®Ò                < r e s e t - t e x t . l e s s     s `      ñ¶     Û¶     @~G    Ï£ÄÝÌ®Ò               < r e s e t - t e x t . l e s s     s `      ñ¶     Û¶      ~G    Ï£ÄÝÌ®Ò               < r e s e t - t e x t . l e s s     s `      ñ¶     Û¶      G    Ï£ÄÝÌ®Ò               < r e s e t - t e x t . l e s s     s `      ñ¶     Û¶     `G    Ï£ÄÝÌ®Ò €             < r e s e t - t e x t . l e s s     s                                                                 X      ò¶     Û¶      €G    Ï£ÄÝÌ®Ò                < r e s i z e . l e s s     . X      ò¶     Û¶     X€G    Ï£ÄÝÌ®Ò               < r e s i z e . l e s s     . X      ò¶     Û¶     °€G    Ï£ÄÝÌ®Ò               < r e s i z e . l e s s     . X      ò¶     Û¶     G    Ï£ÄÝÌ®Ò               < r e s i z e . l e s s     . X      ò¶     Û¶     `G    Ï£ÄÝÌ®Ò €             < r e s i z e . l e s s     . p      ó¶     Û¶     ¸G    )ÇÝÌ®Ò               4 < r e s p o n s i v e - v i s i b i l i t y . l e s s p      ó¶     Û¶     (‚G    )ÇÝÌ®Ò              4 < r e s p o n s i v e - v i s i b i l i t y . l e s s p      ó¶     Û¶     ˜‚G    )ÇÝÌ®Ò              4 < r e s p o n s i v e - v i s i b i l i t y . l e s s p      ó¶     Û¶     ƒG    )ÇÝÌ®Ò              4 < r e s p o n s i v e - v i s i b i l i t y . l e s s p      ó¶     Û¶     xƒG    )ÇÝÌ®Ò €            4 < r e s p o n s i v e - v i s i b i l i t y . l e s s P      ô¶     Û¶     èƒG    ‹hÉÝÌ®Ò                < s i z e . l e s s   P      ô¶     Û¶     8„G    ‹hÉÝÌ®Ò               < s i z e . l e s s   P      ô¶     Û¶     ˆ„G    ‹hÉÝÌ®Ò               < s i z e . l e s s   P      ô¶     Û¶     Ø„G    ‹hÉÝÌ®Ò               < s i z e . l e s s   P      ô¶     Û¶     (…G    ‹hÉÝÌ®Ò €             < s i z e . l e s s   X      õ¶     Û¶     x…G    ‹hÉÝÌ®Ò                < t a b - f o c u s . l e s s X      õ¶     Û¶     Ð…G    ‹hÉÝÌ®Ò               < t a b - f o c u s . l e s s X      õ¶     Û¶     (†G    ‹hÉÝÌ®Ò               < t a b - f o c u s . l e s s X      õ¶     Û¶     €†G    ‹hÉÝÌ®Ò               < t a b - f o c u s . l e s s X      õ¶     Û¶     Ø†G    ‹hÉÝÌ®Ò €             < t a b - f o c u s . l e s s X      ö¶     Û¶     0‡G    wËËÝÌ®Ò                < t a b l e - r o w . l e s s X      ö¶     Û¶     ˆ‡G    wËËÝÌ®Ò               < t a b l e - r o w . l e s s X      ö¶     Û¶     à‡G    wËËÝÌ®Ò               < t a b l e - r o w . l e s s X      ö¶     Û¶     8ˆG    wËËÝÌ®Ò               < t a b l e - r o w . l e s s X      ö¶     Û¶     ˆG    wËËÝÌ®Ò €             < t a b l e - r o w . l e s s `      ÷¶     Û¶     èˆG    wËËÝÌ®Ò               $ < t e x t - e m p h a s i s . l e s s `      ÷¶     Û¶     H‰G    wËËÝÌ®Ò              $ < t e x t - e m p h a s i s . l e s s `      ÷¶     Û¶     ¨‰G    wËËÝÌ®Ò              $ < t e x t - e m p h a s i s . l e s s `      ÷¶     Û¶     ŠG    wËËÝÌ®Ò              $ < t e x t - e m p h a s i s . l e s s `      ÷¶     Û¶     hŠG    wËËÝÌ®Ò €            $ < t e x t - e m p h a s i s . l e s s `      ø¶     Û¶     ÈŠG    S’ÐÝÌ®Ò               $ < t e x t - o v e r f l o w . l e s s `      ø¶     Û¶     (‹G    S’ÐÝÌ®Ò              $ < t e x t - o v e r f l o w . l e s s `      ø¶     Û¶     ˆ‹G    S’ÐÝÌ®Ò              $ < t e x t - o v e r f l o w . l e s s `      ø¶     Û¶     è‹G    S’ÐÝÌ®Ò              $ < t e x t - o v e r f l o w . l e s s `      ø¶     Û¶     HŒG    S’ÐÝÌ®Ò €            $ < t e x t - o v e r f l o w . l e s s h      ù¶     Û¶     ¨ŒG    ½òÒÝÌ®Ò               ( < v e n d o r - p r e f i x e s . l e s s     h      ù¶     Û¶     G    ½òÒÝÌ®Ò              ( < v e n d o r - p r e f i x e s . l e s s     h      ù¶     Û¶     xG    ½òÒÝÌ®Ò              ( < v e n d o r - p r e f i x e s . l e s s     h      ù¶     Û¶     àG    ½òÒÝÌ®Ò              ( < v e n d o r - p r e f i x e s . l e s s     h      ù¶     Û¶     HŽG    ½òÒÝÌ®Ò €            ( < v e n d o r - p r e f i x e s . l e s s     H      ú¶     u¶     °ŽG    ½òÒÝÌ®Ò              
+ < n u g e t   H      ú¶     u¶     øŽG    ½òÒÝÌ®Ò  €           
+ < n u g e t   H      ú¶     u¶     @G    ½òÒÝÌ®Ò €             
+ < n u g e t   H      ú¶     u¶     ˆG    ½òÒÝÌ®Ò € €           
+ < n u g e t                                                   h      û¶     ú¶      G    ½òÒÝÌ®Ò               * < b o o t s t r a p . l e s s . n u s p e c   h      û¶     ú¶     hG    ½òÒÝÌ®Ò              * < b o o t s t r a p . l e s s . n u s p e c   h      û¶     ú¶     ÐG    ½òÒÝÌ®Ò              * < b o o t s t r a p . l e s s . n u s p e c   h      û¶     ú¶     8‘G    ½òÒÝÌ®Ò              * < b o o t s t r a p . l e s s . n u s p e c   h      û¶     ú¶      ‘G    ½òÒÝÌ®Ò €            * < b o o t s t r a p . l e s s . n u s p e c   `      ü¶     ú¶     ’G    áTÕÝÌ®Ò                 < b o o t s t r a p . n u s p e c     `      ü¶     ú¶     h’G    áTÕÝÌ®Ò                < b o o t s t r a p . n u s p e c     `      ü¶     ú¶     È’G    áTÕÝÌ®Ò                < b o o t s t r a p . n u s p e c     `      ü¶     ú¶     (“G    áTÕÝÌ®Ò                < b o o t s t r a p . n u s p e c     `      ü¶     ú¶     ˆ“G    áTÕÝÌ®Ò €              < b o o t s t r a p . n u s p e c     P      ý¶     ú¶     è“G    áTÕÝÌ®Ò                < M y G e t . p s 1   P      ý¶     ú¶     8”G    áTÕÝÌ®Ò               < M y G e t . p s 1   P      ý¶     ú¶     ˆ”G    áTÕÝÌ®Ò               < M y G e t . p s 1   P      ý¶     ú¶     Ø”G    áTÕÝÌ®Ò               < M y G e t . p s 1   P      ý¶     ú¶     (•G    áTÕÝÌ®Ò €             < M y G e t . p s 1   h      þ¶     t¶     x•G    áTÕÝÌ®Ò              & < b o o t s t r a p - m a x l e n g t h       h      þ¶     t¶     à•G    áTÕÝÌ®Ò  €           & < b o o t s t r a p - m a x l e n g t h       h      þ¶     t¶     H–G    áTÕÝÌ®Ò €             & < b o o t s t r a p - m a x l e n g t h       h      þ¶     t¶     °–G    áTÕÝÌ®Ò € €           & < b o o t s t r a p - m a x l e n g t h       X      ÿ¶     þ¶     —G    Æ¶×ÝÌ®Ò                < . b o w e r . j s o n       X      ÿ¶     þ¶     p—G    Æ¶×ÝÌ®Ò               < . b o w e r . j s o n       X      ÿ¶     þ¶     È—G    Æ¶×ÝÌ®Ò               < . b o w e r . j s o n       X      ÿ¶     þ¶      ˜G    Æ¶×ÝÌ®Ò               < . b o w e r . j s o n       X      ÿ¶     þ¶     x˜G    Æ¶×ÝÌ®Ò €             < . b o w e r . j s o n       €       ·     þ¶     Ð˜G    Æ¶×ÝÌ®Ò               > < b o o t s t r a p - m a x l e n g t h . j q u e r y . j s o n     e €       ·     þ¶     P™G    Æ¶×ÝÌ®Ò              > < b o o t s t r a p - m a x l e n g t h . j q u e r y . j s o n     e €       ·     þ¶     Ð™G    Æ¶×ÝÌ®Ò              > < b o o t s t r a p - m a x l e n g t h . j q u e r y . j s o n     e €       ·     þ¶     PšG    Æ¶×ÝÌ®Ò              > < b o o t s t r a p - m a x l e n g t h . j q u e r y . j s o n     e €       ·     þ¶     ÐšG    Æ¶×ÝÌ®Ò €            > < b o o t s t r a p - m a x l e n g t h . j q u e r y . j s o n     e h      ·     þ¶     P›G    |ÜÝÌ®Ò               , < b o o t s t r a p - m a x l e n g t h . j s h      ·     þ¶     ¸›G    |ÜÝÌ®Ò              , < b o o t s t r a p - m a x l e n g t h . j s h      ·     þ¶      œG    |ÜÝÌ®Ò              , < b o o t s t r a p - m a x l e n g t h . j s h      ·     þ¶     ˆœG    |ÜÝÌ®Ò              , < b o o t s t r a p - m a x l e n g t h . j s h      ·     þ¶     ðœG    |ÜÝÌ®Ò €            , < b o o t s t r a p - m a x l e n g t h . j s p      ·     þ¶     XG    sÞÞÝÌ®Ò               4 < b o o t s t r a p - m a x l e n g t h . m i n . j s p      ·     þ¶     ÈG    sÞÞÝÌ®Ò              4 < b o o t s t r a p - m a x l e n g t h . m i n . j s p      ·     þ¶     8žG    sÞÞÝÌ®Ò              4 < b o o t s t r a p - m a x l e n g t h . m i n . j s p      ·     þ¶     ¨žG    sÞÞÝÌ®Ò              4 < b o o t s t r a p - m a x l e n g t h . m i n . j s p      ·     þ¶     ŸG    sÞÞÝÌ®Ò €            4 < b o o t s t r a p - m a x l e n g t h . m i n . j s P      ·     þ¶     ˆŸG    sÞÞÝÌ®Ò                < b o w e r . j s o n                                         P      ·     þ¶       G    sÞÞÝÌ®Ò               < b o w e r . j s o n P      ·     þ¶     P G    sÞÞÝÌ®Ò               < b o w e r . j s o n P      ·     þ¶       G    sÞÞÝÌ®Ò               < b o w e r . j s o n P      ·     þ¶     ð G    sÞÞÝÌ®Ò €             < b o w e r . j s o n X      ·     þ¶     @¡G    [AáÝÌ®Ò                < G r u n t f i l e . j s     X      ·     þ¶     ˜¡G    [AáÝÌ®Ò               < G r u n t f i l e . j s     X      ·     þ¶     ð¡G    [AáÝÌ®Ò               < G r u n t f i l e . j s     X      ·     þ¶     H¢G    [AáÝÌ®Ò               < G r u n t f i l e . j s     X      ·     þ¶      ¢G    [AáÝÌ®Ò €             < G r u n t f i l e . j s     P      ·     þ¶     ø¢G    [AáÝÌ®Ò                < i n d e x . h t m l P      ·     þ¶     H£G    [AáÝÌ®Ò                < i n d e x . h t m l P      ·     þ¶     ˜£G    €¢ãÝÌ®Ò  €             < i n d e x . h t m l P      ·     þ¶     è£G    €¢ãÝÌ®Ò                < L I C E N S E     n P      ·     þ¶     8¤G    €¢ãÝÌ®Ò               < L I C E N S E     n P      ·     þ¶     ˆ¤G    €¢ãÝÌ®Ò               < L I C E N S E     n P      ·     þ¶     Ø¤G    €¢ãÝÌ®Ò               < L I C E N S E     n P      ·     þ¶     (¥G    €¢ãÝÌ®Ò €             < L I C E N S E     n X      ·     þ¶     x¥G    €¢ãÝÌ®Ò                < p a c k a g e . j s o n     X      ·     þ¶     Ð¥G    €¢ãÝÌ®Ò               < p a c k a g e . j s o n     X      ·     þ¶     (¦G    €¢ãÝÌ®Ò               < p a c k a g e . j s o n     X      ·     þ¶     €¦G    €¢ãÝÌ®Ò               < p a c k a g e . j s o n     X      ·     þ¶     Ø¦G    €¢ãÝÌ®Ò €             < p a c k a g e . j s o n     P      ·     þ¶     0§G    mæÝÌ®Ò                < R E A D M E . m d   P      ·     þ¶     €§G    mæÝÌ®Ò               < R E A D M E . m d   P      ·     þ¶     Ð§G    mæÝÌ®Ò               < R E A D M E . m d   P      ·     þ¶      ¨G    mæÝÌ®Ò               < R E A D M E . m d   P      ·     þ¶     p¨G    mæÝÌ®Ò €             < R E A D M E . m d   `      	·     þ¶     À¨G    mæÝÌ®Ò                < b o w e r _ c o m p o n e n t s     `      	·     þ¶      ©G    mæÝÌ®Ò  €             < b o w e r _ c o m p o n e n t s     `      	·     þ¶     €©G    mæÝÌ®Ò €               < b o w e r _ c o m p o n e n t s     `      	·     þ¶     à©G    mæÝÌ®Ò € €             < b o w e r _ c o m p o n e n t s     H      
+·     	·     @ªG    mæÝÌ®Ò              
+ < q u n i t   H      
+·     	·     ˆªG    mæÝÌ®Ò  €           
+ < q u n i t   H      
+·     	·     ÐªG    mæÝÌ®Ò €             
+ < q u n i t   H      
+·     	·     «G    mæÝÌ®Ò € €           
+ < q u n i t   H      ·     
+·     `«G    mæÝÌ®Ò              
+ < q u n i t   H      ·     
+·     ¨«G    mæÝÌ®Ò  €           
+ < q u n i t   H      ·     
+·     ð«G    mæÝÌ®Ò €             
+ < q u n i t   H      ·     
+·     8¬G    mæÝÌ®Ò € €           
+ < q u n i t   P      ·     ·     €¬G    /gèÝÌ®Ò                < q u n i t . c s s   P      ·     ·     Ð¬G    /gèÝÌ®Ò               < q u n i t . c s s   P      ·     ·      ­G    /gèÝÌ®Ò               < q u n i t . c s s   P      ·     ·     p­G    /gèÝÌ®Ò               < q u n i t . c s s   P      ·     ·     À­G    /gèÝÌ®Ò €             < q u n i t . c s s   P      ·     ·     ®G    CÊêÝÌ®Ò                < q u n i t . j s     P      ·     ·     `®G    CÊêÝÌ®Ò               < q u n i t . j s     P      ·     ·     °®G    CÊêÝÌ®Ò               < q u n i t . j s     P      ·     ·      ¯G    CÊêÝÌ®Ò               < q u n i t . j s     P      ·     ·     P¯G    CÊêÝÌ®Ò €             < q u n i t . j s     H      ·     þ¶      ¯G    CÊêÝÌ®Ò               < s r c                               H      ·     þ¶      °G    CÊêÝÌ®Ò  €            < s r c       H      ·     þ¶     H°G    CÊêÝÌ®Ò €              < s r c       H      ·     þ¶     °G    CÊêÝÌ®Ò € €            < s r c       h      ·     ·     Ø°G    á+íÝÌ®Ò               , < b o o t s t r a p - m a x l e n g t h . j s h      ·     ·     @±G    á+íÝÌ®Ò              , < b o o t s t r a p - m a x l e n g t h . j s h      ·     ·     ¨±G    á+íÝÌ®Ò              , < b o o t s t r a p - m a x l e n g t h . j s h      ·     ·     ²G    á+íÝÌ®Ò              , < b o o t s t r a p - m a x l e n g t h . j s h      ·     ·     x²G    á+íÝÌ®Ò €            , < b o o t s t r a p - m a x l e n g t h . j s H      ·     þ¶     à²G    ÷ïÝÌ®Ò               < t e s t     H      ·     þ¶     (³G    ÷ïÝÌ®Ò  €            < t e s t     H      ·     þ¶     p³G    ÷ïÝÌ®Ò €              < t e s t     H      ·     þ¶     ¸³G    ÷ïÝÌ®Ò € €            < t e s t     P      ·     ·      ´G    ÷ïÝÌ®Ò                < q u n i t . h t m l P      ·     ·     P´G    ÷ïÝÌ®Ò               < q u n i t . h t m l P      ·     ·      ´G    ÷ïÝÌ®Ò               < q u n i t . h t m l P      ·     ·     ð´G    ÷ïÝÌ®Ò               < q u n i t . h t m l P      ·     ·     @µG    ÷ïÝÌ®Ò €             < q u n i t . h t m l P      ·     ·     µG    OññÝÌ®Ò                < t e s t s . j s     P      ·     ·     àµG    OññÝÌ®Ò               < t e s t s . j s     P      ·     ·     0¶G    OññÝÌ®Ò               < t e s t s . j s     P      ·     ·     €¶G    OññÝÌ®Ò               < t e s t s . j s     P      ·     ·     Ð¶G    OññÝÌ®Ò €             < t e s t s . j s     `      ·     t¶      ·G    OññÝÌ®Ò                < b o o t s t r a p - s o c i a l     `      ·     t¶     €·G    OññÝÌ®Ò  €             < b o o t s t r a p - s o c i a l     `      ·     t¶     à·G    OññÝÌ®Ò €               < b o o t s t r a p - s o c i a l     `      ·     t¶     @¸G    OññÝÌ®Ò € €             < b o o t s t r a p - s o c i a l     X      ·     ·      ¸G    OññÝÌ®Ò                < . b o w e r . j s o n     p X      ·     ·     ø¸G    OññÝÌ®Ò               < . b o w e r . j s o n     p X      ·     ·     P¹G    OññÝÌ®Ò               < . b o w e r . j s o n     p X      ·     ·     ¨¹G    OññÝÌ®Ò               < . b o w e r . j s o n     p X      ·     ·      ºG    SôÝÌ®Ò €             < . b o w e r . j s o n     p X      ·     ·     XºG    SôÝÌ®Ò                < . e d i t o r c o n f i g   X      ·     ·     °ºG    SôÝÌ®Ò               < . e d i t o r c o n f i g   X      ·     ·     »G    SôÝÌ®Ò               < . e d i t o r c o n f i g   X      ·     ·     `»G    SôÝÌ®Ò               < . e d i t o r c o n f i g   X      ·     ·     ¸»G    SôÝÌ®Ò €             < . e d i t o r c o n f i g   P      ·     ·     ¼G    SôÝÌ®Ò                < . g i t i g n o r e P      ·     ·     `¼G    SôÝÌ®Ò               < . g i t i g n o r e P      ·     ·     °¼G    SôÝÌ®Ò               < . g i t i g n o r e P      ·     ·      ½G    SôÝÌ®Ò               < . g i t i g n o r e P      ·     ·     P½G    SôÝÌ®Ò €             < . g i t i g n o r e h      ·     ·      ½G    ¶öÝÌ®Ò               ( < b o o t s t r a p - s o c i a l . c s s     h      ·     ·     ¾G    ¶öÝÌ®Ò              ( < b o o t s t r a p - s o c i a l . c s s     h      ·     ·     p¾G    ¶öÝÌ®Ò              ( < b o o t s t r a p - s o c i a l . c s s     h      ·     ·     Ø¾G    ¶öÝÌ®Ò              ( < b o o t s t r a p - s o c i a l . c s s     h      ·     ·     @¿G    ¶öÝÌ®Ò €            ( < b o o t s t r a p - s o c i a l . c s s                                                                                             h      ·     ·      ÀG    ¶öÝÌ®Ò               * < b o o t s t r a p - s o c i a l . l e s s   h      ·     ·     hÀG    ¶öÝÌ®Ò              * < b o o t s t r a p - s o c i a l . l e s s   h      ·     ·     ÐÀG    ¶öÝÌ®Ò              * < b o o t s t r a p - s o c i a l . l e s s   h      ·     ·     8ÁG    ¶öÝÌ®Ò              * < b o o t s t r a p - s o c i a l . l e s s   h      ·     ·      ÁG    ¶öÝÌ®Ò €            * < b o o t s t r a p - s o c i a l . l e s s   h      ·     ·     ÂG    ÃùÝÌ®Ò               * < b o o t s t r a p - s o c i a l . s c s s   h      ·     ·     pÂG    ÃùÝÌ®Ò              * < b o o t s t r a p - s o c i a l . s c s s   h      ·     ·     ØÂG    ÃùÝÌ®Ò              * < b o o t s t r a p - s o c i a l . s c s s   h      ·     ·     @ÃG    ÃùÝÌ®Ò              * < b o o t s t r a p - s o c i a l . s c s s   h      ·     ·     ¨ÃG    ÃùÝÌ®Ò €            * < b o o t s t r a p - s o c i a l . s c s s   P      ·     ·     ÄG    §zûÝÌ®Ò                < b o w e r . j s o n P      ·     ·     `ÄG    §zûÝÌ®Ò               < b o w e r . j s o n P      ·     ·     °ÄG    §zûÝÌ®Ò               < b o w e r . j s o n P      ·     ·      ÅG    §zûÝÌ®Ò               < b o w e r . j s o n P      ·     ·     PÅG    §zûÝÌ®Ò €             < b o w e r . j s o n P      ·     ·      ÅG    §zûÝÌ®Ò                < R E A D M E . m d   P      ·     ·     ðÅG    §zûÝÌ®Ò               < R E A D M E . m d   P      ·     ·     @ÆG    §zûÝÌ®Ò               < R E A D M E . m d   P      ·     ·     ÆG    §zûÝÌ®Ò               < R E A D M E . m d   P      ·     ·     àÆG    §zûÝÌ®Ò €             < R E A D M E . m d   P      ·     t¶     0ÇG    §zûÝÌ®Ò               < d a t a t a b l e s P      ·     t¶     €ÇG    §zûÝÌ®Ò  €            < d a t a t a b l e s P      ·     t¶     ÐÇG    §zûÝÌ®Ò €              < d a t a t a b l e s P      ·     t¶      ÈG    §zûÝÌ®Ò € €            < d a t a t a b l e s X      ·     ·     pÈG    dÜýÝÌ®Ò                < . b o w e r . j s o n     l X      ·     ·     ÈÈG    dÜýÝÌ®Ò               < . b o w e r . j s o n     l X      ·     ·      ÉG    dÜýÝÌ®Ò               < . b o w e r . j s o n     l X      ·     ·     xÉG    dÜýÝÌ®Ò               < . b o w e r . j s o n     l X      ·     ·     ÐÉG    dÜýÝÌ®Ò €             < . b o w e r . j s o n     l P      ·     ·     (ÊG    dÜýÝÌ®Ò                < b o w e r . j s o n P      ·     ·     xÊG    dÜýÝÌ®Ò               < b o w e r . j s o n P      ·     ·     ÈÊG    dÜýÝÌ®Ò               < b o w e r . j s o n P      ·     ·     ËG    dÜýÝÌ®Ò               < b o w e r . j s o n P      ·     ·     hËG    dÜýÝÌ®Ò €             < b o w e r . j s o n `      ·     ·     ¸ËG    dÜýÝÌ®Ò                < C o n t r i b u t i n g . m d       `      ·     ·     ÌG    dÜýÝÌ®Ò               < C o n t r i b u t i n g . m d       `      ·     ·     xÌG    dÜýÝÌ®Ò               < C o n t r i b u t i n g . m d       `      ·     ·     ØÌG    dÜýÝÌ®Ò               < C o n t r i b u t i n g . m d       `      ·     ·     8ÍG    dÜýÝÌ®Ò €             < C o n t r i b u t i n g . m d       X       ·     ·     ˜ÍG    y? ÞÌ®Ò                < l i c e n s e . t x t     o X       ·     ·     ðÍG    y? ÞÌ®Ò               < l i c e n s e . t x t     o X       ·     ·     HÎG    y? ÞÌ®Ò               < l i c e n s e . t x t     o X       ·     ·      ÎG    y? ÞÌ®Ò               < l i c e n s e . t x t     o X       ·     ·     øÎG    y? ÞÌ®Ò €             < l i c e n s e . t x t     o P      !·     ·     PÏG    y? ÞÌ®Ò                < R e a d m e . m d   P      !·     ·      ÏG    y? ÞÌ®Ò               < R e a d m e . m d                   P      !·     ·      ÐG    y? ÞÌ®Ò               < R e a d m e . m d   P      !·     ·     PÐG    y? ÞÌ®Ò               < R e a d m e . m d   P      !·     ·      ÐG    y? ÞÌ®Ò €             < R e a d m e . m d   H      "·     ·     ðÐG    y? ÞÌ®Ò              
+ < m e d i a   H      "·     ·     8ÑG    y? ÞÌ®Ò  €           
+ < m e d i a   H      "·     ·     €ÑG    y? ÞÌ®Ò €             
+ < m e d i a   H      "·     ·     ÈÑG    y? ÞÌ®Ò € €           
+ < m e d i a   H      #·     "·     ÒG    $¡ÞÌ®Ò               < c s s       H      #·     "·     XÒG    $¡ÞÌ®Ò  €            < c s s       H      #·     "·      ÒG    $¡ÞÌ®Ò €              < c s s       H      #·     "·     èÒG    $¡ÞÌ®Ò € €            < c s s       p      $·     #·     0ÓG    $¡ÞÌ®Ò               0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      $·     #·      ÓG    $¡ÞÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      $·     #·     ÔG    $¡ÞÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      $·     #·     €ÔG    $¡ÞÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      $·     #·     ðÔG    $¡ÞÌ®Ò €            0 < d a t a T a b l e s . b o o t s t r a p . c s s     x      %·     #·     `ÕG    CÞÌ®Ò               8 < d a t a T a b l e s . b o o t s t r a p . m i n . c s s     x      %·     #·     ØÕG    CÞÌ®Ò              8 < d a t a T a b l e s . b o o t s t r a p . m i n . c s s     x      %·     #·     PÖG    CÞÌ®Ò              8 < d a t a T a b l e s . b o o t s t r a p . m i n . c s s     x      %·     #·     ÈÖG    CÞÌ®Ò              8 < d a t a T a b l e s . b o o t s t r a p . m i n . c s s     x      %·     #·     @×G    CÞÌ®Ò €            8 < d a t a T a b l e s . b o o t s t r a p . m i n . c s s     p      &·     #·     ¸×G    ÒeÞÌ®Ò               2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      &·     #·     (ØG    ÒeÞÌ®Ò              2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      &·     #·     ˜ØG    ÒeÞÌ®Ò              2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      &·     #·     ÙG    ÒeÞÌ®Ò              2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      &·     #·     xÙG    ÒeÞÌ®Ò €            2 < d a t a T a b l e s . f o u n d a t i o n . c s s   x      '·     #·     èÙG    ÒeÞÌ®Ò               : < d a t a T a b l e s . f o u n d a t i o n . m i n . c s s   x      '·     #·     `ÚG    ÒeÞÌ®Ò              : < d a t a T a b l e s . f o u n d a t i o n . m i n . c s s   x      '·     #·     ØÚG    ÒeÞÌ®Ò              : < d a t a T a b l e s . f o u n d a t i o n . m i n . c s s   x      '·     #·     PÛG    ÒeÞÌ®Ò              : < d a t a T a b l e s . f o u n d a t i o n . m i n . c s s   x      '·     #·     ÈÛG    ÒeÞÌ®Ò €            : < d a t a T a b l e s . f o u n d a t i o n . m i n . c s s   p      (·     #·     @ÜG    ©È	ÞÌ®Ò               . < d a t a T a b l e s . j q u e r y u i . c s s       p      (·     #·     °ÜG    ©È	ÞÌ®Ò              . < d a t a T a b l e s . j q u e r y u i . c s s       p      (·     #·      ÝG    ©È	ÞÌ®Ò              . < d a t a T a b l e s . j q u e r y u i . c s s       p      (·     #·     ÝG    ©È	ÞÌ®Ò              . < d a t a T a b l e s . j q u e r y u i . c s s       p      (·     #·      ÞG    ©È	ÞÌ®Ò €            . < d a t a T a b l e s . j q u e r y u i . c s s       x      )·     #·     pÞG    ©È	ÞÌ®Ò               6 < d a t a T a b l e s . j q u e r y u i . m i n . c s s     \ x      )·     #·     èÞG    ©È	ÞÌ®Ò              6 < d a t a T a b l e s . j q u e r y u i . m i n . c s s     \ x      )·     #·     `ßG    ©È	ÞÌ®Ò              6 < d a t a T a b l e s . j q u e r y u i . m i n . c s s     \                                         x      )·     #·      àG    ©È	ÞÌ®Ò              6 < d a t a T a b l e s . j q u e r y u i . m i n . c s s     \ x      )·     #·     xàG    ©È	ÞÌ®Ò €            6 < d a t a T a b l e s . j q u e r y u i . m i n . c s s     \ h      *·     #·     ðàG    E+ÞÌ®Ò               * < j q u e r y . d a t a T a b l e s . c s s   h      *·     #·     XáG    E+ÞÌ®Ò              * < j q u e r y . d a t a T a b l e s . c s s   h      *·     #·     ÀáG    E+ÞÌ®Ò              * < j q u e r y . d a t a T a b l e s . c s s   h      *·     #·     (âG    E+ÞÌ®Ò              * < j q u e r y . d a t a T a b l e s . c s s   h      *·     #·     âG    E+ÞÌ®Ò €            * < j q u e r y . d a t a T a b l e s . c s s   p      +·     #·     øâG    «ÞÌ®Ò               2 < j q u e r y . d a t a T a b l e s . m i n . c s s   p      +·     #·     hãG    «ÞÌ®Ò              2 < j q u e r y . d a t a T a b l e s . m i n . c s s   p      +·     #·     ØãG    «ÞÌ®Ò              2 < j q u e r y . d a t a T a b l e s . m i n . c s s   p      +·     #·     HäG    «ÞÌ®Ò              2 < j q u e r y . d a t a T a b l e s . m i n . c s s   p      +·     #·     ¸äG    «ÞÌ®Ò €            2 < j q u e r y . d a t a T a b l e s . m i n . c s s   €      ,·     #·     (åG    «ÞÌ®Ò               B < j q u e r y . d a t a T a b l e s _ t h e m e r o l l e r . c s s   €      ,·     #·     ¨åG    «ÞÌ®Ò              B < j q u e r y . d a t a T a b l e s _ t h e m e r o l l e r . c s s   €      ,·     #·     (æG    «ÞÌ®Ò              B < j q u e r y . d a t a T a b l e s _ t h e m e r o l l e r . c s s   €      ,·     #·     ¨æG    «ÞÌ®Ò              B < j q u e r y . d a t a T a b l e s _ t h e m e r o l l e r . c s s   €      ,·     #·     (çG    «ÞÌ®Ò €            B < j q u e r y . d a t a T a b l e s _ t h e m e r o l l e r . c s s   H      -·     "·     ¨çG    òÞÌ®Ò               < i m a g e s H      -·     "·     ðçG    òÞÌ®Ò  €            < i m a g e s H      -·     "·     8èG    òÞÌ®Ò €              < i m a g e s H      -·     "·     €èG    òÞÌ®Ò € €            < i m a g e s X      .·     -·     ÈèG    òÞÌ®Ò                < f a v i c o n . i c o     o X      .·     -·      éG    òÞÌ®Ò               < f a v i c o n . i c o     o X      .·     -·     xéG    òÞÌ®Ò               < f a v i c o n . i c o     o X      .·     -·     ÐéG    òÞÌ®Ò               < f a v i c o n . i c o     o X      .·     -·     (êG    òÞÌ®Ò €             < f a v i c o n . i c o     o `      /·     -·     €êG    ?RÞÌ®Ò               " < S o r t i n g   i c o n s . p s d   `      /·     -·     àêG    ?RÞÌ®Ò              " < S o r t i n g   i c o n s . p s d   `      /·     -·     @ëG    ?RÞÌ®Ò              " < S o r t i n g   i c o n s . p s d   `      /·     -·      ëG    ?RÞÌ®Ò              " < S o r t i n g   i c o n s . p s d   `      /·     -·      ìG    ?RÞÌ®Ò €            " < S o r t i n g   i c o n s . p s d   X      0·     -·     `ìG    ?RÞÌ®Ò                < s o r t _ a s c . p n g     X      0·     -·     ¸ìG    ?RÞÌ®Ò               < s o r t _ a s c . p n g     X      0·     -·     íG    ?RÞÌ®Ò               < s o r t _ a s c . p n g     X      0·     -·     híG    ?RÞÌ®Ò               < s o r t _ a s c . p n g     X      0·     -·     ÀíG    ?RÞÌ®Ò €             < s o r t _ a s c . p n g     h      1·     -·     îG    ?RÞÌ®Ò               * < s o r t _ a s c _ d i s a b l e d . p n g   h      1·     -·     €îG    ?RÞÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      1·     -·     èîG    ?RÞÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      1·     -·     PïG    ?RÞÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g                                                                           h      1·     -·      ðG    ?RÞÌ®Ò €            * < s o r t _ a s c _ d i s a b l e d . p n g   X      2·     -·     hðG    ?RÞÌ®Ò                < s o r t _ b o t h . p n g   X      2·     -·     ÀðG    ?RÞÌ®Ò               < s o r t _ b o t h . p n g   X      2·     -·     ñG    ?RÞÌ®Ò               < s o r t _ b o t h . p n g   X      2·     -·     pñG    ?RÞÌ®Ò               < s o r t _ b o t h . p n g   X      2·     -·     ÈñG    ?RÞÌ®Ò €             < s o r t _ b o t h . p n g   X      3·     -·      òG    ?RÞÌ®Ò                < s o r t _ d e s c . p n g   X      3·     -·     xòG    ?RÞÌ®Ò               < s o r t _ d e s c . p n g   X      3·     -·     ÐòG    ?RÞÌ®Ò               < s o r t _ d e s c . p n g   X      3·     -·     (óG    ?RÞÌ®Ò               < s o r t _ d e s c . p n g   X      3·     -·     €óG    ?RÞÌ®Ò €             < s o r t _ d e s c . p n g   h      4·     -·     ØóG    l´ÞÌ®Ò               , < s o r t _ d e s c _ d i s a b l e d . p n g h      4·     -·     @ôG    l´ÞÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      4·     -·     ¨ôG    l´ÞÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      4·     -·     õG    l´ÞÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      4·     -·     xõG    l´ÞÌ®Ò €            , < s o r t _ d e s c _ d i s a b l e d . p n g @      5·     "·     àõG    l´ÞÌ®Ò               < j s @      5·     "·      öG    l´ÞÌ®Ò  €            < j s @      5·     "·     `öG    l´ÞÌ®Ò €              < j s @      5·     "·      öG    l´ÞÌ®Ò € €            < j s p      6·     5·     àöG    l´ÞÌ®Ò               . < d a t a T a b l e s . b o o t s t r a p . j s       p      6·     5·     P÷G    l´ÞÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      6·     5·     À÷G    l´ÞÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      6·     5·     0øG    pÞÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      6·     5·      øG    pÞÌ®Ò €            . < d a t a T a b l e s . b o o t s t r a p . j s       x      7·     5·     ùG    pÞÌ®Ò               6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     ÿÿx      7·     5·     ˆùG    pÞÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     ÿÿx      7·     5·      úG    pÞÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     ÿÿx      7·     5·     xúG    pÞÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     ÿÿx      7·     5·     ðúG    pÞÌ®Ò €            6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     ÿÿp      8·     5·     hûG    ÿxÞÌ®Ò               0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      8·     5·     ØûG    ÿxÞÌ®Ò              0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      8·     5·     HüG    ÿxÞÌ®Ò              0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      8·     5·     ¸üG    ÿxÞÌ®Ò              0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      8·     5·     (ýG    ÿxÞÌ®Ò €            0 < d a t a T a b l e s . f o u n d a t i o n . j s     x      9·     5·     ˜ýG    ¶ÛÞÌ®Ò               8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      9·     5·     þG    ¶ÛÞÌ®Ò              8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      9·     5·     ˆþG    ¶ÛÞÌ®Ò              8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      9·     5·      ÿG    ¶ÛÞÌ®Ò              8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      9·     5·     xÿG    ¶ÛÞÌ®Ò €            8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s                     h      :·     5·       H    .>ÞÌ®Ò               , < d a t a T a b l e s . j q u e r y u i . j s h      :·     5·     h H    .>ÞÌ®Ò              , < d a t a T a b l e s . j q u e r y u i . j s h      :·     5·     Ð H    .>ÞÌ®Ò              , < d a t a T a b l e s . j q u e r y u i . j s h      :·     5·     8H    .>ÞÌ®Ò              , < d a t a T a b l e s . j q u e r y u i . j s h      :·     5·      H    .>ÞÌ®Ò €            , < d a t a T a b l e s . j q u e r y u i . j s p      ;·     5·     H    .>ÞÌ®Ò               4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      ;·     5·     xH    .>ÞÌ®Ò              4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      ;·     5·     èH    .>ÞÌ®Ò              4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      ;·     5·     XH    .>ÞÌ®Ò              4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      ;·     5·     ÈH    .>ÞÌ®Ò €            4 < d a t a T a b l e s . j q u e r y u i . m i n . j s h      <·     5·     8H    ?e&ÞÌ®Ò               ( < j q u e r y . d a t a T a b l e s . j s     h      <·     5·      H    ?e&ÞÌ®Ò              ( < j q u e r y . d a t a T a b l e s . j s     h      <·     5·     H    ?e&ÞÌ®Ò              ( < j q u e r y . d a t a T a b l e s . j s     h      <·     5·     pH    ?e&ÞÌ®Ò              ( < j q u e r y . d a t a T a b l e s . j s     h      <·     5·     ØH    ?e&ÞÌ®Ò €            ( < j q u e r y . d a t a T a b l e s . j s     p      =·     5·     @H    ¡Ç(ÞÌ®Ò               0 < j q u e r y . d a t a T a b l e s . m i n . j s     p      =·     5·     °H    ¡Ç(ÞÌ®Ò              0 < j q u e r y . d a t a T a b l e s . m i n . j s     p      =·     5·      H    ¡Ç(ÞÌ®Ò              0 < j q u e r y . d a t a T a b l e s . m i n . j s     p      =·     5·     H    Ž*+ÞÌ®Ò              0 < j q u e r y . d a t a T a b l e s . m i n . j s     p      =·     5·      H    Ž*+ÞÌ®Ò €            0 < j q u e r y . d a t a T a b l e s . m i n . j s     P      >·     5·     pH    î/ÞÌ®Ò                < j q u e r y . j s   P      >·     5·     ÀH    î/ÞÌ®Ò               < j q u e r y . j s   P      >·     5·     	H    î/ÞÌ®Ò               < j q u e r y . j s   P      >·     5·     `	H    î/ÞÌ®Ò               < j q u e r y . j s   P      >·     5·     °	H    î/ÞÌ®Ò €             < j q u e r y . j s   `      ?·     t¶      
+H    î/ÞÌ®Ò              $ < d a t a t a b l e s - p l u g i n s `      ?·     t¶     `
+H    î/ÞÌ®Ò  €           $ < d a t a t a b l e s - p l u g i n s `      ?·     t¶     À
+H    î/ÞÌ®Ò €             $ < d a t a t a b l e s - p l u g i n s `      ?·     t¶      H    î/ÞÌ®Ò € €           $ < d a t a t a b l e s - p l u g i n s X      @·     ?·     €H    î/ÞÌ®Ò                < . b o w e r . j s o n      X      @·     ?·     ØH    ¿P2ÞÌ®Ò               < . b o w e r . j s o n      X      @·     ?·     0H    ¿P2ÞÌ®Ò               < . b o w e r . j s o n      X      @·     ?·     ˆH    ¿P2ÞÌ®Ò               < . b o w e r . j s o n      X      @·     ?·     àH    ¿P2ÞÌ®Ò €             < . b o w e r . j s o n      P      A·     ?·     8H    ¿P2ÞÌ®Ò                < m a k e . s h       P      A·     ?·     ˆH    ¿P2ÞÌ®Ò               < m a k e . s h       P      A·     ?·     ØH    ¿P2ÞÌ®Ò               < m a k e . s h       P      A·     ?·     (H    ¿P2ÞÌ®Ò               < m a k e . s h       P      A·     ?·     xH    ¿P2ÞÌ®Ò €             < m a k e . s h       P      B·     ?·     ÈH    ¿P2ÞÌ®Ò                < R E A D M E . m d   P      B·     ?·     H    ¿P2ÞÌ®Ò               < R E A D M E . m d   P      B·     ?·     hH    ¿P2ÞÌ®Ò               < R E A D M E . m d                                                                           P      B·     ?·      H    ¿P2ÞÌ®Ò               < R E A D M E . m d   P      B·     ?·     PH    ¿P2ÞÌ®Ò €             < R E A D M E . m d   H      C·     ?·      H    ¿P2ÞÌ®Ò               < a p i       H      C·     ?·     èH    ¿P2ÞÌ®Ò  €            < a p i       H      C·     ?·     0H    ¿P2ÞÌ®Ò €              < a p i       H      C·     ?·     xH    ¿P2ÞÌ®Ò € €            < a p i       X      D·     C·     ÀH    Ã²4ÞÌ®Ò                < a v e r a g e ( ) . j s     X      D·     C·     H    Ã²4ÞÌ®Ò               < a v e r a g e ( ) . j s     X      D·     C·     pH    Ã²4ÞÌ®Ò               < a v e r a g e ( ) . j s     X      D·     C·     ÈH    Ã²4ÞÌ®Ò               < a v e r a g e ( ) . j s     X      D·     C·      H    Ã²4ÞÌ®Ò €             < a v e r a g e ( ) . j s     h      E·     C·     xH    Â7ÞÌ®Ò               & < c o l u m n ( ) . t i t l e ( ) . j s       h      E·     C·     àH    Â7ÞÌ®Ò              & < c o l u m n ( ) . t i t l e ( ) . j s       h      E·     C·     HH    Â7ÞÌ®Ò              & < c o l u m n ( ) . t i t l e ( ) . j s       h      E·     C·     °H    Â7ÞÌ®Ò              & < c o l u m n ( ) . t i t l e ( ) . j s       h      E·     C·     H    Â7ÞÌ®Ò €            & < c o l u m n ( ) . t i t l e ( ) . j s       h      F·     C·     €H    Â7ÞÌ®Ò               ( < c o l u m n s ( ) . o r d e r ( ) . j s     h      F·     C·     èH    Â7ÞÌ®Ò              ( < c o l u m n s ( ) . o r d e r ( ) . j s     h      F·     C·     PH    Â7ÞÌ®Ò              ( < c o l u m n s ( ) . o r d e r ( ) . j s     h      F·     C·     ¸H    Â7ÞÌ®Ò              ( < c o l u m n s ( ) . o r d e r ( ) . j s     h      F·     C·      H    Â7ÞÌ®Ò €            ( < c o l u m n s ( ) . o r d e r ( ) . j s     h      G·     C·     ˆH     x9ÞÌ®Ò               , < f n A d d D a t a A n d D i s p l a y . j s h      G·     C·     ðH     x9ÞÌ®Ò              , < f n A d d D a t a A n d D i s p l a y . j s h      G·     C·     XH     x9ÞÌ®Ò              , < f n A d d D a t a A n d D i s p l a y . j s h      G·     C·     ÀH     x9ÞÌ®Ò              , < f n A d d D a t a A n d D i s p l a y . j s h      G·     C·     (H     x9ÞÌ®Ò €            , < f n A d d D a t a A n d D i s p l a y . j s P      H·     C·     H    Ú;ÞÌ®Ò                < f n A d d T r . j s P      H·     C·     àH    Ú;ÞÌ®Ò               < f n A d d T r . j s P      H·     C·     0H    Ú;ÞÌ®Ò               < f n A d d T r . j s P      H·     C·     €H    Ú;ÞÌ®Ò               < f n A d d T r . j s P      H·     C·     ÐH    Ú;ÞÌ®Ò €             < f n A d d T r . j s p      I·     C·      H    Ú;ÞÌ®Ò               2 < f n C o l u m n I n d e x T o V i s i b l e . j s   p      I·     C·     H    Ú;ÞÌ®Ò              2 < f n C o l u m n I n d e x T o V i s i b l e . j s   p      I·     C·      H    Ú;ÞÌ®Ò              2 < f n C o l u m n I n d e x T o V i s i b l e . j s   p      I·     C·     pH    Ú;ÞÌ®Ò              2 < f n C o l u m n I n d e x T o V i s i b l e . j s   p      I·     C·     àH    Ú;ÞÌ®Ò €            2 < f n C o l u m n I n d e x T o V i s i b l e . j s   `      J·     C·     PH    Û<>ÞÌ®Ò                < f n D a t a U p d a t e . j s       `      J·     C·     °H    Û<>ÞÌ®Ò               < f n D a t a U p d a t e . j s       `      J·     C·     H    Û<>ÞÌ®Ò               < f n D a t a U p d a t e . j s       `      J·     C·     pH    Û<>ÞÌ®Ò               < f n D a t a U p d a t e . j s       `      J·     C·     ÐH    Û<>ÞÌ®Ò €             < f n D a t a U p d a t e . j s       `      K·     C·     0H    Û<>ÞÌ®Ò                < f n D i s p l a y R o w . j s       `      K·     C·     H    Û<>ÞÌ®Ò               < f n D i s p l a y R o w . j s                       `      K·     C·       H    Û<>ÞÌ®Ò               < f n D i s p l a y R o w . j s       `      K·     C·     ` H    Û<>ÞÌ®Ò               < f n D i s p l a y R o w . j s       `      K·     C·     À H    Û<>ÞÌ®Ò €             < f n D i s p l a y R o w . j s       `      L·     C·      !H    4Ÿ@ÞÌ®Ò               " < f n D i s p l a y S t a r t . j s   `      L·     C·     €!H    4Ÿ@ÞÌ®Ò              " < f n D i s p l a y S t a r t . j s   `      L·     C·     à!H    4Ÿ@ÞÌ®Ò              " < f n D i s p l a y S t a r t . j s   `      L·     C·     @"H    4Ÿ@ÞÌ®Ò              " < f n D i s p l a y S t a r t . j s   `      L·     C·      "H    4Ÿ@ÞÌ®Ò €            " < f n D i s p l a y S t a r t . j s   `      M·     C·      #H    4Ÿ@ÞÌ®Ò                 < f n F a k e R o w s p a n . j s     `      M·     C·     `#H    4Ÿ@ÞÌ®Ò                < f n F a k e R o w s p a n . j s     `      M·     C·     À#H    4Ÿ@ÞÌ®Ò                < f n F a k e R o w s p a n . j s     `      M·     C·      $H    4Ÿ@ÞÌ®Ò                < f n F a k e R o w s p a n . j s     `      M·     C·     €$H    4Ÿ@ÞÌ®Ò €              < f n F a k e R o w s p a n . j s     X      N·     C·     à$H    ’CÞÌ®Ò                < f n F i l t e r A l l . j s X      N·     C·     8%H    ’CÞÌ®Ò               < f n F i l t e r A l l . j s X      N·     C·     %H    ’CÞÌ®Ò               < f n F i l t e r A l l . j s X      N·     C·     è%H    ’CÞÌ®Ò               < f n F i l t e r A l l . j s X      N·     C·     @&H    ’CÞÌ®Ò €             < f n F i l t e r A l l . j s `      O·     C·     ˜&H    ýcEÞÌ®Ò                 < f n F i l t e r C l e a r . j s     `      O·     C·     ø&H    ýcEÞÌ®Ò                < f n F i l t e r C l e a r . j s     `      O·     C·     X'H    ýcEÞÌ®Ò                < f n F i l t e r C l e a r . j s     `      O·     C·     ¸'H    ýcEÞÌ®Ò                < f n F i l t e r C l e a r . j s     `      O·     C·     (H    ýcEÞÌ®Ò €              < f n F i l t e r C l e a r . j s     h      P·     C·     x(H    .ÆGÞÌ®Ò               & < f n F i l t e r O n R e t u r n . j s       h      P·     C·     à(H    .ÆGÞÌ®Ò              & < f n F i l t e r O n R e t u r n . j s       h      P·     C·     H)H    .ÆGÞÌ®Ò              & < f n F i l t e r O n R e t u r n . j s       h      P·     C·     °)H    .ÆGÞÌ®Ò              & < f n F i l t e r O n R e t u r n . j s       h      P·     C·     *H    .ÆGÞÌ®Ò €            & < f n F i l t e r O n R e t u r n . j s       p      Q·     C·     €*H    «(JÞÌ®Ò               . < f n F i n d C e l l R o w I n d e x e s . j s       p      Q·     C·     ð*H    «(JÞÌ®Ò              . < f n F i n d C e l l R o w I n d e x e s . j s       p      Q·     C·     `+H    «(JÞÌ®Ò              . < f n F i n d C e l l R o w I n d e x e s . j s       p      Q·     C·     Ð+H    «(JÞÌ®Ò              . < f n F i n d C e l l R o w I n d e x e s . j s       p      Q·     C·     @,H    «(JÞÌ®Ò €            . < f n F i n d C e l l R o w I n d e x e s . j s       h      R·     C·     °,H    «(JÞÌ®Ò               * < f n F i n d C e l l R o w N o d e s . j s   h      R·     C·     -H    «(JÞÌ®Ò              * < f n F i n d C e l l R o w N o d e s . j s   h      R·     C·     €-H    «(JÞÌ®Ò              * < f n F i n d C e l l R o w N o d e s . j s   h      R·     C·     è-H    «(JÞÌ®Ò              * < f n F i n d C e l l R o w N o d e s . j s   h      R·     C·     P.H    «(JÞÌ®Ò €            * < f n F i n d C e l l R o w N o d e s . j s   `      S·     C·     ¸.H    æŠLÞÌ®Ò               $ < f n G e t A d j a c e n t T r . j s `      S·     C·     /H    æŠLÞÌ®Ò              $ < f n G e t A d j a c e n t T r . j s `      S·     C·     x/H    æŠLÞÌ®Ò              $ < f n G e t A d j a c e n t T r . j s                                         `      S·     C·      0H    æŠLÞÌ®Ò              $ < f n G e t A d j a c e n t T r . j s `      S·     C·     `0H    æŠLÞÌ®Ò €            $ < f n G e t A d j a c e n t T r . j s `      T·     C·     À0H    ZíNÞÌ®Ò               $ < f n G e t C o l u m n D a t a . j s `      T·     C·      1H    ZíNÞÌ®Ò              $ < f n G e t C o l u m n D a t a . j s `      T·     C·     €1H    ZíNÞÌ®Ò              $ < f n G e t C o l u m n D a t a . j s `      T·     C·     à1H    ZíNÞÌ®Ò              $ < f n G e t C o l u m n D a t a . j s `      T·     C·     @2H    ZíNÞÌ®Ò €            $ < f n G e t C o l u m n D a t a . j s h      U·     C·      2H    ZíNÞÌ®Ò               & < f n G e t C o l u m n I n d e x . j s       h      U·     C·     3H    ZíNÞÌ®Ò              & < f n G e t C o l u m n I n d e x . j s       h      U·     C·     p3H    ZíNÞÌ®Ò              & < f n G e t C o l u m n I n d e x . j s       h      U·     C·     Ø3H    ZíNÞÌ®Ò              & < f n G e t C o l u m n I n d e x . j s       h      U·     C·     @4H    ZíNÞÌ®Ò €            & < f n G e t C o l u m n I n d e x . j s       h      V·     C·     ¨4H    ö±SÞÌ®Ò               & < f n G e t H i d d e n N o d e s . j s     ÿÿh      V·     C·     5H    ö±SÞÌ®Ò              & < f n G e t H i d d e n N o d e s . j s     ÿÿh      V·     C·     x5H    ö±SÞÌ®Ò              & < f n G e t H i d d e n N o d e s . j s     ÿÿh      V·     C·     à5H    ö±SÞÌ®Ò              & < f n G e t H i d d e n N o d e s . j s     ÿÿh      V·     C·     H6H    ö±SÞÌ®Ò €            & < f n G e t H i d d e n N o d e s . j s     ÿÿP      W·     C·     °6H    0vXÞÌ®Ò                < f n G e t T d . j s P      W·     C·      7H    0vXÞÌ®Ò               < f n G e t T d . j s P      W·     C·     P7H    0vXÞÌ®Ò               < f n G e t T d . j s P      W·     C·      7H    0vXÞÌ®Ò               < f n G e t T d . j s P      W·     C·     ð7H    0vXÞÌ®Ò €             < f n G e t T d . j s X      X·     C·     @8H    ì:]ÞÌ®Ò                < f n G e t T d s . j s     ÿÿX      X·     C·     ˜8H    ì:]ÞÌ®Ò               < f n G e t T d s . j s     ÿÿX      X·     C·     ð8H    ì:]ÞÌ®Ò               < f n G e t T d s . j s     ÿÿX      X·     C·     H9H    ì:]ÞÌ®Ò               < f n G e t T d s . j s     ÿÿX      X·     C·      9H    ì:]ÞÌ®Ò €             < f n G e t T d s . j s     ÿÿ`      Y·     C·     ø9H    ì:]ÞÌ®Ò               " < f n L e n g t h C h a n g e . j s   `      Y·     C·     X:H    ì:]ÞÌ®Ò              " < f n L e n g t h C h a n g e . j s   `      Y·     C·     ¸:H    ì:]ÞÌ®Ò              " < f n L e n g t h C h a n g e . j s   `      Y·     C·     ;H    ì:]ÞÌ®Ò              " < f n L e n g t h C h a n g e . j s   `      Y·     C·     x;H    ì:]ÞÌ®Ò €            " < f n L e n g t h C h a n g e . j s   `      Z·     C·     Ø;H    ¢bÞÌ®Ò                 < f n M u l t i F i l t e r . j s     `      Z·     C·     8<H    ¢bÞÌ®Ò                < f n M u l t i F i l t e r . j s     `      Z·     C·     ˜<H    ¢bÞÌ®Ò                < f n M u l t i F i l t e r . j s     `      Z·     C·     ø<H    ¢bÞÌ®Ò                < f n M u l t i F i l t e r . j s     `      Z·     C·     X=H    bdÞÌ®Ò €              < f n M u l t i F i l t e r . j s     `      [·     C·     ¸=H    Î&iÞÌ®Ò                < f n P a g i n g I n f o . j s       `      [·     C·     >H    Î&iÞÌ®Ò               < f n P a g i n g I n f o . j s       `      [·     C·     x>H    Î&iÞÌ®Ò               < f n P a g i n g I n f o . j s       `      [·     C·     Ø>H    Î&iÞÌ®Ò               < f n P a g i n g I n f o . j s       `      [·     C·     8?H    Î&iÞÌ®Ò €             < f n P a g i n g I n f o . j s                                                                                                               p      \·     C·      @H    ìmÞÌ®Ò               0 < f n P r o c e s s i n g I n d i c a t o r . j s     p      \·     C·     p@H    ìmÞÌ®Ò              0 < f n P r o c e s s i n g I n d i c a t o r . j s     p      \·     C·     à@H    ìmÞÌ®Ò              0 < f n P r o c e s s i n g I n d i c a t o r . j s     p      \·     C·     PAH    ìmÞÌ®Ò              0 < f n P r o c e s s i n g I n d i c a t o r . j s     p      \·     C·     ÀAH    ìmÞÌ®Ò €            0 < f n P r o c e s s i n g I n d i c a t o r . j s     `      ]·     C·     0BH    i°rÞÌ®Ò                < f n R e l o a d A j a x . j s       `      ]·     C·     BH    i°rÞÌ®Ò               < f n R e l o a d A j a x . j s       `      ]·     C·     ðBH    i°rÞÌ®Ò               < f n R e l o a d A j a x . j s       `      ]·     C·     PCH    i°rÞÌ®Ò               < f n R e l o a d A j a x . j s       `      ]·     C·     °CH    i°rÞÌ®Ò €             < f n R e l o a d A j a x . j s       h      ^·     C·     DH    CuÞÌ®Ò               , < f n S e t F i l t e r i n g D e l a y . j s h      ^·     C·     xDH    CuÞÌ®Ò              , < f n S e t F i l t e r i n g D e l a y . j s h      ^·     C·     àDH    CuÞÌ®Ò              , < f n S e t F i l t e r i n g D e l a y . j s h      ^·     C·     HEH    CuÞÌ®Ò              , < f n S e t F i l t e r i n g D e l a y . j s h      ^·     C·     °EH    CuÞÌ®Ò €            , < f n S e t F i l t e r i n g D e l a y . j s `      _·     C·     FH    kuwÞÌ®Ò                 < f n S o r t N e u t r a l . j s     `      _·     C·     xFH    kuwÞÌ®Ò                < f n S o r t N e u t r a l . j s     `      _·     C·     ØFH    kuwÞÌ®Ò                < f n S o r t N e u t r a l . j s     `      _·     C·     8GH    kuwÞÌ®Ò                < f n S o r t N e u t r a l . j s     `      _·     C·     ˜GH    kuwÞÌ®Ò €              < f n S o r t N e u t r a l . j s     h      `·     C·     øGH    	ÚyÞÌ®Ò               & < f n S t a n d i n g R e d r a w . j s       h      `·     C·     `HH    	ÚyÞÌ®Ò              & < f n S t a n d i n g R e d r a w . j s       h      `·     C·     ÈHH    	ÚyÞÌ®Ò              & < f n S t a n d i n g R e d r a w . j s       h      `·     C·     0IH    	ÚyÞÌ®Ò              & < f n S t a n d i n g R e d r a w . j s       h      `·     C·     ˜IH    	ÚyÞÌ®Ò €            & < f n S t a n d i n g R e d r a w . j s       p      a·     C·      JH    ‰œ~ÞÌ®Ò               2 < f n V i s i b l e T o C o l u m n I n d e x . j s   p      a·     C·     pJH    ‰œ~ÞÌ®Ò              2 < f n V i s i b l e T o C o l u m n I n d e x . j s   p      a·     C·     àJH    ‰œ~ÞÌ®Ò              2 < f n V i s i b l e T o C o l u m n I n d e x . j s   p      a·     C·     PKH    ‰œ~ÞÌ®Ò              2 < f n V i s i b l e T o C o l u m n I n d e x . j s   p      a·     C·     ÀKH    ‰œ~ÞÌ®Ò €            2 < f n V i s i b l e T o C o l u m n I n d e x . j s   P      b·     C·     0LH    Ìþ€ÞÌ®Ò                < i n d e x . h t m l P      b·     C·     €LH    Ìþ€ÞÌ®Ò               < i n d e x . h t m l P      b·     C·     ÐLH    Ìþ€ÞÌ®Ò               < i n d e x . h t m l P      b·     C·      MH    Ìþ€ÞÌ®Ò               < i n d e x . h t m l P      b·     C·     pMH    Ìþ€ÞÌ®Ò €             < i n d e x . h t m l h      c·     C·     ÀMH    \cƒÞÌ®Ò               ( < p a g e . j u m p T o D a t a ( ) . j s     h      c·     C·     (NH    \cƒÞÌ®Ò              ( < p a g e . j u m p T o D a t a ( ) . j s     h      c·     C·     NH    \cƒÞÌ®Ò              ( < p a g e . j u m p T o D a t a ( ) . j s     h      c·     C·     øNH    \cƒÞÌ®Ò              ( < p a g e . j u m p T o D a t a ( ) . j s     h      c·     C·     `OH    Ã…ÞÌ®Ò €            ( < p a g e . j u m p T o D a t a ( ) . j s                                                             P      d·     C·      PH    å%ˆÞÌ®Ò                < s u m ( ) . j s     P      d·     C·     PPH    å%ˆÞÌ®Ò               < s u m ( ) . j s     P      d·     C·      PH    å%ˆÞÌ®Ò               < s u m ( ) . j s     P      d·     C·     ðPH    å%ˆÞÌ®Ò               < s u m ( ) . j s     P      d·     C·     @QH    å%ˆÞÌ®Ò €             < s u m ( ) . j s     P      e·     ?·     QH    mŠŠÞÌ®Ò               < f e a t u r e s     P      e·     ?·     àQH    mŠŠÞÌ®Ò  €            < f e a t u r e s     P      e·     ?·     0RH    mŠŠÞÌ®Ò €              < f e a t u r e s     P      e·     ?·     €RH    mŠŠÞÌ®Ò € €            < f e a t u r e s     X      f·     e·     ÐRH    mŠŠÞÌ®Ò               < a l p h a b e t S e a r c h X      f·     e·     (SH    mŠŠÞÌ®Ò  €            < a l p h a b e t S e a r c h X      f·     e·     €SH    mŠŠÞÌ®Ò €              < a l p h a b e t S e a r c h X      f·     e·     ØSH    mŠŠÞÌ®Ò € €            < a l p h a b e t S e a r c h x      g·     f·     0TH    mŠŠÞÌ®Ò               : < d a t a T a b l e s . a l p h a b e t S e a r c h . c s s   x      g·     f·     ¨TH    mŠŠÞÌ®Ò              : < d a t a T a b l e s . a l p h a b e t S e a r c h . c s s   x      g·     f·      UH    mŠŠÞÌ®Ò              : < d a t a T a b l e s . a l p h a b e t S e a r c h . c s s   x      g·     f·     ˜UH    mŠŠÞÌ®Ò              : < d a t a T a b l e s . a l p h a b e t S e a r c h . c s s   x      g·     f·     VH    mŠŠÞÌ®Ò €            : < d a t a T a b l e s . a l p h a b e t S e a r c h . c s s   x      h·     f·     ˆVH    ³êŒÞÌ®Ò               8 < d a t a T a b l e s . a l p h a b e t S e a r c h . j s     x      h·     f·      WH    ³êŒÞÌ®Ò              8 < d a t a T a b l e s . a l p h a b e t S e a r c h . j s     x      h·     f·     xWH    pLÞÌ®Ò              8 < d a t a T a b l e s . a l p h a b e t S e a r c h . j s     x      h·     f·     ðWH    pLÞÌ®Ò              8 < d a t a T a b l e s . a l p h a b e t S e a r c h . j s     x      h·     f·     hXH    pLÞÌ®Ò €            8 < d a t a T a b l e s . a l p h a b e t S e a r c h . j s     €      i·     f·     àXH    O¯‘ÞÌ®Ò               @ < d a t a T a b l e s . a l p h a b e t S e a r c h . m i n . j s     €      i·     f·     `YH    O¯‘ÞÌ®Ò              @ < d a t a T a b l e s . a l p h a b e t S e a r c h . m i n . j s     €      i·     f·     àYH    O¯‘ÞÌ®Ò              @ < d a t a T a b l e s . a l p h a b e t S e a r c h . m i n . j s     €      i·     f·     `ZH    O¯‘ÞÌ®Ò              @ < d a t a T a b l e s . a l p h a b e t S e a r c h . m i n . j s     €      i·     f·     àZH    O¯‘ÞÌ®Ò €            @ < d a t a T a b l e s . a l p h a b e t S e a r c h . m i n . j s     X      j·     e·     `[H    O¯‘ÞÌ®Ò               < l e n g t h L i n k s       X      j·     e·     ¸[H    O¯‘ÞÌ®Ò  €            < l e n g t h L i n k s       X      j·     e·     \H    O¯‘ÞÌ®Ò €              < l e n g t h L i n k s       X      j·     e·     h\H    O¯‘ÞÌ®Ò € €            < l e n g t h L i n k s       p      k·     j·     À\H    O¯‘ÞÌ®Ò               4 < d a t a T a b l e s . l e n g t h L i n k s . c s s p      k·     j·     0]H    O¯‘ÞÌ®Ò              4 < d a t a T a b l e s . l e n g t h L i n k s . c s s p      k·     j·      ]H    O¯‘ÞÌ®Ò              4 < d a t a T a b l e s . l e n g t h L i n k s . c s s p      k·     j·     ^H    O¯‘ÞÌ®Ò              4 < d a t a T a b l e s . l e n g t h L i n k s . c s s p      k·     j·     €^H    O¯‘ÞÌ®Ò €            4 < d a t a T a b l e s . l e n g t h L i n k s . c s s p      l·     j·     ð^H    ±”ÞÌ®Ò               2 < d a t a T a b l e s . l e n g t h L i n k s . j s   p      l·     j·     `_H    ±”ÞÌ®Ò              2 < d a t a T a b l e s . l e n g t h L i n k s . j s                                                   p      l·     j·      `H    ±”ÞÌ®Ò              2 < d a t a T a b l e s . l e n g t h L i n k s . j s   p      l·     j·     p`H    ±”ÞÌ®Ò              2 < d a t a T a b l e s . l e n g t h L i n k s . j s   p      l·     j·     à`H    ±”ÞÌ®Ò €            2 < d a t a T a b l e s . l e n g t h L i n k s . j s   x      m·     j·     PaH    os–ÞÌ®Ò               : < d a t a T a b l e s . l e n g t h L i n k s . m i n . j s   x      m·     j·     ÈaH    os–ÞÌ®Ò              : < d a t a T a b l e s . l e n g t h L i n k s . m i n . j s   x      m·     j·     @bH    os–ÞÌ®Ò              : < d a t a T a b l e s . l e n g t h L i n k s . m i n . j s   x      m·     j·     ¸bH    os–ÞÌ®Ò              : < d a t a T a b l e s . l e n g t h L i n k s . m i n . j s   x      m·     j·     0cH    os–ÞÌ®Ò €            : < d a t a T a b l e s . l e n g t h L i n k s . m i n . j s   `      n·     e·     ¨cH    os–ÞÌ®Ò               < s e a r c h H i g h l i g h t       `      n·     e·     dH    os–ÞÌ®Ò  €            < s e a r c h H i g h l i g h t       `      n·     e·     hdH    os–ÞÌ®Ò €              < s e a r c h H i g h l i g h t       `      n·     e·     ÈdH    os–ÞÌ®Ò € €            < s e a r c h H i g h l i g h t       x      o·     n·     (eH    os–ÞÌ®Ò               < < d a t a T a b l e s . s e a r c h H i g h l i g h t . c s s x      o·     n·      eH    os–ÞÌ®Ò              < < d a t a T a b l e s . s e a r c h H i g h l i g h t . c s s x      o·     n·     fH    os–ÞÌ®Ò              < < d a t a T a b l e s . s e a r c h H i g h l i g h t . c s s x      o·     n·     fH    os–ÞÌ®Ò              < < d a t a T a b l e s . s e a r c h H i g h l i g h t . c s s x      o·     n·     gH    ÌÕ˜ÞÌ®Ò €            < < d a t a T a b l e s . s e a r c h H i g h l i g h t . c s s x      p·     n·     €gH    ÌÕ˜ÞÌ®Ò               : < d a t a T a b l e s . s e a r c h H i g h l i g h t . j s   x      p·     n·     øgH    ÌÕ˜ÞÌ®Ò              : < d a t a T a b l e s . s e a r c h H i g h l i g h t . j s   x      p·     n·     phH    ÌÕ˜ÞÌ®Ò              : < d a t a T a b l e s . s e a r c h H i g h l i g h t . j s   x      p·     n·     èhH    ÌÕ˜ÞÌ®Ò              : < d a t a T a b l e s . s e a r c h H i g h l i g h t . j s   x      p·     n·     `iH    ÌÕ˜ÞÌ®Ò €            : < d a t a T a b l e s . s e a r c h H i g h l i g h t . j s   €      q·     n·     ØiH    ÷8›ÞÌ®Ò               B < d a t a T a b l e s . s e a r c h H i g h l i g h t . m i n . j s   €      q·     n·     XjH    ÷8›ÞÌ®Ò              B < d a t a T a b l e s . s e a r c h H i g h l i g h t . m i n . j s   €      q·     n·     ØjH    ÷8›ÞÌ®Ò              B < d a t a T a b l e s . s e a r c h H i g h l i g h t . m i n . j s   €      q·     n·     XkH    ÷8›ÞÌ®Ò              B < d a t a T a b l e s . s e a r c h H i g h l i g h t . m i n . j s   €      q·     n·     ØkH    ÷8›ÞÌ®Ò €            B < d a t a T a b l e s . s e a r c h H i g h l i g h t . m i n . j s   P      r·     ?·     XlH    ÷8›ÞÌ®Ò               < f i l t e r i n g   P      r·     ?·     ¨lH    ÷8›ÞÌ®Ò  €            < f i l t e r i n g   P      r·     ?·     ølH    ÷8›ÞÌ®Ò €              < f i l t e r i n g   P      r·     ?·     HmH    ÷8›ÞÌ®Ò € €            < f i l t e r i n g   P      s·     r·     ˜mH    ÷8›ÞÌ®Ò                < i n d e x . h t m l P      s·     r·     èmH    ÷8›ÞÌ®Ò               < i n d e x . h t m l P      s·     r·     8nH    ÷8›ÞÌ®Ò               < i n d e x . h t m l P      s·     r·     ˆnH    ÷8›ÞÌ®Ò               < i n d e x . h t m l P      s·     r·     ØnH    ÷8›ÞÌ®Ò €             < i n d e x . h t m l P      t·     r·     (oH    }›ÞÌ®Ò               < r o w - b a s e d   P      t·     r·     xoH    }›ÞÌ®Ò  €            < r o w - b a s e d                                                           P      t·     r·      pH    }›ÞÌ®Ò €              < r o w - b a s e d   P      t·     r·     PpH    }›ÞÌ®Ò € €            < r o w - b a s e d   X      u·     t·      pH    }›ÞÌ®Ò                < r a n g e _ d a t e s . j s X      u·     t·     øpH    }›ÞÌ®Ò               < r a n g e _ d a t e s . j s X      u·     t·     PqH    }›ÞÌ®Ò               < r a n g e _ d a t e s . j s X      u·     t·     ¨qH    }›ÞÌ®Ò               < r a n g e _ d a t e s . j s X      u·     t·      rH    }›ÞÌ®Ò €             < r a n g e _ d a t e s . j s `      v·     t·     XrH    týŸÞÌ®Ò                 < r a n g e _ n u m b e r s . j s     `      v·     t·     ¸rH    týŸÞÌ®Ò                < r a n g e _ n u m b e r s . j s     `      v·     t·     sH    týŸÞÌ®Ò                < r a n g e _ n u m b e r s . j s     `      v·     t·     xsH    týŸÞÌ®Ò                < r a n g e _ n u m b e r s . j s     `      v·     t·     ØsH    týŸÞÌ®Ò €              < r a n g e _ n u m b e r s . j s     x      w·     t·     8tH    `¢ÞÌ®Ò               < < T a b l e T o o l s . S h o w S e l e c t e d O n l y . j s x      w·     t·     °tH    `¢ÞÌ®Ò              < < T a b l e T o o l s . S h o w S e l e c t e d O n l y . j s x      w·     t·     (uH    `¢ÞÌ®Ò              < < T a b l e T o o l s . S h o w S e l e c t e d O n l y . j s x      w·     t·      uH    `¢ÞÌ®Ò              < < T a b l e T o o l s . S h o w S e l e c t e d O n l y . j s x      w·     t·     vH    `¢ÞÌ®Ò €            < < T a b l e T o o l s . S h o w S e l e c t e d O n l y . j s P      x·     r·     vH    mÃ¤ÞÌ®Ò               < t y p e - b a s e d P      x·     r·     àvH    mÃ¤ÞÌ®Ò  €            < t y p e - b a s e d P      x·     r·     0wH    mÃ¤ÞÌ®Ò €              < t y p e - b a s e d P      x·     r·     €wH    mÃ¤ÞÌ®Ò € €            < t y p e - b a s e d h      y·     x·     ÐwH    ¤$§ÞÌ®Ò               ( < a c c e n t - n e u t r a l i s e . j s     h      y·     x·     8xH    ¤$§ÞÌ®Ò              ( < a c c e n t - n e u t r a l i s e . j s     h      y·     x·      xH    ¤$§ÞÌ®Ò              ( < a c c e n t - n e u t r a l i s e . j s     h      y·     x·     yH    ¤$§ÞÌ®Ò              ( < a c c e n t - n e u t r a l i s e . j s     h      y·     x·     pyH    ¤$§ÞÌ®Ò €            ( < a c c e n t - n e u t r a l i s e . j s     P      z·     x·     ØyH    ð†©ÞÌ®Ò                < h t m l . j s       P      z·     x·     (zH    ð†©ÞÌ®Ò               < h t m l . j s       P      z·     x·     xzH    ð†©ÞÌ®Ò               < h t m l . j s       P      z·     x·     ÈzH    ð†©ÞÌ®Ò               < h t m l . j s       P      z·     x·     {H    ð†©ÞÌ®Ò €             < h t m l . j s       X      {·     x·     h{H    ð†©ÞÌ®Ò                < p h o n e N u m b e r . j s X      {·     x·     À{H    ð†©ÞÌ®Ò               < p h o n e N u m b e r . j s X      {·     x·     |H    ð†©ÞÌ®Ò               < p h o n e N u m b e r . j s X      {·     x·     p|H    ð†©ÞÌ®Ò               < p h o n e N u m b e r . j s X      {·     x·     È|H    ð†©ÞÌ®Ò €             < p h o n e N u m b e r . j s H      |·     ?·      }H    é«ÞÌ®Ò               < i 1 8 n     H      |·     ?·     h}H    é«ÞÌ®Ò  €            < i 1 8 n     H      |·     ?·     °}H    é«ÞÌ®Ò €              < i 1 8 n     H      |·     ?·     ø}H    é«ÞÌ®Ò € €            < i 1 8 n     X      }·     |·     @~H    é«ÞÌ®Ò                < A f r i k a a n s . l a n g X      }·     |·     ˜~H    é«ÞÌ®Ò               < A f r i k a a n s . l a n g X      }·     |·     ð~H    é«ÞÌ®Ò               < A f r i k a a n s . l a n g X      }·     |·     HH    é«ÞÌ®Ò               < A f r i k a a n s . l a n g X      }·     |·      H    é«ÞÌ®Ò €             < A f r i k a a n s . l a n g         X      ~·     |·      €H    é«ÞÌ®Ò                < A l b a n i a n . l a n g   X      ~·     |·     X€H    é«ÞÌ®Ò               < A l b a n i a n . l a n g   X      ~·     |·     °€H    é«ÞÌ®Ò               < A l b a n i a n . l a n g   X      ~·     |·     H    é«ÞÌ®Ò               < A l b a n i a n . l a n g   X      ~·     |·     `H    é«ÞÌ®Ò €             < A l b a n i a n . l a n g   X      ·     |·     ¸H    mK®ÞÌ®Ò                < A r a b i c . l a n g     g X      ·     |·     ‚H    mK®ÞÌ®Ò               < A r a b i c . l a n g     g X      ·     |·     h‚H    mK®ÞÌ®Ò               < A r a b i c . l a n g     g X      ·     |·     À‚H    mK®ÞÌ®Ò               < A r a b i c . l a n g     g X      ·     |·     ƒH    mK®ÞÌ®Ò €             < A r a b i c . l a n g     g `      €·     |·     pƒH    mK®ÞÌ®Ò                < A z e r b a i j a n . l a n g     n `      €·     |·     ÐƒH    mK®ÞÌ®Ò               < A z e r b a i j a n . l a n g     n `      €·     |·     0„H    mK®ÞÌ®Ò               < A z e r b a i j a n . l a n g     n `      €·     |·     „H    mK®ÞÌ®Ò               < A z e r b a i j a n . l a n g     n `      €·     |·     ð„H    mK®ÞÌ®Ò €             < A z e r b a i j a n . l a n g     n X      ·     |·     P…H    v­°ÞÌ®Ò                < B a n g l a . l a n g     g X      ·     |·     ¨…H    v­°ÞÌ®Ò               < B a n g l a . l a n g     g X      ·     |·      †H    v­°ÞÌ®Ò               < B a n g l a . l a n g     g X      ·     |·     X†H    v­°ÞÌ®Ò               < B a n g l a . l a n g     g X      ·     |·     °†H    v­°ÞÌ®Ò €             < B a n g l a . l a n g     g `      ‚·     |·     ‡H    v­°ÞÌ®Ò                < B e l a r u s i a n . l a n g     ÿÿ`      ‚·     |·     h‡H    v­°ÞÌ®Ò               < B e l a r u s i a n . l a n g     ÿÿ`      ‚·     |·     È‡H    v­°ÞÌ®Ò               < B e l a r u s i a n . l a n g     ÿÿ`      ‚·     |·     (ˆH    v­°ÞÌ®Ò               < B e l a r u s i a n . l a n g     ÿÿ`      ‚·     |·     ˆˆH    v­°ÞÌ®Ò €             < B e l a r u s i a n . l a n g     ÿÿX      ƒ·     |·     èˆH    Ô³ÞÌ®Ò                < B u l g a r i a n . l a n g X      ƒ·     |·     @‰H    Ô³ÞÌ®Ò               < B u l g a r i a n . l a n g X      ƒ·     |·     ˜‰H    Ô³ÞÌ®Ò               < B u l g a r i a n . l a n g X      ƒ·     |·     ð‰H    Ô³ÞÌ®Ò               < B u l g a r i a n . l a n g X      ƒ·     |·     HŠH    Ô³ÞÌ®Ò €             < B u l g a r i a n . l a n g X      „·     |·      ŠH    ·rµÞÌ®Ò                < C a t a l a n . l a n g     X      „·     |·     øŠH    ·rµÞÌ®Ò               < C a t a l a n . l a n g     X      „·     |·     P‹H    ·rµÞÌ®Ò               < C a t a l a n . l a n g     X      „·     |·     ¨‹H    ·rµÞÌ®Ò               < C a t a l a n . l a n g     X      „·     |·      ŒH    ·rµÞÌ®Ò €             < C a t a l a n . l a n g     p      …·     |·     XŒH    ·rµÞÌ®Ò               0 < C h i n e s e - t r a d i t i o n a l . l a n g     p      …·     |·     ÈŒH    ·rµÞÌ®Ò              0 < C h i n e s e - t r a d i t i o n a l . l a n g     p      …·     |·     8H    ·rµÞÌ®Ò              0 < C h i n e s e - t r a d i t i o n a l . l a n g     p      …·     |·     ¨H    ·rµÞÌ®Ò              0 < C h i n e s e - t r a d i t i o n a l . l a n g     p      …·     |·     ŽH    ·rµÞÌ®Ò €            0 < C h i n e s e - t r a d i t i o n a l . l a n g     X      †·     |·     ˆŽH    ñÔ·ÞÌ®Ò                < C h i n e s e . l a n g     X      †·     |·     àŽH    ñÔ·ÞÌ®Ò               < C h i n e s e . l a n g     X      †·     |·     8H    ñÔ·ÞÌ®Ò               < C h i n e s e . l a n g     X      †·     |·     H    ñÔ·ÞÌ®Ò               < C h i n e s e . l a n g                             X      †·     |·      H    ñÔ·ÞÌ®Ò €             < C h i n e s e . l a n g     X      ‡·     |·     XH    ñÔ·ÞÌ®Ò                < C r o a t i a n . l a n g   X      ‡·     |·     °H    ñÔ·ÞÌ®Ò               < C r o a t i a n . l a n g   X      ‡·     |·     ‘H    ñÔ·ÞÌ®Ò               < C r o a t i a n . l a n g   X      ‡·     |·     `‘H    ñÔ·ÞÌ®Ò               < C r o a t i a n . l a n g   X      ‡·     |·     ¸‘H    ñÔ·ÞÌ®Ò €             < C r o a t i a n . l a n g   P      ˆ·     |·     ’H    j7ºÞÌ®Ò                < C z e c h . l a n g P      ˆ·     |·     `’H    j7ºÞÌ®Ò               < C z e c h . l a n g P      ˆ·     |·     °’H    j7ºÞÌ®Ò               < C z e c h . l a n g P      ˆ·     |·      “H    j7ºÞÌ®Ò               < C z e c h . l a n g P      ˆ·     |·     P“H    j7ºÞÌ®Ò €             < C z e c h . l a n g X      ‰·     |·      “H    '™¼ÞÌ®Ò                < D a n i s h . l a n g     g X      ‰·     |·     ø“H    '™¼ÞÌ®Ò               < D a n i s h . l a n g     g X      ‰·     |·     P”H    '™¼ÞÌ®Ò               < D a n i s h . l a n g     g X      ‰·     |·     ¨”H    '™¼ÞÌ®Ò               < D a n i s h . l a n g     g X      ‰·     |·      •H    '™¼ÞÌ®Ò €             < D a n i s h . l a n g     g P      Š·     |·     X•H    '™¼ÞÌ®Ò                < D u t c h . l a n g P      Š·     |·     ¨•H    '™¼ÞÌ®Ò               < D u t c h . l a n g P      Š·     |·     ø•H    '™¼ÞÌ®Ò               < D u t c h . l a n g P      Š·     |·     H–H    '™¼ÞÌ®Ò               < D u t c h . l a n g P      Š·     |·     ˜–H    '™¼ÞÌ®Ò €             < D u t c h . l a n g X      ‹·     |·     è–H    ‰û¾ÞÌ®Ò                < E n g l i s h . l a n g     X      ‹·     |·     @—H    ‰û¾ÞÌ®Ò               < E n g l i s h . l a n g     X      ‹·     |·     ˜—H    ‰û¾ÞÌ®Ò               < E n g l i s h . l a n g     X      ‹·     |·     ð—H    ‰û¾ÞÌ®Ò               < E n g l i s h . l a n g     X      ‹·     |·     H˜H    ‰û¾ÞÌ®Ò €             < E n g l i s h . l a n g     X      Œ·     |·      ˜H    ð]ÁÞÌ®Ò                < E s t o n i a n . l a n g   X      Œ·     |·     ø˜H    ð]ÁÞÌ®Ò               < E s t o n i a n . l a n g   X      Œ·     |·     P™H    ð]ÁÞÌ®Ò               < E s t o n i a n . l a n g   X      Œ·     |·     ¨™H    ð]ÁÞÌ®Ò               < E s t o n i a n . l a n g   X      Œ·     |·      šH    ð]ÁÞÌ®Ò €             < E s t o n i a n . l a n g   X      ·     |·     XšH    ð]ÁÞÌ®Ò                < F i l i p i n o . l a n g   X      ·     |·     °šH    ð]ÁÞÌ®Ò               < F i l i p i n o . l a n g   X      ·     |·     ›H    ð]ÁÞÌ®Ò               < F i l i p i n o . l a n g   X      ·     |·     `›H    ð]ÁÞÌ®Ò               < F i l i p i n o . l a n g   X      ·     |·     ¸›H    ð]ÁÞÌ®Ò €             < F i l i p i n o . l a n g   X      Ž·     |·     œH    ¥ÁÃÞÌ®Ò                < F i n n i s h . l a n g     X      Ž·     |·     hœH    ¥ÁÃÞÌ®Ò               < F i n n i s h . l a n g     X      Ž·     |·     ÀœH    ¥ÁÃÞÌ®Ò               < F i n n i s h . l a n g     X      Ž·     |·     H    ¥ÁÃÞÌ®Ò               < F i n n i s h . l a n g     X      Ž·     |·     pH    ¥ÁÃÞÌ®Ò €             < F i n n i s h . l a n g     X      ·     |·     ÈH    ¹"ÆÞÌ®Ò                < F r e n c h . l a n g     g X      ·     |·      žH    ¹"ÆÞÌ®Ò               < F r e n c h . l a n g     g X      ·     |·     xžH    ¹"ÆÞÌ®Ò               < F r e n c h . l a n g     g X      ·     |·     ÐžH    ¹"ÆÞÌ®Ò               < F r e n c h . l a n g     g X      ·     |·     (ŸH    ¹"ÆÞÌ®Ò €             < F r e n c h . l a n g     g X      ·     |·     €ŸH    ¼…ÈÞÌ®Ò                < G a l i c i a n . l a n g                                           X      ·     |·       H    ¼…ÈÞÌ®Ò               < G a l i c i a n . l a n g   X      ·     |·     X H    ¼…ÈÞÌ®Ò               < G a l i c i a n . l a n g   X      ·     |·     ° H    ¼…ÈÞÌ®Ò               < G a l i c i a n . l a n g   X      ·     |·     ¡H    ¼…ÈÞÌ®Ò €             < G a l i c i a n . l a n g   X      ‘·     |·     `¡H    nJÍÞÌ®Ò                < G e o r g i a n . l a n g   X      ‘·     |·     ¸¡H    nJÍÞÌ®Ò               < G e o r g i a n . l a n g   X      ‘·     |·     ¢H    nJÍÞÌ®Ò               < G e o r g i a n . l a n g   X      ‘·     |·     h¢H    nJÍÞÌ®Ò               < G e o r g i a n . l a n g   X      ‘·     |·     À¢H    nJÍÞÌ®Ò €             < G e o r g i a n . l a n g   X      ’·     |·     £H    Þ¬ÏÞÌ®Ò                < G e r m a n . l a n g     g X      ’·     |·     p£H    Þ¬ÏÞÌ®Ò               < G e r m a n . l a n g     g X      ’·     |·     È£H    Þ¬ÏÞÌ®Ò               < G e r m a n . l a n g     g X      ’·     |·      ¤H    Þ¬ÏÞÌ®Ò               < G e r m a n . l a n g     g X      ’·     |·     x¤H    Þ¬ÏÞÌ®Ò €             < G e r m a n . l a n g     g P      “·     |·     Ð¤H    Þ¬ÏÞÌ®Ò                < G r e e k . l a n g P      “·     |·      ¥H    Þ¬ÏÞÌ®Ò               < G r e e k . l a n g P      “·     |·     p¥H    Þ¬ÏÞÌ®Ò               < G r e e k . l a n g P      “·     |·     À¥H    Þ¬ÏÞÌ®Ò               < G r e e k . l a n g P      “·     |·     ¦H    Þ¬ÏÞÌ®Ò €             < G r e e k . l a n g X      ”·     |·     `¦H    Þ¬ÏÞÌ®Ò                < G u j a r a t i . l a n g   X      ”·     |·     ¸¦H    Þ¬ÏÞÌ®Ò               < G u j a r a t i . l a n g   X      ”·     |·     §H    Þ¬ÏÞÌ®Ò               < G u j a r a t i . l a n g   X      ”·     |·     h§H    Þ¬ÏÞÌ®Ò               < G u j a r a t i . l a n g   X      ”·     |·     À§H    Þ¬ÏÞÌ®Ò €             < G u j a r a t i . l a n g   X      •·     |·     ¨H    óÒÞÌ®Ò                < H e b r e w . l a n g     g X      •·     |·     p¨H    óÒÞÌ®Ò               < H e b r e w . l a n g     g X      •·     |·     È¨H    óÒÞÌ®Ò               < H e b r e w . l a n g     g X      •·     |·      ©H    óÒÞÌ®Ò               < H e b r e w . l a n g     g X      •·     |·     x©H    óÒÞÌ®Ò €             < H e b r e w . l a n g     g P      –·     |·     Ð©H    ÚpÔÞÌ®Ò                < H i n d i . l a n g P      –·     |·      ªH    ÚpÔÞÌ®Ò               < H i n d i . l a n g P      –·     |·     pªH    ÚpÔÞÌ®Ò               < H i n d i . l a n g P      –·     |·     ÀªH    ÚpÔÞÌ®Ò               < H i n d i . l a n g P      –·     |·     «H    ÚpÔÞÌ®Ò €             < H i n d i . l a n g X      —·     |·     `«H    ÏÓÖÞÌ®Ò                < H u n g a r i a n . l a n g X      —·     |·     ¸«H    ÏÓÖÞÌ®Ò               < H u n g a r i a n . l a n g X      —·     |·     ¬H    ÏÓÖÞÌ®Ò               < H u n g a r i a n . l a n g X      —·     |·     h¬H    ÏÓÖÞÌ®Ò               < H u n g a r i a n . l a n g X      —·     |·     À¬H    ÏÓÖÞÌ®Ò €             < H u n g a r i a n . l a n g X      ˜·     |·     ­H    C6ÙÞÌ®Ò                < I c e l a n d i c . l a n g X      ˜·     |·     p­H    C6ÙÞÌ®Ò               < I c e l a n d i c . l a n g X      ˜·     |·     È­H    C6ÙÞÌ®Ò               < I c e l a n d i c . l a n g X      ˜·     |·      ®H    C6ÙÞÌ®Ò               < I c e l a n d i c . l a n g X      ˜·     |·     x®H    C6ÙÞÌ®Ò €             < I c e l a n d i c . l a n g P      ™·     |·     Ð®H    C6ÙÞÌ®Ò                < i n d e x . h t m l P      ™·     |·      ¯H    C6ÙÞÌ®Ò               < i n d e x . h t m l P      ™·     |·     p¯H    C6ÙÞÌ®Ò               < i n d e x . h t m l                                                                 P      ™·     |·      °H    C6ÙÞÌ®Ò               < i n d e x . h t m l P      ™·     |·     P°H    C6ÙÞÌ®Ò €             < i n d e x . h t m l x      š·     |·      °H    ^˜ÛÞÌ®Ò               6 < I n d o n e s i a n - A l t e r n a t i v e . l a n g     g x      š·     |·     ±H    ^˜ÛÞÌ®Ò              6 < I n d o n e s i a n - A l t e r n a t i v e . l a n g     g x      š·     |·     ±H    ^˜ÛÞÌ®Ò              6 < I n d o n e s i a n - A l t e r n a t i v e . l a n g     g x      š·     |·     ²H    ^˜ÛÞÌ®Ò              6 < I n d o n e s i a n - A l t e r n a t i v e . l a n g     g x      š·     |·     €²H    ^˜ÛÞÌ®Ò €            6 < I n d o n e s i a n - A l t e r n a t i v e . l a n g     g `      ›·     |·     ø²H    ×úÝÞÌ®Ò                < I n d o n e s i a n . l a n g     ÿÿ`      ›·     |·     X³H    ×úÝÞÌ®Ò               < I n d o n e s i a n . l a n g     ÿÿ`      ›·     |·     ¸³H    ×úÝÞÌ®Ò               < I n d o n e s i a n . l a n g     ÿÿ`      ›·     |·     ´H    ×úÝÞÌ®Ò               < I n d o n e s i a n . l a n g     ÿÿ`      ›·     |·     x´H    ×úÝÞÌ®Ò €             < I n d o n e s i a n . l a n g     ÿÿP      œ·     |·     Ø´H    ×úÝÞÌ®Ò                < I r i s h . l a n g P      œ·     |·     (µH    ×úÝÞÌ®Ò               < I r i s h . l a n g P      œ·     |·     xµH    ×úÝÞÌ®Ò               < I r i s h . l a n g P      œ·     |·     ÈµH    ×úÝÞÌ®Ò               < I r i s h . l a n g P      œ·     |·     ¶H    K]àÞÌ®Ò €             < I r i s h . l a n g X      ·     |·     h¶H    K]àÞÌ®Ò                < I t a l i a n . l a n g     X      ·     |·     À¶H    K]àÞÌ®Ò               < I t a l i a n . l a n g     X      ·     |·     ·H    K]àÞÌ®Ò               < I t a l i a n . l a n g     X      ·     |·     p·H    K]àÞÌ®Ò               < I t a l i a n . l a n g     X      ·     |·     È·H    K]àÞÌ®Ò €             < I t a l i a n . l a n g     X      ž·     |·      ¸H    K]àÞÌ®Ò                < J a p a n e s e . l a n g   X      ž·     |·     x¸H    K]àÞÌ®Ò               < J a p a n e s e . l a n g   X      ž·     |·     Ð¸H    K]àÞÌ®Ò               < J a p a n e s e . l a n g   X      ž·     |·     (¹H    K]àÞÌ®Ò               < J a p a n e s e . l a n g   X      ž·     |·     €¹H    K]àÞÌ®Ò €             < J a p a n e s e . l a n g   X      Ÿ·     |·     Ø¹H    ñ¾âÞÌ®Ò                < K o r e a n . l a n g     g X      Ÿ·     |·     0ºH    X!åÞÌ®Ò               < K o r e a n . l a n g     g X      Ÿ·     |·     ˆºH    X!åÞÌ®Ò               < K o r e a n . l a n g     g X      Ÿ·     |·     àºH    X!åÞÌ®Ò               < K o r e a n . l a n g     g X      Ÿ·     |·     8»H    X!åÞÌ®Ò €             < K o r e a n . l a n g     g X       ·     |·     »H    X!åÞÌ®Ò                < L a t v i a n . l a n g     X       ·     |·     è»H    X!åÞÌ®Ò               < L a t v i a n . l a n g     X       ·     |·     @¼H    X!åÞÌ®Ò               < L a t v i a n . l a n g     X       ·     |·     ˜¼H    X!åÞÌ®Ò               < L a t v i a n . l a n g     X       ·     |·     ð¼H    X!åÞÌ®Ò €             < L a t v i a n . l a n g     `      ¡·     |·     H½H    X!åÞÌ®Ò                < L i t h u a n i a n . l a n g       `      ¡·     |·     ¨½H    X!åÞÌ®Ò               < L i t h u a n i a n . l a n g       `      ¡·     |·     ¾H    X!åÞÌ®Ò               < L i t h u a n i a n . l a n g       `      ¡·     |·     h¾H    X!åÞÌ®Ò               < L i t h u a n i a n . l a n g       `      ¡·     |·     È¾H    X!åÞÌ®Ò €             < L i t h u a n i a n . l a n g       `      ¢·     |·     (¿H    q„çÞÌ®Ò                < M a c e d o n i a n . l a n g       `      ¢·     |·     ˆ¿H    q„çÞÌ®Ò               < M a c e d o n i a n . l a n g                               `      ¢·     |·      ÀH    q„çÞÌ®Ò               < M a c e d o n i a n . l a n g       `      ¢·     |·     `ÀH    q„çÞÌ®Ò               < M a c e d o n i a n . l a n g       `      ¢·     |·     ÀÀH    q„çÞÌ®Ò €             < M a c e d o n i a n . l a n g       P      £·     |·      ÁH    q„çÞÌ®Ò                < M a l a y . l a n g P      £·     |·     pÁH    q„çÞÌ®Ò               < M a l a y . l a n g P      £·     |·     ÀÁH    q„çÞÌ®Ò               < M a l a y . l a n g P      £·     |·     ÂH    q„çÞÌ®Ò               < M a l a y . l a n g P      £·     |·     `ÂH    q„çÞÌ®Ò €             < M a l a y . l a n g X      ¤·     |·     °ÂH    q„çÞÌ®Ò                < N o r w e g i a n . l a n g X      ¤·     |·     ÃH    q„çÞÌ®Ò               < N o r w e g i a n . l a n g X      ¤·     |·     `ÃH    q„çÞÌ®Ò               < N o r w e g i a n . l a n g X      ¤·     |·     ¸ÃH    q„çÞÌ®Ò               < N o r w e g i a n . l a n g X      ¤·     |·     ÄH    æéÞÌ®Ò €             < N o r w e g i a n . l a n g X      ¥·     |·     hÄH    `HìÞÌ®Ò                < P e r s i a n . l a n g     X      ¥·     |·     ÀÄH    `HìÞÌ®Ò               < P e r s i a n . l a n g     X      ¥·     |·     ÅH    `HìÞÌ®Ò               < P e r s i a n . l a n g     X      ¥·     |·     pÅH    `HìÞÌ®Ò               < P e r s i a n . l a n g     X      ¥·     |·     ÈÅH    `HìÞÌ®Ò €             < P e r s i a n . l a n g     X      ¦·     |·      ÆH    ÏªîÞÌ®Ò                < P o l i s h . l a n g     g X      ¦·     |·     xÆH    ÏªîÞÌ®Ò               < P o l i s h . l a n g     g X      ¦·     |·     ÐÆH    ÏªîÞÌ®Ò               < P o l i s h . l a n g     g X      ¦·     |·     (ÇH    ÏªîÞÌ®Ò               < P o l i s h . l a n g     g X      ¦·     |·     €ÇH    ÏªîÞÌ®Ò €             < P o l i s h . l a n g     g h      §·     |·     ØÇH    ÏªîÞÌ®Ò               , < P o r t u g u e s e - B r a s i l . l a n g h      §·     |·     @ÈH    ÏªîÞÌ®Ò              , < P o r t u g u e s e - B r a s i l . l a n g h      §·     |·     ¨ÈH    ÏªîÞÌ®Ò              , < P o r t u g u e s e - B r a s i l . l a n g h      §·     |·     ÉH    ÏªîÞÌ®Ò              , < P o r t u g u e s e - B r a s i l . l a n g h      §·     |·     xÉH    ÏªîÞÌ®Ò €            , < P o r t u g u e s e - B r a s i l . l a n g `      ¨·     |·     àÉH     ñÞÌ®Ò                < P o r t u g u e s e . l a n g     ÿÿ`      ¨·     |·     @ÊH     ñÞÌ®Ò               < P o r t u g u e s e . l a n g     ÿÿ`      ¨·     |·      ÊH     ñÞÌ®Ò               < P o r t u g u e s e . l a n g     ÿÿ`      ¨·     |·      ËH     ñÞÌ®Ò               < P o r t u g u e s e . l a n g     ÿÿ`      ¨·     |·     `ËH     ñÞÌ®Ò €             < P o r t u g u e s e . l a n g     ÿÿX      ©·     |·     ÀËH    poóÞÌ®Ò                < R o m a n i a n . l a n g   X      ©·     |·     ÌH    poóÞÌ®Ò               < R o m a n i a n . l a n g   X      ©·     |·     pÌH    poóÞÌ®Ò               < R o m a n i a n . l a n g   X      ©·     |·     ÈÌH    poóÞÌ®Ò               < R o m a n i a n . l a n g   X      ©·     |·      ÍH    poóÞÌ®Ò €             < R o m a n i a n . l a n g   X      ª·     |·     xÍH    poóÞÌ®Ò                < R u s s i a n . l a n g     X      ª·     |·     ÐÍH    poóÞÌ®Ò               < R u s s i a n . l a n g     X      ª·     |·     (ÎH    poóÞÌ®Ò               < R u s s i a n . l a n g     X      ª·     |·     €ÎH    poóÞÌ®Ò               < R u s s i a n . l a n g     X      ª·     |·     ØÎH    poóÞÌ®Ò €             < R u s s i a n . l a n g     X      «·     |·     0ÏH    nÒõÞÌ®Ò                < S e r b i a n . l a n g     X      «·     |·     ˆÏH    nÒõÞÌ®Ò               < S e r b i a n . l a n g                                     X      «·     |·      ÐH    nÒõÞÌ®Ò               < S e r b i a n . l a n g     X      «·     |·     XÐH    nÒõÞÌ®Ò               < S e r b i a n . l a n g     X      «·     |·     °ÐH    nÒõÞÌ®Ò €             < S e r b i a n . l a n g     X      ¬·     |·     ÑH    nÒõÞÌ®Ò                < S l o v a k . l a n g     g X      ¬·     |·     `ÑH    nÒõÞÌ®Ò               < S l o v a k . l a n g     g X      ¬·     |·     ¸ÑH    nÒõÞÌ®Ò               < S l o v a k . l a n g     g X      ¬·     |·     ÒH    nÒõÞÌ®Ò               < S l o v a k . l a n g     g X      ¬·     |·     hÒH    nÒõÞÌ®Ò €             < S l o v a k . l a n g     g X      ­·     |·     ÀÒH    ë4øÞÌ®Ò                < S l o v e n i a n . l a n g X      ­·     |·     ÓH    ë4øÞÌ®Ò               < S l o v e n i a n . l a n g X      ­·     |·     pÓH    ë4øÞÌ®Ò               < S l o v e n i a n . l a n g X      ­·     |·     ÈÓH    ë4øÞÌ®Ò               < S l o v e n i a n . l a n g X      ­·     |·      ÔH    ë4øÞÌ®Ò €             < S l o v e n i a n . l a n g X      ®·     |·     xÔH    ë4øÞÌ®Ò                < S p a n i s h . l a n g     X      ®·     |·     ÐÔH    ë4øÞÌ®Ò               < S p a n i s h . l a n g     X      ®·     |·     (ÕH    ë4øÞÌ®Ò               < S p a n i s h . l a n g     X      ®·     |·     €ÕH    ë4øÞÌ®Ò               < S p a n i s h . l a n g     X      ®·     |·     ØÕH    ë4øÞÌ®Ò €             < S p a n i s h . l a n g     X      ¯·     |·     0ÖH    ë4øÞÌ®Ò                < S w a h i l i . l a n g     X      ¯·     |·     ˆÖH    ë4øÞÌ®Ò               < S w a h i l i . l a n g     X      ¯·     |·     àÖH    ë4øÞÌ®Ò               < S w a h i l i . l a n g     X      ¯·     |·     8×H    ë4øÞÌ®Ò               < S w a h i l i . l a n g     X      ¯·     |·     ×H    ë4øÞÌ®Ò €             < S w a h i l i . l a n g     X      °·     |·     è×H    3—úÞÌ®Ò                < S w e d i s h . l a n g     X      °·     |·     @ØH    3—úÞÌ®Ò               < S w e d i s h . l a n g     X      °·     |·     ˜ØH    3—úÞÌ®Ò               < S w e d i s h . l a n g     X      °·     |·     ðØH    3—úÞÌ®Ò               < S w e d i s h . l a n g     X      °·     |·     HÙH    3—úÞÌ®Ò €             < S w e d i s h . l a n g     P      ±·     |·      ÙH    3—úÞÌ®Ò                < T a m i l . l a n g P      ±·     |·     ðÙH    3—úÞÌ®Ò               < T a m i l . l a n g P      ±·     |·     @ÚH    3—úÞÌ®Ò               < T a m i l . l a n g P      ±·     |·     ÚH    3—úÞÌ®Ò               < T a m i l . l a n g P      ±·     |·     àÚH    3—úÞÌ®Ò €             < T a m i l . l a n g P      ²·     |·     0ÛH    zùüÞÌ®Ò                < T h a i . l a n g   P      ²·     |·     €ÛH    zùüÞÌ®Ò               < T h a i . l a n g   P      ²·     |·     ÐÛH    zùüÞÌ®Ò               < T h a i . l a n g   P      ²·     |·      ÜH    zùüÞÌ®Ò               < T h a i . l a n g   P      ²·     |·     pÜH    zùüÞÌ®Ò €             < T h a i . l a n g   X      ³·     |·     ÀÜH    zùüÞÌ®Ò                < T u r k i s h . l a n g     X      ³·     |·     ÝH    zùüÞÌ®Ò               < T u r k i s h . l a n g     X      ³·     |·     pÝH    zùüÞÌ®Ò               < T u r k i s h . l a n g     X      ³·     |·     ÈÝH    zùüÞÌ®Ò               < T u r k i s h . l a n g     X      ³·     |·      ÞH    zùüÞÌ®Ò €             < T u r k i s h . l a n g     X      ´·     |·     xÞH    g¾ßÌ®Ò                < U k r a n i a n . l a n g   X      ´·     |·     ÐÞH    g¾ßÌ®Ò               < U k r a n i a n . l a n g   X      ´·     |·     (ßH    g¾ßÌ®Ò               < U k r a n i a n . l a n g   X      ´·     |·     €ßH    g¾ßÌ®Ò               < U k r a n i a n . l a n g                                           X      ´·     |·      àH    g¾ßÌ®Ò €             < U k r a n i a n . l a n g   P      µ·     |·     XàH    g¾ßÌ®Ò                < U r d u . l a n g   P      µ·     |·     ¨àH    g¾ßÌ®Ò               < U r d u . l a n g   P      µ·     |·     øàH    g¾ßÌ®Ò               < U r d u . l a n g   P      µ·     |·     HáH    g¾ßÌ®Ò               < U r d u . l a n g   P      µ·     |·     ˜áH    g¾ßÌ®Ò €             < U r d u . l a n g   P      ¶·     |·     èáH    ´"ßÌ®Ò                < U z b e k . l a n g P      ¶·     |·     8âH    ´"ßÌ®Ò               < U z b e k . l a n g P      ¶·     |·     ˆâH    ´"ßÌ®Ò               < U z b e k . l a n g P      ¶·     |·     ØâH    ´"ßÌ®Ò               < U z b e k . l a n g P      ¶·     |·     (ãH    ´"ßÌ®Ò €             < U z b e k . l a n g `      ··     |·     xãH    ´"ßÌ®Ò                < V i e t n a m e s e . l a n g       `      ··     |·     ØãH    ´"ßÌ®Ò               < V i e t n a m e s e . l a n g       `      ··     |·     8äH    ´"ßÌ®Ò               < V i e t n a m e s e . l a n g       `      ··     |·     ˜äH    ´"ßÌ®Ò               < V i e t n a m e s e . l a n g       `      ··     |·     øäH    ´"ßÌ®Ò €             < V i e t n a m e s e . l a n g       X      ¸·     ?·     XåH    À‚ßÌ®Ò               < i n t e g r a t i o n     d X      ¸·     ?·     °åH    À‚ßÌ®Ò  €            < i n t e g r a t i o n     d X      ¸·     ?·     æH    À‚ßÌ®Ò €              < i n t e g r a t i o n     d X      ¸·     ?·     `æH    À‚ßÌ®Ò € €            < i n t e g r a t i o n     d P      ¹·     ¸·     ¸æH    À‚ßÌ®Ò               < b o o t s t r a p   P      ¹·     ¸·     çH    À‚ßÌ®Ò  €            < b o o t s t r a p   P      ¹·     ¸·     XçH    À‚ßÌ®Ò €              < b o o t s t r a p   P      ¹·     ¸·     ¨çH    À‚ßÌ®Ò € €            < b o o t s t r a p   @      º·     ¹·     øçH    À‚ßÌ®Ò               < 1   @      º·     ¹·     8èH    À‚ßÌ®Ò  €            < 1   @      º·     ¹·     xèH    À‚ßÌ®Ò €              < 1   @      º·     ¹·     ¸èH    À‚ßÌ®Ò € €            < 1   p      »·     º·     øèH    À‚ßÌ®Ò               0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      »·     º·     héH    À‚ßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      »·     º·     ØéH    À‚ßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      »·     º·     HêH    À‚ßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      »·     º·     ¸êH    À‚ßÌ®Ò €            0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      ¼·     º·     (ëH    ‰åßÌ®Ò               . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¼·     º·     ˜ëH    ‰åßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¼·     º·     ìH    ‰åßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¼·     º·     xìH    ‰åßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¼·     º·     èìH    ‰åßÌ®Ò €            . < d a t a T a b l e s . b o o t s t r a p . j s       @      ½·     ¹·     XíH    ‰åßÌ®Ò               < 2   @      ½·     ¹·     ˜íH    ‰åßÌ®Ò  €            < 2   @      ½·     ¹·     ØíH    ‰åßÌ®Ò €              < 2   @      ½·     ¹·     îH    ‰åßÌ®Ò € €            < 2   p      ¾·     ½·     XîH    ›GßÌ®Ò               0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      ¾·     ½·     ÈîH    ›GßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      ¾·     ½·     8ïH    ›GßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s                                                                                             p      ¾·     ½·      ðH    ›GßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      ¾·     ½·     pðH    ›GßÌ®Ò €            0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      ¿·     ½·     àðH    ›GßÌ®Ò               . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¿·     ½·     PñH    ›GßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¿·     ½·     ÀñH    ›GßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¿·     ½·     0òH    ›GßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      ¿·     ½·      òH    ›GßÌ®Ò €            . < d a t a T a b l e s . b o o t s t r a p . j s       x      À·     ½·     óH    ªßÌ®Ò               6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      À·     ½·     ˆóH    ªßÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      À·     ½·      ôH    ªßÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      À·     ½·     xôH    ªßÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      À·     ½·     ðôH    ªßÌ®Ò €            6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . P      Á·     ½·     hõH    ªßÌ®Ò                < i n d e x . h t m l P      Á·     ½·     ¸õH    ÈßÌ®Ò               < i n d e x . h t m l P      Á·     ½·     öH    ÈßÌ®Ò               < i n d e x . h t m l P      Á·     ½·     XöH    ÈßÌ®Ò               < i n d e x . h t m l P      Á·     ½·     ¨öH    ÈßÌ®Ò €             < i n d e x . h t m l @      Â·     ¹·     øöH    3nßÌ®Ò               < 3   @      Â·     ¹·     8÷H    3nßÌ®Ò  €            < 3   @      Â·     ¹·     x÷H    3nßÌ®Ò €              < 3   @      Â·     ¹·     ¸÷H    3nßÌ®Ò € €            < 3   p      Ã·     Â·     ø÷H    3nßÌ®Ò               0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      Ã·     Â·     høH    3nßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      Ã·     Â·     ØøH    3nßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      Ã·     Â·     HùH    3nßÌ®Ò              0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      Ã·     Â·     ¸ùH    3nßÌ®Ò €            0 < d a t a T a b l e s . b o o t s t r a p . c s s     p      Ä·     Â·     (úH    ?ÑßÌ®Ò               . < d a t a T a b l e s . b o o t s t r a p . j s       p      Ä·     Â·     ˜úH    ?ÑßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      Ä·     Â·     ûH    ?ÑßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      Ä·     Â·     xûH    ?ÑßÌ®Ò              . < d a t a T a b l e s . b o o t s t r a p . j s       p      Ä·     Â·     èûH    ?ÑßÌ®Ò €            . < d a t a T a b l e s . b o o t s t r a p . j s       x      Å·     Â·     XüH    ?ÑßÌ®Ò               6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      Å·     Â·     ÐüH    ?ÑßÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      Å·     Â·     HýH    ?ÑßÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      Å·     Â·     ÀýH    ?ÑßÌ®Ò              6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . x      Å·     Â·     8þH    ?ÑßÌ®Ò €            6 < d a t a T a b l e s . b o o t s t r a p . m i n . j s     . P      Æ·     Â·     °þH    p3ßÌ®Ò                < i n d e x . h t m l P      Æ·     Â·      ÿH    p3ßÌ®Ò               < i n d e x . h t m l P      Æ·     Â·     PÿH    p3ßÌ®Ò               < i n d e x . h t m l P      Æ·     Â·      ÿH    p3ßÌ®Ò               < i n d e x . h t m l                 P      Æ·     Â·       I    p3ßÌ®Ò €             < i n d e x . h t m l H      Ç·     ¹·     P I    p3ßÌ®Ò               < i m a g e s H      Ç·     ¹·     ˜ I    p3ßÌ®Ò  €            < i m a g e s H      Ç·     ¹·     à I    p3ßÌ®Ò €              < i m a g e s H      Ç·     ¹·     (I    p3ßÌ®Ò € €            < i m a g e s X      È·     Ç·     pI    p3ßÌ®Ò                < s o r t _ a s c . p n g     X      È·     Ç·     ÈI    p3ßÌ®Ò               < s o r t _ a s c . p n g     X      È·     Ç·      I    p3ßÌ®Ò               < s o r t _ a s c . p n g     X      È·     Ç·     xI    p3ßÌ®Ò               < s o r t _ a s c . p n g     X      È·     Ç·     ÐI    p3ßÌ®Ò €             < s o r t _ a s c . p n g     h      É·     Ç·     (I    p3ßÌ®Ò               * < s o r t _ a s c _ d i s a b l e d . p n g   h      É·     Ç·     I    p3ßÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      É·     Ç·     øI    6•ßÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      É·     Ç·     `I    6•ßÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      É·     Ç·     ÈI    6•ßÌ®Ò €            * < s o r t _ a s c _ d i s a b l e d . p n g   X      Ê·     Ç·     0I    6•ßÌ®Ò                < s o r t _ b o t h . p n g   X      Ê·     Ç·     ˆI    6•ßÌ®Ò               < s o r t _ b o t h . p n g   X      Ê·     Ç·     àI    6•ßÌ®Ò               < s o r t _ b o t h . p n g   X      Ê·     Ç·     8I    6•ßÌ®Ò               < s o r t _ b o t h . p n g   X      Ê·     Ç·     I    6•ßÌ®Ò €             < s o r t _ b o t h . p n g   X      Ë·     Ç·     èI    6•ßÌ®Ò                < s o r t _ d e s c . p n g   X      Ë·     Ç·     @I    6•ßÌ®Ò               < s o r t _ d e s c . p n g   X      Ë·     Ç·     ˜I    6•ßÌ®Ò               < s o r t _ d e s c . p n g   X      Ë·     Ç·     ðI    6•ßÌ®Ò               < s o r t _ d e s c . p n g   X      Ë·     Ç·     HI    6•ßÌ®Ò €             < s o r t _ d e s c . p n g   h      Ì·     Ç·      I    6•ßÌ®Ò               , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ì·     Ç·     	I    6•ßÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ì·     Ç·     p	I    6•ßÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ì·     Ç·     Ø	I    6•ßÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ì·     Ç·     @
+I    6•ßÌ®Ò €            , < s o r t _ d e s c _ d i s a b l e d . p n g X      Í·     ¸·     ¨
+I    'øßÌ®Ò               < f o n t - a w e s o m e     X      Í·     ¸·      I    'øßÌ®Ò  €            < f o n t - a w e s o m e     X      Í·     ¸·     XI    'øßÌ®Ò €              < f o n t - a w e s o m e     X      Í·     ¸·     °I    'øßÌ®Ò € €            < f o n t - a w e s o m e     X      Î·     Í·     I    ZßÌ®Ò                < b o o t s t r a p . h t m l X      Î·     Í·     `I    ZßÌ®Ò               < b o o t s t r a p . h t m l X      Î·     Í·     ¸I    ZßÌ®Ò               < b o o t s t r a p . h t m l X      Î·     Í·     I    ZßÌ®Ò               < b o o t s t r a p . h t m l X      Î·     Í·     hI    ZßÌ®Ò €             < b o o t s t r a p . h t m l p      Ï·     Í·     ÀI    ZßÌ®Ò               4 < d a t a T a b l e s . f o n t A w e s o m e . c s s p      Ï·     Í·     0I    ZßÌ®Ò              4 < d a t a T a b l e s . f o n t A w e s o m e . c s s p      Ï·     Í·      I    ZßÌ®Ò              4 < d a t a T a b l e s . f o n t A w e s o m e . c s s p      Ï·     Í·     I    ZßÌ®Ò              4 < d a t a T a b l e s . f o n t A w e s o m e . c s s p      Ï·     Í·     €I    ZßÌ®Ò €            4 < d a t a T a b l e s . f o n t A w e s o m e . c s s                 `      Ð·     Í·      I    a¼ ßÌ®Ò                < d a t a t a b l e s . h t m l     ÿÿ`      Ð·     Í·     `I    a¼ ßÌ®Ò               < d a t a t a b l e s . h t m l     ÿÿ`      Ð·     Í·     ÀI    a¼ ßÌ®Ò               < d a t a t a b l e s . h t m l     ÿÿ`      Ð·     Í·      I    a¼ ßÌ®Ò               < d a t a t a b l e s . h t m l     ÿÿ`      Ð·     Í·     €I    a¼ ßÌ®Ò €             < d a t a t a b l e s . h t m l     ÿÿ`      Ñ·     Í·     àI    ­#ßÌ®Ò                < f o u n d a t i o n . h t m l     p `      Ñ·     Í·     @I    ­#ßÌ®Ò               < f o u n d a t i o n . h t m l     p `      Ñ·     Í·      I    ­#ßÌ®Ò               < f o u n d a t i o n . h t m l     p `      Ñ·     Í·      I    ­#ßÌ®Ò               < f o u n d a t i o n . h t m l     p `      Ñ·     Í·     `I    ­#ßÌ®Ò €             < f o u n d a t i o n . h t m l     p P      Ò·     ¸·     ÀI    ­#ßÌ®Ò               < f o u n d a t i o n P      Ò·     ¸·     I    ­#ßÌ®Ò  €            < f o u n d a t i o n P      Ò·     ¸·     `I    ­#ßÌ®Ò €              < f o u n d a t i o n P      Ò·     ¸·     °I    ­#ßÌ®Ò € €            < f o u n d a t i o n p      Ó·     Ò·      I    ­#ßÌ®Ò               2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      Ó·     Ò·     pI    ­#ßÌ®Ò              2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      Ó·     Ò·     àI    ­#ßÌ®Ò              2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      Ó·     Ò·     PI    ­#ßÌ®Ò              2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      Ó·     Ò·     ÀI    ­#ßÌ®Ò €            2 < d a t a T a b l e s . f o u n d a t i o n . c s s   p      Ô·     Ò·     0I    %ßÌ®Ò               0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      Ô·     Ò·      I    %ßÌ®Ò              0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      Ô·     Ò·     I    %ßÌ®Ò              0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      Ô·     Ò·     €I    %ßÌ®Ò              0 < d a t a T a b l e s . f o u n d a t i o n . j s     p      Ô·     Ò·     ðI    %ßÌ®Ò €            0 < d a t a T a b l e s . f o u n d a t i o n . j s     x      Õ·     Ò·     `I    }F*ßÌ®Ò               8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      Õ·     Ò·     ØI    }F*ßÌ®Ò              8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      Õ·     Ò·     PI    }F*ßÌ®Ò              8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      Õ·     Ò·     ÈI    }F*ßÌ®Ò              8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     x      Õ·     Ò·     @I    }F*ßÌ®Ò €            8 < d a t a T a b l e s . f o u n d a t i o n . m i n . j s     P      Ö·     Ò·     ¸I    ×¨,ßÌ®Ò                < i n d e x . h t m l P      Ö·     Ò·     I    ×¨,ßÌ®Ò               < i n d e x . h t m l P      Ö·     Ò·     XI    ×¨,ßÌ®Ò               < i n d e x . h t m l P      Ö·     Ò·     ¨I    ×¨,ßÌ®Ò               < i n d e x . h t m l P      Ö·     Ò·     øI    ×¨,ßÌ®Ò €             < i n d e x . h t m l H      ×·     Ò·     HI    ×¨,ßÌ®Ò               < i m a g e s H      ×·     Ò·     I    ×¨,ßÌ®Ò  €            < i m a g e s H      ×·     Ò·     ØI    ×¨,ßÌ®Ò €              < i m a g e s H      ×·     Ò·      I    ×¨,ßÌ®Ò € €            < i m a g e s X      Ø·     ×·     hI    ª
+/ßÌ®Ò                < s o r t _ a s c . p n g     X      Ø·     ×·     ÀI    ª
+/ßÌ®Ò               < s o r t _ a s c . p n g     X      Ø·     ×·     I    ª
+/ßÌ®Ò               < s o r t _ a s c . p n g     X      Ø·     ×·     pI    ª
+/ßÌ®Ò               < s o r t _ a s c . p n g                                                             X      Ø·     ×·       I    ª
+/ßÌ®Ò €             < s o r t _ a s c . p n g     h      Ù·     ×·     X I    ª
+/ßÌ®Ò               * < s o r t _ a s c _ d i s a b l e d . p n g   h      Ù·     ×·     À I    ª
+/ßÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      Ù·     ×·     (!I    ª
+/ßÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      Ù·     ×·     !I    ª
+/ßÌ®Ò              * < s o r t _ a s c _ d i s a b l e d . p n g   h      Ù·     ×·     ø!I    ª
+/ßÌ®Ò €            * < s o r t _ a s c _ d i s a b l e d . p n g   X      Ú·     ×·     `"I    ª
+/ßÌ®Ò                < s o r t _ b o t h . p n g   X      Ú·     ×·     ¸"I    ª
+/ßÌ®Ò               < s o r t _ b o t h . p n g   X      Ú·     ×·     #I    ª
+/ßÌ®Ò               < s o r t _ b o t h . p n g   X      Ú·     ×·     h#I    ª
+/ßÌ®Ò               < s o r t _ b o t h . p n g   X      Ú·     ×·     À#I    ª
+/ßÌ®Ò €             < s o r t _ b o t h . p n g   X      Û·     ×·     $I    ª
+/ßÌ®Ò                < s o r t _ d e s c . p n g   X      Û·     ×·     p$I    ª
+/ßÌ®Ò               < s o r t _ d e s c . p n g   X      Û·     ×·     È$I    ª
+/ßÌ®Ò               < s o r t _ d e s c . p n g   X      Û·     ×·      %I    ª
+/ßÌ®Ò               < s o r t _ d e s c . p n g   X      Û·     ×·     x%I    ª
+/ßÌ®Ò €             < s o r t _ d e s c . p n g   h      Ü·     ×·     Ð%I    ª
+/ßÌ®Ò               , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ü·     ×·     8&I    ª
+/ßÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ü·     ×·      &I    ª
+/ßÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ü·     ×·     'I    ª
+/ßÌ®Ò              , < s o r t _ d e s c _ d i s a b l e d . p n g h      Ü·     ×·     p'I    ª
+/ßÌ®Ò €            , < s o r t _ d e s c _ d i s a b l e d . p n g P      Ý·     ¸·     Ø'I    jm1ßÌ®Ò               < j q u e r y u i     P      Ý·     ¸·     ((I    jm1ßÌ®Ò  €            < j q u e r y u i     P      Ý·     ¸·     x(I    jm1ßÌ®Ò €              < j q u e r y u i     P      Ý·     ¸·     È(I    jm1ßÌ®Ò € €            < j q u e r y u i     p      Þ·     Ý·     )I    jm1ßÌ®Ò               . < d a t a T a b l e s . j q u e r y u i . c s s       p      Þ·     Ý·     ˆ)I    jm1ßÌ®Ò              . < d a t a T a b l e s . j q u e r y u i . c s s       p      Þ·     Ý·     ø)I    jm1ßÌ®Ò              . < d a t a T a b l e s . j q u e r y u i . c s s       p      Þ·     Ý·     h*I    jm1ßÌ®Ò              . < d a t a T a b l e s . j q u e r y u i . c s s       p      Þ·     Ý·     Ø*I    jm1ßÌ®Ò €            . < d a t a T a b l e s . j q u e r y u i . c s s       h      ß·     Ý·     H+I    ôÏ3ßÌ®Ò               , < d a t a T a b l e s . j q u e r y u i . j s h      ß·     Ý·     °+I    ôÏ3ßÌ®Ò              , < d a t a T a b l e s . j q u e r y u i . j s h      ß·     Ý·     ,I    ôÏ3ßÌ®Ò              , < d a t a T a b l e s . j q u e r y u i . j s h      ß·     Ý·     €,I    ôÏ3ßÌ®Ò              , < d a t a T a b l e s . j q u e r y u i . j s h      ß·     Ý·     è,I    ôÏ3ßÌ®Ò €            , < d a t a T a b l e s . j q u e r y u i . j s p      à·     Ý·     P-I    ôÏ3ßÌ®Ò               4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      à·     Ý·     À-I    ôÏ3ßÌ®Ò              4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      à·     Ý·     0.I    ôÏ3ßÌ®Ò              4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      à·     Ý·      .I    ôÏ3ßÌ®Ò              4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      à·     Ý·     /I    ôÏ3ßÌ®Ò €            4 < d a t a T a b l e s . j q u e r y u i . m i n . j s p      á·     Ý·     €/I    26ßÌ®Ò               0 < d a t a T a b l e s . j q u e r y u i . s c s s                     p      á·     Ý·      0I    26ßÌ®Ò              0 < d a t a T a b l e s . j q u e r y u i . s c s s     p      á·     Ý·     p0I    26ßÌ®Ò              0 < d a t a T a b l e s . j q u e r y u i . s c s s     p      á·     Ý·     à0I    26ßÌ®Ò              0 < d a t a T a b l e s . j q u e r y u i . s c s s     p      á·     Ý·     P1I    26ßÌ®Ò €            0 < d a t a T a b l e s . j q u e r y u i . s c s s     P      â·     Ý·     À1I    °”8ßÌ®Ò                < i n d e x . h t m l P      â·     Ý·     2I    °”8ßÌ®Ò               < i n d e x . h t m l P      â·     Ý·     `2I    °”8ßÌ®Ò               < i n d e x . h t m l P      â·     Ý·     °2I    °”8ßÌ®Ò               < i n d e x . h t m l P      â·     Ý·      3I    °”8ßÌ®Ò €             < i n d e x . h t m l P      ã·     ?·     P3I    °”8ßÌ®Ò               < p a g i n a t i o n P      ã·     ?·      3I    °”8ßÌ®Ò  €            < p a g i n a t i o n P      ã·     ?·     ð3I    °”8ßÌ®Ò €              < p a g i n a t i o n P      ã·     ?·     @4I    °”8ßÌ®Ò € €            < p a g i n a t i o n X      ä·     ã·     4I    Üö:ßÌ®Ò                < e l l i p s e s . j s     N X      ä·     ã·     è4I    Üö:ßÌ®Ò               < e l l i p s e s . j s     N X      ä·     ã·     @5I    Üö:ßÌ®Ò               < e l l i p s e s . j s     N X      ä·     ã·     ˜5I    Üö:ßÌ®Ò               < e l l i p s e s . j s     N X      ä·     ã·     ð5I    Üö:ßÌ®Ò €             < e l l i p s e s . j s     N P      å·     ã·     H6I    šX=ßÌ®Ò                < e x t j s . j s     P      å·     ã·     ˜6I    šX=ßÌ®Ò               < e x t j s . j s     P      å·     ã·     è6I    šX=ßÌ®Ò               < e x t j s . j s     P      å·     ã·     87I    šX=ßÌ®Ò               < e x t j s . j s     P      å·     ã·     ˆ7I    šX=ßÌ®Ò €             < e x t j s . j s     X      æ·     ã·     Ø7I    ®»?ßÌ®Ò                < f o u r _ b u t t o n . j s X      æ·     ã·     08I    ®»?ßÌ®Ò               < f o u r _ b u t t o n . j s X      æ·     ã·     ˆ8I    ®»?ßÌ®Ò               < f o u r _ b u t t o n . j s X      æ·     ã·     à8I    ®»?ßÌ®Ò               < f o u r _ b u t t o n . j s X      æ·     ã·     89I    ®»?ßÌ®Ò €             < f o u r _ b u t t o n . j s P      ç·     ã·     9I    BßÌ®Ò                < i n d e x . h t m l P      ç·     ã·     à9I    BßÌ®Ò               < i n d e x . h t m l P      ç·     ã·     0:I    BßÌ®Ò               < i n d e x . h t m l P      ç·     ã·     €:I    BßÌ®Ò               < i n d e x . h t m l P      ç·     ã·     Ð:I    BßÌ®Ò €             < i n d e x . h t m l P      è·     ã·      ;I    BßÌ®Ò                < i n p u t . j s     P      è·     ã·     p;I    BßÌ®Ò               < i n p u t . j s     P      è·     ã·     À;I    BßÌ®Ò               < i n p u t . j s     P      è·     ã·     <I    BßÌ®Ò               < i n p u t . j s     P      è·     ã·     `<I    ÀDßÌ®Ò €             < i n p u t . j s     X      é·     ã·     °<I    ÀDßÌ®Ò                < s c r o l l i n g . j s     X      é·     ã·     =I    ÀDßÌ®Ò               < s c r o l l i n g . j s     X      é·     ã·     `=I    ÀDßÌ®Ò               < s c r o l l i n g . j s     X      é·     ã·     ¸=I    ÀDßÌ®Ò               < s c r o l l i n g . j s     X      é·     ã·     >I    ÀDßÌ®Ò €             < s c r o l l i n g . j s     P      ê·     ã·     h>I    [ãFßÌ®Ò                < s e l e c t . j s   P      ê·     ã·     ¸>I    [ãFßÌ®Ò               < s e l e c t . j s   P      ê·     ã·     ?I    [ãFßÌ®Ò               < s e l e c t . j s   P      ê·     ã·     X?I    [ãFßÌ®Ò               < s e l e c t . j s   P      ê·     ã·     ¨?I    [ãFßÌ®Ò €             < s e l e c t . j s           P      ë·     ã·      @I    [ãFßÌ®Ò               < j P a g i n a t o r P      ë·     ã·     P@I    [ãFßÌ®Ò  €            < j P a g i n a t o r P      ë·     ã·      @I    [ãFßÌ®Ò €              < j P a g i n a t o r P      ë·     ã·     ð@I    [ãFßÌ®Ò € €            < j P a g i n a t o r p      ì·     ë·     @AI    ÕDIßÌ®Ò               0 < d a t a T a b l e s . j P a g i n a t o r . j s     p      ì·     ë·     °AI    ÕDIßÌ®Ò              0 < d a t a T a b l e s . j P a g i n a t o r . j s     p      ì·     ë·      BI    ÕDIßÌ®Ò              0 < d a t a T a b l e s . j P a g i n a t o r . j s     p      ì·     ë·     BI    ÕDIßÌ®Ò              0 < d a t a T a b l e s . j P a g i n a t o r . j s     p      ì·     ë·      CI    ÕDIßÌ®Ò €            0 < d a t a T a b l e s . j P a g i n a t o r . j s     P      í·     ?·     pCI    ÕDIßÌ®Ò               < s o r t i n g       P      í·     ?·     ÀCI    ÕDIßÌ®Ò  €            < s o r t i n g       P      í·     ?·     DI    ÕDIßÌ®Ò €              < s o r t i n g       P      í·     ?·     `DI    ÕDIßÌ®Ò € €            < s o r t i n g       P      î·     í·     °DI    W§KßÌ®Ò                < . D S _ S t o r e   P      î·     í·      EI    W§KßÌ®Ò               < . D S _ S t o r e   P      î·     í·     PEI    W§KßÌ®Ò               < . D S _ S t o r e   P      î·     í·      EI    W§KßÌ®Ò               < . D S _ S t o r e   P      î·     í·     ðEI    W§KßÌ®Ò €             < . D S _ S t o r e   X      ï·     í·     @FI    W§KßÌ®Ò                < a l t - s t r i n g . j s   X      ï·     í·     ˜FI    W§KßÌ®Ò               < a l t - s t r i n g . j s   X      ï·     í·     ðFI    W§KßÌ®Ò               < a l t - s t r i n g . j s   X      ï·     í·     HGI    W§KßÌ®Ò               < a l t - s t r i n g . j s   X      ï·     í·      GI    W§KßÌ®Ò €             < a l t - s t r i n g . j s   X      ð·     í·     øGI    %	NßÌ®Ò                < a n t i - t h e . j s     ÿÿX      ð·     í·     PHI    %	NßÌ®Ò               < a n t i - t h e . j s     ÿÿX      ð·     í·     ¨HI    %	NßÌ®Ò               < a n t i - t h e . j s     ÿÿX      ð·     í·      II    %	NßÌ®Ò               < a n t i - t h e . j s     ÿÿX      ð·     í·     XII    %	NßÌ®Ò €             < a n t i - t h e . j s     ÿÿ`      ñ·     í·     °II    %	NßÌ®Ò               " < c h i n e s e - s t r i n g . j s   `      ñ·     í·     JI    %	NßÌ®Ò              " < c h i n e s e - s t r i n g . j s   `      ñ·     í·     pJI    %	NßÌ®Ò              " < c h i n e s e - s t r i n g . j s   `      ñ·     í·     ÐJI    %	NßÌ®Ò              " < c h i n e s e - s t r i n g . j s   `      ñ·     í·     0KI    %	NßÌ®Ò €            " < c h i n e s e - s t r i n g . j s   X      ò·     í·     KI    ‘kPßÌ®Ò                < c u r r e n c y . j s     y X      ò·     í·     èKI    ‘kPßÌ®Ò               < c u r r e n c y . j s     y X      ò·     í·     @LI    ‘kPßÌ®Ò               < c u r r e n c y . j s     y X      ò·     í·     ˜LI    ‘kPßÌ®Ò               < c u r r e n c y . j s     y X      ò·     í·     ðLI    ‘kPßÌ®Ò €             < c u r r e n c y . j s     y h      ó·     í·     HMI    óÍRßÌ®Ò               & < d a t e - d d - M M M - y y y y . j s     y h      ó·     í·     °MI    óÍRßÌ®Ò              & < d a t e - d d - M M M - y y y y . j s     y h      ó·     í·     NI    óÍRßÌ®Ò              & < d a t e - d d - M M M - y y y y . j s     y h      ó·     í·     €NI    óÍRßÌ®Ò              & < d a t e - d d - M M M - y y y y . j s     y h      ó·     í·     èNI    óÍRßÌ®Ò €            & < d a t e - d d - M M M - y y y y . j s     y P      ô·     í·     POI    L0UßÌ®Ò                < d a t e - d e . j s P      ô·     í·      OI    L0UßÌ®Ò               < d a t e - d e . j s                 P      ô·     í·      PI    L0UßÌ®Ò               < d a t e - d e . j s P      ô·     í·     PPI    L0UßÌ®Ò               < d a t e - d e . j s P      ô·     í·      PI    L0UßÌ®Ò €             < d a t e - d e . j s P      õ·     í·     ðPI    ”’WßÌ®Ò                < d a t e - e u . j s P      õ·     í·     @QI    ”’WßÌ®Ò               < d a t e - e u . j s P      õ·     í·     QI    ”’WßÌ®Ò               < d a t e - e u . j s P      õ·     í·     àQI    ”’WßÌ®Ò               < d a t e - e u . j s P      õ·     í·     0RI    ”’WßÌ®Ò €             < d a t e - e u . j s X      ö·     í·     €RI    ”’WßÌ®Ò                < d a t e - e u r o . j s     X      ö·     í·     ØRI    ”’WßÌ®Ò               < d a t e - e u r o . j s     X      ö·     í·     0SI    ”’WßÌ®Ò               < d a t e - e u r o . j s     X      ö·     í·     ˆSI    ”’WßÌ®Ò               < d a t e - e u r o . j s     X      ö·     í·     àSI    ”’WßÌ®Ò €             < d a t e - e u r o . j s     P      ÷·     í·     8TI    èôYßÌ®Ò                < d a t e - u k . j s P      ÷·     í·     ˆTI    èôYßÌ®Ò               < d a t e - u k . j s P      ÷·     í·     ØTI    èôYßÌ®Ò               < d a t e - u k . j s P      ÷·     í·     (UI    èôYßÌ®Ò               < d a t e - u k . j s P      ÷·     í·     xUI    èôYßÌ®Ò €             < d a t e - u k . j s `      ø·     í·     ÈUI    èôYßÌ®Ò               $ < d a t e t i m e - m o m e n t . j s `      ø·     í·     (VI    èôYßÌ®Ò              $ < d a t e t i m e - m o m e n t . j s `      ø·     í·     ˆVI    èôYßÌ®Ò              $ < d a t e t i m e - m o m e n t . j s `      ø·     í·     èVI    èôYßÌ®Ò              $ < d a t e t i m e - m o m e n t . j s `      ø·     í·     HWI    ]W\ßÌ®Ò €            $ < d a t e t i m e - m o m e n t . j s X      ù·     í·     ¨WI    ]W\ßÌ®Ò                < d a t e t i m e - u s . j s X      ù·     í·      XI    ]W\ßÌ®Ò               < d a t e t i m e - u s . j s X      ù·     í·     XXI    ]W\ßÌ®Ò               < d a t e t i m e - u s . j s X      ù·     í·     °XI    ]W\ßÌ®Ò               < d a t e t i m e - u s . j s X      ù·     í·     YI    ]W\ßÌ®Ò €             < d a t e t i m e - u s . j s P      ú·     í·     `YI    zº^ßÌ®Ò                < e n u m . j s     ÒP      ú·     í·     °YI    zº^ßÌ®Ò               < e n u m . j s     ÒP      ú·     í·      ZI    zº^ßÌ®Ò               < e n u m . j s     ÒP      ú·     í·     PZI    zº^ßÌ®Ò               < e n u m . j s     ÒP      ú·     í·      ZI    zº^ßÌ®Ò €             < e n u m . j s     ÒX      û·     í·     ðZI    zº^ßÌ®Ò                < f i l e - s i z e . j s     X      û·     í·     H[I    zº^ßÌ®Ò               < f i l e - s i z e . j s     X      û·     í·      [I    zº^ßÌ®Ò               < f i l e - s i z e . j s     X      û·     í·     ø[I    zº^ßÌ®Ò               < f i l e - s i z e . j s     X      û·     í·     P\I    zº^ßÌ®Ò €             < f i l e - s i z e . j s     h      ü·     í·     ¨\I    aßÌ®Ò               ( < f o r m a t t e d - n u m b e r s . j s     h      ü·     í·     ]I    aßÌ®Ò              ( < f o r m a t t e d - n u m b e r s . j s     h      ü·     í·     x]I    aßÌ®Ò              ( < f o r m a t t e d - n u m b e r s . j s     h      ü·     í·     à]I    aßÌ®Ò              ( < f o r m a t t e d - n u m b e r s . j s     h      ü·     í·     H^I    aßÌ®Ò €            ( < f o r m a t t e d - n u m b e r s . j s     P      ý·     í·     °^I    ó~cßÌ®Ò                < i n d e x . h t m l P      ý·     í·      _I    ó~cßÌ®Ò               < i n d e x . h t m l P      ý·     í·     P_I    ó~cßÌ®Ò               < i n d e x . h t m l P      ý·     í·      _I    ó~cßÌ®Ò               < i n d e x . h t m l                 P      ý·     í·      `I    ó~cßÌ®Ò €             < i n d e x . h t m l X      þ·     í·     P`I    ó~cßÌ®Ò                < i p - a d d r e s s . j s   X      þ·     í·     ¨`I    ó~cßÌ®Ò               < i p - a d d r e s s . j s   X      þ·     í·      aI    ó~cßÌ®Ò               < i p - a d d r e s s . j s   X      þ·     í·     XaI    ó~cßÌ®Ò               < i p - a d d r e s s . j s   X      þ·     í·     °aI    ó~cßÌ®Ò €             < i p - a d d r e s s . j s   X      ÿ·     í·     bI    páeßÌ®Ò                < m o n t h Y e a r . j s     X      ÿ·     í·     `bI    páeßÌ®Ò               < m o n t h Y e a r . j s     X      ÿ·     í·     ¸bI    páeßÌ®Ò               < m o n t h Y e a r . j s     X      ÿ·     í·     cI    páeßÌ®Ò               < m o n t h Y e a r . j s     X      ÿ·     í·     hcI    páeßÌ®Ò €             < m o n t h Y e a r . j s     P       ¸     í·     ÀcI    ÖChßÌ®Ò                < n a t u r a l . j s P       ¸     í·     dI    ÖChßÌ®Ò               < n a t u r a l . j s P       ¸     í·     `dI    ÖChßÌ®Ò               < n a t u r a l . j s P       ¸     í·     °dI    ÖChßÌ®Ò               < n a t u r a l . j s P       ¸     í·      eI    ÖChßÌ®Ò €             < n a t u r a l . j s X      ¸     í·     PeI    4¦jßÌ®Ò                < n u m - h t m l . j s     l X      ¸     í·     ¨eI    4¦jßÌ®Ò               < n u m - h t m l . j s     l X      ¸     í·      fI    4¦jßÌ®Ò               < n u m - h t m l . j s     l X      ¸     í·     XfI    4¦jßÌ®Ò               < n u m - h t m l . j s     l X      ¸     í·     °fI    4¦jßÌ®Ò €             < n u m - h t m l . j s     l `      ¸     í·     gI    ŽmßÌ®Ò                 < n u m e r i c - c o m m a . j s     `      ¸     í·     hgI    ŽmßÌ®Ò                < n u m e r i c - c o m m a . j s     `      ¸     í·     ÈgI    ŽmßÌ®Ò                < n u m e r i c - c o m m a . j s     `      ¸     í·     (hI    ŽmßÌ®Ò                < n u m e r i c - c o m m a . j s     `      ¸     í·     ˆhI    ŽmßÌ®Ò €              < n u m e r i c - c o m m a . j s     P      ¸     í·     èhI    ŽmßÌ®Ò                < p e r c e n t . j s P      ¸     í·     8iI    ŽmßÌ®Ò               < p e r c e n t . j s P      ¸     í·     ˆiI    ŽmßÌ®Ò               < p e r c e n t . j s P      ¸     í·     ØiI    ŽmßÌ®Ò               < p e r c e n t . j s P      ¸     í·     (jI    ŽmßÌ®Ò €             < p e r c e n t . j s P      ¸     í·     xjI    âjoßÌ®Ò                < p e r s i a n . j s P      ¸     í·     ÈjI    âjoßÌ®Ò               < p e r s i a n . j s P      ¸     í·     kI    âjoßÌ®Ò               < p e r s i a n . j s P      ¸     í·     hkI    âjoßÌ®Ò               < p e r s i a n . j s P      ¸     í·     ¸kI    âjoßÌ®Ò €             < p e r s i a n . j s X      ¸     í·     lI    @ÍqßÌ®Ò                < s c i e n t i f i c . j s   X      ¸     í·     `lI    @ÍqßÌ®Ò               < s c i e n t i f i c . j s   X      ¸     í·     ¸lI    @ÍqßÌ®Ò               < s c i e n t i f i c . j s   X      ¸     í·     mI    @ÍqßÌ®Ò               < s c i e n t i f i c . j s   X      ¸     í·     hmI    @ÍqßÌ®Ò €             < s c i e n t i f i c . j s   X      ¸     í·     ÀmI    @ÍqßÌ®Ò                < s i g n e d - n u m . j s   X      ¸     í·     nI    @ÍqßÌ®Ò               < s i g n e d - n u m . j s   X      ¸     í·     pnI    @ÍqßÌ®Ò               < s i g n e d - n u m . j s   X      ¸     í·     ÈnI    @ÍqßÌ®Ò               < s i g n e d - n u m . j s   X      ¸     í·      oI    @ÍqßÌ®Ò €             < s i g n e d - n u m . j s   `      ¸     í·     xoI    §/tßÌ®Ò               $ < s t r i n g M o n t h Y e a r . j s                                         `      ¸     í·      pI    §/tßÌ®Ò              $ < s t r i n g M o n t h Y e a r . j s `      ¸     í·     `pI    §/tßÌ®Ò              $ < s t r i n g M o n t h Y e a r . j s `      ¸     í·     ÀpI    §/tßÌ®Ò              $ < s t r i n g M o n t h Y e a r . j s `      ¸     í·      qI    §/tßÌ®Ò €            $ < s t r i n g M o n t h Y e a r . j s P      ¸     í·     €qI    W‘vßÌ®Ò                < t i m e . j s     Ø«P      ¸     í·     ÐqI    W‘vßÌ®Ò               < t i m e . j s     Ø«P      ¸     í·      rI    W‘vßÌ®Ò               < t i m e . j s     Ø«P      ¸     í·     prI    W‘vßÌ®Ò               < t i m e . j s     Ø«P      ¸     í·     ÀrI    W‘vßÌ®Ò €             < t i m e . j s     Ø«`      	¸     í·     sI    QôxßÌ®Ò                 < t i t l e - n u m e r i c . j s     `      	¸     í·     psI    QôxßÌ®Ò                < t i t l e - n u m e r i c . j s     `      	¸     í·     ÐsI    QôxßÌ®Ò                < t i t l e - n u m e r i c . j s     `      	¸     í·     0tI    QôxßÌ®Ò                < t i t l e - n u m e r i c . j s     `      	¸     í·     tI    QôxßÌ®Ò €              < t i t l e - n u m e r i c . j s     `      
+¸     í·     ðtI    QôxßÌ®Ò                < t i t l e - s t r i n g . j s       `      
+¸     í·     PuI    QôxßÌ®Ò               < t i t l e - s t r i n g . j s       `      
+¸     í·     °uI    QôxßÌ®Ò               < t i t l e - s t r i n g . j s       `      
+¸     í·     vI    QôxßÌ®Ò               < t i t l e - s t r i n g . j s       `      
+¸     í·     pvI    QôxßÌ®Ò €             < t i t l e - s t r i n g . j s       `      ¸     í·     ÐvI    üU{ßÌ®Ò               " < t u r k i s h - s t r i n g . j s   `      ¸     í·     0wI    üU{ßÌ®Ò              " < t u r k i s h - s t r i n g . j s   `      ¸     í·     wI    üU{ßÌ®Ò              " < t u r k i s h - s t r i n g . j s   `      ¸     í·     ðwI    üU{ßÌ®Ò              " < t u r k i s h - s t r i n g . j s   `      ¸     í·     PxI    üU{ßÌ®Ò €            " < t u r k i s h - s t r i n g . j s   `      ¸     í·     °xI    üU{ßÌ®Ò              $ < c u s t o m - d a t a - s o u r c e `      ¸     í·     yI    üU{ßÌ®Ò  €           $ < c u s t o m - d a t a - s o u r c e `      ¸     í·     pyI    üU{ßÌ®Ò €             $ < c u s t o m - d a t a - s o u r c e `      ¸     í·     ÐyI    üU{ßÌ®Ò € €           $ < c u s t o m - d a t a - s o u r c e `      ¸     ¸     0zI    Z¸}ßÌ®Ò                < d o m - c h e c k b o x . j s       `      ¸     ¸     zI    Z¸}ßÌ®Ò               < d o m - c h e c k b o x . j s       `      ¸     ¸     ðzI    Z¸}ßÌ®Ò               < d o m - c h e c k b o x . j s       `      ¸     ¸     P{I    Z¸}ßÌ®Ò               < d o m - c h e c k b o x . j s       `      ¸     ¸     °{I    Z¸}ßÌ®Ò €             < d o m - c h e c k b o x . j s       X      ¸     ¸     |I    Z¸}ßÌ®Ò                < d o m - s e l e c t . j s   X      ¸     ¸     h|I    Z¸}ßÌ®Ò               < d o m - s e l e c t . j s   X      ¸     ¸     À|I    Z¸}ßÌ®Ò               < d o m - s e l e c t . j s   X      ¸     ¸     }I    Z¸}ßÌ®Ò               < d o m - s e l e c t . j s   X      ¸     ¸     p}I    Z¸}ßÌ®Ò €             < d o m - s e l e c t . j s   X      ¸     ¸     È}I    ·€ßÌ®Ò                < d o m - t e x t . j s     s X      ¸     ¸      ~I    ·€ßÌ®Ò               < d o m - t e x t . j s     s X      ¸     ¸     x~I    ·€ßÌ®Ò               < d o m - t e x t . j s     s X      ¸     ¸     Ð~I    ·€ßÌ®Ò               < d o m - t e x t . j s     s X      ¸     ¸     (I    ·€ßÌ®Ò €             < d o m - t e x t . j s     s X      ¸     ?·     €I    ·€ßÌ®Ò               < t y p e - d e t e c t i o n                                         X      ¸     ?·      €I    ·€ßÌ®Ò  €            < t y p e - d e t e c t i o n X      ¸     ?·     X€I    ·€ßÌ®Ò €              < t y p e - d e t e c t i o n X      ¸     ?·     °€I    ·€ßÌ®Ò € €            < t y p e - d e t e c t i o n X      ¸     ¸     I    Ã}‚ßÌ®Ò                < c u r r e n c y . j s       X      ¸     ¸     `I    Ã}‚ßÌ®Ò               < c u r r e n c y . j s       X      ¸     ¸     ¸I    Ã}‚ßÌ®Ò               < c u r r e n c y . j s       X      ¸     ¸     ‚I    Ã}‚ßÌ®Ò               < c u r r e n c y . j s       X      ¸     ¸     h‚I    Ã}‚ßÌ®Ò €             < c u r r e n c y . j s       P      ¸     ¸     À‚I    Ã}‚ßÌ®Ò                < d a t e - u k . j s P      ¸     ¸     ƒI    Ã}‚ßÌ®Ò               < d a t e - u k . j s P      ¸     ¸     `ƒI    Ã}‚ßÌ®Ò               < d a t e - u k . j s P      ¸     ¸     °ƒI    Ã}‚ßÌ®Ò               < d a t e - u k . j s P      ¸     ¸      „I    Ã}‚ßÌ®Ò €             < d a t e - u k . j s X      ¸     ¸     P„I    à„ßÌ®Ò                < f i l e - s i z e . j s     X      ¸     ¸     ¨„I    à„ßÌ®Ò               < f i l e - s i z e . j s     X      ¸     ¸      …I    à„ßÌ®Ò               < f i l e - s i z e . j s     X      ¸     ¸     X…I    à„ßÌ®Ò               < f i l e - s i z e . j s     X      ¸     ¸     °…I    à„ßÌ®Ò €             < f i l e - s i z e . j s     `      ¸     ¸     †I    à„ßÌ®Ò                 < f o r m a t t e d - n u m . j s     `      ¸     ¸     h†I    à„ßÌ®Ò                < f o r m a t t e d - n u m . j s     `      ¸     ¸     È†I    à„ßÌ®Ò                < f o r m a t t e d - n u m . j s     `      ¸     ¸     (‡I    à„ßÌ®Ò                < f o r m a t t e d - n u m . j s     `      ¸     ¸     ˆ‡I    à„ßÌ®Ò €              < f o r m a t t e d - n u m . j s     P      ¸     ¸     è‡I    ÑA‡ßÌ®Ò                < i n d e x . h t m l P      ¸     ¸     8ˆI    ÑA‡ßÌ®Ò               < i n d e x . h t m l P      ¸     ¸     ˆˆI    ÑA‡ßÌ®Ò               < i n d e x . h t m l P      ¸     ¸     ØˆI    ÑA‡ßÌ®Ò               < i n d e x . h t m l P      ¸     ¸     (‰I    ÑA‡ßÌ®Ò €             < i n d e x . h t m l X      ¸     ¸     x‰I    ÑA‡ßÌ®Ò                < i p - a d d r e s s . j s   X      ¸     ¸     Ð‰I    ÑA‡ßÌ®Ò               < i p - a d d r e s s . j s   X      ¸     ¸     (ŠI    ÑA‡ßÌ®Ò               < i p - a d d r e s s . j s   X      ¸     ¸     €ŠI    ÑA‡ßÌ®Ò               < i p - a d d r e s s . j s   X      ¸     ¸     ØŠI    ÑA‡ßÌ®Ò €             < i p - a d d r e s s . j s   X      ¸     ¸     0‹I    ¤‰ßÌ®Ò                < n u m - h t m l . j s     . X      ¸     ¸     ˆ‹I    ¤‰ßÌ®Ò               < n u m - h t m l . j s     . X      ¸     ¸     à‹I    ¤‰ßÌ®Ò               < n u m - h t m l . j s     . X      ¸     ¸     8ŒI    ¤‰ßÌ®Ò               < n u m - h t m l . j s     . X      ¸     ¸     ŒI    ¤‰ßÌ®Ò €             < n u m - h t m l . j s     . `      ¸     ¸     èŒI    ¤‰ßÌ®Ò                 < n u m e r i c - c o m m a . j s     `      ¸     ¸     HI    ¤‰ßÌ®Ò                < n u m e r i c - c o m m a . j s     `      ¸     ¸     ¨I    ¤‰ßÌ®Ò                < n u m e r i c - c o m m a . j s     `      ¸     ¸     ŽI    ¤‰ßÌ®Ò                < n u m e r i c - c o m m a . j s     `      ¸     ¸     hŽI    ˆŒßÌ®Ò €              < n u m e r i c - c o m m a . j s     h      ¸     t¶     ÈŽI    ˆŒßÌ®Ò              * < d a t a t a b l e s - r e s p o n s i v e   h      ¸     t¶     0I    ˆŒßÌ®Ò  €           * < d a t a t a b l e s - r e s p o n s i v e   h      ¸     t¶     ˜I    ˆŒßÌ®Ò €             * < d a t a t a b l e s - r e s p o n s i v e   h      ¸     t¶      I    ˆŒßÌ®Ò € €           * < d a t a t a b l e s - r e s p o n s i v e   X      ¸     ¸     hI    ˆŒßÌ®Ò                < . b o w e r . j s o n     ÿÿX      ¸     ¸     ÀI    ˆŒßÌ®Ò               < . b o w e r . j s o n     ÿÿX      ¸     ¸     ‘I    ˆŒßÌ®Ò               < . b o w e r . j s o n     ÿÿX      ¸     ¸     p‘I    ˆŒßÌ®Ò               < . b o w e r . j s o n     ÿÿX      ¸     ¸     È‘I    ˆŒßÌ®Ò €             < . b o w e r . j s o n     ÿÿP      ¸     ¸      ’I    ˆŒßÌ®Ò                < . g i t i g n o r e P      ¸     ¸     p’I    ˆŒßÌ®Ò               < . g i t i g n o r e P      ¸     ¸     À’I    ˆŒßÌ®Ò               < . g i t i g n o r e P      ¸     ¸     “I    ˆŒßÌ®Ò               < . g i t i g n o r e P      ¸     ¸     `“I    óhŽßÌ®Ò €             < . g i t i g n o r e P      ¸     ¸     °“I    óhŽßÌ®Ò                < b o w e r . j s o n P      ¸     ¸      ”I    óhŽßÌ®Ò               < b o w e r . j s o n P      ¸     ¸     P”I    óhŽßÌ®Ò               < b o w e r . j s o n P      ¸     ¸      ”I    óhŽßÌ®Ò               < b o w e r . j s o n P      ¸     ¸     ð”I    óhŽßÌ®Ò €             < b o w e r . j s o n X      ¸     ¸     @•I    ÉËßÌ®Ò                < L i c e n s e . t x t     n X      ¸     ¸     ˜•I    ÉËßÌ®Ò               < L i c e n s e . t x t     n X      ¸     ¸     ð•I    ÉËßÌ®Ò               < L i c e n s e . t x t     n X      ¸     ¸     H–I    ÉËßÌ®Ò               < L i c e n s e . t x t     n X      ¸     ¸      –I    ÉËßÌ®Ò €             < L i c e n s e . t x t     n P      ¸     ¸     ø–I    ÉËßÌ®Ò                < m a k e . s h       P      ¸     ¸     H—I    ÉËßÌ®Ò               < m a k e . s h       P      ¸     ¸     ˜—I    ÉËßÌ®Ò               < m a k e . s h       P      ¸     ¸     è—I    ÉËßÌ®Ò               < m a k e . s h       P      ¸     ¸     8˜I    ÉËßÌ®Ò €             < m a k e . s h       P      ¸     ¸     ˆ˜I    ÉËßÌ®Ò                < R e a d m e . m d   P      ¸     ¸     Ø˜I    ÉËßÌ®Ò               < R e a d m e . m d   P      ¸     ¸     (™I    ÉËßÌ®Ò               < R e a d m e . m d   P      ¸     ¸     x™I    ÉËßÌ®Ò               < R e a d m e . m d   P      ¸     ¸     È™I    ÉËßÌ®Ò €             < R e a d m e . m d   H       ¸     ¸     šI    ÿ-“ßÌ®Ò               < c s s       H       ¸     ¸     `šI    ÿ-“ßÌ®Ò  €            < c s s       H       ¸     ¸     ¨šI    ÿ-“ßÌ®Ò €              < c s s       H       ¸     ¸     ðšI    ÿ-“ßÌ®Ò € €            < c s s       p      !¸      ¸     8›I    ÿ-“ßÌ®Ò               2 < r e s p o n s i v e . b o o t s t r a p . s c s s   p      !¸      ¸     ¨›I    ÿ-“ßÌ®Ò              2 < r e s p o n s i v e . b o o t s t r a p . s c s s   p      !¸      ¸     œI    ÿ-“ßÌ®Ò              2 < r e s p o n s i v e . b o o t s t r a p . s c s s   p      !¸      ¸     ˆœI    ÿ-“ßÌ®Ò              2 < r e s p o n s i v e . b o o t s t r a p . s c s s   p      !¸      ¸     øœI    ÿ-“ßÌ®Ò €            2 < r e s p o n s i v e . b o o t s t r a p . s c s s   p      "¸      ¸     hI    ÿ-“ßÌ®Ò               4 < r e s p o n s i v e . d a t a T a b l e s . s c s s p      "¸      ¸     ØI    ÿ-“ßÌ®Ò              4 < r e s p o n s i v e . d a t a T a b l e s . s c s s p      "¸      ¸     HžI    ÿ-“ßÌ®Ò              4 < r e s p o n s i v e . d a t a T a b l e s . s c s s p      "¸      ¸     ¸žI    ÿ-“ßÌ®Ò              4 < r e s p o n s i v e . d a t a T a b l e s . s c s s p      "¸      ¸     (ŸI    ÿ-“ßÌ®Ò €            4 < r e s p o n s i v e . d a t a T a b l e s . s c s s                                                                                                         p      #¸      ¸       I    ÿ•ßÌ®Ò               4 < r e s p o n s i v e . f o u n d a t i o n . s c s s p      #¸      ¸     p I    ÿ•ßÌ®Ò              4 < r e s p o n s i v e . f o u n d a t i o n . s c s s p      #¸      ¸     à I    ÿ•ßÌ®Ò              4 < r e s p o n s i v e . f o u n d a t i o n . s c s s p      #¸      ¸     P¡I    ÿ•ßÌ®Ò              4 < r e s p o n s i v e . f o u n d a t i o n . s c s s p      #¸      ¸     À¡I    ÿ•ßÌ®Ò €            4 < r e s p o n s i v e . f o u n d a t i o n . s c s s p      $¸      ¸     0¢I    Kò—ßÌ®Ò               0 < r e s p o n s i v e . j q u e r y u i . s c s s     p      $¸      ¸      ¢I    Kò—ßÌ®Ò              0 < r e s p o n s i v e . j q u e r y u i . s c s s     p      $¸      ¸     £I    Kò—ßÌ®Ò              0 < r e s p o n s i v e . j q u e r y u i . s c s s     p      $¸      ¸     €£I    Kò—ßÌ®Ò              0 < r e s p o n s i v e . j q u e r y u i . s c s s     p      $¸      ¸     ð£I    Kò—ßÌ®Ò €            0 < r e s p o n s i v e . j q u e r y u i . s c s s     H      %¸     ¸     `¤I    Kò—ßÌ®Ò               < d o c s     H      %¸     ¸     ¨¤I    Kò—ßÌ®Ò  €            < d o c s     H      %¸     ¸     ð¤I    Kò—ßÌ®Ò €              < d o c s     H      %¸     ¸     8¥I    Kò—ßÌ®Ò € €            < d o c s     H      &¸     %¸     €¥I    Kò—ßÌ®Ò               < a p i     \ H      &¸     %¸     È¥I    Kò—ßÌ®Ò  €            < a p i     \ H      &¸     %¸     ¦I    Kò—ßÌ®Ò €              < a p i     \ H      &¸     %¸     X¦I    Kò—ßÌ®Ò € €            < a p i     \ h      '¸     &¸      ¦I    @UšßÌ®Ò               , < r e s p o n s i v e . i n d e x ( ) . x m l h      '¸     &¸     §I    @UšßÌ®Ò              , < r e s p o n s i v e . i n d e x ( ) . x m l h      '¸     &¸     p§I    @UšßÌ®Ò              , < r e s p o n s i v e . i n d e x ( ) . x m l h      '¸     &¸     Ø§I    @UšßÌ®Ò              , < r e s p o n s i v e . i n d e x ( ) . x m l h      '¸     &¸     @¨I    @UšßÌ®Ò €            , < r e s p o n s i v e . i n d e x ( ) . x m l p      (¸     &¸     ¨¨I    ·œßÌ®Ò               0 < r e s p o n s i v e . r e b u i l d ( ) . x m l     p      (¸     &¸     ©I    ·œßÌ®Ò              0 < r e s p o n s i v e . r e b u i l d ( ) . x m l     p      (¸     &¸     ˆ©I    ·œßÌ®Ò              0 < r e s p o n s i v e . r e b u i l d ( ) . x m l     p      (¸     &¸     ø©I    ·œßÌ®Ò              0 < r e s p o n s i v e . r e b u i l d ( ) . x m l     p      (¸     &¸     hªI    ·œßÌ®Ò €            0 < r e s p o n s i v e . r e b u i l d ( ) . x m l     p      )¸     &¸     ØªI    ŸßÌ®Ò               . < r e s p o n s i v e . r e c a l c ( ) . x m l       p      )¸     &¸     H«I    ŸßÌ®Ò              . < r e s p o n s i v e . r e c a l c ( ) . x m l       p      )¸     &¸     ¸«I    ŸßÌ®Ò              . < r e s p o n s i v e . r e c a l c ( ) . x m l       p      )¸     &¸     (¬I    ŸßÌ®Ò              . < r e s p o n s i v e . r e c a l c ( ) . x m l       p      )¸     &¸     ˜¬I    ŸßÌ®Ò €            . < r e s p o n s i v e . r e c a l c ( ) . x m l       H      *¸     %¸     ­I    ŸßÌ®Ò               < o p t i o n H      *¸     %¸     P­I    ŸßÌ®Ò  €            < o p t i o n H      *¸     %¸     ˜­I    ŸßÌ®Ò €              < o p t i o n H      *¸     %¸     à­I    ŸßÌ®Ò € €            < o p t i o n p      +¸     *¸     (®I    œ|¡ßÌ®Ò               4 < r e s p o n s i v e . b r e a k p o i n t s . x m l p      +¸     *¸     ˜®I    œ|¡ßÌ®Ò              4 < r e s p o n s i v e . b r e a k p o i n t s . x m l p      +¸     *¸     ¯I    œ|¡ßÌ®Ò              4 < r e s p o n s i v e . b r e a k p o i n t s . x m l p      +¸     *¸     x¯I    œ|¡ßÌ®Ò              4 < r e s p o n s i v e . b r e a k p o i n t s . x m l                         p      +¸     *¸      °I    œ|¡ßÌ®Ò €            4 < r e s p o n s i v e . b r e a k p o i n t s . x m l €      ,¸     *¸     p°I    Þ£ßÌ®Ò               > < r e s p o n s i v e . d e t a i l s . r e n d e r e r . x m l       €      ,¸     *¸     ð°I    Þ£ßÌ®Ò              > < r e s p o n s i v e . d e t a i l s . r e n d e r e r . x m l       €      ,¸     *¸     p±I    Þ£ßÌ®Ò              > < r e s p o n s i v e . d e t a i l s . r e n d e r e r . x m l       €      ,¸     *¸     ð±I    Þ£ßÌ®Ò              > < r e s p o n s i v e . d e t a i l s . r e n d e r e r . x m l       €      ,¸     *¸     p²I    Þ£ßÌ®Ò €            > < r e s p o n s i v e . d e t a i l s . r e n d e r e r . x m l       x      -¸     *¸     ð²I    Þ£ßÌ®Ò               : < r e s p o n s i v e . d e t a i l s . t a r g e t . x m l   x      -¸     *¸     h³I    Þ£ßÌ®Ò              : < r e s p o n s i v e . d e t a i l s . t a r g e t . x m l   x      -¸     *¸     à³I    Þ£ßÌ®Ò              : < r e s p o n s i v e . d e t a i l s . t a r g e t . x m l   x      -¸     *¸     X´I    Þ£ßÌ®Ò              : < r e s p o n s i v e . d e t a i l s . t a r g e t . x m l   x      -¸     *¸     Ð´I    Þ£ßÌ®Ò €            : < r e s p o n s i v e . d e t a i l s . t a r g e t . x m l   x      .¸     *¸     HµI    ‚@¦ßÌ®Ò               6 < r e s p o n s i v e . d e t a i l s . t y p e . x m l     T x      .¸     *¸     ÀµI    ‚@¦ßÌ®Ò              6 < r e s p o n s i v e . d e t a i l s . t y p e . x m l     T x      .¸     *¸     8¶I    ‚@¦ßÌ®Ò              6 < r e s p o n s i v e . d e t a i l s . t y p e . x m l     T x      .¸     *¸     °¶I    ‚@¦ßÌ®Ò              6 < r e s p o n s i v e . d e t a i l s . t y p e . x m l     T x      .¸     *¸     (·I    ‚@¦ßÌ®Ò €            6 < r e s p o n s i v e . d e t a i l s . t y p e . x m l     T h      /¸     *¸      ·I    …£¨ßÌ®Ò               , < r e s p o n s i v e . d e t a i l s . x m l h      /¸     *¸     ¸I    …£¨ßÌ®Ò              , < r e s p o n s i v e . d e t a i l s . x m l h      /¸     *¸     p¸I    …£¨ßÌ®Ò              , < r e s p o n s i v e . d e t a i l s . x m l h      /¸     *¸     Ø¸I    …£¨ßÌ®Ò              , < r e s p o n s i v e . d e t a i l s . x m l h      /¸     *¸     @¹I    …£¨ßÌ®Ò €            , < r e s p o n s i v e . d e t a i l s . x m l X      0¸     *¸     ¨¹I    â«ßÌ®Ò                < r e s p o n s i v e . x m l X      0¸     *¸      ºI    â«ßÌ®Ò               < r e s p o n s i v e . x m l X      0¸     *¸     XºI    â«ßÌ®Ò               < r e s p o n s i v e . x m l X      0¸     *¸     °ºI    â«ßÌ®Ò               < r e s p o n s i v e . x m l X      0¸     *¸     »I    â«ßÌ®Ò €             < r e s p o n s i v e . x m l P      1¸     ¸     `»I    â«ßÌ®Ò               < e x a m p l e s     P      1¸     ¸     °»I    â«ßÌ®Ò  €            < e x a m p l e s     P      1¸     ¸      ¼I    â«ßÌ®Ò €              < e x a m p l e s     P      1¸     ¸     P¼I    â«ßÌ®Ò € €            < e x a m p l e s     P      2¸     1¸      ¼I    â«ßÌ®Ò                < . D S _ S t o r e   P      2¸     1¸     ð¼I    â«ßÌ®Ò               < . D S _ S t o r e   P      2¸     1¸     @½I    â«ßÌ®Ò               < . D S _ S t o r e   P      2¸     1¸     ½I    â«ßÌ®Ò               < . D S _ S t o r e   P      2¸     1¸     à½I    â«ßÌ®Ò €             < . D S _ S t o r e   P      3¸     1¸     0¾I    â«ßÌ®Ò                < i n d e x . x m l   P      3¸     1¸     €¾I    â«ßÌ®Ò               < i n d e x . x m l   P      3¸     1¸     Ð¾I    â«ßÌ®Ò               < i n d e x . x m l   P      3¸     1¸      ¿I    â«ßÌ®Ò               < i n d e x . x m l   P      3¸     1¸     p¿I    Ÿg­ßÌ®Ò €             < i n d e x . x m l                                                                   P      4¸     1¸      ÀI    Ÿg­ßÌ®Ò               < c h i l d - r o w s P      4¸     1¸     PÀI    Ÿg­ßÌ®Ò  €            < c h i l d - r o w s P      4¸     1¸      ÀI    Ÿg­ßÌ®Ò €              < c h i l d - r o w s P      4¸     1¸     ðÀI    Ÿg­ßÌ®Ò € €            < c h i l d - r o w s `      5¸     4¸     @ÁI    Ÿg­ßÌ®Ò               $ < c o l u m n - c o n t r o l . x m l `      5¸     4¸      ÁI    Ÿg­ßÌ®Ò              $ < c o l u m n - c o n t r o l . x m l `      5¸     4¸      ÂI    Ÿg­ßÌ®Ò              $ < c o l u m n - c o n t r o l . x m l `      5¸     4¸     `ÂI    Ÿg­ßÌ®Ò              $ < c o l u m n - c o n t r o l . x m l `      5¸     4¸     ÀÂI    Ÿg­ßÌ®Ò €            $ < c o l u m n - c o n t r o l . x m l h      6¸     4¸      ÃI    Ÿg­ßÌ®Ò               & < c u s t o m - r e n d e r e r . x m l     i h      6¸     4¸     ˆÃI    Ÿg­ßÌ®Ò              & < c u s t o m - r e n d e r e r . x m l     i h      6¸     4¸     ðÃI    Ÿg­ßÌ®Ò              & < c u s t o m - r e n d e r e r . x m l     i h      6¸     4¸     XÄI    Ÿg­ßÌ®Ò              & < c u s t o m - r e n d e r e r . x m l     i h      6¸     4¸     ÀÄI    Ÿg­ßÌ®Ò €            & < c u s t o m - r e n d e r e r . x m l     i h      7¸     4¸     (ÅI    ðÉ¯ßÌ®Ò               , < d i s a b l e - c h i l d - r o w s . x m l h      7¸     4¸     ÅI    ðÉ¯ßÌ®Ò              , < d i s a b l e - c h i l d - r o w s . x m l h      7¸     4¸     øÅI    ðÉ¯ßÌ®Ò              , < d i s a b l e - c h i l d - r o w s . x m l h      7¸     4¸     `ÆI    ðÉ¯ßÌ®Ò              , < d i s a b l e - c h i l d - r o w s . x m l h      7¸     4¸     ÈÆI    ðÉ¯ßÌ®Ò €            , < d i s a b l e - c h i l d - r o w s . x m l P      8¸     4¸     0ÇI    .²ßÌ®Ò                < i n d e x . x m l   P      8¸     4¸     €ÇI    .²ßÌ®Ò               < i n d e x . x m l   P      8¸     4¸     ÐÇI    .²ßÌ®Ò               < i n d e x . x m l   P      8¸     4¸      ÈI    .²ßÌ®Ò               < i n d e x . x m l   P      8¸     4¸     pÈI    .²ßÌ®Ò €             < i n d e x . x m l   `      9¸     4¸     ÀÈI    -´ßÌ®Ò                 < r i g h t - c o l u m n . x m l     `      9¸     4¸      ÉI    -´ßÌ®Ò                < r i g h t - c o l u m n . x m l     `      9¸     4¸     €ÉI    -´ßÌ®Ò                < r i g h t - c o l u m n . x m l     `      9¸     4¸     àÉI    -´ßÌ®Ò                < r i g h t - c o l u m n . x m l     `      9¸     4¸     @ÊI    -´ßÌ®Ò €              < r i g h t - c o l u m n . x m l     h      :¸     4¸      ÊI    -´ßÌ®Ò               * < w h o l e - r o w - c o n t r o l . x m l   h      :¸     4¸     ËI    -´ßÌ®Ò              * < w h o l e - r o w - c o n t r o l . x m l   h      :¸     4¸     pËI    -´ßÌ®Ò              * < w h o l e - r o w - c o n t r o l . x m l   h      :¸     4¸     ØËI    -´ßÌ®Ò              * < w h o l e - r o w - c o n t r o l . x m l   h      :¸     4¸     @ÌI    -´ßÌ®Ò €            * < w h o l e - r o w - c o n t r o l . x m l   `      ;¸     1¸     ¨ÌI    -´ßÌ®Ò               < d i s p l a y - c o n t r o l       `      ;¸     1¸     ÍI    -´ßÌ®Ò  €            < d i s p l a y - c o n t r o l       `      ;¸     1¸     hÍI    -´ßÌ®Ò €              < d i s p l a y - c o n t r o l       `      ;¸     1¸     ÈÍI    -´ßÌ®Ò € €            < d i s p l a y - c o n t r o l       P      <¸     ;¸     (ÎI    üð¶ßÌ®Ò                < a u t o . x m l     P      <¸     ;¸     xÎI    üð¶ßÌ®Ò               < a u t o . x m l     P      <¸     ;¸     ÈÎI    üð¶ßÌ®Ò               < a u t o . x m l     P      <¸     ;¸     ÏI    üð¶ßÌ®Ò               < a u t o . x m l     P      <¸     ;¸     hÏI    üð¶ßÌ®Ò €             < a u t o . x m l                                                                             X      =¸     ;¸      ÐI    üð¶ßÌ®Ò                < c l a s s e s . x m l     l X      =¸     ;¸     XÐI    üð¶ßÌ®Ò               < c l a s s e s . x m l     l X      =¸     ;¸     °ÐI    üð¶ßÌ®Ò               < c l a s s e s . x m l     l X      =¸     ;¸     ÑI    üð¶ßÌ®Ò               < c l a s s e s . x m l     l X      =¸     ;¸     `ÑI    üð¶ßÌ®Ò €             < c l a s s e s . x m l     l `      >¸     ;¸     ¸ÑI    pS¹ßÌ®Ò               " < c o m p l e x H e a d e r . x m l   `      >¸     ;¸     ÒI    pS¹ßÌ®Ò              " < c o m p l e x H e a d e r . x m l   `      >¸     ;¸     xÒI    pS¹ßÌ®Ò              " < c o m p l e x H e a d e r . x m l   `      >¸     ;¸     ØÒI    pS¹ßÌ®Ò              " < c o m p l e x H e a d e r . x m l   `      >¸     ;¸     8ÓI    pS¹ßÌ®Ò €            " < c o m p l e x H e a d e r . x m l   `      ?¸     ;¸     ˜ÓI    pS¹ßÌ®Ò                < f i x e d H e a d e r . x m l      `      ?¸     ;¸     øÓI    pS¹ßÌ®Ò               < f i x e d H e a d e r . x m l      `      ?¸     ;¸     XÔI    pS¹ßÌ®Ò               < f i x e d H e a d e r . x m l      `      ?¸     ;¸     ¸ÔI    pS¹ßÌ®Ò               < f i x e d H e a d e r . x m l      `      ?¸     ;¸     ÕI    pS¹ßÌ®Ò €             < f i x e d H e a d e r . x m l      P      @¸     ;¸     xÕI    pS¹ßÌ®Ò                < i n d e x . x m l   P      @¸     ;¸     ÈÕI    pS¹ßÌ®Ò               < i n d e x . x m l   P      @¸     ;¸     ÖI    pS¹ßÌ®Ò               < i n d e x . x m l   P      @¸     ;¸     hÖI    pS¹ßÌ®Ò               < i n d e x . x m l   P      @¸     ;¸     ¸ÖI    pS¹ßÌ®Ò €             < i n d e x . x m l   `      A¸     ;¸     ×I    4¾ßÌ®Ò                 < i n i t - c l a s s e s . x m l     `      A¸     ;¸     h×I    4¾ßÌ®Ò                < i n i t - c l a s s e s . x m l     `      A¸     ;¸     È×I    4¾ßÌ®Ò                < i n i t - c l a s s e s . x m l     `      A¸     ;¸     (ØI    4¾ßÌ®Ò                < i n i t - c l a s s e s . x m l     `      A¸     ;¸     ˆØI    4¾ßÌ®Ò €              < i n i t - c l a s s e s . x m l     X      B¸     1¸     èØI    {ÀßÌ®Ò               < i n i t i a l i s a t i o n X      B¸     1¸     @ÙI    {ÀßÌ®Ò  €            < i n i t i a l i s a t i o n X      B¸     1¸     ˜ÙI    {ÀßÌ®Ò €              < i n i t i a l i s a t i o n X      B¸     1¸     ðÙI    {ÀßÌ®Ò € €            < i n i t i a l i s a t i o n P      C¸     B¸     HÚI    {ÀßÌ®Ò                < . D S _ S t o r e   P      C¸     B¸     ˜ÚI    {ÀßÌ®Ò               < . D S _ S t o r e   P      C¸     B¸     èÚI    {ÀßÌ®Ò               < . D S _ S t o r e   P      C¸     B¸     8ÛI    {ÀßÌ®Ò               < . D S _ S t o r e   P      C¸     B¸     ˆÛI    {ÀßÌ®Ò €             < . D S _ S t o r e   P      D¸     B¸     ØÛI    {ÀßÌ®Ò                < a j a x . x m l     P      D¸     B¸     (ÜI    {ÀßÌ®Ò               < a j a x . x m l     P      D¸     B¸     xÜI    {ÀßÌ®Ò               < a j a x . x m l     P      D¸     B¸     ÈÜI    çÜÂßÌ®Ò               < a j a x . x m l     P      D¸     B¸     ÝI    çÜÂßÌ®Ò €             < a j a x . x m l     X      E¸     B¸     hÝI    çÜÂßÌ®Ò                < c l a s s N a m e . x m l   X      E¸     B¸     ÀÝI    çÜÂßÌ®Ò               < c l a s s N a m e . x m l   X      E¸     B¸     ÞI    çÜÂßÌ®Ò               < c l a s s N a m e . x m l   X      E¸     B¸     pÞI    çÜÂßÌ®Ò               < c l a s s N a m e . x m l   X      E¸     B¸     ÈÞI    çÜÂßÌ®Ò €             < c l a s s N a m e . x m l   X      F¸     B¸      ßI    £ÇßÌ®Ò                < d e f a u l t . x m l       X      F¸     B¸     xßI    £ÇßÌ®Ò               < d e f a u l t . x m l                                                       X      F¸     B¸      àI    £ÇßÌ®Ò               < d e f a u l t . x m l       X      F¸     B¸     XàI    £ÇßÌ®Ò               < d e f a u l t . x m l       X      F¸     B¸     °àI    ¡ÊßÌ®Ò €             < d e f a u l t . x m l       P      G¸     B¸     áI    HfÌßÌ®Ò                < i n d e x . x m l   P      G¸     B¸     XáI    HfÌßÌ®Ò               < i n d e x . x m l   P      G¸     B¸     ¨áI    HfÌßÌ®Ò               < i n d e x . x m l   P      G¸     B¸     øáI    HfÌßÌ®Ò               < i n d e x . x m l   P      G¸     B¸     HâI    HfÌßÌ®Ò €             < i n d e x . x m l   P      H¸     B¸     ˜âI    HfÌßÌ®Ò                < n e w . x m l     r P      H¸     B¸     èâI    HfÌßÌ®Ò               < n e w . x m l     r P      H¸     B¸     8ãI    HfÌßÌ®Ò               < n e w . x m l     r P      H¸     B¸     ˆãI    HfÌßÌ®Ò               < n e w . x m l     r P      H¸     B¸     ØãI    HfÌßÌ®Ò €             < n e w . x m l     r P      I¸     B¸     (äI    XÉÎßÌ®Ò                < o p t i o n . x m l P      I¸     B¸     xäI    XÉÎßÌ®Ò               < o p t i o n . x m l P      I¸     B¸     ÈäI    XÉÎßÌ®Ò               < o p t i o n . x m l P      I¸     B¸     åI    XÉÎßÌ®Ò               < o p t i o n . x m l P      I¸     B¸     håI    XÉÎßÌ®Ò €             < o p t i o n . x m l P      J¸     1¸     ¸åI    XÉÎßÌ®Ò               < s t y l i n g       P      J¸     1¸     æI    XÉÎßÌ®Ò  €            < s t y l i n g       P      J¸     1¸     XæI    XÉÎßÌ®Ò €              < s t y l i n g       P      J¸     1¸     ¨æI    XÉÎßÌ®Ò € €            < s t y l i n g       X      K¸     J¸     øæI    XÉÎßÌ®Ò                < b o o t s t r a p . x m l   X      K¸     J¸     PçI    XÉÎßÌ®Ò               < b o o t s t r a p . x m l   X      K¸     J¸     ¨çI    XÉÎßÌ®Ò               < b o o t s t r a p . x m l   X      K¸     J¸      èI    XÉÎßÌ®Ò               < b o o t s t r a p . x m l   X      K¸     J¸     XèI    XÉÎßÌ®Ò €             < b o o t s t r a p . x m l   X      L¸     J¸     °èI    ­+ÑßÌ®Ò                < c o m p a c t . x m l     l X      L¸     J¸     éI    ­+ÑßÌ®Ò               < c o m p a c t . x m l     l X      L¸     J¸     `éI    ­+ÑßÌ®Ò               < c o m p a c t . x m l     l X      L¸     J¸     ¸éI    ­+ÑßÌ®Ò               < c o m p a c t . x m l     l X      L¸     J¸     êI    ­+ÑßÌ®Ò €             < c o m p a c t . x m l     l X      M¸     J¸     hêI    ­+ÑßÌ®Ò                < f o u n d a t i o n . x m l X      M¸     J¸     ÀêI    ­+ÑßÌ®Ò               < f o u n d a t i o n . x m l X      M¸     J¸     ëI    ­+ÑßÌ®Ò               < f o u n d a t i o n . x m l X      M¸     J¸     pëI    ­+ÑßÌ®Ò               < f o u n d a t i o n . x m l X      M¸     J¸     ÈëI    ­+ÑßÌ®Ò €             < f o u n d a t i o n . x m l P      N¸     J¸      ìI    ­+ÑßÌ®Ò                < i n d e x . x m l   P      N¸     J¸     pìI    ­+ÑßÌ®Ò               < i n d e x . x m l   P      N¸     J¸     ÀìI    ­+ÑßÌ®Ò               < i n d e x . x m l   P      N¸     J¸     íI    ­+ÑßÌ®Ò               < i n d e x . x m l   P      N¸     J¸     `íI    ­+ÑßÌ®Ò €             < i n d e x . x m l   X      O¸     J¸     °íI    KÓßÌ®Ò                < j q u e r y u i . x m l     X      O¸     J¸     îI    KÓßÌ®Ò               < j q u e r y u i . x m l     X      O¸     J¸     `îI    KÓßÌ®Ò               < j q u e r y u i . x m l     X      O¸     J¸     ¸îI    KÓßÌ®Ò               < j q u e r y u i . x m l     X      O¸     J¸     ïI    KÓßÌ®Ò €             < j q u e r y u i . x m l     X      P¸     J¸     hïI    KÓßÌ®Ò                < s c r o l l i n g . x m l                                                                   X      P¸     J¸      ðI    KÓßÌ®Ò               < s c r o l l i n g . x m l   X      P¸     J¸     XðI    KÓßÌ®Ò               < s c r o l l i n g . x m l   X      P¸     J¸     °ðI    KÓßÌ®Ò               < s c r o l l i n g . x m l   X      P¸     J¸     ñI    KÓßÌ®Ò €             < s c r o l l i n g . x m l   @      Q¸     ¸     `ñI    KÓßÌ®Ò               < j s @      Q¸     ¸      ñI    KÓßÌ®Ò  €            < j s @      Q¸     ¸     àñI    KÓßÌ®Ò €              < j s @      Q¸     ¸      òI    KÓßÌ®Ò € €            < j s p      R¸     Q¸     `òI    ðÕßÌ®Ò               0 < d a t a T a b l e s . r e s p o n s i v e . j s     p      R¸     Q¸     ÐòI    ðÕßÌ®Ò              0 < d a t a T a b l e s . r e s p o n s i v e . j s     p      R¸     Q¸     @óI    ðÕßÌ®Ò              0 < d a t a T a b l e s . r e s p o n s i v e . j s     p      R¸     Q¸     °óI    ðÕßÌ®Ò              0 < d a t a T a b l e s . r e s p o n s i v e . j s     p      R¸     Q¸      ôI    ðÕßÌ®Ò €            0 < d a t a T a b l e s . r e s p o n s i v e . j s     €      S¸     t¶     ôI    ·ÚßÌ®Ò              B < e o n a s d a n - b o o t s t r a p - d a t e t i m e p i c k e r   €      S¸     t¶     õI    ·ÚßÌ®Ò  €           B < e o n a s d a n - b o o t s t r a p - d a t e t i m e p i c k e r   €      S¸     t¶     õI    ·ÚßÌ®Ò €             B < e o n a s d a n - b o o t s t r a p - d a t e t i m e p i c k e r   €      S¸     t¶     öI    ·ÚßÌ®Ò € €           B < e o n a s d a n - b o o t s t r a p - d a t e t i m e p i c k e r   X      T¸     S¸     öI    ·ÚßÌ®Ò                < . b o w e r . j s o n       X      T¸     S¸     èöI    ·ÚßÌ®Ò               < . b o w e r . j s o n       X      T¸     S¸     @÷I    ·ÚßÌ®Ò               < . b o w e r . j s o n       X      T¸     S¸     ˜÷I    ·ÚßÌ®Ò               < . b o w e r . j s o n       X      T¸     S¸     ð÷I    ·ÚßÌ®Ò €             < . b o w e r . j s o n       P      U¸     S¸     HøI    PÝßÌ®Ò                < b o w e r . j s o n P      U¸     S¸     ˜øI    PÝßÌ®Ò               < b o w e r . j s o n P      U¸     S¸     èøI    PÝßÌ®Ò               < b o w e r . j s o n P      U¸     S¸     8ùI    PÝßÌ®Ò               < b o w e r . j s o n P      U¸     S¸     ˆùI    PÝßÌ®Ò €             < b o w e r . j s o n X      V¸     S¸     ØùI    PÝßÌ®Ò                < c o m p o n e n t . j s o n X      V¸     S¸     0úI    PÝßÌ®Ò               < c o m p o n e n t . j s o n X      V¸     S¸     ˆúI    PÝßÌ®Ò               < c o m p o n e n t . j s o n X      V¸     S¸     àúI    PÝßÌ®Ò               < c o m p o n e n t . j s o n X      V¸     S¸     8ûI    PÝßÌ®Ò €             < c o m p o n e n t . j s o n X      W¸     S¸     ûI    PÝßÌ®Ò                < c o m p o s e r . j s o n   X      W¸     S¸     èûI    PÝßÌ®Ò               < c o m p o s e r . j s o n   X      W¸     S¸     @üI    PÝßÌ®Ò               < c o m p o s e r . j s o n   X      W¸     S¸     ˜üI    PÝßÌ®Ò               < c o m p o s e r . j s o n   X      W¸     S¸     ðüI    PÝßÌ®Ò €             < c o m p o s e r . j s o n   `      X¸     S¸     HýI    }yßßÌ®Ò                < C O N T R I B U T I N G . m d       `      X¸     S¸     ¨ýI    }yßßÌ®Ò               < C O N T R I B U T I N G . m d       `      X¸     S¸     þI    }yßßÌ®Ò               < C O N T R I B U T I N G . m d       `      X¸     S¸     hþI    }yßßÌ®Ò               < C O N T R I B U T I N G . m d       `      X¸     S¸     ÈþI    }yßßÌ®Ò €             < C O N T R I B U T I N G . m d       X      Y¸     S¸     (ÿI    }yßßÌ®Ò                < G r u n t f i l e . j s     X      Y¸     S¸     €ÿI    }yßßÌ®Ò               < G r u n t f i l e . j s                                             X      Y¸     S¸       J    }yßßÌ®Ò               < G r u n t f i l e . j s     X      Y¸     S¸     X J    }yßßÌ®Ò               < G r u n t f i l e . j s     X      Y¸     S¸     ° J    }yßßÌ®Ò €             < G r u n t f i l e . j s     P      Z¸     S¸     J    ÜáßÌ®Ò                < L I C E N S E     k P      Z¸     S¸     XJ    ÜáßÌ®Ò               < L I C E N S E     k P      Z¸     S¸     ¨J    ÜáßÌ®Ò               < L I C E N S E     k P      Z¸     S¸     øJ    ÜáßÌ®Ò               < L I C E N S E     k P      Z¸     S¸     HJ    ÜáßÌ®Ò €             < L I C E N S E     k X      [¸     S¸     ˜J    ÜáßÌ®Ò                < p a c k a g e . j s o n     X      [¸     S¸     ðJ    ÜáßÌ®Ò               < p a c k a g e . j s o n     X      [¸     S¸     HJ    ÜáßÌ®Ò               < p a c k a g e . j s o n     X      [¸     S¸      J    ÜáßÌ®Ò               < p a c k a g e . j s o n     X      [¸     S¸     øJ    ÜáßÌ®Ò €             < p a c k a g e . j s o n     P      \¸     S¸     PJ    ›>äßÌ®Ò                < R E A D M E . m d   P      \¸     S¸      J    ›>äßÌ®Ò               < R E A D M E . m d   P      \¸     S¸     ðJ    ›>äßÌ®Ò               < R E A D M E . m d   P      \¸     S¸     @J    ›>äßÌ®Ò               < R E A D M E . m d   P      \¸     S¸     J    ›>äßÌ®Ò €             < R E A D M E . m d   H      ]¸     S¸     àJ    ß¢æßÌ®Ò              
+ < b u i l d   H      ]¸     S¸     (J    ß¢æßÌ®Ò  €           
+ < b u i l d   H      ]¸     S¸     pJ    ß¢æßÌ®Ò €             
+ < b u i l d   H      ]¸     S¸     ¸J    ß¢æßÌ®Ò € €           
+ < b u i l d   H      ^¸     ]¸      J    ß¢æßÌ®Ò               < c s s       H      ^¸     ]¸     HJ    ß¢æßÌ®Ò  €            < c s s       H      ^¸     ]¸     J    ß¢æßÌ®Ò €              < c s s       H      ^¸     ]¸     ØJ    ß¢æßÌ®Ò € €            < c s s       x      _¸     ^¸      J    ß¢æßÌ®Ò               8 < b o o t s t r a p - d a t e t i m e p i c k e r . c s s     x      _¸     ^¸     ˜J    ß¢æßÌ®Ò              8 < b o o t s t r a p - d a t e t i m e p i c k e r . c s s     x      _¸     ^¸     	J    ß¢æßÌ®Ò              8 < b o o t s t r a p - d a t e t i m e p i c k e r . c s s     x      _¸     ^¸     ˆ	J    ß¢æßÌ®Ò              8 < b o o t s t r a p - d a t e t i m e p i c k e r . c s s     x      _¸     ^¸      
+J    ß¢æßÌ®Ò €            8 < b o o t s t r a p - d a t e t i m e p i c k e r . c s s     €      `¸     ^¸     x
+J    ðéßÌ®Ò               @ < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . c s s     €      `¸     ^¸     ø
+J    ðéßÌ®Ò              @ < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . c s s     €      `¸     ^¸     xJ    ðéßÌ®Ò              @ < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . c s s     €      `¸     ^¸     øJ    ðéßÌ®Ò              @ < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . c s s     €      `¸     ^¸     xJ    ðéßÌ®Ò €            @ < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . c s s     @      a¸     ]¸     øJ    ðéßÌ®Ò               < j s @      a¸     ]¸     8J    ðéßÌ®Ò  €            < j s @      a¸     ]¸     xJ    ðéßÌ®Ò €              < j s @      a¸     ]¸     ¸J    ðéßÌ®Ò € €            < j s €      b¸     a¸     øJ    ëdëßÌ®Ò               > < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . j s       €      b¸     a¸     xJ    ëdëßÌ®Ò              > < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . j s       €      b¸     a¸     øJ    ëdëßÌ®Ò              > < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . j s       €      b¸     a¸     xJ    ëdëßÌ®Ò              > < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . j s               €      b¸     a¸      J    ëdëßÌ®Ò €            > < b o o t s t r a p - d a t e t i m e p i c k e r . m i n . j s       H      c¸     ]¸     €J    RÇíßÌ®Ò              
+ < n u g e t   H      c¸     ]¸     ÈJ    RÇíßÌ®Ò  €           
+ < n u g e t   H      c¸     ]¸     J    RÇíßÌ®Ò €             
+ < n u g e t   H      c¸     ]¸     XJ    RÇíßÌ®Ò € €           
+ < n u g e t         d¸     c¸      J    RÇíßÌ®Ò               N < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . 4 . 0 . 0 . n u p k g     ÿÿ      d¸     c¸     0J    RÇíßÌ®Ò              N < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . 4 . 0 . 0 . n u p k g     ÿÿ      d¸     c¸     ÀJ    RÇíßÌ®Ò              N < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . 4 . 0 . 0 . n u p k g     ÿÿ      d¸     c¸     PJ    RÇíßÌ®Ò              N < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . 4 . 0 . 0 . n u p k g     ÿÿ      d¸     c¸     àJ    RÇíßÌ®Ò €            N < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . 4 . 0 . 0 . n u p k g     ÿÿ˜      e¸     c¸     pJ    ¢)ðßÌ®Ò               V < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . 4 . 0 . 0 . n u p k g     i ˜      e¸     c¸     J    ¢)ðßÌ®Ò              V < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . 4 . 0 . 0 . n u p k g     i ˜      e¸     c¸      J    ¢)ðßÌ®Ò              V < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . 4 . 0 . 0 . n u p k g     i ˜      e¸     c¸     8J    ¢)ðßÌ®Ò              V < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . 4 . 0 . 0 . n u p k g     i ˜      e¸     c¸     ÐJ    ¢)ðßÌ®Ò €            V < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . 4 . 0 . 0 . n u p k g     i H      f¸     S¸     hJ    ¢)ðßÌ®Ò               < s r c       H      f¸     S¸     °J    ¢)ðßÌ®Ò  €            < s r c       H      f¸     S¸     øJ    ¢)ðßÌ®Ò €              < s r c       H      f¸     S¸     @J    ¢)ðßÌ®Ò € €            < s r c       @      g¸     f¸     ˆJ    ¢)ðßÌ®Ò               < j s @      g¸     f¸     ÈJ    ¢)ðßÌ®Ò  €            < j s @      g¸     f¸     J    ¢)ðßÌ®Ò €              < j s @      g¸     f¸     HJ    ¢)ðßÌ®Ò € €            < j s x      h¸     g¸     ˆJ    ŒòßÌ®Ò               6 < b o o t s t r a p - d a t e t i m e p i c k e r . j s     s x      h¸     g¸      J    ŒòßÌ®Ò              6 < b o o t s t r a p - d a t e t i m e p i c k e r . j s     s x      h¸     g¸     xJ    ŒòßÌ®Ò              6 < b o o t s t r a p - d a t e t i m e p i c k e r . j s     s x      h¸     g¸     ðJ    ïôßÌ®Ò              6 < b o o t s t r a p - d a t e t i m e p i c k e r . j s     s x      h¸     g¸     hJ    ïôßÌ®Ò €            6 < b o o t s t r a p - d a t e t i m e p i c k e r . j s     s H      i¸     f¸     àJ    ïôßÌ®Ò               < l e s s     H      i¸     f¸     (J    ïôßÌ®Ò  €            < l e s s     H      i¸     f¸     pJ    ïôßÌ®Ò €              < l e s s     H      i¸     f¸     ¸J    ïôßÌ®Ò € €            < l e s s     ˆ      j¸     i¸      J    ïôßÌ®Ò               F < b o o t s t r a p - d a t e t i m e p i c k e r - b u i l d . l e s s       ˆ      j¸     i¸     ˆJ    ïôßÌ®Ò              F < b o o t s t r a p - d a t e t i m e p i c k e r - b u i l d . l e s s       ˆ      j¸     i¸     J    ïôßÌ®Ò              F < b o o t s t r a p - d a t e t i m e p i c k e r - b u i l d . l e s s       ˆ      j¸     i¸     ˜J    ïôßÌ®Ò              F < b o o t s t r a p - d a t e t i m e p i c k e r - b u i l d . l e s s       ˆ      j¸     i¸      J    ïôßÌ®Ò €            F < b o o t s t r a p - d a t e t i m e p i c k e r - b u i l d . l e s s                                                                                               x      k¸     i¸       J    sQ÷ßÌ®Ò               < < _ b o o t s t r a p - d a t e t i m e p i c k e r . l e s s x      k¸     i¸     x J    sQ÷ßÌ®Ò              < < _ b o o t s t r a p - d a t e t i m e p i c k e r . l e s s x      k¸     i¸     ð J    sQ÷ßÌ®Ò              < < _ b o o t s t r a p - d a t e t i m e p i c k e r . l e s s x      k¸     i¸     h!J    sQ÷ßÌ®Ò              < < _ b o o t s t r a p - d a t e t i m e p i c k e r . l e s s x      k¸     i¸     à!J    sQ÷ßÌ®Ò €            < < _ b o o t s t r a p - d a t e t i m e p i c k e r . l e s s H      l¸     f¸     X"J    sQ÷ßÌ®Ò              
+ < n u g e t   H      l¸     f¸      "J    sQ÷ßÌ®Ò  €           
+ < n u g e t   H      l¸     f¸     è"J    sQ÷ßÌ®Ò €             
+ < n u g e t   H      l¸     f¸     0#J    sQ÷ßÌ®Ò € €           
+ < n u g e t   ˆ      m¸     l¸     x#J    sQ÷ßÌ®Ò               L < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . n u s p e c ˆ      m¸     l¸      $J    sQ÷ßÌ®Ò              L < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . n u s p e c ˆ      m¸     l¸     ˆ$J    sQ÷ßÌ®Ò              L < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . n u s p e c ˆ      m¸     l¸     %J    sQ÷ßÌ®Ò              L < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . n u s p e c ˆ      m¸     l¸     ˜%J    sQ÷ßÌ®Ò €            L < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . C S S . n u s p e c €      n¸     l¸      &J    |³ùßÌ®Ò               D < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . n u s p e c €      n¸     l¸      &J    |³ùßÌ®Ò              D < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . n u s p e c €      n¸     l¸      'J    |³ùßÌ®Ò              D < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . n u s p e c €      n¸     l¸      'J    |³ùßÌ®Ò              D < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . n u s p e c €      n¸     l¸      (J    |³ùßÌ®Ò €            D < B o o t s t r a p . v 3 . D a t e t i m e p i c k e r . n u s p e c X      o¸     l¸      (J    |³ùßÌ®Ò                < i n s t a l l . p s 1       X      o¸     l¸     ø(J    |³ùßÌ®Ò               < i n s t a l l . p s 1       X      o¸     l¸     P)J    |³ùßÌ®Ò               < i n s t a l l . p s 1       X      o¸     l¸     ¨)J    |³ùßÌ®Ò               < i n s t a l l . p s 1       X      o¸     l¸      *J    |³ùßÌ®Ò €             < i n s t a l l . p s 1       P      p¸     l¸     X*J    à~àÌ®Ò                < N u G e t . e x e   P      p¸     l¸     ¨*J    à~àÌ®Ò               < N u G e t . e x e   P      p¸     l¸     ø*J    à~àÌ®Ò               < N u G e t . e x e   P      p¸     l¸     H+J    à~àÌ®Ò               < N u G e t . e x e   P      p¸     l¸     ˜+J    à~àÌ®Ò €             < N u G e t . e x e   H      q¸     S¸     è+J    à~àÌ®Ò              
+ < t a s k s   H      q¸     S¸     0,J    à~àÌ®Ò  €           
+ < t a s k s   H      q¸     S¸     x,J    à~àÌ®Ò €             
+ < t a s k s   H      q¸     S¸     À,J    à~àÌ®Ò € €           
+ < t a s k s   `      r¸     q¸     -J    ¤áàÌ®Ò                < b u m p _ v e r s i o n . j s       `      r¸     q¸     h-J    ¤áàÌ®Ò               < b u m p _ v e r s i o n . j s       `      r¸     q¸     È-J    ¤áàÌ®Ò               < b u m p _ v e r s i o n . j s       `      r¸     q¸     (.J    ¤áàÌ®Ò               < b u m p _ v e r s i o n . j s       `      r¸     q¸     ˆ.J    ¤áàÌ®Ò €             < b u m p _ v e r s i o n . j s       X      s¸     t¶     è.J    ¤áàÌ®Ò               < f o n t - a w e s o m e     X      s¸     t¶     @/J    ¤áàÌ®Ò  €            < f o n t - a w e s o m e     X      s¸     t¶     ˜/J    ¤áàÌ®Ò €              < f o n t - a w e s o m e                     X      s¸     t¶      0J    ¤áàÌ®Ò € €            < f o n t - a w e s o m e     X      t¸     s¸     X0J    ¤áàÌ®Ò                < . b o w e r . j s o n     WŒX      t¸     s¸     °0J    ¤áàÌ®Ò               < . b o w e r . j s o n     WŒX      t¸     s¸     1J    ¤áàÌ®Ò               < . b o w e r . j s o n     WŒX      t¸     s¸     `1J    ¤áàÌ®Ò               < . b o w e r . j s o n     WŒX      t¸     s¸     ¸1J    ŽCàÌ®Ò €             < . b o w e r . j s o n     WŒP      u¸     s¸     2J    ŽCàÌ®Ò                < . g i t i g n o r e P      u¸     s¸     `2J    ŽCàÌ®Ò               < . g i t i g n o r e P      u¸     s¸     °2J    ŽCàÌ®Ò               < . g i t i g n o r e P      u¸     s¸      3J    ŽCàÌ®Ò               < . g i t i g n o r e P      u¸     s¸     P3J    ŽCàÌ®Ò €             < . g i t i g n o r e P      v¸     s¸      3J    ŽCàÌ®Ò                < . n p m i g n o r e P      v¸     s¸     ð3J    ŽCàÌ®Ò               < . n p m i g n o r e P      v¸     s¸     @4J    ŽCàÌ®Ò               < . n p m i g n o r e P      v¸     s¸     4J    ŽCàÌ®Ò               < . n p m i g n o r e P      v¸     s¸     à4J    ŽCàÌ®Ò €             < . n p m i g n o r e P      w¸     s¸     05J    ù¥àÌ®Ò                < b o w e r . j s o n P      w¸     s¸     €5J    ù¥àÌ®Ò               < b o w e r . j s o n P      w¸     s¸     Ð5J    ù¥àÌ®Ò               < b o w e r . j s o n P      w¸     s¸      6J    ù¥àÌ®Ò               < b o w e r . j s o n P      w¸     s¸     p6J    ù¥àÌ®Ò €             < b o w e r . j s o n H      x¸     s¸     À6J    ù¥àÌ®Ò               < c s s     o H      x¸     s¸     7J    ù¥àÌ®Ò  €            < c s s     o H      x¸     s¸     P7J    ù¥àÌ®Ò €              < c s s     o H      x¸     s¸     ˜7J    ù¥àÌ®Ò € €            < c s s     o `      y¸     x¸     à7J    ù¥àÌ®Ò                 < f o n t - a w e s o m e . c s s     `      y¸     x¸     @8J    ù¥àÌ®Ò                < f o n t - a w e s o m e . c s s     `      y¸     x¸      8J    ù¥àÌ®Ò                < f o n t - a w e s o m e . c s s     `      y¸     x¸      9J    ù¥àÌ®Ò                < f o n t - a w e s o m e . c s s     `      y¸     x¸     `9J    ù¥àÌ®Ò €              < f o n t - a w e s o m e . c s s     h      z¸     x¸     À9J    _màÌ®Ò               ( < f o n t - a w e s o m e . m i n . c s s     h      z¸     x¸     (:J    _màÌ®Ò              ( < f o n t - a w e s o m e . m i n . c s s     h      z¸     x¸     :J    _màÌ®Ò              ( < f o n t - a w e s o m e . m i n . c s s     h      z¸     x¸     ø:J    _màÌ®Ò              ( < f o n t - a w e s o m e . m i n . c s s     h      z¸     x¸     `;J    _màÌ®Ò €            ( < f o n t - a w e s o m e . m i n . c s s     H      {¸     s¸     È;J    _màÌ®Ò              
+ < f o n t s   H      {¸     s¸     <J    _màÌ®Ò  €           
+ < f o n t s   H      {¸     s¸     X<J    QÍàÌ®Ò €             
+ < f o n t s   H      {¸     s¸      <J    QÍàÌ®Ò € €           
+ < f o n t s   p      |¸     {¸     è<J    p/àÌ®Ò               . < f o n t a w e s o m e - w e b f o n t . e o t     k p      |¸     {¸     X=J    p/àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . e o t     k p      |¸     {¸     È=J    p/àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . e o t     k p      |¸     {¸     8>J    p/àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . e o t     k p      |¸     {¸     ¨>J    p/àÌ®Ò €            . < f o n t a w e s o m e - w e b f o n t . e o t     k p      }¸     {¸     ?J    p/àÌ®Ò               . < f o n t a w e s o m e - w e b f o n t . s v g     p p      }¸     {¸     ˆ?J    p/àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . s v g     p         p      }¸     {¸      @J    p/àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . s v g     p p      }¸     {¸     p@J    s’àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . s v g     p p      }¸     {¸     à@J    s’àÌ®Ò €            . < f o n t a w e s o m e - w e b f o n t . s v g     p p      ~¸     {¸     PAJ    s’àÌ®Ò               . < f o n t a w e s o m e - w e b f o n t . t t f     ÿÿp      ~¸     {¸     ÀAJ    s’àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . t t f     ÿÿp      ~¸     {¸     0BJ    s’àÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . t t f     ÿÿp      ~¸     {¸      BJ    ÖöàÌ®Ò              . < f o n t a w e s o m e - w e b f o n t . t t f     ÿÿp      ~¸     {¸     CJ    ÖöàÌ®Ò €            . < f o n t a w e s o m e - w e b f o n t . t t f     ÿÿp      ¸     {¸     €CJ    ÖöàÌ®Ò               0 < f o n t a w e s o m e - w e b f o n t . w o f f     p      ¸     {¸     ðCJ    ÖöàÌ®Ò              0 < f o n t a w e s o m e - w e b f o n t . w o f f     p      ¸     {¸     `DJ    ÖöàÌ®Ò              0 < f o n t a w e s o m e - w e b f o n t . w o f f     p      ¸     {¸     ÐDJ    ÖöàÌ®Ò              0 < f o n t a w e s o m e - w e b f o n t . w o f f     p      ¸     {¸     @EJ    ÖöàÌ®Ò €            0 < f o n t a w e s o m e - w e b f o n t . w o f f     `      €¸     {¸     °EJ    |VàÌ®Ò                < F o n t A w e s o m e . o t f       `      €¸     {¸     FJ    |VàÌ®Ò               < F o n t A w e s o m e . o t f       `      €¸     {¸     pFJ    |VàÌ®Ò               < F o n t A w e s o m e . o t f       `      €¸     {¸     ÐFJ    |VàÌ®Ò               < F o n t A w e s o m e . o t f       `      €¸     {¸     0GJ    |VàÌ®Ò €             < F o n t A w e s o m e . o t f       H      ¸     s¸     GJ    `¹ àÌ®Ò               < l e s s     H      ¸     s¸     ØGJ    `¹ àÌ®Ò  €            < l e s s     H      ¸     s¸      HJ    `¹ àÌ®Ò €              < l e s s     H      ¸     s¸     hHJ    `¹ àÌ®Ò € €            < l e s s     h      ‚¸     ¸     °HJ    `¹ àÌ®Ò               ( < b o r d e r e d - p u l l e d . l e s s     h      ‚¸     ¸     IJ    `¹ àÌ®Ò              ( < b o r d e r e d - p u l l e d . l e s s     h      ‚¸     ¸     €IJ    `¹ àÌ®Ò              ( < b o r d e r e d - p u l l e d . l e s s     h      ‚¸     ¸     èIJ    `¹ àÌ®Ò              ( < b o r d e r e d - p u l l e d . l e s s     h      ‚¸     ¸     PJJ    `¹ àÌ®Ò €            ( < b o r d e r e d - p u l l e d . l e s s     P      ƒ¸     ¸     ¸JJ    `¹ àÌ®Ò                < c o r e . l e s s   P      ƒ¸     ¸     KJ    `¹ àÌ®Ò               < c o r e . l e s s   P      ƒ¸     ¸     XKJ    `¹ àÌ®Ò               < c o r e . l e s s   P      ƒ¸     ¸     ¨KJ    `¹ àÌ®Ò               < c o r e . l e s s   P      ƒ¸     ¸     øKJ    `¹ àÌ®Ò €             < c o r e . l e s s   X      „¸     ¸     HLJ    Q#àÌ®Ò                < e x t r a s . l e s s     c X      „¸     ¸      LJ    Q#àÌ®Ò               < e x t r a s . l e s s     c X      „¸     ¸     øLJ    Q#àÌ®Ò               < e x t r a s . l e s s     c X      „¸     ¸     PMJ    Q#àÌ®Ò               < e x t r a s . l e s s     c X      „¸     ¸     ¨MJ    Q#àÌ®Ò €             < e x t r a s . l e s s     c `      …¸     ¸      NJ    Q#àÌ®Ò                 < f i x e d - w i d t h . l e s s     `      …¸     ¸     `NJ    Q#àÌ®Ò                < f i x e d - w i d t h . l e s s     `      …¸     ¸     ÀNJ    Q#àÌ®Ò                < f i x e d - w i d t h . l e s s     `      …¸     ¸      OJ    Q#àÌ®Ò                < f i x e d - w i d t h . l e s s     `      …¸     ¸     €OJ    Q#àÌ®Ò €              < f i x e d - w i d t h . l e s s                                     `      †¸     ¸      PJ    Û~%àÌ®Ò               " < f o n t - a w e s o m e . l e s s   `      †¸     ¸     `PJ    Û~%àÌ®Ò              " < f o n t - a w e s o m e . l e s s   `      †¸     ¸     ÀPJ    Û~%àÌ®Ò              " < f o n t - a w e s o m e . l e s s   `      †¸     ¸      QJ    Û~%àÌ®Ò              " < f o n t - a w e s o m e . l e s s   `      †¸     ¸     €QJ    áß'àÌ®Ò €            " < f o n t - a w e s o m e . l e s s   P      ‡¸     ¸     àQJ    áß'àÌ®Ò                < i c o n s . l e s s P      ‡¸     ¸     0RJ    áß'àÌ®Ò               < i c o n s . l e s s P      ‡¸     ¸     €RJ    áß'àÌ®Ò               < i c o n s . l e s s P      ‡¸     ¸     ÐRJ    áß'àÌ®Ò               < i c o n s . l e s s P      ‡¸     ¸      SJ    áß'àÌ®Ò €             < i c o n s . l e s s X      ˆ¸     ¸     pSJ    CB*àÌ®Ò                < l a r g e r . l e s s     mwX      ˆ¸     ¸     ÈSJ    CB*àÌ®Ò               < l a r g e r . l e s s     mwX      ˆ¸     ¸      TJ    CB*àÌ®Ò               < l a r g e r . l e s s     mwX      ˆ¸     ¸     xTJ    CB*àÌ®Ò               < l a r g e r . l e s s     mwX      ˆ¸     ¸     ÐTJ    CB*àÌ®Ò €             < l a r g e r . l e s s     mwP      ‰¸     ¸     (UJ    CB*àÌ®Ò                < l i s t . l e s s   P      ‰¸     ¸     xUJ    CB*àÌ®Ò               < l i s t . l e s s   P      ‰¸     ¸     ÈUJ    CB*àÌ®Ò               < l i s t . l e s s   P      ‰¸     ¸     VJ    CB*àÌ®Ò               < l i s t . l e s s   P      ‰¸     ¸     hVJ    CB*àÌ®Ò €             < l i s t . l e s s   X      Š¸     ¸     ¸VJ    =¥,àÌ®Ò                < m i x i n s . l e s s     l X      Š¸     ¸     WJ    =¥,àÌ®Ò               < m i x i n s . l e s s     l X      Š¸     ¸     hWJ    =¥,àÌ®Ò               < m i x i n s . l e s s     l X      Š¸     ¸     ÀWJ    =¥,àÌ®Ò               < m i x i n s . l e s s     l X      Š¸     ¸     XJ    =¥,àÌ®Ò €             < m i x i n s . l e s s     l P      ‹¸     ¸     pXJ    =¥,àÌ®Ò                < p a t h . l e s s   P      ‹¸     ¸     ÀXJ    =¥,àÌ®Ò               < p a t h . l e s s   P      ‹¸     ¸     YJ    =¥,àÌ®Ò               < p a t h . l e s s   P      ‹¸     ¸     `YJ    =¥,àÌ®Ò               < p a t h . l e s s   P      ‹¸     ¸     °YJ    =¥,àÌ®Ò €             < p a t h . l e s s   h      Œ¸     ¸      ZJ    f/àÌ®Ò               ( < r o t a t e d - f l i p p e d . l e s s     h      Œ¸     ¸     hZJ    f/àÌ®Ò              ( < r o t a t e d - f l i p p e d . l e s s     h      Œ¸     ¸     ÐZJ    f/àÌ®Ò              ( < r o t a t e d - f l i p p e d . l e s s     h      Œ¸     ¸     8[J    f/àÌ®Ò              ( < r o t a t e d - f l i p p e d . l e s s     h      Œ¸     ¸      [J    f/àÌ®Ò €            ( < r o t a t e d - f l i p p e d . l e s s     X      ¸     ¸     \J    l1àÌ®Ò                < s p i n n i n g . l e s s   X      ¸     ¸     `\J    l1àÌ®Ò               < s p i n n i n g . l e s s   X      ¸     ¸     ¸\J    l1àÌ®Ò               < s p i n n i n g . l e s s   X      ¸     ¸     ]J    l1àÌ®Ò               < s p i n n i n g . l e s s   X      ¸     ¸     h]J    l1àÌ®Ò €             < s p i n n i n g . l e s s   X      Ž¸     ¸     À]J    l1àÌ®Ò                < s t a c k e d . l e s s     X      Ž¸     ¸     ^J    l1àÌ®Ò               < s t a c k e d . l e s s     X      Ž¸     ¸     p^J    l1àÌ®Ò               < s t a c k e d . l e s s     X      Ž¸     ¸     È^J    l1àÌ®Ò               < s t a c k e d . l e s s     X      Ž¸     ¸      _J    l1àÌ®Ò €             < s t a c k e d . l e s s     X      ¸     ¸     x_J    IÌ3àÌ®Ò                < v a r i a b l e s . l e s s                                                 X      ¸     ¸      `J    IÌ3àÌ®Ò               < v a r i a b l e s . l e s s X      ¸     ¸     X`J    IÌ3àÌ®Ò               < v a r i a b l e s . l e s s X      ¸     ¸     °`J    IÌ3àÌ®Ò               < v a r i a b l e s . l e s s X      ¸     ¸     aJ    IÌ3àÌ®Ò €             < v a r i a b l e s . l e s s H      ¸     s¸     `aJ    Ð06àÌ®Ò               < s c s s     H      ¸     s¸     ¨aJ    Ð06àÌ®Ò  €            < s c s s     H      ¸     s¸     ðaJ    Ð06àÌ®Ò €              < s c s s     H      ¸     s¸     8bJ    Ð06àÌ®Ò € €            < s c s s     `      ‘¸     ¸     €bJ    Ð06àÌ®Ò               " < f o n t - a w e s o m e . s c s s   `      ‘¸     ¸     àbJ    Ð06àÌ®Ò              " < f o n t - a w e s o m e . s c s s   `      ‘¸     ¸     @cJ    Ð06àÌ®Ò              " < f o n t - a w e s o m e . s c s s   `      ‘¸     ¸      cJ    Ð06àÌ®Ò              " < f o n t - a w e s o m e . s c s s   `      ‘¸     ¸      dJ    Ð06àÌ®Ò €            " < f o n t - a w e s o m e . s c s s   h      ’¸     ¸     `dJ    r8àÌ®Ò               * < _ b o r d e r e d - p u l l e d . s c s s   h      ’¸     ¸     ÈdJ    r8àÌ®Ò              * < _ b o r d e r e d - p u l l e d . s c s s   h      ’¸     ¸     0eJ    r8àÌ®Ò              * < _ b o r d e r e d - p u l l e d . s c s s   h      ’¸     ¸     ˜eJ    r8àÌ®Ò              * < _ b o r d e r e d - p u l l e d . s c s s   h      ’¸     ¸      fJ    r8àÌ®Ò €            * < _ b o r d e r e d - p u l l e d . s c s s   P      “¸     ¸     hfJ    r8àÌ®Ò                < _ c o r e . s c s s P      “¸     ¸     ¸fJ    r8àÌ®Ò               < _ c o r e . s c s s P      “¸     ¸     gJ    r8àÌ®Ò               < _ c o r e . s c s s P      “¸     ¸     XgJ    r8àÌ®Ò               < _ c o r e . s c s s P      “¸     ¸     ¨gJ    r8àÌ®Ò €             < _ c o r e . s c s s X      ”¸     ¸     øgJ    éU=àÌ®Ò                < _ e x t r a s . s c s s     X      ”¸     ¸     PhJ    éU=àÌ®Ò               < _ e x t r a s . s c s s     X      ”¸     ¸     ¨hJ    éU=àÌ®Ò               < _ e x t r a s . s c s s     X      ”¸     ¸      iJ    éU=àÌ®Ò               < _ e x t r a s . s c s s     X      ”¸     ¸     XiJ    éU=àÌ®Ò €             < _ e x t r a s . s c s s     `      •¸     ¸     °iJ    éU=àÌ®Ò               " < _ f i x e d - w i d t h . s c s s   `      •¸     ¸     jJ    éU=àÌ®Ò              " < _ f i x e d - w i d t h . s c s s   `      •¸     ¸     pjJ    éU=àÌ®Ò              " < _ f i x e d - w i d t h . s c s s   `      •¸     ¸     ÐjJ    éU=àÌ®Ò              " < _ f i x e d - w i d t h . s c s s   `      •¸     ¸     0kJ    éU=àÌ®Ò €            " < _ f i x e d - w i d t h . s c s s   X      –¸     ¸     kJ    ¸?àÌ®Ò                < _ i c o n s . s c s s       X      –¸     ¸     èkJ    ¸?àÌ®Ò               < _ i c o n s . s c s s       X      –¸     ¸     @lJ    ¸?àÌ®Ò               < _ i c o n s . s c s s       X      –¸     ¸     ˜lJ    ¸?àÌ®Ò               < _ i c o n s . s c s s       X      –¸     ¸     ðlJ    ¸?àÌ®Ò €             < _ i c o n s . s c s s       X      —¸     ¸     HmJ    ¸?àÌ®Ò                < _ l a r g e r . s c s s     X      —¸     ¸      mJ    ¸?àÌ®Ò               < _ l a r g e r . s c s s     X      —¸     ¸     ømJ    ¸?àÌ®Ò               < _ l a r g e r . s c s s     X      —¸     ¸     PnJ    ¸?àÌ®Ò               < _ l a r g e r . s c s s     X      —¸     ¸     ¨nJ    ¸?àÌ®Ò €             < _ l a r g e r . s c s s     P      ˜¸     ¸      oJ    ®BàÌ®Ò                < _ l i s t . s c s s P      ˜¸     ¸     PoJ    ®BàÌ®Ò               < _ l i s t . s c s s P      ˜¸     ¸      oJ    ®BàÌ®Ò               < _ l i s t . s c s s                 P      ˜¸     ¸      pJ    ®BàÌ®Ò               < _ l i s t . s c s s P      ˜¸     ¸     PpJ    ®BàÌ®Ò €             < _ l i s t . s c s s X      ™¸     ¸      pJ    ®BàÌ®Ò                < _ m i x i n s . s c s s     X      ™¸     ¸     øpJ    ®BàÌ®Ò               < _ m i x i n s . s c s s     X      ™¸     ¸     PqJ    ®BàÌ®Ò               < _ m i x i n s . s c s s     X      ™¸     ¸     ¨qJ    ®BàÌ®Ò               < _ m i x i n s . s c s s     X      ™¸     ¸      rJ    ®BàÌ®Ò €             < _ m i x i n s . s c s s     P      š¸     ¸     XrJ    ù|DàÌ®Ò                < _ p a t h . s c s s P      š¸     ¸     ¨rJ    ù|DàÌ®Ò               < _ p a t h . s c s s P      š¸     ¸     ørJ    ù|DàÌ®Ò               < _ p a t h . s c s s P      š¸     ¸     HsJ    ù|DàÌ®Ò               < _ p a t h . s c s s P      š¸     ¸     ˜sJ    ù|DàÌ®Ò €             < _ p a t h . s c s s h      ›¸     ¸     èsJ    ù|DàÌ®Ò               * < _ r o t a t e d - f l i p p e d . s c s s   h      ›¸     ¸     PtJ    ù|DàÌ®Ò              * < _ r o t a t e d - f l i p p e d . s c s s   h      ›¸     ¸     ¸tJ    ù|DàÌ®Ò              * < _ r o t a t e d - f l i p p e d . s c s s   h      ›¸     ¸      uJ    ù|DàÌ®Ò              * < _ r o t a t e d - f l i p p e d . s c s s   h      ›¸     ¸     ˆuJ    ù|DàÌ®Ò €            * < _ r o t a t e d - f l i p p e d . s c s s   X      œ¸     ¸     ðuJ    ›ÞFàÌ®Ò                < _ s p i n n i n g . s c s s X      œ¸     ¸     HvJ    ›ÞFàÌ®Ò               < _ s p i n n i n g . s c s s X      œ¸     ¸      vJ    ›ÞFàÌ®Ò               < _ s p i n n i n g . s c s s X      œ¸     ¸     øvJ    ›ÞFàÌ®Ò               < _ s p i n n i n g . s c s s X      œ¸     ¸     PwJ    ›ÞFàÌ®Ò €             < _ s p i n n i n g . s c s s X      ¸     ¸     ¨wJ    ›ÞFàÌ®Ò                < _ s t a c k e d . s c s s   X      ¸     ¸      xJ    ›ÞFàÌ®Ò               < _ s t a c k e d . s c s s   X      ¸     ¸     XxJ    ›ÞFàÌ®Ò               < _ s t a c k e d . s c s s   X      ¸     ¸     °xJ    ›ÞFàÌ®Ò               < _ s t a c k e d . s c s s   X      ¸     ¸     yJ    ›ÞFàÌ®Ò €             < _ s t a c k e d . s c s s   `      ž¸     ¸     `yJ    	¤KàÌ®Ò                < _ v a r i a b l e s . s c s s     n `      ž¸     ¸     ÀyJ    	¤KàÌ®Ò               < _ v a r i a b l e s . s c s s     n `      ž¸     ¸      zJ    	¤KàÌ®Ò               < _ v a r i a b l e s . s c s s     n `      ž¸     ¸     €zJ    	¤KàÌ®Ò               < _ v a r i a b l e s . s c s s     n `      ž¸     ¸     àzJ    	¤KàÌ®Ò €             < _ v a r i a b l e s . s c s s     n H      Ÿ¸     t¶     @{J    	¤KàÌ®Ò               < j q u e r y H      Ÿ¸     t¶     ˆ{J    	¤KàÌ®Ò  €            < j q u e r y H      Ÿ¸     t¶     Ð{J    	¤KàÌ®Ò €              < j q u e r y H      Ÿ¸     t¶     |J    	¤KàÌ®Ò € €            < j q u e r y X       ¸     Ÿ¸     `|J    	¤KàÌ®Ò                < . b o w e r . j s o n     eeX       ¸     Ÿ¸     ¸|J    	¤KàÌ®Ò               < . b o w e r . j s o n     eeX       ¸     Ÿ¸     }J    	¤KàÌ®Ò               < . b o w e r . j s o n     eeX       ¸     Ÿ¸     h}J    	¤KàÌ®Ò               < . b o w e r . j s o n     eeX       ¸     Ÿ¸     À}J    	¤KàÌ®Ò €             < . b o w e r . j s o n     eeX      ¡¸     Ÿ¸     ~J    NàÌ®Ò                < A U T H O R S . t x t     c X      ¡¸     Ÿ¸     p~J    NàÌ®Ò               < A U T H O R S . t x t     c X      ¡¸     Ÿ¸     È~J    NàÌ®Ò               < A U T H O R S . t x t     c X      ¡¸     Ÿ¸      J    NàÌ®Ò               < A U T H O R S . t x t     c X      ¡¸     Ÿ¸     xJ    NàÌ®Ò €             < A U T H O R S . t x t     c                                                 P      ¢¸     Ÿ¸      €J    NàÌ®Ò                < b o w e r . j s o n P      ¢¸     Ÿ¸     P€J    NàÌ®Ò               < b o w e r . j s o n P      ¢¸     Ÿ¸      €J    NàÌ®Ò               < b o w e r . j s o n P      ¢¸     Ÿ¸     ð€J    NàÌ®Ò               < b o w e r . j s o n P      ¢¸     Ÿ¸     @J    NàÌ®Ò €             < b o w e r . j s o n X      £¸     Ÿ¸     J    4ËRàÌ®Ò                < L I C E N S E . t x t     . X      £¸     Ÿ¸     èJ    4ËRàÌ®Ò               < L I C E N S E . t x t     . X      £¸     Ÿ¸     @‚J    4ËRàÌ®Ò               < L I C E N S E . t x t     . X      £¸     Ÿ¸     ˜‚J    4ËRàÌ®Ò               < L I C E N S E . t x t     . X      £¸     Ÿ¸     ð‚J    4ËRàÌ®Ò €             < L I C E N S E . t x t     . P      ¤¸     Ÿ¸     HƒJ    —-UàÌ®Ò                < R E A D M E . m d   P      ¤¸     Ÿ¸     ˜ƒJ    —-UàÌ®Ò               < R E A D M E . m d   P      ¤¸     Ÿ¸     èƒJ    —-UàÌ®Ò               < R E A D M E . m d   P      ¤¸     Ÿ¸     8„J    —-UàÌ®Ò               < R E A D M E . m d   P      ¤¸     Ÿ¸     ˆ„J    —-UàÌ®Ò €             < R E A D M E . m d   H      ¥¸     Ÿ¸     Ø„J    —-UàÌ®Ò               < d i s t     H      ¥¸     Ÿ¸      …J    —-UàÌ®Ò  €            < d i s t     H      ¥¸     Ÿ¸     h…J    —-UàÌ®Ò €              < d i s t     H      ¥¸     Ÿ¸     °…J    —-UàÌ®Ò € €            < d i s t     P      ¦¸     ¥¸     ø…J    mT\àÌ®Ò                < j q u e r y . j s   P      ¦¸     ¥¸     H†J    mT\àÌ®Ò               < j q u e r y . j s   P      ¦¸     ¥¸     ˜†J    mT\àÌ®Ò               < j q u e r y . j s   P      ¦¸     ¥¸     è†J    mT\àÌ®Ò               < j q u e r y . j s   P      ¦¸     ¥¸     8‡J    mT\àÌ®Ò €             < j q u e r y . j s   X      §¸     ¥¸     ˆ‡J    ïzcàÌ®Ò                < j q u e r y . m i n . j s   X      §¸     ¥¸     à‡J    ïzcàÌ®Ò               < j q u e r y . m i n . j s   X      §¸     ¥¸     8ˆJ    ïzcàÌ®Ò               < j q u e r y . m i n . j s   X      §¸     ¥¸     ˆJ    ïzcàÌ®Ò               < j q u e r y . m i n . j s   X      §¸     ¥¸     èˆJ    ïzcàÌ®Ò €             < j q u e r y . m i n . j s   X      ¨¸     ¥¸     @‰J    ïzcàÌ®Ò                < j q u e r y . m i n . m a p X      ¨¸     ¥¸     ˜‰J    ïzcàÌ®Ò               < j q u e r y . m i n . m a p X      ¨¸     ¥¸     ð‰J    ïzcàÌ®Ò               < j q u e r y . m i n . m a p X      ¨¸     ¥¸     HŠJ    ïzcàÌ®Ò               < j q u e r y . m i n . m a p X      ¨¸     ¥¸      ŠJ    ïzcàÌ®Ò €             < j q u e r y . m i n . m a p H      ©¸     Ÿ¸     øŠJ    ïzcàÌ®Ò               < s r c       H      ©¸     Ÿ¸     @‹J    ïzcàÌ®Ò  €            < s r c       H      ©¸     Ÿ¸     ˆ‹J    ïzcàÌ®Ò €              < s r c       H      ©¸     Ÿ¸     Ð‹J    ïzcàÌ®Ò € €            < s r c       P      ª¸     ©¸     ŒJ    HÝeàÌ®Ò                < . j s h i n t r c   P      ª¸     ©¸     hŒJ    HÝeàÌ®Ò               < . j s h i n t r c   P      ª¸     ©¸     ¸ŒJ    HÝeàÌ®Ò               < . j s h i n t r c   P      ª¸     ©¸     J    HÝeàÌ®Ò               < . j s h i n t r c   P      ª¸     ©¸     XJ    HÝeàÌ®Ò €             < . j s h i n t r c   P      «¸     ©¸     ¨J    X@hàÌ®Ò                < a j a x . j s       P      «¸     ©¸     øJ    X@hàÌ®Ò               < a j a x . j s       P      «¸     ©¸     HŽJ    X@hàÌ®Ò               < a j a x . j s       P      «¸     ©¸     ˜ŽJ    X@hàÌ®Ò               < a j a x . j s       P      «¸     ©¸     èŽJ    X@hàÌ®Ò €             < a j a x . j s       X      ¬¸     ©¸     8J    X@hàÌ®Ò                < a t t r i b u t e s . j s   X      ¬¸     ©¸     J    X@hàÌ®Ò               < a t t r i b u t e s . j s                           X      ¬¸     ©¸      J    X@hàÌ®Ò               < a t t r i b u t e s . j s   X      ¬¸     ©¸     XJ    X@hàÌ®Ò               < a t t r i b u t e s . j s   X      ¬¸     ©¸     °J    X@hàÌ®Ò €             < a t t r i b u t e s . j s   X      ­¸     ©¸     ‘J    ±¢jàÌ®Ò                < c a l l b a c k s . j s     X      ­¸     ©¸     `‘J    ±¢jàÌ®Ò               < c a l l b a c k s . j s     X      ­¸     ©¸     ¸‘J    ±¢jàÌ®Ò               < c a l l b a c k s . j s     X      ­¸     ©¸     ’J    ±¢jàÌ®Ò               < c a l l b a c k s . j s     X      ­¸     ©¸     h’J    ±¢jàÌ®Ò €             < c a l l b a c k s . j s     P      ®¸     ©¸     À’J    çmàÌ®Ò                < c o r e . j s       P      ®¸     ©¸     “J    çmàÌ®Ò               < c o r e . j s       P      ®¸     ©¸     `“J    çmàÌ®Ò               < c o r e . j s       P      ®¸     ©¸     °“J    çmàÌ®Ò               < c o r e . j s       P      ®¸     ©¸      ”J    çmàÌ®Ò €             < c o r e . j s       H      ¯¸     ©¸     P”J    <goàÌ®Ò                < c s s . j s H      ¯¸     ©¸     ˜”J    <goàÌ®Ò               < c s s . j s H      ¯¸     ©¸     à”J    <goàÌ®Ò               < c s s . j s H      ¯¸     ©¸     (•J    <goàÌ®Ò               < c s s . j s H      ¯¸     ©¸     p•J    <goàÌ®Ò €             < c s s . j s P      °¸     ©¸     ¸•J    ÉqàÌ®Ò                < d a t a . j s       P      °¸     ©¸     –J    ÉqàÌ®Ò               < d a t a . j s       P      °¸     ©¸     X–J    ÉqàÌ®Ò               < d a t a . j s       P      °¸     ©¸     ¨–J    ÉqàÌ®Ò               < d a t a . j s       P      °¸     ©¸     ø–J    ÉqàÌ®Ò €             < d a t a . j s       X      ±¸     ©¸     H—J    d+tàÌ®Ò                < d e f e r r e d . j s       X      ±¸     ©¸      —J    d+tàÌ®Ò               < d e f e r r e d . j s       X      ±¸     ©¸     ø—J    d+tàÌ®Ò               < d e f e r r e d . j s       X      ±¸     ©¸     P˜J    d+tàÌ®Ò               < d e f e r r e d . j s       X      ±¸     ©¸     ¨˜J    d+tàÌ®Ò €             < d e f e r r e d . j s       X      ²¸     ©¸      ™J    ŒvàÌ®Ò                < d e p r e c a t e d . j s   X      ²¸     ©¸     X™J    ŒvàÌ®Ò               < d e p r e c a t e d . j s   X      ²¸     ©¸     °™J    ŒvàÌ®Ò               < d e p r e c a t e d . j s   X      ²¸     ©¸     šJ    ŒvàÌ®Ò               < d e p r e c a t e d . j s   X      ²¸     ©¸     `šJ    ŒvàÌ®Ò €             < d e p r e c a t e d . j s   X      ³¸ 

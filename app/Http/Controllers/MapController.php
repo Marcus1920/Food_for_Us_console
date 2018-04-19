@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\ProductType;
+use App\User;
 use Illuminate\Http\Request;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use App\Sellers_details_tabs;
 use App\NewUser;
+use App\UserRoles;
+use App\Transaction;
 
 class MapController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public  function   GetSellersPosts()
     {
         $latitude=-29;
@@ -17,19 +25,32 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $sellersPosts=Sellers_details_tabs::all();
+        $sellersPosts=Sellers_details_tabs::with('Packaging')->with('Products')->get();
 
         $productTypes=ProductType::all();
 
         foreach ($sellersPosts as $sellersPost) {
 
-            $content = "<div style='color:black'>
+            $transaction = Transaction::with('sellers')->with('status')->with('buyers')->with('product')->where('product',$sellersPost->id)->first();
+
+//            return $transaction;
+
+
+            if ($transaction==null || $transaction=='')
+            {
+
+
+                $content = "<div style='color:black'>
                       <tr>
                       <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
                       </tr>
                       <br/>
                       <tr>
-                      <td><img src=$sellersPost->productPicture style='height: 250px;width: 300px;'></td>
+                      <td><img src=$sellersPost->productPicture></td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Product Name :</b></td><td>{$sellersPost->Product}</td>
                       </tr>
                       <br/>
                       <tr>
@@ -40,18 +61,126 @@ class MapController extends Controller
                       <td><b>Description : </b></td><td>$sellersPost->description</td>
                       </tr>
                       <br/>
+                       <tr>
+                      <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
+                      </tr>
+                      <br/>
                       <tr>
-                      <td><b>Packaging :</b>&nbsp; </td><td>$sellersPost->packaging</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <th>
+                      <td><center><b>Transaction</b></center></td>
+                      </th>
+                       </tr>
+                       <tr>
+                       <td>-There is no transaction...</td>
+                       </tr>
+                      </div>";
+
+                //$images=$sellersPost->Products->marker_url;
+
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true',]);
+
+//                $images=$sellersPost->Products->marker_url;
+
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','label'=>$sellersPost->id]);
+
+
+//                return "null";
+            }
+            else
+                {
+
+                $content = "<div style='color:black'>
+                      <tr>
+                      <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><img src=$sellersPost->productPicture></td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->costPerKg</td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Description : </b></td><td>$sellersPost->description</td>
                       </tr>
                       <br/>
                        <tr>
                       <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
                       </tr>
+                      <br/>
+                      <tr>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <th>
+                      <td><center><b>Transaction</b></center></td>
+                      </th>
+                       </tr>
+                       <tr>
+                       <td><b>Seller :</b>&nbsp; </td><td>{$transaction->sellers->name} {$transaction->sellers->surname}</td>
+                       </tr>
+                       <br/>
+                       <tr>
+                       <td><b>Buyer :</b>&nbsp; </td><td>{$transaction->buyers->name} {$transaction->sellers->surname}</td>
+                       </tr>
+                       <br/>
+                       <tr>
+                       <td><b>Quantity :</b>&nbsp; </td><td>$transaction->quantity</td>
+                       </tr>
                       </div>";
+//                $images=$sellersPost->Products->marker_url;
 
-            $images='img/Markers/'.$sellersPost->productName.'.png';
+                $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','label'=>$sellersPost->id]);
 
-            $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
+
+//                return "something";
+            }
+//            $content = "<div style='color:black'>
+//                      <tr>
+//                      <td><b>Post Number</b>&nbsp; : </td><td>$sellersPost->id</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><img src=$sellersPost->productPicture></td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><b>Cost Per Kg :</b>&nbsp; </td><td>R $sellersPost->costPerKg</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <td><b>Description : </b></td><td>$sellersPost->description</td>
+//                      </tr>
+//                      <br/>
+//                       <tr>
+//                      <td><b>Location :</b>&nbsp; </td><td>$sellersPost->location</td>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      </tr>
+//                      <br/>
+//                      <tr>
+//                      <th>
+//                      <td>null</td>
+//                      </th>
+//                       </tr>
+//                      </div>";
+//            $images=$sellersPost->Products->marker_url;
+//
+//            $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
 
         return   view  ('map.map1',compact('latitude','longitude','productTypes'));
@@ -64,7 +193,7 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $sellersPosts=Sellers_details_tabs::where('productName',$request['productTypeId'])->get();
+        $sellersPosts=Sellers_details_tabs::where('productType',$request['productTypeId'])->with('Products')->with('Packaging')->get();
 
         $productTypes=ProductType::all();
 
@@ -76,7 +205,11 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><img src=$sellersPost->productPicture style='height: 250px;width: 300px;'></td>
+                      <td><img src=$sellersPost->productPicture></td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Product Name :</b></td><td>{$sellersPost->Products->name}</td>
                       </tr>
                       <br/>
                       <tr>
@@ -88,11 +221,11 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
-                      <td><b>Packaging :</b>&nbsp; </td><td>$sellersPost->packaging</td>
+                    
                       </tr>
                       </div>";
 
-            $images='img/Markers/'.$sellersPost->productName.'.png';
+            $images=$sellersPost->Products->marker_url;
 
             $map->informationWindow($sellersPost->gps_lat, $sellersPost->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
@@ -107,7 +240,9 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $users=NewUser::all();
+        $users = NewUser::with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+
+        $userRoles=UserRoles::all();
 
         $suppliers=NewUser::where('intrest','Supplier')->get();
         $sellers=NewUser::where('intrest','Seller')->get();
@@ -122,6 +257,10 @@ class MapController extends Controller
                       </tr>
                       <br/>
                       <tr>
+                      <td><b>Interest  : </td><td>{$user->UserRole->name}</td>
+                      </tr>
+                      <br/>
+                      <tr>
                       <td><b>Name</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->name</td>
                       </tr>
                       <br/>
@@ -133,34 +272,15 @@ class MapController extends Controller
                       <td><b>Email</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->email</td>
                       </tr>
                       <br/>
-                      <tr>
-                      <td><b>Interest</b>&nbsp;&nbsp; : </td><td>$user->intrest</td>
-                      </tr>
-                      <br/>
                       <td><b>Location </b>:</td><td>$user->location</td>
                       </div>";
 
-            if($user->intrest=="Supplier")
-            {
-                $images='img/Markers/27.png';
-            }
-            else if($user->intrest=="Seller")
-            {
-                $images='img/Markers/28.png';
-            }
-            else if($user->intrest=="Buyers")
-            {
-                $images='img/Markers/29.png';
-            }
-            else if($user->intrest=="Researcher")
-            {
-                $images='img/Markers/30.png';
-            }
+            $images=$user->UserRole->marker_url;
 
             $map->informationWindow($user->gps_lat, $user->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
 
-        return   view  ('map.map',compact('latitude','longitude','suppliers','sellers','buyers','reseachers'));
+        return   view  ('map.map',compact('latitude','longitude','userRoles','suppliers','sellers','buyers','reseachers'));
     }
 
     public  function   GetUsersByType(Request $request)
@@ -170,16 +290,27 @@ class MapController extends Controller
 
         $map = Mapper::map($latitude, $longitude,['clusters' => ['size' => 2, 'center' => true, 'zoom' => 20],'zoom'=>6,'marker' => false]);
 
-        $users=NewUser::where('intrest',$request['intrest'])->get();
+        $userRoles=UserRoles::all();
 
-        $suppliers=NewUser::where('intrest','Supplier')->get();
-        $sellers=NewUser::where('intrest','Seller')->get();
-        $buyers=NewUser::where('intrest','Buyers')->get();
-        $reseachers=NewUser::where('intrest','Researcher')->get();
+        $users = NewUser::where('intrest',$request['intrest'])->with('UserStatuses')->with('UserRole')->with('UserTravelRadius')->get();
+
+
+        $suppliers=NewUser::where('intrest',1)->get();
+        $sellers=NewUser::where('intrest',2)->get();
+        $buyers=NewUser::where('intrest',3)->get();
+        $reseachers=NewUser::where('intrest',4)->get();
 
         foreach ($users as $user) {
 
             $content = "<div style='color:black'>
+                      <tr>
+                      <td><img src=$user->profilePicture style='height: 250px;width: 300px;'></td>
+                      </tr>
+                      <br/>
+                      <tr>
+                      <td><b>Interest </b>&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>{$user->UserRole->name}</td>
+                      </tr>
+                      <br/>
                       <tr>
                       <td><b>Name</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->name</td>
                       </tr>
@@ -192,34 +323,16 @@ class MapController extends Controller
                       <td><b>Email</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </td><td>$user->email</td>
                       </tr>
                       <br/>
-                      <tr>
-                      <td><b>Interest</b>&nbsp;&nbsp; : </td><td>$user->intrest</td>
-                      </tr>
-                      <br/>
                       <td><b>Location </b>:</td><td>$user->location</td>
                       </div>";
 
-            if($user->intrest=="Supplier")
-            {
-                $images='img/Markers/27.png';
-            }
-            else if($user->intrest=="Seller")
-            {
-                $images='img/Markers/28.png';
-            }
-            else if($user->intrest=="Buyers")
-            {
-                $images='img/Markers/29.png';
-            }
-            else if($user->intrest=="Researcher")
-            {
-                $images='img/Markers/30.png';
-            }
+            $images=$user->UserRole->marker_url;
 
             $map->informationWindow($user->gps_lat, $user->gps_long, $content, ['animation' => 'DROP','draggable'=>'true','icon'=>$images]);
         }
 
-        return   view  ('map.map',compact('latitude','longitude','suppliers','sellers','buyers','reseachers'));
+        return   view  ('map.map',compact('latitude','longitude','userRoles','suppliers','sellers','buyers','reseachers'));
     }
 
 }
+

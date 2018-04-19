@@ -16,4 +16,5 @@ class Cart extends Model
     {
         return $this->belongsTo(NewUser::class,'userId','id');
     }
+
 }

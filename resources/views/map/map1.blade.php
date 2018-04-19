@@ -16,59 +16,7 @@
     <!-- Fonts -->
     {{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
     <link rel="stylesheet" href="dist/css/bootstrap.css" type="text/css">
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
 
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
 </head>
 <body>
 
@@ -86,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div style=" height:600px ;">
                             @if(Session::has('success'))
                                 <div class="alert alert-success alert-icon">
@@ -103,34 +51,34 @@
 
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    {{--<div class="col-md-2">--}}
 
-                        <h2 class="tile-title" style="color: white;"><i class="glyphicon glyphicon-map-marker"></i> Marker Labels
-                            <div class="pull-right">
-                                <a href="{{ url('tasks') }}" >
+                        {{--<h2 class="tile-title" style="color: white;"><i class="glyphicon glyphicon-map-marker"></i> Marker Labels--}}
+                            {{--<div class="pull-right">--}}
+                                {{--<a href="{{ url('tasks') }}" >--}}
                                     {{--Total.....<i class="n-count animated">{{ count($allTasks,0) }}</i>--}}
-                                </a>
-                            </div>
-                        </h2>
-                        <br/>
-                        <br/>
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</h2>--}}
+                        {{--<br/>--}}
+                        {{--<br/>--}}
                         &nbsp;
-                        @foreach($productTypes as $productType)
-                            <div class="row">
-                                <form  class="form-horizontal"  method="post" action="searchByProductType">
+                        {{--@foreach($productTypes as $productType)--}}
+                            {{--<div class="row">--}}
+                                {{--<form  class="form-horizontal"  method="post" action="searchByProductType">--}}
 
-                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                    <input type="hidden" name="productTypeId" value="{{$productType->id}}">
+                                    {{--<input type="hidden" name="_token" value="{!! csrf_token() !!}">--}}
+                                    {{--<input type="hidden" name="productTypeId" value="{{$productType->id}}">--}}
 
-                                    <div class="col-sm-4"><button type="submit" title="Search for {{$productType->name}} cases" class="btn"><img src="{{$productType->marker_url}}" alt=""></button></div>
+                                    {{--<div class="col-sm-4"><button type="submit" title="Search for {{$productType->name}} cases" class="btn"><img src="{{$productType->marker_url}}" alt=""></button></div>--}}
 
-                                    <div class="col-sm-8" style="color: white;">{{$productType->name}}</div>
-                                </form>
-                            </div>
-                            &nbsp;
-                        @endforeach
+                                    {{--<div class="col-sm-8" style="color: white;">{{$productType->name}}</div>--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
+                            {{--&nbsp;--}}
+                        {{--@endforeach--}}
 
-                    </div>
+                    {{--</div>--}}
                 </div>
             </div>
         </nav>

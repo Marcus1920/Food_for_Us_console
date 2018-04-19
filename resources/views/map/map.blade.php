@@ -16,59 +16,7 @@
     <!-- Fonts -->
     {{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
     <link rel="stylesheet" href="dist/css/bootstrap.css" type="text/css">
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
 
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
 </head>
 <body>
 
@@ -105,63 +53,22 @@
                         </h2>
                         <br/>
                         <br/>
+
+                        @foreach($userRoles as $userRole)
+                            <div class="row">
+                                <form  class="form-horizontal"  method="post" action="searchUserByType">
+
+                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                    <input type="hidden" name="intrest" value="{{$userRole->id}}">
+
+                                    <div class="col-sm-4"><button type="submit" title="Search for {{$userRole->name}} cases" class="btn"><img src="{{$userRole->marker_url}}" alt=""></button></div>
+
+                                    <div class="col-sm-8" style="color: white;">{{$userRole->name}}</div>
+                                </form>
+                            </div>
+                            &nbsp;
+                        @endforeach
                         &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Seller">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Sellers" class="btn"><img src="img/Markers/28.png" alt=""></button></div>\
-                                <div class="pull-left">
-                                        <i class="n-count animated" style="color: white;">{{ count($sellers,0) }}</i>
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Seller</div>
-                            </form>
-                        </div>
-                        &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Buyers">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Buyers" class="btn"><img src="img/Markers/29.png" alt=""></button></div>
-                                <div class="pull-left">
-                                        <i class="n-count animated" style="color: white;">{{ count($buyers,0) }}</i>
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Buyer</div>
-                            </form>
-                        </div>
-                        &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Researcher">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Researchers" class="btn"><img src="img/Markers/30.png" alt=""></button></div>
-                                <div class="pull-left">
-                                        <i class="n-count animated" style="color: white;">{{ count($reseachers,0) }}</i>
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Researcher</div>
-                            </form>
-                        </div>
-                        &nbsp;
-                        <div class="row">
-                            <form  class="form-horizontal"  method="post" action="searchUserByType">
-
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="intrest" value="Supplier">
-
-                                <div class="col-sm-4"><button type="submit" title="Search for Suppliers" class="btn"><img src="img/Markers/27.png" alt=""></button></div>
-                                <div class="pull-left">
-                                    <i class="n-count animated" style="color: white;">{{ count($suppliers,0) }}</i>
-                                </div>
-                                <div class="col-sm-8" style="color: white;">Supplier</div>
-
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>

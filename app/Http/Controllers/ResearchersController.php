@@ -5,6 +5,7 @@ use  App\NewUser ;
 use App\Reseachers_details_tabs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Yajra\DataTables\DataTables;
 
 class ResearchersController extends Controller
 {
@@ -43,6 +44,53 @@ class ResearchersController extends Controller
         return response()->json($all_researchs);
     }
 
+    public function researchList()
+    {
+        return view('Researchers.index');
+    }
+    public function allResearchList()
+    {
+//        $all_research=Reseachers_details_tabs::all();
+        $all_research=\DB::table('reseachers_details_tabs')
+            ->join('new_users','reseachers_details_tabs.new_user_id','=','new_users.id')
+            ->select(
+                \DB::raw(
+                    "
+                        reseachers_details_tabs.id,
+                        new_users.name,
+                        new_users.surname,
+                        new_users.cellphone,
+                        new_users.email,
+                        reseachers_details_tabs.natureOfBusiness,
+                        reseachers_details_tabs.summaryBox,
+                        reseachers_details_tabs.researchNotes,
+                        reseachers_details_tabs.gps_lat,
+                        reseachers_details_tabs.gps_long,
+                        reseachers_details_tabs.researchNotes,
+                        reseachers_details_tabs.created_at
+                        "
+                )
+            )
+            ->orderBy('created_at' ,'desc')	->get();
+
+        return Datatables::of($all_research)
+            ->make(true);
+    }
+
+    public function researchProfile($id)
+    {
+        $research = Reseachers_details_tabs::with('User')->find($id);
+        return view('Researchers.profile',compact('research'));
+    }
+
+    public function viewResearch()
+    {
+        $id = Input::get('id');
+
+        $research = Reseachers_details_tabs::find($id);
+        return $research;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -52,18 +100,20 @@ class ResearchersController extends Controller
     {
 	///	$file=$request->file('file');
 		///return $file->getClientOriginalName();
-	//	$file=$request->file;
+	//	;
 		
-
+		
+\Log::info($file=$request->file);
         $user  = NewUser::where('api_key',$request->api_key)->first();
     
         $researcherPost = new Reseachers_details_tabs();
         $researcherPost->new_user_id = $user->id;
         $name =$user->name;
-        $surname=$user->name; 		
+        $surname=$user->surname;
 		$id=$user->id;
-		
+	
         $img=$request->file('file');
+	
         $destinationFolder = "images/".$name."_".$surname."_".$id."/";
 
         if(!\File::exists($destinationFolder)) {
@@ -71,15 +121,16 @@ class ResearchersController extends Controller
         }
 
         $name =    $img->getClientOriginalName();
+		
 
-        $img->move($destinationFolder,$name) ;
+
+         $img->move($destinationFolder,$name) ;
 
         $researcherPost->imageUrl = env('APP_URL').$destinationFolder.'/'.$name;
 
 		$researcherPost->gps_long= $request->gps_long;
 		$researcherPost->gps_lat= $request->gps_lat;
         $researcherPost->researchNotes=  $request->researchNotes;
-		$researcherPost->summaryBox= $request->summaryBox;
 		$researcherPost->summaryBox= $request->summaryBox;
 		$researcherPost->natureOfBusiness = $request->natureOfBusiness;
         $researcherPost->save();

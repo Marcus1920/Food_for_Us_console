@@ -165,6 +165,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
 
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -178,6 +181,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SellerPostsServiceProvider::class,
+        App\Providers\NotificationServiceProvider::class,
+
+        LaravelFCM\FCMServiceProvider::class,
+
+
 
     ],
 
@@ -229,10 +238,17 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
         'Input' => Illuminate\Support\Facades\Input::class,
 
-        'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Mapper'     => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+        'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
+
+   
+
 
     ],
 

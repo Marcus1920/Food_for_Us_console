@@ -4,20 +4,17 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\UserStatus;
-
+use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
+
     public function boot()
     {
         if (\Schema::hasTable('user_statuses'))
         {
             $userStatuses          = UserStatus::orderBy('name','ASC')->get();
             $selectUserStatuses    = array();
+           // $selectUserStatuses[0] = "Select Status";
 
             foreach ($userStatuses as $userStatus) {
                 $selectUserStatuses[$userStatus->id] = $userStatus->name;
@@ -26,13 +23,9 @@ class AppServiceProvider extends ServiceProvider
             \View::share('selectUserStatuses',$selectUserStatuses);
 
         }
+        Schema::defaultStringLength(191);
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
 
