@@ -276,7 +276,7 @@ Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
 
-
+Route::get('deleteUser/{id}' ,'UsersController@deleteUser' );
 
 Route::get('researchList','ResearchersController@researchList')
             ->name('researchList')

@@ -15,6 +15,15 @@
                 <div class="tab-pane" id="closure">
                     <!-- Responsive Table -->
                     <div class="block-area" id="responsiveTable">
+
+                        @if(Session::has('success'))
+                            <div class="alert alert-success alert-icon">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ Session::get('success') }}
+                                <i class="icon">&#61845;</i>
+                            </div>
+                        @endif
+
                         <div class="table-responsive">
                             <h3 class="block-title">  De-activated User  List </h3><h16>&nbsp</h16>
                             <a href="{{ url('userroleslist') }}" class="btn btn-sm">
@@ -35,6 +44,7 @@
                                     <th>Description</th>
                                     <th>Created At</th>
                                     <th>Action</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -74,7 +84,11 @@
 
                         data.replace( /[$,]/g, '' )
                         data;
-                    } }
+                    } },
+                    {data: function(d)
+                        {
+                            return "<a href='{!! url('deleteUser/" + d.id + "') !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";
+                        },"name" : 'name'},
                 ],
                 dom: 'Bfrtip',
                 "scrollX": true,

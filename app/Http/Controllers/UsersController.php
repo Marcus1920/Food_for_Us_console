@@ -297,6 +297,16 @@ class UsersController extends Controller
                             });
         return Redirect::to('/users');
     }
+
+    public function deleteUser($id)
+    {
+        $user = NewUser::where('id',$id)
+            ->update(['active'=>4]);
+
+        \Session::flash('success', 'well done! Successfully deleted the user!');
+        return Redirect('/deactivatedUser');
+    }
+
     public  function  create  ()   {
 
 
