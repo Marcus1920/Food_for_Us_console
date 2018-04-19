@@ -35,7 +35,7 @@
 
                     <div class="navbar-brand">
                         <a href="https://mobirise.com" class="navbar-logo"><img src="assets/images/logo-128x128.png" alt="Mobirise"></a>
-                        <a class="navbar-caption" href="https://mobirise.com">Food For Us</a>
+                        <a class="navbar-caption" href="https://mobirise.com">Food For Ussss</a>
                     </div>
 
                 </div>
@@ -72,130 +72,6 @@
         </div>
     </div>
 
-</section>
-
-<section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-8" data-rv-view="54" style="background-color: rgb(255, 255, 255);">
-
-
-
-    <div class="mbr-cards-row row">
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Bootstrap 4</h4>
-                        <h5 class="card-subtitle">Bootstrap 4 has been noted</h5>
-                        <p class="card-text">Bootstrap 4 has been noted as one of the most reliable and proven frameworks and Mobirise has been equipped to develop websites using this framework.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/carrots-for-sale-1523187977qan-600x357.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Responsive</h4>
-                        <h5 class="card-subtitle">One of Bootstrap 4's big points</h5>
-                        <p class="card-text">One of Bootstrap 4's big points is responsiveness and Mobirise makes effective use of this by generating highly responsive website for you.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/orangeedit-600x463.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Web Fonts</h4>
-                        <h5 class="card-subtitle">Google has a highly exhaustive list of fonts</h5>
-                        <p class="card-text">Google has a highly exhaustive list of fonts compiled into its web font platform and Mobirise makes it easy for you to use them on your website easily and freely.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Unlimited Sites</h4>
-                        <h5 class="card-subtitle">Mobirise gives you the freedom to develop</h5>
-                        <p class="card-text">Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-</section>
-
-<section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-9" data-rv-view="57" style="background-color: rgb(255, 255, 255);">
-
-
-
-    <div class="mbr-cards-row row">
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Bootstrap 4</h4>
-                        <h5 class="card-subtitle">Bootstrap 4 has been noted</h5>
-                        <p class="card-text">Bootstrap 4 has been noted as one of the most reliable and proven frameworks and Mobirise has been equipped to develop websites using this framework.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/orangeedit-600x463.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Responsive</h4>
-                        <h5 class="card-subtitle">One of Bootstrap 4's big points</h5>
-                        <p class="card-text">One of Bootstrap 4's big points is responsiveness and Mobirise makes effective use of this by generating highly responsive website for you.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/carrots-for-sale-1523187977qan-600x357.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Web Fonts</h4>
-                        <h5 class="card-subtitle">Google has a highly exhaustive list of fonts</h5>
-                        <p class="card-text">Google has a highly exhaustive list of fonts compiled into its web font platform and Mobirise makes it easy for you to use them on your website easily and freely.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Unlimited Sites</h4>
-                        <h5 class="card-subtitle">Mobirise gives you the freedom to develop</h5>
-                        <p class="card-text">Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
 </section>
 
 
@@ -238,6 +114,11 @@
 
 
 </head>
+
+
+
+
+
 <body>
 <section id="menu-7" data-rv-view="53">
 
@@ -288,128 +169,168 @@
 
 </section>
 
-<section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-8" data-rv-view="54" style="background-color: rgb(255, 255, 255);">
+{{--<section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-8" data-rv-view="54" style="background-color: rgb(255, 255, 255);">--}}
 
 
 
-    <div class="mbr-cards-row row">
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Bootstrap 4</h4>
-                        <h5 class="card-subtitle">Bootstrap 4 has been noted</h5>
-                        <p class="card-text">Bootstrap 4 has been noted as one of the most reliable and proven frameworks and Mobirise has been equipped to develop websites using this framework.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/carrots-for-sale-1523187977qan-600x357.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Responsive</h4>
-                        <h5 class="card-subtitle">One of Bootstrap 4's big points</h5>
-                        <p class="card-text">One of Bootstrap 4's big points is responsiveness and Mobirise makes effective use of this by generating highly responsive website for you.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/orangeedit-600x463.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Web Fonts</h4>
-                        <h5 class="card-subtitle">Google has a highly exhaustive list of fonts</h5>
-                        <p class="card-text">Google has a highly exhaustive list of fonts compiled into its web font platform and Mobirise makes it easy for you to use them on your website easily and freely.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Unlimited Sites</h4>
-                        <h5 class="card-subtitle">Mobirise gives you the freedom to develop</h5>
-                        <p class="card-text">Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    {{--<div class="mbr-cards-row row">--}}
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Bootstrap 4</h4>--}}
+                        {{--<h5 class="card-subtitle">Bootstrap 4 has been noted</h5>--}}
+                        {{--<p class="card-text">Bootstrap 4 has been noted as one of the most reliable and proven frameworks and Mobirise has been equipped to develop websites using this framework.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/carrots-for-sale-1523187977qan-600x357.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Responsive</h4>--}}
+                        {{--<h5 class="card-subtitle">One of Bootstrap 4's big points</h5>--}}
+                        {{--<p class="card-text">One of Bootstrap 4's big points is responsiveness and Mobirise makes effective use of this by generating highly responsive website for you.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/orangeedit-600x463.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Web Fonts</h4>--}}
+                        {{--<h5 class="card-subtitle">Google has a highly exhaustive list of fonts</h5>--}}
+                        {{--<p class="card-text">Google has a highly exhaustive list of fonts compiled into its web font platform and Mobirise makes it easy for you to use them on your website easily and freely.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Unlimited Sites</h4>--}}
+                        {{--<h5 class="card-subtitle">Mobirise gives you the freedom to develop</h5>--}}
+                        {{--<p class="card-text">Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
 
-    </div>
-</section>
+    {{--</div>--}}
+{{--</section>--}}
+
 
 <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-9" data-rv-view="57" style="background-color: rgb(255, 255, 255);">
 
 
+    {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">MORE</button>--}}
 
-    <div class="mbr-cards-row row">
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Bootstrap 4</h4>
-                        <h5 class="card-subtitle">Bootstrap 4 has been noted</h5>
-                        <p class="card-text">Bootstrap 4 has been noted as one of the most reliable and proven frameworks and Mobirise has been equipped to develop websites using this framework.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/orangeedit-600x463.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Responsive</h4>
-                        <h5 class="card-subtitle">One of Bootstrap 4's big points</h5>
-                        <p class="card-text">One of Bootstrap 4's big points is responsiveness and Mobirise makes effective use of this by generating highly responsive website for you.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/carrots-for-sale-1523187977qan-600x357.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Web Fonts</h4>
-                        <h5 class="card-subtitle">Google has a highly exhaustive list of fonts</h5>
-                        <p class="card-text">Google has a highly exhaustive list of fonts compiled into its web font platform and Mobirise makes it easy for you to use them on your website easily and freely.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="container">
-                <div class="card cart-block">
-                    <div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Unlimited Sites</h4>
-                        <h5 class="card-subtitle">Mobirise gives you the freedom to develop</h5>
-                        <p class="card-text">Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.</p>
-                        <div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    {{--<!-- Modal -->--}}
+    {{--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
+        {{--<div class="modal-dialog modal-dialog-centered" role="document">--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<h3 class="modal-title" style="margin-bottom: -10px; margin-top: -10px;  float: left" id="exampleModalLongTitle">--}}
+                        {{--Livestock </h3>--}}
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                        {{--<span aria-hidden="true">&times;</span>--}}
+                    {{--</button>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
+                    {{--<div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div><br style="line-height: .2">--}}
+                    {{--<span>ProductType&emsp;&emsp;&emsp;&emsp;:&emsp;Livestock </span><br>--}}
+                    {{--<span>Location&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;South Africa </span><br>--}}
+                    {{--<span>City&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;Middledrift </span><br>--}}
+                    {{--<span>Packaging&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;Plastic Bags </span><br>--}}
+                    {{--<span>Payment Methods&emsp;&nbsp;&nbsp;&nbsp;:&emsp;Cash </span><br>--}}
+                    {{--<span>Cost PerKg&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;200 </span><br>--}}
+                    {{--<span>Description&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;Domestic goose </span>--}}
+                {{--</div>--}}
+
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 
-    </div>
+<div id="div_container" >
+
+
+
+
+
+
+    {{--<div class="mbr-cards-row row">--}}
+
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Bootstrap 4</h4>--}}
+                        {{--<h5 class="card-subtitle">Bootstrap 4 has been noted</h5>--}}
+                        {{--<p class="card-text">Bootstrap 4 has been noted as one of the most reliable and proven frameworks and Mobirise has been equipped to develop websites using this framework.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/orangeedit-600x463.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Responsive</h4>--}}
+                        {{--<h5 class="card-subtitle">One of Bootstrap 4's big points</h5>--}}
+                        {{--<p class="card-text">One of Bootstrap 4's big points is responsiveness and Mobirise makes effective use of this by generating highly responsive website for you.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/carrots-for-sale-1523187977qan-600x357.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Web Fonts</h4>--}}
+                        {{--<h5 class="card-subtitle">Google has a highly exhaustive list of fonts</h5>--}}
+                        {{--<p class="card-text">Google has a highly exhaustive list of fonts compiled into its web font platform and Mobirise makes it easy for you to use them on your website easily and freely.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">--}}
+            {{--<div class="container">--}}
+                {{--<div class="card cart-block">--}}
+                    {{--<div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<h4 class="card-title">Unlimited Sites</h4>--}}
+                        {{--<h5 class="card-subtitle">Mobirise gives you the freedom to develop</h5>--}}
+                        {{--<p class="card-text">Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.</p>--}}
+                        {{--<div class="card-btn"><a href="https://mobirise.com" class="btn btn-primary">MORE</a></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
+
+    {{--</div>--}}
+
+</div>
 </section>
 
 
@@ -422,7 +343,7 @@
 <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
 <script src="assets/smooth-scroll/smooth-scroll.js"></script>
 <script src="assets/theme/js/script.js"></script>
-
+<script type="text/javascript" src="js/RecentContent.js"></script>
 
 <input name="animation" type="hidden">
 </body>

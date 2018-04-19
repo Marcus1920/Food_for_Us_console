@@ -104,21 +104,6 @@
                     <form method="post" action="{{ url('login') }}">
 
                         {!! csrf_field() !!}
-                        <div class="row row-sm-offset">
-
-                            <div class="col-xs-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="form-control-label"  Style="color:white; font-weight:bolder" for="form1-4-name">Username<span class="form-asterisk"></span></label>
-                                    <input type="text" class="form-control" name="email" required="" data-form-field="Name" id="form1-4-name">
-                                </div>
-                            </div>
-
-
-
-
-                        </div>
-
-
 
 
 
@@ -126,27 +111,32 @@
 
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Password<span class="form-asterisk"></span></label>
-                                    <input type="text" class="form-control" name="password" required="" data-form-field="Name" id="form1-4-name">
+                                    <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Username<span class="form-asterisk"></span></label>
+                                    <input type="text" class="form-control" name="email" required="" data-form-field="Name" id="form1-4-name">
                                 </div>
                             </div>
 
+                        </div>
 
 
 
+
+                        <div class="row row-sm-offset">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Password<span class="form-asterisk"></span></label>
+                                    <input type="password" class="form-control" name="password" required="" data-form-field="Name" id="form1-4-name">
+                                </div>
+                            </div>
 
                         </div>
+
                         <div class="row row-sm-offset">
-
-
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
                                     <input type="checkbox"  name="name"  id="form1-4-name"> <span style="color:white"> Remember Me </span>
                                 </div>
                             </div>
-
-
-
                         </div>
 
 
