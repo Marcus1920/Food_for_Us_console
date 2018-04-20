@@ -1,7 +1,7 @@
 function loadData() {
     var div_container = document.getElementById("div_container");
     var ajax = new XMLHttpRequest();
-    ajax.open("GET","http://127.0.0.1:8000/api/v1/allSellersPost", true);
+    ajax.open("GET","http://localhost:800/Food_for_us/Food_for_us/public/api/v1/allSellersPost", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.onreadystatechange = function() {
         var data = JSON.parse(ajax.responseText);

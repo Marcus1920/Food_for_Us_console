@@ -23,6 +23,10 @@ Route::get('dologin', function () {
     return view('auth.doLogin');
 });
 
+Route::get('lading', function () {
+    return view('auth.login');
+});
+
 
 Route::get('userporifiles', function () {
     return view('userprofile.profile');
@@ -305,7 +309,7 @@ Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 
 Route::post('InactivateUser/{id}' ,'UsersController@inactivateUser' );
 
-
+Route::get('deleteUser/{id}' ,'UsersController@deleteUser' );
 
 Route::get('researchList','ResearchersController@researchList')
             ->name('researchList')

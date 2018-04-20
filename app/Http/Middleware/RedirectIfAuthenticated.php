@@ -11,7 +11,14 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/users');
+            if (\Auth::user()->role == 'admin') {
+                return redirect('/users');
+                // or return route('routename');
+            }
+            else if(\Auth::user()->role == 'mobile-user'){
+                return redirect('/mypostlist');
+            }
+
         }
 
         return $next($request);
