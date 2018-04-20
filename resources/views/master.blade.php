@@ -262,21 +262,12 @@
             </li>
 
 
-<<<<<<< HEAD
 
-            <li {{ (Request::is('reports') ? "class=active" : '') }}>
-                    <a class="sa-side-user" href="{{ url('users') }}">
-                        <span class="menu-item">Users</span>
-                    </a>
-                </li>
-
-=======
             <li {{ (Request::is('transaction') ? "class=active" : '') }}>
                 <a class="sa-side-transaction" href="{{ url('transactionList') }}">
                     <span class="menu-item">Transaction history</span>
                 </a>
             </li>
->>>>>>> 492aea1083e7b671cd722bef8bdd689fa727d21c
 
         </ul>
     </aside>
