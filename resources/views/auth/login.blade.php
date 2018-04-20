@@ -34,8 +34,8 @@
                 <div class="mbr-table-cell">
 
                     <div class="navbar-brand">
-                        <a href="https://mobirise.com" class="navbar-logo"><img src="assets/images/logo-128x128.png" alt="Mobirise"></a>
-                        <a class="navbar-caption" href="https://mobirise.com">Food For Us</a>
+                        <a href="#" class="navbar-logo"><img src="assets/images/logo-128x128.png" alt="Mobirise"></a>
+                        <a class="navbar-caption" href="dologin">Food For Us</a>
                     </div>
 
                 </div>
@@ -45,7 +45,7 @@
                         <div class="hamburger-icon"></div>
                     </button>
 
-                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="/">HOME</a></li><li class="nav-item"><a class="nav-link link" href="recentPost" aria-expanded="false">RECENT POST</a></li><li class="nav-item"><a class="nav-link link" href="/" aria-expanded="false"></a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="dologin">Login</a></li></ul>
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="lading">HOME</a></li><li class="nav-item"><a class="nav-link link" href="recentPost" aria-expanded="false">RECENT POST</a></li><li class="nav-item"><a class="nav-link link" href="/" aria-expanded="false"></a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="dologin">Login</a></li></ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>

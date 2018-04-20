@@ -23,6 +23,10 @@ Route::get('dologin', function () {
     return view('auth.doLogin');
 });
 
+Route::get('lading', function () {
+    return view('auth.login');
+});
+
 
 Route::get('userporifiles', function () {
     return view('userprofile.profile');
