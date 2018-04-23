@@ -261,13 +261,11 @@
                 </a>
             </li>
 
-
             <li {{ (Request::is('transaction') ? "class=active" : '') }}>
                 <a class="sa-side-transaction" href="{{ url('transactionList') }}">
                     <span class="menu-item">Transaction history</span>
                 </a>
             </li>
-
 
         </ul>
     </aside>
