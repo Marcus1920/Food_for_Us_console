@@ -29,7 +29,34 @@ Route::get('lading', function () {
 
 
 Route::get('userporifiles', function () {
-    return view('userprofile.profile');
+
+    $new_user_id = Auth::user()->new_user_id;
+
+    $user = NewUser::where('id',$new_user_id)->first();
+
+    $users  = NewUser::where('api_key',$user->api_key)
+        ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
+        ->select(
+            \DB::raw(
+                "
+                        new_users.id,
+                        new_users.profilePicture,
+                        new_users.idNumber,
+                        new_users.name,
+                        new_users.surname,
+                        new_users.email,
+                        new_users.cellphone,
+                        new_users.location,
+                        new_users.descriptionOfAcces,
+                        user_roles.name as interest 
+                       "
+            )
+        )
+        ->first();
+
+    http://system.foodforus.cloud/public/img/default-user-image.png
+
+    return view('userprofile.profile',compact('users'));
 });
 
 

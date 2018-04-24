@@ -77,23 +77,27 @@
                 <div class="col-md-6 ml-auto mr-auto">
                     <div class="profile">
                         <div class="avatar">
-                            <img src="profile/assets/img/kit/faces/marc.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            <img src="{{$users->profilePicture}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                         </div>
                         <div class="name">
-                            <h3 class="title">Marcus Mbayo</h3>
-                            <h6>Developer </h6>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
+                            <h3 class="title">{{ $users->name }}  {{ $users->surname }}</h3>
+                            <h6>Interest : {{ $users->interest }} </h6>
+                            <h6>ID Number : {{ $users->idNumber }} </h6>
+                            <h6>email : {{ $users->email }} </h6>
+                            <h6>cellphone : {{ $users->cellphone }} </h6>
+                            <h6>location : {{ $users->location }} </h6>
+                            {{--<a href="" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>--}}
+                            {{--<a href="" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>--}}
+                            {{--<a href="" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>--}}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="description text-center">
-                <p>An artist of considerable range, Chet Faker &#x2014; the name taken by Melbourne-raised, Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+            {{--<div class="description text-center">--}}
+                {{--<p>An artist of considerable range, Chet Faker &#x2014; the name taken by Melbourne-raised, Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>--}}
 
-                </br></br>
-            </div>
+                {{--</br></br>--}}
+            {{--</div>--}}
 
 
         </div>
