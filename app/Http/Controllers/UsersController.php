@@ -536,6 +536,30 @@ class UsersController extends Controller
           $input           =  $request->all();
           $user            =  NewUser::where('api_key',$input['api_key'])->first();
 
+          if($request->email == NULL)
+          {
+              $email = $user->email;
+          }
+          else{
+              $email = $request->email;
+          }
+
+          if($request->cellphone == NULL)
+          {
+              $cellphone = $user->cellphone;
+          }
+          else{
+              $cellphone = $request->cellphone;
+          }
+
+          if($request->idNumber == NULL)
+          {
+              $idNumber = $user->idNumber;
+          }
+          else{
+              $idNumber = $request->idNumber;
+          }
+
           if($request->hasFile('profilePicture'))
           {
               $img                =  $request->file('profilePicture');
@@ -550,7 +574,10 @@ class UsersController extends Controller
                            $img->move($destinationFolder,$name);
 
               $newProPicture  =  env('APP_URL').$destinationFolder.'/'.$name;
-              $user->update(['profilePicture'=>$newProPicture]);
+              $user->update(['profilePicture'=>$newProPicture,
+                  'email'=>$email,
+                  'cellphone'=>$cellphone,
+                  'idNumber'=>$idNumber]);
           }
           return $user;
       }
