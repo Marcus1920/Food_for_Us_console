@@ -66,7 +66,7 @@
                     <li data-app-prevent-settings="" data-target="#slider-1" class="active" data-slide-to="0"></li><li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="1"></li><li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="2"></li><li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="3"></li><li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="4"></li><li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="5"></li><li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="6"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full active" data-bg-video-slide="false" style="background-image: url(assets/images/ffu-1920x1280.png);">
+                    <div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full active" data-bg-video-slide="false" style="background-image: url(assets/images/Slide02.png);">
                         <div class="mbr-table-cell">
                             <div class="mbr-overlay" style="opacity: 0;"></div>
                             <div class="container-slide container">
@@ -74,14 +74,13 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-1">
                                         <h2 class="mbr-section-title display-1"></h2>
-                                        <p class="mbr-section-lead lead">Slide with youtube video background and color overlay. Title and text are aligned to the left.</p>
 
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/ffu-4-1920x1280.png);">
+                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/Slide01.png);">
                         <div class="mbr-table-cell">
                             <div class="mbr-overlay" style="opacity: 0;"></div>
                             <div class="container-slide container">
@@ -89,14 +88,14 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-1">
                                         <h2 class="mbr-section-title display-1"></h2>
-                                        <p class="mbr-section-lead lead">Slide with youtube video background and color overlay. Title and text are aligned to the left.</p>
+
 
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/ffu-3-1920x1280.png);">
+                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/Slide03.png);">
                         <div class="mbr-table-cell">
                             <div class="mbr-overlay" style="opacity: 0;"></div>
                             <div class="container-slide container">
@@ -104,14 +103,13 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2 text-xs-center">
 
-                                        <p class="mbr-section-lead lead">Choose from the large selection of latest pre-made blocks - jumbotrons, hero images, parallax scrolling, video backgrounds, hamburger menu, sticky header and more.</p>
 
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/ffu-5-1920x1280.png);">
+                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/Slide05.png);">
                         <div class="mbr-table-cell">
                             <div class="mbr-overlay" style="opacity: 0;"></div>
                             <div class="container-slide container">
@@ -119,14 +117,13 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-3 text-xs-right">
 
-                                        <p class="mbr-section-lead lead">Choose from the large selection of latest pre-made blocks - jumbotrons, hero images, parallax scrolling, video backgrounds, hamburger menu, sticky header and more.</p>
 
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/ffu-6-1920x1280.png);">
+                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/Slide06.png);">
                         <div class="mbr-table-cell">
                             <div class="mbr-overlay" style="opacity: 0;"></div>
                             <div class="container-slide container">
@@ -134,14 +131,13 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-1">
                                         <h2 class="mbr-section-title display-1"></h2>
-                                        <p class="mbr-section-lead lead">Slide with youtube video background and color overlay. Title and text are aligned to the left.</p>
 
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/ffu-7-1920x1280.png);">
+                    </div><div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full" data-bg-video-slide="false" style="background-image: url(assets/images/Slide04.png);">
                         <div class="mbr-table-cell">
                             <div class="mbr-overlay" style="opacity: 0;"></div>
                             <div class="container-slide container">
@@ -149,7 +145,6 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2 text-xs-center">
 
-                                        <p class="mbr-section-lead lead">Choose from the large selection of latest pre-made blocks - jumbotrons, hero images, parallax scrolling, video backgrounds, hamburger menu, sticky header and more.</p>
 
 
                                     </div>
@@ -164,7 +159,8 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-1">
                                         <h2 class="mbr-section-title display-1"></h2>
-                                        <p class="mbr-section-lead lead">Slide with youtube video background and color overlay. Title and text are aligned to the left.</p>
+                                        <h1 class="mbr-section-title display-1">Eating apples is good on so many levels
+                                            </h1>
 
 
                                     </div>
