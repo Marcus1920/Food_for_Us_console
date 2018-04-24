@@ -28,7 +28,6 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Surname</th>
-                                <th>Cellphone</th>
                                 <th>Email</th>
                                 <th>Cellphone</th>
                                 <th>Interest </th>
@@ -40,6 +39,7 @@
                                 <th>Description</th>
                                 <th>Created At</th>
                                 <th>Action</th>
+                                <th class="edit hidden">Edit</th>
                             </tr>
                             </thead>
                         </table>
@@ -56,6 +56,10 @@
 
         $(document).ready(function () {
 
+            if($( "#role" ).val() == "admin") {
+                $('.edit').removeClass('hidden');
+            }
+
             $('#activeUsersTable').dataTable({
 
 
@@ -66,7 +70,6 @@
                     { data: 'id' },
                     { data: 'name' },
                     { data: 'surname' },
-                    { data: 'cellphone' },
                     { data: 'email' },
                     { data: 'cellphone'},
                     { data: 'intrest' },
@@ -91,7 +94,17 @@
                         data.replace( /[$,]/g, '' )
                             data;
                     }
-                    }
+                    },
+                    {data: function(d)
+                        {
+                            if($( "#role" ).val() == "admin") {
+                                return "<a href='{!! url('editUser/" + d.id + "') !!}' class='glyphicon glyphicon-edit' style='color:yellow'></a>";
+                            }
+                            else if($( "#role" ).val() == "manager")
+                            {
+                                return "";
+                            }
+                        },"name" : 'name'},
                 ],
                 dom: 'Bfrtip',
                 "scrollX": true,

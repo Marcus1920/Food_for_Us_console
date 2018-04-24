@@ -489,12 +489,26 @@ class UsersController extends Controller
 
 
     }
-//    public function getTravelRadius()
-//    {
-//
-//        $radius     = UserTravelRadius::select('','kilometres')->get();
-//        return response()->json($radius);
-//    }
+    public function getUser($id)
+    {
+
+        $user     = NewUser::where('id',$id)->first();
+        return view('users.editUser', compact('user'));
+    }
+
+    public function updateNewUser($id,Request $request)
+    {
+        NewUser::where('id',$id)
+            ->update(['name'=>$request['name'],
+                'surname'=>$request['surname'],
+                'email'=>$request['email'],
+                'cellphone'=>$request['cellphone'],
+                'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
+
+        return Redirect('/users');
+
+    }
+
     public function viewAdmin($id)
         {
             $admin  = User::where('id',$id)->first();

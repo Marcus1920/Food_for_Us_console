@@ -400,6 +400,9 @@ Route::get('viewAdmin/{id}', 'UsersController@viewAdmin')
          ->name('viewAdmin/{id}')
          ->middleware('auth');
 
+Route::get('editUser/{id}', 'UsersController@getUser');
+Route::post('editNewUser/{id}', 'UsersController@updateNewUser');
+
 Route::post('editAdmin/{id}', 'UsersController@updateAdmin');
 Route::get('userProfile/{id}', 'UsersController@userProfile');
 
