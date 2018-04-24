@@ -10,6 +10,7 @@
     </ol>
     <h4 class="page-title">Active App Users</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
 <div class="tab-pane" id="active">
     <div class="row">
         <div class="col-md-12" >
@@ -55,8 +56,6 @@
 
         $(document).ready(function () {
 
-
-
             $('#activeUsersTable').dataTable({
 
 
@@ -80,8 +79,14 @@
                     { data: 'created_at' },
                     { data: function (data, type, row)
                         {
-                        return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>"+
-                            "<a href='{!! url('inactivateUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
+                            if($( "#role" ).val() == "admin") {
+                                return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>" +
+                                    "<a href='{!! url('inactivateUsers/" + data.id + "') !!}' class='btn btn-sm '>" + 'DeActivate' + "</a>";
+                            }
+                            else if($( "#role" ).val() == "manager")
+                            {
+                                return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                            }
 
                         data.replace( /[$,]/g, '' )
                             data;

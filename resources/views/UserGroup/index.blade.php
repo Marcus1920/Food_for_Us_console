@@ -9,6 +9,7 @@
     </ol>
     <h4 class="page-title">{{$group->name}} Group Users</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
 
     <div class="row">
         <div class="col-md-12" >
@@ -25,11 +26,11 @@
                     <div class="table-responsive">
                         <h3 class="block-title">{{$group->name}} Group Users</h3>
                         &nbsp;&nbsp;&nbsp;
-                        <a href="{{ url('addGroupUsers',$group->id) }}" class="btn btn-sm">
+                        <a href="{{ url('addGroupUsers',$group->id) }}" class="btn btn-sm hidden">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new user" data-toggle="tooltip"></i>
                         </a>
                         &nbsp;&nbsp;&nbsp;
-                        <a href="{{ url('addGroupUsersRadius',$group->id) }}" class="btn btn-sm">
+                        <a href="{{ url('addGroupUsersRadius',$group->id) }}" class="btn btn-sm hidden">
                             <i class="glyphicon glyphicon-map-marker" title="Add users based on radius"></i>
                         </a>
                         <table class="table tile table-striped" id="UserGroupTable">
@@ -41,7 +42,7 @@
                                 <th>Location</th>
                                 <th>Gps latitude </th>
                                 <th>Gps Longitude</th>
-                                <th>Remove</th>
+                                <th class="remove hidden">Remove</th>
                             </tr>
                             </thead>
                         </table>
@@ -58,6 +59,12 @@
 @section('footer')
     <script>
         jQuery(document).ready(function($){
+
+            if($( "#role" ).val() == "admin") {
+                $('.btn').removeClass('hidden');
+                $('.remove').removeClass('hidden');
+            }
+
             var $data = {!! $users !!};
 
             assignToEventsColumns($data);
@@ -91,7 +98,13 @@
                         {data: 'gps_long', name: 'gps_long'},
                         {data: function(d)
                             {
-                                return "<a href='{!! url('removeUser/" + d.id +"',$group->id) !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";
+                                if($( "#role" ).val() == "admin") {
+                                    return "<a href='{!! url('removeUser/" + d.id +"',$group->id) !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";
+                                }
+                                else if($( "#role" ).val() == "manager")
+                                {
+                                    return "";
+                                }
                             },"name" : 'name'},
                     ],
                     "aoColumnDefs": [

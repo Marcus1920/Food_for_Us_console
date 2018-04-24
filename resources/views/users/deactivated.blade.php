@@ -9,6 +9,8 @@
     </ol>
     <h4 class="page-title">De-activated App Users</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
+
     <div class="tab-pane" id="active">
         <div class="row">
             <div class="col-md-12" >
@@ -44,7 +46,7 @@
                                     <th>Description</th>
                                     <th>Created At</th>
                                     <th>Action</th>
-                                    <th>Delete</th>
+                                    <th class="delete hidden">Delete</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -60,8 +62,9 @@
     <script>
 
         $(document).ready(function () {
-
-
+            if($( "#role" ).val() == "admin") {
+                $('.delete').removeClass('hidden');
+            }
 
             $('#deactivated').dataTable({
 
@@ -78,16 +81,29 @@
                     { data: 'travelRadius' },
                     { data: 'descriptionOfAcces' },
                     { data: 'created_at' },
-                    { data: function (data, type, row) {
+                    { data: function (data, type, row)
+                        {
+                            if($( "#role" ).val() == "admin") {
                         return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>"+
                             "<a href='{!! url('inactivateUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'DeActivate' + "</a>";
+                            }
+                            else if($( "#role" ).val() == "manager")
+                            {
+                                return "<a href='{!! url('logins/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                            }
 
                         data.replace( /[$,]/g, '' )
                         data;
                     } },
                     {data: function(d)
                         {
-                            return "<a href='{!! url('deleteUser/" + d.id + "') !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";
+                            if($( "#role" ).val() == "admin") {
+                                return "<a href='{!! url('deleteUser/" + d.id + "') !!}' class='glyphicon glyphicon-remove' style='color:red'></a>";
+                            }
+                            else if($( "#role" ).val() == "manager")
+                            {
+                                return "";
+                            }
                         },"name" : 'name'},
                 ],
                 dom: 'Bfrtip',

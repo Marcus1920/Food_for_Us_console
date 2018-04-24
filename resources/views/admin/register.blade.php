@@ -45,6 +45,15 @@
             </div>
         </div>
 
+        <div class="form-group">
+            {!! Form::label('Role', 'Role', array('class' => 'col-md-2 control-label')) !!}
+            <div class="col-md-6">
+                {!! Form::select('role',['' => 'Select Role','admin' => 'admin','manager' => 'manager'],0,['class' => 'form-control' ,'id' => 'role']) !!}
+                @if ($errors->has('role'))
+                    <span class="help-block alert alert-danger"><strong>{{ $errors->first('gender')}}</strong></span>
+                @endif
+            </div>
+        </div>
 
 
 

@@ -8,6 +8,7 @@
     </ol>
     <h4 class="page-title">Country Code Listing</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
 
     <div class="row">
         <div class="col-md-12" >
@@ -26,7 +27,7 @@
                                 <th>Name</th>
                                 <th>Internet Code</th>
                                 <th>Dial Code</th>
-                                <th>Edit</th>
+                                <th class="edit hidden">Edit</th>
                             </tr>
                             </thead>
                         </table>
@@ -43,6 +44,11 @@
 @section('footer')
     <script>
         jQuery(document).ready(function($){
+
+            if($( "#role" ).val() == "admin") {
+                $('.edit').removeClass('hidden');
+            }
+
             var pendingreferralCasesTable     = $('#pendingreferralCasesTable').DataTable({
                 "autoWidth": false,
                 "processing": true,
@@ -82,7 +88,13 @@
 
                     {data: function(d)
                     {
-                        return "<a href='{!! url('editCountryCode/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                        if($( "#role" ).val() == "admin") {
+                            return "<a href='{!! url('editCountryCode/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                        }
+                        else if($( "#role" ).val() == "manager")
+                        {
+                            return "";
+                        }
                     },"name" : 'name'},
 
 

@@ -18,6 +18,9 @@ class RedirectIfAuthenticated
             else if(\Auth::user()->role == 'mobile-user'){
                 return redirect('/mypostlist');
             }
+            else if(\Auth::user()->role == 'manager'){
+                return redirect('/users');
+            }
 
         }
 

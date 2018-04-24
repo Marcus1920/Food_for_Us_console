@@ -8,6 +8,8 @@
     </ol>
     <h4 class="page-title">Products Listing</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
+
     <div class="row">
         <div class="col-md-12" >
             <div class="tab-pane" id="closure">
@@ -15,7 +17,7 @@
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive">
                         <h3 class="block-title">Products</h3>
-                        <a href="{{ url('CreateProduct') }}" class="btn btn-sm">
+                        <a href="{{ url('CreateProduct') }}" class="btn btn-sm hidden">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new product" data-toggle="tooltip"></i>
                         </a>
                         <table class="table tile table-striped" id="pendingreferralCasesTable">
@@ -23,7 +25,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Category</th>
-                                <th>Edit</th>
+                                <th class="edit hidden">Edit</th>
                                 {{--<th>Delete</th>--}}
                             </tr>
                             </thead>
@@ -39,6 +41,10 @@
 
     jQuery(document).ready(function($){
 
+        if($( "#role" ).val() == "admin") {
+            $('.edit').removeClass('hidden');
+            $('.btn').removeClass('hidden');
+        }
 
         var pendingreferralCasesTable     = $('#pendingreferralCasesTable').DataTable({
             "autoWidth": false,
@@ -77,7 +83,13 @@
                 {data: 'type', name: 'type'},
                 {data: function(d)
                 {
-                    return "<a href='{!! url('editproduct/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                    if($( "#role" ).val() == "admin") {
+                        return "<a href='{!! url('editproduct/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                    }
+                    else if($( "#role" ).val() == "manager")
+                    {
+                        return "";
+                    }
                 },"name" : 'name'},
 
 

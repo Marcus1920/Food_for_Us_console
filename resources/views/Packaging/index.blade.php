@@ -8,6 +8,7 @@
     </ol>
     <h4 class="page-title">Packaging Listing</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
 
     <div class="row">
         <div class="col-md-12" >
@@ -16,7 +17,7 @@
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive">
                         <h3 class="block-title">Packaging Types</h3>
-                        <a href="{{ url('createPackaging') }}" class="btn btn-sm">
+                        <a href="{{ url('createPackaging') }}" class="btn btn-sm hidden">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new packaging" data-toggle="tooltip"></i>
                         </a>
                         <table class="table tile table-striped" id="pendingreferralCasesTable">
@@ -24,7 +25,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Action</th>
+                                <th class="action hidden">Action</th>
                             </tr>
                             </thead>
                         </table>
@@ -40,6 +41,10 @@
 
         jQuery(document).ready(function($){
 
+            if($( "#role" ).val() == "admin") {
+                $('.action').removeClass('hidden');
+                $('.btn').removeClass('hidden');
+            }
 
             var pendingreferralCasesTable     = $('#pendingreferralCasesTable').DataTable({
                 "autoWidth": false,
@@ -76,7 +81,13 @@
                     {data: 'name', name: 'name'},
                     {data: function(d)
                     {
-                        return "<a href='{!! url('editPackaging/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                        if($( "#role" ).val() == "admin") {
+                            return "<a href='{!! url('editPackaging/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                        }
+                        else if($( "#role" ).val() == "manager")
+                        {
+                            return "";
+                        }
                     },"name" : 'name'},
                 ],
                 "aoColumnDefs": [

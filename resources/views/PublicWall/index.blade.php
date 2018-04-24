@@ -6,6 +6,8 @@
     </ol>
     <h4 class="page-title">Recipes Listing</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
+
     <div class="row">
         <div class="col-md-12" >
             <div class="tab-pane" id="closure">
@@ -13,7 +15,7 @@
                 <div class="block-area" id="responsiveTable">
                     <div class="table-responsive">
                         <h3 class="block-title">RECIPES </h3>
-                        <a href="{{ url('addRecipe') }}" class="btn btn-sm">
+                        <a href="{{ url('addRecipe') }}" class="btn btn-sm hidden">
                             <i class="fa fa-plus" aria-hidden="true" title="Add new recipe" data-toggle="tooltip"></i>
                         </a>
                         <table class="table tile table-striped" id="publicWallTable">
@@ -39,6 +41,11 @@
     <script>
 
         jQuery(document).ready(function($){
+
+            if($( "#role" ).val() == "admin") {
+                $('.btn').removeClass('hidden');
+            }
+
             var publicWallTable     = $('#publicWallTable').DataTable({
                 "autoWidth": false,
                 "processing": true,
@@ -78,8 +85,15 @@
 
                     {data: function(d)
                     {
-                        return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'Read more' + "</a>" +
-                       "<a href='{!! url('deleteRecipe/" + d.id + "') !!}' class='btn btn-sm'>" + 'Delete' + "</a>";
+
+                        if($( "#role" ).val() == "admin") {
+                            return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'Read more' + "</a>" +
+                                "<a href='{!! url('deleteRecipe/" + d.id + "') !!}' class='btn btn-sm'>" + 'Delete' + "</a>";
+                        }
+                        else if($( "#role" ).val() == "manager")
+                        {
+                            return "<a href='{!! url('RecipeProfile/" + d.id + "') !!}' class='btn btn-sm'>" + 'Read more' + "</a>";
+                        }
 
                     }},
                 ],

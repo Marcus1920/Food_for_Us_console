@@ -242,7 +242,10 @@ Route::get('/inactivateUsers/{id}',['middleware'=>'auth', function($id)
 }]);
 
 Route::get('activeUsers',['middleware'=>'auth', function (){
-   return view('users.active');
+
+    $role = Auth::user()->role;
+
+   return view('users.active',compact('role'));
 }]);
 Route::get('inactiveUsers',['middleware'=>'auth', function (){
     return view('users.inactive');

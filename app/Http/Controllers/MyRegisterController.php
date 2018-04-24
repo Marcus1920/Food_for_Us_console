@@ -29,6 +29,7 @@ class MyRegisterController extends Controller
         $adminUsers                 = new User();
         $adminUsers->name           = $request['name'];
         $adminUsers->surname        = $request['surname'];
+        $adminUsers->role           = $request['role'];
         $adminUsers->gender         = $request['gender'];
         $adminUsers->cellphone      = $request['code'].$request['cellphone'];
         $adminUsers->email          = $request['email'];

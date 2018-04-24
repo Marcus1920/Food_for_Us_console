@@ -151,6 +151,8 @@
 
                 </ul>
 
+                <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
+
 
             @if (Auth::user())
                     <h4 class="m-0">
@@ -161,6 +163,7 @@
                 @endif
                 <span style="margin-top:20px"></span>
                  <br/>
+                {{ Auth::user()->role }}
                  <br/>
                 <a href="{{ url('/auth/logout') }}">Log Out</a>
 
@@ -189,7 +192,7 @@
                     <span class="menu-item">Settings</span>
                 </a>
                 <ul class="list-unstyled menu-item">
-                    <li><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin</a></li>
+                    <li class="registerAdmin hidden"><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin</a></li>
                     <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Admin List</a></li>
                     <li><a href="{{ url('userroleslist')}}"><span class="badge badge-r"></span>User Roles List</a></li>
                     <li><a href="{{ url('allProduct') }}"><span class="badge badge-r"></span>Product List</a></li>
@@ -278,6 +281,14 @@
     </section>
  </section>
 @yield('footer')
+<script>
+
+    $(document).ready(function () {
+        if($( "#role" ).val() == "admin") {
+            $('.registerAdmin').removeClass('hidden');
+        }
+    })
+</script>
 
 <script src="{{ asset('js/toggles.js') }}"></script>
 

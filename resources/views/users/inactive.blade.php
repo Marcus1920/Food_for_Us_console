@@ -9,6 +9,8 @@
     </ol>
     <h4 class="page-title">Inactive App Users</h4>
 
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
+
 <div class="tab-pane" id="inactive">
 
     <div class="row">
@@ -71,8 +73,14 @@
                     { data: 'descriptionOfAcces' },
                     { data: 'created_at' },
                     { data: function (data, type, row) {
-                        return "<a href='{!! url('userProfile/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>"+
-                            "<a href='{!! url('editUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'Activate' + "</a>";
+                            if($( "#role" ).val() == "admin") {
+                                return "<a href='{!! url('userProfile/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>" +
+                                    "<a href='{!! url('editUsers/" + data.id + "') !!}' class='btn btn-sm'>" + 'Activate' + "</a>";
+                            }
+                            else if($( "#role" ).val() == "manager")
+                            {
+                                return "<a href='{!! url('userProfile/" + data.id + "') !!}' class='btn btn-sm'>" + 'View' + "</a>";
+                            }
 
                         data.replace( /[$,]/g, '' )
                         data;

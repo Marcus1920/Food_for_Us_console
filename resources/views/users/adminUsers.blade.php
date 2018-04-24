@@ -5,6 +5,9 @@
         <li class="active"><a>Admin Users List</a></li>
     </ol>
     <h4 class="page-title">Admin Users</h4>
+
+    <input type="text" class="hidden" style="color:black" id="role" value={!! Auth::user()->role !!} />
+
     <div class="row">
         <div class="col-md-12" >
             <div class="tab-pane" id="closure">
@@ -13,7 +16,7 @@
                     <div class="table-responsive">
                         <h3 class="block-title">Admin User  List </h3>
 
-                        <a href="{{url('register')}}"> <button type="submit" id='addingAdmin' class="btn btn-info btn-sm m-t-10" style="margin-bottom: 1%">Add Admin</button></a>
+                        <a href="{{url('register')}}"> <button type="submit" id='addingAdmin' class="btn btn-info btn-sm m-t-10 hidden" style="margin-bottom: 1%">Add Admin</button></a>
                         <table class="table tile table-striped" id="adminTable">
                             <thead>
                             <tr>
@@ -23,23 +26,10 @@
                                 <th>Email</th>
                                 <th>Cellphone</th>
                                 <th>Created By</th>
-                                <th>Action</th>
+                                <th class="action hidden">Action</th>
 
                             </tr>
                             </thead>
-                            {{--@foreach($adminUsers  as $adminUser)--}}
-                                {{--<tr>--}}
-
-                                    {{--<td> {{$adminUser->id}} </td>--}}
-                                    {{--<td> {{$adminUser->name}}  </td>--}}
-                                    {{--<td> {{$adminUser->surname}}  </td>--}}
-                                    {{--<td> {{$adminUser->email}}  </td>--}}
-                                    {{--<td> {{$adminUser->cellphone}} </td>--}}
-                                    {{--<td> {{$adminUser->created_by}} </td>--}}
-                                    {{--<td><a href="{{url('/viewAdmin/'.$adminUser->id)}}"  value="click me" class="btn btn-secondary">Edit</a></td>--}}
-
-                                {{--</tr>--}}
-                            {{--@endforeach--}}
                         </table>
                     </div>
                 </div>
@@ -53,6 +43,12 @@
     <script>
 
         jQuery(document).ready(function($){
+
+            if($( "#role" ).val() == "admin") {
+                $('.action').removeClass('hidden');
+                $('.btn').removeClass('hidden');
+            }
+
             var adminTable     = $('#adminTable').DataTable({
                 "autoWidth": false,
                 "processing": true,
@@ -92,7 +88,14 @@
                     {data: 'created_by', name: 'created_by'},
                     {data: function(d)
                     {
-                        return "<a href='{!! url('viewAdmin/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                        if($( "#role" ).val() == "admin") {
+                            return "<a href='{!! url('viewAdmin/" + d.id + "') !!}' class='btn btn-sm'>" + 'Edit' + "</a>";
+                        }
+                        else if($( "#role" ).val() == "manager")
+                        {
+                            return "";
+                        }
+
                     },"name" : 'name'},
 
 

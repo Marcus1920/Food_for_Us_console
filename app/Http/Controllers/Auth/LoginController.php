@@ -36,6 +36,9 @@ class LoginController extends Controller
         else if(\Auth::user()->role == 'mobile-user'){
             return "/mypostlist";
         }
+        else if(\Auth::user()->role == 'manager'){
+            return "/users";
+        }
     }
     /**
      * Create a new controller instance.
