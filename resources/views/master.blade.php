@@ -395,27 +395,27 @@
         <script src="{{ asset('js/d3/Tooltip.js') }}"></script>
     -->
 
-<script>
-    $("#country").tokenInput("{!! url('/getCountries')!!}",
-        {tokenLimit: 1,
-        animateDropdown: false,
-            onAdd: function (results) {
+{{--<script>--}}
+    {{--$("#country").tokenInput("{!! url('/getCountries')!!}",--}}
+        {{--{tokenLimit: 1,--}}
+        {{--animateDropdown: false,--}}
+            {{--onAdd: function (results) {--}}
 
-                if(results.name)
-                {
-                    $("#code").val(results.dial_code);
-                }
-                else
-                    {
+                {{--if(results.name)--}}
+                {{--{--}}
+                    {{--$("#code").val(results.dial_code);--}}
+                {{--}--}}
+                {{--else--}}
+                    {{--{--}}
 
-            }
-            return results;
-    },
-        });
+            {{--}--}}
+            {{--return results;--}}
+    {{--},--}}
+        {{--});--}}
 
 
 
-</script>
+{{--</script>--}}
 
 </body>
 </html>

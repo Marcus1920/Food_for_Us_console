@@ -172,7 +172,7 @@ class UsersController extends Controller
             $adminUsers->gender         = "none";
             $adminUsers->cellphone      = $data->cellphone;
             $adminUsers->email          = $data->email;
-            $adminUsers->password       = bcrypt(8407);
+            $adminUsers->password       = bcrypt($data->password);
             $adminUsers->role           = "mobile-user";
             $adminUsers->created_by     = $data->name . ' ' . $data->surname  ;
             $adminUsers->save();
