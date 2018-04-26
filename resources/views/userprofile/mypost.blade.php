@@ -1,3 +1,8 @@
+<?php
+$total_row=$sellers_posts;$rrp=8;
+$last=ceil($total_row / $rrp);
+if($last < 1){$last=1;}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Favicons -->
         <link rel="apple-touch-icon" href="{{ asset('img/food_for_us_logo.png') }}">
         <link rel="icon" href="{{ asset('img/food_for_us_logo.png') }}">
@@ -21,9 +27,62 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="profile/assets/assets-for-demo/demo.css" rel="stylesheet" />
         <!-- iframe removal -->
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
 <body class="profile-page" style="z-index: 0">
+
+
+<script>
+
+    function request_page(pn) {
+        var controls=document.getElementById("pagination_controls");
+        var rpp = "<?php echo $rrp; ?>", last = "<?php echo $last; ?>";
+        var div_container = document.getElementById("div_container");
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET","../postlist/"+pn, true);
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.onreadystatechange = function() {
+            var data = JSON.parse(ajax.responseText);
+
+            var count1,count2,container='',add=0,description='';
+            for(count2=0; count2 < data.length ; count2++){
+                if(data[add]["description"].length > 200){description = data[add]["description"].substring(0,200)+" ...";}else{description = data[add]["description"];}
+                container +='<div class="col-md-4"> <div class="card" style="width: 20rem;"><img class="card-img-top" style="width: 100%; height: 200px" src="'+data[add]["productPicture"]+'" alt="Card image cap"><div class="card-body">' +
+                    '   <h4 class="card-title">'+data[add]["productType"]+'</h4><p class="card-text">'+description+'' +
+                    '<span style="color: darkorange"></span></p>'+
+                    '   <br style="line-height: .2"><a data-toggle="collapse" href="#ModalCenter'+add+'" aria-expanded="false" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>'+
+                    '   <div class="collapse" id="ModalCenter'+add+'"><div >' +
+                    ' <span>ProductType&emsp;&emsp;&emsp;&emsp;:&emsp;'+data[add]["productType"]+' </span><br><span>Location&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;'+data[add]["country"]+' </span><br>' +
+                    ' <span>City&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;'+data[add]["city"]+' </span><br><span>Packaging&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;'+data[add]["packaging"]+'</span><br>' +
+                    ' <span>Payment Methods&emsp;&nbsp;&nbsp;&nbsp;:&emsp;'+data[add]["paymentMethods"]+' </span><br><span>Cost PerKg&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;'+data[add]["costPerKg"]+' </span><br>'+
+                    '  ' +
+                    '</div></div></div></div></div>'
+                add++;
+            }
+            if(container===''){container='<h2 class="card-title" style="text-align: center">You do not have any post post</h2>'}
+            div_container.innerHTML=container;
+        }
+        ajax.send(null);
+
+     var pageControl='';
+      if(last != 1){
+        if(pn > 1){
+            pageControl+='<button id="btn1" onclick="request_page('+(pn-1)+')" class="btn btn-default" ><</button>';
+        }
+//            pageControl +='<h1 style="position: absolute; margin-left:300px; margin-top:5px">'+pn+'</h1>';
+        if(pn != last){
+            pageControl +='<button id="btn1" style="margin-left:900px" onclick="request_page('+(pn+1)+')" class="btn btn-default" >></button>';
+        }
+        }
+    controls.innerHTML=pageControl;
+    }
+
+</script>
+
+
+
+
+
 
 
 <nav class="navbar navbar-color-on-scroll navbar-transparent   fixed-top  navbar-expand-lg " color-on-scroll="50" id="sectionsNav">
@@ -114,160 +173,6 @@
 
 
 
-
-
-                {{--<div class="col-md-4">--}}
-                    {{--<div class="card" style="width: 20rem;">--}}
-                        {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                        {{--<div class="card-body">--}}
-                            {{--<h4 class="card-title">Orangerrr</h4>--}}
-                            {{--<p class="card-text">Some quick example text to build on the card title and--}}
-                                {{--make up the bulk of the card's content. <span style="color: darkorange">  2 days ago </span></p>--}}
-
-
-
-                            {{--<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-
-                            {{--<div class="collapse" id="collapseExample">--}}
-                                {{--<div >--}}
-                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.--}}
-                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.--}}
-                                {{--</div>--}}
-
-                            {{--</div>--}}
-
-
-                        {{--</div>--}}
-
-                    {{--</div>--}}
-
-                {{--</div>--}}
-
-
-                {{--<div class="col-md-4">--}}
-                    {{--<div class="card" style="width: 20rem;">--}}
-                        {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                        {{--<div class="card-body">--}}
-                            {{--<h4 class="card-title">Orangerrr</h4>--}}
-                            {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. <span style="color: darkorange">  2 days ago </span></p>--}}
-                            {{--<a data-toggle="collapse" href="#collapseExamples" aria-expanded="false" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-
-                            {{--<div class="collapse" id="collapseExamples">--}}
-                                {{--<div >--}}
-                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.--}}
-                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.--}}
-                                {{--</div>--}}
-
-                            {{--</div>--}}
-
-
-                        {{--</div>--}}
-
-                    {{--</div>--}}
-
-                {{--</div>--}}
-
-
-                {{--<div class="col-md-4">--}}
-                    {{--<div class="card" style="width: 20rem;">--}}
-                        {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                        {{--<div class="card-body">--}}
-                            {{--<h4 class="card-title">Orangerrr</h4>--}}
-                            {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. <span style="color: darkorange">  2 days ago </span></p>--}}
-                            {{--<a data-toggle="collapse" href="#collapseExampless" aria-expanded="false" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-
-                            {{--<div class="collapse" id="collapseExampless">--}}
-                                {{--<div >--}}
-                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.--}}
-                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.--}}
-                                {{--</div>--}}
-
-                            {{--</div>--}}
-
-
-                        {{--</div>--}}
-
-                    {{--</div>--}}
-
-                {{--</div>--}}
-
-                {{--<div class="row">--}}
-                    {{--<div class="col-md-4">--}}
-                        {{--<div class="card" style="width: 20rem;">--}}
-                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">Orange</h4>--}}
-                                {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--}}
-                                {{--<a href="#" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col-md-4">--}}
-                        {{--<div class="card" style="width: 20rem;">--}}
-                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">Orange</h4>--}}
-                                {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--}}
-                                {{--<a href="#" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-
-                    {{--<div class="col-md-4">--}}
-                        {{--<div class="card" style="width: 20rem;">--}}
-                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">Orange</h4>--}}
-                                {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--}}
-                                {{--<a href="#" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                {{--</div>--}}
-
-
-                {{--<div class="row">--}}
-
-                    {{--<div class="col-md-4">--}}
-                        {{--<div class="card" style="width: 20rem;">--}}
-                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">Orange</h4>--}}
-                                {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--}}
-                                {{--<a href="#" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-
-                    {{--<div class="col-md-4">--}}
-                        {{--<div class="card" style="width: 20rem;">--}}
-                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">Orange</h4>--}}
-                                {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--}}
-                                {{--<a href="#" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-
-
-                    {{--<div class="col-md-4">--}}
-                        {{--<div class="card" style="width: 20rem;">--}}
-                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">Orange</h4>--}}
-                                {{--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--}}
-                                {{--<a href="#" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="View Details">View Details</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                {{--</div>--}}
             </div>
 
             <div id="pagination_controls"></div>
@@ -331,7 +236,7 @@
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="profile/assets/assets-for-demo/js/material-kit-demo.js"></script>
 
-<script type="text/javascript" src="js/mypostlist.js"></script>
-
+{{--<script type="text/javascript" src="js/mypostlist.js"></script>--}}
+<script>request_page(1);</script>
 </body>
 

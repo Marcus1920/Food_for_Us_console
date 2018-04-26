@@ -1,3 +1,8 @@
+<?php
+$total_row=$recipes;$rrp=4;
+$last=ceil($total_row / $rrp);
+if($last < 1){$last=1;}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +29,60 @@
 
     </head>
 <body  class="profile-page ">
+
+
+<script>
+
+    function request_page(pn) {
+        var controls=document.getElementById("pagination_controls");
+        var rpp = "<?php echo $rrp; ?>", last = "<?php echo $last; ?>";
+        var div_container = document.getElementById("div_container");
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET","../getrecieptlist/"+pn, true);
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.onreadystatechange = function() {
+            var data = JSON.parse(ajax.responseText);
+            var count1,count2,container='',description='', add=0,size=0;
+            if(data.length < 4){size=data.length}else{size=4}
+            for(count1=0;count1 < data.length; count1+=4)
+            {
+                container +="<div class=\"row\">";
+                for(count2=0; count2 < size ; count2++){
+
+                    if(data[add]["description"].length > 400){description = data[add]["description"].substring(0,400)+" ...";}else{description = data[add]["description"];}name
+
+                    container +='<div class="col-md-6 ml-auto mr-auto"><div class="card card-nav-tabs"><h4 class="card-header card-header-info">'+data[add]["name"]+'</h4>' +
+                        '   <div class="card-body"><img class="card-img-top" style="width: 100%; height: 250px" src="'+data[add]["imgurl"]+'" alt="Card image cap">' +
+                        '   <p class="card-text">'+description+'</p>'+
+                        '   <a data-toggle="collapse" href="#ModalCenter'+add+'" aria-expanded="false" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="View Details">View Details </a><div class="card-footer text-muted"> 2 days ago </div>' +
+                        '  <div class="collapse" id="ModalCenter'+add+'"><div >'+
+                        '  <span><b>First Name</b>&emsp;&emsp;&emsp;&emsp;<b>:</b>&emsp;'+data[add]["firstName"]+' </span><br><br><span><b>Last Name</b>&emsp;&emsp;&emsp;&emsp;<b>:</b>&emsp;'+data[add]["surname"]+' </span><br><br>'+
+                        '  <span><b>Ingredients</b>&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&nbsp;<b>:</b>&emsp;'+data[add]["ingredients"]+' </span><br><br><span><b>Methods</b>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<b>:</b>&emsp;'+data[add]["methods"]+'</span><br>' +
+                        '  </div></div></div></div></div>'
+                    add+=1;
+                }
+                container +="</div>"
+            }
+            div_container.innerHTML=container;
+        }
+        ajax.send(null);
+
+        var pageControl='';
+        if(last != 1){
+            if(pn > 1){
+                pageControl+='<button  style="margin-left: 150px; float: left" onclick="request_page('+(pn-1)+')" class="btn btn-default" >Prev</button>';
+            }
+            pageControl +='<h1 style="position: absolute; margin-left:650px; margin-top:0px" align="center"> '+pn+'</h1>';
+            if(pn != last){
+                pageControl +='<button id="btn1" style="float:right;margin-right:250px" onclick="request_page('+(pn+1)+')" class="btn btn-default" >Next</button>';
+            }
+        }
+        controls.innerHTML=pageControl;
+    }
+
+</script>
+
+
 
 
 <nav class="navbar navbar-color-on-scroll navbar-transparent   fixed-top  navbar-expand-lg " color-on-scroll="50" id="sectionsNav">
@@ -77,63 +136,15 @@
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
-
-
-            <div  id="div_container" >
-
-            </div>
-            {{--<div class="row">--}}
-                {{--<div class="col-md-6 ml-auto mr-auto">--}}
-                    {{--<div class="card card-nav-tabs">--}}
-                        {{--<h4 class="card-header card-header-info"> Chinese Orange Chicken</h4>--}}
-                        {{--<div class="card-body">--}}
-                            {{--<img class="card-img-top" style="width: 100%; height: 250px" src="profile/assets/img/4557074.jpg" alt="Card image cap">--}}
-                            {{--<p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>--}}
-                            {{--<a href="#" class="btn btn-info">View Details </a>--}}
-                        {{--</div>--}}
-                        {{--<div class="card-footer text-muted">--}}
-                            {{--2 days ago--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-                {{--<div class="col-md-6">--}}
-                    {{--<div class="card card-nav-tabs">--}}
-                        {{--<h4 class="card-header card-header-info"> Faloacorza   Mixicain  Orange Chicken</h4>--}}
-                        {{--<div class="card-body">--}}
-                            {{--<h4 class="card-title">Special title treatment</h4>--}}
-                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/4557074.jpg" alt="Card image cap">--}}
-                            {{--<p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>--}}
-                            {{--<a href="#" class="btn btn-info">View Details </a>--}}
-                        {{--</div>--}}
-                        {{--<div class="card-footer text-muted">--}}
-                            {{--2 days ago--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-
-
-
-
+            <div  id="div_container" ></div>
+            <div id="pagination_controls"></div><br><br><br>
         </div>
     </div>
 
-
 </div>
-
-
 </div>
 
 </div>
-
-
-
-
-
-
-
 
 <footer class="footer ">
     <div class="container">
@@ -182,6 +193,6 @@
 <script src="profile/assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="profile/assets/assets-for-demo/js/material-kit-demo.js"></script>
-<script type="text/javascript" src="js/receipt.js"></script>
+<script>request_page(1);</script>
 </body>
 

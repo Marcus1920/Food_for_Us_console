@@ -10,13 +10,162 @@
 |
 */
 use  App\NewUser  ;
+use App\Sellers_details_tabs;
 
 
 Route::get('sendNotification','MessagingController@sendNotification');
 
+Route::get('/postlist/{num}', function ($num){
+    if($num==1){$num=0;}else{$num= ($num-1) * 8;};
+
+    $respond=array();
+
+    $api_key   = Input::get('api_key');
+
+    if(Input::get('api_key')==NULL)
+    {
+        $user  = NewUser::where('id',Auth::user()->new_user_id)->first();
+    }
+    else {
+        $user  = NewUser::where('api_key',$api_key)->first();
+    }
+
+    if($user!=NULL)
+    {
+
+
+        $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)
+            ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+            ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+            ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+            ->select(
+                \DB::raw(
+                    "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+				
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours
+                        
+                        "
+                )
+            )->where('sellers_details_tabs.post_status',1)
+            ->orderBy('created_at' ,'desc')->skip($num)	->take(8)->get();
+
+        return response()->json($sellers_tabs);
+    }
+    else
+    {
+        $respond['msg']="No Api key found";
+
+        $respond['error']=true;
+
+        return response()->json($respond);
+    }
+
+});
+
+Route::get("postrecent/{num}", function ($num){
+    if($num==1){$num=0;}else{$num= ($num-1) * 4;};
+    $sellers_posts=\DB::table('sellers_details_tabs')
+        ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+        ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+        ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+        ->where('sellers_details_tabs.quantity','>',0)
+        ->where('sellers_details_tabs.post_status','=',1)
+        ->select(
+            \DB::raw(
+                "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+                        product_types.id as productTypeId,
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours"
+            )
+        )
+        ->where('sellers_details_tabs.quantity','>',0)
+        ->orderBy('created_at' ,'desc')->skip($num)	->take(4)->get();
+
+    return $sellers_posts;
+});
 
 Route::get('recentPost', function () {
-    return view('auth.Recentpos');
+    $sellers_posts=\DB::table('sellers_details_tabs')
+        ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+        ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+        ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+        ->where('sellers_details_tabs.quantity','>',0)
+        ->where('sellers_details_tabs.post_status','=',1)
+        ->select(
+            \DB::raw(
+                "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+                        product_types.id as productTypeId,
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours"
+            )
+        )
+        ->where('sellers_details_tabs.quantity','>',0)
+        ->orderBy('created_at' ,'desc')	->count();
+    return view('auth.Recentpos',compact('sellers_posts'));
 });
 
 Route::get('dologin', function () {
@@ -59,17 +208,118 @@ Route::get('userporifiles', function () {
     return view('userprofile.profile',compact('users'));
 });
 
+Route::get("getrecieptlist/{num}", function ($num){
 
+    if($num==1){$num=0;}else{$num= ($num-1) * 4;};
+    $recipes=\DB::table('public_wall')->where('deleted_at', '=', null)
+        ->join('users', 'public_wall.poster', '=', 'users.id')
+        ->select(
+            \DB::raw(
+                "
+                                public_wall.id,             
+                                public_wall.name,                       
+                                public_wall.description,
+                                public_wall.imgurl,
+                                public_wall.ingredients,
+                                public_wall.methods,
+                                public_wall.poster,
+                                public_wall.created_at as createdAt,
+                                users.name as firstName,
+                                users.surname as surname   
+                                "
+            )
+        )
+        ->skip($num)->take(4)->get();
+    return $recipes;
+});
 
 Route::get('recieptlist', function () {
-    return view('userprofile.reciept');
+
+    $recipes=\DB::table('public_wall')->where('deleted_at', '=', null)
+        ->join('users', 'public_wall.poster', '=', 'users.id')
+        ->select(
+            \DB::raw(
+                "
+                                public_wall.id,             
+                                public_wall.name,                       
+                                public_wall.description,
+                                public_wall.imgurl,
+                                public_wall.ingredients,
+                                public_wall.methods,
+                                public_wall.poster,
+                                public_wall.created_at as createdAt,
+                                users.name as firstName,
+                                users.surname as surname   
+                                "
+            )
+        )
+        ->count();
+
+    return view('userprofile.reciept',compact('recipes'));
 });
 
 
 
 
 Route::get('mypostlist', function () {
-    return view('userprofile.mypost');
+
+    $respond=array();
+
+    $api_key   = Input::get('api_key');
+
+    if(Input::get('api_key')==NULL)
+    {
+        $user  = NewUser::where('id',Auth::user()->new_user_id)->first();
+    }
+    else {
+        $user  = NewUser::where('api_key',$api_key)->first();
+    }
+
+    if($user!=NULL)
+    {
+
+
+        $sellers_posts=Sellers_details_tabs::where('new_user_id',$user->id)
+            ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+            ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+            ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+            ->select(
+                \DB::raw(
+                    "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+				
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours
+                        
+                        "
+                )
+            )->where('sellers_details_tabs.post_status',1)
+            ->orderBy('created_at' ,'desc')->count();
+
+
+    }
+
+    return view('userprofile.mypost', compact('sellers_posts'));
 });
 
 
@@ -132,6 +382,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
     });
 
+
+
     Route::post('conversation','ConversationController@createConversation');
     Route::get('getMyConversation','ConversationController@getMyConversation');
     Route::post('getConversation','ConversationController@getConverstation');
@@ -160,7 +412,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Sellers
     Route::post('created' , 'SellersController@created') ;
     Route::post('updateSeller' , 'SellersController@update') ;
+
     Route::get('all' , 'SellersController@index') ;
+
+
     Route::get('allSellersPost' , 'SellersController@allSellersPosts') ;
     Route::post('deletePost' , 'SellersController@destroy') ;
     Route::get('sellerTransaction/{id}','TransactionController@sellerTransaction');

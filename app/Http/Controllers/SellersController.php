@@ -61,6 +61,7 @@ class SellersController extends Controller
     }
     public function index()
     {
+
         $respond=array();
 
         $api_key   = Input::get('api_key');
@@ -110,7 +111,7 @@ class SellersController extends Controller
                         "
                     )
                 )->where('sellers_details_tabs.post_status',1)
-			->orderBy('created_at' ,'desc')	->get();
+			->orderBy('created_at' ,'desc')->skip(1)	->take(1)->get();
 
 			  return response()->json($sellers_tabs);
         }
