@@ -39,7 +39,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav"  data-tabs="tabs">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="userporifiles" class="nav-link" > <i class="material-icons">account_circle</i>
                         Profile </a>
                 </li>
@@ -49,7 +49,7 @@
                 </li>
 
 
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
                         Receipt</a>
                 </li>
@@ -61,7 +61,6 @@
 
 
             </ul>
-
 
             <form class="form-inline ml-auto">
                 <div class="form-group has-white">
@@ -79,123 +78,44 @@
     <div class="profile-content">
         <div class="container">
 
-            <div class="row">
 
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-info"> Chinese Orange Chicken</h4>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <img class="card-img-top" style="width: 100px;" src="profile/assets/img/4557074.jpg" alt="Card image cap">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-info">View Details </a>
-                        </div>
-
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-info"> Faloacorza   Mixicain  Orange Chicken</h4>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <img class="card-img-top" style="width: 100px;" src="profile/assets/img/4557074.jpg" alt="Card image cap">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-info">View Details </a>
-                        </div>
-
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-
+            <div  id="div_container" >
 
             </div>
+            {{--<div class="row">--}}
+                {{--<div class="col-md-6 ml-auto mr-auto">--}}
+                    {{--<div class="card card-nav-tabs">--}}
+                        {{--<h4 class="card-header card-header-info"> Chinese Orange Chicken</h4>--}}
+                        {{--<div class="card-body">--}}
+                            {{--<img class="card-img-top" style="width: 100%; height: 250px" src="profile/assets/img/4557074.jpg" alt="Card image cap">--}}
+                            {{--<p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>--}}
+                            {{--<a href="#" class="btn btn-info">View Details </a>--}}
+                        {{--</div>--}}
+                        {{--<div class="card-footer text-muted">--}}
+                            {{--2 days ago--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
+                {{--<div class="col-md-6">--}}
+                    {{--<div class="card card-nav-tabs">--}}
+                        {{--<h4 class="card-header card-header-info"> Faloacorza   Mixicain  Orange Chicken</h4>--}}
+                        {{--<div class="card-body">--}}
+                            {{--<h4 class="card-title">Special title treatment</h4>--}}
+                            {{--<img class="card-img-top" style="width: 100px;" src="profile/assets/img/4557074.jpg" alt="Card image cap">--}}
+                            {{--<p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>--}}
+                            {{--<a href="#" class="btn btn-info">View Details </a>--}}
+                        {{--</div>--}}
+                        {{--<div class="card-footer text-muted">--}}
+                            {{--2 days ago--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
 
 
 
-
-            <div class="row">
-
-                <div class="col-md-6">
-                    <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-info">Featured</h4>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-info">View Details </a>
-                        </div>
-
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-info">Featured</h4>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <img class="card-img-top" style="width: 100px;" src="profile/assets/img/207115.jpg" alt="Card image cap">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-info">View Details </a>
-                        </div>
-
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-
-
-            <div class="row">
-
-                <div class="col-md-6">
-                    <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-info">Asian Orange Chicken</h4>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <img class="card-img-top" style="width: 100px;" src="profile/assets/img/4557074.jpg" alt="Card image cap">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-info">View Details </a>
-                        </div>
-
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-info">Asian Orange Chicken</h4>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <img class="card-img-top" style="width: 100px;" src="profile/assets/img/4557074.jpg" alt="Card image cap">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-info">View Details </a>
-                        </div>
-
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
 
         </div>
     </div>
@@ -262,5 +182,6 @@
 <script src="profile/assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="profile/assets/assets-for-demo/js/material-kit-demo.js"></script>
+<script type="text/javascript" src="js/receipt.js"></script>
 </body>
 

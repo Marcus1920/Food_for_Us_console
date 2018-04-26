@@ -83,10 +83,7 @@
 
         <div class="container">
 
-
-
-            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">MORE</button>--}}
-
+          {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">MORE</button>--}}
             {{--<!-- Modal -->--}}
             {{--<div class="modal fade" id="exampleModalCenter"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
                 {{--<div class="modal-dialog modal-dialog-centered" role="document">--}}
@@ -113,12 +110,11 @@
                 {{--</div>--}}
             {{--</div>--}}
 
-
-
-
-
-
             <div class="row" id="div_container" >
+
+
+
+
 
                 {{--<div class="col-md-4">--}}
                     {{--<div class="card" style="width: 20rem;">--}}
@@ -274,6 +270,7 @@
                 {{--</div>--}}
             </div>
 
+            <div id="pagination_controls"></div>
 
         </div>
 

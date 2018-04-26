@@ -214,6 +214,10 @@ class SellersController extends Controller
             ->orderBy('created_at' ,'desc')	->get();
         return $sellers_posts;
     }
+
+
+
+
     public function created(Request $request)
       {
           $input                          = $request->all();
