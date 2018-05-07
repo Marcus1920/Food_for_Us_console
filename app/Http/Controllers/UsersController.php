@@ -505,6 +505,15 @@ class UsersController extends Controller
                 'cellphone'=>$request['cellphone'],
                 'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
 
+        if($request['lat']!=NULL)
+        {
+            NewUser::where('id',$id)
+                ->update(['gps_lat'=>$request['lat'],
+                    'gps_long'=>$request['lng'],
+                    'location'=>$request['address'],
+                    'updated_at'=>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
+        }
+
         return Redirect('/users');
 
     }

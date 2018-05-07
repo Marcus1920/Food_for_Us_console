@@ -192,8 +192,9 @@
                     <span class="menu-item">Settings</span>
                 </a>
                 <ul class="list-unstyled menu-item">
-                    <li class="registerAdmin hidden"><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin</a></li>
+                    <li class="registerAdmin hidden"><a href="{{ url('register') }}"><span class="badge badge-r"></span>Register Admin / Manager</a></li>
                     <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Admin List</a></li>
+                    <li><a href="{{ url('adminUser') }}"><span class="badge badge-r"></span>Manager List</a></li>
                     <li><a href="{{ url('userroleslist')}}"><span class="badge badge-r"></span>User Roles List</a></li>
                     <li><a href="{{ url('allProduct') }}"><span class="badge badge-r"></span>Product List</a></li>
                     <li><a href="{{ url('packaginglist') }}"><span class="badge badge-r"></span>Packaging List</a></li>

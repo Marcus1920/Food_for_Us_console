@@ -4,7 +4,7 @@
     <li><a href="{{url('/users')}}">Home</a></li>
     <li class="active">Registration Form</li>
 </ol>
-<h4 class="page-title">Register Admin</h4>
+<h4 class="page-title">Register Admin / Manager</h4>
 
 <!-- Basic with panel-->
 <div class="block-area" id="basic">
