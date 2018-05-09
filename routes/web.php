@@ -172,6 +172,10 @@ Route::get('dologin', function () {
     return view('auth.doLogin');
 });
 
+Route::get('doRegister', function () {
+    return view('auth.registerMobile');
+});
+
 Route::get('lading', function () {
     return view('auth.login');
 });
@@ -426,6 +430,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     //Users
     Route::get('userList' ,  'UsersController@index');
     Route::post('register' ,  'UsersController@create');
+    Route::post('registerMobile' ,  'UsersController@createMobile');
     Route::post('updatePlayeId','UsersController@updatePlayeId');
 
 

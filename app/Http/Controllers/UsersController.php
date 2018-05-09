@@ -434,7 +434,7 @@ class UsersController extends Controller
         $NewUser->   active                 = 1;
         $NewUser->  gps_lat                 = $lat ;
         $NewUser->  gps_long                = $long;
-        $NewUser->profilePicture           ="http://154.0.164.72:8080/Foods/images/default.jpg";
+        $NewUser->profilePicture           ="http://system.foodforus.cloud/public/img/default-user-image.png";
         $NewUser->  name                 = $name ;
         $NewUser->  email                = $email ;
         $NewUser->  intrest              = $intrest;
@@ -458,6 +458,18 @@ class UsersController extends Controller
         $defaultLocation->gps_lat      = $lat;
         $defaultLocation->gps_long     = $long;
         $defaultLocation->save();
+
+        $adminUsers                 = new User();
+        $adminUsers->name           = $name;
+        $adminUsers->new_user_id    = $NewUser->id;
+        $adminUsers->surname        = $surname;
+        $adminUsers->gender         = "none";
+        $adminUsers->cellphone      = $cellphone;
+        $adminUsers->email          = $email;
+        $adminUsers->password       = bcrypt($NewUser->password);
+        $adminUsers->role           = "mobile-user";
+        $adminUsers->created_by     = $name . ' ' . $surname  ;
+        $adminUsers->save();
 
         $message= "Food For us";
         $data = array(
@@ -489,6 +501,188 @@ class UsersController extends Controller
 
 
     }
+
+    public  function  createMobile  ()   {
+
+
+        $validator=Validator::make(
+            array(
+                'name'          =>Input::get('name'),
+                'surname'       =>Input::get('surname'),
+                'emails'        =>Input::get('emails'),
+                'cell'          =>Input::get('cell'),
+                'intrest'       =>Input::get('intrest'),
+                'IdNumber'      =>Input::get('IdNumber'),
+                'location'      =>Input::get('location'),
+                'travel_radius' =>Input::get('travel_radius'),
+                'description_of_acces'=> Input::get('description_of_acces'),
+            ),
+
+            array(
+                'name'          =>array('required','alpha','min:3'),
+                'surname'       =>array('required','alpha','min:3'),
+                'emails'        =>array('required','email','unique:new_users,email'),
+                'intrest'       =>array('required','alpha'),
+                'cell'          =>array('required','unique:new_users,cellphone'),
+                'IdNumber'      =>array('required','unique:new_users,idNumber'),
+                'location'      =>array('required'),
+                'travel_radius' =>array('required'),
+                'description_of_acces'=>array('required'),
+            ),array(
+
+                'name.required'         =>'The Name field is required',
+                'surname.required'      =>'The Surname field is required',
+                'intrest.required'      =>'Please select group',
+                'cell.required'         =>'The Phone Number field is required',
+                'cell.unique'           =>'This Phone Number is allready taken',
+                'emails.required'       =>'The Email field is required',
+                'emails.unique'         =>'This Email is allready taken',
+                'travel_radius.required'=>'Please select Notification Radius',
+                'IdNumber.required'     =>'The Identity Number field is required',
+                'IdNumber.unique'       =>'This Identity Number is allready taken',
+                'description_of_acces.required'=>'Please select mode of transport',
+
+            )
+        );
+
+
+        if ( $validator->fails() ) {
+            $resposse = array();
+
+            $errors=$validator->messages();
+
+            foreach ( $errors->all() as $error ) {
+                $resposse["Erro"] =  $error;
+                return response()->json($resposse);
+            }
+
+        }
+
+
+//        if ( ! empty( $errors ) ) {
+//
+//        }
+
+        function generateRandomString($length = 24) {
+            return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+        }
+        $name                   =  Input::get('name') ;
+        $surname                =  Input::get('surname') ;
+        $email                  =  Input::get('emails') ;
+
+        $userRoleId             = UserRoles::where('name',Input::get('intrest'))->first();
+        $intrest                =  $userRoleId['id'] ;
+
+
+        $cellphone              = Input::get('cell');
+        $idNumber               = Input::get('IdNumber');
+        $location               =  Input::get('location') ;
+
+        $userTravelRadId        = UserTravelRadius::where('kilometres',Input::get('travel_radius'))->first();
+        $travel_radius          =  $userTravelRadId['id'] ;
+
+        $description_of_acces   =  Input::get('description_of_acces');
+        $gps_lat                =  Input::get('gps_lat');
+        $gps_long               =  Input::get('gps_long');
+        $lat   = null  ;
+        $long  =null ;
+        if ($gps_lat==null)
+        {
+            $lat   = "-937538943";
+        }
+        else
+        {
+
+            $lat = Input::get('gps_lat');
+        }
+
+        if ($gps_long==null)
+        {
+            $long = "937538943";
+
+        }
+        else
+
+        {
+            $long  = Input::get('gps_long');
+
+        }
+
+        $NewUser    =   new   NewUser  () ;
+        $NewUser->   active                 = 1;
+        $NewUser->  gps_lat                 = $lat ;
+        $NewUser->  gps_long                = $long;
+        $NewUser->profilePicture           ="http://system.foodforus.cloud/public/img/default-user-image.png";
+        $NewUser->  name                 = $name ;
+        $NewUser->  email                = $email ;
+        $NewUser->  intrest              = $intrest;
+        $NewUser->  surname              = $surname ;
+        $NewUser-> cellphone             = $cellphone;
+        $NewUser->idNumber               = $idNumber;
+        $NewUser->  location             = $location;
+
+
+        $NewUser->  descriptionOfAcces = $description_of_acces ;
+
+        $NewUser->  travelRadius        =  $travel_radius ;
+        $NewUser->  password             =  rand(1,9999);
+        $NewUser->  api_key                =  generateRandomString() ;
+        $NewUser->  descriptionOfAcces  = $description_of_acces ;
+
+        $NewUser-> save() ;
+
+        $defaultLocation               = new UserDefaultLocation();
+        $defaultLocation->userId       = $NewUser->id;
+        $defaultLocation->gps_lat      = $lat;
+        $defaultLocation->gps_long     = $long;
+        $defaultLocation->save();
+
+        $adminUsers                 = new User();
+        $adminUsers->name           = $name;
+        $adminUsers->new_user_id    = $NewUser->id;
+        $adminUsers->surname        = $surname;
+        $adminUsers->gender         = "none";
+        $adminUsers->cellphone      = $cellphone;
+        $adminUsers->email          = $email;
+        $adminUsers->password       = bcrypt($NewUser->password);
+        $adminUsers->role           = "mobile-user";
+        $adminUsers->created_by     = $name . ' ' . $surname  ;
+        $adminUsers->save();
+
+        $message= "Food For us";
+        $data = array(
+
+            'name'      =>      $NewUser->name,
+            'surname'   =>      $NewUser->surname,
+            'email'     =>      $NewUser->email,
+            'password' =>       $NewUser->password,
+            'surname' =>        $NewUser->surname,
+            'content'   =>      $message
+        );
+
+        \Mail::send('emails.registration', $data, function ($message) use ($NewUser) {
+
+            $message->from('Info@FoodForUs.cloud', 'Food For us');
+            $message->to($NewUser->email)->subject("Registration Notification ");
+        });
+
+        \Mail::send('emails.adminRegNotification', $data, function ($message) use ($NewUser) {
+
+            $message->from('Info@FoodForUs.cloud', 'Food For us');
+            $message->to("mozaamisi93@gmail.com")->subject("Registration Notification ");
+        });
+
+        \Session::flash('success', 'well done! Registered successfully, Check your email for login credentials');
+        return Redirect('/dologin');
+
+//        $respose = array();
+//        $respose ['mesg']="Ok";
+        //$respose['mesg'] = "successfully registered  please  wait   or  approval ";
+//        return response()->json($respose);
+
+
+    }
+
     public function getUser($id)
     {
 

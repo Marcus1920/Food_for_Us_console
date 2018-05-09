@@ -45,7 +45,13 @@
                         <div class="hamburger-icon"></div>
                     </button>
 
-                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="lading">HOME</a></li><li class="nav-item"><a class="nav-link link" href="recentPost" aria-expanded="false">RECENT POST</a></li><li class="nav-item"><a class="nav-link link" href="/" aria-expanded="false"></a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="dologin">Login</a></li></ul>
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                        <li class="nav-item"><a class="nav-link link" href="lading">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="recentPost" aria-expanded="false">RECENT POST</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="/" aria-expanded="false"></a></li>
+                        <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="doRegister">Register</a></li>
+                        <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="dologin">Login</a></li>
+                    </ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>
