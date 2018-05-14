@@ -192,8 +192,16 @@
                                 <div class="row row-sm-offset">
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
-                                            <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Description Of Access<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="description_of_acces" required="" data-form-field="Name" id="form1-4-name">
+                                            <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Mode of transport<span class="form-asterisk"></span></label>
+                                            <select name="description_of_acces" class="form-control" data-form-field="Name" id="form1-4-name">
+                                                <option>Select Mode of transport</option>
+                                                <option value="Tar road-Any vehicle">Tar road-Any vehicle</option>
+                                                <option value="Dirt road-Any vehicle">Dirt road-Any vehicle</option>
+                                                <option value="Dirt road-Bakkie or Truck (4x4 rainy season)">Dirt road-Bakkie or Truck (4x4 rainy season)</option>
+                                                <option value="Dirt road-no large trucks">Dirt road-no large trucks</option>
+                                                <option value="Dirt road-4x4">Dirt road-4x4</option>
+                                                <option value="Dirt road-4x4 only">Dirt road-4x4 only</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
