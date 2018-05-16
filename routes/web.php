@@ -11,9 +11,50 @@
 */
 use  App\NewUser  ;
 use App\Sellers_details_tabs;
+use Illuminate\Http\Request;
 
-
+Route::resource('change_pp','PpController');
 Route::get('sendNotification','MessagingController@sendNotification');
+
+
+Route::post("updateprofile",function (Request $request){
+
+   if($request->file_pic != "") {
+
+       $newuser = NewUser::findOrFail($request->id);
+
+       if (  $newuser->profilePicture != NULL) {unlink('img/' . $newuser->profilePicture);  }
+
+           NewUser::where('id', $request->id)
+               ->update([ 'profilePicture' =>$request->file_pic,
+                   'idNumber' =>$request->idnumber,'surname'=>$request->name,'email'=>$request->email,
+                   'intrest' =>$request->interest,'cellphone'=>$request->cell,'location'=>$request->location
+               ]);
+           return "Successfully Updated";
+
+   }else {
+
+       $newuser = NewUser::findOrFail($request->id);$image='';
+        if($newuser->profilePicture === NULL){$image=$request->file_pic;}else{$image=$newuser->profilePicture;}
+       NewUser::where('id', $request->id)
+           ->update([  'profilePicture' =>$image,
+               'idNumber' => $request->idnumber, 'surname' => $request->name, 'email' => $request->email,
+               'intrest' => $request->interest, 'cellphone' => $request->cell, 'location' => $request->location
+           ]);
+       return "Successfully Updated";
+   }
+
+
+
+
+});
+
+Route::get('deleteImg/{imgName}', function ($imgName){
+    if(file_exists('img/'.$imgName)){
+        unlink('img/'.$imgName);
+    }
+    return "file removed";
+});
 
 Route::get('/postlist/{num}', function ($num){
     if($num==1){$num=0;}else{$num= ($num-1) * 8;};
@@ -48,7 +89,6 @@ Route::get('/postlist/{num}', function ($num){
                         sellers_details_tabs.gps_lat,
                         sellers_details_tabs.gps_long,
                         product_types.name as productType,
-				
                         sellers_details_tabs.quantity,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
@@ -183,6 +223,7 @@ Route::get('userporifiles', function () {
 
     $user = NewUser::where('id',$new_user_id)->first();
 
+
     $users  = NewUser::where('api_key',$user->api_key)
         ->join('user_roles', 'new_users.intrest', '=', 'user_roles.id')
         ->select(
@@ -202,6 +243,7 @@ Route::get('userporifiles', function () {
             )
         )
         ->first();
+
 
     http://system.foodforus.cloud/public/img/default-user-image.png
 

@@ -59,7 +59,7 @@ if($last < 1){$last=1;}
                     '</div></div></div></div></div>'
                 add++;
             }
-            if(container===''){container='<h2 class="card-title" style="text-align: center">You do not have any post post</h2>'}
+            if(container===''){container='<h2 class="card-title" style="text-align: center">You do not have any post</h2>'}
             div_container.innerHTML=container;
         }
         ajax.send(null);
@@ -78,12 +78,6 @@ if($last < 1){$last=1;}
     }
 
 </script>
-
-
-
-
-
-
 
 <nav class="navbar navbar-color-on-scroll navbar-transparent   fixed-top  navbar-expand-lg " color-on-scroll="50" id="sectionsNav">
     <div class="container">
@@ -110,7 +104,7 @@ if($last < 1){$last=1;}
 
                 <li class="nav-item">
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
-                        Receipt</a>
+                        Public Wall</a>
                 </li>
 
                 <li class="nav-item">
@@ -121,14 +115,14 @@ if($last < 1){$last=1;}
             </ul>
 
 
-            <form class="form-inline ml-auto">
-                <div class="form-group has-white">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">
-                    <i class="material-icons">search</i>
-                </button>
-            </form>
+            {{--<form class="form-inline ml-auto">--}}
+                {{--<div class="form-group has-white">--}}
+                    {{--<input type="text" class="form-control" placeholder="Search">--}}
+                {{--</div>--}}
+                {{--<button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">--}}
+                    {{--<i class="material-icons">search</i>--}}
+                {{--</button>--}}
+            {{--</form>--}}
         </div>
     </div>
 </nav>

@@ -82,9 +82,6 @@ if($last < 1){$last=1;}
 
 </script>
 
-
-
-
 <nav class="navbar navbar-color-on-scroll navbar-transparent   fixed-top  navbar-expand-lg " color-on-scroll="50" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
@@ -110,7 +107,7 @@ if($last < 1){$last=1;}
 
                 <li class="nav-item active">
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
-                        Receipt</a>
+                        Public Wall</a>
                 </li>
 
                 <li class="nav-item">
@@ -121,14 +118,14 @@ if($last < 1){$last=1;}
 
             </ul>
 
-            <form class="form-inline ml-auto">
-                <div class="form-group has-white">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">
-                    <i class="material-icons">search</i>
-                </button>
-            </form>
+            {{--<form class="form-inline ml-auto">--}}
+                {{--<div class="form-group has-white">--}}
+                    {{--<input type="text" class="form-control" placeholder="Search">--}}
+                {{--</div>--}}
+                {{--<button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">--}}
+                    {{--<i class="material-icons">search</i>--}}
+                {{--</button>--}}
+            {{--</form>--}}
         </div>
     </div>
 </nav>
@@ -137,7 +134,7 @@ if($last < 1){$last=1;}
     <div class="profile-content">
         <div class="container">
             <div  id="div_container" ></div>
-            <div id="pagination_controls"></div><br><br><br>
+            <div id="pagination_controls" class="col-sm-10 col-md-10 col-lg-10"></div><br><br><br>
         </div>
     </div>
 

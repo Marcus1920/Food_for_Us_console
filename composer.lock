@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "258be58969e7f2bae0174dae6116442b",
+    "content-hash": "2ec3ff141a86ff6c6419f3e57d0de6f6",
     "packages": [
         {
             "name": "brozot/laravel-fcm",
@@ -4335,8 +4335,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "webpatser/laravel-countries": 20,
-        "jackpopp/geodistance": 20
+        "jackpopp/geodistance": 20,
+        "webpatser/laravel-countries": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
