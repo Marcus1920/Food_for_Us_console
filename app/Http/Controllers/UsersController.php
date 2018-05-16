@@ -505,6 +505,7 @@ class UsersController extends Controller
     public  function  createMobile  ()   {
 
 
+
         $validator=Validator::make(
             array(
                 'name'          =>Input::get('name'),
@@ -523,12 +524,14 @@ class UsersController extends Controller
                 'surname'       =>array('required','alpha','min:3'),
                 'emails'        =>array('required','email','unique:new_users,email'),
                 'intrest'       =>array('required','alpha'),
-                'cell'          =>array('required','unique:new_users,cellphone'),
-                'IdNumber'      =>array('required','unique:new_users,idNumber'),
+                'cell'          =>array('required','unique:new_users,cellphone','regex:/^[0-9]+$/','max:10','min:10'),
+                'IdNumber'      =>array('required','unique:new_users,idNumber','regex:/^[0-9]+$/','max:13','min:13'),
                 'location'      =>array('required'),
                 'travel_radius' =>array('required'),
                 'description_of_acces'=>array('required'),
-            ),array(
+            ),
+
+            array(
 
                 'name.required'         =>'The Name field is required',
                 'surname.required'      =>'The Surname field is required',
@@ -543,19 +546,27 @@ class UsersController extends Controller
                 'description_of_acces.required'=>'Please select mode of transport',
 
             )
+
+
         );
 
 
-        if ( $validator->fails() ) {
-            $resposse = array();
+//        if ( $validator->fails() ) {
+//            $resposse = array();
+//
+//            $errors=$validator->messages();
+//
+//            foreach ( $errors->all() as $error ) {
+//                $resposse["Erro"] =  $error;
+//                return response()->json($resposse);
+//            }
+//
+//        }
 
-            $errors=$validator->messages();
-
-            foreach ( $errors->all() as $error ) {
-                $resposse["Erro"] =  $error;
-                return response()->json($resposse);
-            }
-
+        if ($validator->fails()) {
+            return redirect('doRegister')
+                ->withErrors($validator)
+                ->withInput();
         }
 
 
@@ -673,7 +684,9 @@ class UsersController extends Controller
         });
 
         \Session::flash('success', 'well done! Registered successfully, Check your email for login credentials');
-        return Redirect('/dologin');
+
+        $success="Thanks for filling out form your account successfully created please";
+        return Redirect('/dologin',compact('success'));
 
 //        $respose = array();
 //        $respose ['mesg']="Ok";

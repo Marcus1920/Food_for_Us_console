@@ -78,6 +78,7 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
+
     <div class="mbr-section mbr-section-nopadding">
         <div class="container">
             <div class="row">
@@ -86,35 +87,36 @@
 
                     <div data-form-alert="true">
                         <div hidden="" data-form-alert-success="true" class="alert alert-form alert-success text-xs-center">Thanks for filling out form!</div>
-
-
-                        @if (count($errors) > 0)
-                            <div class="alert alert-form alert-danger text-xs-center">
-                                <strong>Whoops!</strong> There were some problems with your input <br><br>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         @if (Session::has('status'))
                             <div class="alert alert-form alert-success text-xs-center">{{ Session::get('status') }}</div>
                         @endif
                     </div>
 
+                {{--@if ($errors->any())--}}
+                    {{--<div class="alert alert-danger">--}}
+                        {{--<ul>--}}
+                            {{--@foreach ($errors->all() as $error)--}}
+                                {{--<li>{{ $error }}</li>--}}
+                            {{--@endforeach--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--@endif--}}
+
+
+
+                {{--<div class="alert alert-success">{{$success}}  <a href="../dologin"><b>login</b></a></div>--}}
+
                     <div class="col-md-12">
                         <form method="post" action="api/v1/registerMobile">
                         <div class="col-md-6">
-
                                 {!! csrf_field() !!}
 
                                 <div class="row row-sm-offset">
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Name<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="name" required="" data-form-field="Name" id="form1-4-name">
+                                            <input type="text" class="form-control" name="name" required="" data-form-field="Name" id="form1-4-name" value="{{old('name')}}">
+                                            @if($errors->has('name'))<div class="alert alert-danger">{{$errors->first('name')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +125,8 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Surname<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="surname" required="" data-form-field="Name" id="form1-4-name">
+                                            <input type="text" class="form-control" name="surname" required="" data-form-field="Name" id="form1-4-name" value="{{old('surname')}}">
+                                            @if($errors->has('surname'))<div class="alert alert-danger">{{$errors->first('surname')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +135,8 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Email<span class="form-asterisk"></span></label>
-                                            <input type="email" class="form-control" name="emails" required="" data-form-field="Name" id="form1-4-name">
+                                            <input type="email" class="form-control" name="emails" required="" data-form-field="Name" id="form1-4-name" value="{{old('emails')}}">
+                                            @if($errors->has('email'))<div class="alert alert-danger">{{$errors->first('email')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -142,10 +146,11 @@
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Interest<span class="form-asterisk"></span></label>
                                             <select name="intrest" class="form-control" data-form-field="Name" id="form1-4-name">
-                                                <option>Select Interest</option>
+                                                <option value="">Select Interest</option>
                                                 <option value="Seller">Seller</option>
                                                 <option value="Buyer">Buyer</option>
                                             </select>
+                                            @if($errors->has('intrest'))<div class="alert alert-danger">{{$errors->first('intrest')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +159,8 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Cellphone<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="cell" required="" data-form-field="Name" id="form1-4-name">
+                                            <input type="text" class="form-control" name="cell" required="" data-form-field="Name" id="form1-4-name" value="{{old('cell')}}">
+                                            @if($errors->has('cell'))<div class="alert alert-danger">{{$errors->first('cell')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +169,8 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Identity Number<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="IdNumber" required="" data-form-field="Name" id="form1-4-name">
+                                            <input type="text" class="form-control" name="IdNumber" required="" data-form-field="Name" id="form1-4-name" value="{{old('IdNumber')}}">
+                                            @if($errors->has('IdNumber'))<div class="alert alert-danger">{{$errors->first('IdNumber')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +180,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Travel Radius<span class="form-asterisk"></span></label>
                                             <select name="travel_radius" class="form-control" data-form-field="Name" id="form1-4-name">
-                                                <option>Select Travel Radius</option>
+                                                <option value="">Select Travel Radius</option>
                                                 <option value="10 km">10 km</option>
                                                 <option value="20 km">20 km</option>
                                                 <option value="30 km">30 km</option>
@@ -185,6 +192,7 @@
                                                 <option value="90 km">90 km</option>
                                                 <option value="100 km">100 km</option>
                                             </select>
+                                            @if($errors->has('travel_radius'))<div class="alert alert-danger">{{$errors->first('travel_radius')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +202,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Mode of transport<span class="form-asterisk"></span></label>
                                             <select name="description_of_acces" class="form-control" data-form-field="Name" id="form1-4-name">
-                                                <option>Select Mode of transport</option>
+                                                <option value="">Select Mode of transport</option>
                                                 <option value="Tar road-Any vehicle">Tar road-Any vehicle</option>
                                                 <option value="Dirt road-Any vehicle">Dirt road-Any vehicle</option>
                                                 <option value="Dirt road-Bakkie or Truck (4x4 rainy season)">Dirt road-Bakkie or Truck (4x4 rainy season)</option>
@@ -202,6 +210,7 @@
                                                 <option value="Dirt road-4x4">Dirt road-4x4</option>
                                                 <option value="Dirt road-4x4 only">Dirt road-4x4 only</option>
                                             </select>
+                                            @if($errors->has('description_of_acces'))<div class="alert alert-danger">{{$errors->first('description_of_acces')}}</div>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +228,8 @@
                                 <div class="col-xs-12 col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">GPS Lattitude<span class="form-asterisk"></span></label>
-                                        <input type="text" class="form-control" id="lat" name="gps_lat" required="" data-form-field="Name">
+                                        <input type="text" class="form-control" id="lat" name="gps_long" required="" data-form-field="Name" value="{{old('gps_long')}}">
+                                        @if($errors->has('gps_lat'))<div class="alert alert-danger">{{$errors->first('gps_lat')}}</div>@endif
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +238,8 @@
                                 <div class="col-xs-12 col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">GPS Longitude<span class="form-asterisk"></span></label>
-                                        <input type="text" class="form-control col-md-9" id="lng" name="gps_long" required="" data-form-field="Name">
+                                        <input type="text" class="form-control col-md-9" id="lng" name="gps_long" required="" data-form-field="Name" value="{{old('gps_long')}}">
+                                        @if($errors->has('gps_long'))<div class="alert alert-danger">{{$errors->first('gps_long')}}</div>@endif
                                     </div>
                                 </div>
                             </div>
@@ -237,7 +248,8 @@
                                 <div class="col-xs-12 col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Address<span class="form-asterisk"></span></label>
-                                        <input type="text" class="form-control col-md-9" id="address" name="location" required="" data-form-field="Name">
+                                        <input type="text" class="form-control col-md-9" id="address" name="location" required="" data-form-field="Name" value="{{old('location')}}">
+                                        @if($errors->has('location'))<div class="alert alert-danger">{{$errors->first('location')}}</div>@endif
                                     </div>
                                 </div>
                             </div>

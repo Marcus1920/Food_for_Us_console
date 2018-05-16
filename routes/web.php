@@ -213,7 +213,8 @@ Route::get('dologin', function () {
 });
 
 Route::get('doRegister', function () {
-    return view('auth.registerMobile');
+    $success="";
+    return view('auth.registerMobile',compact('success'));
 });
 
 Route::get('lading', function () {
