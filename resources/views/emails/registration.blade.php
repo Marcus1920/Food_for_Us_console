@@ -80,8 +80,8 @@
                             <tr>
                                 <td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 12px; text-align: center; color:#2E363F;">
 
-                                    <p style="padding: 0px 10px 0 10px; text-align: justify">	Thank you for registering with Food For US (Approval take 6-48 hours)
-                                        	</p>
+                                    {{--<p style="padding: 0px 10px 0 10px; text-align: justify">	Thank you for registering with Food For US (Approval take 6-48 hours)--}}
+                                        	{{--</p>--}}
 
 
                                     <p style="padding:0px 0px 10px 0px; text-align: left">Kind Regards </p>

@@ -25,6 +25,7 @@
                                 <th>Surname</th>
                                 <th>Email</th>
                                 <th>Cellphone</th>
+                                <th>Role</th>
                                 <th>Created By</th>
                                 <th class="action hidden">Action</th>
 
@@ -85,6 +86,7 @@
                     {data: 'surname', name: 'surname'},
                     {data: 'email', name: 'email'},
                     {data: 'cellphone', name: 'cellphone'},
+                    {data: 'role', name: 'role'},
                     {data: 'created_by', name: 'created_by'},
                     {data: function(d)
                     {

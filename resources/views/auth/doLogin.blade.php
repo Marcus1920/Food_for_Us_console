@@ -49,7 +49,13 @@
                         <div class="hamburger-icon"></div>
                     </button>
 
-                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="lading">HOME</a></li><li class="nav-item"><a class="nav-link link" href="recentPost" aria-expanded="false">RECENT POST</a></li><li class="nav-item"><a class="nav-link link" href="lading" aria-expanded="false"></a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="dologin">Login</a></li></ul>
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                        <li class="nav-item"><a class="nav-link link" href="lading">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="recentPost" aria-expanded="false">RECENT POST</a>
+                        </li><li class="nav-item"><a class="nav-link link" href="lading" aria-expanded="false"></a></li>
+                        <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="doRegister">Register</a></li>
+                        <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="dologin">Login</a></li>
+                    </ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>
@@ -79,6 +85,13 @@
             <div class="row">
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1 " >
 
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-icon">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ Session::get('success') }}
+                            <i class="icon">&#61845;</i>
+                        </div>
+                    @endif
 
                     <div data-form-alert="true">
                         <div hidden="" data-form-alert-success="true" class="alert alert-form alert-success text-xs-center">Thanks for filling out form!</div>

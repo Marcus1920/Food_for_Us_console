@@ -47,7 +47,9 @@ class MyRegisterController extends Controller
 
     public function getAdminUsers()
     {
-        $adminUsers = User::all();
+        $adminUsers = User::where('role','=','admin')->get();
+//
+//        $adminUsers = User::all();
 
         return Datatables::of($adminUsers)
             ->make(true);
