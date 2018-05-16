@@ -114,6 +114,11 @@ if($last < 1){$last=1;}
                 </li>
 
                 <li class="nav-item">
+                    <a href="userReport" class="nav-link"> <i class="material-icons">assessment</i>
+                        Report</a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ url('/auth/logout') }}" class="nav-link"> <i class="material-icons">settings_power</i>
                         Logout</a>
                 </li>

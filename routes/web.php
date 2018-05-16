@@ -263,7 +263,8 @@ Route::get('recieptlist', function () {
 });
 
 
-
+Route::get('userReport', 'ReportsController@userReport')
+    ->middleware('auth');
 
 Route::get('mypostlist', function () {
 

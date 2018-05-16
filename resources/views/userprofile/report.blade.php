@@ -19,6 +19,9 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="profile/assets/assets-for-demo/demo.css" rel="stylesheet" />
     <!-- iframe removal -->
+
+    {!! Charts::styles() !!}
+
 </head>
 
 <body class="profile-page ">
@@ -35,7 +38,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav"  data-tabs="tabs">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="userporifiles" class="nav-link" > <i class="material-icons">account_circle</i>
                         Profile </a>
                 </li>
@@ -50,7 +53,7 @@
                         Receipt</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a href="userReport" class="nav-link"> <i class="material-icons">assessment</i>
                         Report</a>
                 </li>
@@ -75,37 +78,19 @@
     </div>
 </nav>
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('profile/assets/img/FFU.png');"></div>
-<div class="main main-raised">
+<div class="main main-raised" style="padding-top: 50px">
     <div class="profile-content">
-        <div class="container">
             <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile">
-                        <div class="avatar">
-                            <img src="{{$users->profilePicture}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                        </div>
-                        <div class="name">
-                            <h3 class="title">{{ $users->name }}  {{ $users->surname }}</h3>
-                            <h6>Interest : {{ $users->interest }} </h6>
-                            <h6>ID Number : {{ $users->idNumber }} </h6>
-                            <h6>email : {{ $users->email }} </h6>
-                            <h6>cellphone : {{ $users->cellphone }} </h6>
-                            <h6>location : {{ $users->location }} </h6>
-                            {{--<a href="" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>--}}
-                            {{--<a href="" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>--}}
-                            {{--<a href="" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>--}}
-                        </div>
-                    </div>
+                <div class="col-md-4 ml-auto mr-auto">
+                        {!! $chart1->html() !!}
+                </div>
+                <div class="col-md-4 ml-auto mr-auto">
+                    {!! $chart2->html() !!}
+                </div>
+                <div class="col-md-4 ml-auto mr-auto">
+                    {!! $chart->html() !!}
                 </div>
             </div>
-            {{--<div class="description text-center">--}}
-                {{--<p>An artist of considerable range, Chet Faker &#x2014; the name taken by Melbourne-raised, Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>--}}
-
-                {{--</br></br>--}}
-            {{--</div>--}}
-
-
-        </div>
     </div>
 </div>
 <footer class="footer ">
@@ -154,6 +139,12 @@
 <script src="profile/assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="profile/assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+{!! Charts::scripts() !!}
+{!! $chart1->script() !!}
+{!! $chart2->script() !!}
+{!! $chart->script() !!}
+
 </body>
 
 </html>
