@@ -12,6 +12,8 @@
 use  App\NewUser  ;
 use App\Sellers_details_tabs;
 use Illuminate\Http\Request;
+use App\ProductType;
+use App\Packaging;
 
 Route::resource('change_pp','PpController');
 Route::get('sendNotification','MessagingController@sendNotification');
@@ -367,10 +369,30 @@ Route::get('mypostlist', function () {
 
     }
 
-    return view('userprofile.mypost', compact('sellers_posts'));
+    return view('userprofile.mypost', compact('sellers_posts','products','packaging','currentDate'));
 });
 
+Route::get('createPost', function (){
 
+    $products = ProductType::select('name' , 'id')->orderBy('name','ASC')-> get() ;
+
+    $packaging = Packaging::select('id','name')->get();
+
+    $currentDate = \Carbon\Carbon::now('Africa/Johannesburg')->toDateString();
+
+    return view('userprofile.createPost', compact('sellers_posts','products','packaging','currentDate'));
+});
+
+Route::get('createDonation', function (){
+
+    $products = ProductType::select('name' , 'id')->orderBy('name','ASC')-> get() ;
+
+    $packaging = Packaging::select('id','name')->get();
+
+    $currentDate = \Carbon\Carbon::now('Africa/Johannesburg')->toDateString();
+
+    return view('userprofile.createDonation', compact('sellers_posts','products','packaging','currentDate'));
+});
 
 
 Route::get('/', function () {
@@ -388,7 +410,6 @@ Route::get('up' , 'SellersController@update') ;
 
 Route::get('/' , 'HomeController@index') ;
 Route::get('del' , 'SellersController@destroy');
-
 Route::resource('group','GroupController');
 Route::post ('updateGroup/{id}','GroupController@update');
 Route::get ('removeGroup/{id}','GroupController@remove');
@@ -638,6 +659,9 @@ Route::get('sellersPostList', 'PostViewController@index')
 Route::get('postview/{id}', 'PostViewController@show')
     ->name('postview/{id}')
     ->middleware('auth');
+Route::get('removePost/{id}','SellersController@deletePost');
+Route::post('createConsole','SellersController@createConsole');
+Route::post('createDonation','SellersController@createDonation');
 
 Route::post('activateUser/{id}' ,'UsersController@updateUser' );
 

@@ -115,7 +115,7 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Name<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="name" required="" data-form-field="Name" id="form1-4-name" value="{{old('name')}}">
+                                            <input type="text" class="form-control" name="name" data-form-field="Name" id="form1-4-name" value="{{old('name')}}">
                                             @if($errors->has('name'))<div class="alert alert-danger">{{$errors->first('name')}}</div>@endif
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Surname<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="surname" required="" data-form-field="Name" id="form1-4-name" value="{{old('surname')}}">
+                                            <input type="text" class="form-control" name="surname"  data-form-field="Name" id="form1-4-name" value="{{old('surname')}}">
                                             @if($errors->has('surname'))<div class="alert alert-danger">{{$errors->first('surname')}}</div>@endif
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Email<span class="form-asterisk"></span></label>
-                                            <input type="email" class="form-control" name="emails" required="" data-form-field="Name" id="form1-4-name" value="{{old('emails')}}">
+                                            <input type="email" class="form-control" name="emails"  data-form-field="Name" id="form1-4-name" value="{{old('emails')}}">
                                             @if($errors->has('email'))<div class="alert alert-danger">{{$errors->first('email')}}</div>@endif
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
                                             <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Cellphone<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="cell" required="" data-form-field="Name" id="form1-4-name" value="{{old('cell')}}">
+                                            <input type="text" class="form-control" name="cell"  data-form-field="Name" id="form1-4-name" value="{{old('cell')}}">
                                             @if($errors->has('cell'))<div class="alert alert-danger">{{$errors->first('cell')}}</div>@endif
                                         </div>
                                     </div>
@@ -168,8 +168,8 @@
                                 <div class="row row-sm-offset">
                                     <div class="col-xs-12 col-md-10">
                                         <div class="form-group">
-                                            <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Identity Number<span class="form-asterisk"></span></label>
-                                            <input type="text" class="form-control" name="IdNumber" required="" data-form-field="Name" id="form1-4-name" value="{{old('IdNumber')}}">
+                                            <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Company Registration Number<span class="form-asterisk"></span></label>
+                                            <input type="text" class="form-control" name="IdNumber"  data-form-field="Name" id="form1-4-name" value="{{old('IdNumber')}}">
                                             @if($errors->has('IdNumber'))<div class="alert alert-danger">{{$errors->first('IdNumber')}}</div>@endif
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
                                 <div class="col-xs-12 col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">GPS Lattitude<span class="form-asterisk"></span></label>
-                                        <input type="text" class="form-control" id="lat" name="gps_long" required="" data-form-field="Name" value="{{old('gps_long')}}">
+                                        <input type="text" class="form-control" id="lat" name="gps_long" data-form-field="Name" value="{{old('gps_long')}}">
                                         @if($errors->has('gps_lat'))<div class="alert alert-danger">{{$errors->first('gps_lat')}}</div>@endif
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
                                 <div class="col-xs-12 col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">GPS Longitude<span class="form-asterisk"></span></label>
-                                        <input type="text" class="form-control col-md-9" id="lng" name="gps_long" required="" data-form-field="Name" value="{{old('gps_long')}}">
+                                        <input type="text" class="form-control col-md-9" id="lng" name="gps_long" data-form-field="Name" value="{{old('gps_long')}}">
                                         @if($errors->has('gps_long'))<div class="alert alert-danger">{{$errors->first('gps_long')}}</div>@endif
                                     </div>
                                 </div>
@@ -248,7 +248,7 @@
                                 <div class="col-xs-12 col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Address<span class="form-asterisk"></span></label>
-                                        <input type="text" class="form-control col-md-9" id="address" name="location" required="" data-form-field="Name" value="{{old('location')}}">
+                                        <input type="text" class="form-control col-md-9" id="address" name="location" data-form-field="Name" value="{{old('location')}}">
                                         @if($errors->has('location'))<div class="alert alert-danger">{{$errors->first('location')}}</div>@endif
                                     </div>
                                 </div>

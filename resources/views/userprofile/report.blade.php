@@ -42,15 +42,27 @@
                     <a href="userporifiles" class="nav-link" > <i class="material-icons">account_circle</i>
                         Profile </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="mypostlist" class="nav-link"> <i class="material-icons">poll</i>
                         My Post </a>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">add_box</i>
+                        Create Post </a>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="createPost">For Sale</a>
+                        <a class="dropdown-item" href="createDonation">Donation</a>
+                    </div>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
-                        Receipt</a>
+                        Public wall</a>
                 </li>
 
                 <li class="nav-item active">
@@ -66,14 +78,14 @@
             </ul>
 
 
-            <form class="form-inline ml-auto">
-                <div class="form-group has-white">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">
-                    <i class="material-icons">search</i>
-                </button>
-            </form>
+            {{--<form class="form-inline ml-auto">--}}
+                {{--<div class="form-group has-white">--}}
+                    {{--<input type="text" class="form-control" placeholder="Search">--}}
+                {{--</div>--}}
+                {{--<button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">--}}
+                    {{--<i class="material-icons">search</i>--}}
+                {{--</button>--}}
+            {{--</form>--}}
         </div>
     </div>
 </nav>

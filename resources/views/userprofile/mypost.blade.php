@@ -3,7 +3,7 @@ $total_row=$sellers_posts;$rrp=8;
 $last=ceil($total_row / $rrp);
 if($last < 1){$last=1;}
 ?>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <html lang="en">
@@ -33,7 +33,6 @@ if($last < 1){$last=1;}
 
 
 <script>
-
     function request_page(pn) {
         var controls=document.getElementById("pagination_controls");
         var rpp = "<?php echo $rrp; ?>", last = "<?php echo $last; ?>";
@@ -43,7 +42,6 @@ if($last < 1){$last=1;}
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajax.onreadystatechange = function() {
             var data = JSON.parse(ajax.responseText);
-
             var count1,count2,container='',add=0,description='';
             for(count2=0; count2 < data.length ; count2++){
                 if(data[add]["description"].length > 200){description = data[add]["description"].substring(0,200)+" ...";}else{description = data[add]["description"];}
@@ -59,25 +57,29 @@ if($last < 1){$last=1;}
                     '</div></div></div></div></div>'
                 add++;
             }
-            if(container===''){container='<h2 class="card-title" style="text-align: center">You do not have any post</h2>'}
+            if(container===''){container='<h2 class="card-title" style="text-align: center">You do not have any post post</h2>'}
             div_container.innerHTML=container;
         }
         ajax.send(null);
-
-     var pageControl='';
-      if(last != 1){
-        if(pn > 1){
-            pageControl+='<button id="btn1" onclick="request_page('+(pn-1)+')" class="btn btn-default" ><</button>';
-        }
+        var pageControl='';
+        if(last != 1){
+            if(pn > 1){
+                pageControl+='<button id="btn1" onclick="request_page('+(pn-1)+')" class="btn btn-default" ><</button>';
+            }
 //            pageControl +='<h1 style="position: absolute; margin-left:300px; margin-top:5px">'+pn+'</h1>';
-        if(pn != last){
-            pageControl +='<button id="btn1" style="margin-left:900px" onclick="request_page('+(pn+1)+')" class="btn btn-default" >></button>';
+            if(pn != last){
+                pageControl +='<button id="btn1" style="margin-left:900px" onclick="request_page('+(pn+1)+')" class="btn btn-default" >></button>';
+            }
         }
-        }
-    controls.innerHTML=pageControl;
+        controls.innerHTML=pageControl;
     }
-
 </script>
+
+
+
+
+
+
 
 <nav class="navbar navbar-color-on-scroll navbar-transparent   fixed-top  navbar-expand-lg " color-on-scroll="50" id="sectionsNav">
     <div class="container">
@@ -101,6 +103,16 @@ if($last < 1){$last=1;}
                         My Post </a>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">add_box</i>
+                        Create Post </a>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="createPost">For Sale</a>
+                        <a class="dropdown-item" href="createDonation">Donation</a>
+                    </div>
+                </li>
 
                 <li class="nav-item">
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
@@ -141,32 +153,54 @@ if($last < 1){$last=1;}
 
         <div class="container">
 
-          {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">MORE</button>--}}
+            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">MORE</button>--}}
             {{--<!-- Modal -->--}}
             {{--<div class="modal fade" id="exampleModalCenter"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
-                {{--<div class="modal-dialog modal-dialog-centered" role="document">--}}
-                    {{--<div class="modal-content" style="z-index: 900">--}}
-                        {{--<div class="modal-header">--}}
-                            {{--<h3 class="modal-title" style="margin-bottom: -10px; margin-top: -10px;  float: left" id="exampleModalLongTitle">--}}
-                                {{--Livestock </h3>--}}
-                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                                {{--<span aria-hidden="true">&times;</span>--}}
-                            {{--</button>--}}
-                        {{--</div>--}}
-                        {{--<div class="modal-body">--}}
-                            {{--<div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div><br style="line-height: .2">--}}
-                            {{--<span>ProductType&emsp;&emsp;&emsp;&emsp;:&emsp;Livestock </span><br>--}}
-                            {{--<span>Location&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;South Africa </span><br>--}}
-                            {{--<span>City&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;Middledrift </span><br>--}}
-                            {{--<span>Packaging&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;Plastic Bags </span><br>--}}
-                            {{--<span>Payment Methods&emsp;&nbsp;&nbsp;&nbsp;:&emsp;Cash </span><br>--}}
-                            {{--<span>Cost PerKg&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;200 </span><br>--}}
-                            {{--<span>Description&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;Domestic goose </span>--}}
-                        {{--</div>--}}
-
-                    {{--</div>--}}
-                {{--</div>--}}
+            {{--<div class="modal-dialog modal-dialog-centered" role="document">--}}
+            {{--<div class="modal-content" style="z-index: 900">--}}
+            {{--<div class="modal-header">--}}
+            {{--<h3 class="modal-title" style="margin-bottom: -10px; margin-top: -10px;  float: left" id="exampleModalLongTitle">--}}
+            {{--Livestock </h3>--}}
+            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+            {{--<span aria-hidden="true">&times;</span>--}}
+            {{--</button>--}}
             {{--</div>--}}
+            {{--<div class="modal-body">--}}
+            {{--<div class="card-img"><img src="assets/images/o-bananas-facebook-600x300.jpg" class="card-img-top"></div><br style="line-height: .2">--}}
+            {{--<span>ProductType&emsp;&emsp;&emsp;&emsp;:&emsp;Livestock </span><br>--}}
+            {{--<span>Location&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;South Africa </span><br>--}}
+            {{--<span>City&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;Middledrift </span><br>--}}
+            {{--<span>Packaging&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:&emsp;Plastic Bags </span><br>--}}
+            {{--<span>Payment Methods&emsp;&nbsp;&nbsp;&nbsp;:&emsp;Cash </span><br>--}}
+            {{--<span>Cost PerKg&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;200 </span><br>--}}
+            {{--<span>Description&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;Domestic goose </span>--}}
+            {{--</div>--}}
+
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+
+            {{--@if(Session::has('success'))--}}
+                {{--<div class="alert alert-success alert-icon">--}}
+                    {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
+                    {{--{{ Session::get('success') }}--}}
+                    {{--<i class="icon">&#61845;</i>--}}
+                {{--</div>--}}
+            {{--@endif--}}
+            @if(Session::has('success'))
+                <div class="d-flex p-2">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <i class="material-icons">thumb_up_alt</i>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ Session::get('success') }}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+                </div>
+            @endif
 
             <div class="row" id="div_container" >
 
@@ -238,4 +272,3 @@ if($last < 1){$last=1;}
 {{--<script type="text/javascript" src="js/mypostlist.js"></script>--}}
 <script>request_page(1);</script>
 </body>
-
