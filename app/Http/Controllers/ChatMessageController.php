@@ -91,6 +91,7 @@ class ChatMessageController extends Controller
                                             chat_messages.conversation_id,
                                             new_users.name,
                                             new_users.surname,
+                                            new_users.profilePicture,
                                             chat_messages.message,
                                             chat_messages.user_type,
                                             chat_messages.created_at
