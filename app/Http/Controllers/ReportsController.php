@@ -194,7 +194,10 @@ class ReportsController extends Controller
             ->dataset('Posts', $sales)
             ->groupByMonth('', true);
 
-        return view('userprofile.report', [ 'chart1' => $chart1 , 'chart2' => $chart2, 'chart' => $chart]);
+        $new_user_id = Auth::user()->new_user_id;
+        $user = NewUser::where('id',$new_user_id)->first();
+
+        return view('userprofile.report', [ 'chart1' => $chart1 , 'chart2' => $chart2, 'chart' => $chart,'user'=>$user]);
     }
 
 

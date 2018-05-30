@@ -427,7 +427,7 @@ Route::get('mypostlist', function () {
     $new_user_id = Auth::user()->new_user_id;
     $user = NewUser::where('id',$new_user_id)->first();
 
-    return view('userprofile.mypost', compact('sellers_posts','products','packaging','currentDate'));
+    return view('userprofile.mypost', compact('sellers_posts','products','packaging','currentDate','user'));
 });
 
 Route::get('createPost', function (){
@@ -438,7 +438,10 @@ Route::get('createPost', function (){
 
     $currentDate = \Carbon\Carbon::now('Africa/Johannesburg')->toDateString();
 
-    return view('userprofile.createPost', compact('sellers_posts','products','packaging','currentDate'));
+    $new_user_id = Auth::user()->new_user_id;
+    $user = NewUser::where('id',$new_user_id)->first();
+
+    return view('userprofile.createPost', compact('sellers_posts','products','packaging','currentDate','user'));
 });
 
 Route::get('createDonation', function (){
@@ -448,8 +451,9 @@ Route::get('createDonation', function (){
     $packaging = Packaging::select('id','name')->get();
 
     $currentDate = \Carbon\Carbon::now('Africa/Johannesburg')->toDateString();
-
-    return view('userprofile.createDonation', compact('sellers_posts','products','packaging','currentDate'));
+    $new_user_id = Auth::user()->new_user_id;
+    $user = NewUser::where('id',$new_user_id)->first();
+    return view('userprofile.createDonation', compact('sellers_posts','products','packaging','currentDate','user'));
 });
 
 

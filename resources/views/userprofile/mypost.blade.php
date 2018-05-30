@@ -43,7 +43,6 @@ if($last < 1){$last=1;}
         cursor: pointer;
     }
 
-
     /* Dropdown button on hover & focus */
     .dropbtn:hover, .dropbtn:focus {
         background-color: #2980B9;
@@ -103,11 +102,8 @@ if($last < 1){$last=1;}
 
 </style>
 
-
-
-
 <script>
-    function _(x){return document.getElementById(x);}
+function _(x){return document.getElementById(x);}
     function request_page(pn) {
         var controls=document.getElementById("pagination_controls");
         var rpp = "<?php echo $rrp; ?>", last = "<?php echo $last; ?>";
@@ -132,16 +128,19 @@ if($last < 1){$last=1;}
                     '</div></div></div></div></div>'
                 add++;
             }
+
             if(container===''){container='<h2 class="card-title" style="text-align: center">You do not have any post</h2>'}
            div_container.innerHTML=container;
 
+            div_container.innerHTML=container;
+        }
         ajax.send(null);
         var pageControl='';
         if(last != 1){
             if(pn > 1){
                 pageControl+='<button id="btn1" onclick="request_page('+(pn-1)+')" class="btn btn-default" ><</button>';
             }
-//            pageControl +='<h1 style="position: absolute; margin-left:300px; margin-top:5px">'+pn+'</h1>';
+
             if(pn != last){
                 pageControl +='<button id="btn1" style="margin-left:900px" onclick="request_page('+(pn+1)+')" class="btn btn-default" >></button>';
             }
@@ -168,17 +167,8 @@ if($last < 1){$last=1;}
             }
             _("myDropdown").innerHTML=contant;
         }
-
         ajax2.send(null);
-
     }
-
-
-
-
-        controls.innerHTML=pageControl;
-    }
-
 </script>
 
 
@@ -237,6 +227,7 @@ if($last < 1){$last=1;}
 
 
 
+                <li class="nav-item">
                     <a href="userReport" class="nav-link"> <i class="material-icons">assessment</i>
                         Report</a>
                 </li>

@@ -223,6 +223,7 @@ if($last < 1){$last=1;}
                     </div>
                 </div>
 
+                <li class="nav-item">
                     <a href="userReport" class="nav-link"> <i class="material-icons">assessment</i>
                         Report</a>
                 </li>
