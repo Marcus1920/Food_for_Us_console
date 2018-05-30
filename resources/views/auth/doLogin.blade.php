@@ -114,7 +114,7 @@
                     </div>
 
 
-                    <form method="post" action="{{ url('login') }}">
+                    <form method="post" action="{{ route('login') }}">
 
                         {!! csrf_field() !!}
 
@@ -125,7 +125,7 @@
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label"  Style="color:white; font-weight:bolder"for="form1-4-name">Username<span class="form-asterisk"></span></label>
-                                    <input type="text" class="form-control" name="email" required="" data-form-field="Name" id="form1-4-name">
+                                    <input type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                                 </div>
                             </div>
 
@@ -147,7 +147,7 @@
                         <div class="row row-sm-offset">
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
-                                    <input type="checkbox"  name="name"  id="form1-4-name"> <span style="color:white"> Remember Me </span>
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}  id="form1-4-name"> <span style="color:white"> Remember Me </span>
                                 </div>
                             </div>
                         </div>

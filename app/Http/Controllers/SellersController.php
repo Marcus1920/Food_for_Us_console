@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use App\Services\NotificationService;
 use Mockery\Matcher\Not;
 use App\ProductInterest;
+use Validator;
 
 class SellersController extends Controller
 {
@@ -124,7 +125,6 @@ class SellersController extends Controller
             return response()->json($respond);
         }
     }
-
     public function getPost()
     {
         $id   = Input::get('id');
@@ -172,7 +172,6 @@ class SellersController extends Controller
 
         return $sellers_posts;
     }
-
     public function allSellersPosts()
 
     {
@@ -215,10 +214,6 @@ class SellersController extends Controller
             ->orderBy('created_at' ,'desc')	->get();
         return $sellers_posts;
     }
-
-
-
-
     public function created(Request $request)
       {
           $input                          = $request->all();
@@ -358,6 +353,275 @@ class SellersController extends Controller
 
         return $sellersPost;
       }
+      public function createConsole(Request $request)
+      {
+          $validator=Validator::make(
+              array(
+                  'productType'          =>$request->productType,
+                  'file'                 =>$request->file,
+                  'transactionRating'    =>$request->transactionRating,
+                  'description'          =>$request->description,
+                  'city'                 =>$request->city,
+                  'packaging'            =>$request->packaging,
+                  'quantity'             =>$request->quantity,
+                  'costPerKg'            =>$request->costPerKg,
+                  'paymentMethods'       =>$request->paymentMethods,
+              ),
+
+              array(
+                  'productType'          =>array('required','numeric'),
+                  'file'                 =>array('required'),
+                  'transactionRating'    =>array('required'),
+                  'description'          =>array('required'),
+                  'city'                 =>array('required'),
+                  'packaging'            =>array('required'),
+                  'quantity'             =>array('required','numeric'),
+                  'costPerKg'            =>array('required'),
+                  'paymentMethods'       =>array('required'),
+              ),
+
+              array(
+
+                  'productType.required'            =>'The Product name field is required',
+                  'productType.numeric'             =>'The Product name field is required',
+                  'file.required'                   =>'The file field is required',
+                  'transactionRating.required'      =>'Please select Grading',
+                  'description.required'            =>'Please enter description',
+                  'city.required'                   =>'Please enter a city',
+                  'packaging.required'              =>'Please select packaging',
+                  'quantity.required'               =>'Quantity field is required',
+                  'costPerKg.required'              =>'Please enter cost per Kg',
+                  'paymentMethods.required'         =>'Please select payment method',
+
+              )
+
+
+          );
+
+          if ($validator->fails()) {
+              return redirect('createPost')
+                  ->withErrors($validator)
+                  ->withInput();
+          }
+
+
+
+          $user                           = NewUser::where('id',Auth::user()->new_user_id)->first();
+
+          $lattitude    = null   ;
+
+          $longitude    = null   ;
+
+          $sellersPost                    = new Sellers_details_tabs();
+
+          $sellersPost->productType       = $request->productType;
+          $sellersPost->new_user_id       = $user->id;
+
+          $img                            = $request->file('file');
+
+          $destinationFolder              = "images/".$user->name."_".$user->surname."_".$user->id."/";
+
+          if(!\File::exists($destinationFolder)) {
+              \File::makeDirectory($destinationFolder,0777,true);
+              move_uploaded_file($img,$destinationFolder);
+          }
+          $name                            =    $img->getClientOriginalName();
+
+          $img->move($destinationFolder,$name) ;
+
+          $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
+
+          $sellersPost->packaging          = $request->packaging;
+
+          $sellersPost->costPerKg          = $request->costPerKg;
+          $sellersPost->transactionRating  = $request->transactionRating;
+          $sellersPost->city              = $request->city;
+          $sellersPost->country           = "South Africa";
+          $sellersPost->description       = $request->description;
+          $sellersPost->quantity          = $request->quantity;
+          $sellersPost->quantityPosted    = $request->quantity;
+          if($request->PickUpRad == 0)
+          {
+              $sellersPost->location = $user->location;
+
+              $sellersPost->gps_lat = $user->gps_lat;
+
+              $sellersPost->gps_long = $user->gps_long;
+          }
+          else if($request->PickUpRad == 1)
+          {
+              $sellersPost->location = $request->address;
+
+              $sellersPost->gps_lat = $request->gps_lat;
+
+              $sellersPost->gps_long = $request->gps_long;
+          }
+          $sellersPost->availableHours    =  Input::get('availableHours');
+          $sellersPost->paymentMethods    =  $request->paymentMethods;
+          $sellersPost->post_status = 1;
+          $radius = Input::get('radius');
+
+          $sellersPost->save();
+
+          $productPickupDetails                      = new ProductPickupDetails();
+          $productPickupDetails->SellersPostId       = $sellersPost->id;
+          $productPickupDetails->sellByDate          = $request->sellByDate;
+          if($request->PickUpRad == 0)
+          {
+              $productPickupDetails->PickUpAddress = $user->location;
+
+              $productPickupDetails->gps_lat = $user->gps_lat;
+
+              $productPickupDetails->gps_long = $user->gps_long;
+          }
+          else if($request->PickUpRad == 1)
+          {
+              $productPickupDetails->PickUpAddress = $request->address;
+
+              $productPickupDetails->gps_lat = $request->gps_lat;
+
+              $productPickupDetails->gps_long = $request->gps_long;
+          }
+          $productPickupDetails->MonToFridayHours    = $request->MonToFriFrom.'-'.$request->MonToFriTo;
+          $productPickupDetails->SaturdayHours       = $request->SatFrom.'-'.$request->SatTo;
+          $productPickupDetails->SundayHours         = $request->SunFrom.'-'.$request->SunTo;
+          $productPickupDetails->save();
+
+          \Session::flash('success', 'well done! Successfully created a post!');
+          return Redirect('/mypostlist');
+      }
+
+    public function createDonation(Request $request)
+    {
+        $validator=Validator::make(
+            array(
+                'productType'          =>$request->productType,
+                'file'                 =>$request->file,
+                'transactionRating'    =>$request->transactionRating,
+                'description'          =>$request->description,
+                'city'                 =>$request->city,
+                'packaging'            =>$request->packaging,
+                'quantity'             =>$request->quantity,
+            ),
+
+            array(
+                'productType'          =>array('required','numeric'),
+                'file'                 =>array('required'),
+                'transactionRating'    =>array('required'),
+                'description'          =>array('required'),
+                'city'                 =>array('required'),
+                'packaging'            =>array('required'),
+                'quantity'             =>array('required','numeric'),
+            ),
+
+            array(
+
+                'productType.required'            =>'The Product name field is required',
+                'productType.numeric'             =>'The Product name field is required',
+                'file.required'                   =>'The file field is required',
+                'transactionRating.required'      =>'Please select Grading',
+                'description.required'            =>'Please enter description',
+                'city.required'                   =>'Please enter a city',
+                'packaging.required'              =>'Please select packaging',
+                'quantity.required'               =>'Quantity field is required',
+            )
+
+
+        );
+
+        if ($validator->fails()) {
+            return redirect('createDonation')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+
+        $user                           = NewUser::where('id',Auth::user()->new_user_id)->first();
+
+        $lattitude    = null   ;
+
+        $longitude    = null   ;
+
+        $sellersPost                    = new Sellers_details_tabs();
+
+        $sellersPost->productType       = $request->productType;
+        $sellersPost->new_user_id       = $user->id;
+
+        $img                            = $request->file('file');
+
+        $destinationFolder              = "images/".$user->name."_".$user->surname."_".$user->id."/";
+
+        if(!\File::exists($destinationFolder)) {
+            \File::makeDirectory($destinationFolder,0777,true);
+            move_uploaded_file($img,$destinationFolder);
+        }
+        $name                            =    $img->getClientOriginalName();
+
+        $img->move($destinationFolder,$name) ;
+
+        $sellersPost->productPicture  = env('APP_URL').$destinationFolder.'/'.$name;
+
+        $sellersPost->packaging          = $request->packaging;
+
+        $sellersPost->costPerKg          = 0;
+        $sellersPost->transactionRating  = $request->transactionRating;
+        $sellersPost->city              = $request->city;
+        $sellersPost->country           = "South Africa";
+        $sellersPost->description       = $request->description;
+        $sellersPost->quantity          = $request->quantity;
+        $sellersPost->quantityPosted    = $request->quantity;
+        if($request->PickUpRad == 0)
+        {
+            $sellersPost->location = $user->location;
+
+            $sellersPost->gps_lat = $user->gps_lat;
+
+            $sellersPost->gps_long = $user->gps_long;
+        }
+        else if($request->PickUpRad == 1)
+        {
+            $sellersPost->location = $request->address;
+
+            $sellersPost->gps_lat = $request->gps_lat;
+
+            $sellersPost->gps_long = $request->gps_long;
+        }
+        $sellersPost->availableHours    =  Input::get('availableHours');
+        $sellersPost->paymentMethods    =  null;
+        $sellersPost->post_status = 1;
+        $radius = Input::get('radius');
+
+        $sellersPost->save();
+
+        $productPickupDetails                      = new ProductPickupDetails();
+        $productPickupDetails->SellersPostId       = $sellersPost->id;
+        $productPickupDetails->sellByDate          = $request->sellByDate;
+        if($request->PickUpRad == 0)
+        {
+            $productPickupDetails->PickUpAddress = $user->location;
+
+            $productPickupDetails->gps_lat = $user->gps_lat;
+
+            $productPickupDetails->gps_long = $user->gps_long;
+        }
+        else if($request->PickUpRad == 1)
+        {
+            $productPickupDetails->PickUpAddress = $request->address;
+
+            $productPickupDetails->gps_lat = $request->gps_lat;
+
+            $productPickupDetails->gps_long = $request->gps_long;
+        }
+        $productPickupDetails->MonToFridayHours    = $request->MonToFriFrom.'-'.$request->MonToFriTo;
+        $productPickupDetails->SaturdayHours       = $request->SatFrom.'-'.$request->SatTo;
+        $productPickupDetails->SundayHours         = $request->SunFrom.'-'.$request->SunTo;
+        $productPickupDetails->save();
+
+        \Session::flash('success', 'well done! Successfully created a donation!');
+        return Redirect('/mypostlist');
+    }
+
     public function changeDefaultLocation()
     {
         $newUserDetails         = NewUser::select('id')
@@ -437,5 +701,13 @@ class SellersController extends Controller
                         'transactionRating'     => Input::get('transactionRating'),
                         'updated_at'            =>\Carbon\Carbon::now('Africa/Johannesburg')->toDateTimeString()]);
         $posts          =   Sellers_details_tabs::where('new_user_id',$user);
+    }
+    public function deletePost($id)
+    {
+        $deletePost     = Sellers_details_tabs::where('id', $id)
+            ->update(['post_status'=> 2]);
+
+        \Session::flash('success', 'well done! Successfully deleted the post!');
+        return Redirect('/postslist');
     }
 }

@@ -197,6 +197,16 @@ if($last < 1){$last=1;}
                         My Post </a>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">add_box</i>
+                        Create Post </a>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="createPost">For Sale</a>
+                        <a class="dropdown-item" href="createDonation">Donation</a>
+                    </div>
+                </li>
 
                 <li class="nav-item active">
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
@@ -204,6 +214,7 @@ if($last < 1){$last=1;}
                 </li>
 
                 <li class="nav-item">
+
                     <a href="#" class="nav-link" onclick="myFunction()" > <i class="material-icons">notifications</i>
                         Notifications</a>
                 </li>
@@ -211,6 +222,11 @@ if($last < 1){$last=1;}
                     <div id="myDropdown" class="dropdown-content">
                     </div>
                 </div>
+
+                    <a href="userReport" class="nav-link"> <i class="material-icons">assessment</i>
+                        Report</a>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="{{ url('/auth/logout') }}" class="nav-link"> <i class="material-icons">settings_power</i>
@@ -220,14 +236,6 @@ if($last < 1){$last=1;}
 
             </ul>
 
-            {{--<form class="form-inline ml-auto">--}}
-                {{--<div class="form-group has-white">--}}
-                    {{--<input type="text" class="form-control" placeholder="Search">--}}
-                {{--</div>--}}
-                {{--<button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">--}}
-                    {{--<i class="material-icons">search</i>--}}
-                {{--</button>--}}
-            {{--</form>--}}
         </div>
     </div>
 </nav>

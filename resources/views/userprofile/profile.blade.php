@@ -145,6 +145,16 @@
                         My Post </a>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">add_box</i>
+                        Create Post </a>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="createPost">For Sale</a>
+                        <a class="dropdown-item" href="createDonation">Donation</a>
+                    </div>
+                </li>
 
                 <li class="nav-item">
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
@@ -161,6 +171,11 @@
                     </div>
                 </div>
 
+
+                <li class="nav-item">
+                    <a href="userReport" class="nav-link"> <i class="material-icons">assessment</i>
+                        Report</a>
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ url('/auth/logout') }}" class="nav-link"> <i class="material-icons">settings_power</i>
