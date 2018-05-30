@@ -235,6 +235,19 @@
 
 </script>
 
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+            appId: "9061f725-d62f-4978-97f1-eb1235f13b10",
+            autoRegister: false,
+            notifyButton: {
+                enable: true,
+            },
+        });
+    });
+</script>
 
 </body>
 </html>

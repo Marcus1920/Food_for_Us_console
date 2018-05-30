@@ -28,11 +28,81 @@ if($last < 1){$last=1;}
         <!-- iframe removal -->
 
     </head>
+    <style>
+        /* Dropdown Button */
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #2980B9;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white ;
+            min-width: 460px;
+            box-shadow: 1px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            margin-left: -130px;
+            margin-top: 22px;
+            border-radius: 2px 2px 2px 2px ;
+            max-height: 652px;
+
+        }
+        .dropdown-content:before{
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #ddd;
+            left:14%;
+            transform: translateX(-50%) translateY(-13px)  rotate(45deg);
+
+        }
+
+        .dropdown-content span {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            margin-bottom: -25px;
+            display: block;
+        }
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .show {display:block;}
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color:#f1f1f1;}
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+    </style>
+
 <body  class="profile-page ">
 
 
 <script>
-
+    function _(x){return document.getElementById(x);}
     function request_page(pn) {
         var controls=document.getElementById("pagination_controls");
         var rpp = "<?php echo $rrp; ?>", last = "<?php echo $last; ?>";
@@ -78,7 +148,30 @@ if($last < 1){$last=1;}
             }
         }
         controls.innerHTML=pageControl;
+
+        var count22,contant="";
+        var ajax2 = new XMLHttpRequest();
+        var api_key='<?php echo $user->api_key;  ?>'
+        ajax2.open("GET","http://dev.foodforus.cloud/public/api/v1/notification?api_key="+ api_key, true);
+        ajax2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax2.onreadystatechange = function() {
+            var data = JSON.parse(ajax2.responseText);
+            contant="<span style='background-color: #ddd'>"+ data.length +" New Notifications</span><br>";
+            for(count22=0; count22 < data.length ; count22++) {
+                contant +='<a href="veiwnotification/'+data[count22]['id']+'">'+
+                    '<img   style="width:55px; height: 55px; float: left; margin-right: 5px; border-radius: 80%; border: silver 1px solid;" src='+data[count22]['productPicture']+'>'+
+                    '<span style=" margin-top: -10px;"><b>'+data[count22]['ProductName']+'</b></span>'+
+                    '<span style=" margin-top: -28px; font-size: 13px">'+data[count22]['Message']+'</span>'+
+                    '<span  style=" margin-top: -29px; font-size: 10px;">'+data[count22]['created_at']+'</span><br style="line-height: .9"></a>'
+                if(count22 > 4){break}
+            }
+            _("myDropdown").innerHTML=contant;
+        }
+
+        ajax2.send(null);
     }
+
+
 
 </script>
 
@@ -109,6 +202,15 @@ if($last < 1){$last=1;}
                     <a href="recieptlist" class="nav-link"> <i class="material-icons">receipt</i>
                         Public Wall</a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="myFunction()" > <i class="material-icons">notifications</i>
+                        Notifications</a>
+                </li>
+                <div class="dropdown">
+                    <div id="myDropdown" class="dropdown-content">
+                    </div>
+                </div>
 
                 <li class="nav-item">
                     <a href="{{ url('/auth/logout') }}" class="nav-link"> <i class="material-icons">settings_power</i>
@@ -190,6 +292,34 @@ if($last < 1){$last=1;}
 <script src="profile/assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="profile/assets/assets-for-demo/js/material-kit-demo.js"></script>
+<script>
+    var x="close"
+    function myFunction() {
+        document.getElementById("myDropdown").style.display="block";
+        x="open"
+    }
+
+
+    window.onclick = function(event) {
+        if (x  === 'close') {document.getElementById("myDropdown").style.display="none";x="open";}else{x="close";}
+    }
+
+</script>
+
 <script>request_page(1);</script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+            appId: "9061f725-d62f-4978-97f1-eb1235f13b10",
+            autoRegister: false,
+            notifyButton: {
+                enable: true,
+            },
+        });
+    });
+</script>
 </body>
+</html>
 

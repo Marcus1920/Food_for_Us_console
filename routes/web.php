@@ -12,9 +12,59 @@
 use  App\NewUser  ;
 use App\Sellers_details_tabs;
 use Illuminate\Http\Request;
-
+use App\Notification;
 Route::resource('change_pp','PpController');
 Route::get('sendNotification','MessagingController@sendNotification');
+
+
+Route::get('veiwnotification/{id}', function ($id){
+   // return view('userprofile.viewnotification');
+    $notification = Notification::where('id',$id)->first();
+
+    Notification::where('id',$id)
+        ->update(['Status'=>1]);
+
+    $sellers_posts=\DB::table('sellers_details_tabs')
+        ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+        ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+        ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+        ->where('sellers_details_tabs.id','=',$notification->PostId)
+        ->select(
+            \DB::raw(
+                "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+                        product_types.id as productTypeId,
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours"
+            )
+        )
+        ->first();
+    $new_user_id = Auth::user()->new_user_id;
+    $user = NewUser::where('id',$new_user_id)->first();
+
+    return view('userprofile.viewnotification',compact('sellers_posts','user'));
+});
+
 
 
 Route::post("updateprofile",function (Request $request){
@@ -250,9 +300,11 @@ Route::get('userporifiles', function () {
         ->first();
 
 
-    http://system.foodforus.cloud/public/img/default-user-image.png
+    $new_user_id = Auth::user()->new_user_id;
 
-    return view('userprofile.profile',compact('users'));
+    $user = NewUser::where('id',$new_user_id)->first();
+
+    return view('userprofile.profile',compact('users','user'));
 });
 
 Route::get("getrecieptlist/{num}", function ($num){
@@ -301,8 +353,10 @@ Route::get('recieptlist', function () {
             )
         )
         ->count();
+    $new_user_id = Auth::user()->new_user_id;
 
-    return view('userprofile.reciept',compact('recipes'));
+    $user = NewUser::where('id',$new_user_id)->first();
+    return view('userprofile.reciept',compact('recipes','user'));
 });
 
 
@@ -366,7 +420,10 @@ Route::get('mypostlist', function () {
 
     }
 
-    return view('userprofile.mypost', compact('sellers_posts'));
+    $new_user_id = Auth::user()->new_user_id;
+    $user = NewUser::where('id',$new_user_id)->first();
+
+    return view('userprofile.mypost', compact('sellers_posts','user'));
 });
 
 
@@ -506,6 +563,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
     Route::get('viewRecipe','PublicWallController@viewRecipe');
     Route::get('distance','SellersController@getDistance');
     Route::get('country', 'CountryCodeController@index');
+
+
 
 /*
     //User Roles
