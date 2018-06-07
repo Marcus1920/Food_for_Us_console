@@ -18,6 +18,47 @@ use App\Packaging;
 Route::resource('change_pp','PpController');
 Route::get('sendNotification','MessagingController@sendNotification');
 
+Route::get('recentPosts',function (){
+    $sellers_posts=\DB::table('sellers_details_tabs')
+        ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
+        ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
+        ->join('product_pickup_details','sellers_details_tabs.id','=','product_pickup_details.SellersPostId')
+        ->where('sellers_details_tabs.quantity','>',0)
+        ->where('sellers_details_tabs.post_status','=',1)
+        ->select(
+            \DB::raw(
+                "
+                        sellers_details_tabs.id,
+                        sellers_details_tabs.new_user_id,
+                        sellers_details_tabs.productPicture,
+                        sellers_details_tabs.location,
+                        sellers_details_tabs.gps_lat,
+                        sellers_details_tabs.gps_long,
+                        product_types.name as productType,
+                        product_types.id as productTypeId,
+                        sellers_details_tabs.quantity,
+                        sellers_details_tabs.costPerKg,
+                        sellers_details_tabs.description,
+                        sellers_details_tabs.country,
+                        sellers_details_tabs.city,
+                        packagings.name as packaging,
+                        sellers_details_tabs.availableHours,
+                        sellers_details_tabs.paymentMethods,
+                        sellers_details_tabs.transactionRating,
+                        sellers_details_tabs.created_at,
+                        sellers_details_tabs.updated_at,
+                        product_pickup_details.sellByDate,
+                        product_pickup_details.PickUpAddress as pickUpAddress,
+                        product_pickup_details.MonToFridayHours as monToFridayHours,
+                        product_pickup_details.SaturdayHours as saturdayHours,
+                        product_pickup_details.SundayHours as sundayHours"
+            )
+        )
+        ->where('sellers_details_tabs.quantity','>',0)
+        ->orderBy('created_at' ,'desc')	->count();
+   return view('auth.RecentPost',compact('sellers_posts'));
+});
+
 
 Route::post("updateprofile",function (Request $request){
 

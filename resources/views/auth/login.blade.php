@@ -21,10 +21,33 @@
     <link rel="stylesheet" href="assets/theme/css/style.css">
     <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+            opacity: .8;
+
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(window).load(function() {
+            $(".loader").fadeOut("slow");
+        });
+    </script>
+
 
 
 </head>
 <body>
+<div class="loader"></div>
 <section id="menu-0" data-rv-view="0">
 
     <nav class="navbar navbar-dropdown transparent navbar-fixed-top bg-color">
@@ -57,7 +80,7 @@
                     </button>
 
                 </div>
-            </div>
+            </div>-
 
         </div>
     </nav>

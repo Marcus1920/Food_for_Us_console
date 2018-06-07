@@ -459,7 +459,7 @@ class SellersController extends Controller
           $sellersPost->availableHours    =  Input::get('availableHours');
           $sellersPost->paymentMethods    =  $request->paymentMethods;
           $sellersPost->post_status = 1;
-          $radius = Input::get('radius');
+          $radius = 3000;
 
           $sellersPost->save();
 
@@ -486,6 +486,57 @@ class SellersController extends Controller
           $productPickupDetails->SaturdayHours       = $request->SatFrom.'-'.$request->SatTo;
           $productPickupDetails->SundayHours         = $request->SunFrom.'-'.$request->SunTo;
           $productPickupDetails->save();
+
+//          //send notifications based on the radius specified on a post and product interest
+//
+//          $product                   = ProductType::where('id',$request->productType)->first();
+//
+//          $message = "New ".$product->name." posted";
+//
+//          //notification based on the users product interest
+//          $users = ProductInterest::where('ProductInterestID',$request->productType)
+//              ->where('active',1)
+//              ->get();
+//
+//          for($i=0 ; $i < count($users) ; $i++)
+//          {
+////            $oneUser = NewUser::where('id',$users[$i]->new_user_id)->first();
+//
+//              $oneUser = \DB::table('new_users')
+//                  ->where('id',$users[$i]->new_user_id)
+//                  ->select(
+//                      \DB::raw(
+//                          "
+//                    id,
+//                    playerID,
+//                    name,
+//                    surname,
+//                    gps_lat,
+//                    gps_long,
+//                    ( 3959 * acos ( cos ( radians(" . $lattitude . ") ) * cos( radians( gps_lat ) ) * cos( radians( gps_long ) - radians(" . $longitude . ") ) + sin ( radians(" . $lattitude . ") ) * sin( radians( gps_lat ) ) ) ) AS distance
+//                    "
+//                      )
+//                  )
+//                  ->having('distance', '<', $radius)
+//                  ->first();
+//
+//              if($oneUser!=NULL)
+//              {
+//                  $PlayerId = $oneUser->playerID;
+//
+//                  $newNotification = new NotificationService();
+//                  $newNotification->sendToOne($message,$PlayerId);
+//
+//                  $notification = new Notification();
+//                  $notification->new_user_id = $users[$i]->new_user_id;
+//                  $notification->PostId = $sellersPost->id;
+//                  $notification->ProductName = Input::get('productName');
+//                  $notification->Message = $message;
+//                  $notification->Status = 0;
+//                  $notification->save();
+//              }
+//          }
+
 
           \Session::flash('success', 'well done! Successfully created a post!');
           return Redirect('/mypostlist');
