@@ -22,8 +22,7 @@ function upload_image(pic) {
     ajax.open("POST", "../../../change_pp");
     ajax.send(formdata);
     }else {
-        _("error").innerHTML="Please select your Song before Upload";
-
+        _("error").innerHTML="Please select your picture";
     }
     function progressHandler(event){
         var percent = (event.loaded / event.total) * 100;
@@ -62,7 +61,6 @@ function removeOldImg() {
            }
         }
     ajax.send(null);
-
 }
 
 function saveData() {

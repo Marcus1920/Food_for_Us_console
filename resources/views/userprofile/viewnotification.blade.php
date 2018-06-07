@@ -168,10 +168,8 @@
 
 
     </style>
-<body class="profile-page" style="z-index: 0" onkeydown="clochat(event)" onkeypress="clochat(event)" onkeyup="clochat(event)">
-
+<body class="profile-page" onkeydown="clochat(event)" onkeypress="clochat(event)" onkeyup="clochat(event)">
 <script>
-
     function _(x){return document.getElementById(x);}
     var count22,contant="";
     var ajax2 = new XMLHttpRequest();
@@ -191,7 +189,6 @@
         _("myDropdown").innerHTML=contant;
     }
     ajax2.send(null);
-
 
     function chat(event) {
        if(event.keyCode === 13){
@@ -280,10 +277,7 @@ function clochat() {
                     <a href="{{ url('/auth/logout') }}" class="nav-link"> <i class="material-icons">settings_power</i>
                         Logout</a>
                 </li>
-
             </ul>
-
-
         </div>
     </div>
 </nav>
@@ -292,59 +286,39 @@ function clochat() {
 
 <div class="main main-raised">
     <div class="profile-content">
-
-
         <div class="container" style="margin-top: -200px">
-
-
-
-
-
-                    <div id="myDropdownh" class="dropdown-conthent">
-
-                    </div>
+                    <div id="myDropdownh" class="dropdown-conthent"></div>
 
                 <div class="modal-body" >
-
                 <div class="card-img" id="boximg" align="center"  style="float: left; " >
                     {{csrf_field()}}
                     <img src="{{$sellers_posts->productPicture}}" id="pic_image" class="card-img-top" style="width: 60%; cursor: pointer; height: 280px">
                 </div>
-
-
                     <div id="chat"  >
                        <span style='background-color: #ddd; position: fixed; padding: 5px; width: 350px'><b>Chat</b>
                            <button onclick="closeChat()">x</button>
                        </span>
-   <br><br style="line-height: 0.9">
-
+                      <br><br style="line-height: 0.9">
                         <div style="width: 332px; height: 30px; margin-top: 398px ; margin-left: -5px; padding: 5px; z-index: 100; position: fixed">
                             <input type="hidden" id="conveId">
                             <input id="inputmessage"  onkeydown="chat(event)" type="text" style="width: 332px; padding: 5px; border: none" placeholder="Write your message here">
                         </div>
-<div id="chatBoxs">
-
-
-</div>
-                    </div>
-
+                        <div id="chatBoxs">
+                        </div>
+                        </div>
                 <p align="center" style="color:black; font-weight: bold; font-size: 32px; margin-bottom: 0px; margin-top: 10px;">{{$sellers_posts->productType}}</p>
                 <span><b>Location :</b> {{$sellers_posts->location}} </span><br>
                 <span><b>Packaging :</b> {{$sellers_posts->packaging}} </span><br>
                 <span><b>Pick Up Address :</b> {{$sellers_posts->pickUpAddress}} </span><br>
                 <span><b>Posted  :</b> {{$sellers_posts->created_at}} </span><br>
                 <span><b>Description :</b> {{$sellers_posts->description}} </span><br>
-
                 </div>
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" id="btnchat"  style="border-radius: 10%" onclick="chatBox()">Chat</button>
             </div>
-
         </div>
     </div>
-
-        
 <script>
     function _(x){return document.getElementById(x);}
     function chatBox() {
@@ -404,15 +378,9 @@ function clochat() {
 
 
 </script>
-
-
             <div class="row" id="div_container" >
 
-
-
             </div>
-
-
 
             <div id="pagination_controls"></div>
 
@@ -420,8 +388,6 @@ function clochat() {
 
     </div>
 </div>
-
-
 
 <footer class="footer ">
     <div class="container">
@@ -449,15 +415,9 @@ function clochat() {
                 </li>
             </ul>
         </nav>
-        <div class="copyright pull-right">
-            &copy;
-
-        </div>
+        <div class="copyright pull-right">&copy;</div>
     </div>
 </footer>
-
-
-
 <!--   Core JS Files   -->
 <script src="../profile/assets/js/core/jquery.min.js"></script>
 <script src="../profile/assets/js/core/popper.min.js"></script>
@@ -472,30 +432,6 @@ function clochat() {
 <script src="../profile/assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="../profile/assets/assets-for-demo/js/material-kit-demo.js"></script>
-<script>
-
-    var x="close"
-    function myFunction() {
-        document.getElementById("myDropdown").style.display="block";
-        x="open"
-    }
-    window.onclick = function(event) {
-        if (x  === 'close') {document.getElementById("myDropdown").style.display="none";x="open";}else{x="close";}
-    }
-
-</script>
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-<script>
-    var OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
-        OneSignal.init({
-            appId: "9061f725-d62f-4978-97f1-eb1235f13b10",
-            autoRegister: false,
-            notifyButton: {
-                enable: true,
-            },
-        });
-    });
-</script>
+<script src="../js/notification.js"></script>
 </body>
 </html>

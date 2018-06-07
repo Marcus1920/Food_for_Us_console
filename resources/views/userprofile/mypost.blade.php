@@ -281,10 +281,6 @@ function _(x){return document.getElementById(x);}
     </div>
 </div>
 
-
-
-
-
 <footer class="footer ">
     <div class="container">
         <nav class="pull-left">
@@ -317,9 +313,6 @@ function _(x){return document.getElementById(x);}
         </div>
     </div>
 </footer>
-
-
-
 <!--   Core JS Files   -->
 <script src="profile/assets/js/core/jquery.min.js"></script>
 <script src="profile/assets/js/core/popper.min.js"></script>

@@ -97,9 +97,6 @@ Route::post("updateprofile",function (Request $request){
        return "Successfully Updated";
    }
 
-
-
-
 });
 
 Route::get('deleteImg/{imgName}', function ($imgName){
@@ -109,7 +106,7 @@ Route::get('deleteImg/{imgName}', function ($imgName){
     return "file removed";
 });
 
-Route::get('/postlist/{num}', function ($num){
+Route::get('postlist/{num}', function ($num){
     if($num==1){$num=0;}else{$num= ($num-1) * 8;};
 
     $respond=array();
@@ -126,8 +123,6 @@ Route::get('/postlist/{num}', function ($num){
 
     if($user!=NULL)
     {
-
-
         $sellers_tabs=Sellers_details_tabs::where('new_user_id',$user->id)
             ->join('product_types', 'sellers_details_tabs.productType', '=', 'product_types.id')
             ->join('packagings', 'sellers_details_tabs.packaging', '=', 'packagings.id')
@@ -398,7 +393,6 @@ Route::get('mypostlist', function () {
                         sellers_details_tabs.gps_lat,
                         sellers_details_tabs.gps_long,
                         product_types.name as productType,
-				
                         sellers_details_tabs.quantity,
                         sellers_details_tabs.costPerKg,
                         sellers_details_tabs.description,
@@ -415,7 +409,6 @@ Route::get('mypostlist', function () {
                         product_pickup_details.MonToFridayHours as monToFridayHours,
                         product_pickup_details.SaturdayHours as saturdayHours,
                         product_pickup_details.SundayHours as sundayHours
-                        
                         "
                 )
             )->where('sellers_details_tabs.post_status',1)
@@ -512,8 +505,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
          return  $respos;
 
     });
-
-
 
     Route::post('conversation','ConversationController@createConversation');
     Route::get('getMyConversation','ConversationController@getMyConversation');
